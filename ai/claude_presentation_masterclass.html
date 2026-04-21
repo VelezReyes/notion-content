@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masterclass: Creating Presentations with Claude</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand-black: #000000;
+    --brand-cream: #EFEFE4;
+    --brand-yellow: #F3FF00;
+    --brand-green: #27CF77;
+    --brand-purple: #A62BFF;
+    --brand-white: #FFFFFF;
+    --brand-dark: #111111;
+    --brand-muted: #B0B0A8;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --border: rgba(0,0,0,0.12);
+    --border-strong: rgba(0,0,0,0.22);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Menlo', 'Consolas', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #252525;
+      --text-primary: #f0f0f0;
+      --text-secondary: #999999;
+      --border: rgba(255,255,255,0.1);
+      --border-strong: rgba(255,255,255,0.2);
+    }
+  }
+
+  body {
+    font-family: var(--font);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .mc-root {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+  }
+
+  .mc-header {
+    background: #000;
+    border-radius: var(--radius-lg);
+    padding: 2rem 2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .mc-header::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: #F3FF00;
+    border-radius: 4px 0 0 4px;
+  }
+  .mc-header-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #F3FF00;
+    margin-bottom: 0.4rem;
+  }
+  .mc-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .mc-header p { font-size: 13px; color: #B0B0A8; }
+
+  .mc-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .mc-nav-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-strong);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font);
+  }
+  .mc-nav-btn:hover { background: var(--bg-secondary); }
+  .mc-nav-btn.active { background: #000; color: #F3FF00; border-color: #000; }
+
+  .mc-section { display: none; }
+  .mc-section.visible { display: block; }
+
+  .mc-card {
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .mc-card-dark {
+    background: #000;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .step-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-num.yellow { background: #F3FF00; color: #000; }
+  .step-num.green  { background: #27CF77; color: #000; }
+  .step-num.purple { background: #A62BFF; color: #fff; }
+  .step-num.gray   { background: var(--bg-secondary); color: var(--text-secondary); border: 0.5px solid var(--border-strong); }
+
+  .step-content h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary); }
+  .step-content p  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .step-content .tip  { font-size: 12px; color: #27CF77; margin-top: 0.3rem; font-weight: 600; }
+  .step-content .warn { font-size: 12px; color: #E09800; margin-top: 0.3rem; font-weight: 600; }
+
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .pill-yellow { background: #F3FF00; color: #000; }
+  .pill-green  { background: #27CF77; color: #000; }
+  .pill-purple { background: #A62BFF; color: #fff; }
+  .pill-gray   { background: var(--bg-secondary); color: var(--text-secondary); border: 0.5px solid var(--border-strong); }
+
+  .section-title { font-size: 18px; font-weight: 600; margin-bottom: 0.25rem; }
+  .section-sub   { font-size: 13px; color: var(--text-secondary); margin-bottom: 1.25rem; }
+
+  .token-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .token-table th { text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); padding: 6px 8px; border-bottom: 0.5px solid var(--border); }
+  .token-table td { padding: 8px; border-bottom: 0.5px solid var(--border); vertical-align: top; }
+  .token-table tr:last-child td { border-bottom: none; }
+  .token-table .highlight td { font-weight: 600; }
+
+  .color-swatch { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .swatch-box { width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0; }
+  .swatch-name { font-weight: 600; font-size: 13px; }
+  .swatch-hex  { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+  .swatch-use  { font-size: 11px; color: #B0B0A8; margin-top: 2px; }
+
+  .prompt-block {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-top: 0.75rem;
+    border: 0.5px solid var(--border);
+  }
+  .prompt-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-secondary); margin-bottom: 0.4rem;
+  }
+
+  .tool-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .tool-card { border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; }
+  .tool-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; }
+  .tool-card ul { list-style: none; font-size: 12px; color: var(--text-secondary); line-height: 1.8; }
+  .tool-card ul li::before { content: '→ '; color: #27CF77; font-weight: 600; }
+
+  .flow-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .flow-box { background: var(--bg-secondary); border: 0.5px solid var(--border); border-radius: var(--radius-md); padding: 6px 12px; font-size: 12px; font-weight: 600; }
+  .flow-box.dark { background: #000; border-color: #000; color: #F3FF00; }
+  .flow-arrow { font-size: 14px; color: var(--text-secondary); }
+
+  .accent-picker { display: flex; gap: 10px; margin: 0.75rem 0; }
+  .accent-opt { flex: 1; border-radius: var(--radius-md); padding: 0.75rem; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; text-align: center; background: var(--bg-secondary); }
+  .accent-opt:hover { border-color: var(--border-strong); }
+  .accent-opt.selected { border-color: var(--text-primary); }
+  .accent-opt .swatch-big { width: 100%; height: 28px; border-radius: 4px; margin-bottom: 6px; }
+  .accent-opt .label { font-size: 12px; font-weight: 600; }
+  .accent-opt .hex { font-size: 11px; font-family: var(--font-mono); color: var(--text-secondary); }
+
+  .combo-preview { border-radius: var(--radius-md); padding: 1rem; margin-top: 0.5rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+  .rule-row { display: flex; gap: 12px; margin-bottom: 8px; align-items: flex-start; font-size: 13px; }
+  .rule-do   { color: #27CF77; font-weight: 600; min-width: 28px; }
+  .rule-dont { color: #E09800; font-weight: 600; min-width: 40px; }
+
+  hr.divider { height: 0.5px; background: var(--border); border: none; margin: 1rem 0; }
+</style>
+</head>
+<body>
+<div class="mc-root">
+
+  <div class="mc-header">
+    <div class="mc-header-label">Masterclass</div>
+    <h1>Creating Presentations with Claude</h1>
+    <p>Methodology · Prompt structure · Token costs · Brand application</p>
+  </div>
+
+  <div class="mc-nav">
+    <button class="mc-nav-btn active" onclick="showSection('methodology', this)">① Methodology</button>
+    <button class="mc-nav-btn" onclick="showSection('tools', this)">② Chat vs Cowork</button>
+    <button class="mc-nav-btn" onclick="showSection('prompts', this)">③ Prompt Structure</button>
+    <button class="mc-nav-btn" onclick="showSection('content', this)">④ Content Input</button>
+    <button class="mc-nav-btn" onclick="showSection('tokens', this)">⑤ Token Costs</button>
+    <button class="mc-nav-btn" onclick="showSection('brand', this)">⑥ Brand Manual</button>
+    <button class="mc-nav-btn" onclick="showSection('notepad', this)">⑦ Notepad Method</button>
+  </div>
+
+  <!-- SECTION 1: METHODOLOGY -->
+  <div class="mc-section visible" id="sec-methodology">
+    <div class="section-title">The correct methodology</div>
+    <div class="section-sub">Follow these steps in order. Skipping context is the #1 reason presentations come out generic.</div>
+    <div class="mc-card">
+      <div class="step-row">
+        <div class="step-num yellow">1</div>
+        <div class="step-content">
+          <h3>Set context before anything else</h3>
+          <p>Tell Claude: who the audience is, what the goal of the deck is, the tone, and the brand rules. Claude has no memory between sessions — every new conversation starts blank. Give it the full brief.</p>
+          <p class="tip">→ Paste your brand-manual.md in the first message. Claude will apply it throughout.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">2</div>
+        <div class="step-content">
+          <h3>Define structure before content</h3>
+          <p>Ask Claude to confirm slide count, section names, and accent color choice before writing a single word of content. Changing structure later is expensive in tokens and effort.</p>
+          <p class="warn">→ Never jump straight to "generate slides" on the first message.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">3</div>
+        <div class="step-content">
+          <h3>Feed content section by section</h3>
+          <p>Give Claude the raw content for one section at a time. For each slide, specify: title, main message (one sentence), supporting points, any data, and the layout type.</p>
+          <p class="tip">→ Use Template 2 from the prompt pack.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">4</div>
+        <div class="step-content">
+          <h3>Approve the outline before generating code</h3>
+          <p>Have Claude output a structured slide outline first. Review it. Only after approval should Claude generate the .pptx code. This saves 5,000–10,000 tokens on rework.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num purple">5</div>
+        <div class="step-content">
+          <h3>Generate the PPTX file</h3>
+          <p>Claude uses PptxGenJS to produce a working Node.js script, runs it in the sandbox, and outputs a downloadable .pptx. For large decks (20+ slides), split into two calls.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num purple">6</div>
+        <div class="step-content">
+          <h3>QA pass</h3>
+          <p>Ask Claude to review: brand colors, text overflow, slide variety, speaker notes. Claude converts slides to images and inspects them. Fix in one dedicated pass.</p>
+          <p class="tip">→ Use Template 6 from the prompt pack for a structured QA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TOOLS -->
+  <div class="mc-section" id="sec-tools">
+    <div class="section-title">Chat vs Cowork — when to use each</div>
+    <div class="section-sub">The right tool changes depending on which step you're on.</div>
+    <div class="tool-compare">
+      <div class="tool-card">
+        <div style="margin-bottom:0.75rem"><span class="pill pill-yellow">Claude.ai Chat</span></div>
+        <h4>Best for:</h4>
+        <ul>
+          <li>Context setup &amp; brand input</li>
+          <li>Content drafting &amp; iteration</li>
+          <li>Outline approval</li>
+          <li>Small decks (&lt;15 slides)</li>
+          <li>QA conversations</li>
+        </ul>
+      </div>
+      <div class="tool-card">
+        <div style="margin-bottom:0.75rem"><span class="pill pill-purple">Claude Cowork</span></div>
+        <h4>Best for:</h4>
+        <ul>
+          <li>Running the generation script</li>
+          <li>Large decks (20+ slides)</li>
+          <li>File management workflows</li>
+          <li>Automating repeat decks</li>
+          <li>Batch processing templates</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mc-card">
+      <div class="prompt-label">Recommended split workflow</div>
+      <div class="flow-row">
+        <div class="flow-box">Chat: Context</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Chat: Outline</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box dark">Cowork: Generate</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">Chat: QA</div>
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">Do the thinking in Chat — it's conversational and fast. Move to Cowork only for the file creation step where you need the sandbox and file system. QA goes back to Chat.</p>
+    </div>
+    <div class="mc-card">
+      <div class="step-row">
+        <div class="step-num gray">!</div>
+        <div class="step-content">
+          <h3>Context windows reset between sessions</h3>
+          <p>Claude has no memory between conversations. Keep a master context file (brand-manual.md + deck brief) ready to paste at the start of every new session.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: PROMPT STRUCTURE -->
+  <div class="mc-section" id="sec-prompts">
+    <div class="section-title">Prompt structure anatomy</div>
+    <div class="section-sub">Every strong prompt has these five zones. Missing one drops output quality significantly.</div>
+    <div class="mc-card">
+      <div class="step-row">
+        <div class="step-num yellow">R</div>
+        <div class="step-content"><h3>Role</h3><p>Tell Claude what it is. "You are a presentation designer helping me build a branded slide deck." Sets behavior, tone, and decision-making frame for the entire session.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">C</div>
+        <div class="step-content"><h3>Context</h3><p>Brand manual, audience, goal, tone, chosen accent color. Everything Claude needs to make consistent decisions without asking. The more specific, the less back-and-forth.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">I</div>
+        <div class="step-content"><h3>Input</h3><p>The actual content — slide titles, bullet points, data, quotes. Structured clearly. One section at a time is always better than dumping everything at once.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">O</div>
+        <div class="step-content"><h3>Output format</h3><p>Tell Claude what to produce: "Output a numbered slide outline as a table", "Generate a PptxGenJS Node.js script", "Confirm structure then wait for content". Claude defaults to prose if you don't specify.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num purple">G</div>
+        <div class="step-content"><h3>Guard</h3><p>What NOT to do. "Do not generate slides yet." "Do not add placeholder text." "Do not change brand colors." Without guards, Claude fills gaps with reasonable-but-wrong defaults.</p><p class="warn">→ Guards are especially important for brand color consistency.</p></div>
+      </div>
+    </div>
+    <div class="mc-card">
+      <div class="prompt-label">Minimal example — first message</div>
+      <div class="prompt-block">You are a presentation designer.
+
+BRAND: [paste brand-manual.md]
+
+DECK: 15 slides for Q2 company review.
+Audience: executive team. Goal: show progress + set Q3 priorities.
+Tone: confident, data-driven.
+Primary accent for this deck: #27CF77 Green
+
+Do not generate slides yet.
+Confirm you understand, then ask for section content.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: CONTENT INPUT -->
+  <div class="mc-section" id="sec-content">
+    <div class="section-title">Giving Claude the content correctly</div>
+    <div class="section-sub">How you structure input determines output quality more than any other factor.</div>
+    <div class="mc-card">
+      <div class="step-row">
+        <div class="step-num green">A</div>
+        <div class="step-content"><h3>One main message per slide</h3><p>Every slide must answer: "What is the ONE thing the audience must leave knowing?" Put it as the "Main message" in your input. If you can't write it in one sentence, the slide needs to be split.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">B</div>
+        <div class="step-content"><h3>Max 40 words on screen</h3><p>Slides are not documents. If you have more than 40 words for a slide, move the rest to speaker notes. Tell Claude: "Max 40 words on screen. Rest goes to speaker notes."</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">C</div>
+        <div class="step-content"><h3>Distributing heavy content</h3><p>If you have a large amount of raw material, paste it all and ask Claude to distribute it: "Organize this into a slide-by-slide outline. Max 15 slides. Flag what should be stat callouts." Then review and approve before generating.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">D</div>
+        <div class="step-content"><h3>Specify visual intent</h3><p>Don't leave layout up to Claude. For each slide say: "two-column layout", "large stat callout centered", "icon grid 3 columns". Claude will use it.</p></div>
+      </div>
+    </div>
+    <div class="mc-card">
+      <div class="prompt-label">Slide content input example</div>
+      <div class="prompt-block">SLIDE 3 — Content
+Background: Cream (#EFEFE4)
+Accent for this slide: #27CF77 Green
+Title: Revenue Performance H1
+Main message: Revenue grew 40% YoY, driven by enterprise segment.
+
+On screen:
+- $4.2M total revenue (+40% YoY)
+- Enterprise: 68% of total (up from 51%)
+- SMB: stabilized at $1.3M
+
+Layout: Large stat callout "$4.2M" centered top,
+two supporting stats below.
+Speaker notes: Shift in enterprise mix driven by Q1
+deal closures, not price increases.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: TOKENS -->
+  <div class="mc-section" id="sec-tokens">
+    <div class="section-title">Token cost estimates</div>
+    <div class="section-sub">Plan your session around these ranges to avoid surprises mid-deck.</div>
+    <div class="mc-card">
+      <table class="token-table">
+        <tr><th>Task</th><th>Est. tokens</th><th>Notes</th></tr>
+        <tr><td>Brand setup + context (Template 1)</td><td>1,000–2,000</td><td>One-time per deck</td></tr>
+        <tr><td>Per section input (Template 2)</td><td>500–1,500</td><td>Scales with content</td></tr>
+        <tr><td>Content distribution (Template 3)</td><td>2,000–5,000</td><td>Heavy content dump</td></tr>
+        <tr><td>PPTX generation — 10 slides</td><td>4,000–8,000</td><td>Code-heavy output</td></tr>
+        <tr><td>PPTX generation — 20 slides</td><td>8,000–15,000</td><td>Split into two calls</td></tr>
+        <tr><td>QA pass</td><td>1,000–3,000</td><td>Depends on issues</td></tr>
+        <tr class="highlight"><td>Typical full deck (15 slides)</td><td>~12,000–25,000</td><td>End-to-end, chat</td></tr>
+      </table>
+    </div>
+    <div class="mc-card">
+      <div class="prompt-label">Cost-saving strategies</div>
+      <div class="step-row" style="margin-top:0.5rem">
+        <div class="step-num green">1</div>
+        <div class="step-content"><h3>Approve outline before generating</h3><p>Generating and then restructuring is 3–5x more expensive than getting the outline right first. Never skip the outline approval step.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">2</div>
+        <div class="step-content"><h3>Split large decks</h3><p>For 20+ slides, generate slides 1–10 first, then continue with 11–20 passing the existing file as context. Avoids context window overflow.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">3</div>
+        <div class="step-content"><h3>Keep brand manual concise</h3><p>Your brand-manual.md goes in every message. Keep it under 800 words. The provided template is optimized for this.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: BRAND -->
+  <div class="mc-section" id="sec-brand">
+    <div class="section-title">Brand color system</div>
+    <div class="section-sub">Three accent colors, freely available to all teams. One dominant choice per deck.</div>
+
+    <div class="mc-card-dark">
+      <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#F3FF00;margin-bottom:0.75rem;font-weight:600">Backgrounds</div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#000;border:1px solid #444"></div>
+        <div>
+          <div class="swatch-name" style="color:#fff">Primary Black</div>
+          <div class="swatch-hex" style="color:#B0B0A8">#000000</div>
+          <div class="swatch-use">Cover slides · Section dividers</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#EFEFE4;border:1px solid #555"></div>
+        <div>
+          <div class="swatch-name" style="color:#fff">Cream / Off-white</div>
+          <div class="swatch-hex" style="color:#B0B0A8">#EFEFE4</div>
+          <div class="swatch-use">Content slides · Main working background</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mc-card">
+      <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:0.75rem;font-weight:600">Accent colors — pick one per deck, use all three freely</div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#F3FF00;border:0.5px solid #ccc"></div>
+        <div>
+          <div class="swatch-name">Neon Yellow</div>
+          <div class="swatch-hex">#F3FF00</div>
+          <div class="swatch-use">High-energy · Primary attention · Cover moments · Text: #111111</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#27CF77"></div>
+        <div>
+          <div class="swatch-name">Green</div>
+          <div class="swatch-hex">#27CF77</div>
+          <div class="swatch-use">Positive · Action · Growth · Labels · Text: #111111</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-box" style="background:#A62BFF"></div>
+        <div>
+          <div class="swatch-name">Purple</div>
+          <div class="swatch-hex">#A62BFF</div>
+          <div class="swatch-use">Depth · Detail · Supporting narrative · Text: #FFFFFF</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="prompt-label">Accent selector — cover preview</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin:0.5rem 0 0.75rem">Click your deck's primary accent to preview the cover combination:</div>
+
+      <div class="accent-picker">
+        <div class="accent-opt selected" id="opt-yellow" onclick="selectAccent('yellow')">
+          <div class="swatch-big" style="background:#F3FF00"></div>
+          <div class="label">Yellow</div>
+          <div class="hex">#F3FF00</div>
+        </div>
+        <div class="accent-opt" id="opt-green" onclick="selectAccent('green')">
+          <div class="swatch-big" style="background:#27CF77"></div>
+          <div class="label">Green</div>
+          <div class="hex">#27CF77</div>
+        </div>
+        <div class="accent-opt" id="opt-purple" onclick="selectAccent('purple')">
+          <div class="swatch-big" style="background:#A62BFF"></div>
+          <div class="label">Purple</div>
+          <div class="hex">#A62BFF</div>
+        </div>
+      </div>
+
+      <div class="combo-preview" id="combo-preview" style="background:#000">
+        <div id="preview-bar" style="width:6px;height:48px;border-radius:3px;background:#F3FF00;flex-shrink:0"></div>
+        <div>
+          <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:2px">Deck Title</div>
+          <div style="font-size:12px;color:#B0B0A8">Subtitle · Team · Date</div>
+        </div>
+        <div style="margin-left:auto">
+          <span id="preview-pill" style="background:#F3FF00;color:#000;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600">Yellow</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mc-card">
+      <div class="prompt-label">Usage rules</div>
+      <div style="margin-top:0.5rem">
+        <div class="rule-row"><span class="rule-do">Do</span><span style="color:var(--text-secondary)">Pick one dominant accent per deck and carry it through cover, section dividers, and key callouts.</span></div>
+        <div class="rule-row"><span class="rule-do">Do</span><span style="color:var(--text-secondary)">Use a second accent for contrast — e.g. Yellow primary + Green for positive data labels.</span></div>
+        <div class="rule-row"><span class="rule-dont">Don't</span><span style="color:var(--text-secondary)">Use all three accents on the same slide — they compete and cancel out visually.</span></div>
+        <div class="rule-row"><span class="rule-dont">Don't</span><span style="color:var(--text-secondary)">Put dark text on Purple or white text on Yellow/Green — contrast always wins.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: NOTEPAD METHOD -->
+  <div class="mc-section" id="sec-notepad">
+    <div class="section-title">The notepad method</div>
+    <div class="section-sub">Prepare prompts offline before pasting. The most efficient way to work with Claude on complex deliverables.</div>
+    <div class="mc-card">
+      <div class="step-row">
+        <div class="step-num yellow">1</div>
+        <div class="step-content"><h3>Open a plain text editor</h3><p>Notepad, Bear, Notion, VS Code — anything. Build your prompt here before touching Claude. This prevents wasting tokens on incomplete thoughts.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num yellow">2</div>
+        <div class="step-content"><h3>Fill out Template 1 completely</h3><p>Paste in your brand manual. Write the audience, goal, tone, section structure, and your chosen accent color for this deck. Don't skip fields — every blank is a place Claude will improvise.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">3</div>
+        <div class="step-content"><h3>Write all slide content in the same file</h3><p>Use Template 2 structure for each slide. You now have a complete content brief offline — reviewable, shareable, revisable — before a single token is spent.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num green">4</div>
+        <div class="step-content"><h3>Paste in order: context → structure → sections → generate</h3><p>One message at a time. Wait for Claude to confirm before moving to the next step.</p><p class="tip">→ brand-manual.md + presentation-prompt-templates.md are your ready-to-use starting point.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num purple">5</div>
+        <div class="step-content"><h3>Save your prompt file — reuse it</h3><p>For recurring decks (monthly reviews, board updates), keep the template and just update the content section. Context setup time drops to near zero for repeat formats.</p></div>
+      </div>
+    </div>
+    <div class="mc-card">
+      <div class="prompt-label">Your companion files</div>
+      <div style="margin-top:0.5rem;display:flex;flex-direction:column;gap:8px;font-size:13px">
+        <div style="display:flex;align-items:center;gap:8px"><span class="pill pill-green">brand-manual.md</span><span style="color:var(--text-secondary)">Complete visual identity — paste into every new session</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><span class="pill pill-yellow">presentation-prompt-templates.md</span><span style="color:var(--text-secondary)">6 templates + token cost table + step-by-step workflow</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showSection(id, btn) {
+    document.querySelectorAll('.mc-section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.mc-nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('sec-' + id).classList.add('visible');
+    btn.classList.add('active');
+  }
+
+  var accents = {
+    yellow: { hex: '#F3FF00', text: '#000', label: 'Yellow' },
+    green:  { hex: '#27CF77', text: '#000', label: 'Green' },
+    purple: { hex: '#A62BFF', text: '#fff', label: 'Purple' }
+  };
+
+  function selectAccent(key) {
+    ['yellow','green','purple'].forEach(function(k) {
+      document.getElementById('opt-' + k).classList.remove('selected');
+    });
+    document.getElementById('opt-' + key).classList.add('selected');
+    var a = accents[key];
+    document.getElementById('preview-bar').style.background = a.hex;
+    var pill = document.getElementById('preview-pill');
+    pill.style.background = a.hex;
+    pill.style.color = a.text;
+    pill.textContent = a.label;
+  }
+</script>
+</body>
+</html>
