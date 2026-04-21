@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Evaluation SOP — VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --teal:     #00BCD4;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #B0B0A8;
+  --bg:       #F7F7F2;
+  --card-bg:  #FFFFFF;
+  --border:   rgba(0,0,0,0.10);
+  --border-md:rgba(0,0,0,0.18);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Roboto', -apple-system, sans-serif;
+  --mono: 'Roboto Mono', monospace;
+  --purple-lt: #F3E8FF;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --teal-lt:   #E0F7FA;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-md);
+  min-height: 100vh;
+  padding: 1.5rem 1rem 4rem;
+  line-height: 1.6;
+}
+
+.root { max-width: 820px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 2rem 2rem 1.75rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--yellow);
+}
+.header-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.35rem; font-weight: 500; }
+.header h1 { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+.header p  { font-size: 13px; color: var(--text-mt); }
+.header-meta { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.header-meta-item { font-size: 11px; color: var(--text-mt); }
+.header-meta-item strong { color: #DDD; font-weight: 500; }
+
+/* ── Main nav ── */
+.main-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.nav-btn {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sub nav ── */
+.sub-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.sub-btn {
+  padding: 5px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 12px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.sub-btn:hover { border-color: var(--purple); }
+.sub-btn.active            { background: var(--purple); color: var(--white); border-color: var(--purple); }
+.sub-btn.green-btn.active  { background: var(--green);  color: var(--black); border-color: var(--green); }
+.sub-btn.yellow-btn.active { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+.sub-btn.black-btn.active  { background: var(--black);  color: var(--white); border-color: var(--black); }
+.sub-btn.teal-btn.active   { background: var(--teal);   color: var(--black); border-color: var(--teal); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+.level-section { display: none; }
+.level-section.visible { display: block; }
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Level banner ── */
+.level-banner {
+  border-radius: var(--radius);
+  padding: 1.1rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.level-banner .lv-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+.level-banner .lv-text { flex: 1; }
+.level-banner .lv-title { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+.level-banner .lv-sub   { font-size: 12px; opacity: 0.7; }
+
+.lv-green  { background: var(--green-lt);  border: 1.5px solid var(--green); }
+.lv-green  .lv-pill  { background: var(--green); color: var(--black); }
+.lv-green  .lv-title { color: var(--black); }
+
+.lv-black  { background: #F0F0F0; border: 1.5px solid #333; }
+.lv-black  .lv-pill  { background: var(--black); color: var(--white); }
+.lv-black  .lv-title { color: var(--black); }
+
+.lv-yellow { background: var(--yellow-lt); border: 1.5px solid #E8D900; }
+.lv-yellow .lv-pill  { background: var(--yellow); color: var(--black); }
+.lv-yellow .lv-title { color: var(--black); }
+
+.lv-purple { background: var(--purple-lt); border: 1.5px solid var(--purple); }
+.lv-purple .lv-pill  { background: var(--purple); color: var(--white); }
+.lv-purple .lv-title { color: var(--black); }
+
+.lv-teal   { background: var(--teal-lt);   border: 1.5px solid var(--teal); }
+.lv-teal   .lv-pill  { background: var(--teal); color: var(--black); }
+.lv-teal   .lv-title { color: var(--black); }
+
+/* ── Headings ── */
+.sec-title   { font-size: 20px; font-weight: 700; color: var(--text-dk); margin-bottom: 0.2rem; }
+.sec-sub     { font-size: 13px; color: var(--text-mt); margin-bottom: 1.25rem; }
+.block-title { font-size: 15px; font-weight: 600; color: var(--text-dk); margin-bottom: 0.6rem; }
+.block-sub   { font-size: 13px; color: var(--text-mt); margin-bottom: 0.75rem; }
+
+/* ── Steps ── */
+.steps-list { list-style: none; }
+.step-item {
+  display: flex; gap: 0.9rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 6px;
+  padding-left: 6px;
+  transition: background 0.1s;
+}
+.step-item:last-child { border-bottom: none; }
+.step-item:hover { background: var(--bg); }
+.step-item.checked .step-body { opacity: 0.45; text-decoration: line-through; }
+.step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+  transition: all 0.2s;
+}
+.step-item.checked .step-num { background: var(--green) !important; color: var(--black) !important; }
+.step-item.checked .step-num::after { content: '✓'; }
+.step-item.checked .step-num span { display: none; }
+.step-num.y { background: var(--yellow); color: var(--black); }
+.step-num.g { background: var(--green);  color: var(--black); }
+.step-num.p { background: var(--purple); color: var(--white); }
+.step-num.k { background: var(--black);  color: var(--white); }
+.step-num.t { background: var(--teal);   color: var(--black); }
+.step-num.c { background: #EEE; color: var(--text-md); border: 1px solid var(--border-md); }
+.step-body h4 { font-size: 14px; font-weight: 600; color: var(--text-dk); margin-bottom: 2px; }
+.step-body p  { font-size: 13px; color: var(--text-md); line-height: 1.55; }
+
+/* ── Callout ── */
+.callout {
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+  margin: 0.75rem 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-left: 4px solid var(--purple);
+  background: var(--purple-lt);
+}
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout.teal   { border-left-color: var(--teal);    background: var(--teal-lt); }
+.callout-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.callout        .callout-title { color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+.callout.teal   .callout-title { color: #007A8A; }
+
+/* ── Data table ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 8px 12px; }
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.data-table tr:nth-child(odd)  td { background: var(--white); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .td-label { font-weight: 600; color: var(--text-dk); white-space: nowrap; }
+
+/* ── Quick ref ── */
+.quick-ref { width: 100%; border-collapse: collapse; font-size: 13px; }
+.quick-ref tr:first-child td { background: var(--black); color: var(--white); font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.quick-ref td { padding: 8px 12px; border: 1px solid var(--border); }
+.quick-ref tr:not(:first-child) td:first-child { background: var(--cream-dk); font-weight: 600; color: var(--text-dk); }
+.quick-ref tr:not(:first-child) td:last-child  { background: var(--cream); color: var(--text-md); }
+
+/* ── Do / Don't ── */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: var(--radius-sm); overflow: hidden; margin: 0.75rem 0; }
+.do-col, .dont-col { background: var(--card-bg); padding: 0.9rem 1rem; }
+.do-col   h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--green); text-transform: uppercase; margin-bottom: 0.6rem; }
+.dont-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #E09800; text-transform: uppercase; margin-bottom: 0.6rem; }
+.do-item, .dont-item { font-size: 12px; color: var(--text-md); margin-bottom: 0.5rem; line-height: 1.5; padding-left: 1.1rem; position: relative; }
+.do-item::before   { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.dont-item::before { content: '✗'; position: absolute; left: 0; color: #E09800; font-weight: 700; }
+
+/* ── Pill ── */
+.pill { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.pill-y { background: var(--yellow); color: var(--black); }
+.pill-g { background: var(--green);  color: var(--black); }
+.pill-p { background: var(--purple); color: var(--white); }
+.pill-k { background: var(--black);  color: var(--white); }
+.pill-c { background: var(--cream-dk); color: var(--text-dk); }
+.pill-t { background: var(--teal);   color: var(--black); }
+
+/* ── RACI ── */
+.raci-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.raci-table th { background: var(--black); color: var(--white); padding: 8px 10px; text-align: center; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.raci-table th:first-child { text-align: left; }
+.raci-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); vertical-align: middle; text-align: center; }
+.raci-table td:first-child { text-align: left; font-weight: 500; color: var(--text-dk); }
+.raci-table tr:nth-child(even) td { background: var(--cream); }
+.raci-table tr:nth-child(odd)  td { background: var(--white); }
+.raci-table tr.raci-section td { background: #1A1A1A !important; color: var(--yellow); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-align: left !important; padding: 6px 10px; }
+.raci-R { color: var(--purple); font-weight: 700; }
+.raci-A { color: var(--green);  font-weight: 700; }
+.raci-C { color: #E09800;       font-weight: 700; }
+.raci-I { color: var(--text-mt); font-weight: 500; }
+
+/* ── Divider ── */
+hr.div { border: none; height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .do-dont { grid-template-columns: 1fr; }
+  .header h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ · Process Documentation</div>
+    <h1>Performance Evaluation SOP</h1>
+    <p>Standard Operating Procedure · Five Phases · RACI · Escalation Path</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><strong>Effective:</strong> April 10, 2026</div>
+      <div class="header-meta-item"><strong>Owner:</strong> Director of Staff and Operations</div>
+      <div class="header-meta-item"><strong>Scope:</strong> All full-time employees</div>
+      <div class="header-meta-item"><strong>Reference:</strong> Performance Evaluation Policy</div>
+    </div>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('overview',this)">① Overview &amp; Templates</button>
+    <button class="nav-btn" onclick="showMain('phases',this)">② Phases — Step by Step</button>
+    <button class="nav-btn" onclick="showMain('raci',this)">③ RACI Matrix</button>
+    <button class="nav-btn" onclick="showMain('escalation',this)">④ Escalation Path</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- OVERVIEW                                                          -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section visible" id="sec-overview">
+
+    <div class="sec-title">Overview</div>
+    <div class="sec-sub">Purpose, quick reference, tools, and templates that support the quarterly evaluation cycle.</div>
+
+    <div class="card">
+      <div class="block-title">Purpose &amp; Scope</div>
+      <p style="font-size:13px;margin-bottom:.75rem;">This SOP provides step-by-step operational guidance for running the VélezReyes+ quarterly performance evaluation cycle. It is the practical companion to the Performance Evaluation Policy — use the policy for "why," and this document for "how."</p>
+      <p style="font-size:13px;margin-bottom:.75rem;">This SOP applies to all full-time employees of ver+ and the vere team, across both role tiers:</p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;">
+        <span class="pill pill-k">Tier 1 — Leaders: CEO, VP, Directors</span>
+        <span class="pill pill-c">Tier 2 — Contributors: Managers, Coordinators, Associates</span>
+      </div>
+      <p style="font-size:13px;">The process is organized into five phases. Each phase has clear owners, steps, and timing. Everyone involved should read the phases relevant to their role before the cycle begins.</p>
+    </div>
+
+    <div class="card" style="overflow-x:auto;">
+      <div class="block-title">Quick Reference</div>
+      <table class="quick-ref">
+        <tr><td colspan="2">Quick Reference</td></tr>
+        <tr><td>Policy Reference</td><td>VélezReyes+ Performance Evaluation Policy (April 2026)</td></tr>
+        <tr><td>Process Owner</td><td>Director of Staff and Operations</td></tr>
+        <tr><td>Self-Eval Deadline</td><td>3 business days before the feedback meeting</td></tr>
+        <tr><td>Meeting Window</td><td>Within 15 calendar days after each quarter ends</td></tr>
+        <tr><td>Recording</td><td>Google Meet recording + Granola notes — required for all meetings</td></tr>
+        <tr><td>Documentation</td><td>All completed templates uploaded to the shared drive folder</td></tr>
+      </table>
+    </div>
+
+    <div class="card" style="overflow-x:auto;">
+      <div class="block-title">Tools Used in This Process</div>
+      <table class="data-table">
+        <tr><th>Tool</th><th>Used For</th><th>Who Uses It</th></tr>
+        <tr><td class="td-label">Profit.co</td><td>OKR tracking and quarterly Notes documentation</td><td>Manager + Team Member</td></tr>
+        <tr><td class="td-label">Google Meet</td><td>Video call + meeting recording</td><td>Manager + Team Member</td></tr>
+        <tr><td class="td-label">Granola</td><td>AI-generated meeting notes and transcript</td><td>Manager (initiates)</td></tr>
+        <tr><td class="td-label">Shared Drive</td><td>Storage of all completed templates and recordings</td><td>Manager uploads · Director of Staff &amp; Ops organizes</td></tr>
+        <tr><td class="td-label">Word / Docs (.docx)</td><td>Evaluation templates (3A, 3B, 3C)</td><td>Manager + Team Member</td></tr>
+      </table>
+    </div>
+
+    <div class="card" style="overflow-x:auto;">
+      <div class="block-title">Templates Overview</div>
+      <p style="font-size:13px;margin-bottom:.75rem;">Five materials support the evaluation process. Share all of them with the team at the start of each cycle, with a written explanation of what each one is, who fills it in, and when it is due.</p>
+      <table class="data-table">
+        <tr><th>Template</th><th>Who Completes It</th><th>When</th><th>Purpose</th></tr>
+        <tr>
+          <td class="td-label">3A — Self-Evaluation</td>
+          <td>Team Member</td>
+          <td>3 biz days before meeting</td>
+          <td>Reflect on the quarter: accomplishments, development areas, next priorities, and support needed from manager</td>
+        </tr>
+        <tr>
+          <td class="td-label">3B-T1 — Manager Feedback (Tier 1)</td>
+          <td>Manager</td>
+          <td>Before the meeting</td>
+          <td>For CEO, VP, Directors: OKR Achievement (60%), Leadership Effectiveness (20%), Behavioral Alignment (7%), Cross-functional Impact (7%), Growth &amp; Learning (6%)</td>
+        </tr>
+        <tr>
+          <td class="td-label">3B-T2 — Manager Feedback (Tier 2)</td>
+          <td>Manager</td>
+          <td>Before the meeting</td>
+          <td>For Managers, Coordinators, Associates: OKR Achievement (60%), Behavioral Alignment (30%), Growth &amp; Learning (10%)</td>
+        </tr>
+        <tr>
+          <td class="td-label">3C — Upward Feedback</td>
+          <td>Team Member</td>
+          <td>Before the meeting</td>
+          <td>Feedback on the manager's leadership, communication, and support — shared directly during the meeting</td>
+        </tr>
+        <tr>
+          <td class="td-label">3D — OKR Review Guide</td>
+          <td>Reference only — do not fill in</td>
+          <td>During the meeting</td>
+          <td>Reference guide for documenting OKR decisions in Profit.co Notes tab. Keep open during the meeting.</td>
+        </tr>
+      </table>
+      <div class="callout black" style="margin-top:.75rem;">
+        <div class="callout-title">First time using these templates?</div>
+        Read the purpose and instructions at the top of each template before filling it in. If you have questions, contact the Director of Staff and Operations. Template 3D is a reference document — you do not fill it in. Keep it open during the meeting.
+      </div>
+    </div>
+
+  </div><!-- /overview -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- PHASES                                                            -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-phases">
+
+    <div class="sec-title">Phases — Step by Step</div>
+    <div class="sec-sub">Five sequential phases. Steps are checkable — mark them as you execute.</div>
+
+    <div class="sub-nav">
+      <button class="sub-btn green-btn active"  onclick="showLevel('p1',this)">① Cycle Launch</button>
+      <button class="sub-btn black-btn"         onclick="showLevel('p2',this)">② Template Completion</button>
+      <button class="sub-btn yellow-btn"        onclick="showLevel('p3',this)">③ Evaluation Meeting</button>
+      <button class="sub-btn"                   onclick="showLevel('p4',this)">④ Post-Meeting Docs</button>
+      <button class="sub-btn teal-btn"          onclick="showLevel('p5',this)">⑤ HR Review</button>
+    </div>
+
+    <!-- ── PHASE 1 — CYCLE LAUNCH ── -->
+    <div class="level-section visible" id="lv-p1">
+      <div class="level-banner lv-green">
+        <div class="lv-pill">Phase 1</div>
+        <div class="lv-text">
+          <div class="lv-title">Cycle Launch</div>
+          <div class="lv-sub">Who: Director of Staff and Operations · When: First week of the evaluation window (within 5 days of quarter end)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px;">The Director of Staff and Operations is responsible for opening each quarterly evaluation cycle. Their role is to ensure that every team member and manager knows the cycle has started, has access to all the materials they need, and understands exactly what they must do and by when.</p>
+        <div class="callout green" style="margin-top:.75rem;">
+          <div class="callout-title">Shared Drive Folder Structure</div>
+          Each team member has a dedicated folder: <strong>/Evaluations/[Team Member Name]/</strong><br>
+          Inside: subfolders by quarter — e.g., <strong>Q2 2026/</strong><br>
+          Each quarterly subfolder must contain: Self-Evaluation (3A) · Manager Feedback (3B) · Upward Feedback (3C) · Meeting Recording · Granola Notes
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Steps — click to mark complete</div>
+        <ul class="steps-list" id="steps-p1">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num g"><span>1</span></div>
+            <div class="step-body">
+              <h4>Confirm evaluation window dates</h4>
+              <p>Confirm the evaluation window dates for the quarter (e.g., Q2 2026: July 1–15).</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num g"><span>2</span></div>
+            <div class="step-body">
+              <h4>Share all five materials with the full team</h4>
+              <p>Distribute via shared drive or email: Template 3A (Self-Evaluation), 3B-T1 (Manager Feedback — Tier 1), 3B-T2 (Manager Feedback — Tier 2), 3C (Upward Feedback), and Guide 3D (OKR Review Reference). Include a brief written explanation for each: what it is, who completes it, and when it is due.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num g"><span>3</span></div>
+            <div class="step-body">
+              <h4>Send the cycle-launch message to all team members and managers</h4>
+              <p>Message must include: evaluation window dates · self-evaluation submission deadline (3 business days before each meeting) · reminder that all meetings must be completed within 15 calendar days of quarter end · links to all templates · Director of Staff and Operations contact for questions.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num g"><span>4</span></div>
+            <div class="step-body">
+              <h4>Verify shared drive folders are organized and ready</h4>
+              <p>Confirm that all team member folders are in place and ready to receive completed documentation — one subfolder per team member.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num g"><span>5</span></div>
+            <div class="step-body">
+              <h4>Mid-cycle follow-up with managers (around day 8)</h4>
+              <p>Follow up with managers to confirm that evaluation meetings are scheduled before the deadline.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p1')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+    </div>
+
+    <!-- ── PHASE 2 — TEMPLATE COMPLETION ── -->
+    <div class="level-section" id="lv-p2">
+      <div class="level-banner lv-black">
+        <div class="lv-pill">Phase 2</div>
+        <div class="lv-text">
+          <div class="lv-title">Template Completion</div>
+          <div class="lv-sub">Who: Team Member + Manager · When: Before the evaluation meeting — self-eval due 3 business days prior</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px;">Once the cycle is launched, each person completes the templates relevant to their role. All templates must be completed before the evaluation meeting — the quality of the conversation depends on the quality of the preparation.</p>
+        <div class="callout black" style="margin-top:.75rem;">
+          <div class="callout-title">⚠️ Preparation is not optional</div>
+          Arriving at the evaluation meeting without completed templates undermines the entire process. The team member's self-evaluation should reach the manager at least 3 business days in advance. The manager's feedback must be drafted before the meeting — not improvised during it. Both parties should have reviewed the previous quarter's evaluation before sitting down.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Team Member — What You Complete</div>
+        <ul class="steps-list" id="steps-p2-tm">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num c"><span>1</span></div>
+            <div class="step-body">
+              <h4>Review your previous quarter's evaluation first</h4>
+              <p>Before writing anything, look at the development areas you committed to, whether your agreed priorities were executed, and where you have genuinely improved.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num c"><span>2</span></div>
+            <div class="step-body">
+              <h4>Complete Template 3A — Self-Evaluation</h4>
+              <p>Fill in all sections: quarter context, 3 key accomplishments, 3 areas for improvement or development, 3 priorities for next quarter, and support needed from your manager.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num c"><span>3</span></div>
+            <div class="step-body">
+              <h4>Complete Template 3C — Upward Feedback</h4>
+              <p>Complete all sections honestly. This feedback is attributed and will be shared directly with your manager during the meeting.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num c"><span>4</span></div>
+            <div class="step-body">
+              <h4>Submit both templates to your manager</h4>
+              <p>Submit completed Templates 3A and 3C to your manager at least 3 business days before the scheduled meeting.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p2-tm')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Manager — What You Complete</div>
+        <ul class="steps-list" id="steps-p2-mgr">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>1</span></div>
+            <div class="step-body">
+              <h4>Review the team member's previous quarter evaluation in full</h4>
+              <p>Assess: Were commitments and development agreements followed through? Were agreed priorities executed? Where has there been real improvement — and where do gaps remain? Come to the meeting with specific examples.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>2</span></div>
+            <div class="step-body">
+              <h4>Review the team member's completed Template 3A when it arrives</h4>
+              <p>Note where you agree, where your view differs, and any points you want to explore in the conversation.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>3</span></div>
+            <div class="step-body">
+              <h4>Complete the correct Manager Feedback template</h4>
+              <p>Use Template 3B-T1 for Tier 1 (CEO, VP, Directors) or 3B-T2 for Tier 2 (Managers, Coordinators, Associates). Complete all sections: OKR summary, behavioral alignment, tier-specific dimensions, strengths, and development areas.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>4</span></div>
+            <div class="step-body">
+              <h4>Keep Guide 3D accessible during the meeting</h4>
+              <p>Template 3D (OKR Review Guide) is a reference for documenting in Profit.co Notes tab — keep it open throughout the session.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>5</span></div>
+            <div class="step-body">
+              <h4>Schedule the evaluation meeting</h4>
+              <p>The meeting must take place within 15 calendar days of the end of the quarter. Send a calendar invite with the meeting link.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p2-mgr')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+    </div>
+
+    <!-- ── PHASE 3 — THE EVALUATION MEETING ── -->
+    <div class="level-section" id="lv-p3">
+      <div class="level-banner lv-yellow">
+        <div class="lv-pill">Phase 3</div>
+        <div class="lv-text">
+          <div class="lv-title">The Evaluation Meeting</div>
+          <div class="lv-sub">Who: Manager (leads) + Team Member · When: Within 15 calendar days of quarter end · Duration: ~80 minutes</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px;margin-bottom:.5rem;">This is a single ~80-minute meeting that combines the OKR Review and the Performance Review. The times below are a guide — not a rigid schedule. The goal is for everyone to come prepared and make the most of the time together.</p>
+        <p style="font-size:13px;">The manager leads the meeting and is responsible for starting the recording, following the agenda, and maintaining a constructive and safe environment for honest conversation.</p>
+      </div>
+
+      <div class="card" style="overflow-x:auto;">
+        <div class="block-title">Meeting Agenda</div>
+        <table class="data-table">
+          <tr><th style="min-width:55px;">Time</th><th>Segment</th><th>Who Leads</th><th>What Happens</th></tr>
+          <tr>
+            <td class="td-label">5 min</td>
+            <td>🎙️ Opening + Recording</td>
+            <td>Manager</td>
+            <td>Start Google Meet recording and Granola. Both verbally acknowledge the recording. Manager sets a constructive, open tone.</td>
+          </tr>
+          <tr>
+            <td class="td-label">15 min</td>
+            <td>📊 OKR Review</td>
+            <td>Manager (data-led)</td>
+            <td>Open Profit.co together. Walk through each objective — progress, blockers, impact. Manager documents decisions and context in the Notes tab (not Check-in).</td>
+          </tr>
+          <tr>
+            <td class="td-label">15 min</td>
+            <td>📝 Self-Evaluation</td>
+            <td>Team Member presents</td>
+            <td>Team member walks through their 3 accomplishments, 3 development areas, and 3 next-quarter priorities. Shares support needed from manager. Manager listens and asks clarifying questions.</td>
+          </tr>
+          <tr>
+            <td class="td-label">15 min</td>
+            <td>💬 Manager Feedback</td>
+            <td>Manager presents</td>
+            <td>Manager shares qualitative assessment: OKR summary, behavioral observations, development areas, and strengths. Must have reviewed previous evaluation beforehand.</td>
+          </tr>
+          <tr>
+            <td class="td-label">15 min</td>
+            <td>🔄 Upward Feedback</td>
+            <td>Team Member presents</td>
+            <td>Team member shares feedback on their manager directly and constructively. Manager receives with openness. This is a core part of the ver+ Speak Up culture.</td>
+          </tr>
+          <tr>
+            <td class="td-label">10 min</td>
+            <td>🎯 Next Quarter Alignment</td>
+            <td>Both</td>
+            <td>Together agree on the team member's 3 priorities for the next quarter. These are documented in the Manager Feedback Template during the meeting — not after.</td>
+          </tr>
+          <tr>
+            <td class="td-label">5 min</td>
+            <td>🏁 Closing</td>
+            <td>Manager</td>
+            <td>Summarize key takeaways. Confirm that all templates will be uploaded by the manager within 2 business days. Stop recording.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Recording Protocol — click to mark complete</div>
+        <ul class="steps-list" id="steps-p3-rec">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num y"><span>1</span></div>
+            <div class="step-body">
+              <h4>Start Google Meet recording at the very beginning</h4>
+              <p>Manager starts the recording before any substantive conversation begins.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num y"><span>2</span></div>
+            <div class="step-body">
+              <h4>Activate Granola to capture notes and transcript</h4>
+              <p>Manager activates Granola before the session begins.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num y"><span>3</span></div>
+            <div class="step-body">
+              <h4>Both parties verbally acknowledge the recording</h4>
+              <p>"I confirm that this meeting is being recorded." Both participants state this aloud.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num y"><span>4</span></div>
+            <div class="step-body">
+              <h4>Keep recording running for the full meeting</h4>
+              <p>Do not pause or stop the recording mid-session.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num y"><span>5</span></div>
+            <div class="step-body">
+              <h4>Stop recording at the end and confirm the file is saved</h4>
+              <p>Manager stops and verifies the file before closing the meeting.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p3-rec')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Key Principles for the Meeting</div>
+        <div class="do-dont">
+          <div class="do-col">
+            <h4>✓ Expected behavior</h4>
+            <div class="do-item">Both parties come prepared — templates completed, previous evaluation reviewed, Profit.co data checked</div>
+            <div class="do-item">Self-evaluation segment led by the team member — manager's role is to listen and ask clarifying questions</div>
+            <div class="do-item">Upward feedback received with the same openness expected when giving feedback</div>
+            <div class="do-item">Agreed next-quarter priorities written down during the meeting — not after</div>
+          </div>
+          <div class="dont-col">
+            <h4>✗ Avoid this</h4>
+            <div class="dont-item">Manager challenging or correcting during the self-evaluation segment</div>
+            <div class="dont-item">Defending or minimizing upward feedback in the moment</div>
+            <div class="dont-item">Improvising manager feedback — it must be drafted before the meeting</div>
+            <div class="dont-item">Leaving priority alignment for after the meeting — agree and document it during</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PHASE 4 — POST-MEETING DOCUMENTATION ── -->
+    <div class="level-section" id="lv-p4">
+      <div class="level-banner lv-purple">
+        <div class="lv-pill">Phase 4</div>
+        <div class="lv-text">
+          <div class="lv-title">Post-Meeting Documentation</div>
+          <div class="lv-sub">Who: Manager + Director of Staff and Operations · When: Within 2 business days of the meeting</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px;">Once the meeting is complete, the manager is responsible for uploading all materials to the shared drive and notifying the Director of Staff and Operations. This step creates the official record of the evaluation.</p>
+        <div class="callout">
+          <div class="callout-title">File path</div>
+          All completed materials go to: <strong>/Evaluations/[Team Member Name]/[Quarter]/</strong><br>
+          Do not download recordings locally — share the link directly from the source so the record stays accessible and linked.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Manager — Steps</div>
+        <ul class="steps-list" id="steps-p4-mgr">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num p"><span>1</span></div>
+            <div class="step-body">
+              <h4>Share the Google Meet recording and Granola notes to the shared drive</h4>
+              <p>Share the recording link and Granola notes/transcript to the team member's evaluation folder. Share directly from the source — do not download locally.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num p"><span>2</span></div>
+            <div class="step-body">
+              <h4>Finalize the Manager Feedback template</h4>
+              <p>Complete any open sections — specifically "Agreed Next Quarter Priorities," which is filled in during the meeting. Use 3B-T1 for Tier 1 and 3B-T2 for Tier 2.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num p"><span>3</span></div>
+            <div class="step-body">
+              <h4>Upload all completed materials to the team member's folder</h4>
+              <p>Upload to <strong>/Evaluations/[Team Member Name]/[Quarter]/</strong>: Completed Template 3A · Completed Template 3B-T1 or 3B-T2 · Completed Template 3C · Google Meet recording link · Granola notes and transcript.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num p"><span>4</span></div>
+            <div class="step-body">
+              <h4>Notify the Director of Staff and Operations of completion</h4>
+              <p>A short message confirming that documentation for this team member's cycle is complete is sufficient.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num p"><span>5</span></div>
+            <div class="step-body">
+              <h4>Repeat for each direct report</h4>
+              <p>Complete the upload and notification process for every team member who had an evaluation this cycle.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p4-mgr')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Director of Staff and Operations — Steps</div>
+        <ul class="steps-list" id="steps-p4-dir">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>1</span></div>
+            <div class="step-body">
+              <h4>Confirm receipt of all documentation for each team member</h4>
+              <p>Verify that each manager has submitted the full documentation package for their team members.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>2</span></div>
+            <div class="step-body">
+              <h4>Verify that the folder structure is complete and correctly organized</h4>
+              <p>Check that each team member's folder contains all required documents in the correct subfolder.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>3</span></div>
+            <div class="step-body">
+              <h4>Track overall cycle completion — follow up by day 15</h4>
+              <p>Follow up with any manager who has not confirmed completion by day 15.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num k"><span>4</span></div>
+            <div class="step-body">
+              <h4>Flag any missing or incomplete documentation and escalate if needed</h4>
+              <p>Refer to the Escalation Path section for the correct handling steps.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p4-dir')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+    </div>
+
+    <!-- ── PHASE 5 — HR REVIEW & FOLLOW-UP ── -->
+    <div class="level-section" id="lv-p5">
+      <div class="level-banner lv-teal">
+        <div class="lv-pill">Phase 5</div>
+        <div class="lv-text">
+          <div class="lv-title">HR Review &amp; Follow-Up</div>
+          <div class="lv-sub">Who: Director of Staff and Operations · When: Within 5 business days of cycle close (all documentation received)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p style="font-size:13px;margin-bottom:.75rem;">Once all documentation is received and the cycle is closed, the Director of Staff and Operations conducts a full review of the evaluation records across the team. This is not an administrative check — it is a substantive review of the quality, consistency, and content of the feedback given and received.</p>
+        <p style="font-size:13px;margin-bottom:.75rem;">The purpose of this review is to identify whether any situation requires a follow-up conversation — with a manager, a team member, or leadership — before the next quarter begins.</p>
+        <div class="callout teal">
+          <div class="callout-title">What HR visibility means at ver+</div>
+          The Director of Staff and Operations does not evaluate team members — that is the manager's role. Their job in this phase is to be the guardian of the process: ensuring feedback is fair, honest, specific, and followed through. If something doesn't look right, they have both the responsibility and the authority to ask questions and follow up.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Step 1 — Read Every Evaluation</div>
+        <p style="font-size:13px;margin-bottom:.75rem;">Review the full set of documentation for each team member: self-evaluation, manager feedback, upward feedback, and Granola notes. For each person, check:</p>
+        <ul class="steps-list" id="steps-p5-read">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>A</span></div>
+            <div class="step-body">
+              <h4>Significant gap between self-evaluation (3A) and manager assessment (3B)?</h4>
+              <p>Does the gap need to be discussed with the manager to ensure the team member received a fair explanation?</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>B</span></div>
+            <div class="step-body">
+              <h4>Upward feedback revealing leadership concerns?</h4>
+              <p>Look for patterns of poor communication, lack of support, or behaviors inconsistent with our culture.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>C</span></div>
+            <div class="step-body">
+              <h4>Recurring development areas with no improvement cycle after cycle?</h4>
+              <p>Is the manager providing the right support, or is the plan not working?</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>D</span></div>
+            <div class="step-body">
+              <h4>Did the team member follow through on previous cycle commitments?</h4>
+              <p>If not, was that addressed in the evaluation by the manager?</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>E</span></div>
+            <div class="step-body">
+              <h4>Is the manager's feedback specific, constructive, and honest?</h4>
+              <p>Or is it vague and disconnected from reality? Are there any red flags — team members at serious risk, or dynamics that could escalate?</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p5-read')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+
+      <div class="card" style="overflow-x:auto;">
+        <div class="block-title">Step 2 — Decide Whether a Conversation Is Needed</div>
+        <p style="font-size:13px;margin-bottom:.75rem;">Based on the review, determine whether a follow-up conversation is needed and who it should involve:</p>
+        <table class="data-table">
+          <tr><th>Situation</th><th>Who to Talk To</th><th>Purpose</th></tr>
+          <tr>
+            <td>Large gap between self-evaluation and manager feedback</td>
+            <td>Manager</td>
+            <td>Understand the manager's reasoning. Ensure the team member received a fair and clear explanation during the meeting.</td>
+          </tr>
+          <tr>
+            <td>Upward feedback reveals a leadership concern</td>
+            <td>Manager</td>
+            <td>Private conversation to share the pattern observed. Not accusatory — focused on development and awareness.</td>
+          </tr>
+          <tr>
+            <td>Recurring development areas with no progress</td>
+            <td>Manager + Team Member</td>
+            <td>Explore whether the improvement plan is realistic and whether the right support is in place. May lead to a more structured development plan.</td>
+          </tr>
+          <tr>
+            <td>Team member seems disengaged or at risk</td>
+            <td>Manager first, then Team Member if needed</td>
+            <td>Understand root causes. Determine if the issue requires a retention conversation, additional support, or escalation.</td>
+          </tr>
+          <tr>
+            <td>Manager feedback is vague, generic, or appears dishonest</td>
+            <td>Manager</td>
+            <td>Coach the manager on feedback quality. In serious cases, ask them to revise the documentation.</td>
+          </tr>
+          <tr>
+            <td>Systemic pattern across a team (e.g., everyone scores similarly low on a behavior)</td>
+            <td>Manager + Leadership</td>
+            <td>Flag as a team-level issue that may require a broader intervention or calibration conversation.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Step 3 — Have the Conversation</div>
+        <p style="font-size:13px;margin-bottom:.75rem;">If a follow-up conversation is needed, the Director of Staff and Operations initiates it directly. The conversation should:</p>
+        <ul class="steps-list" id="steps-p5-conv">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>1</span></div>
+            <div class="step-body">
+              <h4>Frame it as a follow-up to the evaluation cycle — not a disciplinary action</h4>
+              <p>Set the right tone from the start. This is a development and quality-assurance conversation.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>2</span></div>
+            <div class="step-body">
+              <h4>Ground it in specific observations from the documentation</h4>
+              <p>Never vague or based on rumor. Reference the specific records you reviewed.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>3</span></div>
+            <div class="step-body">
+              <h4>Have a clear purpose: clarify, coach, support, or escalate</h4>
+              <p>Know the intended outcome before going in.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>4</span></div>
+            <div class="step-body">
+              <h4>Document with a brief note saved to the relevant folder</h4>
+              <p>Record a brief note in the shared drive folder for the relevant team member.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p5-conv')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+
+      <div class="card">
+        <div class="block-title">Step 4 — Close the Cycle</div>
+        <ul class="steps-list" id="steps-p5-close">
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>1</span></div>
+            <div class="step-body">
+              <h4>Confirm all documentation is complete and correctly stored</h4>
+              <p>Verify the shared drive is fully organized across all team members for this quarter.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>2</span></div>
+            <div class="step-body">
+              <h4>Note any open action items to track into the next quarter</h4>
+              <p>Capture items that need to be visible at the start of the next cycle.</p>
+            </div>
+          </li>
+          <li class="step-item" onclick="toggleStep(this)">
+            <div class="step-num t"><span>3</span></div>
+            <div class="step-body">
+              <h4>Communicate systemic patterns or team-level concerns to leadership</h4>
+              <p>If the review surfaced recurring patterns or team-level issues, bring these to leadership before the next cycle begins.</p>
+            </div>
+          </li>
+        </ul>
+        <button onclick="resetSteps('steps-p5-close')" style="margin-top:.75rem;font-size:12px;background:none;border:1px solid var(--border-md);border-radius:4px;padding:4px 10px;cursor:pointer;color:var(--text-mt);font-family:var(--font);">Reset steps</button>
+      </div>
+    </div>
+
+  </div><!-- /phases -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- RACI                                                              -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-raci">
+    <div class="sec-title">RACI Matrix</div>
+    <div class="sec-sub">Responsibility assignment for each activity across the five-phase evaluation cycle.</div>
+
+    <div class="card" style="overflow-x:auto;">
+      <table class="raci-table">
+        <tr>
+          <th style="text-align:left;min-width:210px;">Activity</th>
+          <th>Team Member</th>
+          <th>Manager</th>
+          <th>Dir. Staff &amp; Ops</th>
+        </tr>
+        <tr class="raci-section"><td colspan="4">Phase 1 — Cycle Launch</td></tr>
+        <tr>
+          <td>Communicate dates &amp; share all templates with explanations</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span> / <span class="raci-A">A</span></td>
+        </tr>
+        <tr class="raci-section"><td colspan="4">Phase 2 — Template Completion</td></tr>
+        <tr>
+          <td>Complete self-evaluation (3A)</td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Complete upward feedback (3C)</td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Complete manager feedback template (3B)</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Review previous quarter evaluation</td>
+          <td><span class="raci-R">R</span></td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="raci-section"><td colspan="4">Phase 3 — Evaluation Meeting</td></tr>
+        <tr>
+          <td>Schedule the evaluation meeting</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+          <td><span class="raci-A">A</span></td>
+        </tr>
+        <tr>
+          <td>Lead the meeting; start recording + Granola</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+        </tr>
+        <tr class="raci-section"><td colspan="4">Phase 4 — Post-Meeting Documentation</td></tr>
+        <tr>
+          <td>Upload all completed templates to shared drive</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+          <td><span class="raci-A">A</span></td>
+        </tr>
+        <tr>
+          <td>Notify Director of Staff &amp; Ops of completion</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Confirm full cycle completion across the team</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span> / <span class="raci-A">A</span></td>
+        </tr>
+        <tr class="raci-section"><td colspan="4">Phase 5 — HR Review &amp; Follow-Up</td></tr>
+        <tr>
+          <td>Review all evaluation documentation for quality &amp; content</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span> / <span class="raci-A">A</span></td>
+        </tr>
+        <tr>
+          <td>Identify situations requiring follow-up conversation</td>
+          <td>—</td>
+          <td><span class="raci-C">C</span></td>
+          <td><span class="raci-R">R</span> / <span class="raci-A">A</span></td>
+        </tr>
+        <tr>
+          <td>Conduct follow-up conversations with managers or team members</td>
+          <td>—</td>
+          <td><span class="raci-C">C</span></td>
+          <td><span class="raci-R">R</span></td>
+        </tr>
+        <tr>
+          <td>Document follow-up actions and close the cycle</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span> / <span class="raci-A">A</span></td>
+        </tr>
+        <tr>
+          <td>Escalate systemic patterns or concerns to leadership</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="raci-R">R</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="block-title">RACI Key</div>
+      <table class="data-table">
+        <tr><th>Code</th><th>Meaning</th></tr>
+        <tr><td><span class="raci-R" style="font-size:14px;">R — Responsible</span></td><td>Does the work</td></tr>
+        <tr><td><span class="raci-A" style="font-size:14px;">A — Accountable</span></td><td>Owns the outcome and is the final decision-maker</td></tr>
+        <tr><td><span class="raci-C" style="font-size:14px;">C — Consulted</span></td><td>Input is sought before action is taken</td></tr>
+        <tr><td>— Not involved</td><td>No role in this activity</td></tr>
+      </table>
+    </div>
+  </div><!-- /raci -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- ESCALATION                                                        -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-escalation">
+    <div class="sec-title">Escalation Path</div>
+    <div class="sec-sub">Most issues in the evaluation cycle can be resolved by the Director of Staff and Operations with a timely follow-up. Here's how to handle the most common situations.</div>
+
+    <div class="card">
+
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border);">
+        <span class="pill pill-g" style="flex-shrink:0;margin-top:3px;">01</span>
+        <div>
+          <div class="block-title" style="margin-bottom:3px;">Team member misses self-evaluation deadline</div>
+          <p style="font-size:13px;color:var(--text-md);margin-bottom:.35rem;"><strong>First action:</strong> Director of Staff &amp; Ops notifies manager. Manager reaches out to reschedule or proceed without it.</p>
+          <div style="font-size:12px;color:#1A9955;font-weight:600;">→ If unresolved: Noted in the evaluation record. Repeated failure addressed in the following cycle's review.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border);">
+        <span class="pill pill-k" style="flex-shrink:0;margin-top:3px;">02</span>
+        <div>
+          <div class="block-title" style="margin-bottom:3px;">Manager has not scheduled the meeting by day 8</div>
+          <p style="font-size:13px;color:var(--text-md);margin-bottom:.35rem;"><strong>First action:</strong> Director of Staff &amp; Ops follows up directly with the manager.</p>
+          <div style="font-size:12px;color:#1A9955;font-weight:600;">→ If unresolved: Escalated to the manager's direct supervisor or CEO if no meeting is confirmed by day 12.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border);">
+        <span class="pill pill-k" style="flex-shrink:0;margin-top:3px;">03</span>
+        <div>
+          <div class="block-title" style="margin-bottom:3px;">Documentation not uploaded within 2 business days</div>
+          <p style="font-size:13px;color:var(--text-md);margin-bottom:.35rem;"><strong>First action:</strong> Director of Staff &amp; Ops sends a reminder to the manager.</p>
+          <div style="font-size:12px;color:#1A9955;font-weight:600;">→ If unresolved: Flagged in the shared drive as incomplete. Escalated if outstanding after day 17.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border);">
+        <span class="pill pill-y" style="flex-shrink:0;margin-top:3px;">04</span>
+        <div>
+          <div class="block-title" style="margin-bottom:3px;">Team member disputes the evaluation record</div>
+          <p style="font-size:13px;color:var(--text-md);margin-bottom:.35rem;"><strong>First action:</strong> Team member contacts Director of Staff &amp; Ops with a written description of the discrepancy.</p>
+          <div style="font-size:12px;color:#1A9955;font-weight:600;">→ If unresolved: Director of Staff &amp; Ops reviews the recording and Granola notes. Facilitates a resolution conversation between manager and team member.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;">
+        <span class="pill pill-p" style="flex-shrink:0;margin-top:3px;">05</span>
+        <div>
+          <div class="block-title" style="margin-bottom:3px;">Retaliation concern related to upward feedback</div>
+          <p style="font-size:13px;color:var(--text-md);margin-bottom:.35rem;"><strong>First action:</strong> Team member contacts Director of Staff &amp; Ops immediately.</p>
+          <div style="font-size:12px;color:#1A9955;font-weight:600;">→ If unresolved: Treated as a serious conduct issue. Escalated directly to CEO. Documented formally.</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /escalation -->
+
+</div><!-- /root -->
+
+<script>
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function showLevel(id, btn) {
+  document.querySelectorAll('.level-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.sub-nav .sub-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lv-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function toggleStep(el) {
+  el.classList.toggle('checked');
+}
+
+function resetSteps(listId) {
+  document.querySelectorAll('#' + listId + ' .step-item').forEach(el => el.classList.remove('checked'));
+}
+</script>
+</body>
+</html>
