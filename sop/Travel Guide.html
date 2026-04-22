@@ -22,7 +22,7 @@
   --text-md:  #333333;
   --text-mt:  #888880;
   --bg:       #F7F7F2;
-  --card-bg:  #FFFFFF;
+  --card-bg:  #FEFEF8;
   --border:   rgba(0,0,0,0.09);
   --border-md:rgba(0,0,0,0.16);
   --radius:   10px;
@@ -254,7 +254,7 @@ body {
 
 /* ── Email template ── */
 .email-template {
-  background: #FAFAFA;
+  background: #F5F5EB;
   border: 1px solid var(--border-md);
   border-radius: var(--radius-sm);
   padding: 1rem 1.25rem;
@@ -354,6 +354,36 @@ body {
 .pill-k { background: var(--black); color: var(--white); }
 .pill-g { background: var(--green); color: var(--black); }
 .pill-y { background: var(--yellow); color: var(--black); }
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: 2.75rem;
+  padding: 1.75rem 0 .5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-mt);
+  letter-spacing: .04em;
+  margin-bottom: 1.35rem;
+}
+.footer-disclaimer strong {
+  color: #777770;
+  font-weight: 600;
+}
+.footer-logo-wrap {
+  display: inline-block;
+  opacity: .72;
+  transition: opacity .2s;
+}
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  margin: 0 auto;
+}
 
 /* ── Responsive ── */
 @media (max-width: 560px) {
@@ -778,6 +808,18 @@ body {
 
   </div><!-- /contacts -->
 
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> → Director of Staff and Operations &nbsp;·&nbsp; Last updated April 2026
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/pvr_logo_positive_main_version.png" target="_blank" rel="noopener">
+      <img class="footer-logo"
+           src="https://velezreyes.github.io/notion-content/sop/pvr_logo_positive_main_version.png"
+           alt="VélezReyes+">
+    </a>
+  </footer>
+
 </div><!-- /root -->
 
 <script>
@@ -794,20 +836,46 @@ function toggleStep(id) {
   document.getElementById(id).classList.toggle('open');
 }
 
-/* ── Checklist items ── */
-const totals = { before: 9, during: 4, after: 4, email: 3 };
-const counts = { before: 0, during: 0, after: 0, email: 0 };
+/* ── Checklist — localStorage persistence ── */
+const totals = { before: 9, during: 4, after: 4 };
+const LS_KEY = 'vrplus_travel_checklist';
+
+function saveState() {
+  const state = {};
+  ['before','during','after'].forEach(group => {
+    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ['before','during','after'].forEach(group => {
+      if (!state[group]) return;
+      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+      state[group].forEach((checked, i) => {
+        if (checked && items[i]) items[i].classList.add('checked');
+      });
+      updateCount(group);
+    });
+  } catch(e) {}
+}
+
+function updateCount(group) {
+  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + group);
+  if (el) el.textContent = checked + ' / ' + totals[group];
+}
 
 function toggleCheck(el, group) {
   el.classList.toggle('checked');
-  counts[group] = document.querySelectorAll('#cg-' + group + ' .check-item.checked, #sec-email .check-item.checked').length;
-  // for email group, count separately
-  if (group === 'email') {
-    counts.email = document.querySelectorAll('#sec-email .check-item.checked').length;
-  } else {
-    counts[group] = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
-    const countEl = document.getElementById('count-' + group);
-    if (countEl) countEl.textContent = counts[group] + ' / ' + totals[group];
+  if (['before','during','after'].includes(group)) {
+    updateCount(group);
+    saveState();
   }
 }
 
@@ -817,9 +885,8 @@ function toggleGroup(id) {
 
 function resetGroup(groupId, countKey) {
   document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
-  counts[countKey] = 0;
-  const countEl = document.getElementById('count-' + countKey);
-  if (countEl) countEl.textContent = '0 / ' + totals[countKey];
+  updateCount(countKey);
+  saveState();
 }
 
 /* ── Emergency items ── */
@@ -852,6 +919,9 @@ Thanks!
     }, 2000);
   });
 }
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', loadState);
 </script>
 </body>
 </html>
