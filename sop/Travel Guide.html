@@ -252,38 +252,6 @@ body {
 .check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
 .reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
 
-/* ── Email template ── */
-.email-template {
-  background: #F5F5EB;
-  border: 1px solid var(--border-md);
-  border-radius: var(--radius-sm);
-  padding: 1rem 1.25rem;
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--text-dk);
-}
-.email-field { display: flex; gap: .5rem; margin-bottom: .2rem; flex-wrap: wrap; }
-.email-label { font-weight: 700; color: var(--text-md); min-width: 60px; font-size: 12px; }
-.email-val   { color: var(--text-dk); font-size: 12px; }
-.email-div   { border-top: 1px solid var(--border); margin: .75rem 0; }
-.email-body  { font-size: 13px; color: var(--text-md); line-height: 1.8; }
-.fill-in     { background: var(--yellow); color: var(--black); border-radius: 3px; padding: 0 4px; font-weight: 600; font-size: 12px; }
-.copy-btn {
-  display: flex; align-items: center; gap: .4rem;
-  margin-bottom: .75rem;
-  background: var(--black);
-  color: var(--yellow);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 7px 15px;
-  font-size: 12px; font-weight: 600;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: opacity .15s;
-}
-.copy-btn:hover { opacity: .8; }
-.copy-btn.copied { background: var(--green); color: var(--black); }
-
 /* ── Contact cards ── */
 .contact-grid {
   display: grid;
@@ -399,7 +367,7 @@ body {
   <div class="header">
     <div class="header-label">VélezReyes+ · Travel</div>
     <h1>Need to travel for work?</h1>
-    <p>Start here — five steps, one email, zero guesswork. · Last updated April 2026</p>
+    <p>Start her:&nbsp; five steps, zero guesswork. · Last updated April 2026</p>
   </div>
 
   <!-- ── KEY NUMBERS ── -->
@@ -426,8 +394,7 @@ body {
   <div class="main-nav">
     <button class="nav-btn active" onclick="showMain('steps',this)">① The 5 Steps</button>
     <button class="nav-btn" onclick="showMain('checklist',this)">② Checklist</button>
-    <button class="nav-btn" onclick="showMain('email',this)">③ The Email</button>
-    <button class="nav-btn" onclick="showMain('contacts',this)">④ Contacts &amp; Emergencies</button>
+    <button class="nav-btn" onclick="showMain('contacts',this)">③ Contacts &amp; Emergencies</button>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
@@ -672,58 +639,6 @@ body {
   </div><!-- /checklist -->
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- THE EMAIL                                                         -->
-  <!-- ══════════════════════════════════════════════════════════════════ -->
-  <div class="section" id="sec-email">
-
-    <div class="sec-title">The Email</div>
-    <div class="sec-sub">Fill in the highlighted fields. That's it.</div>
-
-    <div class="card">
-      <button class="copy-btn" id="copy-btn" onclick="copyEmail()">⎘ Copy to clipboard</button>
-      <div class="email-template" id="email-template-box">
-        <div class="email-field">
-          <span class="email-label">To:</span>
-          <span class="email-val">payreq@verefo.com</span>
-        </div>
-        <div class="email-field">
-          <span class="email-label">Cc:</span>
-          <span class="email-val">gabriela@verefo.com; cristina@velezreyesmas.com; dharla@velezreyesmas.com; <span class="fill-in">[your manager]</span></span>
-        </div>
-        <div class="email-field">
-          <span class="email-label">Subject:</span>
-          <span class="email-val">Travel Request — <span class="fill-in">[destination]</span> — <span class="fill-in">[trip dates]</span></span>
-        </div>
-        <div class="email-div"></div>
-        <div class="email-body">
-          Hi,<br><br>
-          Please find attached the Travel Request Form for my upcoming trip to <span class="fill-in">[destination]</span> from <span class="fill-in">[start date]</span> to <span class="fill-in">[end date]</span>. The request has been approved by <span class="fill-in">[manager name]</span> in cell D9 of the Travel Budget Model tab (see version history).<br><br>
-          The cost center is <span class="fill-in">[cost center]</span>, project <span class="fill-in">[project]</span>, type <span class="fill-in">[type]</span>.<br><br>
-          Thanks!<br>
-          <span class="fill-in">[Your name]</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="block-title">What to attach</div>
-      <div class="check-item" style="cursor:default;" onclick="toggleCheck(this,'email')">
-        <div class="check-box"></div>
-        <span class="check-text">Completed Travel Request Form (approval visible in cell D9)</span>
-      </div>
-      <div class="check-item" style="cursor:default;" onclick="toggleCheck(this,'email')">
-        <div class="check-box"></div>
-        <span class="check-text">Manager's written approval — if you're not a Director or VP</span>
-      </div>
-      <div class="check-item" style="cursor:default;border-bottom:none;" onclick="toggleCheck(this,'email')">
-        <div class="check-box"></div>
-        <span class="check-text">Other-area manager's approval — if funds come from a different cost center</span>
-      </div>
-    </div>
-
-  </div><!-- /email -->
-
-  <!-- ══════════════════════════════════════════════════════════════════ -->
   <!-- CONTACTS & EMERGENCIES                                            -->
   <!-- ══════════════════════════════════════════════════════════════════ -->
   <div class="section" id="sec-contacts">
@@ -899,32 +814,6 @@ function resetGroup(groupId, countKey) {
 /* ── Emergency items ── */
 function toggleEmerg(id) {
   document.getElementById(id).classList.toggle('open');
-}
-
-/* ── Copy email ── */
-function copyEmail() {
-  const text = `To: payreq@verefo.com
-Cc: gabriela@verefo.com; cristina@velezreyesmas.com; dharla@velezreyesmas.com; [your manager]
-Subject: Travel Request — [destination] — [trip dates]
-
-Hi,
-
-Please find attached the Travel Request Form for my upcoming trip to [destination] from [start date] to [end date]. The request has been approved by [manager name] in cell D9 of the Travel Budget Model tab (see version history).
-
-The cost center is [cost center], project [project], type [type].
-
-Thanks!
-[Your name]`;
-
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = '⎘ Copy to clipboard';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
 }
 
 /* ── Init ── */
