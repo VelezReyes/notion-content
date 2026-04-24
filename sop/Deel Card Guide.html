@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Need funds on your Deel Card? · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-md);
+  min-height: 100vh;
+  padding: 1.25rem 1rem 3rem;
+  line-height: 1.55;
+}
+
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: .75rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--yellow);
+}
+.header-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+
+/* ── Key numbers bar ── */
+.key-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: .75rem;
+}
+.kn-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: .7rem .9rem;
+  text-align: center;
+}
+.kn-val   { display: block; font-size: 20px; font-weight: 700; color: var(--text-dk); line-height: 1.1; }
+.kn-label { display: block; font-size: 10px; color: var(--text-mt); text-transform: uppercase; letter-spacing: .07em; margin-top: .2rem; }
+.kn-item.accent { background: var(--black); border-color: var(--black); }
+.kn-item.accent .kn-val { color: var(--yellow); }
+.kn-item.accent .kn-label { color: #777; }
+
+/* ── Main nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn {
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: .75rem;
+}
+
+/* ── Step card ── */
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.step-header {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.step-header:hover { background: var(--bg); }
+.step-num-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.step-main { flex: 1; }
+.step-timing {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .15rem;
+}
+.step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.step-who   { font-size: 12px; color: var(--text-mt); }
+.step-chevron {
+  font-size: 14px; color: var(--text-mt);
+  transition: transform .2s;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.step-card.open .step-chevron { transform: rotate(180deg); }
+.step-body-expand {
+  display: none;
+  padding: 0 1.25rem 1rem 4.1rem;
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  padding-top: .75rem;
+}
+.step-card.open .step-body-expand { display: block; }
+.step-body-expand p { margin-bottom: .5rem; color: var(--text-md); line-height: 1.6; }
+.step-body-expand p:last-child { margin-bottom: 0; }
+.step-body-expand strong { color: var(--text-dk); }
+
+/* ── Callout ── */
+.callout {
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+  margin: .6rem 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-left: 4px solid var(--purple);
+  background: var(--purple-lt);
+}
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+
+/* ── Checklist ── */
+.checklist-group {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.cg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.cg-header:hover { background: var(--bg); }
+.cg-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  flex-shrink: 0;
+}
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body {
+  display: none;
+  padding: 0 1.25rem .9rem;
+  border-top: 1px solid var(--border);
+}
+.checklist-group.open .cg-body { display: block; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 5px;
+  padding-left: 4px;
+  transition: background .1s;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-md);
+  background: var(--white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  transition: all .15s;
+}
+.check-item.checked .check-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--black);
+}
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: 0.4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
+
+/* ── Contact cards ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .6rem;
+}
+.contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+}
+.contact-role { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); margin-bottom: .2rem; font-weight: 600; }
+.contact-name { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.contact-when { font-size: 12px; color: var(--text-md); }
+.contact-email { font-size: 11px; color: var(--purple); margin-top: .3rem; font-weight: 500; }
+
+/* ── Emergency accordion ── */
+.emerg-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+.emerg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.emerg-header:hover { background: var(--bg); }
+.emerg-dot { width: 8px; height: 8px; border-radius: 50%; background: #E09800; flex-shrink: 0; }
+.emerg-dot.red { background: #E03030; }
+.emerg-dot.gray { background: #AAA; }
+.emerg-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.emerg-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
+.emerg-item.open .emerg-chevron { transform: rotate(180deg); }
+.emerg-body {
+  display: none;
+  padding: .1rem 1rem .8rem 2.15rem;
+  font-size: 13px;
+  color: var(--text-md);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+}
+.emerg-item.open .emerg-body { display: block; }
+
+/* ── Data table ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
+.data-table td { padding: 8px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.data-table tr:nth-child(odd)  td { background: var(--white); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .td-label { font-weight: 600; color: var(--text-dk); }
+
+/* ── Block titles ── */
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+.sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+
+/* ── Pill ── */
+.pill { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.pill-k { background: var(--black); color: var(--white); }
+.pill-g { background: var(--green); color: var(--black); }
+.pill-y { background: var(--yellow); color: var(--black); }
+
+/* ── Form picker (Which form do I use?) ── */
+.form-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .75rem;
+}
+.form-option {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  position: relative;
+}
+.form-option::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px; width: 3px;
+  border-radius: 2px;
+}
+.form-option.travel::before { background: var(--purple); }
+.form-option.opex::before   { background: var(--green); }
+.form-option-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .3rem;
+}
+.form-option-name {
+  font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .35rem;
+}
+.form-option p {
+  font-size: 12px; color: var(--text-md); line-height: 1.5; margin-bottom: .3rem;
+}
+.form-option p:last-child { margin-bottom: 0; }
+
+/* ── Yes/No usage table ── */
+.usage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .6rem;
+}
+.usage-col {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.usage-head {
+  padding: .6rem 1rem;
+  font-size: 12px; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: .5rem;
+}
+.usage-head.yes { background: var(--green-lt); color: #1A7540; }
+.usage-head.no  { background: #FDECEC;        color: #A02020; }
+.usage-list { padding: .6rem 1rem .85rem; font-size: 12.5px; }
+.usage-list li {
+  list-style: none;
+  padding: .35rem 0;
+  border-bottom: 1px dashed var(--border);
+  line-height: 1.5;
+}
+.usage-list li:last-child { border-bottom: none; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .key-numbers { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-picker { grid-template-columns: 1fr; }
+  .usage-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: 2.75rem;
+  padding: 1.75rem 0 .5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-mt);
+  letter-spacing: .04em;
+  margin-bottom: 1.35rem;
+}
+.footer-disclaimer strong {
+  color: #777770;
+  font-weight: 600;
+}
+.footer-logo-wrap {
+  display: inline-block;
+  opacity: .72;
+  transition: opacity .2s;
+}
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ · Deel Card</div>
+    <h1>Need funds on your Deel Card?</h1>
+    <p>Pick the right form, get your manager's approval, submit through Finance. Done. · Last updated April 2026</p>
+  </div>
+
+  <!-- ── KEY NUMBERS ── -->
+  <div class="key-numbers">
+    <div class="kn-item accent">
+      <span class="kn-val">8 biz days</span>
+      <span class="kn-label">Funded in</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">Deel Card</span>
+      <span class="kn-label">Use first</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">3 days</span>
+      <span class="kn-label">Upload receipts</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">20th</span>
+      <span class="kn-label">Reimbursement cutoff</span>
+    </div>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('steps',this)">① The 5 Steps</button>
+    <button class="nav-btn" onclick="showMain('usage',this)">② What can I use it for?</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">③ Checklist</button>
+    <button class="nav-btn" onclick="showMain('help',this)">④ If something goes wrong</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE 5 STEPS                                                       -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section visible" id="sec-steps">
+
+    <div class="sec-title">The 5 Steps</div>
+    <div class="sec-sub">Tap any step to expand. Don't spend anything before the funds land on your card.</div>
+
+    <!-- Short version callout -->
+    <div class="callout black" style="margin-bottom:.75rem;">
+      <div class="callout-title">The short version</div>
+      Fill the right form (Travel or OPEX) → get your manager's approval → submit it through Vere's Finance Team payment process, copying <strong>Gabriela, Cristina, and Dharla</strong> → funds on your card in about <strong>8 business days</strong>. For trip logistics (flights, hotels, per diems), see the <strong>Travel page</strong>. For the full rules, see the <strong>Deel Card Use Policy</strong>.
+    </div>
+
+    <!-- Which form do I use? -->
+    <div class="block-title" style="margin-top:1rem;">Which form do I use?</div>
+    <div class="form-picker">
+      <div class="form-option travel">
+        <div class="form-option-label">If you're traveling</div>
+        <div class="form-option-name">Travel Request Form</div>
+        <p>Use for any business trip <strong>outside your home city</strong>.</p>
+        <p>It lives in the folder shared with your team.</p>
+        <p style="color:var(--purple);font-weight:600;">See the Travel page for the full step-by-step.</p>
+      </div>
+      <div class="form-option opex">
+        <div class="form-option-label">If you're not traveling</div>
+        <div class="form-option-name">OPEX Request Form</div>
+        <p>Use for <strong>home-city work meetings</strong>, operational spend, and other non-travel expenses.</p>
+        <p><em>Link: [add link to OPEX Request Form]</em></p>
+        <p style="color:#7A6E00;font-weight:600;">Home-city expenses must be pre-approved by your manager.</p>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-card" id="sc-1">
+      <div class="step-header" onclick="toggleStep('sc-1')">
+        <div class="step-num-circle">1</div>
+        <div class="step-main">
+          <div class="step-timing">Before you send anything</div>
+          <div class="step-title">Fill the right form</div>
+          <div class="step-who">You (plus your manager if their approval goes in the form itself)</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>What you need:</strong> The <strong>Travel Request Form</strong> (for a trip) or the <strong>OPEX Request Form</strong> (for non-trip expenses), filled out completely with amounts and justification.</p>
+        <div class="callout" style="margin-top:.5rem;">
+          <div class="callout-title">Not sure which form?</div>
+          Traveling outside your home city → Travel Request Form. Everything else (home-city meetings, coffees, Ubers to clients, OPEX) → OPEX Request Form.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="sc-2">
+      <div class="step-header" onclick="toggleStep('sc-2')">
+        <div class="step-num-circle">2</div>
+        <div class="step-main">
+          <div class="step-timing">Before submitting to Finance</div>
+          <div class="step-title">Get your manager's approval</div>
+          <div class="step-who">Your direct manager · plus other-area manager if funds come from another area</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>What you need:</strong> Written approval, either inside the form itself or in a separate email you'll attach to your Finance submission.</p>
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">Funds from another cost center?</div>
+          You also need approval from that area's manager. Attach both approvals when you submit.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="sc-3">
+      <div class="step-header" onclick="toggleStep('sc-3')">
+        <div class="step-num-circle">3</div>
+        <div class="step-main">
+          <div class="step-timing">Wednesday cutoff → processed Friday</div>
+          <div class="step-title">Submit through Vere Finance's payment process</div>
+          <div class="step-who">Follow the established payment process · cc Gabriela, Cristina and Dharla</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>CC, always:</strong> <span style="color:var(--purple);font-weight:600;">gabriela@verefo.com</span> · <span style="color:var(--purple);font-weight:600;">cristina@velezreyesmas.com</span> · <span style="color:var(--purple);font-weight:600;">dharla@velezreyesmas.com</span></p>
+        <p style="margin-top:.5rem;"><strong>What you need:</strong> Use the same payment request format that already has your Manager's approval. If the money comes from another area, include that area manager's approval instead.</p>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">Cutoff rhythm</div>
+          Submitted by <strong>Wednesday</strong> → processed on <strong>Friday</strong>. Miss Wednesday and your request slides to the next cycle.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="sc-4">
+      <div class="step-header" onclick="toggleStep('sc-4')">
+        <div class="step-num-circle">4</div>
+        <div class="step-main">
+          <div class="step-timing">Within 8 business days</div>
+          <div class="step-title">Wait for the card to be loaded</div>
+          <div class="step-who">Director of Staff and Operations (only if funds don't appear on time)</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>What you need:</strong> Nothing. Just wait and check your Deel Card balance.</p>
+        <div class="callout" style="margin-top:.5rem;">
+          <div class="callout-title">Important</div>
+          <strong>Don't spend before the funds land.</strong> If 8 business days pass and nothing's loaded, contact the Director of Staff and Operations.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="sc-5">
+      <div class="step-header" onclick="toggleStep('sc-5')">
+        <div class="step-num-circle">5</div>
+        <div class="step-main">
+          <div class="step-timing">After each expense → within 3 calendar days</div>
+          <div class="step-title">Pay with the Deel Card, upload receipts</div>
+          <div class="step-who">Just you, no approval needed</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>Pay with the Deel Card first</strong> for every eligible expense. Keep every receipt.</p>
+        <p><strong>Upload to Deel within 3 calendar days</strong> of each expense, categorized and grouped by <strong>Cost Center, Project, Type of Expense.</strong></p>
+        <p><strong>All receipts must be uploaded</strong> before the end of the month the expense happened in, even if the 3-day window hasn't expired yet.</p>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">How to group in Deel (30-second version)</div>
+          app.deel.com → <strong>Finance → Expenses → Add New → Trip/Grouped Report</strong>. Pick <em>Business Trip</em> (for a trip) or <em>Other / Non-travel</em> (for OPEX). Name the group using the <strong>Cost Center, Project, Type of Expense</strong> format (e.g. <em>Education, Becas cohort 2026, Direct Cost</em>). Add items with <em>New Item</em> (or <em>Existing Item</em> if already created).
+        </div>
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">Paid with personal card?</div>
+          Submit a reimbursement request via Deel with a written explanation. Submit within <strong>3 calendar days</strong> and before the end of the month. If submitted after the <strong>20th</strong>, reimbursement will be processed in the following payroll cycle.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- USAGE                                                              -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-usage">
+
+    <div class="sec-title">What can I use the Deel Card for?</div>
+    <div class="sec-sub">The short list of yes and no. When in doubt, ask your manager first.</div>
+
+    <div class="usage-grid">
+      <div class="usage-col">
+        <div class="usage-head yes">✅ &nbsp;Yes</div>
+        <ul class="usage-list">
+          <li>Trip expenses (meals per diem, transport, hotels, flights: see Travel page).</li>
+          <li>Home-city work meetings, lunches, coffee, <strong>only if pre-approved by your manager</strong>.</li>
+          <li>Transport to work meetings (e.g., Uber to a client).</li>
+          <li>OPEX approved in the budget or by your manager.</li>
+        </ul>
+      </div>
+      <div class="usage-col">
+        <div class="usage-head no">❌ &nbsp;No</div>
+        <ul class="usage-list">
+          <li>Anything personal (shopping, entertainment, hygiene items).</li>
+          <li>Unapproved meetings or expenses that weren't cleared with your manager.</li>
+          <li>Anything outside the amount Finance preloaded.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:1rem;">After you spend: the receipts rhythm</div>
+
+    <div class="card">
+      <p style="font-weight:700;color:var(--text-dk);margin-bottom:.5rem;">Three things, always, for every expense:</p>
+      <p style="margin-bottom:.35rem;"><strong>1.</strong> Upload the receipt to Deel <strong>within 3 calendar days</strong> (and before month-end).</p>
+      <p style="margin-bottom:.35rem;"><strong>2.</strong> Categorize it (meals, transport, etc.).</p>
+      <p><strong>3.</strong> Group it in Deel by <strong>Cost Center, Project, Type of Expense</strong> (e.g., <em>Education, Becas cohort 2026, Direct Cost</em>).</p>
+    </div>
+
+    <div class="callout black" style="margin-top:.75rem;">
+      <div class="callout-title">Related pages</div>
+      <strong>Going on a business trip?</strong> See the Travel page for the full trip flow: flights, hotels, per diems, bleisure, special cases.<br>
+      <strong>Country-specific rules:</strong> expense rules vary by country (Brazil, Colombia, Costa Rica, Peru, Uruguay). See the Deel Card Use Policy for the country-specific section and links to Deel's documentation.
+    </div>
+
+  </div><!-- /usage -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CHECKLIST                                                         -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">Tap each item to mark it done. Tap the group header to collapse/expand.</div>
+
+    <!-- Before requesting funds -->
+    <div class="checklist-group open" id="cg-before">
+      <div class="cg-header" onclick="toggleGroup('cg-before')">
+        <span class="cg-pill green">Before</span>
+        <span class="cg-title">Before requesting funds</span>
+        <span class="cg-count" id="count-before">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">I picked the right form (Travel or OPEX)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">The form is filled out completely</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">My manager approved (and the other-area manager, if applicable)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">I submitted through Vere Finance's payment process, copying Gabriela, Cristina, and Dharla (by Wednesday for Friday processing)</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-before','before')">Reset</button>
+      </div>
+    </div>
+
+    <!-- After the card is funded -->
+    <div class="checklist-group open" id="cg-during">
+      <div class="cg-header" onclick="toggleGroup('cg-during')">
+        <span class="cg-pill yellow">Funded</span>
+        <span class="cg-title">After the card is funded</span>
+        <span class="cg-count" id="count-during">0 / 3</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">I'm using the Deel Card first for every eligible expense</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">I'm keeping every receipt</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">Home-city expenses were pre-approved by my manager</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-during','during')">Reset</button>
+      </div>
+    </div>
+
+    <!-- After each expense -->
+    <div class="checklist-group open" id="cg-after">
+      <div class="cg-header" onclick="toggleGroup('cg-after')">
+        <span class="cg-pill purple">After</span>
+        <span class="cg-title">After each expense</span>
+        <span class="cg-count" id="count-after">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">Receipt uploaded to Deel within 3 calendar days</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">All receipts uploaded before the end of the month</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">Expense categorized and grouped as Cost Center, Project, Type of Expense</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">If I paid personal: reimbursement request submitted by the 20th</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-after','after')">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /checklist -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- IF SOMETHING GOES WRONG                                            -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-help">
+
+    <div class="sec-title">If something goes wrong</div>
+    <div class="sec-sub">Who to reach, when. Tap any item below to expand the action steps.</div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-role">Every request</div>
+        <div class="contact-name">Your Direct Manager</div>
+        <div class="contact-when">Required approval for every Travel or OPEX form.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Cross-area funds</div>
+        <div class="contact-name">Other-Area Manager</div>
+        <div class="contact-when">Additional approval when money comes from a different cost center.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Any question or exception</div>
+        <div class="contact-name">Director of Staff &amp; Ops</div>
+        <div class="contact-when">Card not loaded, lost receipts, late uploads, exceptions of any kind.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Fund request (primary)</div>
+        <div class="contact-name">Finance Team</div>
+        <div class="contact-email">payreq@verefo.com</div>
+        <div class="contact-when">Submit your Travel or OPEX request through the established payment process.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">CC, always</div>
+        <div class="contact-name">Gabriela</div>
+        <div class="contact-email">gabriela@verefo.com</div>
+        <div class="contact-when">Copy on every fund request email.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">CC, always</div>
+        <div class="contact-name">Cristina</div>
+        <div class="contact-email">cristina@velezreyesmas.com</div>
+        <div class="contact-when">Copy on every fund request email.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">CC, always</div>
+        <div class="contact-name">Dharla</div>
+        <div class="contact-email">dharla@velezreyesmas.com</div>
+        <div class="contact-when">Copy on every fund request email.</div>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-bottom:.5rem;margin-top:.25rem;">Common issues</div>
+
+    <div class="emerg-item" id="em-1">
+      <div class="emerg-header" onclick="toggleEmerg('em-1')">
+        <div class="emerg-dot red"></div>
+        <span class="emerg-title">Card doesn't work or runs out of funds</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Pay with your personal card, keep the receipt, and submit a reimbursement request via Deel with a written explanation. Note that submissions made <strong>after the 20th</strong> will be processed in the <strong>next payroll cycle</strong>.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-2">
+      <div class="emerg-header" onclick="toggleEmerg('em-2')">
+        <div class="emerg-dot gray"></div>
+        <span class="emerg-title">Lost a receipt</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Within <strong>3 calendar days</strong>: send a written explanation plus a bank/card statement or vendor confirmation to the Director of Staff and Operations. <strong>Habitual missing receipts trigger policy consequences.</strong>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-3">
+      <div class="emerg-header" onclick="toggleEmerg('em-3')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">Forgot to upload a receipt within 3 days</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Upload it as soon as possible and email the Director of Staff and Operations with the reason. <strong>Repeated late uploads may lead to the expense being denied or deducted from your income.</strong>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-4">
+      <div class="emerg-header" onclick="toggleEmerg('em-4')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">Funds didn't land in 8 business days</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Contact the Director of Staff and Operations. Don't spend before the funds show on the card, since reimbursements for pre-load spending aren't guaranteed.
+      </div>
+    </div>
+
+    <div class="callout black" style="margin-top:.75rem;">
+      <div class="callout-title">Going on a business trip?</div>
+      This page covers the fund request. For trip logistics (flights, hotels, per diems, bleisure, special cases), see the <strong>Travel page</strong>. For the complete rules and country-specific sections, see the <strong>Deel Card Use Policy</strong>.
+    </div>
+
+  </div><!-- /help -->
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> → Director of Staff and Operations &nbsp;·&nbsp; Last updated April 2026
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo"
+           src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png"
+           alt="VélezReyes+ · vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+/* ── Main tabs ── */
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+/* ── Step cards ── */
+function toggleStep(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Checklist — localStorage persistence ── */
+const totals = { before: 4, during: 3, after: 4 };
+const LS_KEY = 'vrplus_deelcard_checklist';
+
+function saveState() {
+  const state = {};
+  ['before','during','after'].forEach(group => {
+    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ['before','during','after'].forEach(group => {
+      if (!state[group]) return;
+      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+      state[group].forEach((checked, i) => {
+        if (checked && items[i]) items[i].classList.add('checked');
+      });
+      updateCount(group);
+    });
+  } catch(e) {}
+}
+
+function updateCount(group) {
+  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + group);
+  if (el) el.textContent = checked + ' / ' + totals[group];
+}
+
+function toggleCheck(el, group) {
+  el.classList.toggle('checked');
+  if (['before','during','after'].includes(group)) {
+    updateCount(group);
+    saveState();
+  }
+}
+
+function toggleGroup(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function resetGroup(groupId, countKey) {
+  document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  updateCount(countKey);
+  saveState();
+}
+
+/* ── Emergency items ── */
+function toggleEmerg(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
