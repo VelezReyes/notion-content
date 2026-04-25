@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How does my Performance Evaluation work? · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-md);
+  min-height: 100vh;
+  padding: 1.25rem 1rem 3rem;
+  line-height: 1.55;
+}
+
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: .75rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--yellow);
+}
+.header-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+
+/* ── Key numbers bar ── */
+.key-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: .75rem;
+}
+.kn-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: .7rem .9rem;
+  text-align: center;
+}
+.kn-val   { display: block; font-size: 20px; font-weight: 700; color: var(--text-dk); line-height: 1.1; }
+.kn-label { display: block; font-size: 10px; color: var(--text-mt); text-transform: uppercase; letter-spacing: .07em; margin-top: .2rem; }
+.kn-item.accent { background: var(--black); border-color: var(--black); }
+.kn-item.accent .kn-val { color: var(--yellow); }
+.kn-item.accent .kn-label { color: #777; }
+
+/* ── Main nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn {
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: .75rem;
+}
+
+/* ── Step card ── */
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.step-header {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.step-header:hover { background: var(--bg); }
+.step-num-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.step-main { flex: 1; }
+.step-timing {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .15rem;
+}
+.step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.step-who   { font-size: 12px; color: var(--text-mt); }
+.step-chevron {
+  font-size: 14px; color: var(--text-mt);
+  transition: transform .2s;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.step-card.open .step-chevron { transform: rotate(180deg); }
+.step-body-expand {
+  display: none;
+  padding: 0 1.25rem 1rem 4.1rem;
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  padding-top: .75rem;
+}
+.step-card.open .step-body-expand { display: block; }
+.step-body-expand p { margin-bottom: .5rem; color: var(--text-md); line-height: 1.6; }
+.step-body-expand p:last-child { margin-bottom: 0; }
+.step-body-expand strong { color: var(--text-dk); }
+
+/* ── Callout ── */
+.callout {
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+  margin: .6rem 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-left: 4px solid var(--purple);
+  background: var(--purple-lt);
+}
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+
+/* ── Checklist ── */
+.checklist-group {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.cg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.cg-header:hover { background: var(--bg); }
+.cg-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  flex-shrink: 0;
+}
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body {
+  display: none;
+  padding: 0 1.25rem .9rem;
+  border-top: 1px solid var(--border);
+}
+.checklist-group.open .cg-body { display: block; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 5px;
+  padding-left: 4px;
+  transition: background .1s;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-md);
+  background: var(--white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  transition: all .15s;
+}
+.check-item.checked .check-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--black);
+}
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: 0.4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
+
+/* ── Contact cards ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .6rem;
+}
+.contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+}
+.contact-role { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); margin-bottom: .2rem; font-weight: 600; }
+.contact-name { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.contact-when { font-size: 12px; color: var(--text-md); }
+.contact-email { font-size: 11px; color: var(--purple); margin-top: .3rem; font-weight: 500; }
+
+/* ── Emergency / FAQ accordion ── */
+.emerg-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+.emerg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.emerg-header:hover { background: var(--bg); }
+.emerg-dot { width: 8px; height: 8px; border-radius: 50%; background: #E09800; flex-shrink: 0; }
+.emerg-dot.red { background: #E03030; }
+.emerg-dot.gray { background: #AAA; }
+.emerg-dot.green { background: var(--green); }
+.emerg-dot.purple { background: var(--purple); }
+.emerg-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.emerg-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
+.emerg-item.open .emerg-chevron { transform: rotate(180deg); }
+.emerg-body {
+  display: none;
+  padding: .1rem 1rem .8rem 2.15rem;
+  font-size: 13px;
+  color: var(--text-md);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+}
+.emerg-item.open .emerg-body { display: block; }
+
+/* ── Data table ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
+.data-table td { padding: 8px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.data-table tr:nth-child(odd)  td { background: var(--white); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .td-label { font-weight: 600; color: var(--text-dk); }
+
+/* ── Block titles ── */
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+.sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+
+/* ── Pill ── */
+.pill { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.pill-k { background: var(--black); color: var(--white); }
+.pill-g { background: var(--green); color: var(--black); }
+.pill-y { background: var(--yellow); color: var(--black); }
+
+/* ── What + How framework ── */
+.framework-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .75rem;
+}
+.fw-pillar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  position: relative;
+}
+.fw-pillar::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px; width: 3px;
+  border-radius: 2px;
+}
+.fw-pillar.what::before { background: var(--purple); }
+.fw-pillar.how::before  { background: var(--green); }
+.fw-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .3rem;
+}
+.fw-name { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .35rem; }
+.fw-pillar p { font-size: 12px; color: var(--text-md); line-height: 1.5; margin-bottom: .3rem; }
+.fw-pillar p:last-child { margin-bottom: 0; }
+
+/* ── Agenda timeline ── */
+.agenda-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.agenda-row:last-child { border-bottom: none; }
+.agenda-time {
+  font-size: 12px; font-weight: 700; color: var(--text-dk);
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  text-align: center;
+}
+.agenda-seg { font-size: 13px; }
+.agenda-seg-title { font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.agenda-seg-who { font-size: 11px; color: var(--text-mt); margin-bottom: .25rem; text-transform: uppercase; letter-spacing: .05em; }
+.agenda-seg-desc { font-size: 12px; color: var(--text-md); line-height: 1.55; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .key-numbers { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .framework-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: 2.75rem;
+  padding: 1.75rem 0 .5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-mt);
+  letter-spacing: .04em;
+  margin-bottom: 1.35rem;
+}
+.footer-disclaimer strong {
+  color: #777770;
+  font-weight: 600;
+}
+.footer-logo-wrap {
+  display: inline-block;
+  opacity: .72;
+  transition: opacity .2s;
+}
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ · Performance Evaluation</div>
+    <h1>How does my Performance Evaluation work?</h1>
+    <p>Every quarter. What + How. Honest feedback in both directions. · Last updated April 2026</p>
+  </div>
+
+  <!-- ── KEY NUMBERS ── -->
+  <div class="key-numbers">
+    <div class="kn-item accent">
+      <span class="kn-val">Quarterly</span>
+      <span class="kn-label">Cycle</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">15 days</span>
+      <span class="kn-label">Window after Q ends</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">3 biz days</span>
+      <span class="kn-label">Self-eval lead time</span>
+    </div>
+    <div class="kn-item">
+      <span class="kn-val">~80 min</span>
+      <span class="kn-label">Meeting length</span>
+    </div>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('cycle',this)">① The Cycle</button>
+    <button class="nav-btn" onclick="showMain('steps',this)">② Your 5 Steps</button>
+    <button class="nav-btn" onclick="showMain('meeting',this)">③ The 80-min Meeting</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">④ Checklist</button>
+    <button class="nav-btn" onclick="showMain('faq',this)">⑤ FAQ &amp; Help</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE CYCLE                                                         -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section visible" id="sec-cycle">
+
+    <div class="sec-title">The Cycle</div>
+    <div class="sec-sub">Why it matters, what it covers, and when meetings happen.</div>
+
+    <!-- Short version callout -->
+    <div class="callout black" style="margin-bottom:.75rem;">
+      <div class="callout-title">The short version</div>
+      Once a quarter, you and your manager sit down for an honest conversation about <strong>What</strong> you delivered (your OKRs) and <strong>How</strong> you delivered it (the six behaviors from the Culture Deck). Both you and your manager prepare in writing first. Both share feedback in the meeting (top-down and upward). Together you agree on the priorities for the next quarter.
+    </div>
+
+    <!-- What + How framework -->
+    <div class="block-title" style="margin-top:1rem;">The "What + How" Framework</div>
+    <div class="framework-grid">
+      <div class="fw-pillar what">
+        <div class="fw-label">The What</div>
+        <div class="fw-name">OKR Achievement</div>
+        <p>Did you deliver on your objectives?</p>
+        <p style="color:var(--purple);font-weight:600;">Measured through Profit.co.</p>
+      </div>
+      <div class="fw-pillar how">
+        <div class="fw-label">The How</div>
+        <div class="fw-name">Behavioral &amp; Cultural Alignment</div>
+        <p>Did you show up in a way that reflects our values?</p>
+        <p style="color:#1A9955;font-weight:600;">Measured through the six Culture Deck behaviors.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Both pillars matter equally</div>
+      Delivering results while undermining the team's culture is not strong performance at ver+. Equally, embodying our values while consistently missing objectives means you need support to grow. The conversation is qualitative: no scores, no ratings, just specific examples and honest reflection.
+    </div>
+
+    <!-- Six behaviors -->
+    <div class="card">
+      <div class="block-title">The six behaviors from our Culture Deck</div>
+      <p style="font-size:12.5px;line-height:1.7;color:var(--text-md);">Take Full Responsibility · Roll Up Our Sleeves · Build with Rigor · Speak Up · Do the Right Thing · Stay Focused.</p>
+      <p style="font-size:12px;line-height:1.6;color:var(--text-mt);margin-top:.4rem;">These are the operating system of how we work, and they will be a live part of every evaluation conversation.</p>
+    </div>
+
+    <!-- Dimensions by tier -->
+    <div class="block-title" style="margin-top:1rem;">Evaluation Dimensions by Tier</div>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="padding: .75rem 1.1rem;background:var(--cream);font-size:12px;font-weight:700;color:var(--text-dk);letter-spacing:.04em;">
+        Tier 2 · Managers, Coordinators, Associates
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Dimension</th><th style="width:60px;">Weight</th><th>What it covers</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">OKR Achievement</td><td>60%</td><td>Progress and impact against agreed objectives and key results</td></tr>
+          <tr><td class="td-label">Behavioral Alignment</td><td>30%</td><td>Living the ver+ values in day-to-day work: collaboration, ways of working, how you show up</td></tr>
+          <tr><td class="td-label">Growth &amp; Learning</td><td>10%</td><td>Active development of skills, openness to feedback, progress on previously committed improvement areas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="padding: .75rem 1.1rem;background:var(--cream);font-size:12px;font-weight:700;color:var(--text-dk);letter-spacing:.04em;">
+        Tier 1 · CEO, VP, Directors
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Dimension</th><th style="width:60px;">Weight</th><th>What it covers</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">OKR Achievement</td><td>60%</td><td>Progress and impact against team and personal objectives</td></tr>
+          <tr><td class="td-label">Leadership Effectiveness</td><td>20%</td><td>Team health, development of direct reports, retention, hiring decisions</td></tr>
+          <tr><td class="td-label">Behavioral Alignment</td><td>7%</td><td>Role modeling ver+ values and behaviors for the team</td></tr>
+          <tr><td class="td-label">Cross-functional Impact</td><td>7%</td><td>Collaboration above and across teams; contribution to the org as a whole</td></tr>
+          <tr><td class="td-label">Growth &amp; Learning</td><td>6%</td><td>Continued development as a leader; progress on committed improvement areas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout yellow" style="margin-top:.75rem;">
+      <div class="callout-title">A note on compensation</div>
+      Both dimensions feed into ver+'s Variable Compensation Policy, which is currently under development. Until that policy is finalized, no compensation changes will be made solely based on evaluation outcomes without a separate communication from leadership.
+    </div>
+
+    <!-- Cycle calendar -->
+    <div class="block-title" style="margin-top:1rem;">When meetings happen</div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="data-table">
+        <thead>
+          <tr><th style="width:38%;">Quarter</th><th>Evaluation meeting window</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">Q1 (Jan to Mar)</td><td>April 1 to 15</td></tr>
+          <tr><td class="td-label">Q2 (Apr to Jun)</td><td>July 1 to 15</td></tr>
+          <tr><td class="td-label">Q3 (Jul to Sep)</td><td>October 1 to 15</td></tr>
+          <tr><td class="td-label">Q4 (Oct to Dec)</td><td>January 1 to 15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green" style="margin-top:.5rem;">
+      <div class="callout-title">First cycle at ver+</div>
+      The first formal cycle is <strong>Q2 2026</strong> (April to June 2026). Evaluation meetings take place between <strong>July 1 and 15, 2026</strong>.
+    </div>
+
+    <!-- New hire provisions -->
+    <div class="block-title" style="margin-top:1rem;">If you joined recently</div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="data-table">
+        <thead>
+          <tr><th>Time in role at quarter end</th><th>What happens</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-label">Less than 4 weeks</td><td>Exempt from the current cycle. Full participation begins in the following quarter.</td></tr>
+          <tr><td class="td-label">4 weeks or more</td><td>Prorated evaluation. Conversation focuses on behavioral alignment and initial contributions; no OKR scoring is applied.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /cycle -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- YOUR 5 STEPS                                                       -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-steps">
+
+    <div class="sec-title">Your 5 Steps</div>
+    <div class="sec-sub">Tap any step to expand. Steps cover both the Team Member and the Manager.</div>
+
+    <!-- Step 1 -->
+    <div class="step-card" id="sc-1">
+      <div class="step-header" onclick="toggleStep('sc-1')">
+        <div class="step-num-circle">1</div>
+        <div class="step-main">
+          <div class="step-timing">First thing, before anything else</div>
+          <div class="step-title">Revisit your previous quarter's evaluation</div>
+          <div class="step-who">Both: Team Member and Manager</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>Team Member:</strong> Look at the development areas you committed to. Ask yourself whether you executed on the priorities you agreed. Reflect honestly on where you have improved and where you still need to grow.</p>
+        <p><strong>Manager:</strong> Read the team member's previous evaluation in full. Assess whether the agreements and development commitments were followed through, whether the priorities were executed, and where genuine improvement has happened versus where gaps remain. Come with specific examples.</p>
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">Why this step matters</div>
+          The evaluation meeting is not where your manager sees your work for the first time. The previous quarter's commitments are the reference point for this quarter's conversation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="sc-2">
+      <div class="step-header" onclick="toggleStep('sc-2')">
+        <div class="step-num-circle">2</div>
+        <div class="step-main">
+          <div class="step-timing">Before the meeting</div>
+          <div class="step-title">Complete your templates</div>
+          <div class="step-who">Team Member: 3A + 3C · Manager: 3B-T1 or 3B-T2</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>If you are the Team Member, complete:</strong></p>
+        <p style="padding-left:.6rem;"><strong>Template 3A (Self-Evaluation):</strong> quarter context, 3 key accomplishments, 3 areas for improvement, 3 priorities for next quarter, and the support you need from your manager.</p>
+        <p style="padding-left:.6rem;"><strong>Template 3C (Upward Feedback):</strong> honest feedback on your manager's leadership, communication, and support.</p>
+        <p style="margin-top:.4rem;"><strong>If you are the Manager, complete:</strong></p>
+        <p style="padding-left:.6rem;"><strong>Template 3B-T1</strong> (for Tier 1: CEO, VP, Directors) <strong>or 3B-T2</strong> (for Tier 2: Managers, Coordinators, Associates). Cover OKR summary, behavioral alignment, the tier-specific dimensions, strengths, and development areas. Always grounded in concrete examples.</p>
+        <div class="callout" style="margin-top:.5rem;">
+          <div class="callout-title">Upward feedback is attributed</div>
+          Your name is connected to your feedback. This is a direct expression of our <strong>Speak Up</strong> and <strong>No Masks</strong> values. Managers are expected to receive feedback with openness and professionalism.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="sc-3">
+      <div class="step-header" onclick="toggleStep('sc-3')">
+        <div class="step-num-circle">3</div>
+        <div class="step-main">
+          <div class="step-timing">3 business days before the meeting</div>
+          <div class="step-title">Submit and schedule</div>
+          <div class="step-who">Team Member submits 3A + 3C · Manager schedules within 15 days of Q end</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>Team Member:</strong> Send your completed 3A and 3C to your manager <strong>at least 3 business days before</strong> the meeting. Late submission undermines the conversation.</p>
+        <p><strong>Manager:</strong> Schedule the meeting so it lands <strong>within 15 calendar days</strong> after the end of the quarter. Send the calendar invite with the Google Meet link. Review the team member's 3A when it arrives, note where you agree, where your view differs, and which points you want to explore.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="sc-4">
+      <div class="step-header" onclick="toggleStep('sc-4')">
+        <div class="step-num-circle">4</div>
+        <div class="step-main">
+          <div class="step-timing">The meeting (~80 minutes)</div>
+          <div class="step-title">The Two Moments: OKRs, then Performance</div>
+          <div class="step-who">Manager leads · Both attend prepared · Recorded via Google Meet + Granola</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>Moment 1 (15 min): OKR Review in Profit.co.</strong> Walk through the quarter's OKR data together. Manager documents decisions and context in the Notes tab.</p>
+        <p><strong>Moment 2 (~65 min): Performance Review 1:1.</strong> Self-evaluation, manager feedback, upward feedback, next-quarter alignment. All in the same meeting.</p>
+        <p style="margin-top:.4rem;">See <strong>tab ③ The 80-min Meeting</strong> for the full segment-by-segment agenda.</p>
+        <div class="callout" style="margin-top:.5rem;">
+          <div class="callout-title">Recording protocol</div>
+          The manager starts the Google Meet recording and Granola at the very beginning. Both parties verbally acknowledge the recording. The recording runs for the full meeting; do not pause or stop mid-session. This is a standard requirement at ver+ to ensure accuracy and consistency.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="sc-5">
+      <div class="step-header" onclick="toggleStep('sc-5')">
+        <div class="step-num-circle">5</div>
+        <div class="step-main">
+          <div class="step-timing">Within 2 business days after the meeting</div>
+          <div class="step-title">Documentation and follow-through</div>
+          <div class="step-who">Manager uploads everything · Both own the next-quarter priorities</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>Manager:</strong> Upload all documentation to the team member's evaluation folder in the shared drive (path: <em>/Evaluations/[Team Member Name]/[Quarter]/</em>):</p>
+        <p style="padding-left:.6rem;">Completed Template 3A (Self-Evaluation) · Completed Template 3B-T1 or 3B-T2 (Manager Feedback) · Completed Template 3C (Upward Feedback) · Google Meet recording link · Granola notes and transcript.</p>
+        <p style="margin-top:.4rem;">Then notify the Director of Staff and Operations that the cycle is complete.</p>
+        <p><strong>Both:</strong> The 3 priorities you agreed for next quarter are now the reference point for the next cycle. They are the first thing you both look at three months from now.</p>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">If you disagree with the documented outcome</div>
+          Use the Team Member Response section in Template 3B to share your perspective. If you feel that the documentation does not accurately reflect what was discussed, raise it directly with the Director of Staff and Operations.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE 80-MIN MEETING                                                 -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-meeting">
+
+    <div class="sec-title">The 80-min Meeting</div>
+    <div class="sec-sub">Times below are a guide, not a rigid schedule. The goal is for everyone to come prepared and make the most of the time together.</div>
+
+    <div class="card" style="padding: 0;">
+      <div class="agenda-row">
+        <div class="agenda-time">5 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">🎙️ Opening + Recording start</div>
+          <div class="agenda-seg-who">Manager leads</div>
+          <div class="agenda-seg-desc">Manager starts Google Meet recording and Granola. Both parties verbally acknowledge the recording. Manager sets a constructive, open tone.</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">15 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">📊 OKR Review (Moment 1)</div>
+          <div class="agenda-seg-who">Manager (data-led)</div>
+          <div class="agenda-seg-desc">Open Profit.co together. Walk through each objective: progress, blockers, impact. Manager documents decisions in the Notes tab (not Check-in).</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">15 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">📝 Self-Evaluation</div>
+          <div class="agenda-seg-who">Team Member presents</div>
+          <div class="agenda-seg-desc">Team member walks through 3 accomplishments, 3 development areas, and 3 next-quarter priorities. Shares support needed from the manager. Manager listens and asks clarifying questions only.</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">15 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">💬 Manager Feedback</div>
+          <div class="agenda-seg-who">Manager presents</div>
+          <div class="agenda-seg-desc">Manager shares their qualitative assessment: OKR summary, behavioral observations, development areas, and strengths. Grounded in concrete examples from the quarter.</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">15 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">🔄 Upward Feedback</div>
+          <div class="agenda-seg-who">Team Member presents</div>
+          <div class="agenda-seg-desc">Team member shares feedback on the manager's leadership, communication, and support, directly and constructively. Manager receives with openness, does not defend or minimize in the moment.</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">10 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">🎯 Next Quarter Alignment</div>
+          <div class="agenda-seg-who">Both</div>
+          <div class="agenda-seg-desc">Together agree on the team member's 3 priorities for the next quarter. Written down during the meeting (not after). They become the reference point for the next cycle.</div>
+        </div>
+      </div>
+      <div class="agenda-row">
+        <div class="agenda-time">5 min</div>
+        <div class="agenda-seg">
+          <div class="agenda-seg-title">✅ Wrap-up + Recording stop</div>
+          <div class="agenda-seg-who">Manager leads</div>
+          <div class="agenda-seg-desc">Manager summarizes key takeaways, confirms that templates will be uploaded within 2 business days, and stops the recording.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout black" style="margin-top:.75rem;">
+      <div class="callout-title">Key principles for the meeting</div>
+      Both parties come prepared. Recording starts before any substantive conversation. The self-evaluation segment is led by the team member; the manager listens and asks questions, not challenge or correct. Upward feedback is received with the same openness expected when giving feedback. Agreed next-quarter priorities are written down during the meeting, not after.
+    </div>
+
+  </div><!-- /meeting -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CHECKLIST                                                         -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">Tap each item to mark it done. Tap the group header to collapse/expand.</div>
+
+    <!-- Before (Team Member) -->
+    <div class="checklist-group open" id="cg-before">
+      <div class="cg-header" onclick="toggleGroup('cg-before')">
+        <span class="cg-pill green">Before · Team Member</span>
+        <span class="cg-title">Before the meeting (Team Member)</span>
+        <span class="cg-count" id="count-before">0 / 6</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Reviewed my previous quarter's evaluation: development areas, agreed priorities, where I improved, where I still need to grow</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Completed Template 3A (Self-Evaluation): quarter context, 3 accomplishments, 3 development areas, 3 next-quarter priorities, support needed</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Completed Template 3C (Upward Feedback): honest feedback on my manager's leadership, communication, and support</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Submitted both 3A and 3C to my manager at least 3 business days before the meeting</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Reviewed my OKR data in Profit.co before the meeting</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">Prepared concrete examples to support both my reflections and my upward feedback</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-before','before')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Before (Manager) -->
+    <div class="checklist-group open" id="cg-mgr">
+      <div class="cg-header" onclick="toggleGroup('cg-mgr')">
+        <span class="cg-pill yellow">Before · Manager</span>
+        <span class="cg-title">Before the meeting (Manager)</span>
+        <span class="cg-count" id="count-mgr">0 / 6</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Reviewed the team member's previous quarter evaluation in full: were commitments followed through, were priorities executed, where is real improvement</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Read the team member's completed Template 3A; noted where I agree, where my view differs, and what to explore</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Completed the right Manager Feedback template: 3B-T1 (Tier 1) or 3B-T2 (Tier 2)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Reviewed OKR data in Profit.co; ready to walk through it with the team member</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Scheduled the meeting within the 15-day window after quarter end; calendar invite sent with Google Meet link</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'mgr')">
+          <div class="check-box"></div>
+          <span class="check-text">Template 3D (OKR Review Guide) accessible during the meeting as a reference</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-mgr','mgr')">Reset</button>
+      </div>
+    </div>
+
+    <!-- During -->
+    <div class="checklist-group open" id="cg-during">
+      <div class="cg-header" onclick="toggleGroup('cg-during')">
+        <span class="cg-pill purple">During</span>
+        <span class="cg-title">During the meeting</span>
+        <span class="cg-count" id="count-during">0 / 5</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">Recording started (Google Meet + Granola); both verbally acknowledged the recording</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">Followed the agenda: OKR review, self-evaluation, manager feedback, upward feedback, next-quarter alignment, wrap-up</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">Self-evaluation led by the Team Member; Manager listens and asks clarifying questions, does not challenge or correct</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">Upward feedback received with openness; not defended or minimized in the moment</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'during')">
+          <div class="check-box"></div>
+          <span class="check-text">3 priorities for next quarter agreed and written down during the meeting (not after)</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-during','during')">Reset</button>
+      </div>
+    </div>
+
+    <!-- After -->
+    <div class="checklist-group open" id="cg-after">
+      <div class="cg-header" onclick="toggleGroup('cg-after')">
+        <span class="cg-pill green">After</span>
+        <span class="cg-title">After the meeting (within 2 business days)</span>
+        <span class="cg-count" id="count-after">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">Manager finalized any open sections of the Manager Feedback template (specifically Agreed Next Quarter Priorities)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">All documents uploaded to /Evaluations/[Team Member Name]/[Quarter]/: 3A, 3B, 3C, recording link, Granola notes</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">Director of Staff and Operations notified that the cycle is complete</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')">
+          <div class="check-box"></div>
+          <span class="check-text">Both parties have a copy of the agreed 3 next-quarter priorities and know they are the reference for the next cycle</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-after','after')">Reset</button>
+      </div>
+    </div>
+
+    <div class="callout black" style="margin-top:.75rem;">
+      <div class="callout-title">Heads up</div>
+      Your checks are saved locally in this browser, so they show up next time you open the guide on the same device. They don't sync across devices or users, and on Safari (or private/incognito windows) they may reset. This checklist is a personal reminder, not a shared tracker.
+    </div>
+
+  </div><!-- /checklist -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- FAQ & HELP                                                         -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-faq">
+
+    <div class="sec-title">FAQ &amp; Help</div>
+    <div class="sec-sub">The most common questions, plus where to go when something goes wrong. Tap any item to expand.</div>
+
+    <div class="block-title" style="margin-top:.5rem;">Frequently asked questions</div>
+
+    <div class="emerg-item" id="fq-1">
+      <div class="emerg-header" onclick="toggleEmerg('fq-1')">
+        <div class="emerg-dot green"></div>
+        <span class="emerg-title">When does my first evaluation cycle start?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The first cycle is <strong>Q2 2026</strong> (April to June 2026). Evaluation meetings must take place between <strong>July 1 and 15, 2026</strong>.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-2">
+      <div class="emerg-header" onclick="toggleEmerg('fq-2')">
+        <div class="emerg-dot green"></div>
+        <span class="emerg-title">What if I joined ver+ recently?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        If you have been with the team for <strong>less than 4 weeks</strong> at the end of the quarter, you are exempt from that cycle and will participate fully starting next quarter. If you have been here for <strong>4 weeks or more</strong>, you will have a prorated evaluation focused on behaviors and early contributions.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-3">
+      <div class="emerg-header" onclick="toggleEmerg('fq-3')">
+        <div class="emerg-dot purple"></div>
+        <span class="emerg-title">Is upward feedback really shared with my manager's name?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Yes. Upward feedback at ver+ is <strong>attributed</strong>, meaning your name is connected to your feedback. This reflects our <strong>Speak Up</strong> and <strong>No Masks</strong> values. Managers are expected to receive feedback with openness and professionalism. Any retaliation for upward feedback is a serious policy violation.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-4">
+      <div class="emerg-header" onclick="toggleEmerg('fq-4')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What if I disagree with the feedback I received?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        You have a dedicated space in the <strong>Manager Feedback Template (3B), Team Member Response section</strong>, to share your perspective. If you feel the documented outcome does not accurately reflect the conversation, raise it directly with the Director of Staff and Operations.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-5">
+      <div class="emerg-header" onclick="toggleEmerg('fq-5')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">Does this evaluation affect my salary?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The evaluation dimensions connect to the Variable Compensation framework currently under development. Until that policy is finalized, <strong>no compensation changes will be made solely based on evaluation outcomes</strong> without a separate communication from leadership.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-6">
+      <div class="emerg-header" onclick="toggleEmerg('fq-6')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What if my manager changes during the quarter?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The new manager leads the evaluation, with input from the previous manager where relevant. The Director of Staff and Operations will coordinate transitions to ensure no one falls through the cracks.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-7">
+      <div class="emerg-header" onclick="toggleEmerg('fq-7')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">How should I prepare for my evaluation meeting?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Come with concrete examples of your work, key accomplishments, challenges, and honest reflections on both strengths and development areas. Review your goals and the previous quarter's evaluation beforehand. <strong>Your preparation directly determines the quality of the conversation.</strong>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-8">
+      <div class="emerg-header" onclick="toggleEmerg('fq-8')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What if my workload or priorities changed significantly during the quarter?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Evaluations should take context into account. If priorities shifted during the quarter, the conversation should reflect how you adapted, communicated, and contributed under those circumstances, rather than measuring strictly against the original plan.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-9">
+      <div class="emerg-header" onclick="toggleEmerg('fq-9')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">How is "Behavioral Alignment" assessed in practice?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Behavioral alignment is evaluated based on <strong>observable actions and consistent patterns</strong> aligned with the six behaviors in the Culture Deck. Feedback must always be grounded in concrete examples. Vague impressions are not sufficient (this includes both positive and critical feedback).
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-10">
+      <div class="emerg-header" onclick="toggleEmerg('fq-10')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What if I feel my manager doesn't have enough visibility into my work?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Proactively share context, results, and challenges throughout the quarter. The evaluation meeting should not be the first time your work is fully visible to your manager. If you feel this is a recurring issue, raise it directly during the upward feedback section.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-11">
+      <div class="emerg-header" onclick="toggleEmerg('fq-11')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What happens to my evaluation records?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Records are stored confidentially in the shared drive under your name. Only <strong>you</strong>, <strong>your manager</strong>, and the <strong>Director of Staff and Operations</strong> have access. Records are retained for at least <strong>two years</strong>, including after a departure.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="fq-12">
+      <div class="emerg-header" onclick="toggleEmerg('fq-12')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">What if I don't want my evaluation meeting to be recorded?</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Recording evaluation meetings is a <strong>standard requirement</strong> at ver+. It ensures accuracy, consistency, and proper documentation. Participation in recorded evaluation conversations is part of being a member of the organization.
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:1.25rem;margin-bottom:.5rem;">If something goes wrong</div>
+
+    <div class="emerg-item" id="em-1">
+      <div class="emerg-header" onclick="toggleEmerg('em-1')">
+        <div class="emerg-dot red"></div>
+        <span class="emerg-title">You feel feedback was disrespectful or unprofessional</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        All feedback is expected to be delivered with professionalism and respect, in line with ver+ values. If you experience behavior that feels disrespectful, personal, or inappropriate during an evaluation, raise the concern with the Director of Staff and Operations. <strong>These matters are taken seriously and will be addressed accordingly.</strong>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-2">
+      <div class="emerg-header" onclick="toggleEmerg('em-2')">
+        <div class="emerg-dot red"></div>
+        <span class="emerg-title">Concern about retaliation for upward feedback</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Contact the Director of Staff and Operations <strong>immediately</strong>. Any retaliation for upward feedback is treated as a serious conduct issue and is escalated directly to the CEO. It is documented formally.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-3">
+      <div class="emerg-header" onclick="toggleEmerg('em-3')">
+        <div class="emerg-dot"></div>
+        <span class="emerg-title">You missed the self-evaluation deadline</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Reach out to your manager as soon as possible. The meeting may be rescheduled or held without the self-evaluation. Repeated failure to submit on time is noted in your evaluation record.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-4">
+      <div class="emerg-header" onclick="toggleEmerg('em-4')">
+        <div class="emerg-dot gray"></div>
+        <span class="emerg-title">The meeting wasn't scheduled by day 8 of the cycle window</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The Director of Staff and Operations will follow up directly with the manager. If no meeting is confirmed by <strong>day 12</strong>, the issue is escalated to the manager's direct supervisor or the CEO.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-5">
+      <div class="emerg-header" onclick="toggleEmerg('em-5')">
+        <div class="emerg-dot gray"></div>
+        <span class="emerg-title">You disagree with the documented evaluation record</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Contact the Director of Staff and Operations with a written description of the discrepancy. They review the recording and Granola notes and facilitate a resolution conversation between the manager and the team member.
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:1.25rem;margin-bottom:.5rem;">Who to contact</div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-role">Every cycle</div>
+        <div class="contact-name">Your Direct Manager</div>
+        <div class="contact-when">Leads your evaluation, completes Template 3B, schedules the meeting, owns the documentation.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Process owner</div>
+        <div class="contact-name">Director of Staff &amp; Ops</div>
+        <div class="contact-when">Any question about templates, deadlines, escalations, disagreements, or concerns about the evaluation itself.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">Where it lives</div>
+        <div class="contact-name">Shared Drive</div>
+        <div class="contact-when">Path: /Evaluations/[Your Name]/[Quarter]/. Confidential. Access limited to you, your manager, and the Director of Staff and Operations.</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">OKR data</div>
+        <div class="contact-name">Profit.co</div>
+        <div class="contact-when">Quarterly OKR progress and Notes tab documentation. Reviewed live during the meeting.</div>
+      </div>
+    </div>
+
+    <div class="callout black" style="margin-top:.75rem;">
+      <div class="callout-title">Need the full policy?</div>
+      This page is the practical companion. For the full rules, dimensions, retention details, and policy violations, see the <strong>VélezReyes+ Performance Evaluation Policy</strong> and the <strong>Performance Evaluation SOP</strong>.
+    </div>
+
+  </div><!-- /faq -->
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> → Director of Staff and Operations &nbsp;·&nbsp; Last updated April 2026
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo"
+           src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png"
+           alt="VélezReyes+ · vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+/* ── Main tabs ── */
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+/* ── Step cards ── */
+function toggleStep(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Checklist · localStorage persistence ── */
+const totals = { before: 6, mgr: 6, during: 5, after: 4 };
+const LS_KEY = 'vrplus_perfeval_checklist';
+
+function saveState() {
+  const state = {};
+  ['before','mgr','during','after'].forEach(group => {
+    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ['before','mgr','during','after'].forEach(group => {
+      if (!state[group]) return;
+      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+      state[group].forEach((checked, i) => {
+        if (checked && items[i]) items[i].classList.add('checked');
+      });
+      updateCount(group);
+    });
+  } catch(e) {}
+}
+
+function updateCount(group) {
+  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + group);
+  if (el) el.textContent = checked + ' / ' + totals[group];
+}
+
+function toggleCheck(el, group) {
+  el.classList.toggle('checked');
+  if (['before','mgr','during','after'].includes(group)) {
+    updateCount(group);
+    saveState();
+  }
+}
+
+function toggleGroup(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function resetGroup(groupId, countKey) {
+  document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  updateCount(countKey);
+  saveState();
+}
+
+/* ── Emergency / FAQ items ── */
+function toggleEmerg(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
