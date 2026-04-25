@@ -28,6 +28,7 @@
   --radius:   10px;
   --radius-sm:6px;
   --font: 'Montserrat', -apple-system, sans-serif;
+  --purple-dk: #8B1FE8;
   --green-lt:  #E8F8F0;
   --yellow-lt: #FFFDE7;
   --purple-lt: #F3E8FF;
@@ -72,7 +73,25 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
+  margin-bottom: 6px;
+}
+.step-pills-leaders {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
   margin-bottom: .75rem;
+}
+.sp-item.purple { background: var(--purple); border: 1px solid var(--purple-dk); }
+.sp-item.purple .sp-letter { color: var(--white); }
+.sp-item.purple .sp-title  { color: var(--white); }
+.sp-item.purple .sp-sub    { color: var(--white); }
+.sp-leaders-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  padding: 0 .25rem 2px;
 }
 .sp-item {
   border-radius: var(--radius-sm);
@@ -415,7 +434,7 @@ body {
 
   <!-- ── HEADER ── -->
   <div class="header">
-    <div class="header-label">VélezReyes+ • VERE · OKRs</div>
+    <div class="header-label">VélezReyes+ · OKRs</div>
     <h1>OKRs Cadence Review</h1>
     <p>Everything you need to keep your OKRs healthy: updated, documented, and on track. · Last updated April 2026</p>
   </div>
@@ -441,6 +460,16 @@ body {
       <span class="sp-text">
         <span class="sp-title">Prep for your quarterly 1:1</span>
         <span class="sp-sub">Within 15 days after quarter closes</span>
+      </span>
+    </div>
+  </div>
+  <div class="step-pills-leaders">
+    <div class="sp-leaders-label">For Leaders (Tier 1 only: CEO, VPs, Directors)</div>
+    <div class="sp-item purple" style="flex-direction:row;">
+      <span class="sp-letter">S</span>
+      <span class="sp-text">
+        <span class="sp-title">Document the Strategic Review: Objective Check-in in Profit.co</span>
+        <span class="sp-sub">Every two months (bi-monthly) · Within 48 hours after the session</span>
       </span>
     </div>
   </div>
@@ -585,7 +614,7 @@ body {
             <td class="td-level">Strategic</td>
             <td>CEO + Leadership review of all OKR progress across departments</td>
             <td>Every two months</td>
-            <td class="td-role">Informed — no action required</td>
+            <td class="td-role"><strong>Contributors:</strong> receive &amp; read &nbsp;·&nbsp; <strong>Leaders (Tier 1):</strong> participate + document Objective Check-in in Profit.co within 48h</td>
           </tr>
           <tr>
             <td class="td-level">Team</td>
@@ -624,6 +653,88 @@ body {
       </div>
     </div>
 
+    <!-- Step S: Strategic Objective Check-in (Leaders only) -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:.5rem 0 .3rem .1rem;">For Leaders only (Tier 1: CEO, VPs, Directors)</div>
+    <div class="step-card" id="sc-s">
+      <div class="step-header" onclick="toggleStep('sc-s')" style="border-left:3px solid var(--purple);">
+        <div class="step-num-circle" style="background:var(--purple);font-size:11px;">S</div>
+        <div class="step-main">
+          <div class="step-timing">Every two months (bi-monthly) · Within 48h after the session</div>
+          <div class="step-title">Strategic Review: Objective Check-in in Profit.co</div>
+          <div class="step-who">CEO + Leadership team. Bi-monthly session followed by mandatory documentation at the Objective level.</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+
+        <div class="callout" style="border-left-color:var(--purple);background:var(--purple-lt);margin-bottom:.75rem;">
+          <div class="callout-title" style="color:var(--purple);">KR Check-in vs. Objective Check-in</div>
+          The monthly <strong>KR Check-in</strong> is written at the <em>Key Result level</em> about execution progress (Step B, done by Champions monthly).
+          The <strong>Objective Check-in</strong> is written at the <em>Objective level</em> about strategic decisions, priority shifts, and course corrections. It is written by Leaders after each bi-monthly Strategic Review session, and it is not automatic: if it's not documented, it did not happen as far as the record is concerned.
+        </div>
+
+        <p><strong>Session cycles:</strong> Feb-Mar &nbsp;·&nbsp; Apr-May &nbsp;·&nbsp; Jun-Jul &nbsp;·&nbsp; Aug-Sep &nbsp;·&nbsp; Oct-Nov &nbsp;·&nbsp; Dec-Jan</p>
+        <p style="margin-top:.35rem;">Book the session within the first two weeks of each cycle close. Use the CEO's calendar directly.</p>
+
+        <p style="margin-top:.65rem;"><strong>Before the session:</strong></p>
+        <ul>
+          <li>Read the General Summary Report (sent by the Director of Staff and Operations at least 48h before the session). It covers: overall objective progress, cross-team patterns, strategic risks, and organizational priorities.</li>
+          <li>Review your team's KR data in Profit.co. Know where each KR stands vs. its target.</li>
+          <li>Come prepared to discuss: blockers needing leadership attention, cross-team dependencies, and any priority or resource flags.</li>
+        </ul>
+
+        <p style="margin-top:.65rem;"><strong>During the session:</strong></p>
+        <ul>
+          <li>Review KR progress vs. targets across all departments.</li>
+          <li>Surface cross-team risks and coordination needs.</li>
+          <li>Make decisions on priorities and resource shifts for the next cycle.</li>
+          <li>Structural OKR changes (weights, targets, names) are auto-logged in the Activity Log. No separate entry needed for those.</li>
+        </ul>
+
+        <p style="margin-top:.65rem;"><strong>After the session (required, within 48 hours):</strong></p>
+        <ul>
+          <li>Open Profit.co and navigate to each Objective reviewed in the session.</li>
+          <li>Write the <strong>Objective Check-in</strong> on the relevant Objectives (this is at the Objective level, not the KR Check-in tab).</li>
+          <li>Document: decisions made, priority shifts, plan changes, narrative context.</li>
+          <li>Verbal agreements not documented in Profit.co are not part of the official record.</li>
+          <li>Completion window: within 48 hours of the session.</li>
+        </ul>
+
+        <div class="callout red" style="margin-top:.6rem;">
+          <div class="callout-title">Not documenting = it didn't happen</div>
+          Undocumented Strategic Review outcomes exist only in memory and create accountability gaps over time. The Activity Log captures structural changes automatically. Everything else (decisions, priorities, course corrections) requires a manual Objective Check-in entry. No exceptions.
+        </div>
+
+        <table class="do-avoid" style="margin-top:.65rem;">
+          <thead>
+            <tr>
+              <th>Do this</th>
+              <th>Avoid this</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Write the Objective Check-in within 48h of the session</td>
+              <td>Relying on the Granola notes or memory as the official record</td>
+            </tr>
+            <tr>
+              <td>Document the narrative: what shifted, what was decided, what's next</td>
+              <td>Writing a generic or vague entry that doesn't reflect real decisions</td>
+            </tr>
+            <tr>
+              <td>Enter it at the Objective level in Profit.co</td>
+              <td>Confusing this with the monthly KR Check-in (those are at the KR level)</td>
+            </tr>
+            <tr>
+              <td>Treat the 48h window as a hard deadline</td>
+              <td>Leaving it for later and losing the context of what was decided</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
   </div><!-- /cadence -->
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
@@ -632,7 +743,7 @@ body {
   <div class="section" id="sec-checklist">
 
     <div class="sec-title">Checklist</div>
-    <div class="sec-sub">Keep this open while you work in Profit.co. Three moments, three checklists.</div>
+    <div class="sec-sub">Keep this open while you work in Profit.co. Three moments for everyone (A, B, C) · One additional for Leaders (S).</div>
 
     <!-- Group A: Updating a task -->
     <div class="checklist-group open" id="cg-task">
@@ -784,6 +895,101 @@ body {
       </div>
     </div>
 
+    <!-- Group S: Strategic Objective Check-in (Leaders only) -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:1rem 0 .3rem .1rem;">For Leaders only (Tier 1: CEO, VPs, Directors)</div>
+    <div class="checklist-group open" id="cg-strategic">
+      <div class="cg-header" onclick="toggleGroup('cg-strategic')" style="border-left:3px solid var(--purple);">
+        <span class="cg-pill purple">S</span>
+        <span class="cg-title">
+          Strategic Objective Check-in
+          <span class="cg-sub">Bi-monthly · After each Strategic Review session · Document in Profit.co within 48h</span>
+        </span>
+        <span class="cg-count" id="count-strategic">0 / 9</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+
+        <div class="callout" style="border-left-color:var(--purple);background:var(--purple-lt);margin:.6rem 0;">
+          <div class="callout-title" style="color:var(--purple);">This is not the monthly KR Check-in</div>
+          The Objective Check-in is written at the <strong>Objective level</strong> in Profit.co, after the bi-monthly Strategic Review session. It documents decisions, priority shifts, and course corrections. The monthly KR Check-in (Group B) is at the Key Result level and tracks execution progress.
+        </div>
+
+        <p style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mt);padding:.5rem 0 .2rem;">Before the session</p>
+
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Read the General Summary Report (sent 48h before by Director of Staff &amp; Ops)
+            <span class="check-note">Covers: overall objective progress, cross-team patterns, strategic risks, and priorities</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Review your team's KR data in Profit.co before the session
+            <span class="check-note">Know where each KR stands vs. target so the session is focused, not exploratory</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Identify the blockers, risks, or priority flags you need to raise
+            <span class="check-note">Come with specific items: cross-team dependencies, resource needs, or KRs that require a decision</span>
+          </span>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mt);padding:.6rem 0 .2rem;">During the session</p>
+
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Walk through each Objective: progress vs. target, cross-team blockers, decisions needed
+            <span class="check-note">Structural changes (weights, targets, names) are auto-logged in the Activity Log</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Note the decisions made and priority shifts agreed during the session
+            <span class="check-note">You'll document these in Profit.co within 48h. Take enough notes to reconstruct the narrative accurately.</span>
+          </span>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mt);padding:.6rem 0 .2rem;">After the session (within 48 hours)</p>
+
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Open Profit.co and go to the relevant Objective (not the KR)
+            <span class="check-note">The Objective Check-in is written at the Objective level, not in the KR Check-in tab</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Write the Objective Check-in: decisions made, priority shifts, and plan changes
+            <span class="check-note">Be specific and narrative. Vague entries don't protect accountability.</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Document what's next and who is responsible for any follow-up actions
+            <span class="check-note">If a decision was made, the next step and owner should be visible in the entry</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Confirm all Objectives reviewed in the session have an entry within 48h
+            <span class="check-note">Verbal agreements not documented in Profit.co are not part of the official record</span>
+          </span>
+        </div>
+
+        <button class="reset-btn" onclick="resetGroup('cg-strategic','strategic')">Reset</button>
+      </div>
+    </div>
+
   </div><!-- /checklist -->
 
   <!-- ══════════════════════════════════════════════════════════════════ -->
@@ -918,12 +1124,13 @@ function togglePitfall(id) {
 }
 
 /* ── Checklist — localStorage persistence ── */
-const totals = { task: 4, checkin: 6, quarterly: 5 };
+const totals = { task: 4, checkin: 6, quarterly: 5, strategic: 9 };
+const ALL_GROUPS = ['task','checkin','quarterly','strategic'];
 const LS_KEY = 'vrplus_okr_checklist';
 
 function saveState() {
   const state = {};
-  ['task','checkin','quarterly'].forEach(group => {
+  ALL_GROUPS.forEach(group => {
     const items = document.querySelectorAll('#cg-' + group + ' .check-item');
     state[group] = Array.from(items).map(el => el.classList.contains('checked'));
   });
@@ -935,7 +1142,7 @@ function loadState() {
     const raw = localStorage.getItem(LS_KEY);
     if (!raw) return;
     const state = JSON.parse(raw);
-    ['task','checkin','quarterly'].forEach(group => {
+    ALL_GROUPS.forEach(group => {
       if (!state[group]) return;
       const items = document.querySelectorAll('#cg-' + group + ' .check-item');
       state[group].forEach((checked, i) => {
@@ -954,7 +1161,7 @@ function updateCount(group) {
 
 function toggleCheck(el, group) {
   el.classList.toggle('checked');
-  if (['task','checkin','quarterly'].includes(group)) {
+  if (ALL_GROUPS.includes(group)) {
     updateCount(group);
     saveState();
   }
@@ -966,7 +1173,7 @@ function toggleGroup(id) {
 
 function resetGroup(groupId, countKey) {
   document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
-  updateCount(countKey);
+  if (countKey) updateCount(countKey);
   saveState();
 }
 
