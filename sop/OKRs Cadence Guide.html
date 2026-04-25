@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKRs Cadence Guide · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+  --red:       #E03030;
+  --red-lt:    #FDEAEA;
+  --orange:    #E09800;
+  --orange-lt: #FFF4E0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-md);
+  min-height: 100vh;
+  padding: 1.25rem 1rem 3rem;
+  line-height: 1.55;
+}
+
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: .75rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--yellow);
+}
+.header-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+
+/* ── Step pills bar ── */
+.step-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: .75rem;
+}
+.sp-item {
+  border-radius: var(--radius-sm);
+  padding: .75rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+}
+.sp-item.green  { background: var(--green);  border: 1px solid #1fb865; }
+.sp-item.yellow { background: var(--yellow); border: 1px solid #d9e600; }
+.sp-item.black  { background: var(--black);  border: 1px solid #222; }
+.sp-letter {
+  font-size: 22px; font-weight: 800; line-height: 1;
+  flex-shrink: 0; margin-top: 1px;
+}
+.sp-item.green  .sp-letter { color: var(--black); }
+.sp-item.yellow .sp-letter { color: var(--black); }
+.sp-item.black  .sp-letter { color: var(--yellow); }
+.sp-text { flex: 1; }
+.sp-title {
+  font-size: 13px; font-weight: 700; line-height: 1.2; margin-bottom: 2px;
+}
+.sp-item.green  .sp-title { color: var(--black); }
+.sp-item.yellow .sp-title { color: var(--black); }
+.sp-item.black  .sp-title { color: var(--white); }
+.sp-sub {
+  font-size: 10px; font-weight: 500; letter-spacing: .03em; opacity: .65;
+}
+.sp-item.green  .sp-sub { color: var(--black); }
+.sp-item.yellow .sp-sub { color: var(--black); }
+.sp-item.black  .sp-sub { color: var(--white); }
+
+/* ── Main nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn {
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: .75rem;
+}
+
+/* ── Step card ── */
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.step-header {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.step-header:hover { background: var(--bg); }
+.step-num-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.step-main { flex: 1; }
+.step-timing {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .15rem;
+}
+.step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.step-who   { font-size: 12px; color: var(--text-mt); }
+.step-chevron {
+  font-size: 14px; color: var(--text-mt);
+  transition: transform .2s;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.step-card.open .step-chevron { transform: rotate(180deg); }
+.step-body-expand {
+  display: none;
+  padding: 0 1.25rem 1rem 4.1rem;
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  padding-top: .75rem;
+}
+.step-card.open .step-body-expand { display: block; }
+.step-body-expand p { margin-bottom: .5rem; color: var(--text-md); line-height: 1.6; }
+.step-body-expand p:last-child { margin-bottom: 0; }
+.step-body-expand strong { color: var(--text-dk); }
+.step-body-expand ul { margin: .4rem 0 .5rem 1rem; }
+.step-body-expand ul li { margin-bottom: .3rem; line-height: 1.55; }
+
+/* ── Callout ── */
+.callout {
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+  margin: .6rem 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-left: 4px solid var(--purple);
+  background: var(--purple-lt);
+}
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout.red    { border-left-color: var(--red);     background: var(--red-lt); }
+.callout.orange { border-left-color: var(--orange);  background: var(--orange-lt); }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+.callout.red    .callout-title { color: var(--red); }
+.callout.orange .callout-title { color: var(--orange); }
+
+/* ── Do / Avoid table ── */
+.do-avoid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin-top: .5rem;
+}
+.do-avoid th {
+  text-align: left;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 10px;
+}
+.do-avoid th:first-child { background: #E8F8F0; color: #1A9955; border-radius: 5px 0 0 0; }
+.do-avoid th:last-child  { background: #FDEAEA; color: var(--red); border-radius: 0 5px 0 0; }
+.do-avoid td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.do-avoid tr:last-child td { border-bottom: none; }
+.do-avoid td:first-child { background: #F6FEFA; color: var(--text-md); width: 50%; }
+.do-avoid td:last-child  { background: #FFF8F8; color: var(--text-md); width: 50%; }
+
+/* ── Cadence levels table ── */
+.cadence-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: .5rem; }
+.cadence-table th {
+  text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px;
+}
+.cadence-table td { padding: 9px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.cadence-table tr:nth-child(even) td { background: var(--cream); }
+.cadence-table tr:nth-child(odd)  td { background: var(--white); }
+.cadence-table tr:last-child td { border-bottom: none; }
+.cadence-table .td-level { font-weight: 700; color: var(--text-dk); white-space: nowrap; }
+.cadence-table .td-role  { font-size: 11px; }
+
+/* ── Checklist ── */
+.checklist-group {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.cg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.cg-header:hover { background: var(--bg); }
+.cg-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  flex-shrink: 0;
+}
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-pill.black  { background: var(--black);  color: var(--yellow); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-sub   { font-size: 11px; color: var(--text-mt); display: block; font-weight: 400; margin-top: 1px; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body {
+  display: none;
+  padding: 0 1.25rem .9rem;
+  border-top: 1px solid var(--border);
+}
+.checklist-group.open .cg-body { display: block; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 5px;
+  padding-left: 4px;
+  transition: background .1s;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-md);
+  background: var(--white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  transition: all .15s;
+}
+.check-item.checked .check-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--black);
+}
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: 0.4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.check-note { display: block; font-size: 11px; color: var(--text-mt); margin-top: 2px; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
+
+/* ── Pitfall cards ── */
+.pitfall-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+.pitfall-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.pitfall-header:hover { background: var(--bg); }
+.pitfall-icon { font-size: 15px; flex-shrink: 0; }
+.pitfall-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.pitfall-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
+.pitfall-item.open .pitfall-chevron { transform: rotate(180deg); }
+.pitfall-body {
+  display: none;
+  padding: .1rem 1rem .85rem 2.5rem;
+  font-size: 13px;
+  color: var(--text-md);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+}
+.pitfall-item.open .pitfall-body { display: block; }
+.pitfall-body strong { color: var(--text-dk); }
+
+/* ── Status guide ── */
+.status-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.status-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
+.status-table td { padding: 9px 11px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.status-table tr:last-child td { border-bottom: none; }
+.status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+.dot-gray   { background: #AAAAAA; }
+.dot-green  { background: var(--green); }
+.dot-orange { background: var(--orange); }
+.dot-red    { background: var(--red); }
+.dot-black  { background: var(--black); }
+.status-label { font-weight: 600; color: var(--text-dk); }
+.status-desc  { font-size: 12px; color: var(--text-md); }
+
+/* ── Block/section titles ── */
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+.sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+
+/* ── Two-layer overview ── */
+.layer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: .75rem;
+}
+.layer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .9rem 1.1rem;
+}
+.layer-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--text-mt); margin-bottom: .3rem; }
+.layer-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .25rem; }
+.layer-desc  { font-size: 12px; color: var(--text-md); line-height: 1.55; }
+.layer-where { font-size: 11px; color: var(--purple); margin-top: .3rem; font-weight: 500; }
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: 2.75rem;
+  padding: 1.75rem 0 .5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-mt);
+  letter-spacing: .04em;
+  margin-bottom: 1.35rem;
+}
+.footer-disclaimer strong { color: #777770; font-weight: 600; }
+.footer-logo-wrap { display: inline-block; opacity: .72; transition: opacity .2s; }
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo { display: block; height: 28px; width: auto; margin: 0 auto; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .step-pills  { grid-template-columns: 1fr; }
+  .layer-grid  { grid-template-columns: 1fr; }
+  .do-avoid th, .do-avoid td { font-size: 11.5px; padding: 6px 7px; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ · OKRs</div>
+    <h1>OKRs Cadence Review</h1>
+    <p>Everything you need to keep your OKRs healthy: updated, documented, and on track. · Last updated April 2026</p>
+  </div>
+
+  <!-- ── STEP PILLS ── -->
+  <div class="step-pills">
+    <div class="sp-item green">
+      <span class="sp-letter">A</span>
+      <span class="sp-text">
+        <span class="sp-title">Update your tasks</span>
+        <span class="sp-sub">Event-driven — as work happens</span>
+      </span>
+    </div>
+    <div class="sp-item yellow">
+      <span class="sp-letter">B</span>
+      <span class="sp-text">
+        <span class="sp-title">Write your monthly check-in</span>
+        <span class="sp-sub">Calendar-driven — every month</span>
+      </span>
+    </div>
+    <div class="sp-item black">
+      <span class="sp-letter">C</span>
+      <span class="sp-text">
+        <span class="sp-title">Prep for your quarterly 1:1</span>
+        <span class="sp-sub">Within 15 days after quarter closes</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('cadence',this)">① The Cadence</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">② Checklist</button>
+    <button class="nav-btn" onclick="showMain('pitfalls',this)">③ Pitfalls &amp; Status</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE CADENCE                                                        -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section visible" id="sec-cadence">
+
+    <div class="sec-title">The Cadence</div>
+    <div class="sec-sub">OKRs are only as effective as the rhythm built around them. Here's how it works.</div>
+
+    <!-- Core principle callout -->
+    <div class="callout black" style="margin-bottom:.75rem;">
+      <div class="callout-title">Two things keep OKRs alive</div>
+      Keeping your tasks updated in Profit.co <em>as work happens</em>, and writing a monthly check-in that tells the story behind the numbers. Both are required. Neither replaces the other.
+    </div>
+
+    <!-- Two layers -->
+    <div class="block-title">The two layers of OKR tracking</div>
+    <div class="layer-grid" style="margin-bottom:.75rem;">
+      <div class="layer-card">
+        <div class="layer-label">Quantitative layer</div>
+        <div class="layer-title">Task completion &amp; KR progress</div>
+        <div class="layer-desc">Auto-calculated every time you update a task. The KR progress bar moves automatically.</div>
+        <div class="layer-where">Profit.co — task section · You drive it</div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-label">Qualitative layer</div>
+        <div class="layer-title">Status, narrative, blockers</div>
+        <div class="layer-desc">Written by you once a month. A number alone doesn't tell the full story — this layer does.</div>
+        <div class="layer-where">Profit.co — Check-in tab · You write it</div>
+      </div>
+    </div>
+
+    <!-- Step A -->
+    <div class="step-card" id="sc-a">
+      <div class="step-header" onclick="toggleStep('sc-a')">
+        <div class="step-num-circle">A</div>
+        <div class="step-main">
+          <div class="step-timing">Event-driven — every time real progress happens</div>
+          <div class="step-title">Update your tasks</div>
+          <div class="step-who">You, as work happens. Don't wait for the check-in deadline.</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Tasks are the engine of progress in Profit.co. Every time you mark a task In Progress or Completed, the KR progress bar moves automatically.</p>
+        <ul>
+          <li>Update task status whenever real progress happens.</li>
+          <li>Attach supporting documentation to the task comment: links to deliverables, reports, or agreements.</li>
+          <li>Keep task comments outcome-focused: what was done, what's next, what's blocked.</li>
+          <li>Store all documents in Google Drive or Notion and link to them from Profit.co. Do not attach files directly.</li>
+        </ul>
+        <div class="callout orange" style="margin-top:.6rem;">
+          <div class="callout-title">The subtask trap (most common mistake)</div>
+          Only <strong>parent Tasks</strong> move the KR progress bar. Subtasks are for personal organization and don't count toward KR progress. If your work is tracked as a Subtask, it won't appear in KR metrics. Make sure all key deliverables are logged as parent Tasks.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step B -->
+    <div class="step-card" id="sc-b">
+      <div class="step-header" onclick="toggleStep('sc-b')">
+        <div class="step-num-circle">B</div>
+        <div class="step-main">
+          <div class="step-timing">Calendar-driven — once a month, every month</div>
+          <div class="step-title">Write your monthly KR Check-in</div>
+          <div class="step-who">Written at the Key Result level in Profit.co, regardless of whether numbers moved.</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>The check-in is written at the Key Result (KR) level in Profit.co. Two required elements:</p>
+        <p style="margin-top:.35rem;"><strong>1. Status (traffic light):</strong> Not Started / On Track / At Risk / In Trouble / Completed. Pick the one that reflects reality.</p>
+        <p style="margin-top:.35rem;"><strong>2. Narrative comment (mandatory):</strong> What advanced since the last check-in, what is delayed or blocked, key risks or dependencies, and a clear rationale for the status you selected.</p>
+        <p style="margin-top:.6rem;"><strong>How to write a strong check-in:</strong></p>
+        <table class="do-avoid">
+          <thead>
+            <tr>
+              <th>Do this</th>
+              <th>Avoid this</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Write the status that reflects reality, not the one you wish were true</td>
+              <td>Selecting On Track when the KR is behind to avoid a difficult conversation</td>
+            </tr>
+            <tr>
+              <td>Explain why a number hasn't moved (deprioritized, blocked, or capacity issue)</td>
+              <td>Leaving the check-in blank because nothing changed</td>
+            </tr>
+            <tr>
+              <td>Flag blockers clearly so leadership can act on them</td>
+              <td>Writing only "good progress" with no detail or context</td>
+            </tr>
+            <tr>
+              <td>Select At Risk early — it's a signal, not a failure</td>
+              <td>Waiting until In Trouble to flag a problem that's been building</td>
+            </tr>
+            <tr>
+              <td>Tag relevant stakeholders with @mentions for accountability</td>
+              <td>Leaving ambiguous statements with no clear owner or next step</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout green" style="margin-top:.65rem;">
+          <div class="callout-title">On the At Risk status</div>
+          At Risk does not mean failure. It means something needs attention: a blocker, a delay, a flag. Flagging At Risk early is a sign of a healthy, transparent team. Update the status honestly — the context you provide is what enables leadership to help.
+        </div>
+      </div>
+    </div>
+
+    <!-- The four cadence levels -->
+    <div class="block-title" style="margin-top:.25rem;">The four levels of the OKR cadence</div>
+    <div class="card" style="padding:.75rem 0 0; overflow:hidden;">
+      <table class="cadence-table">
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>What it is</th>
+            <th>When</th>
+            <th>Your role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-level">Company</td>
+            <td>Monthly async OKR update for the whole team, sent via Slack</td>
+            <td>First week of every month</td>
+            <td class="td-role">Receive &amp; read</td>
+          </tr>
+          <tr>
+            <td class="td-level">Strategic</td>
+            <td>CEO + Leadership review of all OKR progress across departments</td>
+            <td>Every two months</td>
+            <td class="td-role">Informed — no action required</td>
+          </tr>
+          <tr>
+            <td class="td-level">Team</td>
+            <td>Monthly KR Check-in (Steps A &amp; B)</td>
+            <td>Monthly, per cadence calendar</td>
+            <td class="td-role">Write your check-in</td>
+          </tr>
+          <tr>
+            <td class="td-level">Operational</td>
+            <td>Quarterly 1:1 OKR review with your manager</td>
+            <td>Within 15 days after each quarter closes</td>
+            <td class="td-role">Review your KRs together</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quarterly 1:1 -->
+    <div class="step-card" id="sc-q">
+      <div class="step-header" onclick="toggleStep('sc-q')">
+        <div class="step-num-circle" style="font-size:11px;">Q</div>
+        <div class="step-main">
+          <div class="step-timing">Within 15 days after each quarter closes</div>
+          <div class="step-title">Your Quarterly 1:1</div>
+          <div class="step-who">With your direct manager. The OKR review is the first 15 minutes.</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Four times a year, you'll have a structured 1:1 with your manager where your OKR contribution is reviewed. The OKR review is fact-based and grounded in Profit.co data.</p>
+        <p style="margin-top:.4rem;">During the review, you and your manager go through each active KR together: progress vs. target, check-in history, tasks completed, and open blockers. If a decision is made about a KR, your manager documents it in the Profit.co Notes tab.</p>
+        <div class="callout black" style="margin-top:.6rem;">
+          <div class="callout-title">Review windows</div>
+          Q1 (end of March) → May 1–15 &nbsp;·&nbsp; Q2 (end of June) → Aug 1–15 &nbsp;·&nbsp; Q3 (end of September) → Nov 1–15 &nbsp;·&nbsp; Q4 (end of December) → Feb 1–15
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cadence -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CHECKLIST                                                          -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">Keep this open while you work in Profit.co. Three moments, three checklists.</div>
+
+    <!-- Group A: Updating a task -->
+    <div class="checklist-group open" id="cg-task">
+      <div class="cg-header" onclick="toggleGroup('cg-task')">
+        <span class="cg-pill green">A</span>
+        <span class="cg-title">
+          Updating a task
+          <span class="cg-sub">Event-driven — every time real progress happens</span>
+        </span>
+        <span class="cg-count" id="count-task">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'task')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Go to the task in Profit.co and update its status
+            <span class="check-note">In Progress (work started but not done) or Completed (fully delivered)</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'task')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Write a task comment
+            <span class="check-note">What was done, what's next, and any blockers or dependencies</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'task')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Link your evidence in the comment
+            <span class="check-note">Paste the Google Drive or Notion URL — do not attach files directly to Profit.co</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'task')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Confirm it's a parent Task, not a Subtask
+            <span class="check-note">Only parent Tasks move the KR progress bar — Subtasks are invisible to KR metrics</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-task','task')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Group B: Monthly KR Check-in -->
+    <div class="checklist-group open" id="cg-checkin">
+      <div class="cg-header" onclick="toggleGroup('cg-checkin')">
+        <span class="cg-pill yellow">B</span>
+        <span class="cg-title">
+          Monthly KR Check-in
+          <span class="cg-sub">Calendar-driven — once a month, regardless of whether numbers moved</span>
+        </span>
+        <span class="cg-count" id="count-checkin">0 / 6</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">Open the KR in Profit.co and go to the Check-in tab</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Select an honest traffic light status
+            <span class="check-note">Pick the one that reflects reality, not the one you wish were true</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Write what advanced since the last check-in
+            <span class="check-note">Be specific: what was completed, delivered, or progressed</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Write what's delayed, blocked, or needs attention
+            <span class="check-note">Name the blocker clearly so leadership can act on it</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            State why you chose that status
+            <span class="check-note">A number alone isn't enough — give the context behind it</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'checkin')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            @mention anyone who needs to act
+            <span class="check-note">Tag stakeholders on blockers or dependencies that require their input</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-checkin','checkin')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Group C: Before your quarterly 1:1 -->
+    <div class="checklist-group open" id="cg-quarterly">
+      <div class="cg-header" onclick="toggleGroup('cg-quarterly')">
+        <span class="cg-pill black">C</span>
+        <span class="cg-title">
+          Before your quarterly 1:1
+          <span class="cg-sub">Q1 → May 1–15 &nbsp;·&nbsp; Q2 → Aug 1–15 &nbsp;·&nbsp; Q3 → Nov 1–15 &nbsp;·&nbsp; Q4 → Feb 1–15</span>
+        </span>
+        <span class="cg-count" id="count-quarterly">0 / 5</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'quarterly')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            All tasks are updated with their current status
+            <span class="check-note">Nothing left stale or in progress when it's already done</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'quarterly')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Evidence is linked on every completed task
+            <span class="check-note">If it's not evidenced, it can't be verified</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'quarterly')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            The last 3 monthly check-ins are written and clear
+            <span class="check-note">Your manager will review these during the meeting</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'quarterly')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            You know which KRs are On Track, At Risk, or In Trouble
+            <span class="check-note">Come prepared — no surprises in the room</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'quarterly')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            You're ready to discuss blockers or changes needed
+            <span class="check-note">Think about what's holding things back and what you'd change</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-quarterly','quarterly')">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /checklist -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- PITFALLS & STATUS                                                  -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-pitfalls">
+
+    <div class="sec-title">Pitfalls &amp; Status Guide</div>
+    <div class="sec-sub">The four most common mistakes — and how to avoid them. Plus the full status reference.</div>
+
+    <div class="block-title" style="margin-bottom:.5rem;">Common pitfalls</div>
+
+    <div class="pitfall-item" id="pf-1">
+      <div class="pitfall-header" onclick="togglePitfall('pf-1')">
+        <span class="pitfall-icon">⚠️</span>
+        <span class="pitfall-title">The subtask trap</span>
+        <span class="pitfall-chevron">▾</span>
+      </div>
+      <div class="pitfall-body">
+        Work tracked as Subtasks does not move the KR bar — it becomes invisible progress. Your work exists, but the metrics don't see it.<br><br>
+        <strong>Fix:</strong> Log all key deliverables as parent Tasks. Subtasks are for personal workflow only.
+      </div>
+    </div>
+
+    <div class="pitfall-item" id="pf-2">
+      <div class="pitfall-header" onclick="togglePitfall('pf-2')">
+        <span class="pitfall-icon">⚠️</span>
+        <span class="pitfall-title">Missing or late check-ins</span>
+        <span class="pitfall-chevron">▾</span>
+      </div>
+      <div class="pitfall-body">
+        A KR with no check-in gets flagged as Ghost Risk — it looks At Risk even if execution is going perfectly well.<br><br>
+        <strong>Fix:</strong> Treat the check-in as a calendar event. Write it monthly regardless of whether numbers moved.
+      </div>
+    </div>
+
+    <div class="pitfall-item" id="pf-3">
+      <div class="pitfall-header" onclick="togglePitfall('pf-3')">
+        <span class="pitfall-icon">⚠️</span>
+        <span class="pitfall-title">Progress without evidence</span>
+        <span class="pitfall-chevron">▾</span>
+      </div>
+      <div class="pitfall-body">
+        Updating a task without documentation means progress is unverifiable and institutional memory is lost. What is not evidenced cannot be verified.<br><br>
+        <strong>Fix:</strong> Always link to evidence (Drive or Notion) in the task comment.
+      </div>
+    </div>
+
+    <div class="pitfall-item" id="pf-4">
+      <div class="pitfall-header" onclick="togglePitfall('pf-4')">
+        <span class="pitfall-icon">⚠️</span>
+        <span class="pitfall-title">Holding On Track too long</span>
+        <span class="pitfall-chevron">▾</span>
+      </div>
+      <div class="pitfall-body">
+        When problems are flagged too late, leadership makes decisions on optimistic data. By the time In Trouble is selected, there's little runway left to act.<br><br>
+        <strong>Fix:</strong> Select At Risk early. It is a system signal, not a failure.
+      </div>
+    </div>
+
+    <!-- Status guide -->
+    <div class="block-title" style="margin-top:1rem;margin-bottom:.5rem;">Status guide</div>
+    <div class="card" style="padding:.75rem 0 0; overflow:hidden;">
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>When to use it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="status-dot dot-gray"></span><span class="status-label">Not Started</span></td>
+            <td class="status-desc">Work on this KR has not begun yet</td>
+          </tr>
+          <tr>
+            <td><span class="status-dot dot-green"></span><span class="status-label">On Track</span></td>
+            <td class="status-desc">Progress is happening and the KR is likely to be met</td>
+          </tr>
+          <tr>
+            <td><span class="status-dot dot-orange"></span><span class="status-label">At Risk</span></td>
+            <td class="status-desc">Something needs attention: a blocker, a delay, a flag. Flag it now, not later.</td>
+          </tr>
+          <tr>
+            <td><span class="status-dot dot-red"></span><span class="status-label">In Trouble</span></td>
+            <td class="status-desc">Significantly behind and unlikely to be met without intervention</td>
+          </tr>
+          <tr>
+            <td><span class="status-dot dot-black"></span><span class="status-label">Completed</span></td>
+            <td class="status-desc">Fully delivered</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green" style="margin-top:.5rem;">
+      <div class="callout-title">Keep in mind</div>
+      Parent Tasks move the KR bar — Subtasks don't. &nbsp;·&nbsp; Check-in is a calendar obligation: write it even if nothing changed. &nbsp;·&nbsp; At Risk early = healthy team. At Risk late = problem. &nbsp;·&nbsp; Evidence lives in Drive/Notion — link it, never attach to Profit.co.
+    </div>
+
+  </div><!-- /pitfalls -->
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> → Your manager or the Director of Staff and Operations &nbsp;·&nbsp; Last updated April 2026
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo"
+           src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png"
+           alt="VélezReyes+ · vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+/* ── Main tabs ── */
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+/* ── Step/accordion cards ── */
+function toggleStep(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+function togglePitfall(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Checklist — localStorage persistence ── */
+const totals = { task: 4, checkin: 6, quarterly: 5 };
+const LS_KEY = 'vrplus_okr_checklist';
+
+function saveState() {
+  const state = {};
+  ['task','checkin','quarterly'].forEach(group => {
+    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ['task','checkin','quarterly'].forEach(group => {
+      if (!state[group]) return;
+      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+      state[group].forEach((checked, i) => {
+        if (checked && items[i]) items[i].classList.add('checked');
+      });
+      updateCount(group);
+    });
+  } catch(e) {}
+}
+
+function updateCount(group) {
+  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + group);
+  if (el) el.textContent = checked + ' / ' + totals[group];
+}
+
+function toggleCheck(el, group) {
+  el.classList.toggle('checked');
+  if (['task','checkin','quarterly'].includes(group)) {
+    updateCount(group);
+    saveState();
+  }
+}
+
+function toggleGroup(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function resetGroup(groupId, countKey) {
+  document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  updateCount(countKey);
+  saveState();
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
