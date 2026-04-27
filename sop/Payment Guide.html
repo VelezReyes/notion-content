@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Request Guide · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+  --red:       #E03030;
+  --red-lt:    #FDEAEA;
+  --orange:    #E09800;
+  --orange-lt: #FFF4E0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-md);
+  min-height: 100vh;
+  padding: 1.25rem 1rem 3rem;
+  line-height: 1.55;
+}
+
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: .75rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--yellow);
+}
+.header-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+
+/* ── Main nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn {
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--border-md);
+  background: var(--card-bg);
+  color: var(--text-md);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: .75rem;
+}
+
+/* ── Step card ── */
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.step-header {
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.step-header:hover { background: var(--bg); }
+.step-num-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.step-num-circle.zero {
+  background: var(--yellow);
+  color: var(--black);
+}
+.step-main { flex: 1; }
+.step-timing {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-mt); margin-bottom: .15rem;
+}
+.step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.step-who   { font-size: 12px; color: var(--text-mt); }
+.step-chevron {
+  font-size: 14px; color: var(--text-mt);
+  transition: transform .2s;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+.step-card.open .step-chevron { transform: rotate(180deg); }
+.step-body-expand {
+  display: none;
+  padding: .75rem 1.25rem 1rem 4.1rem;
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+.step-card.open .step-body-expand { display: block; }
+.step-body-expand p { margin-bottom: .5rem; color: var(--text-md); line-height: 1.6; }
+.step-body-expand p:last-child { margin-bottom: 0; }
+.step-body-expand strong { color: var(--text-dk); }
+.step-body-expand ul { margin: .4rem 0 .5rem 1.1rem; }
+.step-body-expand ul li { margin-bottom: .3rem; line-height: 1.55; }
+
+/* ── Callout ── */
+.callout {
+  border-radius: var(--radius-sm);
+  padding: .8rem 1rem;
+  margin: .6rem 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-left: 4px solid var(--purple);
+  background: var(--purple-lt);
+}
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout.red    { border-left-color: var(--red);     background: var(--red-lt); }
+.callout.orange { border-left-color: var(--orange);  background: var(--orange-lt); }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+.callout.red    .callout-title { color: var(--red); }
+.callout.orange .callout-title { color: var(--orange); }
+
+/* ── Checklist ── */
+.checklist-group {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.cg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.cg-header:hover { background: var(--bg); }
+.cg-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  flex-shrink: 0;
+}
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-pill.black  { background: var(--black);  color: var(--yellow); }
+.cg-pill.red    { background: var(--red);    color: var(--white); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-sub   { font-size: 11px; color: var(--text-mt); display: block; font-weight: 400; margin-top: 1px; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body {
+  display: none;
+  padding: 0 1.25rem .9rem;
+  border-top: 1px solid var(--border);
+}
+.checklist-group.open .cg-body { display: block; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 5px;
+  padding-left: 4px;
+  transition: background .1s;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--border-md);
+  background: var(--white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  transition: all .15s;
+}
+.check-item.checked .check-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--black);
+}
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: 0.4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.check-note { display: block; font-size: 11px; color: var(--text-mt); margin-top: 2px; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
+
+/* ── Cadence timeline ── */
+.cadence-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  margin-bottom: .75rem;
+}
+.cd-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .7rem .6rem;
+  text-align: center;
+}
+.cd-item.accent { background: var(--black); border-color: var(--black); }
+.cd-item.accent .cd-day { color: var(--yellow); }
+.cd-item.accent .cd-label { color: #777; }
+.cd-item.accent .cd-desc { color: #999; }
+.cd-day   { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dk); }
+.cd-label { font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--purple); margin: .2rem 0; display: block; }
+.cd-desc  { font-size: 10px; color: var(--text-mt); line-height: 1.4; }
+
+/* ── Expense type grid ── */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.exp-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+}
+.exp-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); margin-bottom: .25rem; }
+.exp-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.exp-desc  { font-size: 11px; color: var(--text-md); line-height: 1.5; }
+
+/* ── Emergency accordion ── */
+.emerg-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+.emerg-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  transition: background .1s;
+}
+.emerg-header:hover { background: var(--bg); }
+.emerg-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  flex-shrink: 0;
+}
+.emerg-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.emerg-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
+.emerg-item.open .emerg-chevron { transform: rotate(180deg); }
+.emerg-body {
+  display: none;
+  padding: .1rem 1rem .85rem 2.9rem;
+  font-size: 13px;
+  color: var(--text-md);
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+}
+.emerg-item.open .emerg-body { display: block; }
+.emerg-body strong { color: var(--text-dk); }
+
+/* ── Subject line block ── */
+.subject-block {
+  background: #F0F0F0;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: .65rem 1rem;
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--text-dk);
+  margin: .5rem 0;
+  word-break: break-all;
+}
+
+/* ── Block / section titles ── */
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+.sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+
+/* ── PDF assembly visual ── */
+.pdf-row {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .6rem 0;
+  flex-wrap: wrap;
+}
+.pdf-doc {
+  background: var(--white);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  padding: .5rem .85rem;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dk);
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+.pdf-plus { font-size: 16px; color: var(--text-mt); font-weight: 300; }
+.pdf-arrow { font-size: 16px; color: var(--text-mt); }
+.pdf-result {
+  background: var(--black);
+  border-radius: var(--radius-sm);
+  padding: .5rem .85rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: 2.75rem;
+  padding: 1.75rem 0 .5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.footer-disclaimer {
+  font-size: 11px;
+  color: var(--text-mt);
+  letter-spacing: .04em;
+  margin-bottom: 1.35rem;
+}
+.footer-disclaimer strong { color: #777770; font-weight: 600; }
+.footer-logo-wrap { display: inline-block; opacity: .72; transition: opacity .2s; }
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo { display: block; height: 28px; width: auto; margin: 0 auto; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .cadence-row { grid-template-columns: repeat(3, 1fr); }
+  .exp-grid    { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ • VERE · Finance</div>
+    <h1>Payment Request Guide</h1>
+    <p>VR+ Philanthropy Division · Finance managed by VERE Family Office · Last updated 2026</p>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('process',this)">① The Process</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">② Checklist</button>
+    <button class="nav-btn" onclick="showMain('calendar',this)">③ Calendar &amp; Contacts</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE PROCESS                                                        -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section visible" id="sec-process">
+
+    <div class="sec-title">The Process</div>
+    <div class="sec-sub">Five steps, in order. Tap any step to expand. Nothing moves until Step 0 is done.</div>
+
+    <!-- Expense types -->
+    <div class="block-title">What this covers</div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-label">Category A</div>
+        <div class="exp-title">OpEx</div>
+        <div class="exp-desc">Salaries (non-Deel), software, travel, professional services, office expenses</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-label">Category B</div>
+        <div class="exp-title">Direct Costs</div>
+        <div class="exp-desc">Costs made on behalf of a grantee or sponsored project (not direct transfers)</div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-label">Category C</div>
+        <div class="exp-title">Grants</div>
+        <div class="exp-desc">Direct capital transfers to grantee or partner organizations. Always require CEO sign-off.</div>
+      </div>
+    </div>
+    <div class="callout black" style="margin-bottom:.75rem;">
+      <div class="callout-title">Out of scope (Phase 1)</div>
+      Deel Card expenses and personal reimbursements are not covered here. Phase 2 addenda targeting Q2 2026 will address those. If in doubt about the category, ask your Manager before submitting.
+    </div>
+
+    <!-- Step 0 -->
+    <div class="step-card" id="sc-0">
+      <div class="step-header" onclick="toggleStep('sc-0')">
+        <div class="step-num-circle zero">0</div>
+        <div class="step-main">
+          <div class="step-timing">Before anything else</div>
+          <div class="step-title">Approval</div>
+          <div class="step-who">Your manager · VR+ CEO for grants and unbudgeted items</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>You need written approval <strong>before</strong> assembling any PDF, filling any database row, or sending any email. No exceptions.</p>
+        <p><strong>Who approves:</strong> Authorization levels are defined by dollar amount and role tier in the Authorization Matrix. When in doubt, escalate to the next level.</p>
+        <ul>
+          <li>OpEx and Direct Costs: follow the Authorization Matrix thresholds by role</li>
+          <li>Grants: always require written authorization from the VR+ CEO, regardless of amount (interim requirement until the Grants Authorization Policy is finalized)</li>
+          <li>Unbudgeted items or budget variance above 10%: VR+ CEO or Principal sign-off required</li>
+        </ul>
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">Anti-splitting rule</div>
+          Approval limits apply to the total commitment value. Multiple related purchases or phased contracts for the same engagement count as one transaction. Do not split payments to circumvent approval thresholds.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-card" id="sc-1">
+      <div class="step-header" onclick="toggleStep('sc-1')">
+        <div class="step-num-circle">1</div>
+        <div class="step-main">
+          <div class="step-timing">After approval is confirmed</div>
+          <div class="step-title">Assemble PDF</div>
+          <div class="step-who">Invoice + Bank details + Approval email · Merged into one file</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Each payment request is a <strong>self-contained package</strong>: one consolidated PDF combining three documents.</p>
+        <div class="pdf-row">
+          <div class="pdf-doc">📄 Invoice</div>
+          <span class="pdf-plus">+</span>
+          <div class="pdf-doc">🏦 Bank details</div>
+          <span class="pdf-plus">+</span>
+          <div class="pdf-doc">✅ Approval email</div>
+          <span class="pdf-arrow">→</span>
+          <div class="pdf-result">📎 ONE PDF</div>
+        </div>
+        <ul>
+          <li><strong>Invoice:</strong> from the vendor, confirming service and amount</li>
+          <li><strong>Bank details:</strong> beneficiary name, account number or IBAN, bank name. SWIFT/ABA codes are mandatory for all international transfers, regardless of amount</li>
+          <li><strong>Approval email:</strong> written confirmation from the authorized approver</li>
+        </ul>
+        <div class="callout orange" style="margin-top:.5rem;">
+          <div class="callout-title">Currency note</div>
+          All payments execute in USD via JP Morgan. If the invoice is in a local currency (COP, BRL, ARS, CRC, etc.), you must document: (a) invoice amount in local currency, (b) FX rate applied, and (c) agreed USD equivalent. JP Morgan receives only the USD amount.
+        </div>
+        <p style="margin-top:.5rem;"><strong>Invoice address:</strong> Invoices must be addressed to <strong>FVR Ltd.</strong> If a vendor cannot invoice to FVR Ltd., you need an exception authorization from the Finance Director before proceeding.</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="sc-2">
+      <div class="step-header" onclick="toggleStep('sc-2')">
+        <div class="step-num-circle">2</div>
+        <div class="step-main">
+          <div class="step-timing">Once PDF is assembled</div>
+          <div class="step-title">Save to Drive</div>
+          <div class="step-who">Upload to your cost center folder · Save the link immediately</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Upload the consolidated PDF to your cost center's designated folder in Google Drive.</p>
+        <p><strong>Save the link immediately after uploading.</strong> You'll paste it into the database in Step 3. Google Drive links are based on file ID, not path — moving the file later does not break the link.</p>
+        <div class="callout black" style="margin-top:.5rem;">
+          <div class="callout-title">Access rules</div>
+          Each VR+ team member works only within their own cost center folder. Do not upload to another team's folder. The Treasury Analyst may reorganize subfolders freely without invalidating your saved links — do not re-upload a file just because it was moved.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="sc-3">
+      <div class="step-header" onclick="toggleStep('sc-3')">
+        <div class="step-num-circle">3</div>
+        <div class="step-main">
+          <div class="step-timing">After saving to Drive</div>
+          <div class="step-title">Fill the Database</div>
+          <div class="step-who">All fields required · Correct expense category · USD amounts</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Complete the database row for this payment. Every field is required. Incomplete entries may delay payment processing.</p>
+        <ul>
+          <li>Select the correct expense category: OpEx, Direct Cost, or Grant. Do not use "Investments" as a category — it is a reporting label only.</li>
+          <li>Enter the USD amount. If original invoice is in local currency, also log the local amount and FX rate in the corresponding fields.</li>
+          <li>Paste the Google Drive link from Step 2 into the document link field.</li>
+          <li>Cost center must match your own — entries for another cost center require explicit authorization.</li>
+        </ul>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">One payment = one complete row</div>
+          The database row and the consolidated PDF together form the official record of the payment request. Both must be complete before sending the email.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="sc-4">
+      <div class="step-header" onclick="toggleStep('sc-4')">
+        <div class="step-num-circle">4</div>
+        <div class="step-main">
+          <div class="step-timing">By Wednesday EOD</div>
+          <div class="step-title">Send the Email</div>
+          <div class="step-who">One email per week per cost center · payreq@verefo.com</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p><strong>To:</strong> <span style="color:var(--purple);font-weight:600;">payreq@verefo.com</span></p>
+        <p style="margin-top:.35rem;"><strong>Subject line format:</strong></p>
+        <div class="subject-block">VR+ — [Cost Center] — Solicitud de pago — [Vendor] — YYYY-MM-DD</div>
+        <p style="margin-top:.35rem;"><strong>To cancel a payment:</strong></p>
+        <div class="subject-block">VR+ — [Cost Center] — ORDEN DE NO PAGO — [Vendor] — YYYY-MM-DD</div>
+        <ul style="margin-top:.5rem;">
+          <li>Send <strong>one email per week</strong> per cost center, batching all requests for that cycle</li>
+          <li>Copy (paste) columns G through O from your filtered database rows into the email body</li>
+          <li>Deadline: <strong>Wednesday EOD</strong>. Requests received after Wednesday are held for the following Friday cycle</li>
+        </ul>
+        <div class="callout red" style="margin-top:.5rem;">
+          <div class="callout-title">No informal payment instructions</div>
+          Verbal instructions, WhatsApp messages, Slack messages, or any informal request for payment execution are not valid and will not be processed. The only valid channel is the written process: database entry plus email to payreq@verefo.com.
+        </div>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">After you hit send</div>
+          You do not need to follow up. VERE reviews on Thursday, payments execute on Friday, and proof of payment is available by Monday noon. If something is wrong with your request, VERE will contact you.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /process -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CHECKLIST                                                          -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">Use this every time you submit a payment request. Tap each item to mark it done.</div>
+
+    <!-- Approval -->
+    <div class="checklist-group open" id="cg-approval">
+      <div class="cg-header" onclick="toggleGroup('cg-approval')">
+        <span class="cg-pill yellow">Step 0</span>
+        <span class="cg-title">
+          Approval
+          <span class="cg-sub">Before anything else</span>
+        </span>
+        <span class="cg-count" id="count-approval">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'approval')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Written approval obtained from the correct authority level
+            <span class="check-note">Check the Authorization Matrix for the applicable dollar threshold and role tier</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'approval')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            If it's a Grant: written authorization from the VR+ CEO confirmed
+            <span class="check-note">Required for all grant amounts, regardless of size, until the Grants Authorization Policy is finalized</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'approval')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            If unbudgeted or budget variance above 10%: additional VR+ CEO or Principal sign-off obtained
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'approval')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Verified this is not a split transaction (total commitment value check)
+            <span class="check-note">Related purchases or phased contracts for the same engagement must be treated as one</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-approval','approval')">Reset</button>
+      </div>
+    </div>
+
+    <!-- PDF Assembly -->
+    <div class="checklist-group open" id="cg-pdf">
+      <div class="cg-header" onclick="toggleGroup('cg-pdf')">
+        <span class="cg-pill green">Step 1</span>
+        <span class="cg-title">
+          Assemble PDF
+          <span class="cg-sub">One merged PDF per payment</span>
+        </span>
+        <span class="cg-count" id="count-pdf">0 / 6</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Invoice obtained from vendor (confirms service and amount, addressed to FVR Ltd.)
+            <span class="check-note">If vendor cannot invoice to FVR Ltd., exception authorization from Finance Director required before proceeding</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Bank details included: beneficiary name, account number or IBAN, bank name
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            SWIFT/ABA codes included (mandatory for all international transfers)
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Approval email included
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            If invoice is in local currency: USD equivalent, FX rate, and local amount all documented
+            <span class="check-note">JP Morgan executes only the USD amount. All three fields must be present.</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'pdf')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            All three documents merged into ONE PDF
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-pdf','pdf')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Drive + Database -->
+    <div class="checklist-group open" id="cg-drive">
+      <div class="cg-header" onclick="toggleGroup('cg-drive')">
+        <span class="cg-pill green">Steps 2–3</span>
+        <span class="cg-title">
+          Save to Drive and Fill the Database
+          <span class="cg-sub">In that order</span>
+        </span>
+        <span class="cg-count" id="count-drive">0 / 6</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            PDF uploaded to my cost center's Google Drive folder
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Google Drive link saved (immediately after upload)
+            <span class="check-note">Do not re-upload if the file is later moved. The link stays valid.</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Database row created with the correct expense category (OpEx, Direct Cost, or Grant)
+            <span class="check-note">"Investments" is a reporting label only — do not use it as a category</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            USD amount entered. If local currency: local amount and FX rate also filled in
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Google Drive link pasted into the document link field of the database row
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'drive')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            All required database fields completed (no blanks)
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-drive','drive')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="checklist-group open" id="cg-email">
+      <div class="cg-header" onclick="toggleGroup('cg-email')">
+        <span class="cg-pill black">Step 4</span>
+        <span class="cg-title">
+          Send the Email
+          <span class="cg-sub">By Wednesday EOD · payreq@verefo.com</span>
+        </span>
+        <span class="cg-count" id="count-email">0 / 4</span>
+        <span class="cg-chevron">▾</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'email')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Subject line follows the required format
+            <span class="check-note">VR+ — [Cost Center] — Solicitud de pago — [Vendor] — YYYY-MM-DD</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'email')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Columns G through O from the database pasted into the email body
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'email')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            All requests for this cost center this week batched into a single email
+            <span class="check-note">One email per week per cost center is standard</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'email')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Sent by Wednesday EOD
+            <span class="check-note">Requests arriving after Wednesday are held for the following Friday cycle</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-email','email')">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /checklist -->
+
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CALENDAR & CONTACTS                                                -->
+  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-calendar">
+
+    <div class="sec-title">Calendar &amp; Contacts</div>
+    <div class="sec-sub">The weekly cycle, who to reach, and what to do if something goes wrong.</div>
+
+    <!-- Weekly cycle -->
+    <div class="block-title">Weekly payment cycle</div>
+    <div class="cadence-row">
+      <div class="cd-item">
+        <div class="cd-day">Mon</div>
+        <span class="cd-label">&nbsp;</span>
+        <div class="cd-desc">Prepare PDFs and database rows</div>
+      </div>
+      <div class="cd-item">
+        <div class="cd-day">Tue</div>
+        <span class="cd-label">&nbsp;</span>
+        <div class="cd-desc">Complete database entries</div>
+      </div>
+      <div class="cd-item accent">
+        <div class="cd-day">Wed</div>
+        <span class="cd-label">Cutoff</span>
+        <div class="cd-desc">Send request email by EOD</div>
+      </div>
+      <div class="cd-item">
+        <div class="cd-day">Thu</div>
+        <span class="cd-label">VERE reviews</span>
+        <div class="cd-desc">Finance checks each request</div>
+      </div>
+      <div class="cd-item accent">
+        <div class="cd-day">Fri</div>
+        <span class="cd-label">Payments</span>
+        <div class="cd-desc">Transfers from JP Morgan</div>
+      </div>
+      <div class="cd-item">
+        <div class="cd-day">Mon+</div>
+        <span class="cd-label">Proof</span>
+        <div class="cd-desc">Document links visible by noon</div>
+      </div>
+    </div>
+    <div class="callout black" style="margin-bottom:.75rem;">
+      <div class="callout-title">Holiday adjustments</div>
+      If Wednesday or Friday falls on a public holiday in any of VR+'s operating countries, the VERE Finance team will communicate adjusted deadlines by email. Assume the standard cycle applies until notified.
+    </div>
+
+    <!-- Contact -->
+    <div class="block-title" style="margin-top:.25rem;">Submission channel</div>
+    <div class="card" style="margin-bottom:.75rem;">
+      <p style="font-size:13px;"><strong>Email:</strong> <span style="color:var(--purple);font-weight:600;">payreq@verefo.com</span></p>
+      <p style="font-size:13px;margin-top:.4rem;"><strong>For questions or exceptions:</strong> Director of Staff and Operations</p>
+      <p style="font-size:12px;color:var(--text-mt);margin-top:.4rem;">After submitting, you do not need to follow up. If VERE has questions about your request, they will contact you. Proof of payment is visible in the database by Monday noon.</p>
+    </div>
+
+    <!-- Emergency -->
+    <div class="block-title" style="margin-bottom:.5rem;">Emergency payments (out-of-cycle)</div>
+    <div class="callout red" style="margin-bottom:.6rem;">
+      <div class="callout-title">Emergency approvals do not waive documentation</div>
+      All supporting documents must be submitted no later than the following Thursday. An emergency payment is subject to the same audit and compliance standards as any standard payment.
+    </div>
+
+    <div class="emerg-item" id="em-1">
+      <div class="emerg-header" onclick="toggleEmerg('em-1')">
+        <div class="emerg-num">1</div>
+        <span class="emerg-title">Written notification (required first)</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Notify the next available senior authority <strong>in writing</strong> (email or messaging app). Verbal notification may precede written confirmation but cannot substitute it. The notification must clearly state: the nature of the urgency, the amount, the vendor, and the cost center.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-2">
+      <div class="emerg-header" onclick="toggleEmerg('em-2')">
+        <div class="emerg-num">2</div>
+        <span class="emerg-title">Provisional written approval</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The senior authority grants provisional approval in writing (email) to the Finance Director. The provisional approval must include the reason for the exception and explicit authorization for the specific amount.
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-3">
+      <div class="emerg-header" onclick="toggleEmerg('em-3')">
+        <div class="emerg-num">3</div>
+        <span class="emerg-title">Finance Director assessment</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        The Finance Director and Treasury Analyst assess operational feasibility. If appropriate, the Finance Director authorizes the out-of-cycle execution. <strong>The Finance Director holds final authority over all emergency payment decisions.</strong>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="em-4">
+      <div class="emerg-header" onclick="toggleEmerg('em-4')">
+        <div class="emerg-num">4</div>
+        <span class="emerg-title">Formal ratification (within 2 business days)</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        Formal written ratification must be obtained from the appropriate approving authority within <strong>2 business days</strong> of payment execution. The ratification must include the reason for the exception and confirmation that all standard documentation requirements have been or will be satisfied.
+      </div>
+    </div>
+
+  </div><!-- /calendar -->
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> → Director of Staff and Operations &nbsp;·&nbsp; Finance: payreq@verefo.com &nbsp;·&nbsp; VR+ Payment Policy v1 · 2026
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo"
+           src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png"
+           alt="VélezReyes+ · vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+/* ── Main tabs ── */
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+/* ── Step cards ── */
+function toggleStep(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Emergency items ── */
+function toggleEmerg(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── Checklist — localStorage persistence ── */
+const totals = { approval: 4, pdf: 6, drive: 6, email: 4 };
+const ALL_GROUPS = ['approval','pdf','drive','email'];
+const LS_KEY = 'vrplus_payment_checklist';
+
+function saveState() {
+  const state = {};
+  ALL_GROUPS.forEach(group => {
+    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ALL_GROUPS.forEach(group => {
+      if (!state[group]) return;
+      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
+      state[group].forEach((checked, i) => {
+        if (checked && items[i]) items[i].classList.add('checked');
+      });
+      updateCount(group);
+    });
+  } catch(e) {}
+}
+
+function updateCount(group) {
+  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + group);
+  if (el) el.textContent = checked + ' / ' + totals[group];
+}
+
+function toggleCheck(el, group) {
+  el.classList.toggle('checked');
+  if (ALL_GROUPS.includes(group)) {
+    updateCount(group);
+    saveState();
+  }
+}
+
+function toggleGroup(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function resetGroup(groupId, countKey) {
+  document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  if (countKey) updateCount(countKey);
+  saveState();
+}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
