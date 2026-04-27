@@ -44,7 +44,7 @@ body {
 
 .root { max-width: 780px; margin: 0 auto; }
 
-/* ── Header ── */
+/* Header */
 .header {
   background: var(--black);
   border-radius: var(--radius);
@@ -63,7 +63,7 @@ body {
 .header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
 .header p  { font-size: 12px; color: #777770; }
 
-/* ── Main nav ── */
+/* Main nav */
 .main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
 .nav-btn {
   padding: 6px 15px;
@@ -79,11 +79,11 @@ body {
 .nav-btn:hover { background: var(--cream); }
 .nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
 
-/* ── Sections ── */
+/* Sections */
 .section { display: none; }
 .section.visible { display: block; }
 
-/* ── Card ── */
+/* Card */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -92,7 +92,7 @@ body {
   margin-bottom: .75rem;
 }
 
-/* ── Step card ── */
+/* Step card */
 .step-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -119,10 +119,6 @@ body {
   flex-shrink: 0;
 }
 .step-main { flex: 1; }
-.step-timing {
-  font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--text-mt); margin-bottom: .15rem;
-}
 .step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
 .step-who   { font-size: 12px; color: var(--text-mt); }
 .step-chevron {
@@ -144,7 +140,7 @@ body {
 .step-body-expand p:last-child { margin-bottom: 0; }
 .step-body-expand strong { color: var(--text-dk); }
 
-/* ── Callout ── */
+/* Callout */
 .callout {
   border-radius: var(--radius-sm);
   padding: .8rem 1rem;
@@ -162,7 +158,7 @@ body {
 .callout.yellow .callout-title { color: #7A6E00; }
 .callout.black  .callout-title { color: #444; }
 
-/* ── Form cards (inside Step 1) ── */
+/* Form cards */
 .form-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -184,53 +180,20 @@ body {
 }
 .form-card.travel::before { background: var(--purple); }
 .form-card.opex::before   { background: var(--green); }
-.form-card-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--text-mt); margin-bottom: .25rem;
-}
-.form-card-name {
-  font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem;
-}
+.form-card-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .25rem; }
+.form-card-name  { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
 .form-card-links { font-size: 12px; line-height: 2; }
-.form-card-links a,
-.form-card a {
-  color: var(--purple); font-weight: 600; text-decoration: none;
-}
-.form-card-links a:hover,
-.form-card a:hover { text-decoration: underline; }
+.form-card-links a, .form-card a { color: var(--purple); font-weight: 600; text-decoration: none; }
+.form-card-links a:hover, .form-card a:hover { text-decoration: underline; }
 
-/* ── Classification table block ── */
-.classif-block {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0;
-  overflow: hidden;
-  margin: .75rem 0;
-}
+/* Classification table */
+.classif-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0; overflow: hidden; margin: .75rem 0; }
 
-/* ── Checklist ── */
-.checklist-group {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: .6rem;
-  overflow: hidden;
-}
-.cg-header {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .85rem 1.25rem;
-  cursor: pointer;
-  transition: background .1s;
-}
+/* Checklist */
+.checklist-group { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+.cg-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1.25rem; cursor: pointer; transition: background .1s; }
 .cg-header:hover { background: var(--bg); }
-.cg-pill {
-  font-size: 10px; font-weight: 700; letter-spacing: .09em;
-  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
-  flex-shrink: 0;
-}
+.cg-pill { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
 .cg-pill.green  { background: var(--green);  color: var(--black); }
 .cg-pill.yellow { background: var(--yellow); color: var(--black); }
 .cg-pill.purple { background: var(--purple); color: var(--white); }
@@ -239,99 +202,41 @@ body {
 .cg-count { font-size: 11px; color: var(--text-mt); }
 .cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
 .checklist-group.open .cg-chevron { transform: rotate(180deg); }
-.cg-body {
-  display: none;
-  padding: 0 1.25rem .9rem;
-  border-top: 1px solid var(--border);
-}
+.cg-body { display: none; padding: 0 1.25rem .9rem; border-top: 1px solid var(--border); }
 .checklist-group.open .cg-body { display: block; }
 
-.check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: .75rem;
-  padding: .6rem 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  border-radius: 5px;
-  padding-left: 4px;
-  transition: background .1s;
-}
+.check-item { display: flex; align-items: flex-start; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border); cursor: pointer; border-radius: 5px; padding-left: 4px; transition: background .1s; }
 .check-item:last-child { border-bottom: none; }
 .check-item:hover { background: var(--bg); }
-.check-box {
-  width: 18px; height: 18px;
-  border-radius: 4px;
-  border: 2px solid var(--border-md);
-  background: var(--white);
-  flex-shrink: 0;
-  margin-top: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px;
-  transition: all .15s;
-}
-.check-item.checked .check-box {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--black);
-}
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border-md); background: var(--white); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all .15s; }
+.check-item.checked .check-box { background: var(--green); border-color: var(--green); color: var(--black); }
 .check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
 .check-item.checked .check-text { opacity: 0.4; text-decoration: line-through; }
 .check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
 .reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
 
-/* ── Contact cards ── */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .6rem;
-  margin-bottom: .6rem;
-}
-.contact-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: .85rem 1rem;
-}
-.contact-role { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); margin-bottom: .2rem; font-weight: 600; }
-.contact-name { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
-.contact-when { font-size: 12px; color: var(--text-md); }
+/* Contact cards */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .6rem; }
+.contact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .85rem 1rem; }
+.contact-role  { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); margin-bottom: .2rem; font-weight: 600; }
+.contact-name  { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.contact-when  { font-size: 12px; color: var(--text-md); }
 .contact-email { font-size: 11px; color: var(--purple); margin-top: .3rem; font-weight: 500; }
 
-/* ── Emergency accordion ── */
-.emerg-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  margin-bottom: .5rem;
-  overflow: hidden;
-}
-.emerg-header {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .8rem 1rem;
-  cursor: pointer;
-  transition: background .1s;
-}
+/* Emergency accordion */
+.emerg-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: .5rem; overflow: hidden; }
+.emerg-header { display: flex; align-items: center; gap: .75rem; padding: .8rem 1rem; cursor: pointer; transition: background .1s; }
 .emerg-header:hover { background: var(--bg); }
 .emerg-dot { width: 8px; height: 8px; border-radius: 50%; background: #E09800; flex-shrink: 0; }
-.emerg-dot.red { background: #E03030; }
+.emerg-dot.red  { background: #E03030; }
 .emerg-dot.gray { background: #AAA; }
-.emerg-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.emerg-title   { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
 .emerg-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
 .emerg-item.open .emerg-chevron { transform: rotate(180deg); }
-.emerg-body {
-  display: none;
-  padding: .1rem 1rem .8rem 2.15rem;
-  font-size: 13px;
-  color: var(--text-md);
-  line-height: 1.6;
-  border-top: 1px solid var(--border);
-}
+.emerg-body { display: none; padding: .1rem 1rem .8rem 2.15rem; font-size: 13px; color: var(--text-md); line-height: 1.6; border-top: 1px solid var(--border); }
 .emerg-item.open .emerg-body { display: block; }
 
-/* ── Data table ── */
+/* Data table */
 .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
 .data-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
 .data-table td { padding: 8px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -340,49 +245,20 @@ body {
 .data-table tr:last-child td { border-bottom: none; }
 .data-table .td-label { font-weight: 600; color: var(--text-dk); white-space: nowrap; }
 
-/* ── Block titles ── */
+/* Block titles */
 .block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
 .sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
 .sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
 
-/* ── Pill ── */
-.pill { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-.pill-k { background: var(--black); color: var(--white); }
-.pill-g { background: var(--green); color: var(--black); }
-.pill-y { background: var(--yellow); color: var(--black); }
-
-/* ── Footer ── */
-.site-footer {
-  margin-top: 2.75rem;
-  padding: 1.75rem 0 .5rem;
-  text-align: center;
-  border-top: 1px solid var(--border);
-}
-.footer-disclaimer {
-  font-size: 11px;
-  color: var(--text-mt);
-  letter-spacing: .04em;
-  margin-bottom: 1.35rem;
-  line-height: 1.8;
-}
-.footer-disclaimer strong {
-  color: #777770;
-  font-weight: 600;
-}
-.footer-logo-wrap {
-  display: inline-block;
-  opacity: .72;
-  transition: opacity .2s;
-}
+/* Footer */
+.site-footer { margin-top: 2.75rem; padding: 1.75rem 0 .5rem; text-align: center; border-top: 1px solid var(--border); }
+.footer-disclaimer { font-size: 11px; color: var(--text-mt); letter-spacing: .04em; margin-bottom: 1.35rem; line-height: 1.8; }
+.footer-disclaimer strong { color: #777770; font-weight: 600; }
+.footer-logo-wrap { display: inline-block; opacity: .72; transition: opacity .2s; }
 .footer-logo-wrap:hover { opacity: 1; }
-.footer-logo {
-  display: block;
-  height: 28px;
-  width: auto;
-  margin: 0 auto;
-}
+.footer-logo { display: block; height: 28px; width: auto; margin: 0 auto; }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 560px) {
   .contact-grid { grid-template-columns: 1fr; }
   .form-cards   { grid-template-columns: 1fr; }
@@ -392,245 +268,167 @@ body {
 <body>
 <div class="root">
 
-  <!-- ── HEADER ── -->
+  <!-- HEADER -->
   <div class="header">
-    <div class="header-label">VélezReyes+ · Travel</div>
+    <div class="header-label">VélezReyes+ • VERE · Travel</div>
     <h1>Need to travel for work?</h1>
     <p>Start here: four steps, zero guesswork. · Last updated April 2026</p>
   </div>
 
-  <!-- ── MAIN NAV ── -->
+  <!-- MAIN NAV -->
   <div class="main-nav">
-    <button class="nav-btn active" onclick="showMain('steps',this)">① The 4 Steps</button>
-    <button class="nav-btn" onclick="showMain('checklist',this)">② Checklist</button>
-    <button class="nav-btn" onclick="showMain('contacts',this)">③ Contacts &amp; Emergencies</button>
+    <button class="nav-btn active" onclick="showMain('steps',this)">&#9312; The 4 Steps</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">&#9313; Checklist</button>
+    <button class="nav-btn" onclick="showMain('contacts',this)">&#9314; Contacts &amp; Emergencies</button>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- THE 4 STEPS                                                       -->
-  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- THE 4 STEPS -->
   <div class="section visible" id="sec-steps">
 
     <div class="sec-title">The 4 Steps</div>
     <div class="sec-sub">Tap any step to expand. Do not book flights or hotels until you receive confirmation that your Deel Card has been funded.</div>
 
-    <!-- ── Step 1: Trip Planning ── -->
+    <!-- Step 1: Trip Planning -->
     <div class="step-card" id="sc-1">
       <div class="step-header" onclick="toggleStep('sc-1')">
         <div class="step-num-circle">1</div>
         <div class="step-main">
           <div class="step-title">Trip Planning</div>
-          <div class="step-who">You · direct manager approval required, if it applies</div>
+          <div class="step-who">Request approval from your direct manager, if it applies.</div>
         </div>
-        <div class="step-chevron">▾</div>
+        <div class="step-chevron">&#9662;</div>
       </div>
       <div class="step-body-expand">
-
-        <p>Request approval from your direct manager, if it applies.</p>
-
         <div class="form-cards" style="margin-top:.6rem;">
           <div class="form-card travel">
             <div class="form-card-label">For business trips</div>
             <div class="form-card-name">Travel Request Form</div>
             <div class="form-card-links">
               <a href="https://drive.google.com/drive/folders/1DvCMnRRripK6kivyfy8uiioyoeyfJ2o5?usp=drive_link" target="_blank" rel="noopener">Comms</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1lEytaGM3OXCiMuN8If_Q3XJpOiWm6iH6?usp=sharing" target="_blank" rel="noopener">Democracia+</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1q1gFivDnKLxA2bZpYzDkB11108nnqwYt?usp=drive_link" target="_blank" rel="noopener">Democracy</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1-h4suBdZgT-MMHxU8pVVVzL9VmuTWJfa?usp=drive_link" target="_blank" rel="noopener">Early Childhood Development</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1ONcbGOWBtG3BBMJx-Hykfxjyqoy3nMeg?usp=drive_link" target="_blank" rel="noopener">Future of Talent</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1WctFZwQTWdddoRilF05WIqLWi8iTO6ty?usp=sharing" target="_blank" rel="noopener">MEL</a>
-              <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
+              <span style="color:var(--text-mt);margin:0 .35rem;">&bull;</span>
               <a href="https://drive.google.com/drive/folders/1t0px9jmdfk7PkqVX8ffpqHNLFVjokZ41?usp=drive_link" target="_blank" rel="noopener">Tech</a>
             </div>
           </div>
-          <div class="form-card opex">
-            <div class="form-card-label">Operational and Other Non-Travel Expenses</div>
-            <div class="form-card-name">OPEX Request Form</div>
-            <a href="[INSERT LINK]" target="_blank" rel="noopener">Open folder →</a>
-          </div>
         </div>
 
-        <p>For expense classification, refer to the <a href="[INSERT LINK]" style="color:var(--purple);font-weight:600;">Opex &amp; Investments 2026</a> file in your team's folder.</p>
+        <p style="margin-top:.75rem;">Duplicate the Travel Request Form from your team's folder. Complete the Travel Budget Model tab in full, then take a screenshot of the filled form where rows 1 to 29 and columns A to D are clearly visible. Send the screenshot to your direct manager for approval, if it applies.</p>
 
-        <p style="margin-top:.75rem;"><strong>1.1</strong> Duplicate the Travel Request Form from your team's folder.</p>
-        <p><strong>1.2</strong> Complete the Travel Budget Model tab.</p>
-        <p><strong>1.3</strong> Take a screenshot of the filled form where rows 1 to 29 and columns A to D are clearly visible. Send it to your direct manager for approval, if it applies.</p>
 
         <div class="callout yellow" style="margin-top:.6rem;">
           <div class="callout-title">Senior approval required?</div>
-          If senior approval is required, go to the <a href="[INSERT LINK]" style="color:var(--text-dk);font-weight:600;text-decoration:none;">Approval Authority Matrix</a> and follow the process outlined there.
+          Refer to <a href="[INSERT LINK]" style="color:var(--text-dk);font-weight:600;">Approval Authority Matrix</a> to check if prior authorization is required for trips that are not part of the 2026 budget.
         </div>
-
       </div>
     </div>
 
-    <!-- ── Step 2: Request Funds ── -->
+    <!-- Step 2: Request Funds -->
     <div class="step-card" id="sc-2">
       <div class="step-header" onclick="toggleStep('sc-2')">
         <div class="step-num-circle">2</div>
         <div class="step-main">
           <div class="step-title">Request Funds</div>
-          <div class="step-who">Send to payreq@verefo.com · cc Gabriela, Cristina, and Dharla</div>
+          <div class="step-who">Send to payreq@verefo.com &middot; cc Gabriela, Cristina, and Dharla</div>
         </div>
-        <div class="step-chevron">▾</div>
+        <div class="step-chevron">&#9662;</div>
       </div>
       <div class="step-body-expand">
-
         <p>Send your fund request to the Finance team at least 40 days before your trip.</p>
 
         <p style="margin-top:.5rem;">
-          <strong>Send to:</strong> <span style="color:var(--purple);font-weight:600;">payreq@verefo.com</span><br>
-          <strong>CC:</strong> gabriela@verefo.com · cristina@velezreyesmas.com · dharla@velezreyesmas.com
+          <strong>Send to:</strong> <span style="color:var(--purple);font-weight:600;">payreq@verefo.com</span>
         </p>
 
-        <p style="margin-top:.5rem;"><strong>Include in the email:</strong></p>
-        <p style="padding-left:.75rem;">Screenshot of the completed Travel Request Form (rows 1–29, columns A–D)</p>
-        <p style="padding-left:.75rem;">Screenshot of your manager's approval message, if it applies</p>
+        <div class="callout black" style="margin-top:.5rem;">
+          <div class="callout-title">Example subject line</div>
+          Deel Card Funds: [Destination] Trip, [Month Year]<br>
+          <span style="color:var(--text-mt);font-style:italic;">e.g. "Deel Card Funds: Costa Rica Trip, May 2026"</span>
+        </div>
+
+        <p style="margin-top:.6rem;">
+        <strong>CC:</strong> gabriela@verefo.com &middot; cristina@velezreyesmas.com &middot; dharla@velezreyesmas.com </p>
+        <p style="margin-top:.25rem;font-size:12.5px;color:var(--text-md);"><strong>Also copy your direct manager if their approval was needed to authorize the trip.</strong></p>
+
+        <p style="margin-top:.6rem;"><strong>Include in the email:</strong></p>
+        <p style="padding-left:.75rem;">Screenshot of the completed Travel Request Form (rows 1 to 29, columns A to D)</p>
         <p style="padding-left:.75rem;">Link to your Travel Request Form</p>
 
-        <div class="callout black" style="margin-top:.6rem;">
-          <div class="callout-title">Example subject line</div>
-          Deel Card Funds – [Destination] Trip, [Month Year]<br>
-          <span style="color:var(--text-mt);font-style:italic;">e.g. "Deel Card Funds – Costa Rica Trip, May 2026"</span>
-        </div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:1rem 0;">
 
-        <p style="margin-top:.75rem;">The Finance team funds your Deel Card within 5 business days of receiving your request. This first transfer covers your flight and hotel. One week before your trip, you receive the remaining funds for other travel expenses.</p>
+        <p>The Finance team funds your Deel Card within 5 business days of receiving your request. This first transfer covers your flight and hotel. The remaining funds for other approved travel expenses arrive one week before your trip.</p><br>
 
         <div class="callout yellow" style="margin-top:.5rem;">
-          <div class="callout-title">Important</div>
-          Gabriela will let you know once your card has been funded.
+          <div class="callout-title">Important &middot; Gabriela's confirmations</div>
+          Gabriela will let you know once the funds for your <strong>flight ticket and hotel reservation</strong> are loaded on your Deel Card. The <strong>remaining amount</strong> (meals, transportation, health insurance, and any other approved expenses) is loaded <strong>one week before your trip</strong>.
         </div>
-
       </div>
     </div>
 
-    <!-- ── Step 3: Book ── -->
+    <!-- Step 3: Trip Arrangements -->
     <div class="step-card" id="sc-3">
       <div class="step-header" onclick="toggleStep('sc-3')">
         <div class="step-num-circle">3</div>
         <div class="step-main">
-          <div class="step-title">Book</div>
-          <div class="step-who">You</div>
+          <div class="step-title">Trip Arrangements</div>
         </div>
-        <div class="step-chevron">▾</div>
+        <div class="step-chevron">&#9662;</div>
       </div>
       <div class="step-body-expand">
+        <p>Once your Deel Card is funded, book your flight and hotel within the amounts approved in your Travel Request. Then arrange the rest of your trip essentials: internet plan and health insurance.</p>
 
-        <p>Book your flight and hotel according to the amounts approved in your Travel Request.</p>
-
-        <div class="callout black" style="margin-top:.5rem;">
+        <div class="callout black" style="margin-top:.6rem;">
           <div class="callout-title">What to do if...</div>
-          <p style="margin-bottom:.4rem;">Contact <strong>Cristina Velez-Reyes</strong> at <span style="color:var(--purple);font-weight:600;">[INSERT FULL EMAIL]</span> in any of the following situations:</p>
-          <p style="padding-left:.6rem;margin-bottom:.2rem;">The ticket price exceeds the budget in the travel matrix</p>
-          <p style="padding-left:.6rem;margin-bottom:.2rem;">The hotel rate is above the approved amount</p>
-          <p style="padding-left:.6rem;margin-bottom:.2rem;">You have a special dinner or event with external partners</p>
-          <p style="padding-left:.6rem;margin-bottom:.2rem;">You need to book a coworking space or meeting room</p>
-          <p style="padding-left:.6rem;">You are traveling to an unusual destination or during a high-cost season</p>
+          <ul style="margin:.2rem 0 .55rem 1.1rem;padding:0;">
+            <li style="margin-bottom:.25rem;">The flight price exceeds the budget in the travel matrix.</li>
+            <li style="margin-bottom:.25rem;">The hotel rate is above the approved amount.</li>
+            <li style="margin-bottom:.25rem;">You have a special dinner or event with external partners.</li>
+            <li style="margin-bottom:.25rem;">You need to book a coworking space or meeting room.</li>
+            <li>You are traveling to an unusual destination or during a high-cost season.</li>
+          </ul>
+          In any of the situations above, contact&nbsp;<strong>&nbsp;</strong><a href="mailto:cristina@velezreyesmas.com" style="color:var(--purple);font-weight:600;">cristina@velezreyesmas.com</a>.
         </div>
-
       </div>
     </div>
 
-    <!-- ── Step 4: Consolidation ── -->
+    <!-- Step 4: Consolidation -->
     <div class="step-card" id="sc-4">
       <div class="step-header" onclick="toggleStep('sc-4')">
         <div class="step-num-circle">4</div>
         <div class="step-main">
           <div class="step-title">Consolidation</div>
-          <div class="step-who">You · notify Dharla when done</div>
         </div>
-        <div class="step-chevron">▾</div>
+        <div class="step-chevron">&#9662;</div>
       </div>
       <div class="step-body-expand">
 
         <div class="callout green" style="margin-top:0;margin-bottom:.75rem;">
-          <div class="callout-title">Keep every receipt</div>
-          Keep every receipt — paper or digital — for every expense during your trip.
+          <div class="callout-title">Important</div>
+          Keep every receipt (paper or digital) for every expense during your trip.
+        </div>
+<p style="margin-top:.75rem;"><strong>I.</strong> After your trip ends, create the Business Trip expense group in Deel and name it right away following the format above. <a href="https://drive.google.com/file/d/1CeCWOjgoELzeqV5HjWK0ob34w14niM4R/view?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;">Watch tutorial &rarr;</a></p>
+        <p>To consolidate your trip, create a single expense group in Deel. Name the group right when you create it, and the name must contain the <strong>Cost Center</strong>, <strong>Category</strong>, and <strong>Type of expense</strong> (OPEX or Direct Cost).</p>
+
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">If the expense is Direct Cost</div>
+          The name must also include the <strong>Commitment status</strong> and <strong>Org / Program</strong>.
         </div>
 
-        <p>The Finance team needs to know exactly where each expense is going. You do this by creating expense groups in Deel with the correct classification. Make sure every group includes the following:</p>
-
-        <p style="padding-left:.75rem;margin-top:.5rem;margin-bottom:.2rem;"><strong>Cost center</strong></p>
-        <p style="padding-left:.75rem;margin-bottom:.2rem;"><strong>Category</strong></p>
-        <p style="padding-left:.75rem;margin-bottom:.2rem;"><strong>Type of expense</strong> (OPEX or Direct Cost)</p>
-        <p style="padding-left:.75rem;margin-bottom:.2rem;"><strong>Commitment status</strong> — required for Direct Cost expenses only</p>
-        <p style="padding-left:.75rem;margin-bottom:.6rem;"><strong>Org / Program</strong> — required for Direct Cost expenses only</p>
-
-        <p>For the exact options available for your team, refer to the <strong>Opex &amp; Investments 2026</strong> file in your team's folder:</p>
-
-        <p style="margin-top:.4rem;line-height:2.2;">
-          <a href="https://drive.google.com/drive/folders/1DvCMnRRripK6kivyfy8uiioyoeyfJ2o5?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Comms</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1lEytaGM3OXCiMuN8If_Q3XJpOiWm6iH6?usp=sharing" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Democracia+</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1q1gFivDnKLxA2bZpYzDkB11108nnqwYt?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Democracy</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1-h4suBdZgT-MMHxU8pVVVzL9VmuTWJfa?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Early Childhood Development</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1ONcbGOWBtG3BBMJx-Hykfxjyqoy3nMeg?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Future of Talent</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1WctFZwQTWdddoRilF05WIqLWi8iTO6ty?usp=sharing" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">MEL</a>
-          <span style="color:var(--text-mt);margin:0 .35rem;">•</span>
-          <a href="https://drive.google.com/drive/folders/1t0px9jmdfk7PkqVX8ffpqHNLFVjokZ41?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;text-decoration:none;">Tech</a>
-        </p>
-
-        <div class="classif-block">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Cost Center</th>
-                <th>Category</th>
-                <th>Type of Expense</th>
-                <th>Org / Program</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="td-label">Comms</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">Democracia+</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">Democracy</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">Early Childhood Dev.</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">Future of Talent</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">MEL</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-              <tr>
-                <td class="td-label">Tech</td>
-                <td colspan="4" style="color:var(--text-mt);font-style:italic;">[Insert from Opex &amp; Investments 2026]</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p><strong>1.</strong> After your trip ends, create a Business Travel expense group on Deel. <a href="[INSERT LINK TO TUTORIAL VIDEO]" style="color:var(--purple);font-weight:600;">Watch tutorial →</a></p>
-        <p style="margin-top:.45rem;"><strong>2.</strong> Name the group correctly — the name must reflect the cost center, project, and type of expense. Refer to your team's Opex &amp; Investments file for the right options.</p>
-        <p style="margin-top:.45rem;"><strong>3.</strong> Upload all receipts within 5 business days of returning from your trip.</p>
-        <p style="margin-top:.45rem;"><strong>4.</strong> Notify Dharla that all receipts have been uploaded so she can review, approve, and close the trip.</p>
+        <p style="margin-top:.6rem;">For the exact options available for your team, refer to the <strong>Opex &amp; Investments 2026</strong> file in your team's folder.</p>
+        <p style="margin-top:.45rem;"><strong>II.</strong> Upload all receipts within 3 business days of returning from your trip.</p>
+        <p style="margin-top:.45rem;"><strong>III.</strong>Notify Dharla and Gabriela of the absolute total expenses and confirm that all receipts have been uploaded, so they can review, approve, and close the trip.</p>
 
         <div class="callout green" style="margin-top:.75rem;">
-          <div class="callout-title">Personal card as backup</div>
-          If the Deel Card does not work or runs out of funds, pay with your personal card and submit a reimbursement request via Deel with a written explanation. Submit within <strong>3 calendar days</strong>. If submitted after the 20th, reimbursement is processed in the following payroll cycle.
+          <div class="callout-title">if reimbursement is required</div>
+         If the Deel Card didn't work and you had to pay with your personal card, submit the receipt via Deel along with a written explanation. <strong>Notify Gabriela, Cristina, and Dharla</strong> about the situation, including the <strong>absolute total of the trip</strong>. Do this within <strong>3 business days</strong>. If submitted after the 20th, reimbursement is processed in the following payroll cycle.
         </div>
 
       </div>
@@ -638,125 +436,76 @@ body {
 
   </div><!-- /steps -->
 
-  <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- CHECKLIST                                                         -->
-  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CHECKLIST -->
   <div class="section" id="sec-checklist">
-
     <div class="sec-title">Checklist</div>
     <div class="sec-sub">Tap each item to mark it done. Tap the group header to collapse/expand.</div>
 
-    <!-- Before → Request Funds -->
     <div class="checklist-group open" id="cg-before">
       <div class="cg-header" onclick="toggleGroup('cg-before')">
         <span class="cg-pill green">Before</span>
-        <span class="cg-title">Before → Request Funds</span>
-        <span class="cg-count" id="count-before">0 / 4</span>
-        <span class="cg-chevron">▾</span>
+        <span class="cg-title">Before &rarr; Request Funds</span>
+        <span class="cg-count" id="count-before">0 / 3</span>
+        <span class="cg-chevron">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'before')">
-          <div class="check-box"></div>
-          <span class="check-text">Duplicate the Travel Request Form from your team's folder.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'before')">
-          <div class="check-box"></div>
-          <span class="check-text">Complete the Travel Budget Model tab.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'before')">
-          <div class="check-box"></div>
-          <span class="check-text">Take a screenshot of the filled form (rows 1–29, columns A–D).</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'before')">
-          <div class="check-box"></div>
-          <span class="check-text">Send the screenshot to your direct manager for approval, if it applies.</span>
-        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Duplicate the Travel Request Form from your team's folder.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Complete the Travel Budget Model tab.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Take a screenshot of the filled form (rows 1 to 29, columns A to D).</span></div>
         <button class="reset-btn" onclick="resetGroup('cg-before','before')">Reset</button>
       </div>
     </div>
 
-    <!-- Deel Card Funds -->
     <div class="checklist-group open" id="cg-funds">
       <div class="cg-header" onclick="toggleGroup('cg-funds')">
         <span class="cg-pill yellow">Funds</span>
         <span class="cg-title">Deel Card Funds</span>
         <span class="cg-count" id="count-funds">0 / 3</span>
-        <span class="cg-chevron">▾</span>
+        <span class="cg-chevron">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'funds')">
-          <div class="check-box"></div>
-          <span class="check-text">Send your fund request email to Gabriela, Dharla, and Cristina — at least 40 days before your trip. Include the form screenshot, the manager's approval screenshot (if applicable), and the link to your form.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'funds')">
-          <div class="check-box"></div>
-          <span class="check-text">Wait for Gabriela's confirmation that your Deel Card has been funded.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'funds')">
-          <div class="check-box"></div>
-          <span class="check-text">Confirm the remaining funds arrive one week before your trip.</span>
-        </div>
+        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Send your fund request email to Gabriela, Dharla, and Cristina at least 40 days before your trip. Copy your direct manager if their approval was needed for the trip. Include the form screenshot, the manager's approval screenshot (if applicable), and the link to your form.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Gabriela confirms that the funds for your hotel and flight have been loaded on your Deel Card.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Confirmation that the remaining funds (meals, transportation, health insurance, and any other approved expenses) arrive one week before your trip.</span></div>
         <button class="reset-btn" onclick="resetGroup('cg-funds','funds')">Reset</button>
       </div>
     </div>
 
-    <!-- Booking -->
     <div class="checklist-group open" id="cg-booking">
       <div class="cg-header" onclick="toggleGroup('cg-booking')">
-        <span class="cg-pill black">Book</span>
-        <span class="cg-title">Booking</span>
-        <span class="cg-count" id="count-booking">0 / 2</span>
-        <span class="cg-chevron">▾</span>
+        <span class="cg-pill black">Plan</span>
+        <span class="cg-title">Trip Arrangements</span>
+        <span class="cg-count" id="count-booking">0 / 4</span>
+        <span class="cg-chevron">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'booking')">
-          <div class="check-box"></div>
-          <span class="check-text">Book your flight and hotel according to the approved amounts in your Travel Request.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'booking')">
-          <div class="check-box"></div>
-          <span class="check-text">For any exceptions or out-of-budget situations, contact Cristina.</span>
-        </div>
+        <div class="check-item" onclick="toggleCheck(this,'booking')"><div class="check-box"></div><span class="check-text">Book your flight within the approved amount in your Travel Request.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'booking')"><div class="check-box"></div><span class="check-text">Book your hotel within the approved amount in your Travel Request.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'booking')"><div class="check-box"></div><span class="check-text">Purchase your internet plan with Holafly.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'booking')"><div class="check-box"></div><span class="check-text">Purchase your health insurance (Assist Card).</span></div>
         <button class="reset-btn" onclick="resetGroup('cg-booking','booking')">Reset</button>
       </div>
     </div>
 
-    <!-- After → Deel Card Consolidation -->
     <div class="checklist-group open" id="cg-after">
       <div class="cg-header" onclick="toggleGroup('cg-after')">
         <span class="cg-pill purple">After</span>
-        <span class="cg-title">After → Deel Card Consolidation</span>
-        <span class="cg-count" id="count-after">0 / 4</span>
-        <span class="cg-chevron">▾</span>
+        <span class="cg-title">After &rarr; Deel Card Consolidation</span>
+        <span class="cg-count" id="count-after">0 / 3</span>
+        <span class="cg-chevron">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'after')">
-          <div class="check-box"></div>
-          <span class="check-text">Create the Business Travel expense group on Deel (see tutorial video).</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'after')">
-          <div class="check-box"></div>
-          <span class="check-text">Name the group correctly — include cost center, type of expense, and org/program (refer to your team's Opex &amp; Investments file).</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'after')">
-          <div class="check-box"></div>
-          <span class="check-text">Upload all receipts within 5 business days after your trip ends.</span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'after')">
-          <div class="check-box"></div>
-          <span class="check-text">Notify Dharla that all receipts are uploaded so the trip can be closed.</span>
-        </div>
+        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">Create the Business Trip expense group in Deel and name it correctly: include Cost Center, Category, and Type of expense (plus Commitment status and Org/Program if Direct Cost). Refer to your team's Opex &amp; Investments file. <a href="https://drive.google.com/file/d/1CeCWOjgoELzeqV5HjWK0ob34w14niM4R/view?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;">Watch tutorial &rarr;</a></span></div>
+        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">Upload all receipts within 3 business days after your trip ends.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">Notify Dharla and Gabriela that all receipts are uploaded so the trip can be closed.</span></div>
         <button class="reset-btn" onclick="resetGroup('cg-after','after')">Reset</button>
       </div>
     </div>
 
   </div><!-- /checklist -->
 
-  <!-- ══════════════════════════════════════════════════════════════════ -->
-  <!-- CONTACTS & EMERGENCIES                                            -->
-  <!-- ══════════════════════════════════════════════════════════════════ -->
+  <!-- CONTACTS & EMERGENCIES -->
   <div class="section" id="sec-contacts">
-
     <div class="sec-title">Contacts &amp; Emergencies</div>
     <div class="sec-sub">Who to reach, when. Tap any item below to expand the action steps.</div>
 
@@ -765,13 +514,13 @@ body {
         <div class="contact-role">Fund requests</div>
         <div class="contact-name">Finance Team</div>
         <div class="contact-email">payreq@verefo.com</div>
-        <div class="contact-when">Send every Travel Request Form here. Copy Gabriela, Cristina, and Dharla on every email.</div>
+        <div class="contact-when">Send every Travel Request Form here. Copy Gabriela, Cristina, and Dharla on every email, plus your direct manager if applicable.</div>
       </div>
       <div class="contact-card">
         <div class="contact-role">Fund confirmation</div>
         <div class="contact-name">Gabriela</div>
         <div class="contact-email">gabriela@verefo.com</div>
-        <div class="contact-when">Confirms when your Deel Card has been funded.</div>
+        <div class="contact-when">Confirms when your Deel Card has been funded. Notify when receipts are uploaded.</div>
       </div>
       <div class="contact-card">
         <div class="contact-role">Booking exceptions</div>
@@ -780,10 +529,10 @@ body {
         <div class="contact-when">Contact for out-of-budget bookings, special events, coworking spaces, or unusual destinations.</div>
       </div>
       <div class="contact-card">
-        <div class="contact-role">Receipts, trip closure &amp; exceptions</div>
+        <div class="contact-role">Questions and trip closure</div>
         <div class="contact-name">Dharla</div>
         <div class="contact-email">dharla@velezreyesmas.com</div>
-        <div class="contact-when">Notify when all receipts are uploaded. Handles questions and exceptions of any kind.</div>
+        <div class="contact-when">Notify when all receipts are uploaded. Handles questions about the process.</div>
       </div>
     </div>
 
@@ -793,10 +542,10 @@ body {
       <div class="emerg-header" onclick="toggleEmerg('em-1')">
         <div class="emerg-dot red"></div>
         <span class="emerg-title">Card doesn't work or runs out of funds</span>
-        <span class="emerg-chevron">▾</span>
+        <span class="emerg-chevron">&#9662;</span>
       </div>
       <div class="emerg-body">
-        Pay with your personal card and keep the receipt. Submit a reimbursement request via Deel with a written explanation. Submit within <strong>3 calendar days</strong>. If submitted after the 20th, reimbursement is processed in the following payroll cycle.
+        Pay with your personal card, keep the receipt, and submit a reimbursement request via Deel with a written explanation. <strong>Notify Gabriela, Cristina, and Dharla</strong> about the situation. Submit within <strong>3 business days</strong>. If submitted after the 20th, reimbursement is processed in the following payroll cycle.
       </div>
     </div>
 
@@ -804,114 +553,71 @@ body {
       <div class="emerg-header" onclick="toggleEmerg('em-2')">
         <div class="emerg-dot gray"></div>
         <span class="emerg-title">Missing receipts</span>
-        <span class="emerg-chevron">▾</span>
+        <span class="emerg-chevron">&#9662;</span>
       </div>
       <div class="emerg-body">
-        If you have missing receipts, resolve this directly with Deel. <strong>Habitual missing receipts will trigger policy consequences.</strong>
+        If you have missing receipts, resolve this directly with Deel.
       </div>
     </div>
 
     <div class="callout black" style="margin-top:.75rem;">
       <div class="callout-title">Trip cancelled?</div>
-      Notify Gabriela, Dharla, and Cristina so the allocated funds can be withdrawn. You are responsible for contacting the airline and hotel directly to request your refund.
+      The airline and the hotel are responsible for any cancellations on their side. If your trip is cancelled by you for any other reason, you are the responsible person to manage the refunds directly with the airline and the hotel.
+    </div>
+
+    <div class="callout yellow" style="margin-top:.5rem;">
+      <div class="callout-title">Notify Finance</div>
+      Once the cancellation is confirmed, notify <strong>Gabriela, Dharla, and Cristina</strong> so the allocated funds can be withdrawn from your Deel Card.
     </div>
 
     <div class="callout black" style="margin-top:.5rem;">
       <div class="callout-title">Need Deel Card funds for something else?</div>
-      This guide only covers business travel. For home-city work meetings, OPEX, team lunches, or other operational spend, see the <strong>Deel Card Policy</strong>. Same form, same approvers, slightly different process.
+      This guide only covers business travel. For home-city work meetings, OPEX, team lunches, or other operational expenses, see the <a href="https://www.notion.so/Deel-Card-Use-348d3fa668bb8097865ef474311661ec?source=copy_link" target="_blank" rel="noopener" style="color:var(--text-dk);font-weight:600;">Deel Card Policy</a>. Same form, same approvers, slightly different process.
     </div>
 
   </div><!-- /contacts -->
 
-  <!-- ── FOOTER ── -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <p class="footer-disclaimer">
-      <strong>Questions?</strong> → Dharla &nbsp;·&nbsp; Last updated April 2026<br>
-      For more information, see the <a href="[INSERT LINK]" style="color:var(--text-mt);font-weight:600;">Deel Card Policy</a>.
+      <strong>Questions?</strong> &rarr; <a href="https://velezreyesmasgrupo.slack.com/team/U07JBS2DZEU" target="_blank" rel="noopener" style="color:var(--text-mt);font-weight:600;">Dharla</a> &nbsp;&middot;&nbsp; Last updated April 2026<br>
+      For more information, see the <a href="https://www.notion.so/Deel-Card-Use-348d3fa668bb8097865ef474311661ec?source=copy_link" target="_blank" rel="noopener" style="color:var(--text-mt);font-weight:600;">Deel Card Policy</a>.
     </p>
     <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
-      <img class="footer-logo"
-           src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png"
-           alt="VélezReyes+ · vere">
+      <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+ · vere">
     </a>
   </footer>
 
 </div><!-- /root -->
 
 <script>
-/* ── Main tabs ── */
 function showMain(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
   document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('sec-' + id).classList.add('visible');
   btn.classList.add('active');
 }
-
-/* ── Step cards ── */
-function toggleStep(id) {
-  document.getElementById(id).classList.toggle('open');
-}
-
-/* ── Checklist — localStorage persistence ── */
-const totals    = { before: 4, funds: 3, booking: 2, after: 4 };
+function toggleStep(id) { document.getElementById(id).classList.toggle('open'); }
+const totals     = { before: 3, funds: 3, booking: 4, after: 3 };
 const ALL_GROUPS = ['before','funds','booking','after'];
-const LS_KEY    = 'vrplus_travel_checklist';
-
+const LS_KEY     = 'vrplus_travel_v2_checklist';
 function saveState() {
   const state = {};
-  ALL_GROUPS.forEach(group => {
-    const items = document.querySelectorAll('#cg-' + group + ' .check-item');
-    state[group] = Array.from(items).map(el => el.classList.contains('checked'));
-  });
+  ALL_GROUPS.forEach(g => { const items = document.querySelectorAll('#cg-'+g+' .check-item'); state[g] = Array.from(items).map(el => el.classList.contains('checked')); });
   try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
 }
-
 function loadState() {
   try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return;
+    const raw = localStorage.getItem(LS_KEY); if (!raw) return;
     const state = JSON.parse(raw);
-    ALL_GROUPS.forEach(group => {
-      if (!state[group]) return;
-      const items = document.querySelectorAll('#cg-' + group + ' .check-item');
-      state[group].forEach((checked, i) => {
-        if (checked && items[i]) items[i].classList.add('checked');
-      });
-      updateCount(group);
-    });
+    ALL_GROUPS.forEach(g => { if (!state[g]) return; const items = document.querySelectorAll('#cg-'+g+' .check-item'); state[g].forEach((c,i) => { if (c && items[i]) items[i].classList.add('checked'); }); updateCount(g); });
   } catch(e) {}
 }
-
-function updateCount(group) {
-  const checked = document.querySelectorAll('#cg-' + group + ' .check-item.checked').length;
-  const el = document.getElementById('count-' + group);
-  if (el) el.textContent = checked + ' / ' + totals[group];
-}
-
-function toggleCheck(el, group) {
-  el.classList.toggle('checked');
-  if (ALL_GROUPS.includes(group)) {
-    updateCount(group);
-    saveState();
-  }
-}
-
-function toggleGroup(id) {
-  document.getElementById(id).classList.toggle('open');
-}
-
-function resetGroup(groupId, countKey) {
-  document.querySelectorAll('#' + groupId + ' .check-item').forEach(el => el.classList.remove('checked'));
-  updateCount(countKey);
-  saveState();
-}
-
-/* ── Emergency items ── */
-function toggleEmerg(id) {
-  document.getElementById(id).classList.toggle('open');
-}
-
-/* ── Init ── */
+function updateCount(g) { const c = document.querySelectorAll('#cg-'+g+' .check-item.checked').length; const el = document.getElementById('count-'+g); if (el) el.textContent = c + ' / ' + totals[g]; }
+function toggleCheck(el, g) { el.classList.toggle('checked'); if (ALL_GROUPS.includes(g)) { updateCount(g); saveState(); } }
+function toggleGroup(id) { document.getElementById(id).classList.toggle('open'); }
+function resetGroup(gId, cKey) { document.querySelectorAll('#'+gId+' .check-item').forEach(el => el.classList.remove('checked')); updateCount(cKey); saveState(); }
+function toggleEmerg(id) { document.getElementById(id).classList.toggle('open'); }
 document.addEventListener('DOMContentLoaded', loadState);
 </script>
 </body>
