@@ -250,6 +250,17 @@ body {
 .sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
 .sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
 
+/* Q&A accordion (inside callouts) */
+.qa-list { margin-top: .4rem; }
+.qa-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.qa-item:last-child { border-bottom: none; }
+.qa-q { display: flex; align-items: flex-start; gap: .5rem; padding: .5rem 0; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-dk); line-height: 1.5; }
+.qa-q:hover { opacity: .8; }
+.qa-chevron { font-size: 11px; color: var(--text-mt); transition: transform .2s; margin-top: 3px; flex-shrink: 0; }
+.qa-item.open .qa-chevron { transform: rotate(180deg); }
+.qa-a { display: none; padding: .25rem 0 .65rem 1.2rem; font-size: 12.5px; color: var(--text-md); line-height: 1.65; font-weight: 400; }
+.qa-item.open .qa-a { display: block; }
+
 /* Footer */
 .site-footer { margin-top: 2.75rem; padding: 1.75rem 0 .5rem; text-align: center; border-top: 1px solid var(--border); }
 .footer-disclaimer { font-size: 11px; color: var(--text-mt); letter-spacing: .04em; margin-bottom: 1.35rem; line-height: 1.8; }
@@ -396,14 +407,50 @@ body {
 
         <div class="callout black" style="margin-top:.6rem;">
           <div class="callout-title">What to do if...</div>
-          <ul style="margin:.2rem 0 .55rem 1.1rem;padding:0;">
-            <li style="margin-bottom:.25rem;">The flight price exceeds the budget in the travel matrix.</li>
-            <li style="margin-bottom:.25rem;">The hotel rate is above the approved amount.</li>
-            <li style="margin-bottom:.25rem;">You have a special dinner or event with external partners.</li>
-            <li style="margin-bottom:.25rem;">You need to book a coworking space or meeting room.</li>
-            <li>You are traveling to an unusual destination or during a high-cost season.</li>
-          </ul>
-          In any of the situations above, contact <a href="https://velezreyesmasgrupo.slack.com/team/U07JBS2DZEU" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;">Dharla on Slack</a>.
+          <div class="qa-list">
+
+            <div class="qa-item" id="qa-1">
+              <div class="qa-q" onclick="toggleQA('qa-1')">
+                <span class="qa-chevron">&#9662;</span>
+                The flight price exceeds the budget in the travel matrix.
+              </div>
+              <div class="qa-a">Look for lower-cost alternatives first (e.g., nearby airports, different dates, layovers, or economy fare options). If no reasonable option fits within budget, flag it early and request approval for the overage before booking.</div>
+            </div>
+
+            <div class="qa-item" id="qa-2">
+              <div class="qa-q" onclick="toggleQA('qa-2')">
+                <span class="qa-chevron">&#9662;</span>
+                The hotel rate is above the approved amount.
+              </div>
+              <div class="qa-a">Prioritize lower-cost alternatives within the approved range first, even if they are slightly farther from the main location.</div>
+            </div>
+
+            <div class="qa-item" id="qa-3">
+              <div class="qa-q" onclick="toggleQA('qa-3')">
+                <span class="qa-chevron">&#9662;</span>
+                You have a special dinner or event with external partners.
+              </div>
+              <div class="qa-a">Request additional funds from Gabriela in advance.</div>
+            </div>
+
+            <div class="qa-item" id="qa-4">
+              <div class="qa-q" onclick="toggleQA('qa-4')">
+                <span class="qa-chevron">&#9662;</span>
+                You need to book a coworking space or meeting room.
+              </div>
+              <div class="qa-a">Identify the most suitable option, confirm the total cost, and then either follow the standard payment process or request funds in advance, depending on the booking requirements.</div>
+            </div>
+
+            <div class="qa-item" id="qa-5">
+              <div class="qa-q" onclick="toggleQA('qa-5')">
+                <span class="qa-chevron">&#9662;</span>
+                You are traveling to an unusual destination or during a high-cost season.
+              </div>
+              <div class="qa-a">Prioritize practical, lower-cost alternatives first and book as early as possible.</div>
+            </div>
+
+          </div>
+          <p style="margin-top:.65rem;font-size:12.5px;color:var(--text-md);">If you were not able to resolve the issue or are still unsure how to proceed, contact <a href="https://velezreyesmasgrupo.slack.com/team/U07JBS2DZEU" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;">Dharla on Slack</a>.</p>
         </div>
       </div>
     </div>
@@ -620,6 +667,7 @@ function showMain(id, btn) {
   btn.classList.add('active');
 }
 function toggleStep(id) { document.getElementById(id).classList.toggle('open'); }
+function toggleQA(id) { document.getElementById(id).classList.toggle('open'); }
 const totals     = { before: 3, funds: 3, booking: 4, after: 3 };
 const ALL_GROUPS = ['before','funds','booking','after'];
 const LS_KEY     = 'vrplus_travel_v2_checklist';
