@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VélezReyes+ Culture Banners</title>
+<style>
+@font-face {
+  font-family: 'VelezreyesHand';
+  src: url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:  #000000;
+  --yellow: #F3FF00;
+  --green:  #27CF77;
+  --purple: #A62BFF;
+  --muted:  #B0B0A8;
+  --white:  #FFFFFF;
+  --font-display: 'VelezreyesHand', Georgia, serif;
+  --font-ui: -apple-system, 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: var(--font-ui);
+}
+
+/* ── GALLERY WRAPPER ── */
+.gallery-wrap {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ── BANNER STAGE ── */
+.banner-stage {
+  width: 100%;
+  aspect-ratio: 1920 / 400;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--black);
+}
+
+/* ── SLIDES ── */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── SLIDE LAYOUT ── */
+.slide-bar {
+  width: 5.5%;           /* ~106px at 1920 */
+  flex-shrink: 0;
+  position: relative;
+}
+.slide-content {
+  flex: 1;
+  padding: 0 4.5% 0 3.8%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.slide-right {
+  width: 24%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 3.5%;
+  gap: 0.4em;
+}
+
+/* ── SLIDE — GREEN (Ready to create) ── */
+.slide-green .slide-bar   { background: var(--green); }
+.slide-green              { background: var(--black); }
+
+/* ── SLIDE — PURPLE (Guided by R2=0) ── */
+.slide-purple .slide-bar  { background: var(--purple); }
+.slide-purple             { background: var(--black); }
+
+/* ── SLIDE — YELLOW (Q2 Quarterly) ── */
+.slide-yellow             { background: var(--black); }
+.slide-yellow .slide-bar  {
+  background: linear-gradient(180deg, var(--yellow) 0%, #D4DF00 100%);
+}
+
+/* ── TEXT ELEMENTS (scaled dynamically via JS) ── */
+.ttl {
+  font-family: var(--font-display);
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.ttl-green  { color: var(--green); }
+.ttl-purple { color: var(--purple); }
+.ttl-yellow { color: var(--yellow); }
+
+.sup-label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sup-pill {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.28em 0.85em;
+  border-radius: 99px;
+}
+.pill-green  { background: var(--green);  color: var(--black); }
+.pill-purple { background: var(--purple); color: var(--white); }
+.pill-yellow { background: var(--yellow); color: var(--black); }
+
+.body-text {
+  font-family: var(--font-ui);
+  color: var(--muted);
+  line-height: 1.55;
+}
+.body-text strong { color: var(--white); font-weight: 600; }
+
+.dna-label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.right-num {
+  font-family: var(--font-display);
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  margin-top: 10px;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  transition: background 0.4s;
+}
+
+/* ── CONTROLS ── */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+.arrow-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.arrow-btn:hover { background: rgba(255,255,255,0.15); }
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.dot.active { transform: scale(1.35); }
+.dot.dot-green.active  { background: var(--green); }
+.dot.dot-purple.active { background: var(--purple); }
+.dot.dot-yellow.active { background: var(--yellow); }
+</style>
+</head>
+<body>
+
+<div class="gallery-wrap">
+
+  <!-- ── BANNER STAGE ── -->
+  <div class="banner-stage" id="stage">
+
+    <!-- ══ SLIDE 1 — GREEN — Ready to create ══ -->
+    <div class="slide slide-green active" id="s0">
+      <div class="slide-bar"></div>
+      <div class="slide-content">
+        <div>
+          <div class="sup-label" id="s0-sup"></div>
+          <div class="ttl ttl-green" id="s0-ttl">Ready to<br>create.</div>
+          <div class="body-text" id="s0-body">
+            With an <strong>innovative and entrepreneurial approach.</strong><br>
+            Our willingness to take smart risks for high impact —<br>our capacity to build, replicate, and scale up.
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <div class="right-num" id="s0-num">4</div>
+        <div class="dna-label" id="s0-dna">Our DNA</div>
+        <span class="sup-pill pill-green" id="s0-pill">April</span>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 2 — PURPLE — Guided by R2=0 ══ -->
+    <div class="slide slide-purple" id="s1">
+      <div class="slide-bar"></div>
+      <div class="slide-content">
+        <div>
+          <div class="sup-label" id="s1-sup"></div>
+          <div class="ttl ttl-purple" id="s1-ttl">Guided by<br>R²=0.</div>
+          <div class="body-text" id="s1-body">
+            <strong>Very strong and clear motivation.</strong><br>
+            Our commitment to equal access to opportunities<br>is our compass — every decision, every day.
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <div class="right-num" id="s1-num">5</div>
+        <div class="dna-label" id="s1-dna">Our DNA</div>
+        <span class="sup-pill pill-purple" id="s1-pill">March</span>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 3 — YELLOW — Q2 Quarterly ══ -->
+    <div class="slide slide-yellow" id="s2">
+      <div class="slide-bar"></div>
+      <div class="slide-content">
+        <div>
+          <div class="sup-label" id="s2-sup"></div>
+          <div class="ttl ttl-yellow" id="s2-ttl">Culture is what<br>we choose.</div>
+          <div class="body-text" id="s2-body">
+            It's not static. It's not perfect. But it's ours.<br>
+            We build it together — in how we act,<br>how we work, and how we treat each other.
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <div class="right-num" id="s2-num">Q2</div>
+        <div class="dna-label" id="s2-dna">2026</div>
+        <span class="sup-pill pill-yellow" id="s2-pill">Quarterly</span>
+      </div>
+    </div>
+
+  </div><!-- /banner-stage -->
+
+  <!-- ── PROGRESS BAR ── -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- ── CONTROLS ── -->
+  <div class="controls">
+    <button class="arrow-btn" onclick="navigate(-1)">&#8592;</button>
+    <div class="dots">
+      <div class="dot dot-green active"  onclick="goTo(0)"></div>
+      <div class="dot dot-purple"        onclick="goTo(1)"></div>
+      <div class="dot dot-yellow"        onclick="goTo(2)"></div>
+    </div>
+    <button class="arrow-btn" onclick="navigate(1)">&#8594;</button>
+  </div>
+
+</div><!-- /gallery-wrap -->
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const TOTAL    = 3;
+const DURATION = 12000; // 12 seconds per slide
+
+// ── SUP LABELS ──────────────────────────────────────────────────────────────
+const supLabels = ['VélezReyes+ · DNA #4', 'VélezReyes+ · DNA #5', 'VélezReyes+ · Q2 2026'];
+supLabels.forEach((txt, i) => {
+  const el = document.getElementById('s'+i+'-sup');
+  if (el) el.textContent = txt;
+});
+
+// ── PROGRESS COLORS ──────────────────────────────────────────────────────────
+const progressColors = ['#27CF77', '#A62BFF', '#F3FF00'];
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+let current  = 0;
+let timer    = null;
+let progAnim = null;
+let progStart= null;
+
+const slides   = document.querySelectorAll('.slide');
+const dots     = document.querySelectorAll('.dot');
+const progress = document.getElementById('progress');
+
+// ── SCALING ─────────────────────────────────────────────────────────────────
+const BASE_W = 1920;
+const sizes  = {
+  sup:  { base: 11.5, min: 8  },
+  ttl:  { base: 105,  min: 28 },
+  body: { base: 19.5, min: 11 },
+  dna:  { base: 11,   min: 7  },
+  num:  { base: 260,  min: 60 },
+  pill: { base: 14,   min: 9  },
+};
+
+function scaleText(w) {
+  const s = w / BASE_W;
+  const sc = (key) => Math.max(sizes[key].min, Math.round(sizes[key].base * s * 10) / 10);
+  for (let i = 0; i < TOTAL; i++) {
+    const sid = 's' + i;
+    const set = (sfx, key) => {
+      const el = document.getElementById(sid + '-' + sfx);
+      if (el) el.style.fontSize = sc(key) + 'px';
+    };
+    set('sup',  'sup');
+    set('ttl',  'ttl');
+    set('body', 'body');
+    set('dna',  'dna');
+    set('num',  'num');
+    set('pill', 'pill');
+  }
+  // ttl line-height
+  document.querySelectorAll('.ttl').forEach(el => {
+    el.style.marginBottom = Math.round(sc('body') * 1.1) + 'px';
+  });
+}
+
+const ro = new ResizeObserver(entries => {
+  for (const e of entries) scaleText(e.contentRect.width);
+});
+ro.observe(document.getElementById('stage'));
+
+// ── PROGRESS ANIMATION ──────────────────────────────────────────────────────
+function startProgress(color) {
+  progress.style.background = color;
+  progress.style.transition  = 'none';
+  progress.style.width       = '0%';
+  // force reflow
+  void progress.offsetWidth;
+  progress.style.transition = `width ${DURATION}ms linear`;
+  progress.style.width      = '100%';
+}
+
+function resetProgress() {
+  progress.style.transition = 'none';
+  progress.style.width      = '0%';
+}
+
+// ── GOTO ────────────────────────────────────────────────────────────────────
+function goTo(idx) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+
+  current = (idx + TOTAL) % TOTAL;
+
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+
+  clearInterval(timer);
+  resetProgress();
+  startProgress(progressColors[current]);
+  timer = setInterval(() => goTo(current + 1), DURATION);
+}
+
+function navigate(dir) {
+  goTo(current + dir);
+}
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+goTo(0);
+</script>
+</body>
+</html>
