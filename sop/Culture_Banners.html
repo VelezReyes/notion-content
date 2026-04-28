@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VélezReyes+ Culture Banners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'VelezreyesHand';
@@ -22,10 +25,9 @@
   --muted:  #B0B0A8;
   --white:  #FFFFFF;
   --font-display: 'VelezreyesHand', Georgia, serif;
-  --font-ui: -apple-system, 'Helvetica Neue', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
 }
 
-/* Transparent — adapts to any host background */
 html, body {
   background: transparent;
   margin: 0;
@@ -33,15 +35,15 @@ html, body {
   width: 100%;
 }
 
-/* ── BANNER STAGE — fills container, 1920:400 ratio ── */
+/* ── BANNER STAGE ───────────────────────────────────────────────────────── */
+/* Designed at 720×340 — scales to any width via ResizeObserver             */
 .banner-stage {
   width: 100%;
-  aspect-ratio: 1920 / 400;
+  aspect-ratio: 720 / 340;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
   background: var(--black);
-  display: block;
 }
 
 /* ── SLIDES ── */
@@ -61,24 +63,25 @@ html, body {
 
 /* ── SLIDE LAYOUT ── */
 .slide-bar {
-  width: 5.2%;
+  width: 6%;
   flex-shrink: 0;
 }
 .slide-content {
   flex: 1;
-  padding: 0 3% 0 4%;
+  padding: 0 3% 12% 5%;
   display: flex;
   align-items: center;
 }
 .slide-right {
-  width: 22%;
+  width: 20%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  padding-right: 3.5%;
-  gap: 0.3em;
+  padding-right: 4%;
+  padding-bottom: 10%;
+  gap: 0.25em;
 }
 
 /* ── SLIDE THEMES ── */
@@ -91,75 +94,64 @@ html, body {
 .slide-yellow { background: var(--black); }
 .slide-yellow .slide-bar { background: var(--yellow); }
 
-/* ── TEXT — sized dynamically ── */
+/* ── TYPOGRAPHY ── */
+.sup-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35em;
+}
+
 .ttl {
   font-family: var(--font-display);
   line-height: 1.0;
   letter-spacing: -0.01em;
-  margin-bottom: 0; /* set by JS */
 }
 .ttl-green  { color: var(--green); }
 .ttl-purple { color: var(--purple); }
 .ttl-yellow { color: var(--yellow); }
 
-.sup-label {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.4em;
-}
-
 .body-text {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   color: var(--muted);
-  line-height: 1.55;
-  margin-top: 0.6em;
+  line-height: 1.6;
+  font-weight: 400;
 }
-.body-text strong { color: var(--white); font-weight: 600; }
+.body-text strong {
+  color: var(--white);
+  font-weight: 600;
+}
 
 .dna-label {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .right-num {
   font-family: var(--font-display);
-  color: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.055);
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .sup-pill {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.28em 0.9em;
+  padding: 0.3em 0.95em;
   border-radius: 99px;
 }
 .pill-green  { background: var(--green);  color: var(--black); }
 .pill-purple { background: var(--purple); color: var(--white); }
 .pill-yellow { background: var(--yellow); color: var(--black); }
 
-/* ── PROGRESS BAR — inside, bottom of banner ── */
-.progress-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.06);
-  z-index: 10;
-}
-.progress-fill {
-  height: 100%;
-  width: 0%;
-}
-
-/* ── CONTROLS — inside banner, pinned to bottom ── */
+/* ── CONTROLS ── */
 .controls {
   position: absolute;
   bottom: 5%;
@@ -175,23 +167,21 @@ html, body {
 .controls > * { pointer-events: auto; }
 
 .arrow-btn {
-  background: rgba(255,255,255,0.09);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
   color: var(--white);
   border-radius: 50%;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
-  font-family: var(--font-ui);
-  line-height: 1;
-}
-.arrow-btn:hover { background: rgba(255,255,255,0.2); }
-
-.dots {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  transition: background 0.15s;
+  font-family: var(--font-body);
+  line-height: 1;
 }
+.arrow-btn:hover { background: rgba(255,255,255,0.18); }
+
+.dots { display: flex; align-items: center; }
 .dot {
   border-radius: 50%;
   background: rgba(255,255,255,0.2);
@@ -202,11 +192,21 @@ html, body {
 .dot.dot-green.active  { background: var(--green); }
 .dot.dot-purple.active { background: var(--purple); }
 .dot.dot-yellow.active { background: var(--yellow); }
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.06);
+  z-index: 10;
+}
+.progress-fill { height: 100%; width: 0%; }
 </style>
 </head>
 <body>
 
-<!-- ── BANNER ── -->
 <div class="banner-stage" id="stage">
 
   <!-- ══ SLIDE 1 — GREEN — Ready to create ══ -->
@@ -217,8 +217,8 @@ html, body {
         <div class="sup-label" id="s0-sup">VélezReyes+ · DNA #4</div>
         <div class="ttl ttl-green" id="s0-ttl">Ready to create.</div>
         <div class="body-text" id="s0-body">
-          With an <strong>innovative and entrepreneurial approach.</strong>
-          Our willingness to take smart risks for high impact,
+          With an <strong>innovative and entrepreneurial approach.</strong><br>
+          Our willingness to take smart risks for high impact,<br>
           our capacity to build, replicate, and scale up.
         </div>
       </div>
@@ -230,7 +230,7 @@ html, body {
     </div>
   </div>
 
-  <!-- ══ SLIDE 2 — PURPLE — Guided by R2=0 ══ -->
+  <!-- ══ SLIDE 2 — PURPLE — Guided by R²=0 ══ -->
   <div class="slide slide-purple" id="s1">
     <div class="slide-bar"></div>
     <div class="slide-content">
@@ -238,9 +238,9 @@ html, body {
         <div class="sup-label" id="s1-sup">VélezReyes+ · DNA #5</div>
         <div class="ttl ttl-purple" id="s1-ttl">Guided by R²=0.</div>
         <div class="body-text" id="s1-body">
-          <strong>Very strong and clear motivation.</strong>
-          Our commitment to equal access to opportunities
-          is our compass — every decision, every day.
+          <strong>Very strong and clear motivation.</strong><br>
+          Our commitment to equal access to opportunities<br>
+          is our compass, every decision, every day.
         </div>
       </div>
     </div>
@@ -259,8 +259,8 @@ html, body {
         <div class="sup-label" id="s2-sup">VélezReyes+ · Q2 2026</div>
         <div class="ttl ttl-yellow" id="s2-ttl">Culture is what we choose.</div>
         <div class="body-text" id="s2-body">
-          It's not static. It's not perfect. But it's ours.
-          We build it together — in how we act,
+          It's not static. It's not perfect. But it's ours.<br>
+          We build it together; in how we act,<br>
           how we work, and how we treat each other.
         </div>
       </div>
@@ -272,10 +272,10 @@ html, body {
     </div>
   </div>
 
-  <!-- ── CONTROLS (inside banner) ── -->
+  <!-- ── CONTROLS ── -->
   <div class="controls" id="controls">
     <button class="arrow-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
-    <div class="dots">
+    <div class="dots" id="dots-wrap">
       <div class="dot dot-green active"  onclick="goTo(0)"></div>
       <div class="dot dot-purple"        onclick="goTo(1)"></div>
       <div class="dot dot-yellow"        onclick="goTo(2)"></div>
@@ -284,42 +284,39 @@ html, body {
   </div>
 
   <!-- ── PROGRESS BAR ── -->
-  <div class="progress-bar">
+  <div class="progress-bar" id="prog-bar">
     <div class="progress-fill" id="progress"></div>
   </div>
 
-</div><!-- /banner-stage -->
+</div>
 
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────────────
 const TOTAL    = 3;
 const DURATION = 12000;
+const BASE_W   = 720;   // design base width
 
 const progressColors = ['#27CF77', '#A62BFF', '#F3FF00'];
 
-// ── DYNAMIC SIZING ───────────────────────────────────────────────────────────
-const BASE_W = 1920;
-
-// Sizes at 1920px base, with minimum floor
+// ── SPEC at 720px ────────────────────────────────────────────────────────────
 const spec = {
-  sup:  { b: 12,   min: 7   },
-  ttl:  { b: 100,  min: 22  },
-  body: { b: 20,   min: 10  },
-  dna:  { b: 11,   min: 6   },
-  num:  { b: 255,  min: 50  },
-  pill: { b: 13.5, min: 8   },
+  sup:  { b: 9.5,  min: 7   },
+  ttl:  { b: 54,   min: 20  },
+  body: { b: 13.5, min: 10  },
+  dna:  { b: 9,    min: 6   },
+  num:  { b: 140,  min: 40  },
+  pill: { b: 10.5, min: 8   },
 };
 
-function applyScale(stageW) {
-  const r = stageW / BASE_W;
-  const sc = (key) => Math.max(spec[key].min, +(spec[key].b * r).toFixed(1));
+function applyScale(w) {
+  const r = w / BASE_W;
+  const sc = (k) => Math.max(spec[k].min, +(spec[k].b * r).toFixed(1));
 
   for (let i = 0; i < TOTAL; i++) {
     const g = (sfx) => document.getElementById('s' + i + '-' + sfx);
     if (g('sup'))  g('sup').style.fontSize  = sc('sup')  + 'px';
     if (g('ttl'))  {
-      g('ttl').style.fontSize   = sc('ttl')  + 'px';
-      g('ttl').style.marginBottom = sc('body') * 0.6 + 'px';
+      g('ttl').style.fontSize    = sc('ttl') + 'px';
+      g('ttl').style.marginBottom = (sc('body') * 0.7).toFixed(1) + 'px';
     }
     if (g('body')) g('body').style.fontSize = sc('body') + 'px';
     if (g('dna'))  g('dna').style.fontSize  = sc('dna')  + 'px';
@@ -327,24 +324,27 @@ function applyScale(stageW) {
     if (g('pill')) g('pill').style.fontSize = sc('pill') + 'px';
   }
 
-  // Scale controls
-  const btnSize = Math.max(18, Math.round(28 * r));
-  const dotSize = Math.max(5,  Math.round(8  * r));
-  const gap     = Math.max(4,  Math.round(8  * r));
+  // Controls sizing
+  const btnSz  = Math.max(16, Math.round(26 * r));
+  const dotSz  = Math.max(5,  Math.round(7  * r));
+  const dotGap = Math.max(4,  Math.round(6  * r));
+  const ctlGap = Math.max(6,  Math.round(9  * r));
+  const arrowSz= Math.max(9,  Math.round(12 * r));
+
   document.querySelectorAll('.arrow-btn').forEach(b => {
-    b.style.width  = btnSize + 'px';
-    b.style.height = btnSize + 'px';
-    b.style.fontSize = Math.max(9, Math.round(13 * r)) + 'px';
+    b.style.width    = btnSz + 'px';
+    b.style.height   = btnSz + 'px';
+    b.style.fontSize = arrowSz + 'px';
   });
   document.querySelectorAll('.dot').forEach(d => {
-    d.style.width  = dotSize + 'px';
-    d.style.height = dotSize + 'px';
+    d.style.width  = dotSz + 'px';
+    d.style.height = dotSz + 'px';
   });
-  document.querySelector('.dots').style.gap = gap + 'px';
-  document.getElementById('controls').style.gap = Math.max(6, Math.round(10 * r)) + 'px';
+  document.getElementById('dots-wrap').style.gap = dotGap + 'px';
+  document.getElementById('controls').style.gap  = ctlGap + 'px';
 
-  // Progress bar height
-  document.querySelector('.progress-bar').style.height = Math.max(2, Math.round(3 * r)) + 'px';
+  // Progress bar
+  document.getElementById('prog-bar').style.height = Math.max(2, Math.round(3 * r)) + 'px';
 }
 
 const ro = new ResizeObserver(entries => {
@@ -364,7 +364,7 @@ function startProgress(color) {
   progress.style.transition = 'none';
   progress.style.background = color;
   progress.style.width      = '0%';
-  void progress.offsetWidth; // reflow
+  void progress.offsetWidth;
   progress.style.transition = 'width ' + DURATION + 'ms linear';
   progress.style.width      = '100%';
 }
@@ -375,7 +375,6 @@ function goTo(idx) {
   current = ((idx % TOTAL) + TOTAL) % TOTAL;
   slides[current].classList.add('active');
   dots[current].classList.add('active');
-
   clearInterval(timer);
   startProgress(progressColors[current]);
   timer = setInterval(() => goTo(current + 1), DURATION);
@@ -383,7 +382,6 @@ function goTo(idx) {
 
 function navigate(dir) { goTo(current + dir); }
 
-// ── START ────────────────────────────────────────────────────────────────────
 goTo(0);
 </script>
 </body>
