@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop the Lottery · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'VelezreyesHand';
+  src: url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2');
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black:  #000;
+  --yellow: #F3FF00;
+  --green:  #27CF77;
+  --purple: #A62BFF;
+  --muted:  #B0B0A8;
+  --white:  #FFF;
+  --hand:   'VelezreyesHand', Georgia, serif;
+  --sans:   'Montserrat', sans-serif;
+}
+html, body { background: transparent; margin: 0; padding: 0; width: 100%; }
+
+/* ── WRAPPER ─────────────────────────────────────────────────────────── */
+.gw {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--black);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+
+/* ── HEADER ── */
+.gh {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5.5% 6% 3%;
+  gap: 1rem;
+}
+.gh-tag {
+  font-size: clamp(7px, 1.4vw, 10px);
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .4em;
+}
+.gh-title {
+  font-family: var(--hand);
+  font-size: clamp(28px, 6.5vw, 48px);
+  color: var(--yellow);
+  line-height: 1;
+}
+.gh-sub {
+  font-size: clamp(8.5px, 1.55vw, 12px);
+  color: var(--muted);
+  margin-top: .45em;
+  line-height: 1.55;
+}
+.gh-sub strong { color: var(--white); font-weight: 600; }
+
+/* ── R² COUNTER ── */
+.r2 { text-align: right; flex-shrink: 0; }
+.r2-label {
+  font-size: clamp(7px, 1.3vw, 10px);
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .05em;
+}
+.r2-val {
+  font-family: var(--hand);
+  font-size: clamp(34px, 8vw, 62px);
+  color: var(--white);
+  line-height: 1;
+  transition: color .5s;
+}
+.r2-val.green  { color: var(--green); }
+.r2-val.yellow { color: var(--yellow); }
+
+/* ── TIMER BAR ── */
+.timer-track {
+  height: 4px;
+  background: rgba(255,255,255,.07);
+  width: 100%;
+}
+.timer-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--yellow);
+  transform-origin: left;
+  transition: background .3s;
+}
+
+/* ── FIELD ── */
+.gf {
+  position: relative;
+  width: 100%;
+  padding-bottom: 55%;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.gf-inner {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── BALL ── */
+.ball {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(2px);
+  will-change: transform;
+  transition: box-shadow .12s;
+  overflow: hidden;
+}
+.ball:hover { box-shadow: 0 0 20px currentColor; }
+.ball.popped { animation: bpop .32s ease-out forwards; pointer-events: none; }
+
+.ball-word {
+  font-family: var(--sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  text-align: center;
+  padding: 0 6%;
+  line-height: 1.15;
+  white-space: normal;
+  word-break: break-word;
+  transition: opacity .25s;
+  pointer-events: none;
+  max-width: 100%;
+}
+.ball-word.fading { opacity: 0; }
+
+.bc-y { color: var(--yellow); border-color: var(--yellow); }
+.bc-g { color: var(--green);  border-color: var(--green); }
+.bc-p { color: var(--purple); border-color: var(--purple); }
+
+@keyframes bpop {
+  0%   { transform: translate(var(--bx),var(--by)) scale(1);   opacity: 1; }
+  45%  { transform: translate(var(--bx),var(--by)) scale(1.4); opacity: .7; }
+  100% { transform: translate(var(--bx),var(--by)) scale(0);   opacity: 0; }
+}
+
+/* ── PARTICLE ── */
+.pt {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ptfly .55s ease-out forwards;
+}
+@keyframes ptfly {
+  0%   { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(0); }
+}
+
+/* ── OVERLAY ── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.88);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s;
+  z-index: 40;
+  text-align: center;
+  padding: 6%;
+}
+.overlay.show { opacity: 1; pointer-events: auto; }
+
+.ov-big {
+  font-family: var(--hand);
+  font-size: clamp(38px, 10vw, 80px);
+  line-height: 1;
+}
+.ov-mid {
+  font-family: var(--hand);
+  font-size: clamp(16px, 4vw, 30px);
+  margin-top: .2em;
+  line-height: 1.15;
+}
+.ov-sub {
+  font-size: clamp(8.5px, 1.6vw, 12px);
+  color: var(--muted);
+  margin-top: .8em;
+  line-height: 1.6;
+  max-width: 340px;
+}
+.ov-sub strong { color: var(--white); font-weight: 600; }
+.ov-btn {
+  margin-top: 1.4em;
+  font-family: var(--sans);
+  font-size: clamp(9px, 1.7vw, 12px);
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: var(--black);
+  border: none;
+  border-radius: 99px;
+  padding: .65em 2em;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.ov-btn:hover { opacity: .85; }
+.ov-btn.alt { background: rgba(255,255,255,.1); color: var(--white); margin-left: .5em; }
+
+/* ── FOOTER BAR ── */
+.gfoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3% 6%;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.gfoot-lv {
+  font-family: var(--sans);
+  font-size: clamp(8px, 1.5vw, 11px);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gfoot-lv span { color: var(--yellow); }
+.gfoot-hint {
+  font-size: clamp(8px, 1.4vw, 10px);
+  color: rgba(255,255,255,.2);
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+.footer-pill {
+  font-family: var(--sans);
+  font-size: clamp(8px, 1.4vw, 10px);
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: 99px;
+  padding: .3em .9em;
+}
+</style>
+</head>
+<body>
+<div class="gw" id="gw">
+
+  <!-- HEADER -->
+  <div class="gh">
+    <div>
+      <div class="gh-tag">VélezReyes+ · The Mission</div>
+      <div class="gh-title">Pop the lottery.</div>
+      <div class="gh-sub">
+        Every ball is a life barrier. <strong>Click to break it.</strong><br>
+        Clear them all before time runs out to reach R²=0.
+      </div>
+    </div>
+    <div class="r2">
+      <div class="r2-label">R² =</div>
+      <div class="r2-val" id="r2val">1.00</div>
+    </div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-track"><div class="timer-fill" id="tf"></div></div>
+
+  <!-- FIELD -->
+  <div class="gf" id="gf">
+    <div class="gf-inner" id="fi">
+
+      <!-- START OVERLAY -->
+      <div class="overlay show" id="ov">
+        <div class="ov-big" style="color:var(--yellow)">Ready?</div>
+        <div class="ov-mid" style="color:var(--white)">Break the barriers of birth.</div>
+        <div class="ov-sub">100 words, all real, all unfair.<br><strong>Pop every ball before time runs out.</strong></div>
+        <button class="ov-btn" onclick="startGame()">Start</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="gfoot">
+    <div class="gfoot-lv">Level <span id="lvnum">1</span></div>
+    <div class="gfoot-hint">Pop all balls before time runs out</div>
+    <div class="footer-pill">R²=0</div>
+  </div>
+
+</div>
+
+<script>
+/* ── WORD POOL (100 — education, early childhood, democracy) ─────────── */
+const WORDS = [
+  // Education
+  'Illiteracy','Dropout','Overcrowded','Underfunded','No textbooks',
+  'Digital divide','Excluded','Child labor','Language gap','No teachers',
+  'Low quality','Remote school','School fees','No library','Learning gap',
+  'Absenteeism','Gender gap','No preschool','Teacher gap','No diploma',
+  'No internet','No laptop','Unequal','No scholarship','Grade failure',
+  'Falling behind','No counselor','Unsafe school','No transport','Bullying',
+  'Truancy','No electricity','No support','Unschooled','Marginalized',
+  // Early childhood
+  'No daycare','Malnutrition','Unstimulated','Neglect','No prenatal',
+  'Birth poverty','Toxic stress','No pediatric','No play','No books',
+  'Early trauma','Stunting','No learning','Brain gap','No bonding',
+  'Home violence','Unsafe home','No nutrition','Abandoned','No checkup',
+  'Language delay','No identity','Unnamed','Zero care','No warmth',
+  'Isolated','Stateless','No vaccine','Malnourished','No water',
+  '1000 Days','No nursing','Detachment','Invisible','No stimulation',
+  // Democracy
+  'Censorship','Corruption','Apathy','No free press','Rigged',
+  'Impunity','Polarization','Manipulation','Disinformation','Repression',
+  'Abstention','Disengaged','Clientelism','No vote','Suppressed',
+  'Gerrymandered','Intimidation','Powerless','Voiceless','Kleptocracy',
+  'Lawlessness','Unaccountable','Authoritarian','No transparency','Captured',
+  'No civic ed','Voter apathy','Fake news','Misinformation','No opposition',
+];
+
+/* ── LEVELS ─────────────────────────────────────────────────────────────── */
+const LEVELS = [
+  { balls: 9,  time: 22, speed: 1.0, wordRate: 2200 },
+  { balls: 12, time: 20, speed: 1.35, wordRate: 1800 },
+  { balls: 15, time: 18, speed: 1.75, wordRate: 1400 },
+  { balls: 15, time: 15, speed: 2.2,  wordRate: 1100 },
+  { balls: 15, time: 13, speed: 2.7,  wordRate: 800  },
+];
+
+const COLORS = ['bc-y','bc-g','bc-p'];
+const HEXCOL = { 'bc-y':'#F3FF00','bc-g':'#27CF77','bc-p':'#A62BFF' };
+
+let level     = 0;
+let balls     = [];
+let popped    = 0;
+let totalBalls= 0;
+let gameRunning = false;
+let timerStart  = 0;
+let timerDur    = 0;
+let raf         = null;
+let lastTime    = 0;
+let wordUsed    = 0;    // next word index to assign
+let tfEl        = document.getElementById('tf');
+let r2El        = document.getElementById('r2val');
+let fi          = document.getElementById('fi');
+let ovEl        = document.getElementById('ov');
+
+/* ── BALL CLASS ──────────────────────────────────────────────────────────── */
+class Ball {
+  constructor(x, y, r, colorCls, wordIdx, baseSpeed) {
+    this.x = x; this.y = y; this.r = r;
+    this.colorCls = colorCls;
+    this.wordIdx  = wordIdx;
+    this.alive    = true;
+    this.wordTimer = Math.random() * 2000;
+    this.baseSpeed = baseSpeed;
+    const angle   = Math.random() * Math.PI * 2;
+    const spd     = baseSpeed * (0.65 + Math.random() * 0.7);
+    this.vx = Math.cos(angle) * spd;
+    this.vy = Math.sin(angle) * spd;
+    this._buildEl(r);
+    this._setWord();
+  }
+
+  _buildEl(r) {
+    const el = document.createElement('div');
+    el.className = 'ball ' + this.colorCls;
+    const d = r * 2;
+    el.style.cssText = `width:${d}px;height:${d}px;--bx:0px;--by:0px;transform:translate(${this.x-r}px,${this.y-r}px)`;
+    const w = document.createElement('span');
+    w.className = 'ball-word';
+    w.style.fontSize = Math.max(6, Math.round(r * 0.32)) + 'px';
+    el.appendChild(w);
+    el.addEventListener('click', () => this.pop());
+    fi.appendChild(el);
+    this.el = el;
+    this.wordEl = w;
+  }
+
+  _setWord(animate) {
+    const word = WORDS[this.wordIdx % WORDS.length];
+    // Dynamic font size: fit longest "part" (split at space) inside the ball
+    const parts = word.split(' ');
+    const longestPart = Math.max(...parts.map(p => p.length));
+    const safeW  = this.r * 1.3;          // usable text width inside circle
+    const charW  = 0.63;                   // approx em-per-char for Montserrat 700
+    const maxBase = Math.round(this.r * 0.33);
+    const fontSize = Math.max(7, Math.min(maxBase,
+      Math.floor(safeW / (longestPart * charW))
+    ));
+    const apply = () => {
+      this.wordEl.textContent = word;
+      this.wordEl.style.fontSize = fontSize + 'px';
+    };
+    if (animate) {
+      this.wordEl.classList.add('fading');
+      setTimeout(() => { apply(); this.wordEl.classList.remove('fading'); }, 260);
+    } else {
+      apply();
+    }
+  }
+
+  update(dt, fw, fh, lvSpeed, wordRate) {
+    if (!this.alive) return;
+
+    // Drift force — tiny random nudge so balls never feel mechanical
+    this.vx += (Math.random() - .5) * this.baseSpeed * 0.04;
+    this.vy += (Math.random() - .5) * this.baseSpeed * 0.04;
+
+    this.x += this.vx * dt;
+    this.y += this.vy * dt;
+
+    // Wall bounce with slight angle randomness
+    const jitter = () => (Math.random() - .5) * 0.25;
+    if (this.x - this.r < 0)  { this.x = this.r;    this.vx =  Math.abs(this.vx) * (1 + jitter()); }
+    if (this.x + this.r > fw) { this.x = fw - this.r; this.vx = -Math.abs(this.vx) * (1 + jitter()); }
+    if (this.y - this.r < 0)  { this.y = this.r;    this.vy =  Math.abs(this.vy) * (1 + jitter()); }
+    if (this.y + this.r > fh) { this.y = fh - this.r; this.vy = -Math.abs(this.vy) * (1 + jitter()); }
+
+    // Speed clamp
+    const spd = Math.hypot(this.vx, this.vy);
+    const maxSpd = this.baseSpeed * lvSpeed * 2.2;
+    const minSpd = this.baseSpeed * lvSpeed * 0.45;
+    if (spd > maxSpd) { this.vx = this.vx/spd*maxSpd; this.vy = this.vy/spd*maxSpd; }
+    if (spd < minSpd && spd > 0) { this.vx = this.vx/spd*minSpd; this.vy = this.vy/spd*minSpd; }
+
+    // Word rotation
+    this.wordTimer -= dt * 1000;
+    if (this.wordTimer <= 0) {
+      this.wordIdx = (this.wordIdx + Math.floor(1 + Math.random() * 4)) % WORDS.length;
+      this._setWord(true);
+      this.wordTimer = wordRate * (0.7 + Math.random() * 0.6);
+    }
+
+    // DOM position
+    const tx = this.x - this.r, ty = this.y - this.r;
+    this.el.style.transform = `translate(${tx}px,${ty}px)`;
+    this.el.style.setProperty('--bx', tx + 'px');
+    this.el.style.setProperty('--by', ty + 'px');
+  }
+
+  repelFrom(others) {
+    for (const o of others) {
+      if (o === this || !o.alive) continue;
+      const dx = this.x - o.x, dy = this.y - o.y;
+      const dist = Math.hypot(dx, dy);
+      const min  = this.r + o.r + 4;
+      if (dist < min && dist > 0.5) {
+        const force = ((min - dist) / min) * 0.6;
+        this.vx += (dx / dist) * force * 3;
+        this.vy += (dy / dist) * force * 3;
+      }
+    }
+  }
+
+  pop() {
+    if (!this.alive) return;
+    this.alive = false;
+    this.el.classList.add('popped');
+    spawnParticles(this.x, this.y, HEXCOL[this.colorCls]);
+    setTimeout(() => this.el.remove(), 350);
+
+    popped++;
+    updateR2();
+    if (popped >= totalBalls) onWin();
+  }
+
+  flee() {
+    if (!this.alive) return;
+    this.alive = false;
+    const angle = Math.atan2(this.y - fi.offsetHeight/2, this.x - fi.offsetWidth/2);
+    const tx = this.x + Math.cos(angle) * 500;
+    const ty = this.y + Math.sin(angle) * 500;
+    this.el.style.transition = 'transform .5s ease-in, opacity .5s ease-in';
+    this.el.style.transform  = `translate(${tx - this.r}px,${ty - this.r}px)`;
+    this.el.style.opacity    = '0';
+    setTimeout(() => this.el.remove(), 550);
+  }
+}
+
+/* ── PARTICLES ──────────────────────────────────────────────────────────── */
+function spawnParticles(cx, cy, color) {
+  const n = 10;
+  for (let i = 0; i < n; i++) {
+    const angle = (i / n) * Math.PI * 2 + Math.random() * .5;
+    const dist  = 28 + Math.random() * 36;
+    const sz    = 3 + Math.random() * 5;
+    const p = document.createElement('div');
+    p.className = 'pt';
+    p.style.cssText = `
+      width:${sz}px;height:${sz}px;
+      background:${color};
+      left:${cx - sz/2}px;top:${cy - sz/2}px;
+      --dx:${Math.cos(angle)*dist}px;
+      --dy:${Math.sin(angle)*dist}px;
+      animation-duration:${.38 + Math.random()*.28}s;
+    `;
+    fi.appendChild(p);
+    p.addEventListener('animationend', () => p.remove());
+  }
+}
+
+/* ── R² UPDATE ─────────────────────────────────────────────────────────── */
+function updateR2() {
+  const lv  = LEVELS[Math.min(level, LEVELS.length - 1)];
+  const ratio = Math.max(0, (totalBalls - popped) / totalBalls);
+  r2El.textContent = ratio <= 0 ? '0.00' : ratio.toFixed(2);
+  r2El.className = 'r2-val' + (ratio < .35 ? ' green' : ratio < .65 ? ' yellow' : '');
+}
+
+/* ── GAME LOOP ──────────────────────────────────────────────────────────── */
+function loop(ts) {
+  if (!gameRunning) return;
+  const dt  = Math.min((ts - lastTime) / 1000, .05);
+  lastTime  = ts;
+
+  const fw  = fi.offsetWidth;
+  const fh  = fi.offsetHeight;
+  const lv  = LEVELS[Math.min(level, LEVELS.length - 1)];
+
+  // Update balls
+  for (const b of balls) { b.repelFrom(balls); }
+  for (const b of balls) { b.update(dt, fw, fh, lv.speed, lv.wordRate); }
+
+  // Timer
+  const elapsed = ts - timerStart;
+  const remaining = Math.max(0, 1 - elapsed / (timerDur * 1000));
+  tfEl.style.width = (remaining * 100) + '%';
+  tfEl.style.background = remaining < .25 ? '#FF4444' : remaining < .5 ? '#FF9900' : 'var(--yellow)';
+
+  if (remaining <= 0) { onFail(); return; }
+
+  raf = requestAnimationFrame(loop);
+}
+
+/* ── START / RESTART ────────────────────────────────────────────────────── */
+function startGame(lvOverride) {
+  if (lvOverride !== undefined) level = lvOverride;
+  const lv  = LEVELS[Math.min(level, LEVELS.length - 1)];
+  const fw  = fi.offsetWidth;
+  const fh  = fi.offsetHeight;
+
+  // Clear
+  cancelAnimationFrame(raf);
+  gameRunning = false;
+  balls.forEach(b => { if (b.el && b.el.parentNode) b.el.remove(); });
+  balls = [];
+  popped = 0;
+  totalBalls = lv.balls;
+
+  document.getElementById('lvnum').textContent = level + 1;
+  hideOverlay();
+  r2El.className = 'r2-val';
+  r2El.textContent = '1.00';
+  tfEl.style.transition = 'none';
+  tfEl.style.width = '100%';
+  tfEl.style.background = 'var(--yellow)';
+
+  // Ball size based on field
+  const ballR = Math.max(22, Math.min(Math.round(fw * 0.075), 46));
+  const baseSpeed = fw * 0.065 * lv.speed;
+  const margin = ballR + 4;
+  const used = [];
+
+  // Spawn balls with spacing
+  for (let i = 0; i < lv.balls; i++) {
+    let x, y, tries = 0;
+    do {
+      x = margin + Math.random() * (fw - margin * 2);
+      y = margin + Math.random() * (fh - margin * 2);
+      tries++;
+    } while (tries < 40 && used.some(u => Math.hypot(u.x-x, u.y-y) < ballR*2.4));
+    used.push({x, y});
+
+    const color = COLORS[i % COLORS.length];
+    const wIdx  = Math.floor(Math.random() * WORDS.length);
+    balls.push(new Ball(x, y, ballR, color, wIdx, fw * 0.065));
+  }
+
+  timerDur  = lv.time;
+  timerStart = performance.now();
+  lastTime   = timerStart;
+  gameRunning = true;
+  requestAnimationFrame(ts => { lastTime = ts; raf = requestAnimationFrame(loop); });
+}
+
+/* ── WIN / FAIL ─────────────────────────────────────────────────────────── */
+function onWin() {
+  gameRunning = false;
+  cancelAnimationFrame(raf);
+  const isLast = level >= LEVELS.length - 1;
+  setTimeout(() => {
+    showOverlay(
+      isLast ? '0.00' : `Level ${level+1} ✓`,
+      isLast ? 'That\'s the mission.' : 'Harder. Faster. More.',
+      isLast
+        ? 'Equal access to opportunities for everyone, regardless of birth. <strong>That\'s why we exist.</strong>'
+        : `${LEVELS[Math.min(level+1, LEVELS.length-1)].balls} balls. Less time. More chaos.`,
+      isLast ? [['Play again', () => startGame(0)]]
+             : [['Next level', () => startGame(level + 1)], ['Restart', () => startGame(0)]],
+      isLast ? 'var(--green)' : 'var(--yellow)',
+      isLast ? 'var(--white)' : 'var(--white)',
+    );
+  }, 400);
+}
+
+function onFail() {
+  gameRunning = false;
+  cancelAnimationFrame(raf);
+  balls.filter(b => b.alive).forEach(b => b.flee());
+  const reached = ((totalBalls - popped) / totalBalls).toFixed(2);
+  setTimeout(() => {
+    showOverlay(
+      `R² = ${reached}`,
+      'Time\'s up.',
+      `You broke <strong>${popped} of ${totalBalls}</strong> barriers. So close.<br>Try again?`,
+      [['Try again', () => startGame(level)], ['Level 1', () => startGame(0)]],
+      'var(--purple)',
+      'var(--white)',
+    );
+  }, 600);
+}
+
+/* ── OVERLAY HELPERS ────────────────────────────────────────────────────── */
+function showOverlay(big, mid, sub, btns, bigColor, midColor) {
+  ovEl.innerHTML = `
+    <div class="ov-big" style="color:${bigColor}">${big}</div>
+    <div class="ov-mid" style="color:${midColor}">${mid}</div>
+    <div class="ov-sub">${sub}</div>
+    <div style="display:flex;gap:.5em;flex-wrap:wrap;justify-content:center;margin-top:1.4em">
+      ${btns.map((b,i) => `<button class="ov-btn${i>0?' alt':''}" id="ovb${i}">${b[0]}</button>`).join('')}
+    </div>
+  `;
+  ovEl.classList.add('show');
+  btns.forEach((b,i) => {
+    document.getElementById('ovb'+i).addEventListener('click', b[1]);
+  });
+}
+
+function hideOverlay() {
+  ovEl.classList.remove('show');
+  ovEl.innerHTML = '';
+}
+</script>
+</body>
+</html>
