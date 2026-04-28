@@ -161,7 +161,7 @@ body {
 /* Form cards */
 .form-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: .6rem;
   margin: .75rem 0;
 }
@@ -359,8 +359,8 @@ body {
         <p style="margin-top:.25rem;font-size:12.5px;color:var(--text-md);"><strong>Also copy your direct manager if their approval was needed to authorize the trip.</strong></p>
 
         <p style="margin-top:.6rem;"><strong>Include in the email:</strong></p>
-        <p style="padding-left:.75rem;">Screenshot of the completed Travel Request Form (rows 1 to 29, columns A to D)</p>
-        <p style="padding-left:.75rem;">Link to your Travel Request Form</p>
+        <p style="padding-left:.75rem;"><strong>•</strong> Screenshot of the completed Travel Request Form (rows 1 to 29, columns A to D)</p>
+        <p style="padding-left:.75rem;"><strong>•</strong> Link to your Travel Request Form</p>
 
         <hr style="border:none;border-top:1px solid var(--border);margin:1rem 0;">
 
@@ -464,9 +464,9 @@ body {
         <span class="cg-chevron">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Send your fund request email to Gabriela, Dharla, and Cristina at least 40 days before your trip. Copy your direct manager if their approval was needed for the trip. Include the form screenshot, the manager's approval screenshot (if applicable), and the link to your form.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Send your fund request email to <a href="mailto:payreq@verefo.com" style="color:var(--purple);font-weight:600;">payreq@verefo.com</a> copying Gabriela, Dharla, Cristina, and your direct manager (if applicable) at least 40 days before your trip. Include the form screenshot, and the link to your Travel Request Form.</span></div>
         <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Gabriela confirms that the funds for your hotel and flight have been loaded on your Deel Card.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Confirmation that the remaining funds (meals, transportation, health insurance, and any other approved expenses) arrive one week before your trip.</span></div>
+        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Gabriela's confirmation that the remaining funds (meals, transportation, health insurance, and any other approved expenses) are added to your Deel Card one week before your trip.</span></div>
         <button class="reset-btn" onclick="resetGroup('cg-funds','funds')">Reset</button>
       </div>
     </div>
