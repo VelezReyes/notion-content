@@ -194,8 +194,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
   <div class="main-nav">
     <button class="nav-btn active" onclick="showMain('tips',this)">&#9312; Tips &amp; Summary</button>
     <button class="nav-btn" onclick="showMain('usage',this)">&#9313; What can I use it for?</button>
-    <button class="nav-btn" onclick="showMain('checklist',this)">&#9314; Checklist</button>
-    <button class="nav-btn" onclick="showMain('help',this)">&#9315; If something goes wrong</button>
+    <button class="nav-btn" onclick="showMain('help',this)">&#9314; If something goes wrong</button>
   </div>
 
   <!-- ============================================================ -->
@@ -337,6 +336,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
       </div>
     </div>
 
+    <!-- Travel Policy note -->
+    <div class="card" style="margin-top:.5rem;border-left:4px solid var(--black);background:var(--cream);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mt);margin-bottom:.3rem;">Política de Uso</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text-dk);margin-bottom:.4rem;">Travel Policy</div>
+      <p style="font-size:13px;color:var(--text-md);line-height:1.6;margin-bottom:.75rem;">Para todo lo relacionado con el uso de la Deel Card &mdash; flujo de viajes, políticas de gastos y reglas por país &mdash; encuéntralo en la Travel Policy.</p>
+      <a href="https://www.notion.so/Travel-1a7d3fa668bb8042b80dff7d32c64a7c?source=copy_link" target="_blank" rel="noopener" style="display:inline-block;background:var(--black);color:var(--yellow);font-size:12px;font-weight:700;padding:7px 18px;border-radius:20px;text-decoration:none;letter-spacing:.04em;">Ver Travel Policy &rarr;</a>
+    </div>
+
   </div><!-- /tips -->
 
   <!-- ============================================================ -->
@@ -411,64 +418,6 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 
   </div><!-- /usage -->
 
-  <!-- ============================================================ -->
-  <!-- CHECKLIST                                                    -->
-  <!-- ============================================================ -->
-  <div class="section" id="sec-checklist">
-
-    <div class="sec-title">Checklist</div>
-    <div class="sec-sub">Tap each item to mark it done. Tap the group header to collapse or expand.</div>
-
-    <!-- Group 1: Before Request Funds -->
-    <div class="checklist-group open" id="cg-before">
-      <div class="cg-header" onclick="toggleGroup('cg-before')">
-        <span class="cg-pill green">Before</span>
-        <span class="cg-title">Before &rarr; Request Funds</span>
-        <span class="cg-count" id="count-before">0 / 4</span>
-        <span class="cg-chevron">&#9662;</span>
-      </div>
-      <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Select the right form: <strong>Travel Request Form</strong> (for business trips) or <strong>OPEX Request Form</strong> (for operational expenses). Duplicate it from your team&apos;s folder and fill it out completely.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Get your manager&apos;s approval before sending the fund request, if their sign-off is required for your expense type.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Email <a href="mailto:payreq@verefo.com" style="color:var(--purple);font-weight:600;">payreq@verefo.com</a> with subject: <em>Deel Card Funds: [Destination or Description], [Month Year]</em>. CC <a href="mailto:gabriela@verefo.com" style="color:var(--purple);font-weight:600;">gabriela</a>, <a href="mailto:cristina@velezreyesmas.com" style="color:var(--purple);font-weight:600;">cristina</a>, and <a href="mailto:dharla@velezreyesmas.com" style="color:var(--purple);font-weight:600;">dharla</a> &mdash; plus your manager if their approval was required.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'before')"><div class="check-box"></div><span class="check-text">Attach or link your completed form in the email body. Include a screenshot of the manager&apos;s approval if applicable.</span></div>
-        <button class="reset-btn" onclick="resetGroup('cg-before','before')">Reset</button>
-      </div>
-    </div>
-
-    <!-- Group 2: Deel Card Funds -->
-    <div class="checklist-group open" id="cg-funds">
-      <div class="cg-header" onclick="toggleGroup('cg-funds')">
-        <span class="cg-pill yellow">Funds</span>
-        <span class="cg-title">Deel Card Funds</span>
-        <span class="cg-count" id="count-funds">0 / 2</span>
-        <span class="cg-chevron">&#9662;</span>
-      </div>
-      <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Wait for Gabriela&apos;s confirmation that the funds are loaded before making any purchase. Finance processes requests within <strong>5 business days</strong>.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'funds')"><div class="check-box"></div><span class="check-text">Check your Deel Card balance before your first purchase to confirm the correct amount was loaded.</span></div>
-        <button class="reset-btn" onclick="resetGroup('cg-funds','funds')">Reset</button>
-      </div>
-    </div>
-
-    <!-- Group 3: After Deel Card Consolidation -->
-    <div class="checklist-group open" id="cg-after">
-      <div class="cg-header" onclick="toggleGroup('cg-after')">
-        <span class="cg-pill purple">After</span>
-        <span class="cg-title">After &rarr; Deel Card Consolidation</span>
-        <span class="cg-count" id="count-after">0 / 4</span>
-        <span class="cg-chevron">&#9662;</span>
-      </div>
-      <div class="cg-body">
-        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">In Deel: <strong>Finance &rarr; Expenses &rarr; Add New &rarr; Trip/Grouped Report</strong>. Select <em>Business Trip</em> for travel or <em>Other (Non-travel)</em> for OPEX. Name the group with: Cost Center, Category, and Type of Expense. <a href="https://drive.google.com/file/d/1CeCWOjgoELzeqV5HjWK0ob34w14niM4R/view?usp=drive_link" target="_blank" rel="noopener" style="color:var(--purple);font-weight:600;">Watch tutorial &rarr;</a></span></div>
-        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">If the expense is <strong>Direct Cost</strong>: also include Commitment Status and Org/Program in the group name. Check your team&apos;s Opex &amp; Investments 2026 file for the correct options.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">Upload all receipts within <strong>3 business days</strong> of each expense and before the end of the month. Every receipt must show: date, vendor, amount, and payment method.</span></div>
-        <div class="check-item" onclick="toggleCheck(this,'after')"><div class="check-box"></div><span class="check-text">Notify <strong>Dharla and Gabriela</strong> with the total amount once all receipts are uploaded, so the expense can be reviewed, approved, and closed.</span></div>
-        <button class="reset-btn" onclick="resetGroup('cg-after','after')">Reset</button>
-      </div>
-    </div>
-
-  </div><!-- /checklist -->
 
   <!-- ============================================================ -->
   <!-- IF SOMETHING GOES WRONG                                      -->
@@ -578,47 +527,6 @@ function showMain(id, btn) {
 function toggleTip(id) { document.getElementById(id).classList.toggle('open'); }
 function toggleEmerg(id) { document.getElementById(id).classList.toggle('open'); }
 
-const totals     = { before: 4, funds: 2, after: 4 };
-const ALL_GROUPS = ['before','funds','after'];
-const LS_KEY     = 'vrplus_deelcard_v2_checklist';
-
-function saveState() {
-  const state = {};
-  ALL_GROUPS.forEach(g => {
-    const items = document.querySelectorAll('#cg-' + g + ' .check-item');
-    state[g] = Array.from(items).map(el => el.classList.contains('checked'));
-  });
-  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
-}
-function loadState() {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return;
-    const state = JSON.parse(raw);
-    ALL_GROUPS.forEach(g => {
-      if (!state[g]) return;
-      const items = document.querySelectorAll('#cg-' + g + ' .check-item');
-      state[g].forEach((c, i) => { if (c && items[i]) items[i].classList.add('checked'); });
-      updateCount(g);
-    });
-  } catch(e) {}
-}
-function updateCount(g) {
-  const c = document.querySelectorAll('#cg-' + g + ' .check-item.checked').length;
-  const el = document.getElementById('count-' + g);
-  if (el) el.textContent = c + ' / ' + totals[g];
-}
-function toggleCheck(el, g) {
-  el.classList.toggle('checked');
-  if (ALL_GROUPS.includes(g)) { updateCount(g); saveState(); }
-}
-function toggleGroup(id) { document.getElementById(id).classList.toggle('open'); }
-function resetGroup(gId, cKey) {
-  document.querySelectorAll('#' + gId + ' .check-item').forEach(el => el.classList.remove('checked'));
-  updateCount(cKey);
-  saveState();
-}
-document.addEventListener('DOMContentLoaded', loadState);
 </script>
 </body>
 </html>
