@@ -598,8 +598,8 @@ body {
       </div>
     </div>
 
-    <!-- The four cadence levels -->
-    <div class="block-title" style="margin-top:.25rem;">The four levels of the OKR cadence</div>
+    <!-- The three cadence levels -->
+    <div class="block-title" style="margin-top:.25rem;">The three levels of the OKR cadence</div>
     <div class="card" style="padding:.75rem 0 0; overflow:hidden;">
       <table class="cadence-table">
         <thead>
@@ -612,28 +612,22 @@ body {
         </thead>
         <tbody>
           <tr>
-            <td class="td-level">Company</td>
-            <td>Monthly async OKR update for the whole team, sent via Slack</td>
-            <td>First week of every month</td>
-            <td class="td-role">Receive &amp; read</td>
-          </tr>
-          <tr>
-            <td class="td-level">Strategic</td>
-            <td>CEO + Leadership review of all OKR progress across departments</td>
-            <td>Every two months</td>
-            <td class="td-role"><strong>Contributors:</strong> receive &amp; read &nbsp;·&nbsp; <strong>Leaders (Tier 1):</strong> participate + document Objective Check-in in Profit.co within 48h</td>
-          </tr>
-          <tr>
-            <td class="td-level">Team</td>
-            <td>Monthly KR Check-in (Steps A &amp; B)</td>
-            <td>Monthly, per cadence calendar</td>
+            <td class="td-level">Monthly Check-in</td>
+            <td>KR-level review with your team (Stages A &amp; B)</td>
+            <td>Monthly &middot; First 10 days after month-end</td>
             <td class="td-role">Write your check-in</td>
           </tr>
           <tr>
+            <td class="td-level">Strategic</td>
+            <td>Leadership review of all Institutional OBJs &amp; KR progress</td>
+            <td>Every two months</td>
+            <td class="td-role"><strong>Tier 1:</strong> participate + document Institutional KR check-in during the session. Area leaders: update aligned area KRs within 48h if any decisions impact them.</td>
+          </tr>
+          <tr>
             <td class="td-level">Operational</td>
-            <td>Quarterly 1:1 OKR review with your manager</td>
+            <td>Area Objective 1:1 review between CEO and each VP/Director</td>
             <td>Within 15 days after each quarter closes</td>
-            <td class="td-role">Review your KRs together</td>
+            <td class="td-role">VPs &amp; Directors: register the Area Objective Check-in in Profit.co during the 1:1</td>
           </tr>
         </tbody>
       </table>
@@ -645,17 +639,20 @@ body {
         <div class="step-num-circle" style="font-size:11px;">Q</div>
         <div class="step-main">
           <div class="step-timing">Within 15 days after each quarter closes</div>
-          <div class="step-title">Your Quarterly 1:1</div>
-          <div class="step-who">With your direct manager. The OKR review is the first 15 minutes.</div>
+          <div class="step-title">Operational Level · Quarterly 1:1</div>
+          <div class="step-who">CEO + each VP/Director. The Area Objective Check-in is registered in Profit.co during this session.</div>
         </div>
         <div class="step-chevron">▾</div>
       </div>
       <div class="step-body-expand">
-        <p>Four times a year, you'll have a structured 1:1 with your manager where your OKR contribution is reviewed. The OKR review is fact-based and grounded in Profit.co data.</p>
-        <p style="margin-top:.4rem;">During the review, you and your manager go through each active KR together: progress vs. target, check-in history, tasks completed, and open blockers. If a decision is made about a KR, your manager documents it in the Profit.co Notes tab.</p>
-        <div class="callout black" style="margin-top:.6rem;">
+        <p>This is the quarterly 1:1 between the <strong>CEO and each VP/Director</strong>. During the session, the Area Objective Check-in is registered directly in Profit.co: a high-level summary of how the area performed against its Objectives for the quarter, including key decisions, scope adjustments, and commitments for the next period.</p>
+        <div class="callout black" style="margin-top:.5rem;">
           <div class="callout-title">Review windows</div>
-          Q1 (end of March) → May 1–15 &nbsp;·&nbsp; Q2 (end of June) → Aug 1–15 &nbsp;·&nbsp; Q3 (end of September) → Nov 1–15 &nbsp;·&nbsp; Q4 (end of December) → Feb 1–15
+          Q1 (end of March) &rarr; May 1&ndash;15 &nbsp;&middot;&nbsp; Q2 (end of June) &rarr; Aug 1&ndash;15 &nbsp;&middot;&nbsp; Q3 (end of September) &rarr; Nov 1&ndash;15 &nbsp;&middot;&nbsp; Q4 (end of December) &rarr; Feb 1&ndash;15
+        </div>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">For all other team members</div>
+          Review your KR and task progress directly in Profit.co before your performance review 1:1. The outcomes of that conversation are recorded solely in the performance review document completed by your reviewer. No separate entry is required in Profit.co.
         </div>
       </div>
     </div>
@@ -820,15 +817,8 @@ body {
         <div class="check-item" onclick="toggleCheck(this,'monthly')">
           <div class="check-box"></div>
           <span class="check-text">
-            Link your evidence in the comment
-            <span class="check-note">Paste the Google Drive or Notion URL — do not attach files directly to Profit.co</span>
-          </span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'monthly')">
-          <div class="check-box"></div>
-          <span class="check-text">
-            Confirm it's a parent Task, not a Subtask
-            <span class="check-note">Only parent Tasks move the KR progress bar — Subtasks are invisible to KR metrics</span>
+            Attach your evidence using the Attach file option in Profit.co
+            <span class="check-note">Use the attachment feature on the task, not the comment body</span>
           </span>
         </div>
 
@@ -903,13 +893,6 @@ body {
         <div class="check-item" onclick="toggleCheck(this,'strategic')">
           <div class="check-box"></div>
           <span class="check-text">
-            Read the General Summary Report (sent 48h before by Director of Staff &amp; Ops)
-            <span class="check-note">Covers: overall objective progress, cross-team patterns, strategic risks, and priorities</span>
-          </span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'strategic')">
-          <div class="check-box"></div>
-          <span class="check-text">
             Review your team's KR data in Profit.co before the session
             <span class="check-note">Know where each KR stands vs. target so the session is focused, not exploratory</span>
           </span>
@@ -918,7 +901,7 @@ body {
           <div class="check-box"></div>
           <span class="check-text">
             Identify the blockers, risks, or priority flags you need to raise
-            <span class="check-note">Come with specific items: cross-team dependencies, resource needs, or KRs that require a decision</span>
+            <span class="check-note">Cross-team dependencies, resource needs, or KRs that require a decision</span>
           </span>
         </div>
 
@@ -927,46 +910,39 @@ body {
         <div class="check-item" onclick="toggleCheck(this,'strategic')">
           <div class="check-box"></div>
           <span class="check-text">
-            Walk through each Objective: progress vs. target, cross-team blockers, decisions needed
+            Walk through each Institutional Objective: progress vs. target, cross-team blockers, decisions needed
             <span class="check-note">Structural changes (weights, targets, names) are auto-logged in the Activity Log</span>
           </span>
         </div>
         <div class="check-item" onclick="toggleCheck(this,'strategic')">
           <div class="check-box"></div>
           <span class="check-text">
-            Note the decisions made and priority shifts agreed during the session
-            <span class="check-note">You'll document these in Profit.co within 48h. Take enough notes to reconstruct the narrative accurately.</span>
+            Write the Institutional KR Check-in directly in Profit.co during the session
+            <span class="check-note">Update the health status (traffic light) and leave the check-in comment on each Institutional KR reviewed</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'strategic')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Note any decisions that involve deprioritization or changes that affect area KRs
+            <span class="check-note">Area leaders are responsible for reflecting those decisions in their own KRs after the session</span>
           </span>
         </div>
 
-        <p style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mt);padding:.6rem 0 .2rem;">After the session (within 48 hours)</p>
+        <p style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mt);padding:.6rem 0 .2rem;">If a session decision impacts your area KRs (within 48h)</p>
 
         <div class="check-item" onclick="toggleCheck(this,'strategic')">
           <div class="check-box"></div>
           <span class="check-text">
-            Open Profit.co and go to the relevant Objective (not the KR)
-            <span class="check-note">The Objective Check-in is written at the Objective level, not in the KR Check-in tab</span>
+            Open the affected area KRs in Profit.co and update the health status
+            <span class="check-note">Only applies to area KRs aligned to Institutional KRs where deprioritization or a change was decided</span>
           </span>
         </div>
         <div class="check-item" onclick="toggleCheck(this,'strategic')">
           <div class="check-box"></div>
           <span class="check-text">
-            Write the Objective Check-in: decisions made, priority shifts, and plan changes
-            <span class="check-note">Be specific and narrative. Vague entries don't protect accountability.</span>
-          </span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'strategic')">
-          <div class="check-box"></div>
-          <span class="check-text">
-            Document what's next and who is responsible for any follow-up actions
-            <span class="check-note">If a decision was made, the next step and owner should be visible in the entry</span>
-          </span>
-        </div>
-        <div class="check-item" onclick="toggleCheck(this,'strategic')">
-          <div class="check-box"></div>
-          <span class="check-text">
-            Confirm all Objectives reviewed in the session have an entry within 48h
-            <span class="check-note">Verbal agreements not documented in Profit.co are not part of the official record</span>
+            Leave a check-in comment on those area KRs explaining the reason for the change
+            <span class="check-note">Reference the Strategic Review session and document what was decided and why</span>
           </span>
         </div>
 
@@ -1172,7 +1148,7 @@ function togglePitfall(id) {
 }
 
 /* ── Checklist — localStorage persistence ── */
-const totals = { monthly: 10, strategic: 9, operational: 5 };
+const totals = { monthly: 9, strategic: 7, operational: 5 };
 const ALL_GROUPS = ['monthly','strategic','operational'];
 const LS_KEY = 'vrplus_okr_checklist';
 
