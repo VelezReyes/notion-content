@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VélezReyes+ Culture Banners</title>
+<title>Employee HUB Banners</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'VelezreyesHand';
-  src: url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2');
+  src: url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2'),
+       url('https://velezreyes.github.io/notion-content/VelezreyesHandDisplay-Rg.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -18,32 +19,39 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black:  #000000;
-  --yellow: #F3FF00;
-  --green:  #27CF77;
-  --purple: #A62BFF;
-  --muted:  #B0B0A8;
-  --white:  #FFFFFF;
-  --font-display: 'VelezreyesHand', Georgia, serif;
-  --font-body: 'Montserrat', sans-serif;
+  /* VélezReyes+ */
+  --vr-black:  #000000;
+  --vr-green:  #27CF77;
+  --vr-yellow: #F3FF00;
+  --vr-purple: #A62BFF;
+  --vr-muted:  #B0B0A8;
+  --vr-white:  #FFFFFF;
+
+  /* Vere */
+  --ve-bg:     #19170E;
+  --ve-olive:  #7A7654;
+  --ve-light:  #A8A47C;
+  --ve-cream:  #E4DFCC;
+  --ve-muted:  #6B6847;
+  --ve-dark:   #2E2C1E;
+
+  --hand: 'VelezreyesHand', Georgia, serif;
+  --sans: 'Montserrat', sans-serif;
 }
 
 html, body {
   background: transparent;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   width: 100%;
 }
 
-/* ── BANNER STAGE ───────────────────────────────────────────────────────── */
-/* Designed at 720×340 — scales to any width via ResizeObserver             */
+/* ── BANNER STAGE — 720×340 design base ── */
 .banner-stage {
   width: 100%;
   aspect-ratio: 720 / 340;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  background: var(--black);
 }
 
 /* ── SLIDES ── */
@@ -56,107 +64,86 @@ html, body {
   transition: opacity 0.65s ease;
   pointer-events: none;
 }
-.slide.active {
-  opacity: 1;
-  pointer-events: auto;
+.slide.active { opacity: 1; pointer-events: auto; }
+
+/* ── LAYOUT ── */
+.slide-bar     { width: 5.5%; flex-shrink: 0; }
+.slide-content { flex: 1; padding: 0 3% 0 5%; display: flex; align-items: center; }
+.slide-right   {
+  width: 21%; flex-shrink: 0;
+  display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: center;
+  padding-right: 4%; gap: 0.28em;
 }
 
-/* ── SLIDE LAYOUT ── */
-.slide-bar {
-  width: 6%;
-  flex-shrink: 0;
-}
-.slide-content {
-  flex: 1;
-  padding: 0 3% 12% 5%;
-  display: flex;
-  align-items: center;
-}
-.slide-right {
-  width: 20%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  padding-right: 4%;
-  padding-bottom: 10%;
-  gap: 0.25em;
-}
+/* ══ SLIDE 1 — VélezReyes+ ══════════════════════════════════════════════ */
+.slide-vr              { background: var(--vr-black); }
+.slide-vr .slide-bar   { background: var(--vr-green); }
 
-/* ── SLIDE THEMES ── */
-.slide-green  { background: var(--black); }
-.slide-green  .slide-bar { background: var(--green); }
+.vr-sup   { color: var(--vr-muted); }
+.vr-ttl   { color: var(--vr-green); }
+.vr-body  { color: var(--vr-muted); }
+.vr-body strong { color: var(--vr-white); }
+.vr-ghost { color: rgba(255,255,255,0.045); }
+.vr-dna   { color: var(--vr-muted); }
+.pill-vr  { background: var(--vr-green); color: var(--vr-black); }
 
-.slide-purple { background: var(--black); }
-.slide-purple .slide-bar { background: var(--purple); }
+/* ══ SLIDE 2 — Vere ═════════════════════════════════════════════════════ */
+.slide-ve              { background: var(--ve-bg); }
+.slide-ve .slide-bar   { background: var(--ve-olive); }
 
-.slide-yellow { background: var(--black); }
-.slide-yellow .slide-bar { background: var(--yellow); }
+.ve-sup   { color: var(--ve-muted); }
+.ve-ttl   { color: var(--ve-cream); }
+.ve-body  { color: var(--ve-muted); }
+.ve-body strong { color: var(--ve-cream); }
+.ve-ghost { color: rgba(228,223,204,0.05); }
+.ve-dna   { color: var(--ve-muted); }
+.pill-ve  { background: var(--ve-olive); color: var(--ve-cream); }
 
-/* ── TYPOGRAPHY ── */
+/* ── SHARED TYPOGRAPHY ── */
 .sup-label {
-  font-family: var(--font-body);
+  font-family: var(--sans);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.35em;
+  margin-bottom: 0.38em;
 }
-
 .ttl {
-  font-family: var(--font-display);
+  font-family: var(--hand);
   line-height: 1.0;
   letter-spacing: -0.01em;
 }
-.ttl-green  { color: var(--green); }
-.ttl-purple { color: var(--purple); }
-.ttl-yellow { color: var(--yellow); }
-
 .body-text {
-  font-family: var(--font-body);
-  color: var(--muted);
-  line-height: 1.6;
+  font-family: var(--sans);
+  line-height: 1.58;
   font-weight: 400;
+  margin-top: 0.55em;
 }
-.body-text strong {
-  color: var(--white);
-  font-weight: 600;
-}
-
-.dna-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.right-num {
-  font-family: var(--font-display);
-  color: rgba(255,255,255,0.055);
+.right-ghost {
+  font-family: var(--hand);
   line-height: 1;
   letter-spacing: -0.03em;
 }
-
+.right-dna {
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
 .sup-pill {
-  font-family: var(--font-body);
+  font-family: var(--sans);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.3em 0.95em;
   border-radius: 99px;
 }
-.pill-green  { background: var(--green);  color: var(--black); }
-.pill-purple { background: var(--purple); color: var(--white); }
-.pill-yellow { background: var(--yellow); color: var(--black); }
 
-/* ── CONTROLS ── */
+/* ── CONTROLS (inside, bottom-center) ── */
 .controls {
   position: absolute;
   bottom: 5%;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,14 +156,12 @@ html, body {
 .arrow-btn {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.14);
-  color: var(--white);
+  color: #fff;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   transition: background 0.15s;
-  font-family: var(--font-body);
+  font-family: var(--sans);
   line-height: 1;
 }
 .arrow-btn:hover { background: rgba(255,255,255,0.18); }
@@ -188,17 +173,14 @@ html, body {
   cursor: pointer;
   transition: background 0.25s, transform 0.25s;
 }
-.dot.active { transform: scale(1.4); }
-.dot.dot-green.active  { background: var(--green); }
-.dot.dot-purple.active { background: var(--purple); }
-.dot.dot-yellow.active { background: var(--yellow); }
+.dot.active          { transform: scale(1.4); }
+.dot.dot-vr.active   { background: var(--vr-green); }
+.dot.dot-ve.active   { background: var(--ve-olive); }
 
 /* ── PROGRESS BAR ── */
 .progress-bar {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   background: rgba(255,255,255,0.06);
   z-index: 10;
 }
@@ -209,66 +191,45 @@ html, body {
 
 <div class="banner-stage" id="stage">
 
-  <!-- ══ SLIDE 1 — GREEN — Ready to create ══ -->
-  <div class="slide slide-green active" id="s0">
+  <!-- ══ SLIDE 1 — VélezReyes+ ══ -->
+  <div class="slide slide-vr active" id="s0">
     <div class="slide-bar"></div>
     <div class="slide-content">
       <div>
-        <div class="sup-label" id="s0-sup">VélezReyes+ · DNA #4</div>
-        <div class="ttl ttl-green" id="s0-ttl">Ready to create.</div>
-        <div class="body-text" id="s0-body">
-          With an <strong>innovative and entrepreneurial approach.</strong><br>
-          Our willingness to take smart risks for high impact,<br>
-          our capacity to build, replicate, and scale up.
+        <div class="sup-label vr-sup" id="s0-sup">VélezReyes+ · Employee HUB</div>
+        <div class="ttl vr-ttl" id="s0-ttl">Culture is what<br>we choose, every day.</div>
+        <div class="body-text vr-body" id="s0-body">
+          Everything that guides how we act, how we work,<br>
+          and how we treat each other — <strong>starts here.</strong><br>
+          From who we are to how we operate.
         </div>
       </div>
     </div>
     <div class="slide-right">
-      <div class="right-num" id="s0-num">4</div>
-      <div class="dna-label" id="s0-dna">Our DNA</div>
-      <span class="sup-pill pill-green" id="s0-pill">April</span>
+      <div class="right-ghost vr-ghost" id="s0-ghost">v+</div>
+      <div class="right-dna vr-dna" id="s0-dna">Your HUB</div>
+      <span class="sup-pill pill-vr" id="s0-pill">ver+</span>
     </div>
   </div>
 
-  <!-- ══ SLIDE 2 — PURPLE — Guided by R²=0 ══ -->
-  <div class="slide slide-purple" id="s1">
+  <!-- ══ SLIDE 2 — Vere ══ -->
+  <div class="slide slide-ve" id="s1">
     <div class="slide-bar"></div>
     <div class="slide-content">
       <div>
-        <div class="sup-label" id="s1-sup">VélezReyes+ · DNA #5</div>
-        <div class="ttl ttl-purple" id="s1-ttl">Guided by R²=0.</div>
-        <div class="body-text" id="s1-body">
-          <strong>Very strong and clear motivation.</strong><br>
-          Our commitment to equal access to opportunities<br>
-          is our compass, every decision, every day.
+        <div class="sup-label ve-sup" id="s1-sup">Vere · Employee HUB</div>
+        <div class="ttl ve-ttl" id="s1-ttl">Five edges.<br>One purpose.</div>
+        <div class="body-text ve-body" id="s1-body">
+          Smart capital. Tech-forward DNA. Iterative rigor.<br>
+          Unique access. Humility. <strong>This is where we hold</strong><br>
+          <strong>what makes us different.</strong>
         </div>
       </div>
     </div>
     <div class="slide-right">
-      <div class="right-num" id="s1-num">5</div>
-      <div class="dna-label" id="s1-dna">Our DNA</div>
-      <span class="sup-pill pill-purple" id="s1-pill">March</span>
-    </div>
-  </div>
-
-  <!-- ══ SLIDE 3 — YELLOW — Q2 Quarterly ══ -->
-  <div class="slide slide-yellow" id="s2">
-    <div class="slide-bar"></div>
-    <div class="slide-content">
-      <div>
-        <div class="sup-label" id="s2-sup">VélezReyes+ · Q2 2026</div>
-        <div class="ttl ttl-yellow" id="s2-ttl">Culture is what we choose.</div>
-        <div class="body-text" id="s2-body">
-          It's not static. It's not perfect. But it's ours.<br>
-          We build it together; in how we act,<br>
-          how we work, and how we treat each other.
-        </div>
-      </div>
-    </div>
-    <div class="slide-right">
-      <div class="right-num" id="s2-num">Q2</div>
-      <div class="dna-label" id="s2-dna">2026</div>
-      <span class="sup-pill pill-yellow" id="s2-pill">Quarterly</span>
+      <div class="right-ghost ve-ghost" id="s1-ghost">V</div>
+      <div class="right-dna ve-dna" id="s1-dna">Family Office</div>
+      <span class="sup-pill pill-ve" id="s1-pill">Vere</span>
     </div>
   </div>
 
@@ -276,9 +237,8 @@ html, body {
   <div class="controls" id="controls">
     <button class="arrow-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
     <div class="dots" id="dots-wrap">
-      <div class="dot dot-green active"  onclick="goTo(0)"></div>
-      <div class="dot dot-purple"        onclick="goTo(1)"></div>
-      <div class="dot dot-yellow"        onclick="goTo(2)"></div>
+      <div class="dot dot-vr active" onclick="goTo(0)"></div>
+      <div class="dot dot-ve"        onclick="goTo(1)"></div>
     </div>
     <button class="arrow-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
   </div>
@@ -291,20 +251,20 @@ html, body {
 </div>
 
 <script>
-const TOTAL    = 3;
+const TOTAL    = 2;
 const DURATION = 12000;
-const BASE_W   = 720;   // design base width
 
-const progressColors = ['#27CF77', '#A62BFF', '#F3FF00'];
+const progressColors = ['#27CF77', '#7A7654'];
 
-// ── SPEC at 720px ────────────────────────────────────────────────────────────
+// ── SPEC at 720px base ───────────────────────────────────────────────────
+const BASE_W = 720;
 const spec = {
-  sup:  { b: 9.5,  min: 7   },
-  ttl:  { b: 54,   min: 20  },
-  body: { b: 13.5, min: 10  },
-  dna:  { b: 9,    min: 6   },
-  num:  { b: 140,  min: 40  },
-  pill: { b: 10.5, min: 8   },
+  sup:   { b: 9.5,  min: 7   },
+  ttl:   { b: 52,   min: 19  },
+  body:  { b: 13,   min: 9.5 },
+  dna:   { b: 8.5,  min: 6   },
+  ghost: { b: 148,  min: 42  },
+  pill:  { b: 10.5, min: 7.5 },
 };
 
 function applyScale(w) {
@@ -313,28 +273,28 @@ function applyScale(w) {
 
   for (let i = 0; i < TOTAL; i++) {
     const g = (sfx) => document.getElementById('s' + i + '-' + sfx);
-    if (g('sup'))  g('sup').style.fontSize  = sc('sup')  + 'px';
-    if (g('ttl'))  {
+    if (g('sup'))   g('sup').style.fontSize   = sc('sup')   + 'px';
+    if (g('ttl'))   {
       g('ttl').style.fontSize    = sc('ttl') + 'px';
-      g('ttl').style.marginBottom = (sc('body') * 0.7).toFixed(1) + 'px';
+      g('ttl').style.marginBottom = (sc('body') * 0.55).toFixed(1) + 'px';
     }
-    if (g('body')) g('body').style.fontSize = sc('body') + 'px';
-    if (g('dna'))  g('dna').style.fontSize  = sc('dna')  + 'px';
-    if (g('num'))  g('num').style.fontSize  = sc('num')  + 'px';
-    if (g('pill')) g('pill').style.fontSize = sc('pill') + 'px';
+    if (g('body'))  g('body').style.fontSize  = sc('body')  + 'px';
+    if (g('dna'))   g('dna').style.fontSize   = sc('dna')   + 'px';
+    if (g('ghost')) g('ghost').style.fontSize = sc('ghost') + 'px';
+    if (g('pill'))  g('pill').style.fontSize  = sc('pill')  + 'px';
   }
 
-  // Controls sizing
+  // Controls
   const btnSz  = Math.max(16, Math.round(26 * r));
   const dotSz  = Math.max(5,  Math.round(7  * r));
   const dotGap = Math.max(4,  Math.round(6  * r));
   const ctlGap = Math.max(6,  Math.round(9  * r));
-  const arrowSz= Math.max(9,  Math.round(12 * r));
+  const arrSz  = Math.max(9,  Math.round(12 * r));
 
   document.querySelectorAll('.arrow-btn').forEach(b => {
     b.style.width    = btnSz + 'px';
     b.style.height   = btnSz + 'px';
-    b.style.fontSize = arrowSz + 'px';
+    b.style.fontSize = arrSz + 'px';
   });
   document.querySelectorAll('.dot').forEach(d => {
     d.style.width  = dotSz + 'px';
@@ -342,8 +302,6 @@ function applyScale(w) {
   });
   document.getElementById('dots-wrap').style.gap = dotGap + 'px';
   document.getElementById('controls').style.gap  = ctlGap + 'px';
-
-  // Progress bar
   document.getElementById('prog-bar').style.height = Math.max(2, Math.round(3 * r)) + 'px';
 }
 
@@ -352,7 +310,7 @@ const ro = new ResizeObserver(entries => {
 });
 ro.observe(document.getElementById('stage'));
 
-// ── SLIDE LOGIC ──────────────────────────────────────────────────────────────
+// ── SLIDE LOGIC ──────────────────────────────────────────────────────────
 let current = 0;
 let timer   = null;
 
