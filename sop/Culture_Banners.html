@@ -10,8 +10,8 @@
 <style>
 @font-face {
   font-family: 'VelezreyesHand';
-  src: url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2'),
-       url('https://velezreyes.github.io/notion-content/VelezreyesHandDisplay-Rg.woff2') format('woff2');
+  src: url('https://velezreyes.github.io/notion-content/VelezreyesHandDisplay-Rg.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/velezreyes/notion-content@main/VelezreyesHandDisplay-Rg.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -19,33 +19,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* VélezReyes+ */
   --vr-black:  #000000;
   --vr-green:  #27CF77;
-  --vr-yellow: #F3FF00;
-  --vr-purple: #A62BFF;
   --vr-muted:  #B0B0A8;
   --vr-white:  #FFFFFF;
-
-  /* Vere */
   --ve-bg:     #19170E;
   --ve-olive:  #7A7654;
-  --ve-light:  #A8A47C;
   --ve-cream:  #E4DFCC;
   --ve-muted:  #6B6847;
-  --ve-dark:   #2E2C1E;
-
   --hand: 'VelezreyesHand', Georgia, serif;
   --sans: 'Montserrat', sans-serif;
 }
 
-html, body {
-  background: transparent;
-  margin: 0; padding: 0;
-  width: 100%;
-}
+html, body { background: transparent; margin: 0; padding: 0; width: 100%; }
 
-/* ── BANNER STAGE — 720×340 design base ── */
 .banner-stage {
   width: 100%;
   aspect-ratio: 720 / 340;
@@ -54,7 +41,6 @@ html, body {
   border-radius: 10px;
 }
 
-/* ── SLIDES ── */
 .slide {
   position: absolute;
   inset: 0;
@@ -66,41 +52,24 @@ html, body {
 }
 .slide.active { opacity: 1; pointer-events: auto; }
 
-/* ── LAYOUT ── */
 .slide-bar     { width: 5.5%; flex-shrink: 0; }
 .slide-content { flex: 1; padding: 0 3% 0 5%; display: flex; align-items: center; }
 .slide-right   {
-  width: 21%; flex-shrink: 0;
+  width: 18%; flex-shrink: 0;
   display: flex; flex-direction: column;
   align-items: flex-end; justify-content: center;
-  padding-right: 4%; gap: 0.28em;
+  padding-right: 4%; gap: 0.3em;
 }
 
-/* ══ SLIDE 1 — VélezReyes+ ══════════════════════════════════════════════ */
-.slide-vr              { background: var(--vr-black); }
-.slide-vr .slide-bar   { background: var(--vr-green); }
+/* VélezReyes+ */
+.slide-vr            { background: var(--vr-black); }
+.slide-vr .slide-bar { background: var(--vr-green); }
 
-.vr-sup   { color: var(--vr-muted); }
-.vr-ttl   { color: var(--vr-green); }
-.vr-body  { color: var(--vr-muted); }
-.vr-body strong { color: var(--vr-white); }
-.vr-ghost { color: rgba(255,255,255,0.045); }
-.vr-dna   { color: var(--vr-muted); }
-.pill-vr  { background: var(--vr-green); color: var(--vr-black); }
+/* Vere */
+.slide-ve            { background: var(--ve-bg); }
+.slide-ve .slide-bar { background: var(--ve-olive); }
 
-/* ══ SLIDE 2 — Vere ═════════════════════════════════════════════════════ */
-.slide-ve              { background: var(--ve-bg); }
-.slide-ve .slide-bar   { background: var(--ve-olive); }
-
-.ve-sup   { color: var(--ve-muted); }
-.ve-ttl   { color: var(--ve-cream); }
-.ve-body  { color: var(--ve-muted); }
-.ve-body strong { color: var(--ve-cream); }
-.ve-ghost { color: rgba(228,223,204,0.05); }
-.ve-dna   { color: var(--ve-muted); }
-.pill-ve  { background: var(--ve-olive); color: var(--ve-cream); }
-
-/* ── SHARED TYPOGRAPHY ── */
+/* Typography */
 .sup-label {
   font-family: var(--sans);
   font-weight: 700;
@@ -119,11 +88,6 @@ html, body {
   font-weight: 400;
   margin-top: 0.55em;
 }
-.right-ghost {
-  font-family: var(--hand);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
 .right-dna {
   font-family: var(--sans);
   font-weight: 700;
@@ -139,51 +103,47 @@ html, body {
   border-radius: 99px;
 }
 
-/* ── CONTROLS (inside, bottom-center) ── */
+/* VR+ colors */
+.vr-sup          { color: var(--vr-muted); }
+.vr-ttl          { color: var(--vr-green); }
+.vr-body         { color: var(--vr-muted); }
+.vr-body strong  { color: var(--vr-white); }
+.vr-dna          { color: var(--vr-muted); }
+.pill-vr         { background: var(--vr-green); color: var(--vr-black); }
+
+/* Vere colors */
+.ve-sup          { color: var(--ve-muted); }
+.ve-ttl          { color: var(--ve-cream); }
+.ve-body         { color: var(--ve-muted); }
+.ve-body strong  { color: var(--ve-cream); }
+.ve-dna          { color: var(--ve-muted); }
+.pill-ve         { background: var(--ve-olive); color: var(--ve-cream); }
+
+/* Controls */
 .controls {
   position: absolute;
-  bottom: 5%;
-  left: 0; right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  z-index: 20;
-  pointer-events: none;
+  bottom: 5%; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; z-index: 20; pointer-events: none;
 }
 .controls > * { pointer-events: auto; }
 
 .arrow-btn {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.14);
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
+  color: #fff; border-radius: 50%; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
-  font-family: var(--sans);
-  line-height: 1;
+  transition: background 0.15s; font-family: var(--sans); line-height: 1;
 }
-.arrow-btn:hover { background: rgba(255,255,255,0.18); }
+.arrow-btn:hover { background: rgba(255,255,255,0.2); }
 
 .dots { display: flex; align-items: center; }
-.dot {
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  cursor: pointer;
-  transition: background 0.25s, transform 0.25s;
-}
-.dot.active          { transform: scale(1.4); }
-.dot.dot-vr.active   { background: var(--vr-green); }
-.dot.dot-ve.active   { background: var(--ve-olive); }
+.dot  { border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.25s, transform 0.25s; }
+.dot.active         { transform: scale(1.4); }
+.dot.dot-vr.active  { background: var(--vr-green); }
+.dot.dot-ve.active  { background: var(--ve-olive); }
 
-/* ── PROGRESS BAR ── */
-.progress-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.06);
-  z-index: 10;
-}
+.progress-bar  { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.06); z-index: 10; }
 .progress-fill { height: 100%; width: 0%; }
 </style>
 </head>
@@ -191,7 +151,7 @@ html, body {
 
 <div class="banner-stage" id="stage">
 
-  <!-- ══ SLIDE 1 — VélezReyes+ ══ -->
+  <!-- SLIDE 1 — VélezReyes+ -->
   <div class="slide slide-vr active" id="s0">
     <div class="slide-bar"></div>
     <div class="slide-content">
@@ -206,13 +166,12 @@ html, body {
       </div>
     </div>
     <div class="slide-right">
-      <div class="right-ghost vr-ghost" id="s0-ghost">v+</div>
       <div class="right-dna vr-dna" id="s0-dna">Your HUB</div>
       <span class="sup-pill pill-vr" id="s0-pill">ver+</span>
     </div>
   </div>
 
-  <!-- ══ SLIDE 2 — Vere ══ -->
+  <!-- SLIDE 2 — Vere -->
   <div class="slide slide-ve" id="s1">
     <div class="slide-bar"></div>
     <div class="slide-content">
@@ -227,13 +186,12 @@ html, body {
       </div>
     </div>
     <div class="slide-right">
-      <div class="right-ghost ve-ghost" id="s1-ghost">V</div>
       <div class="right-dna ve-dna" id="s1-dna">Family Office</div>
       <span class="sup-pill pill-ve" id="s1-pill">Vere</span>
     </div>
   </div>
 
-  <!-- ── CONTROLS ── -->
+  <!-- Controls -->
   <div class="controls" id="controls">
     <button class="arrow-btn" id="btn-prev" onclick="navigate(-1)">&#8592;</button>
     <div class="dots" id="dots-wrap">
@@ -243,7 +201,6 @@ html, body {
     <button class="arrow-btn" id="btn-next" onclick="navigate(1)">&#8594;</button>
   </div>
 
-  <!-- ── PROGRESS BAR ── -->
   <div class="progress-bar" id="prog-bar">
     <div class="progress-fill" id="progress"></div>
   </div>
@@ -253,78 +210,54 @@ html, body {
 <script>
 const TOTAL    = 2;
 const DURATION = 12000;
-
-const progressColors = ['#27CF77', '#7A7654'];
-
-// ── SPEC at 720px base ───────────────────────────────────────────────────
+const PROG_COLORS = ['#27CF77', '#7A7654'];
 const BASE_W = 720;
+
 const spec = {
-  sup:   { b: 9.5,  min: 7   },
-  ttl:   { b: 52,   min: 19  },
-  body:  { b: 13,   min: 9.5 },
-  dna:   { b: 8.5,  min: 6   },
-  ghost: { b: 148,  min: 42  },
-  pill:  { b: 10.5, min: 7.5 },
+  sup:  { b: 9.5, min: 7   },
+  ttl:  { b: 52,  min: 19  },
+  body: { b: 13,  min: 9.5 },
+  dna:  { b: 8.5, min: 6   },
+  pill: { b: 10.5,min: 7.5 },
 };
 
 function applyScale(w) {
   const r = w / BASE_W;
-  const sc = (k) => Math.max(spec[k].min, +(spec[k].b * r).toFixed(1));
+  const sc = k => Math.max(spec[k].min, +(spec[k].b * r).toFixed(1));
 
   for (let i = 0; i < TOTAL; i++) {
-    const g = (sfx) => document.getElementById('s' + i + '-' + sfx);
-    if (g('sup'))   g('sup').style.fontSize   = sc('sup')   + 'px';
-    if (g('ttl'))   {
-      g('ttl').style.fontSize    = sc('ttl') + 'px';
-      g('ttl').style.marginBottom = (sc('body') * 0.55).toFixed(1) + 'px';
-    }
-    if (g('body'))  g('body').style.fontSize  = sc('body')  + 'px';
-    if (g('dna'))   g('dna').style.fontSize   = sc('dna')   + 'px';
-    if (g('ghost')) g('ghost').style.fontSize = sc('ghost') + 'px';
-    if (g('pill'))  g('pill').style.fontSize  = sc('pill')  + 'px';
+    const g = sfx => document.getElementById('s' + i + '-' + sfx);
+    if (g('sup'))  g('sup').style.fontSize  = sc('sup')  + 'px';
+    if (g('ttl'))  { g('ttl').style.fontSize = sc('ttl') + 'px'; g('ttl').style.marginBottom = (sc('body') * 0.55).toFixed(1) + 'px'; }
+    if (g('body')) g('body').style.fontSize = sc('body') + 'px';
+    if (g('dna'))  g('dna').style.fontSize  = sc('dna')  + 'px';
+    if (g('pill')) g('pill').style.fontSize = sc('pill') + 'px';
   }
 
-  // Controls
-  const btnSz  = Math.max(16, Math.round(26 * r));
-  const dotSz  = Math.max(5,  Math.round(7  * r));
-  const dotGap = Math.max(4,  Math.round(6  * r));
-  const ctlGap = Math.max(6,  Math.round(9  * r));
-  const arrSz  = Math.max(9,  Math.round(12 * r));
-
-  document.querySelectorAll('.arrow-btn').forEach(b => {
-    b.style.width    = btnSz + 'px';
-    b.style.height   = btnSz + 'px';
-    b.style.fontSize = arrSz + 'px';
-  });
-  document.querySelectorAll('.dot').forEach(d => {
-    d.style.width  = dotSz + 'px';
-    d.style.height = dotSz + 'px';
-  });
-  document.getElementById('dots-wrap').style.gap = dotGap + 'px';
-  document.getElementById('controls').style.gap  = ctlGap + 'px';
+  const btnSz = Math.max(16, Math.round(26 * r));
+  const dotSz = Math.max(5,  Math.round(7  * r));
+  document.querySelectorAll('.arrow-btn').forEach(b => { b.style.width = b.style.height = btnSz + 'px'; b.style.fontSize = Math.max(9, Math.round(12 * r)) + 'px'; });
+  document.querySelectorAll('.dot').forEach(d => { d.style.width = d.style.height = dotSz + 'px'; });
+  document.getElementById('dots-wrap').style.gap = Math.max(4, Math.round(6 * r)) + 'px';
+  document.getElementById('controls').style.gap  = Math.max(6, Math.round(9 * r)) + 'px';
   document.getElementById('prog-bar').style.height = Math.max(2, Math.round(3 * r)) + 'px';
 }
 
-const ro = new ResizeObserver(entries => {
-  for (const e of entries) applyScale(e.contentRect.width);
-});
+const ro = new ResizeObserver(entries => { for (const e of entries) applyScale(e.contentRect.width); });
 ro.observe(document.getElementById('stage'));
 
-// ── SLIDE LOGIC ──────────────────────────────────────────────────────────
-let current = 0;
-let timer   = null;
-
-const slides   = document.querySelectorAll('.slide');
-const dots     = document.querySelectorAll('.dot');
+let current = 0, timer = null;
+const slides = document.querySelectorAll('.slide');
+const dots   = document.querySelectorAll('.dot');
 const progress = document.getElementById('progress');
 
 function startProgress(color) {
   progress.style.transition = 'none';
   progress.style.background = color;
-  progress.style.width      = '0%';
+  progress.style.width = '0%';
   void progress.offsetWidth;
   progress.style.transition = 'width ' + DURATION + 'ms linear';
-  progress.style.width      = '100%';
+  progress.style.width = '100%';
 }
 
 function goTo(idx) {
@@ -334,12 +267,11 @@ function goTo(idx) {
   slides[current].classList.add('active');
   dots[current].classList.add('active');
   clearInterval(timer);
-  startProgress(progressColors[current]);
+  startProgress(PROG_COLORS[current]);
   timer = setInterval(() => goTo(current + 1), DURATION);
 }
 
 function navigate(dir) { goTo(current + dir); }
-
 goTo(0);
 </script>
 </body>
