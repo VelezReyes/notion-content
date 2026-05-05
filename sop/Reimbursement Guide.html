@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reimbursement Guide · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+  --red:       #E03030;
+  --red-lt:    #FDEAEA;
+  --orange:    #E09800;
+  --orange-lt: #FFF4E0;
+}
+
+body { font-family: var(--font); background: var(--bg); color: var(--text-md); min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header { background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem 1.25rem; margin-bottom: .75rem; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--yellow); }
+.header-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+.header-badge { display: inline-block; background: var(--orange); color: var(--black); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 10px; margin-top: .5rem; }
+
+/* ── Phase pipeline ── */
+.phase-pipeline { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; gap: 0; margin-bottom: .75rem; align-items: center; }
+.phase-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: .85rem 1rem; }
+.phase-card.p1 { border-top: 3px solid var(--green); }
+.phase-card.p2 { border-top: 3px solid #E8D900; }
+.phase-card.p3 { border-top: 3px solid var(--purple); }
+.phase-arrow { text-align: center; font-size: 16px; color: var(--text-mt); }
+.phase-num { font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .2rem; }
+.phase-title { font-size: 13px; font-weight: 700; color: var(--text-dk); line-height: 1.25; margin-bottom: .2rem; }
+.phase-who { font-size: 10px; color: var(--text-mt); line-height: 1.4; }
+.phase-deadline { font-size: 10px; font-weight: 600; color: var(--orange); margin-top: .25rem; }
+
+/* ── Nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn { padding: 6px 15px; border-radius: 20px; border: 1px solid var(--border-md); background: var(--card-bg); color: var(--text-md); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; font-family: var(--font); }
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Block / section titles ── */
+.sec-title { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub   { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+
+/* ── Card ── */
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .75rem; }
+
+/* ── Callout ── */
+.callout { border-radius: var(--radius-sm); padding: .8rem 1rem; margin: .6rem 0; font-size: 13px; line-height: 1.6; border-left: 4px solid var(--purple); background: var(--purple-lt); }
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout.red    { border-left-color: var(--red);     background: var(--red-lt); }
+.callout.orange { border-left-color: var(--orange);  background: var(--orange-lt); }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+.callout.red    .callout-title { color: var(--red); }
+.callout.orange .callout-title { color: var(--orange); }
+
+/* ── Scenario cards (when it applies) ── */
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .75rem; }
+.scenario-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem; display: flex; gap: .7rem; align-items: flex-start; }
+.scenario-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.scenario-body {}
+.scenario-title { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.scenario-desc  { font-size: 12px; color: var(--text-md); line-height: 1.55; }
+
+/* ── Key dates pills ── */
+.dates-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+.date-pill { background: var(--card-bg); border: 1px solid var(--border-md); border-radius: var(--radius-sm); padding: .6rem .9rem; flex: 1; min-width: 140px; }
+.date-pill-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .15rem; }
+.date-pill-val   { font-size: 13px; font-weight: 700; color: var(--text-dk); line-height: 1.3; }
+.date-pill-sub   { font-size: 10px; color: var(--text-mt); margin-top: .1rem; }
+.date-pill.highlight { border-color: var(--orange); background: var(--orange-lt); }
+.date-pill.highlight .date-pill-val { color: var(--orange); }
+
+/* ── Phase step cards ── */
+.phase-step { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+.phase-step-header { display: flex; gap: .85rem; align-items: flex-start; padding: 1rem 1.25rem; cursor: pointer; transition: background .1s; }
+.phase-step-header:hover { background: var(--bg); }
+.phase-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; letter-spacing: .04em; }
+.phase-circle.p1 { background: var(--green);  color: var(--black); }
+.phase-circle.p2 { background: var(--yellow); color: var(--black); }
+.phase-circle.p3 { background: var(--purple); color: var(--white); }
+.phase-step-main { flex: 1; }
+.phase-step-tag  { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .1rem; }
+.phase-step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .1rem; }
+.phase-step-who  { font-size: 12px; color: var(--text-mt); }
+.phase-chevron { font-size: 14px; color: var(--text-mt); transition: transform .2s; margin-top: 8px; flex-shrink: 0; }
+.phase-step.open .phase-chevron { transform: rotate(180deg); }
+.phase-step-body { display: none; padding: .75rem 1.25rem 1rem 1.25rem; font-size: 13px; border-top: 1px solid var(--border); }
+.phase-step.open .phase-step-body { display: block; }
+.phase-step-body p { margin-bottom: .5rem; line-height: 1.6; color: var(--text-md); }
+.phase-step-body p:last-child { margin-bottom: 0; }
+.phase-step-body ol { margin: .4rem 0 .5rem 1.1rem; }
+.phase-step-body ol li { margin-bottom: .45rem; line-height: 1.55; color: var(--text-md); }
+.phase-step-body ul { margin: .4rem 0 .5rem 1rem; }
+.phase-step-body ul li { margin-bottom: .35rem; line-height: 1.55; color: var(--text-md); }
+.phase-step-body strong { color: var(--text-dk); }
+.step-sub-label { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--text-mt); margin: .75rem 0 .3rem; display: block; }
+
+/* ── Category cards ── */
+.cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin: .75rem 0; }
+.cat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem; }
+.cat-icon { font-size: 22px; margin-bottom: .35rem; }
+.cat-name { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .3rem; }
+.cat-rule { font-size: 12px; color: var(--text-md); line-height: 1.6; }
+.cat-note { font-size: 11px; color: var(--orange); font-weight: 600; margin-top: .35rem; }
+
+/* ── Receipt requirements table ── */
+.req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: .6rem 0; }
+.req-cell { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .65rem .85rem; }
+.req-label { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .15rem; }
+.req-val   { font-size: 12px; font-weight: 600; color: var(--text-dk); }
+
+/* ── Lost receipt accordion ── */
+.lost-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: .5rem; overflow: hidden; }
+.lost-header { display: flex; align-items: center; gap: .75rem; padding: .8rem 1rem; cursor: pointer; transition: background .1s; }
+.lost-header:hover { background: var(--bg); }
+.lost-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.lost-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.lost-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; }
+.lost-item.open .lost-chevron { transform: rotate(180deg); }
+.lost-body { display: none; padding: .1rem 1rem .85rem 1.9rem; font-size: 13px; color: var(--text-md); line-height: 1.65; border-top: 1px solid var(--border); }
+.lost-item.open .lost-body { display: block; }
+.lost-body ol { margin: .4rem 0 0 1rem; }
+.lost-body ol li { margin-bottom: .4rem; line-height: 1.55; }
+
+/* ── Checklist ── */
+.checklist-group { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+.cg-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1.25rem; cursor: pointer; transition: background .1s; }
+.cg-header:hover { background: var(--bg); }
+.cg-pill { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-pill.black  { background: var(--black);  color: var(--yellow); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-sub   { font-size: 11px; color: var(--text-mt); display: block; font-weight: 400; margin-top: 1px; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body { display: none; padding: 0 1.25rem .9rem; border-top: 1px solid var(--border); }
+.checklist-group.open .cg-body { display: block; }
+.check-item { display: flex; align-items: flex-start; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border); cursor: pointer; border-radius: 5px; padding-left: 4px; transition: background .1s; }
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border-md); background: var(--white); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all .15s; }
+.check-item.checked .check-box { background: var(--green); border-color: var(--green); color: var(--black); }
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: .4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.check-note { display: block; font-size: 11px; color: var(--text-mt); margin-top: 2px; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
+
+/* ── FAQ accordion ── */
+.faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: .5rem; overflow: hidden; }
+.faq-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1rem; cursor: pointer; transition: background .1s; }
+.faq-header:hover { background: var(--bg); }
+.faq-q { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; line-height: 1.4; }
+.faq-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; flex-shrink: 0; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-body { display: none; padding: .1rem 1rem .85rem 1rem; font-size: 13px; color: var(--text-md); line-height: 1.65; border-top: 1px solid var(--border); }
+.faq-item.open .faq-body { display: block; }
+.faq-body strong { color: var(--text-dk); }
+.faq-body ul { margin: .35rem 0 0 1rem; }
+.faq-body ul li { margin-bottom: .3rem; line-height: 1.5; }
+
+/* ── Escalation table ── */
+.esc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: .5rem; }
+.esc-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 10px; }
+.esc-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.esc-table tr:nth-child(even) td { background: var(--cream); }
+.esc-table tr:nth-child(odd) td  { background: var(--white); }
+.esc-table tr:last-child td { border-bottom: none; }
+.esc-table .td-sit { font-weight: 600; color: var(--text-dk); width: 35%; }
+
+/* ── Footer ── */
+.site-footer { margin-top: 2.75rem; padding: 1.75rem 0 .5rem; text-align: center; border-top: 1px solid var(--border); }
+.footer-disclaimer { font-size: 11px; color: var(--text-mt); letter-spacing: .04em; margin-bottom: 1.35rem; line-height: 1.8; }
+.footer-disclaimer strong { color: #777770; font-weight: 600; }
+.footer-logo-wrap { display: inline-block; opacity: .72; transition: opacity .2s; }
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo { display: block; height: 28px; width: auto; margin: 0 auto; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .phase-pipeline { grid-template-columns: 1fr; }
+  .phase-arrow { display: none; }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: 1fr; }
+  .req-grid { grid-template-columns: 1fr 1fr; }
+  .dates-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ &middot; Finance</div>
+    <h1>Reimbursement Guide</h1>
+    <p>Reimbursement is a backup, not the default. The Deel Card is always first. &middot; Last updated April 2026</p>
+    <span class="header-badge">Backup mechanism only</span>
+  </div>
+
+  <!-- PHASE PIPELINE -->
+  <div class="phase-pipeline">
+    <div class="phase-card p1">
+      <div class="phase-num">Phase 1</div>
+      <div class="phase-title">Before you spend</div>
+      <div class="phase-who">Employee &middot; Direct Manager</div>
+      <div class="phase-deadline">Before paying out of pocket</div>
+    </div>
+    <div class="phase-arrow">&#9658;</div>
+    <div class="phase-card p2">
+      <div class="phase-num">Phase 2</div>
+      <div class="phase-title">Submit in Deel</div>
+      <div class="phase-who">Employee</div>
+      <div class="phase-deadline">Within 3 days &middot; Before month-end</div>
+    </div>
+    <div class="phase-arrow">&#9658;</div>
+    <div class="phase-card p3">
+      <div class="phase-num">Phase 3</div>
+      <div class="phase-title">Review &amp; Payroll</div>
+      <div class="phase-who">Manager &rarr; Admin Director &rarr; Accountant</div>
+      <div class="phase-deadline">On or before 20th &rarr; next payroll</div>
+    </div>
+  </div>
+
+  <!-- MAIN NAV -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('when',this)">&#9312; When it applies</button>
+    <button class="nav-btn" onclick="showMain('submit',this)">&#9313; How to submit</button>
+    <button class="nav-btn" onclick="showMain('receipts',this)">&#9314; Receipt guide</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">&#9315; Checklist</button>
+    <button class="nav-btn" onclick="showMain('faq',this)">&#9316; Issues &amp; FAQ</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- WHEN IT APPLIES                                              -->
+  <!-- ============================================================ -->
+  <div class="section visible" id="sec-when">
+
+    <div class="sec-title">When it applies</div>
+    <div class="sec-sub">Reimbursement is for exceptional situations only — not a parallel payment method.</div>
+
+    <div class="callout orange" style="margin-bottom:.85rem;">
+      <div class="callout-title">The Deel Card is always first</div>
+      All eligible business and travel expenses must be paid with your Deel Card. The Finance team preloads it with approved funds before every trip or purchase. <strong>Reimbursement only applies when the Deel Card genuinely could not be used.</strong> If the card was available and you chose not to use it, the expense may not be reimbursed.
+    </div>
+
+    <div class="block-title">The four situations where reimbursement applies</div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-icon">&#128683;</div>
+        <div class="scenario-body">
+          <div class="scenario-title">Technical issue at the point of sale</div>
+          <div class="scenario-desc">The Deel Card failed to process at the merchant even though it should be funded. Pay with personal funds, document the issue, and submit for reimbursement.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">&#128683;</div>
+        <div class="scenario-body">
+          <div class="scenario-title">Merchant does not accept the card</div>
+          <div class="scenario-desc">Some vendors do not accept international or prepaid cards. Confirm this was the case and document it in your submission comment.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">&#9888;&#65039;</div>
+        <div class="scenario-body">
+          <div class="scenario-title">Emergency while traveling</div>
+          <div class="scenario-desc">An urgent, unforeseen expense arises during a business trip and the Deel Card is unavailable or insufficient. Notify your manager as soon as possible.</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">&#9989;</div>
+        <div class="scenario-body">
+          <div class="scenario-title">Pre-approved out-of-pocket expense</div>
+          <div class="scenario-desc">Your manager explicitly authorized you to pay with personal funds before the purchase — for example, a training course or language class. Written approval is required.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-title">Key dates to keep in mind</div>
+    <div class="dates-row">
+      <div class="date-pill">
+        <div class="date-pill-label">Submit within</div>
+        <div class="date-pill-val">3 calendar days</div>
+        <div class="date-pill-sub">From the date of the expense</div>
+      </div>
+      <div class="date-pill">
+        <div class="date-pill-label">Also required</div>
+        <div class="date-pill-val">Before month-end</div>
+        <div class="date-pill-sub">Both conditions must be met</div>
+      </div>
+      <div class="date-pill highlight">
+        <div class="date-pill-label">Payroll cutoff</div>
+        <div class="date-pill-val">On or before the 20th</div>
+        <div class="date-pill-sub">Next cycle. After the 20th &rarr; following cycle</div>
+      </div>
+      <div class="date-pill">
+        <div class="date-pill-label">Tool</div>
+        <div class="date-pill-val">Deel</div>
+        <div class="date-pill-sub">Finance &rarr; Expenses</div>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:.25rem;">Expenses vs. Allowances in Deel</div>
+    <div class="card" style="margin-bottom:.75rem;">
+      <p style="font-size:13px;line-height:1.6;color:var(--text-md);">Deel distinguishes between two types of payments. Make sure you are selecting the right one when submitting.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.65rem;">
+        <div style="background:var(--green-lt);border-radius:var(--radius-sm);padding:.8rem 1rem;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1A9955;margin-bottom:.25rem;">Expenses</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-dk);margin-bottom:.2rem;">Reimbursement for actual cost</div>
+          <div style="font-size:12px;color:var(--text-md);line-height:1.55;">Must be supported by a receipt. You are reimbursed for exactly what you paid.</div>
+        </div>
+        <div style="background:var(--yellow-lt);border-radius:var(--radius-sm);padding:.8rem 1rem;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A6E00;margin-bottom:.25rem;">Allowances</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-dk);margin-bottom:.2rem;">Predefined fixed amount</div>
+          <div style="font-size:12px;color:var(--text-md);line-height:1.55;">Provided regardless of actual spending. May be subject to taxes. Not the same as a reimbursement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout black">
+      <div class="callout-title">When in doubt, ask first</div>
+      If you are unsure whether an expense qualifies, contact the <strong>Admin Director before making the purchase</strong>. It is always better to confirm upfront than to submit a request that gets denied.
+    </div>
+
+  </div><!-- /when -->
+
+  <!-- ============================================================ -->
+  <!-- HOW TO SUBMIT                                                -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-submit">
+
+    <div class="sec-title">How to submit</div>
+    <div class="sec-sub">Three phases. Each has a clear owner and a specific deadline. Do not skip Phase 1.</div>
+
+    <!-- Phase 1 -->
+    <div class="phase-step" id="ps-1">
+      <div class="phase-step-header" onclick="togglePhase('ps-1')">
+        <div class="phase-circle p1">P1</div>
+        <div class="phase-step-main">
+          <div class="phase-step-tag">Before you spend &middot; Employee + Manager</div>
+          <div class="phase-step-title">Confirm and get pre-approval</div>
+          <div class="phase-step-who">Before making any out-of-pocket payment.</div>
+        </div>
+        <div class="phase-chevron">&#9662;</div>
+      </div>
+      <div class="phase-step-body">
+        <p>Do not skip this phase. If you pay out of pocket without completing these steps, your reimbursement may be denied.</p>
+        <ol>
+          <li><strong>Identify why the Deel Card cannot be used.</strong> The reason must fit one of the four valid scenarios: technical issue, merchant declined, emergency while traveling, or pre-approved out-of-pocket expense.</li>
+          <li><strong>Get written approval from your Direct Manager</strong> via email or Slack <em>before</em> making the payment. Capture their response — you will need it if the request is questioned.</li>
+          <li><strong>Note the justification.</strong> Write down the reason the Deel Card was not used. You will copy this into the Comments field in Deel when submitting.</li>
+          <li><strong>Pay with personal funds and keep every receipt</strong> — paper or digital — from the moment of payment.</li>
+        </ol>
+        <div class="callout orange" style="margin-top:.6rem;">
+          <div class="callout-title">No approval = no guarantee</div>
+          Expenses paid out of pocket without prior manager approval are not automatically covered. The Admin Director may deny the request if no justification was documented.
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-step" id="ps-2">
+      <div class="phase-step-header" onclick="togglePhase('ps-2')">
+        <div class="phase-circle p2">P2</div>
+        <div class="phase-step-main">
+          <div class="phase-step-tag">Submit in Deel &middot; Employee &middot; Within 3 days of expense</div>
+          <div class="phase-step-title">Log and submit your request</div>
+          <div class="phase-step-who">Log in to <strong>app.deel.com</strong> &rarr; Finance &rarr; Expenses.</div>
+        </div>
+        <div class="phase-chevron">&#9662;</div>
+      </div>
+      <div class="phase-step-body">
+
+        <span class="step-sub-label">Single expense</span>
+        <ol>
+          <li>Go to <strong>Finance &rarr; Expenses</strong> and click <strong>Add item</strong>.</li>
+          <li>Select the appropriate category: Expenses or Travel.</li>
+          <li>Add one item per expense (one for the flight, one for the hotel, one per meal, one per Uber).</li>
+          <li>Upload the receipt for each item. It must show date, vendor, amount, and currency.</li>
+          <li>Select the correct expense category and add a comment describing the concept. State clearly why the Deel Card was not used and reference your manager's approval.</li>
+          <li>Submit the report for approval.</li>
+        </ol>
+
+        <span class="step-sub-label">Multiple expenses (trips or OPEX)</span>
+        <p>When submitting several expenses together, create a Grouped Report so the approver can review them as a set.</p>
+        <ol>
+          <li>Click <strong>Add New</strong> and select <strong>Trip/Grouped Report</strong>.</li>
+          <li>Choose <strong>Business Trip</strong> for travel expenses, or <strong>Other (Non-travel)</strong> for OPEX expenses.</li>
+          <li>Name the group using the format: <em>Cost Center &ndash; Project &ndash; Type of Expense</em>.<br><span style="font-size:11px;color:var(--text-mt);">e.g. &ldquo;Education &ndash; Travel Expenses &ndash; OPEX&rdquo; or &ldquo;Education &ndash; Becas cohort 2026 &ndash; Direct Cost&rdquo;</span></li>
+          <li>Add individual expenses to the group using <strong>New Item</strong> or <strong>Existing Item</strong>.</li>
+          <li>Review all items and submit the grouped report.</li>
+        </ol>
+
+        <div class="callout black" style="margin-top:.6rem;">
+          <div class="callout-title">Currency &amp; comments</div>
+          Always submit receipts in the <strong>original currency</strong> shown on the receipt. Deel converts to your local currency automatically. Every expense item must have a descriptive comment — well-written comments speed up approval and simplify reconciliation.
+        </div>
+
+        <div class="callout red" style="margin-top:.5rem;">
+          <div class="callout-title">Deadline</div>
+          Submit within <strong>3 calendar days</strong> of the expense <em>and</em> before the end of the month in which the expense occurred. Missing either condition may result in denial and the amount being withheld or deducted from your income.
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-step" id="ps-3">
+      <div class="phase-step-header" onclick="togglePhase('ps-3')">
+        <div class="phase-circle p3">P3</div>
+        <div class="phase-step-main">
+          <div class="phase-step-tag">Review &amp; Payroll &middot; Manager &rarr; Admin Director &rarr; Accountant</div>
+          <div class="phase-step-title">Approval and payment</div>
+          <div class="phase-step-who">After submission. You track status in Deel.</div>
+        </div>
+        <div class="phase-chevron">&#9662;</div>
+      </div>
+      <div class="phase-step-body">
+        <ol>
+          <li><strong>Direct Manager review.</strong> Your manager reviews the submission for legitimacy, category accuracy, and budget. They approve or return it with comments.</li>
+          <li><strong>Admin Director approval.</strong> Validates receipts, checks compliance with the policy, and confirms the justification for not using the Deel Card.</li>
+          <li><strong>Finance processing.</strong> Once approved, the Accountant schedules the reimbursement for the next payroll cycle.</li>
+          <li><strong>Payroll cutoff:</strong> Approved on or before the <strong>20th</strong> &rarr; included in the next payroll cycle. Approved after the 20th &rarr; processed in the following cycle.</li>
+        </ol>
+        <div class="callout orange" style="margin-top:.6rem;">
+          <div class="callout-title">If your request is denied</div>
+          You will be notified via Deel and email with the reason. You may correct and resubmit where applicable. If the request remains denied after correction, appeal to the <strong>Admin Director</strong> via email with supporting documentation.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /submit -->
+
+  <!-- ============================================================ -->
+  <!-- RECEIPT GUIDE                                                -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-receipts">
+
+    <div class="sec-title">Receipt guide</div>
+    <div class="sec-sub">No valid receipt = no reimbursement. Every submission requires documentation that meets these standards.</div>
+
+    <div class="block-title">What every receipt must show</div>
+    <div class="req-grid">
+      <div class="req-cell">
+        <div class="req-label">Date</div>
+        <div class="req-val">Transaction date</div>
+      </div>
+      <div class="req-cell">
+        <div class="req-label">Vendor</div>
+        <div class="req-val">Merchant name</div>
+      </div>
+      <div class="req-cell">
+        <div class="req-label">Amount</div>
+        <div class="req-val">Total charged</div>
+      </div>
+      <div class="req-cell">
+        <div class="req-label">Currency</div>
+        <div class="req-val">Original currency</div>
+      </div>
+      <div class="req-cell">
+        <div class="req-label">Format</div>
+        <div class="req-val">Digital or paper</div>
+      </div>
+      <div class="req-cell">
+        <div class="req-label">Deadline</div>
+        <div class="req-val">3 days &middot; before month-end</div>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:.5rem;">By expense category</div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon">&#128663;</div>
+        <div class="cat-name">Uber / Taxi</div>
+        <div class="cat-rule">Get the receipt directly from the Uber app or equivalent. Must show the total including tips, subtotal, and ride details (date, origin, destination).</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">&#127374;</div>
+        <div class="cat-name">Meals</div>
+        <div class="cat-rule">Request an itemized receipt showing vendor, date, and total. Covers coffee, breakfast, lunch, dinner, hotel food, and groceries for snacks.</div>
+        <div class="cat-note">Respect per-diem limits from the Travel Policy when traveling.</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">&#127968;</div>
+        <div class="cat-name">Hotels</div>
+        <div class="cat-rule">Always request the invoice at check-out, even for prepaid stays. Must show the full breakdown: nights, rate, taxes, and total paid.</div>
+        <div class="cat-note">A booking confirmation is not enough — you need the check-out invoice.</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">&#9992;&#65039;</div>
+        <div class="cat-name">Air tickets</div>
+        <div class="cat-rule">Upload the airline's payment confirmation — not just the booking confirmation. Must show itinerary and total amount paid, including any changes or add-ons.</div>
+        <div class="cat-note">Booking confirmation &#8800; payment confirmation. You need the latter.</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">&#128218;</div>
+        <div class="cat-name">Training &amp; Courses</div>
+        <div class="cat-rule">Upload the payment receipt or invoice. Include your manager's pre-approval in the comment. Includes language class benefit (up to USD 80/month, cumulative, from Jan 2026).</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">&#128203;</div>
+        <div class="cat-name">Other &mdash; Expense</div>
+        <div class="cat-rule">Any eligible business expense that does not fit the categories above. Upload the receipt and add a clear, specific comment describing the concept and business purpose.</div>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:.25rem;">Lost or missing receipts</div>
+
+    <div class="lost-item" id="lr-1">
+      <div class="lost-header" onclick="toggleLost('lr-1')">
+        <div class="lost-dot"></div>
+        <span class="lost-title">Protocol for lost or missing receipts</span>
+        <span class="lost-chevron">&#9662;</span>
+      </div>
+      <div class="lost-body">
+        <p>Lost receipts may be accepted at management discretion. Habitual missing receipts may lead to policy violations. Follow these steps within 3 calendar days of the expense:</p>
+        <ol>
+          <li><strong>Write a brief explanation</strong> of why the receipt is missing.</li>
+          <li><strong>Gather supporting evidence:</strong> bank or credit card statement showing the transaction, confirmation emails, invoices, or payment confirmations from the vendor.</li>
+          <li><strong>Submit the explanation and evidence</strong> to the Finance team within 3 calendar days of the expense.</li>
+          <li><strong>Await Admin Director review.</strong> They will evaluate and approve the lost-receipt documentation before the reimbursement is processed.</li>
+        </ol>
+        <div class="callout red" style="margin-top:.5rem;">
+          <div class="callout-title">Repeated missing receipts</div>
+          Habitual missing receipts escalate to the Admin Director and may result in a formal policy violation.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /receipts -->
+
+  <!-- ============================================================ -->
+  <!-- CHECKLIST                                                    -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">Follow all three phases in order. Do not submit in Deel before completing Phase 1.</div>
+
+    <!-- Phase 1: Before you spend -->
+    <div class="checklist-group open" id="cg-before">
+      <div class="cg-header" onclick="toggleGroup('cg-before')">
+        <span class="cg-pill green">Phase 1</span>
+        <span class="cg-title">
+          Before you spend
+          <span class="cg-sub">Complete this before making any out-of-pocket payment</span>
+        </span>
+        <span class="cg-count" id="count-before">0 / 3</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Confirm the Deel Card cannot be used and identify the specific reason
+            <span class="check-note">Technical issue, merchant declined, emergency, or pre-approved out-of-pocket expense</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Get written approval from your Direct Manager via email or Slack before paying
+            <span class="check-note">Capture their response in writing — you will need it in your submission</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'before')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Pay with personal funds and keep every receipt from the moment of payment
+            <span class="check-note">Paper or digital — do not wait until later to collect or request it</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-before','before')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Phase 2: Submit in Deel -->
+    <div class="checklist-group open" id="cg-submit">
+      <div class="cg-header" onclick="toggleGroup('cg-submit')">
+        <span class="cg-pill yellow">Phase 2</span>
+        <span class="cg-title">
+          Submit in Deel
+          <span class="cg-sub">Within 3 calendar days of the expense &middot; Before month-end</span>
+        </span>
+        <span class="cg-count" id="count-submit">0 / 6</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Log in to Deel &rarr; Finance &rarr; Expenses and click Add item
+            <span class="check-note">Use your personal Deel account at app.deel.com</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            If submitting multiple expenses, create a Grouped Report first
+            <span class="check-note">Add New &rarr; Trip/Grouped Report &rarr; Business Trip (travel) or Other Non-travel (OPEX)</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Add one item per expense with the correct category selected
+            <span class="check-note">One item per flight, hotel, meal, Uber — not bundled</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Upload a complete receipt for each item in the original currency
+            <span class="check-note">Date, vendor, amount, and currency must be clearly visible</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Add a comment for each item: describe the expense and explain why the Deel Card was not used
+            <span class="check-note">Reference your manager's approval. Specific comments speed up approval.</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'submit')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Submit the request and confirm it is pending approval (not saved as a draft)
+            <span class="check-note">A draft is not a submission — make sure you clicked Submit</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-submit','submit')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Phase 3: After submitting -->
+    <div class="checklist-group open" id="cg-track">
+      <div class="cg-header" onclick="toggleGroup('cg-track')">
+        <span class="cg-pill purple">After</span>
+        <span class="cg-title">
+          Track your request
+          <span class="cg-sub">After submission &middot; Payroll processed on or before the 20th</span>
+        </span>
+        <span class="cg-count" id="count-track">0 / 2</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'track')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Verify your submission is showing as Pending Approval in Deel
+            <span class="check-note">If you see Draft status, you have not submitted yet</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'track')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Check approval status before the 20th to ensure inclusion in the next payroll cycle
+            <span class="check-note">Approved after the 20th rolls to the following payroll cycle</span>
+          </span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-track','track')">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /checklist -->
+
+  <!-- ============================================================ -->
+  <!-- ISSUES & FAQ                                                 -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-faq">
+
+    <div class="sec-title">Issues &amp; FAQ</div>
+    <div class="sec-sub">Common questions and what to do when something goes wrong.</div>
+
+    <div class="block-title" style="margin-bottom:.5rem;">Frequently asked questions</div>
+
+    <div class="faq-item" id="fq-1">
+      <div class="faq-header" onclick="toggleFaq('fq-1')">
+        <span class="faq-q">When should I request a reimbursement instead of using the Deel Card?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Only when you genuinely could not use the Deel Card: the merchant did not accept it, there was a technical issue, you were in an emergency, or your manager pre-approved an out-of-pocket expense. In all other cases, use the Deel Card. If the card was available and you chose not to use it, the expense may not be reimbursed.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-2">
+      <div class="faq-header" onclick="toggleFaq('fq-2')">
+        <span class="faq-q">What if I forget to upload my receipts within 3 days?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Upload them as soon as possible and explain the delay in the comment field. Contact the <strong>Admin Director</strong> to inform them of the situation. Repeated late submissions may lead to policy violations. If receipts are not submitted within 3 calendar days and before month-end, the expense may be denied and the amount may be withheld or deducted from your income.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-3">
+      <div class="faq-header" onclick="toggleFaq('fq-3')">
+        <span class="faq-q">When will I receive my reimbursement?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Approved reimbursements are processed through payroll. If your request is fully approved on or before the <strong>20th of the month</strong>, it will be included in the next payroll cycle. Requests approved after the 20th will be processed in the following cycle.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-4">
+      <div class="faq-header" onclick="toggleFaq('fq-4')">
+        <span class="faq-q">My receipt is in a different currency. What do I submit?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Always submit the receipt in its <strong>original currency</strong>. Deel will show the exchange rate and convert to your local currency automatically. Do not convert amounts manually.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-5">
+      <div class="faq-header" onclick="toggleFaq('fq-5')">
+        <span class="faq-q">I lost a receipt. What do I do?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Follow the Lost Receipt protocol in the Receipt Guide tab: write a brief explanation, gather supporting evidence (bank statement, vendor email, payment confirmation), and submit both to the Finance team within 3 calendar days. The Admin Director will review and decide whether to accept the documentation.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-6">
+      <div class="faq-header" onclick="toggleFaq('fq-6')">
+        <span class="faq-q">My request was denied. What are my options?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        You will receive the denial reason via Deel and email. Review it carefully:
+        <ul style="margin-top:.4rem;">
+          <li>If the issue is correctable (incomplete receipt, missing comment), fix it and resubmit.</li>
+          <li>If you believe the denial is incorrect, appeal to the <strong>Admin Director</strong> via email with supporting evidence.</li>
+          <li>If the denial stands after appeal, the expense will not be reimbursed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:1.25rem;margin-bottom:.5rem;">Escalation reference</div>
+    <div class="card" style="padding:.75rem 0 0;overflow:hidden;">
+      <table class="esc-table">
+        <thead>
+          <tr>
+            <th>Situation</th>
+            <th>First action</th>
+            <th>If unresolved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-sit">Deel Card did not work at POS</td>
+            <td>Pay with personal funds, document reason, submit within 3 days.</td>
+            <td>Notify Admin Director if it recurs — may indicate a card-level problem.</td>
+          </tr>
+          <tr>
+            <td class="td-sit">Missed the 3-day submission window</td>
+            <td>Upload receipt immediately with a written explanation in the comment.</td>
+            <td>Repeated late submissions may lead to denial or a policy violation.</td>
+          </tr>
+          <tr>
+            <td class="td-sit">Lost or missing receipt</td>
+            <td>Follow the Lost Receipt protocol: explanation + supporting evidence.</td>
+            <td>Habitual missing receipts escalate to the Admin Director.</td>
+          </tr>
+          <tr>
+            <td class="td-sit">Request denied</td>
+            <td>Review denial reason in Deel, correct and resubmit where applicable.</td>
+            <td>Appeal to the Admin Director via email with supporting documentation.</td>
+          </tr>
+          <tr>
+            <td class="td-sit">Suspected fraud or policy violation</td>
+            <td>Admin Director is notified and investigates immediately.</td>
+            <td>May result in termination and legal action.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout black" style="margin-top:.5rem;">
+      <div class="callout-title">Key contacts</div>
+      <strong>Admin Director</strong> &mdash; Primary contact for all reimbursement questions, exceptions, and approvals.<br>
+      <strong>Direct Manager</strong> &mdash; Pre-approves out-of-pocket spend and reviews your submission in Deel.
+    </div>
+
+  </div><!-- /faq -->
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> Contact the Admin Director &nbsp;&middot;&nbsp; Last updated April 2026<br>
+      For the full policy, see the <strong>VélezReyes+ Reimbursement Policy</strong>.
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+ &middot; vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+function togglePhase(id) { document.getElementById(id).classList.toggle('open'); }
+function toggleLost(id)  { document.getElementById(id).classList.toggle('open'); }
+function toggleFaq(id)   { document.getElementById(id).classList.toggle('open'); }
+
+const totals     = { before: 3, submit: 6, track: 2 };
+const ALL_GROUPS = ['before','submit','track'];
+const LS_KEY     = 'vrplus_reimbursement_v1_checklist';
+
+function saveState() {
+  const state = {};
+  ALL_GROUPS.forEach(g => {
+    const items = document.querySelectorAll('#cg-' + g + ' .check-item');
+    state[g] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ALL_GROUPS.forEach(g => {
+      if (!state[g]) return;
+      const items = document.querySelectorAll('#cg-' + g + ' .check-item');
+      state[g].forEach((c, i) => { if (c && items[i]) items[i].classList.add('checked'); });
+      updateCount(g);
+    });
+  } catch(e) {}
+}
+function updateCount(g) {
+  const c = document.querySelectorAll('#cg-' + g + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + g);
+  if (el) el.textContent = c + ' / ' + totals[g];
+}
+function toggleCheck(el, g) {
+  el.classList.toggle('checked');
+  if (ALL_GROUPS.includes(g)) { updateCount(g); saveState(); }
+}
+function toggleGroup(id) { document.getElementById(id).classList.toggle('open'); }
+function resetGroup(gId, cKey) {
+  document.querySelectorAll('#' + gId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  updateCount(cKey);
+  saveState();
+}
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
