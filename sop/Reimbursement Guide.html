@@ -33,8 +33,8 @@
   --purple-lt: #F3E8FF;
   --red:       #E03030;
   --red-lt:    #FDEAEA;
-  --orange:    #E09800;
-  --orange-lt: #FFF4E0;
+  --orange:    #F3FF00;
+  --orange-lt: #FFFDE7;
 }
 
 body { font-family: var(--font); background: var(--bg); color: var(--text-md); min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
@@ -58,7 +58,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 .phase-num { font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .2rem; }
 .phase-title { font-size: 13px; font-weight: 700; color: var(--text-dk); line-height: 1.25; margin-bottom: .2rem; }
 .phase-who { font-size: 10px; color: var(--text-mt); line-height: 1.4; }
-.phase-deadline { font-size: 10px; font-weight: 600; color: var(--orange); margin-top: .25rem; }
+.phase-deadline { font-size: 10px; font-weight: 700; color: var(--black); margin-top: .25rem; }
 
 /* ── Nav ── */
 .main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
@@ -90,7 +90,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 .callout.yellow .callout-title { color: #7A6E00; }
 .callout.black  .callout-title { color: #444; }
 .callout.red    .callout-title { color: var(--red); }
-.callout.orange .callout-title { color: var(--orange); }
+.callout.orange .callout-title { color: #7A6E00; }
 
 /* ── Scenario cards (when it applies) ── */
 .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .75rem; }
@@ -107,7 +107,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 .date-pill-val   { font-size: 13px; font-weight: 700; color: var(--text-dk); line-height: 1.3; }
 .date-pill-sub   { font-size: 10px; color: var(--text-mt); margin-top: .1rem; }
 .date-pill.highlight { border-color: var(--orange); background: var(--orange-lt); }
-.date-pill.highlight .date-pill-val { color: var(--orange); }
+.date-pill.highlight .date-pill-val { color: var(--black); }
 
 /* ── Phase step cards ── */
 .phase-step { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
@@ -832,7 +832,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
   <footer class="site-footer">
     <p class="footer-disclaimer">
       <strong>Questions?</strong> Contact the Admin Director &nbsp;&middot;&nbsp; Last updated April 2026<br>
-      For the full policy, see the <strong>VélezReyes+ Reimbursement Policy</strong>.
+      For the full policy, see the <a href="https://docs.google.com/document/d/1eBOvmZ4NpSueC_u5poqhikccPItYQzPnlaiSZZC7E-k/edit?usp=drive_link" target="_blank" rel="noopener" style="color:var(--text-mt);text-decoration:underline;font-weight:600;">VélezReyes+ Reimbursement Policy</a>.
     </p>
     <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
       <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+ &middot; vere">
