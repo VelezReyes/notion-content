@@ -74,10 +74,25 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 /* ── Deliverable grid ── */
 .deliv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .75rem; }
 .deliv-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem; }
-.deliv-num  { font-size: 22px; font-weight: 800; color: var(--yellow); background: var(--black); width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: .5rem; font-size: 13px; }
+.deliv-num  { font-size: 13px; font-weight: 800; color: var(--yellow); background: var(--black); width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: .5rem; }
 .deliv-name { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .25rem; }
-.deliv-desc { font-size: 12px; color: var(--text-md); line-height: 1.55; }
+.deliv-desc { font-size: 12px; color: var(--text-md); line-height: 1.55; margin-bottom: .45rem; }
 
+/* ── Doc link ── */
+.doc-link { color: var(--purple); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--purple); font-size: 11px; }
+.doc-link:hover { opacity: .75; }
+
+/* ── Vertical lifecycle timeline ── */
+.timeline { position: relative; padding-left: 2.25rem; margin-bottom: .75rem; }
+.timeline::before { content: ''; position: absolute; left: 14px; top: 8px; bottom: 8px; width: 2px; background: var(--border-md); border-radius: 2px; }
+.tl-item { position: relative; margin-bottom: .9rem; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot { position: absolute; left: -2.25rem; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--black); color: var(--yellow); font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; letter-spacing: 0; flex-shrink: 0; }
+.tl-dot.active { background: var(--yellow); color: var(--black); }
+.tl-body { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
+.tl-title { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .2rem; }
+.tl-who   { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-mt); margin-bottom: .2rem; }
+.tl-desc  { font-size: 12px; color: var(--text-md); line-height: 1.6; }
 
 /* ── Policy directory ── */
 .policy-hub { background: var(--black); border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -105,6 +120,32 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 .roles-table tr:last-child td { border-bottom: none; }
 .roles-table .td-role { font-weight: 700; color: var(--text-dk); width: 35%; }
 
+/* ── Checklist ── */
+.checklist-group { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+.cg-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1.25rem; cursor: pointer; transition: background .1s; }
+.cg-header:hover { background: var(--bg); }
+.cg-pill { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+.cg-pill.green  { background: var(--green);  color: var(--black); }
+.cg-pill.yellow { background: var(--yellow); color: var(--black); }
+.cg-pill.purple { background: var(--purple); color: var(--white); }
+.cg-pill.black  { background: var(--black);  color: var(--yellow); }
+.cg-title { font-size: 14px; font-weight: 700; color: var(--text-dk); flex: 1; }
+.cg-sub   { font-size: 11px; color: var(--text-mt); display: block; font-weight: 400; margin-top: 1px; }
+.cg-count { font-size: 11px; color: var(--text-mt); }
+.cg-chevron { font-size: 13px; color: var(--text-mt); transition: transform .2s; }
+.checklist-group.open .cg-chevron { transform: rotate(180deg); }
+.cg-body { display: none; padding: 0 1.25rem .9rem; border-top: 1px solid var(--border); }
+.checklist-group.open .cg-body { display: block; }
+.check-item { display: flex; align-items: flex-start; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--border); cursor: pointer; border-radius: 5px; padding-left: 4px; transition: background .1s; }
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--bg); }
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border-md); background: var(--white); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all .15s; }
+.check-item.checked .check-box { background: var(--green); border-color: var(--green); color: var(--black); }
+.check-item.checked .check-box::after { content: '✓'; font-weight: 700; }
+.check-item.checked .check-text { opacity: .4; text-decoration: line-through; }
+.check-text { font-size: 13px; color: var(--text-md); line-height: 1.5; }
+.check-note { display: block; font-size: 11px; color: var(--text-mt); margin-top: 2px; }
+.reset-btn { font-size: 11px; background: none; border: 1px solid var(--border-md); border-radius: 4px; padding: 3px 9px; cursor: pointer; color: var(--text-mt); font-family: var(--font); margin-top: .5rem; }
 
 /* ── FAQ accordion ── */
 .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: .5rem; overflow: hidden; }
@@ -146,14 +187,16 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
   <!-- INTRO -->
   <div class="card" style="margin-bottom:.75rem;">
     <p style="font-size:13px;line-height:1.7;color:var(--text-md);margin-bottom:.5rem;">Organizational policies are the shared rules that define how VélezReyes+ and Vere work together. They apply to everyone on the team, regardless of role or country, and are reviewed regularly to stay current.</p>
-    <p style="font-size:13px;line-height:1.7;color:var(--text-md);">If you are looking for a specific policy, go to the <strong style="color:var(--text-dk);">Policy Directory</strong> tab. Every active policy links directly to its Notion Employee Hub summary.</p>
+    <p style="font-size:13px;line-height:1.7;color:var(--text-md);">If you need to create or review a policy, the <strong style="color:var(--text-dk);">Policy Lifecycle</strong> and <strong style="color:var(--text-dk);">Checklist</strong> tabs walk you through the full process. If you are looking for an existing policy, go to the <strong style="color:var(--text-dk);">Policy Directory</strong>.</p>
   </div>
 
   <!-- MAIN NAV -->
   <div class="main-nav">
     <button class="nav-btn active" onclick="showMain('overview',this)">&#9312; Overview</button>
-    <button class="nav-btn" onclick="showMain('directory',this)">&#9313; Policy Directory</button>
-    <button class="nav-btn" onclick="showMain('roles',this)">&#9314; Roles &amp; Rules</button>
+    <button class="nav-btn" onclick="showMain('lifecycle',this)">&#9313; Policy Lifecycle</button>
+    <button class="nav-btn" onclick="showMain('directory',this)">&#9314; Policy Directory</button>
+    <button class="nav-btn" onclick="showMain('roles',this)">&#9315; Roles &amp; Rules</button>
+    <button class="nav-btn" onclick="showMain('checklist',this)">&#9316; Checklist</button>
   </div>
 
   <!-- ============================================================ -->
@@ -176,17 +219,19 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
     </div>
 
     <div class="block-title" style="margin-top:.85rem;">What every policy includes</div>
-    <p style="font-size:12px;color:var(--text-mt);margin-bottom:.65rem;">Every published policy comes with four things. This is the standard you can expect whenever a new policy is announced.</p>
+    <p style="font-size:12px;color:var(--text-mt);margin-bottom:.65rem;">No policy may be published without all four of the following deliverables complete. Templates for the first two are available in Google Drive.</p>
     <div class="deliv-grid">
       <div class="deliv-card">
         <div class="deliv-num">01</div>
         <div class="deliv-name">Policy Document</div>
-        <div class="deliv-desc">The official rule, in standard format. Drafted by People &amp; Operations and signed off by both CEOs before it is published.</div>
+        <div class="deliv-desc">The official rule, in standard format. Drafted by whoever is leading the effort, approved by both CEOs before publication.</div>
+        <a class="doc-link" href="https://docs.google.com/document/d/11K42pT_FTzYjhkhs2aItLqndnlA6JD1ZCohkwGzgfEU/edit?usp=drive_link" target="_blank" rel="noopener">Policy Template &rarr;</a>
       </div>
       <div class="deliv-card">
         <div class="deliv-num">02</div>
         <div class="deliv-name">Standard Operating Procedure</div>
-        <div class="deliv-desc">Step-by-step instructions for any repeatable process the policy involves. Included when a process is needed, not just rules.</div>
+        <div class="deliv-desc">Step-by-step instructions for any repeatable process the policy involves. Required when the policy includes a process, not just rules.</div>
+        <a class="doc-link" href="https://docs.google.com/document/d/1uWhtuh2fdelfu41sfaBueuGJjtIYfvCAQCoK5vnDxSY/edit?usp=drive_link" target="_blank" rel="noopener">SOP Template &rarr;</a>
       </div>
       <div class="deliv-card">
         <div class="deliv-num">03</div>
@@ -196,23 +241,113 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
       <div class="deliv-card">
         <div class="deliv-num">04</div>
         <div class="deliv-name">Notion Summary</div>
-        <div class="deliv-desc">A plain-language version on the Notion Employee Hub, with links to all Drive originals. This is your primary day-to-day reference.</div>
+        <div class="deliv-desc">A plain-language version on the Notion Employee Hub, with links to all Drive originals. This is everyone's primary day-to-day reference.</div>
       </div>
     </div>
 
     <div class="callout black">
-      <div class="callout-title">Where to find everything</div>
-      All policy documents and SOPs live in <strong>Google Drive at /8. Policies/[# and Policy Name]/</strong>. The easiest entry point is the <strong>Notion Employee Hub</strong>, which links everything together. Retired policies are preserved at <strong>/Policies/Retired/</strong> with the date they were superseded.
+      <div class="callout-title">Where everything lives</div>
+      All policy artifacts are stored in <strong>Google Drive at /8. Policies/[# and Policy Name]/</strong> and linked from the Notion Employee Hub. Retired policies are moved to <strong>/Policies/Retired/</strong> with the supersession date.
     </div>
 
-    <div class="block-title" style="margin-top:.85rem;">Policies stay current</div>
+    <div class="block-title" style="margin-top:.85rem;">Review cadence</div>
     <div class="card" style="margin-bottom:.5rem;">
-      <p style="font-size:13px;line-height:1.65;color:var(--text-md);margin-bottom:.5rem;">Every policy is reviewed at least <strong style="color:var(--text-dk);">once per year</strong>. If a review leads to material changes, both CEOs must approve the revision before it is republished and communicated to the team.</p>
-      <p style="font-size:13px;line-height:1.65;color:var(--text-md);">Reviews can also happen at any time if something significant changes: a new regulation, an organizational restructure, a new country or tool, or an incident that reveals a gap. You will always be notified when a policy changes.</p>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);margin-bottom:.5rem;">Every organizational policy is reviewed at least <strong style="color:var(--text-dk);">once per year</strong>. If a review leads to material changes, both CEOs must approve the revision before it is republished and the team is notified.</p>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);">Reviews can also be triggered at any time by a relevant change: a new regulation, an organizational restructure, a new country or tool, or an incident that reveals a gap in the current policy.</p>
     </div>
 
   </div><!-- /overview -->
 
+  <!-- ============================================================ -->
+  <!-- POLICY LIFECYCLE                                              -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-lifecycle">
+
+    <div class="sec-title">Policy Lifecycle</div>
+    <div class="sec-sub">Seven steps from identifying a need to training the team. Anyone leading a policy effort should follow this process in order.</div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-body">
+          <div class="tl-who">Any team member · People &amp; Operations</div>
+          <div class="tl-title">Identify the need</div>
+          <div class="tl-desc">Anyone on the team can raise the need for a new policy. People &amp; Operations also identifies gaps proactively through audits, incidents, or regulatory changes. Document who raised it and why before moving forward.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-body">
+          <div class="tl-who">Policy lead · People &amp; Operations</div>
+          <div class="tl-title">Draft the policy, SOP, and templates</div>
+          <div class="tl-desc">Lead the drafting of all four required deliverables: policy document, SOP, templates, and Notion summary. Use the standard templates as your starting point:<br><br>
+            <a class="doc-link" href="https://docs.google.com/document/d/11K42pT_FTzYjhkhs2aItLqndnlA6JD1ZCohkwGzgfEU/edit?usp=drive_link" target="_blank" rel="noopener">Policy Template &rarr;</a>
+            &nbsp;&nbsp;
+            <a class="doc-link" href="https://docs.google.com/document/d/1uWhtuh2fdelfu41sfaBueuGJjtIYfvCAQCoK5vnDxSY/edit?usp=drive_link" target="_blank" rel="noopener">SOP Template &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot active">3</div>
+        <div class="tl-body" style="border-color:#E8D900;background:var(--yellow-lt);">
+          <div class="tl-who" style="color:#7A6E00;">Both CEOs · Required</div>
+          <div class="tl-title">Approve</div>
+          <div class="tl-desc"><strong>Both Laura and Raquel must formally sign off.</strong> A policy cannot be published without both CEO approvals. This step applies to all new policies and to any material revision.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-body">
+          <div class="tl-who">Policy lead · People &amp; Operations</div>
+          <div class="tl-title">Store in Google Drive</div>
+          <div class="tl-desc">Upload all final files to <strong>/8. Policies/[# and Policy Name]/</strong>. All four deliverables must be in place before publishing anywhere.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-body">
+          <div class="tl-who">Policy lead · People &amp; Operations</div>
+          <div class="tl-title">Publish to Notion Employee Hub</div>
+          <div class="tl-desc">Publish the Notion summary on the Employee Hub with links to every Drive artifact. This becomes the team's primary reference point from publication forward.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">6</div>
+        <div class="tl-body">
+          <div class="tl-who">People &amp; Operations</div>
+          <div class="tl-title">Communicate to the team</div>
+          <div class="tl-desc">Announce via Slack and at a team meeting or all-hands. The communication confirms the effective date and links directly to the Notion summary.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">7</div>
+        <div class="tl-body">
+          <div class="tl-who">People &amp; Operations · All team members</div>
+          <div class="tl-title">Train &amp; re-onboard</div>
+          <div class="tl-desc">Define a training plan at approval time. The baseline is coverage at the next scheduled re-onboarding and inclusion in new-hire onboarding going forward.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout black" style="margin-top:.25rem;">
+      <div class="callout-title">Retroactive or incomplete policies</div>
+      Any policy that was published or enforced without completing all seven steps must be submitted retroactively for CEO approval or formally retired. There are no informal workarounds.
+    </div>
+
+    <div class="block-title" style="margin-top:.85rem;">Retiring a policy</div>
+    <div class="card">
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);">When a policy is superseded or no longer needed, move the files to <strong>Google Drive /Policies/Retired/</strong> with the supersession date noted. Update the Notion Employee Hub entry to point to the current version. The retired document is kept for reference but is no longer active, and the team is notified.</p>
+    </div>
+
+  </div><!-- /lifecycle -->
 
   <!-- ============================================================ -->
   <!-- POLICY DIRECTORY                                              -->
@@ -307,19 +442,29 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
           </tr>
           <tr>
             <td class="td-role">People &amp; Operations</td>
-            <td>Owns the full policy process from drafting through publication, communication, and training. First point of contact for any policy question.</td>
+            <td>Owns the full policy process from identification through drafting, approval routing, storage, publication, communication, and training. Primary contact for any policy question.</td>
+          </tr>
+          <tr>
+            <td class="td-role">Director of P&amp;O</td>
+            <td>Escalation point for deviations, exceptions, and any situation not covered by an existing policy. Anyone can raise a concern directly.</td>
           </tr>
           <tr>
             <td class="td-role">Laura &amp; Raquel (CEOs)</td>
-            <td>Both must formally approve every policy before it is published. No exception. Their approval is also required for any material revision to an existing policy.</td>
+            <td>Joint approvers. <strong>Both sign-offs are required</strong> before any policy can be published. This applies to new policies and to any material revision.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout yellow">
-      <div class="callout-title">Your role as a team member</div>
-      When a new policy is published, you will be notified via Slack and at a team meeting. From that point, the policy applies to you. If something in a published policy is unclear or you believe an exception applies to your situation, reach out to the <strong>Director of People &amp; Operations</strong>.
+      <div class="callout-title">Joint CEO approval is non-negotiable</div>
+      Both Laura and Raquel must formally sign off on every organizational policy before it is published. A single CEO's approval is not sufficient. This applies to new policies, material revisions, and any retroactive approvals.
+    </div>
+
+    <div class="block-title" style="margin-top:.85rem;">Exceptions and deviations</div>
+    <div class="card" style="margin-bottom:.5rem;">
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);margin-bottom:.5rem;">Exceptions to the governance process itself (missing steps, incomplete deliverables) must be resolved by submitting the policy retroactively for CEO approval or formally retiring it. There are no informal workarounds.</p>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);">Exceptions to the <em>terms</em> of a specific policy are handled inside that policy's own text. Contact the Director of People &amp; Operations if you believe an exception applies to your situation.</p>
     </div>
 
     <div class="block-title" style="margin-top:.85rem;">Common questions</div>
@@ -336,52 +481,184 @@ body { font-family: var(--font); background: var(--bg); color: var(--text-md); m
 
     <div class="faq-item" id="fq-2">
       <div class="faq-header" onclick="toggleFaq('fq-2')">
-        <span class="faq-q">Does a policy apply to me if I am a contractor or based in a different country?</span>
+        <span class="faq-q">Can a manager create a team-level rule without going through this process?</span>
         <span class="faq-chevron">&#9662;</span>
       </div>
       <div class="faq-body">
-        Organizational policies apply to <strong>all VélezReyes+ and Vere team members</strong>. Individual policies may specify variations based on employment type or country where local law requires it. If you are unsure how a specific policy applies to your situation, contact People &amp; Operations.
+        Yes, within their team's scope. This governance process applies only to <strong>transversal organizational policies</strong> that affect all team members. Team-specific SOPs, project-level procedures, and role-specific guidelines are out of scope and do not require CEO approval through this process. Managers cannot create rules that contradict a published policy.
       </div>
     </div>
 
     <div class="faq-item" id="fq-3">
       <div class="faq-header" onclick="toggleFaq('fq-3')">
-        <span class="faq-q">Can I suggest a new policy or flag that something is missing?</span>
+        <span class="faq-q">How do I know if a policy change is "material" and requires re-approval?</span>
         <span class="faq-chevron">&#9662;</span>
       </div>
       <div class="faq-body">
-        Yes. Any team member can raise the need for a new organizational policy. Reach out to the <strong>Director of People &amp; Operations</strong> with the context: what gap you are seeing, who it affects, and why a company-wide standard would help. People &amp; Operations will evaluate it and, if appropriate, initiate the process.
+        Any change that alters <strong>entitlements, obligations, or procedures</strong> for team members is material and requires going back through the full approval cycle. Corrections of typos, formatting updates, or link replacements are not material. When in doubt, consult the Director of People &amp; Operations before publishing.
       </div>
     </div>
 
     <div class="faq-item" id="fq-4">
       <div class="faq-header" onclick="toggleFaq('fq-4')">
-        <span class="faq-q">Can my manager create a team rule that overrides a published policy?</span>
+        <span class="faq-q">What if we need a policy urgently and cannot wait for the full lifecycle?</span>
         <span class="faq-chevron">&#9662;</span>
       </div>
       <div class="faq-body">
-        No. Organizational policies apply company-wide and cannot be overridden by team-level decisions. Managers can create team-specific SOPs and guidelines for things not covered by an organizational policy, but they cannot create rules that contradict or bypass a published policy. If you believe there is a conflict, raise it with People &amp; Operations.
+        Urgency does not remove the requirement for both CEO sign-offs. What can be expedited is the drafting and review timeline. People &amp; Operations can run a compressed review cycle with the CEOs. A policy communicated before both approvals are obtained must be framed as a draft or interim guidance, not as a published policy.
       </div>
     </div>
 
     <div class="faq-item" id="fq-5">
       <div class="faq-header" onclick="toggleFaq('fq-5')">
-        <span class="faq-q">How will I know when a policy changes?</span>
+        <span class="faq-q">Can I suggest a new policy or flag that something is missing?</span>
         <span class="faq-chevron">&#9662;</span>
       </div>
       <div class="faq-body">
-        Any material change to a policy goes through the same approval and communication process as a new policy. You will be notified via <strong>Slack</strong> and at a team meeting or all-hands. Minor corrections (typos, broken links) may be updated quietly. If you want to verify the current version of a policy, the Notion Employee Hub always reflects the latest approved text.
+        Yes. Any team member can raise the need for a new organizational policy. Reach out to the <strong>Director of People &amp; Operations</strong> with the context: what gap you are seeing, who it affects, and why a company-wide standard would help. People &amp; Operations will evaluate it and, if appropriate, initiate the lifecycle process.
       </div>
     </div>
 
   </div><!-- /roles -->
 
+  <!-- ============================================================ -->
+  <!-- CHECKLIST                                                     -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-checklist">
+
+    <div class="sec-title">Checklist</div>
+    <div class="sec-sub">For anyone creating a new policy, conducting an annual review, or retiring an existing one. Follow the steps in order.</div>
+
+    <!-- New policy -->
+    <div class="checklist-group open" id="cg-new">
+      <div class="cg-header" onclick="toggleGroup('cg-new')">
+        <span class="cg-pill black">New Policy</span>
+        <span class="cg-title">
+          Creating a new policy
+          <span class="cg-sub">Follow the lifecycle in order. Do not publish before Step 3 is complete.</span>
+        </span>
+        <span class="cg-count" id="count-new">0 / 9</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Need identified and documented (who raised it, why it is needed)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Policy document drafted using the standard template</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">SOP drafted using the standard template (if a repeatable process supports this policy)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Templates created (forms, checklists, communication samples as needed)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">
+            Both CEOs (Laura and Raquel) have formally signed off
+            <span class="check-note">Both approvals required. Policy cannot be published without this.</span>
+          </span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">All artifacts uploaded to Google Drive at /8. Policies/[# and Policy Name]/</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Notion Employee Hub summary published with links to all Drive artifacts</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Announcement sent via Slack and communicated at a team meeting or all-hands</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'new')">
+          <div class="check-box"></div>
+          <span class="check-text">Training plan defined and policy added to new-hire onboarding and next re-onboarding agenda</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-new','new')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Annual review -->
+    <div class="checklist-group open" id="cg-review">
+      <div class="cg-header" onclick="toggleGroup('cg-review')">
+        <span class="cg-pill yellow">Annual Review</span>
+        <span class="cg-title">
+          Annual policy review
+          <span class="cg-sub">Run for each active policy once per year</span>
+        </span>
+        <span class="cg-count" id="count-review">0 / 5</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'review')">
+          <div class="check-box"></div>
+          <span class="check-text">Policy reviewed against current legal and regulatory requirements for all applicable countries</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'review')">
+          <div class="check-box"></div>
+          <span class="check-text">Policy reviewed against any organizational changes (new roles, tools, countries, processes) since last review</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'review')">
+          <div class="check-box"></div>
+          <span class="check-text">If material changes are needed: revised drafts approved by both CEOs before republishing</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'review')">
+          <div class="check-box"></div>
+          <span class="check-text">Google Drive and Notion updated to reflect approved revisions (or confirmed as current if no changes)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'review')">
+          <div class="check-box"></div>
+          <span class="check-text">Review date recorded on the policy document</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-review','review')">Reset</button>
+      </div>
+    </div>
+
+    <!-- Retiring -->
+    <div class="checklist-group open" id="cg-retire">
+      <div class="cg-header" onclick="toggleGroup('cg-retire')">
+        <span class="cg-pill purple">Retiring</span>
+        <span class="cg-title">
+          Retiring a policy
+          <span class="cg-sub">When a policy is superseded or no longer needed</span>
+        </span>
+        <span class="cg-count" id="count-retire">0 / 4</span>
+        <span class="cg-chevron">&#9662;</span>
+      </div>
+      <div class="cg-body">
+        <div class="check-item" onclick="toggleCheck(this,'retire')">
+          <div class="check-box"></div>
+          <span class="check-text">Retirement confirmed by both CEOs (or supersession approved as part of the new policy cycle)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'retire')">
+          <div class="check-box"></div>
+          <span class="check-text">Policy files moved to Google Drive /Policies/Retired/ with the supersession date added to the document</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'retire')">
+          <div class="check-box"></div>
+          <span class="check-text">Notion Employee Hub entry updated to point to the current version (or marked as retired)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this,'retire')">
+          <div class="check-box"></div>
+          <span class="check-text">Team notified of the retirement via Slack and at the next team meeting</span>
+        </div>
+        <button class="reset-btn" onclick="resetGroup('cg-retire','retire')">Reset</button>
+      </div>
+    </div>
+
+  </div><!-- /checklist -->
 
   <!-- FOOTER -->
   <footer class="site-footer">
     <p class="footer-disclaimer">
       <strong>Questions?</strong> Contact the Director of People &amp; Operations &nbsp;&middot;&nbsp; Effective 2026<br>
-      For the full policy, see the <a href="https://www.notion.so/All-Policies-1a4d3fa668bb8085ac7af8dcc5b1462f?source=copy_link" target="_blank" rel="noopener" style="color:var(--text-mt);text-decoration:underline;font-weight:600;">Notion Employee Hub</a>.
+      For the full policy index, see the <a href="https://www.notion.so/All-Policies-1a4d3fa668bb8085ac7af8dcc5b1462f?source=copy_link" target="_blank" rel="noopener" style="color:var(--text-mt);text-decoration:underline;font-weight:600;">Notion Employee Hub</a>.
     </p>
     <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
       <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+ &middot; Vere">
@@ -399,6 +676,48 @@ function showMain(id, btn) {
 }
 
 function toggleFaq(id) { document.getElementById(id).classList.toggle('open'); }
+
+const totals     = { new: 9, review: 5, retire: 4 };
+const ALL_GROUPS = ['new','review','retire'];
+const LS_KEY     = 'vrplus_governance_v1_checklist';
+
+function saveState() {
+  const state = {};
+  ALL_GROUPS.forEach(g => {
+    const items = document.querySelectorAll('#cg-' + g + ' .check-item');
+    state[g] = Array.from(items).map(el => el.classList.contains('checked'));
+  });
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    ALL_GROUPS.forEach(g => {
+      if (!state[g]) return;
+      const items = document.querySelectorAll('#cg-' + g + ' .check-item');
+      state[g].forEach((c, i) => { if (c && items[i]) items[i].classList.add('checked'); });
+      updateCount(g);
+    });
+  } catch(e) {}
+}
+function updateCount(g) {
+  const c = document.querySelectorAll('#cg-' + g + ' .check-item.checked').length;
+  const el = document.getElementById('count-' + g);
+  if (el) el.textContent = c + ' / ' + totals[g];
+}
+function toggleCheck(el, g) {
+  el.classList.toggle('checked');
+  if (ALL_GROUPS.includes(g)) { updateCount(g); saveState(); }
+}
+function toggleGroup(id) { document.getElementById(id).classList.toggle('open'); }
+function resetGroup(gId, cKey) {
+  document.querySelectorAll('#' + gId + ' .check-item').forEach(el => el.classList.remove('checked'));
+  updateCount(cKey);
+  saveState();
+}
+document.addEventListener('DOMContentLoaded', loadState);
 </script>
 </body>
 </html>
