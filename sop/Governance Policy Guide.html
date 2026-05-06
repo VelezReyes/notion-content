@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governance Policy Guide · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #000000;
+  --cream:    #EFEFE4;
+  --cream-dk: #E2E2D8;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --white:    #FFFFFF;
+  --text-dk:  #111111;
+  --text-md:  #333333;
+  --text-mt:  #888880;
+  --bg:       #F7F7F2;
+  --card-bg:  #FEFEF8;
+  --border:   rgba(0,0,0,0.09);
+  --border-md:rgba(0,0,0,0.16);
+  --radius:   10px;
+  --radius-sm:6px;
+  --font: 'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+}
+
+body { font-family: var(--font); background: var(--bg); color: var(--text-md); min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
+.root { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header { background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem 1.25rem; margin-bottom: .75rem; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--yellow); }
+.header-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); margin-bottom: .2rem; font-weight: 500; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: .15rem; }
+.header p  { font-size: 12px; color: #777770; }
+
+/* ── Nav ── */
+.main-nav { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
+.nav-btn { padding: 6px 15px; border-radius: 20px; border: 1px solid var(--border-md); background: var(--card-bg); color: var(--text-md); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; font-family: var(--font); }
+.nav-btn:hover { background: var(--cream); }
+.nav-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ── Block / section titles ── */
+.sec-title { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub   { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+
+/* ── Card ── */
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .75rem; }
+
+/* ── Callout ── */
+.callout { border-radius: var(--radius-sm); padding: .8rem 1rem; margin: .6rem 0; font-size: 13px; line-height: 1.6; border-left: 4px solid var(--purple); background: var(--purple-lt); }
+.callout.green  { border-left-color: var(--green);  background: var(--green-lt); }
+.callout.yellow { border-left-color: #E8D900;        background: var(--yellow-lt); }
+.callout.black  { border-left-color: #555;           background: #F0F0F0; }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .3rem; color: var(--purple); }
+.callout.green  .callout-title { color: #1A9955; }
+.callout.yellow .callout-title { color: #7A6E00; }
+.callout.black  .callout-title { color: #444; }
+
+/* ── Deliverable grid ── */
+.deliv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .75rem; }
+.deliv-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem; }
+.deliv-num  { font-size: 22px; font-weight: 800; color: var(--yellow); background: var(--black); width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: .5rem; font-size: 13px; }
+.deliv-name { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .25rem; }
+.deliv-desc { font-size: 12px; color: var(--text-md); line-height: 1.55; }
+
+
+/* ── Policy directory ── */
+.policy-hub { background: var(--black); border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .6rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.policy-hub-left {}
+.policy-hub-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #777; margin-bottom: .2rem; font-weight: 500; }
+.policy-hub-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: .2rem; }
+.policy-hub-desc  { font-size: 12px; color: #666; }
+.policy-hub-btn { flex-shrink: 0; background: var(--yellow); color: var(--black); font-size: 12px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-decoration: none; letter-spacing: .04em; white-space: nowrap; }
+.policy-hub-btn:hover { opacity: .85; }
+
+.policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: .75rem; }
+.policy-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .9rem 1rem; display: flex; flex-direction: column; }
+.policy-icon { font-size: 22px; margin-bottom: .4rem; }
+.policy-name { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: .25rem; }
+.policy-desc { font-size: 12px; color: var(--text-md); line-height: 1.55; flex: 1; margin-bottom: .65rem; }
+.policy-btn  { display: inline-block; background: var(--black); color: var(--yellow); font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-decoration: none; letter-spacing: .04em; align-self: flex-start; }
+.policy-btn:hover { opacity: .85; }
+
+/* ── Roles table ── */
+.roles-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.roles-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
+.roles-table td { padding: 9px 11px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+.roles-table tr:nth-child(even) td { background: var(--cream); }
+.roles-table tr:nth-child(odd)  td { background: var(--white); }
+.roles-table tr:last-child td { border-bottom: none; }
+.roles-table .td-role { font-weight: 700; color: var(--text-dk); width: 35%; }
+
+
+/* ── FAQ accordion ── */
+.faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: .5rem; overflow: hidden; }
+.faq-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1rem; cursor: pointer; transition: background .1s; }
+.faq-header:hover { background: var(--bg); }
+.faq-q { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; line-height: 1.4; }
+.faq-chevron { font-size: 12px; color: var(--text-mt); transition: transform .2s; flex-shrink: 0; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-body { display: none; padding: .1rem 1rem .85rem 1rem; font-size: 13px; color: var(--text-md); line-height: 1.65; border-top: 1px solid var(--border); }
+.faq-item.open .faq-body { display: block; }
+.faq-body strong { color: var(--text-dk); }
+
+/* ── Footer ── */
+.site-footer { margin-top: 2.75rem; padding: 1.75rem 0 .5rem; text-align: center; border-top: 1px solid var(--border); }
+.footer-disclaimer { font-size: 11px; color: var(--text-mt); letter-spacing: .04em; margin-bottom: 1.35rem; line-height: 1.8; }
+.footer-disclaimer strong { color: #777770; font-weight: 600; }
+.footer-logo-wrap { display: inline-block; opacity: .72; transition: opacity .2s; }
+.footer-logo-wrap:hover { opacity: 1; }
+.footer-logo { display: block; height: 28px; width: auto; margin: 0 auto; }
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .deliv-grid  { grid-template-columns: 1fr; }
+  .policy-grid { grid-template-columns: 1fr; }
+  .policy-hub  { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">VélezReyes+ &bull; Vere &middot; People &amp; Operations</div>
+    <h1>Governance Policy Guide</h1>
+    <p>How organizational policies are created, approved, published, and maintained. &middot; Effective 2026</p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="card" style="margin-bottom:.75rem;">
+    <p style="font-size:13px;line-height:1.7;color:var(--text-md);margin-bottom:.5rem;">Organizational policies are the shared rules that define how VélezReyes+ and Vere work together. They apply to everyone on the team, regardless of role or country, and are reviewed regularly to stay current.</p>
+    <p style="font-size:13px;line-height:1.7;color:var(--text-md);">If you are looking for a specific policy, go to the <strong style="color:var(--text-dk);">Policy Directory</strong> tab. Every active policy links directly to its Notion Employee Hub summary.</p>
+  </div>
+
+  <!-- MAIN NAV -->
+  <div class="main-nav">
+    <button class="nav-btn active" onclick="showMain('overview',this)">&#9312; Overview</button>
+    <button class="nav-btn" onclick="showMain('directory',this)">&#9313; Policy Directory</button>
+    <button class="nav-btn" onclick="showMain('roles',this)">&#9314; Roles &amp; Rules</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- OVERVIEW                                                      -->
+  <!-- ============================================================ -->
+  <div class="section visible" id="sec-overview">
+
+    <div class="sec-title">Overview</div>
+    <div class="sec-sub">What organizational policies are, what to expect from them, and how they stay current.</div>
+
+    <div class="block-title">What is an organizational policy?</div>
+    <div class="card" style="margin-bottom:.75rem;">
+      <p style="font-size:13px;line-height:1.7;color:var(--text-md);margin-bottom:.5rem;">An organizational policy is a shared rule that applies to <strong style="color:var(--text-dk);">every team member at VélezReyes+ and Vere</strong>, regardless of role, seniority, or country. Policies exist to create consistency, protect everyone's rights, and make sure the company operates within legal and ethical boundaries.</p>
+      <p style="font-size:13px;line-height:1.7;color:var(--text-md);">Policies are different from team-level SOPs or project playbooks. A policy sets a company-wide standard. An SOP explains how to execute it in a specific context. Both matter, but one without the other is incomplete.</p>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-title">What counts as an organizational policy?</div>
+      Any rule that applies to <strong>all team members</strong> across VélezReyes+ and Vere, including HR and talent policies. Team-specific SOPs, project-level procedures, client playbooks, and role-specific guidelines are out of scope and do not go through this process.
+    </div>
+
+    <div class="block-title" style="margin-top:.85rem;">What every policy includes</div>
+    <p style="font-size:12px;color:var(--text-mt);margin-bottom:.65rem;">Every published policy comes with four things. This is the standard you can expect whenever a new policy is announced.</p>
+    <div class="deliv-grid">
+      <div class="deliv-card">
+        <div class="deliv-num">01</div>
+        <div class="deliv-name">Policy Document</div>
+        <div class="deliv-desc">The official rule, in standard format. Drafted by People &amp; Operations and signed off by both CEOs before it is published.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-num">02</div>
+        <div class="deliv-name">Standard Operating Procedure</div>
+        <div class="deliv-desc">Step-by-step instructions for any repeatable process the policy involves. Included when a process is needed, not just rules.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-num">03</div>
+        <div class="deliv-name">Templates</div>
+        <div class="deliv-desc">Forms, checklists, or communication samples the policy requires, stored in the same Drive folder as the policy and SOP.</div>
+      </div>
+      <div class="deliv-card">
+        <div class="deliv-num">04</div>
+        <div class="deliv-name">Notion Summary</div>
+        <div class="deliv-desc">A plain-language version on the Notion Employee Hub, with links to all Drive originals. This is your primary day-to-day reference.</div>
+      </div>
+    </div>
+
+    <div class="callout black">
+      <div class="callout-title">Where to find everything</div>
+      All policy documents and SOPs live in <strong>Google Drive at /8. Policies/[# and Policy Name]/</strong>. The easiest entry point is the <strong>Notion Employee Hub</strong>, which links everything together. Retired policies are preserved at <strong>/Policies/Retired/</strong> with the date they were superseded.
+    </div>
+
+    <div class="block-title" style="margin-top:.85rem;">Policies stay current</div>
+    <div class="card" style="margin-bottom:.5rem;">
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);margin-bottom:.5rem;">Every policy is reviewed at least <strong style="color:var(--text-dk);">once per year</strong>. If a review leads to material changes, both CEOs must approve the revision before it is republished and communicated to the team.</p>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-md);">Reviews can also happen at any time if something significant changes: a new regulation, an organizational restructure, a new country or tool, or an incident that reveals a gap. You will always be notified when a policy changes.</p>
+    </div>
+
+  </div><!-- /overview -->
+
+
+  <!-- ============================================================ -->
+  <!-- POLICY DIRECTORY                                              -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-directory">
+
+    <div class="sec-title">Policy Directory</div>
+    <div class="sec-sub">All active VélezReyes+ and Vere organizational policies. Each links to the Notion Employee Hub summary, which in turn links to the full Drive documents.</div>
+
+    <!-- Hub card -->
+    <div class="policy-hub">
+      <div class="policy-hub-left">
+        <div class="policy-hub-label">Notion Employee Hub</div>
+        <div class="policy-hub-title">All Policies</div>
+        <div class="policy-hub-desc">The complete index of every active policy. Start here if you are not sure where to look.</div>
+      </div>
+      <a class="policy-hub-btn" href="https://www.notion.so/All-Policies-1a4d3fa668bb8085ac7af8dcc5b1462f?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+    </div>
+
+    <!-- Policy cards -->
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <div class="policy-icon">&#128184;</div>
+        <div class="policy-name">Payment Process</div>
+        <div class="policy-desc">How payments to vendors, contractors, and providers are requested, approved, and processed at VélezReyes+.</div>
+        <a class="policy-btn" href="https://www.notion.so/Payment-Process-34fd3fa668bb8003a0e0f989a7bd4de2?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">&#128179;</div>
+        <div class="policy-name">Deel Card Use</div>
+        <div class="policy-desc">Rules for using the company Deel Card for business expenses, travel, and OPEX. Includes eligible categories and approval requirements.</div>
+        <a class="policy-btn" href="https://www.notion.so/Deel-Card-Use-348d3fa668bb8097865ef474311661ec?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">&#129534;</div>
+        <div class="policy-name">Reimbursement</div>
+        <div class="policy-desc">When and how out-of-pocket expenses are reimbursed. Reimbursement is a backup mechanism, not the default payment method.</div>
+        <a class="policy-btn" href="https://www.notion.so/Reimbursement-1a7d3fa668bb80ec95a3c3bef0033a8d?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">&#127958;&#65039;</div>
+        <div class="policy-name">Paid Time Off</div>
+        <div class="policy-desc">The full PTO framework: 30 vacation days per year, maternity and paternity leave, sick leave, and other benefits. Managed across Deel and Day Off.</div>
+        <a class="policy-btn" href="https://www.notion.so/Paid-Time-Off-1a8d3fa668bb80129662ef1164b73005?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">&#128172;</div>
+        <div class="policy-name">Feedback Process</div>
+        <div class="policy-desc">How feedback is given and received at VélezReyes+. Covers the cadence, format, and principles for constructive, ongoing feedback across the team.</div>
+        <a class="policy-btn" href="https://www.notion.so/Feedback-Process-349d3fa668bb80ef8c1df970b23042f0?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">&#127919;</div>
+        <div class="policy-name">OKRs Cadence</div>
+        <div class="policy-desc">The three-level check-in cadence for OKRs: Monthly Check-in, Strategic Review, and Operational Review. How progress is tracked in Profit.co.</div>
+        <a class="policy-btn" href="https://www.notion.so/OKRs-Cadence-Policy-348d3fa668bb80b29045e20b9cfc8637?source=copy_link" target="_blank" rel="noopener">Open in Notion &rarr;</a>
+      </div>
+
+    </div>
+
+    <div class="callout black">
+      <div class="callout-title">Missing a policy?</div>
+      If you believe a transversal policy is needed but does not yet exist, raise it with the <strong>Director of People &amp; Operations</strong>. Any team member can identify the need; the lifecycle process handles the rest.
+    </div>
+
+  </div><!-- /directory -->
+
+  <!-- ============================================================ -->
+  <!-- ROLES & RULES                                                 -->
+  <!-- ============================================================ -->
+  <div class="section" id="sec-roles">
+
+    <div class="sec-title">Roles &amp; Rules</div>
+    <div class="sec-sub">Who is responsible for what, and what every team member's role is in the policy framework.</div>
+
+    <div class="block-title">Who does what</div>
+    <div class="card" style="padding:.75rem 0 0;overflow:hidden;margin-bottom:.75rem;">
+      <table class="roles-table">
+        <thead>
+          <tr><th>Who</th><th>What it means for them</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-role">All team members</td>
+            <td>Read, understand, and follow every published organizational policy. Can raise the need for a new policy at any time by reaching out to People &amp; Operations.</td>
+          </tr>
+          <tr>
+            <td class="td-role">People &amp; Operations</td>
+            <td>Owns the full policy process from drafting through publication, communication, and training. First point of contact for any policy question.</td>
+          </tr>
+          <tr>
+            <td class="td-role">Laura &amp; Raquel (CEOs)</td>
+            <td>Both must formally approve every policy before it is published. No exception. Their approval is also required for any material revision to an existing policy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-title">Your role as a team member</div>
+      When a new policy is published, you will be notified via Slack and at a team meeting. From that point, the policy applies to you. If something in a published policy is unclear or you believe an exception applies to your situation, reach out to the <strong>Director of People &amp; Operations</strong>.
+    </div>
+
+    <div class="block-title" style="margin-top:.85rem;">Common questions</div>
+
+    <div class="faq-item" id="fq-1">
+      <div class="faq-header" onclick="toggleFaq('fq-1')">
+        <span class="faq-q">What is the difference between a policy and an SOP?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        A <strong>policy</strong> sets the rule: what applies, to whom, and why. A <strong>Standard Operating Procedure (SOP)</strong> explains how to execute the rule in practice, step by step. Most policies have a corresponding SOP. Both are published together and linked from the Notion Employee Hub.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-2">
+      <div class="faq-header" onclick="toggleFaq('fq-2')">
+        <span class="faq-q">Does a policy apply to me if I am a contractor or based in a different country?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Organizational policies apply to <strong>all VélezReyes+ and Vere team members</strong>. Individual policies may specify variations based on employment type or country where local law requires it. If you are unsure how a specific policy applies to your situation, contact People &amp; Operations.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-3">
+      <div class="faq-header" onclick="toggleFaq('fq-3')">
+        <span class="faq-q">Can I suggest a new policy or flag that something is missing?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Yes. Any team member can raise the need for a new organizational policy. Reach out to the <strong>Director of People &amp; Operations</strong> with the context: what gap you are seeing, who it affects, and why a company-wide standard would help. People &amp; Operations will evaluate it and, if appropriate, initiate the process.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-4">
+      <div class="faq-header" onclick="toggleFaq('fq-4')">
+        <span class="faq-q">Can my manager create a team rule that overrides a published policy?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        No. Organizational policies apply company-wide and cannot be overridden by team-level decisions. Managers can create team-specific SOPs and guidelines for things not covered by an organizational policy, but they cannot create rules that contradict or bypass a published policy. If you believe there is a conflict, raise it with People &amp; Operations.
+      </div>
+    </div>
+
+    <div class="faq-item" id="fq-5">
+      <div class="faq-header" onclick="toggleFaq('fq-5')">
+        <span class="faq-q">How will I know when a policy changes?</span>
+        <span class="faq-chevron">&#9662;</span>
+      </div>
+      <div class="faq-body">
+        Any material change to a policy goes through the same approval and communication process as a new policy. You will be notified via <strong>Slack</strong> and at a team meeting or all-hands. Minor corrections (typos, broken links) may be updated quietly. If you want to verify the current version of a policy, the Notion Employee Hub always reflects the latest approved text.
+      </div>
+    </div>
+
+  </div><!-- /roles -->
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      <strong>Questions?</strong> Contact the Director of People &amp; Operations &nbsp;&middot;&nbsp; Effective 2026<br>
+      For the full policy, see the <a href="https://www.notion.so/All-Policies-1a4d3fa668bb8085ac7af8dcc5b1462f?source=copy_link" target="_blank" rel="noopener" style="color:var(--text-mt);text-decoration:underline;font-weight:600;">Notion Employee Hub</a>.
+    </p>
+    <a class="footer-logo-wrap" href="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" target="_blank" rel="noopener">
+      <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+ &middot; Vere">
+    </a>
+  </footer>
+
+</div><!-- /root -->
+
+<script>
+function showMain(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function toggleFaq(id) { document.getElementById(id).classList.toggle('open'); }
+</script>
+</body>
+</html>
