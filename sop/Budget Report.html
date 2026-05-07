@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Report · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   VER+ DESIGN SYSTEM
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:     #000000;
+  --cream:     #EFEFE4;
+  --yellow:    #F3FF00;
+  --green:     #27CF77;
+  --purple:    #A62BFF;
+  --white:     #FFFFFF;
+  --text-dk:   #111111;
+  --text-md:   #333333;
+  --text-mt:   #888880;
+  --bg:        #F7F7F2;
+  --card-bg:   #FEFEF8;
+  --border:    rgba(0,0,0,0.09);
+  --border-md: rgba(0,0,0,0.18);
+  --radius:    10px;
+  --radius-sm: 6px;
+  --font:      'Montserrat', -apple-system, sans-serif;
+  --green-lt:  #E8F8F0;
+  --yellow-lt: #FFFDE7;
+  --purple-lt: #F3E8FF;
+  /* Big bet palette */
+  --dp:     #0013C1; --dp-lt:  #E8ECFF;
+  --dem:    #A62BFF; --dem-lt: #F3E8FF;
+  --ecd:    #27CF77; --ecd-lt: #E8F8F0;
+  --fot:    #22C55E; --fot-lt: #DCFCE7;
+  --k12:    #16A34A; --k12-lt: #BBFACC;
+  --opex:   #888880; --opex-lt:#F2F2EE;
+}
+
+body { font-family: var(--font); background: #0D0D0D; color: var(--text-md); min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
+.root { max-width: 860px; margin: 0 auto; }
+
+/* ── Header (dashboard style, full dark) ── */
+.header {
+  background: #0D0D0D;
+  border: 1px solid #222;
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+.header-label { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #555; margin-bottom: .3rem; font-weight: 600; }
+.header h1 { font-size: 22px; font-weight: 800; color: var(--white); line-height: 1.1; }
+.header-period { font-size: 13px; color: var(--yellow); font-weight: 700; margin-top: .25rem; }
+
+/* Header stat grid */
+.header-stats { display: flex; gap: .5rem; }
+.hstat { background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 8px; padding: .6rem .9rem; text-align: center; min-width: 80px; }
+.hstat-num   { font-size: 20px; font-weight: 800; line-height: 1; }
+.hstat-label { font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #555; margin-top: 3px; }
+.hstat.primary .hstat-num { color: var(--yellow); }
+.hstat.green   .hstat-num { color: var(--green); }
+.hstat.purple  .hstat-num { color: var(--purple); }
+
+/* Header area pills */
+.header-areas { display: flex; gap: .4rem; flex-wrap: wrap; }
+.harea-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: .05em;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid;
+  color: inherit;
+}
+
+/* ── Nav — segmented control ── */
+.main-nav {
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  border-radius: var(--radius);
+  padding: 4px;
+  display: flex;
+  gap: 3px;
+  margin-bottom: .75rem;
+}
+.nav-btn {
+  flex: 1;
+  text-align: center;
+  padding: 9px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+  font-family: var(--font);
+  letter-spacing: .02em;
+}
+.nav-btn:hover { background: #252525; color: #999; }
+.nav-btn.active { background: var(--yellow); color: var(--black); }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+.sec-title { font-size: 18px; font-weight: 700; color: #E8E8E0; margin-bottom: .15rem; }
+.sec-sub   { font-size: 12px; color: #555; margin-bottom: .85rem; }
+.block-title { font-size: 11px; font-weight: 700; color: #777; margin-bottom: .5rem; letter-spacing: .1em; text-transform: uppercase; }
+
+/* ── Card (dark) ── */
+.card { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .75rem; }
+
+/* ── Callout ── */
+.callout { border-radius: var(--radius-sm); padding: .75rem 1rem; margin: .6rem 0; font-size: 12.5px; line-height: 1.6; border-left: 4px solid #333; background: #1A1A1A; color: #999; }
+.callout.yellow { border-left-color: var(--yellow); background: #1C1C00; color: #BBB100; }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .25rem; color: var(--yellow); }
+
+/* ── YTD: Chart grid ── */
+.charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-bottom: .75rem; }
+.chart-card { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1rem; text-align: center; }
+.chart-card-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #555; margin-bottom: .5rem; }
+.chart-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto .5rem; }
+.chart-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.chart-pct  { font-size: 20px; font-weight: 800; color: #E8E8E0; line-height: 1; }
+.chart-pct-label { font-size: 9px; color: #555; font-weight: 600; letter-spacing: .05em; }
+.chart-meta { font-size: 11px; color: #555; }
+.chart-meta strong { color: #CCC; font-size: 13px; display: block; }
+
+/* ── Progress bars ── */
+.progress-list { display: flex; flex-direction: column; gap: .6rem; }
+.progress-row { display: grid; grid-template-columns: 100px 1fr 55px 80px; align-items: center; gap: .65rem; font-size: 12px; }
+.progress-label { font-weight: 700; color: #BBB; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 11px; letter-spacing: .03em; }
+.progress-track { height: 8px; background: #252525; border-radius: 4px; overflow: hidden; position: relative; cursor: pointer; }
+.progress-fill  { height: 100%; border-radius: 4px; width: 0%; transition: none; }
+.progress-fill.animate { transition: width .85s cubic-bezier(.4,0,.2,1); }
+.progress-pct   { font-size: 11px; font-weight: 700; color: #999; }
+.progress-amt   { font-size: 11px; color: #555; text-align: right; }
+
+/* ── Delta badge ── */
+.delta { display: inline-flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; }
+.delta.up   { background: #0D2B1A; color: var(--green); }
+.delta.down { background: #2B0D0D; color: #FF6B6B; }
+.delta.flat { background: #1A1A1A; color: #555; }
+
+/* ── By Area table ── */
+.area-table-wrap { overflow-x: auto; border-radius: var(--radius); overflow: hidden; border: 1px solid #222; }
+.area-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.area-table th { text-align: left; font-size: 9.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; background: #1A1A1A; color: #555; padding: 9px 12px; white-space: nowrap; border-bottom: 1px solid #2A2A2A; }
+.area-table td { padding: 0; border-bottom: 1px solid #1E1E1E; vertical-align: middle; }
+.area-table tr.area-parent td { background: #141414; cursor: pointer; }
+.area-table tr.area-parent:hover td { background: #1C1C1C; }
+.area-table tr.area-child  td { background: #0F0F0F; }
+.area-table tr.area-child.hidden { display: none; }
+.td-inner { padding: 9px 12px; display: flex; align-items: center; gap: .5rem; }
+.td-inner-plain { padding: 7px 12px; color: #AAA; }
+.area-name { font-weight: 700; color: #DDD; }
+.area-child .area-name { font-weight: 500; color: #666; padding-left: 1.25rem; font-size: 12px; }
+.area-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.area-chevron { font-size: 11px; color: #444; margin-left: auto; transition: transform .2s; }
+.area-parent.open .area-chevron { transform: rotate(180deg); }
+.bar-cell { width: 120px; }
+.bar-mini { height: 7px; background: #252525; border-radius: 4px; overflow: hidden; }
+.bar-mini-fill { height: 100%; border-radius: 4px; }
+.exec-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+
+/* ── Tooltip ── */
+.tooltip-wrap { position: relative; display: inline-block; }
+.tooltip-box { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #1A1A1A; border: 1px solid #333; color: #CCC; font-size: 11px; line-height: 1.65; padding: .6rem .85rem; border-radius: 6px; white-space: nowrap; z-index: 99; pointer-events: none; }
+.tooltip-box::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #333; }
+.tooltip-wrap:hover .tooltip-box { display: block; }
+
+/* ── What's New accordions ── */
+.wb-group { background: #141414; border: 1px solid #222; border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+.wb-header { display: flex; align-items: center; gap: .75rem; padding: .85rem 1.25rem; cursor: pointer; transition: background .1s; }
+.wb-header:hover { background: #1A1A1A; }
+.wb-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.wb-title { font-size: 14px; font-weight: 700; color: #DDD; flex: 1; }
+.wb-sub   { font-size: 11px; color: #555; font-weight: 400; display: block; }
+.wb-count { font-size: 11px; color: #444; }
+.wb-chevron { font-size: 13px; color: #444; transition: transform .2s; }
+.wb-group.open .wb-chevron { transform: rotate(180deg); }
+.wb-body { display: none; border-top: 1px solid #1E1E1E; }
+.wb-group.open .wb-body { display: block; }
+.wb-section { padding: .75rem 1.25rem; }
+.wb-section + .wb-section { border-top: 1px solid #1A1A1A; }
+.wb-section-title { font-size: 10px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #444; margin-bottom: .5rem; }
+.wb-item { display: flex; align-items: center; justify-content: space-between; padding: .4rem 0; font-size: 12.5px; border-bottom: 1px solid #1A1A1A; }
+.wb-item:last-child { border-bottom: none; }
+.wb-org  { color: #CCC; font-weight: 500; }
+.wb-meta { display: flex; align-items: center; gap: .75rem; }
+.wb-date { font-size: 11px; color: #555; }
+.wb-amt  { font-size: 12px; font-weight: 700; color: #EEE; }
+.empty-note { font-size: 12px; color: #444; padding: .25rem 0; font-style: italic; }
+
+/* ── Forecast table ── */
+.forecast-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid #222; }
+.forecast-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.forecast-table th { text-align: right; font-size: 9.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; background: #1A1A1A; color: #555; padding: 9px 10px; white-space: nowrap; border-bottom: 1px solid #2A2A2A; }
+.forecast-table th:first-child { text-align: left; }
+.forecast-table td { padding: 9px 10px; border-bottom: 1px solid #1A1A1A; vertical-align: middle; text-align: right; white-space: nowrap; color: #AAA; }
+.forecast-table td:first-child { text-align: left; font-weight: 700; color: #DDD; }
+.forecast-table tr:nth-child(odd) td  { background: #141414; }
+.forecast-table tr:nth-child(even) td { background: #111; }
+.forecast-table tr.total-row td { background: #0A0A0A !important; color: var(--yellow) !important; font-weight: 700; border-top: 1px solid #2A2A2A; }
+.forecast-table tr.total-row td:first-child { color: #EEE !important; }
+.be-bar-wrap { display: flex; align-items: center; gap: .4rem; justify-content: flex-end; }
+.be-bar-track { width: 50px; height: 6px; background: #252525; border-radius: 3px; overflow: hidden; }
+.be-bar-fill  { height: 100%; border-radius: 3px; }
+.be-pct { font-size: 11px; font-weight: 700; white-space: nowrap; min-width: 32px; text-align: right; }
+
+/* ── Footer ── */
+.site-footer { margin-top: 2.5rem; padding: 1.5rem 0 .5rem; text-align: center; border-top: 1px solid #1E1E1E; }
+.footer-note { font-size: 11px; color: #444; letter-spacing: .04em; margin-bottom: 1.25rem; line-height: 1.8; }
+.footer-logo { display: block; height: 26px; width: auto; margin: 0 auto; opacity: .35; filter: invert(1); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .charts-grid { grid-template-columns: 1fr; }
+  .progress-row { grid-template-columns: 80px 1fr 45px; }
+  .progress-amt { display: none; }
+  .header-stats { flex-wrap: wrap; }
+  .header-top { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+<!-- ============================================================
+     DATA — UPDATE THIS OBJECT EACH MONTH
+     ============================================================ -->
+<script>
+const DATA = {
+  period: { month: "March", year: 2026, prev: "February" },
+
+  /* Overall execution (for header pill) */
+  overallExec: 10,
+
+  /* OPEX summary */
+  opex: { budget: 5000000, actual: 450000, prevActual: 320000 },
+
+  /* Big bet investment areas */
+  bigBets: [
+    {
+      id: "dp", name: "DEMOCRACIA+", short: "D+",
+      color: "#0013C1", pillColor: "#BD97F1", colorLight: "#E8ECFF",
+      budget: 2992837, actual: 905836, prevActual: 800000,
+      categories: [
+        { name: "Committed",      budget: 917837,  actual: 442336 },
+        { name: "Renewals",       budget: 1975000, actual: 450000 },
+        { name: "Directed T&L",   budget: 13500,   actual: 13500  }
+      ],
+      memos: [
+        { org: "Organización Ejemplo A", amount: 75000,  date: "Mar 5"  },
+        { org: "Fundación Ejemplo B",    amount: 50000,  date: "Mar 12" }
+      ],
+      disbursements: [
+        { org: "Organización Ejemplo A", amount: 75000,  date: "Mar 15" },
+        { org: "Fundación Ejemplo B",    amount: 50000,  date: "Mar 28" }
+      ]
+    },
+    {
+      id: "dem", name: "Democracy", short: "Dem",
+      color: "#A62BFF", colorLight: "#F3E8FF",
+      budget: 1500000, actual: 150000, prevActual: 0,
+      categories: [
+        { name: "Committed",      budget: 500000,  actual: 150000 },
+        { name: "Pipeline",       budget: 1000000, actual: 0 }
+      ],
+      memos: [
+        { org: "Democracy Program Placeholder", amount: 150000, date: "Mar 18" }
+      ],
+      disbursements: []
+    },
+    {
+      id: "ecd", name: "ECD", short: "ECD",
+      color: "#27CF77", colorLight: "#E8F8F0",
+      budget: 1250000, actual: 15246, prevActual: 5000,
+      categories: [
+        { name: "Committed",         budget: 400000, actual: 1386 },
+        { name: "Renewals",          budget: 300000, actual: 5600 },
+        { name: "Selected Pipeline", budget: 250000, actual: 8260 }
+      ],
+      memos: [
+        { org: "ECD Partner Placeholder", amount: 30000, date: "Mar 8" }
+      ],
+      disbursements: [
+        { org: "ECD Partner Placeholder", amount: 15246, date: "Mar 22" }
+      ]
+    },
+    {
+      id: "fot", name: "FOT", short: "FOT",
+      color: "#22C55E", colorLight: "#DCFCE7",
+      budget: 5255000, actual: 347676, prevActual: 200000,
+      categories: [
+        { name: "Committed", budget: 3855000, actual: 347676 }
+      ],
+      memos: [],
+      disbursements: [
+        { org: "FOT Grantee Placeholder 1", amount: 200000, date: "Mar 10" },
+        { org: "FOT Grantee Placeholder 2", amount: 147676, date: "Mar 25" }
+      ]
+    },
+    {
+      id: "k12", name: "K-12", short: "K12",
+      color: "#16A34A", colorLight: "#BBFACC",
+      budget: 1600000, actual: 250000, prevActual: 0,
+      categories: [
+        { name: "Committed", budget: 1000000, actual: 250000 }
+      ],
+      memos: [
+        { org: "K-12 Network Placeholder", amount: 250000, date: "Mar 3" }
+      ],
+      disbursements: [
+        { org: "K-12 Network Placeholder", amount: 250000, date: "Mar 20" }
+      ]
+    }
+  ],
+
+  /* Forecast rows (all areas including OPEX) */
+  forecast: [
+    { area: "ECD",        color: "#27CF77", budget: 1250000,  committed: 400000,  disbursed: 15246,   pipeline: 250000  },
+    { area: "D+",         color: "#0013C1", budget: 2992837,  committed: 917837,  disbursed: 905836,  pipeline: 1975000 },
+    { area: "Democracy",  color: "#A62BFF", budget: 1500000,  committed: 150000,  disbursed: 150000,  pipeline: 0       },
+    { area: "P",          color: "#888880", budget: 500000,   committed: 0,       disbursed: 0,       pipeline: 0       },
+    { area: "FUT",        color: "#22C55E", budget: 5255000,  committed: 3855000, disbursed: 347676,  pipeline: 0       },
+    { area: "K12",        color: "#16A34A", budget: 1600000,  committed: 1000000, disbursed: 250000,  pipeline: 0       },
+    { area: "Charity",    color: "#888880", budget: 200000,   committed: 0,       disbursed: 0,       pipeline: 0       },
+    { area: "OPEX",       color: "#555555", budget: 5000000,  committed: 2000000, disbursed: 450000,  pipeline: 0       }
+  ]
+};
+</script>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-left">
+      <div class="header-label">VélezReyes+ &bull; Strategic Investments</div>
+      <h1 id="hdr-title">Budget Report</h1>
+      <div class="header-period" id="hdr-period"></div>
+    </div>
+    <div class="header-stats" id="hdr-stats">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+  <div class="header-areas" id="hdr-areas">
+    <!-- rendered by JS -->
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="main-nav">
+  <button class="nav-btn active" onclick="showTab('ytd',this)">&#9312; YTD Progress</button>
+  <button class="nav-btn" onclick="showTab('areas',this)">&#9313; By Area</button>
+  <button class="nav-btn" onclick="showTab('news',this)">&#9314; What's New</button>
+  <button class="nav-btn" onclick="showTab('forecast',this)">&#9315; Forecast</button>
+</div>
+
+<!-- ============================================================
+     TAB 1 — YTD PROGRESS
+     ============================================================ -->
+<div class="section visible" id="sec-ytd">
+  <div class="sec-title">Year to Date Progress</div>
+  <div class="sec-sub" id="ytd-sub"></div>
+
+  <!-- Donut charts -->
+  <div class="charts-grid" id="charts-grid">
+    <!-- rendered by JS -->
+  </div>
+
+  <!-- Area progress bars -->
+  <div class="card">
+    <div class="block-title">Investment execution by area</div>
+    <div class="progress-list" id="progress-list">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 2 — BY AREA (execution table)
+     ============================================================ -->
+<div class="section" id="sec-areas">
+  <div class="sec-title">Execution by Area</div>
+  <div class="sec-sub">Budget vs. actual per investment area and grant category. Click a row to expand.</div>
+
+  <div class="area-table-wrap">
+    <table class="area-table" id="area-table">
+      <thead>
+        <tr>
+          <th style="width:38%">Area</th>
+          <th style="width:16%">2026 Budget</th>
+          <th style="width:14%">Actual</th>
+          <th style="width:14%">Exec. %</th>
+          <th style="width:10%">vs. Prev.</th>
+          <th style="width:8%"></th>
+        </tr>
+      </thead>
+      <tbody id="area-tbody"><!-- rendered by JS --></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 3 — WHAT'S NEW
+     ============================================================ -->
+<div class="section" id="sec-news">
+  <div class="sec-title">What's New</div>
+  <div class="sec-sub" id="news-sub">Memos signed and disbursements processed this month, by team.</div>
+
+  <div id="news-accordions"><!-- rendered by JS --></div>
+
+  <div class="callout yellow" style="margin-top:.75rem;">
+    <div class="callout-title">Note</div>
+    This section reflects activity within the current reporting month only. Year-to-date totals are in the YTD Progress and Forecast tabs.
+  </div>
+</div>
+
+<!-- ============================================================
+     TAB 4 — FORECAST
+     ============================================================ -->
+<div class="section" id="sec-forecast">
+  <div class="sec-title">Forecast</div>
+  <div class="sec-sub">Full-year view: budget, commitments, disbursements, pipeline, and budget execution per area.</div>
+
+  <div class="forecast-wrap">
+    <table class="forecast-table" id="forecast-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:12%">Area</th>
+          <th>2026 Budget</th>
+          <th>Committed</th>
+          <th>Disbursed</th>
+          <th>Pipeline</th>
+          <th>Budget Exec.</th>
+        </tr>
+      </thead>
+      <tbody id="forecast-tbody"><!-- rendered by JS --></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p class="footer-note">
+    Placeholder data &middot; Update DATA object for each reporting period<br>
+    <strong>VélezReyes+ &middot; Vere</strong> · Strategic Investments
+  </p>
+  <img class="footer-logo" src="https://velezreyes.github.io/notion-content/sop/ver_vere_logo.png" alt="VélezReyes+">
+</footer>
+
+</div><!-- /root -->
+
+<!-- ============================================================
+     JAVASCRIPT — rendering + interactivity
+     ============================================================ -->
+<script>
+/* ── Helpers ── */
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const pct = (a, b) => b ? Math.round((a / b) * 100) : 0;
+const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+
+function deltaLabel(actual, prev) {
+  const diff = actual - prev;
+  if (diff === 0) return '<span class="delta flat">= Flat</span>';
+  const sign  = diff > 0 ? '+' : '';
+  const cls   = diff > 0 ? 'up' : 'down';
+  const arrow = diff > 0 ? '▲' : '▼';
+  return `<span class="delta ${cls}">${arrow} ${fmt(Math.abs(diff))}</span>`;
+}
+
+function execBadge(p, color) {
+  const bg = color + '22';
+  return `<span class="exec-badge" style="background:${bg};color:${color}">${p}%</span>`;
+}
+
+/* ── Compute totals first (needed for header) ── */
+const totalInvBudget = DATA.bigBets.reduce((s, b) => s + b.budget, 0);
+const totalInvActual = DATA.bigBets.reduce((s, b) => s + b.actual, 0);
+const totalBudget    = totalInvBudget + DATA.opex.budget;
+const totalActual    = totalInvActual + DATA.opex.actual;
+
+/* ── Populate header ── */
+document.getElementById('hdr-title').textContent  = `Budget Report · ${DATA.period.month} ${DATA.period.year}`;
+document.getElementById('hdr-period').textContent = `YTD execution · vs. ${DATA.period.prev}`;
+
+document.getElementById('hdr-stats').innerHTML = `
+  <div class="hstat primary">
+    <div class="hstat-num">${DATA.overallExec}%</div>
+    <div class="hstat-label">Overall Exec.</div>
+  </div>
+  <div class="hstat green">
+    <div class="hstat-num">${fmt(totalActual)}</div>
+    <div class="hstat-label">Disbursed</div>
+  </div>
+  <div class="hstat purple">
+    <div class="hstat-num">${fmt(totalBudget)}</div>
+    <div class="hstat-label">Total Budget</div>
+  </div>`;
+
+document.getElementById('hdr-areas').innerHTML = DATA.bigBets.map(b => {
+  const pc = b.pillColor || b.color;
+  return `<span class="harea-pill" style="color:${pc};border-color:${pc}55;background:${pc}18">${b.short} · ${pct(b.actual,b.budget)}%</span>`;
+}).join('');
+
+/* ── Tab switching with animation replay ── */
+const chartInstances = {};
+let chartsRendered = false;
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+
+  if (id === 'ytd') {
+    if (!chartsRendered) { renderCharts(); chartsRendered = true; }
+    else { replayCharts(); }
+    replayProgressBars();
+  }
+}
+
+function replayCharts() {
+  Object.values(chartInstances).forEach(chart => {
+    chart.reset();
+    chart.update();
+  });
+}
+
+function replayProgressBars() {
+  const fills = document.querySelectorAll('.progress-fill');
+  fills.forEach(f => {
+    f.classList.remove('animate');
+    f.style.width = '0%';
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    fills.forEach(f => {
+      f.classList.add('animate');
+      f.style.width = (f.dataset.target || '0') + '%';
+    });
+  }));
+}
+
+/* ================================================================
+   TAB 1 — YTD PROGRESS
+   ================================================================ */
+document.getElementById('ytd-sub').textContent =
+  `${DATA.period.month} ${DATA.period.year} · vs. ${DATA.period.prev} comparison`;
+
+/* Donut charts */
+function renderCharts() {
+  const chartData = [
+    { id: 'ch-opex',    label: 'OPEX',        color: '#555555', budget: DATA.opex.budget,    actual: DATA.opex.actual },
+    { id: 'ch-inv',     label: 'Investments',  color: '#A62BFF', budget: totalInvBudget, actual: totalInvActual },
+    { id: 'ch-total',   label: 'Total',        color: '#F3FF00', budget: totalBudget,          actual: totalActual }
+  ];
+
+  chartData.forEach(c => {
+    const p      = pct(c.actual, c.budget);
+    const remain = c.budget - c.actual;
+    const ctx    = document.getElementById(c.id).getContext('2d');
+
+    chartInstances[c.id] = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [c.actual, Math.max(0, remain)],
+          backgroundColor: [c.color, '#252525'],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        cutout: '72%',
+        responsive: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const labels = ['Disbursed', 'Remaining'];
+                return `${labels[ctx.dataIndex]}: ${fmt(ctx.raw)}`;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    document.querySelector(`#${c.id}-pct`).textContent = p + '%';
+  });
+}
+
+/* Build chart card HTML */
+const chartsGrid = document.getElementById('charts-grid');
+[
+  { id: 'ch-opex',  label: 'OPEX',       budget: DATA.opex.budget,    actual: DATA.opex.actual },
+  { id: 'ch-inv',   label: 'Investments', budget: totalInvBudget,      actual: totalInvActual  },
+  { id: 'ch-total', label: 'Total',       budget: totalBudget,         actual: totalActual     }
+].forEach(c => {
+  const p = pct(c.actual, c.budget);
+  chartsGrid.innerHTML += `
+    <div class="chart-card">
+      <div class="chart-card-title">${c.label}</div>
+      <div class="chart-wrap">
+        <canvas id="${c.id}" width="120" height="120"></canvas>
+        <div class="chart-center">
+          <span class="chart-pct" id="${c.id}-pct">—</span>
+          <span class="chart-pct-label">exec.</span>
+        </div>
+      </div>
+      <div class="chart-meta">
+        <strong>${fmt(c.actual)}</strong>
+        of ${fmt(c.budget)}
+      </div>
+    </div>`;
+});
+
+/* Render on load and kick off progress bar animation */
+renderCharts(); chartsRendered = true;
+setTimeout(replayProgressBars, 120);
+
+/* Area progress bars — start at 0, animate on show */
+const progressList = document.getElementById('progress-list');
+DATA.bigBets.forEach(b => {
+  const p    = clamp(pct(b.actual, b.budget), 0, 100);
+  const cats = b.categories.map(c => `${c.name}: ${fmt(c.actual)} / ${fmt(c.budget)}`).join('<br>');
+  progressList.innerHTML += `
+    <div class="progress-row">
+      <div class="progress-label">${b.name}</div>
+      <div class="tooltip-wrap" style="flex:1">
+        <div class="progress-track">
+          <div class="progress-fill" data-target="${p}" style="width:0%;background:${b.color}"></div>
+        </div>
+        <div class="tooltip-box">${cats}</div>
+      </div>
+      <div class="progress-pct">${p}%</div>
+      <div class="progress-amt">${fmt(b.actual)}</div>
+    </div>`;
+});
+/* OPEX row */
+const op = clamp(pct(DATA.opex.actual, DATA.opex.budget), 0, 100);
+progressList.innerHTML += `
+  <div class="progress-row">
+    <div class="progress-label">OPEX</div>
+    <div class="tooltip-wrap" style="flex:1">
+      <div class="progress-track">
+        <div class="progress-fill" data-target="${op}" style="width:0%;background:#555"></div>
+      </div>
+      <div class="tooltip-box">Budget: ${fmt(DATA.opex.budget)}<br>Actual: ${fmt(DATA.opex.actual)}</div>
+    </div>
+    <div class="progress-pct">${op}%</div>
+    <div class="progress-amt">${fmt(DATA.opex.actual)}</div>
+  </div>`;
+
+/* ================================================================
+   TAB 2 — BY AREA
+   ================================================================ */
+const tbody = document.getElementById('area-tbody');
+DATA.bigBets.forEach((b, i) => {
+  const p      = pct(b.actual, b.budget);
+  const rowId  = 'area-' + b.id;
+
+  /* Parent row */
+  tbody.innerHTML += `
+    <tr class="area-parent" id="${rowId}" onclick="toggleArea('${rowId}')">
+      <td>
+        <div class="td-inner">
+          <span class="area-dot" style="background:${b.color}"></span>
+          <span class="area-name">${b.name}</span>
+          <span class="area-chevron">&#9662;</span>
+        </div>
+      </td>
+      <td><div class="td-inner-plain">${fmt(b.budget)}</div></td>
+      <td><div class="td-inner-plain"><strong>${fmt(b.actual)}</strong></div></td>
+      <td>
+        <div class="td-inner-plain">
+          <div class="tooltip-wrap">
+            <div class="bar-cell"><div class="bar-mini"><div class="bar-mini-fill" style="width:${clamp(p,0,100)}%;background:${b.color}"></div></div></div>
+            <div class="tooltip-box">Budget: ${fmt(b.budget)}<br>Actual: ${fmt(b.actual)}<br>Exec: ${p}%</div>
+          </div>
+          ${execBadge(p, b.color)}
+        </div>
+      </td>
+      <td><div class="td-inner-plain">${deltaLabel(b.actual, b.prevActual)}</div></td>
+      <td></td>
+    </tr>`;
+
+  /* Child rows */
+  b.categories.forEach(c => {
+    const cp = pct(c.actual, c.budget);
+    tbody.innerHTML += `
+      <tr class="area-child hidden" data-parent="${rowId}">
+        <td>
+          <div class="td-inner">
+            <span class="area-name area-child">&#8212; ${c.name}</span>
+          </div>
+        </td>
+        <td><div class="td-inner-plain" style="color:var(--text-mt)">${fmt(c.budget)}</div></td>
+        <td><div class="td-inner-plain">${fmt(c.actual)}</div></td>
+        <td>
+          <div class="td-inner-plain">
+            <div class="bar-cell"><div class="bar-mini"><div class="bar-mini-fill" style="width:${clamp(cp,0,100)}%;background:${b.color}88"></div></div></div>
+            ${execBadge(cp, b.color)}
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>`;
+  });
+});
+
+/* OPEX parent row */
+const opx = pct(DATA.opex.actual, DATA.opex.budget);
+tbody.innerHTML += `
+  <tr class="area-parent" style="border-top:2px solid var(--border-md)">
+    <td><div class="td-inner"><span class="area-dot" style="background:#555"></span><span class="area-name">OPEX</span></div></td>
+    <td><div class="td-inner-plain">${fmt(DATA.opex.budget)}</div></td>
+    <td><div class="td-inner-plain"><strong>${fmt(DATA.opex.actual)}</strong></div></td>
+    <td><div class="td-inner-plain">${execBadge(opx,'#555')}</div></td>
+    <td><div class="td-inner-plain">${deltaLabel(DATA.opex.actual, DATA.opex.prevActual)}</div></td>
+    <td></td>
+  </tr>`;
+
+function toggleArea(rowId) {
+  const parent = document.getElementById(rowId);
+  parent.classList.toggle('open');
+  document.querySelectorAll(`[data-parent="${rowId}"]`).forEach(r => r.classList.toggle('hidden'));
+}
+
+/* ================================================================
+   TAB 3 — WHAT'S NEW
+   ================================================================ */
+document.getElementById('news-sub').textContent =
+  `Memos signed and disbursements processed in ${DATA.period.month} ${DATA.period.year}, by team.`;
+
+const accordions = document.getElementById('news-accordions');
+DATA.bigBets.forEach((b, i) => {
+  const totalMemos  = b.memos.reduce((s, m) => s + m.amount, 0);
+  const totalDisb   = b.disbursements.reduce((s, d) => s + d.amount, 0);
+  const count       = b.memos.length + b.disbursements.length;
+  const groupId     = 'wb-' + b.id;
+
+  const memoRows = b.memos.length
+    ? b.memos.map(m => `<div class="wb-item"><span class="wb-org">${m.org}</span><div class="wb-meta"><span class="wb-date">${m.date}</span><span class="wb-amt">${fmt(m.amount)}</span></div></div>`).join('')
+    : '<p class="empty-note">No memos signed this month.</p>';
+
+  const disbRows = b.disbursements.length
+    ? b.disbursements.map(d => `<div class="wb-item"><span class="wb-org">${d.org}</span><div class="wb-meta"><span class="wb-date">${d.date}</span><span class="wb-amt">${fmt(d.amount)}</span></div></div>`).join('')
+    : '<p class="empty-note">No disbursements this month.</p>';
+
+  accordions.innerHTML += `
+    <div class="wb-group ${i === 0 ? 'open' : ''}" id="${groupId}">
+      <div class="wb-header" onclick="toggleWb('${groupId}')">
+        <span class="wb-dot" style="background:${b.color}"></span>
+        <span class="wb-title">${b.name}
+          <span class="wb-sub">Memos: ${fmt(totalMemos)} &middot; Disbursed: ${fmt(totalDisb)}</span>
+        </span>
+        <span class="wb-count">${count} item${count !== 1 ? 's' : ''}</span>
+        <span class="wb-chevron">&#9662;</span>
+      </div>
+      <div class="wb-body">
+        <div class="wb-section">
+          <div class="wb-section-title">&#128196; Memos signed</div>
+          ${memoRows}
+        </div>
+        <div class="wb-section">
+          <div class="wb-section-title">&#128184; Disbursements</div>
+          ${disbRows}
+        </div>
+      </div>
+    </div>`;
+});
+
+function toggleWb(id) { document.getElementById(id).classList.toggle('open'); }
+
+/* ================================================================
+   TAB 4 — FORECAST
+   ================================================================ */
+const ftbody = document.getElementById('forecast-tbody');
+let totBudget = 0, totCommitted = 0, totDisbursed = 0, totPipeline = 0;
+
+DATA.forecast.forEach(r => {
+  totBudget    += r.budget;
+  totCommitted += r.committed;
+  totDisbursed += r.disbursed;
+  totPipeline  += r.pipeline;
+  const be  = pct(r.disbursed, r.budget);
+  const clr = r.color;
+
+  ftbody.innerHTML += `
+    <tr>
+      <td><span style="display:inline-flex;align-items:center;gap:.4rem"><span style="width:9px;height:9px;border-radius:50%;background:${clr};display:inline-block;flex-shrink:0"></span>${r.area}</span></td>
+      <td>${fmt(r.budget)}</td>
+      <td>${fmt(r.committed)}</td>
+      <td>${fmt(r.disbursed)}</td>
+      <td>${r.pipeline ? fmt(r.pipeline) : '—'}</td>
+      <td>
+        <div class="be-bar-wrap">
+          <div class="be-bar-track"><div class="be-bar-fill" style="width:${clamp(be,0,100)}%;background:${clr}"></div></div>
+          <span class="be-pct" style="color:${clr}">${be}%</span>
+        </div>
+      </td>
+    </tr>`;
+});
+
+/* Total row */
+const totBe = pct(totDisbursed, totBudget);
+ftbody.innerHTML += `
+  <tr class="total-row">
+    <td>Total</td>
+    <td>${fmt(totBudget)}</td>
+    <td>${fmt(totCommitted)}</td>
+    <td>${fmt(totDisbursed)}</td>
+    <td>${fmt(totPipeline)}</td>
+    <td><span style="font-weight:800">${totBe}%</span></td>
+  </tr>`;
+</script>
+</body>
+</html>
