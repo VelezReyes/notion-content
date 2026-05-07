@@ -44,7 +44,7 @@
 }
 
 body { font-family: var(--font); background: #0D0D0D; color: var(--text-md); min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
-.root { max-width: 860px; margin: 0 auto; }
+.root { max-width: 1600px; margin: 0 auto; }
 
 /* ── Header (dashboard style, full dark) ── */
 .header {
@@ -176,11 +176,8 @@ body { font-family: var(--font); background: #0D0D0D; color: var(--text-md); min
 .bar-mini-fill { height: 100%; border-radius: 4px; }
 .exec-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 
-/* ── Tooltip ── */
-.tooltip-wrap { position: relative; display: inline-block; }
-.tooltip-box { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #1A1A1A; border: 1px solid #333; color: #CCC; font-size: 11px; line-height: 1.65; padding: .6rem .85rem; border-radius: 6px; white-space: nowrap; z-index: 99; pointer-events: none; }
-.tooltip-box::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #333; }
-.tooltip-wrap:hover .tooltip-box { display: block; }
+/* ── Fixed tooltip (global) ── */
+#tt { position: fixed; background: #1C1C1C; border: 1px solid #383838; color: #CCC; font-size: 11.5px; line-height: 1.75; padding: .55rem .95rem; border-radius: 7px; white-space: nowrap; z-index: 9999; pointer-events: none; display: none; box-shadow: 0 6px 22px rgba(0,0,0,.6); }
 
 /* ── What's New accordions ── */
 .wb-group { background: #141414; border: 1px solid #222; border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
@@ -463,6 +460,7 @@ const DATA = {
 </footer>
 
 </div><!-- /root -->
+<div id="tt"></div>
 
 <!-- ============================================================
      JAVASCRIPT — rendering + interactivity
@@ -472,6 +470,35 @@ const DATA = {
 const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
 const pct = (a, b) => b ? Math.round((a / b) * 100) : 0;
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+
+/* ── Fixed tooltip ── */
+const TT = document.getElementById('tt');
+function showTT(e) {
+  TT.innerHTML = (e.currentTarget.dataset.tip || '').replace(/\|/g, '<br>');
+  TT.style.display = 'block';
+  moveTT(e);
+}
+function moveTT(e) {
+  const tw = TT.offsetWidth, th = TT.offsetHeight;
+  TT.style.left = Math.min(e.clientX + 16, window.innerWidth  - tw - 10) + 'px';
+  TT.style.top  = Math.max(e.clientY - th - 14, 8) + 'px';
+}
+function hideTT() { TT.style.display = 'none'; }
+function externalTooltip(context) {
+  const { chart, tooltip } = context;
+  if (tooltip.opacity === 0) { hideTT(); return; }
+  const pos  = chart.canvas.getBoundingClientRect();
+  const html = tooltip.dataPoints.map(dp => {
+    return `${['Disbursed','Remaining'][dp.dataIndex]}: ${fmt(dp.raw)}`;
+  }).join('<br>');
+  TT.innerHTML = html;
+  TT.style.display = 'block';
+  const cx = pos.left + tooltip.caretX;
+  const cy = pos.top  + tooltip.caretY;
+  const tw = TT.offsetWidth, th = TT.offsetHeight;
+  TT.style.left = Math.min(cx + 16, window.innerWidth  - tw - 10) + 'px';
+  TT.style.top  = Math.max(cy - th - 14, 8) + 'px';
+}
 
 function deltaLabel(actual, prev) {
   const diff = actual - prev;
@@ -588,14 +615,7 @@ function renderCharts() {
         responsive: false,
         plugins: {
           legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => {
-                const labels = ['Disbursed', 'Remaining'];
-                return `${labels[ctx.dataIndex]}: ${fmt(ctx.raw)}`;
-              }
-            }
-          }
+          tooltip: { enabled: false, external: externalTooltip }
         }
       }
     });
@@ -637,15 +657,14 @@ setTimeout(replayProgressBars, 120);
 const progressList = document.getElementById('progress-list');
 DATA.bigBets.forEach(b => {
   const p    = clamp(pct(b.actual, b.budget), 0, 100);
-  const cats = b.categories.map(c => `${c.name}: ${fmt(c.actual)} / ${fmt(c.budget)}`).join('<br>');
+  const cats = b.categories.map(c => `${c.name}: ${fmt(c.actual)} / ${fmt(c.budget)}`).join('|');
   progressList.innerHTML += `
     <div class="progress-row">
       <div class="progress-label">${b.name}</div>
-      <div class="tooltip-wrap" style="flex:1">
-        <div class="progress-track">
+      <div style="flex:1">
+        <div class="progress-track" data-tip="${cats}" onmouseenter="showTT(event)" onmousemove="moveTT(event)" onmouseleave="hideTT()">
           <div class="progress-fill" data-target="${p}" style="width:0%;background:${b.color}"></div>
         </div>
-        <div class="tooltip-box">${cats}</div>
       </div>
       <div class="progress-pct">${p}%</div>
       <div class="progress-amt">${fmt(b.actual)}</div>
@@ -656,11 +675,10 @@ const op = clamp(pct(DATA.opex.actual, DATA.opex.budget), 0, 100);
 progressList.innerHTML += `
   <div class="progress-row">
     <div class="progress-label">OPEX</div>
-    <div class="tooltip-wrap" style="flex:1">
-      <div class="progress-track">
+    <div style="flex:1">
+      <div class="progress-track" data-tip="Budget: ${fmt(DATA.opex.budget)}|Actual: ${fmt(DATA.opex.actual)}" onmouseenter="showTT(event)" onmousemove="moveTT(event)" onmouseleave="hideTT()">
         <div class="progress-fill" data-target="${op}" style="width:0%;background:#555"></div>
       </div>
-      <div class="tooltip-box">Budget: ${fmt(DATA.opex.budget)}<br>Actual: ${fmt(DATA.opex.actual)}</div>
     </div>
     <div class="progress-pct">${op}%</div>
     <div class="progress-amt">${fmt(DATA.opex.actual)}</div>
@@ -687,10 +705,9 @@ DATA.bigBets.forEach((b, i) => {
       <td><div class="td-inner-plain">${fmt(b.budget)}</div></td>
       <td><div class="td-inner-plain"><strong>${fmt(b.actual)}</strong></div></td>
       <td>
-        <div class="td-inner-plain">
-          <div class="tooltip-wrap">
-            <div class="bar-cell"><div class="bar-mini"><div class="bar-mini-fill" style="width:${clamp(p,0,100)}%;background:${b.color}"></div></div></div>
-            <div class="tooltip-box">Budget: ${fmt(b.budget)}<br>Actual: ${fmt(b.actual)}<br>Exec: ${p}%</div>
+        <div class="td-inner-plain" style="display:flex;align-items:center;gap:.4rem">
+          <div class="bar-cell" data-tip="Budget: ${fmt(b.budget)}|Actual: ${fmt(b.actual)}|Exec: ${p}%" onmouseenter="showTT(event)" onmousemove="moveTT(event)" onmouseleave="hideTT()" style="cursor:default">
+            <div class="bar-mini"><div class="bar-mini-fill" style="width:${clamp(p,0,100)}%;background:${b.color}"></div></div>
           </div>
           ${execBadge(p, b.color)}
         </div>
@@ -730,7 +747,14 @@ tbody.innerHTML += `
     <td><div class="td-inner"><span class="area-dot" style="background:#555"></span><span class="area-name">OPEX</span></div></td>
     <td><div class="td-inner-plain">${fmt(DATA.opex.budget)}</div></td>
     <td><div class="td-inner-plain"><strong>${fmt(DATA.opex.actual)}</strong></div></td>
-    <td><div class="td-inner-plain">${execBadge(opx,'#555')}</div></td>
+    <td>
+      <div class="td-inner-plain" style="display:flex;align-items:center;gap:.4rem">
+        <div class="bar-cell" data-tip="Budget: ${fmt(DATA.opex.budget)}|Actual: ${fmt(DATA.opex.actual)}|Exec: ${opx}%" onmouseenter="showTT(event)" onmousemove="moveTT(event)" onmouseleave="hideTT()" style="cursor:default">
+          <div class="bar-mini"><div class="bar-mini-fill" style="width:${clamp(opx,0,100)}%;background:#666"></div></div>
+        </div>
+        ${execBadge(opx,'#555')}
+      </div>
+    </td>
     <td><div class="td-inner-plain">${deltaLabel(DATA.opex.actual, DATA.opex.prevActual)}</div></td>
     <td></td>
   </tr>`;
