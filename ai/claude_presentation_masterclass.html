@@ -457,24 +457,26 @@ code {
           <div class="step-row">
             <div class="step-num">1</div>
             <div class="step-content">
-              <h3>Download the Skill file</h3>
-              <p>Use the download buttons at the top — pick the one that matches your brand. You'll get a <code>.md</code> file. Save it somewhere easy to find.</p>
-              <p class="tip">→ No need to open or modify it. Upload it as-is.</p>
+              <h3>Descarga el archivo del Skill</h3>
+              <p>Usa los botones de descarga arriba — elige el que corresponde a tu marca. Se abrirá Google Drive en una nueva pestaña.</p>
+              <p class="tip">→ En Drive: <strong>Archivo → Descargar</strong> (o el ícono de descarga ↓). Guárdalo donde lo encuentres fácil.</p>
+              <p class="tip">→ No lo abras ni lo modifiques. Súbelo tal cual.</p>
             </div>
           </div>
           <div class="step-row">
             <div class="step-num">2</div>
             <div class="step-content">
-              <h3>Go to Settings → Capabilities → Skills</h3>
-              <p>In claude.ai, click your profile icon → <strong>Settings</strong> → <strong>Capabilities</strong> → scroll to <strong>Skills</strong> → click <strong>Manage Skills</strong>.</p>
+              <h3>Ir a Customize → Skills</h3>
+              <p>En Claude (Cowork o Chat), abre <strong>Customize</strong> → <strong>Skills</strong> → <strong>+</strong> → <strong>Crear habilidad</strong> → <strong>Subir una habilidad</strong> → selecciona el <code>.md</code>.</p>
+              <p class="tip">→ Espera a que aparezca en tu lista antes de iniciar un chat.</p>
             </div>
           </div>
           <div class="step-row">
             <div class="step-num">3</div>
             <div class="step-content">
-              <h3>Upload the .md file</h3>
-              <p>Click <strong>+</strong> → <strong>Upload</strong> → select the <code>.md</code> file. Wait until it appears in your skills list.</p>
-              <p class="warn">→ Upload VER+ and VERE as separate skills — not together.</p>
+              <h3>Confirma que el skill aparece en tu lista</h3>
+              <p>El <code>.md</code> ya tiene todo embebido — logos, colores y reglas de marca. Sin configuración adicional.</p>
+              <p class="warn">→ Sube VER+ y VERE como skills separados — nunca juntos en el mismo chat.</p>
             </div>
           </div>
           <div class="step-row">
@@ -568,8 +570,8 @@ code {
         <span class="cg-chev">&#9662;</span>
       </div>
       <div class="cg-body">
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Downloaded the <code>.md</code> skill file for my brand from the buttons above</div></div>
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Went to <strong>Settings → Capabilities → Skills → Manage Skills</strong></div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Descargó el <code>.md</code> desde Drive (botones arriba → se abre Drive → Archivo → Descargar)</div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Abrió <strong>Customize → Skills → + → Crear habilidad → Subir una habilidad</strong></div></div>
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Uploaded the <code>.md</code> and confirmed it appears in my skills list</div></div>
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Tested <code>/</code> in a chat and the skill appears in the menu</div></div>
         <button class="reset-btn" onclick="resetCg('cg1')">Reset</button>
@@ -659,86 +661,27 @@ Content:
 /* ── Skill downloads ── */
 var SKILLS = {
   verp: {
-    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/ver%2B-presentation-skill.md',
-    releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/ver%2B-presentation-skill.md',
+    driveUrl: 'https://drive.google.com/file/d/1k3G91TRP3pRWhI_O6yoQbdPpP235vdFW/view?usp=drive_link',
     filename: 'ver+-presentation-skill.md',
     btnId:    'btn-verp'
   },
   vere: {
-    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/vere-presentation-skill.md',
-    releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/vere-presentation-skill.md',
+    driveUrl: 'https://drive.google.com/file/d/1S2eF_LeBaVHQScR-CFQLpPXDjWAJxlfO/view?usp=drive_link',
     filename: 'vere-presentation-skill.md',
     btnId:    'btn-vere'
   }
 };
 
-/* Pre-fetch raw files as text — available for blob download when opened directly */
-var CACHE = {};
-Object.keys(SKILLS).forEach(function(key) {
-  fetch(SKILLS[key].rawUrl, { cache: 'force-cache' })
-    .then(function(r) { return r.ok ? r.text() : null; })
-    .then(function(text) { if (text) CACHE[key] = text; })
-    .catch(function() {});
-});
+/* Skills loaded */
 
 function dlSkill(key) {
   var s   = SKILLS[key];
   var btn = document.getElementById(s.btnId);
   var orig = btn.innerHTML;
-
-  function triggerDownload(url, filename) {
-    /* Always use an <a download> click — never window.open.
-       This keeps the download in the same context (no new tab)
-       and respects Content-Disposition: attachment from GitHub Releases. */
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }
-
-  /* Strategy 1: if we have the raw text cached, build a blob and download
-     instantly — no network request, works in any context. */
-  if (CACHE[key]) {
-    try {
-      var blobUrl = URL.createObjectURL(
-        new Blob([CACHE[key]], { type: 'text/plain' })
-      );
-      triggerDownload(blobUrl, s.filename);
-      setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 3000);
-      btn.innerHTML = '✓&nbsp; Downloaded!';
-      btn.style.opacity = '.85';
-      setTimeout(function() { btn.innerHTML = orig; btn.style.opacity = ''; }, 2500);
-      return;
-    } catch(e) { /* cache failed — fall through */ }
-  }
-
-  /* Strategy 2: fetch the file, build a blob, download.
-     Works even inside iframes because we own the blob URL. */
-  btn.innerHTML = '↓&nbsp; Downloading…';
-  fetch(s.releaseUrl)
-    .then(function(r) {
-      if (!r.ok) throw new Error('fetch failed');
-      return r.blob();
-    })
-    .then(function(blob) {
-      var blobUrl = URL.createObjectURL(blob);
-      triggerDownload(blobUrl, s.filename);
-      setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 3000);
-      btn.innerHTML = '✓&nbsp; Downloaded!';
-      btn.style.opacity = '.85';
-      setTimeout(function() { btn.innerHTML = orig; btn.style.opacity = ''; }, 2500);
-    })
-    .catch(function() {
-      /* Strategy 3: last resort — direct anchor to release URL.
-         GitHub release links have Content-Disposition: attachment so
-         most browsers will download rather than navigate. */
-      triggerDownload(s.releaseUrl, s.filename);
-      btn.innerHTML = '✓&nbsp; Starting…';
-      setTimeout(function() { btn.innerHTML = orig; }, 2500);
-    });
+  /* Opens Drive in a new tab — file previews in Drive, use File → Download */
+  window.open(s.driveUrl, '_blank');
+  btn.innerHTML = '↗&nbsp; Abriendo en Drive…';
+  setTimeout(function() { btn.innerHTML = orig; }, 2500);
 }
 
 var TOTAL = 12;
