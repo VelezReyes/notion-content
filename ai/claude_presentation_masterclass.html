@@ -465,9 +465,8 @@ code {
           <div class="step-row">
             <div class="step-num">2</div>
             <div class="step-content">
-              <h3>Go to Customize → Skills</h3>
-              <p>In Claude (Cowork or Chat), open the <strong>Customize</strong> menu → <strong>Skills</strong> (Habilidades) → click <strong>+</strong> → <strong>Upload from the computer</strong> → select the <code>.md</code> file.</p>
-              <p class="tip">→ Wait until the skill appears in your list before starting a chat.</p>
+              <h3>Go to Settings → Capabilities → Skills</h3>
+              <p>In claude.ai, click your profile icon → <strong>Settings</strong> → <strong>Capabilities</strong> → scroll to <strong>Skills</strong> → click <strong>Manage Skills</strong>.</p>
             </div>
           </div>
           <div class="step-row">
@@ -570,8 +569,8 @@ code {
       </div>
       <div class="cg-body">
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Downloaded the <code>.md</code> skill file for my brand from the buttons above</div></div>
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Opened <strong>Customize → Skills (Habilidades)</strong> in Claude Cowork or Chat</div></div>
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Clicked <strong>+</strong> → <strong>Upload from the computer</strong> → selected the <code>.md</code> and confirmed it appears in the list</div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Went to <strong>Settings → Capabilities → Skills → Manage Skills</strong></div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Uploaded the <code>.md</code> and confirmed it appears in my skills list</div></div>
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Tested <code>/</code> in a chat and the skill appears in the menu</div></div>
         <button class="reset-btn" onclick="resetCg('cg1')">Reset</button>
       </div>
@@ -660,16 +659,16 @@ Content:
 /* ── Skill downloads ── */
 var SKILLS = {
   verp: {
-    rawUrl:     'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/ver%2B-presentation-skill.md',
+    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/ver%2B-presentation-skill.md',
     releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/ver%2B-presentation-skill.md',
-    filename:   'ver+-presentation-skill.md',
-    btnId:      'btn-verp'
+    filename: 'ver+-presentation-skill.md',
+    btnId:    'btn-verp'
   },
   vere: {
-    rawUrl:     'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/vere-presentation-skill.md',
+    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/vere-presentation-skill.md',
     releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/vere-presentation-skill.md',
-    filename:   'vere-presentation-skill.md',
-    btnId:      'btn-vere'
+    filename: 'vere-presentation-skill.md',
+    btnId:    'btn-vere'
   }
 };
 
@@ -683,39 +682,63 @@ Object.keys(SKILLS).forEach(function(key) {
 });
 
 function dlSkill(key) {
-  var s    = SKILLS[key];
-  var btn  = document.getElementById(s.btnId);
+  var s   = SKILLS[key];
+  var btn = document.getElementById(s.btnId);
   var orig = btn.innerHTML;
 
-  /* Detect if running inside an iframe (e.g. Notion embed) */
-  var isEmbedded = (function() {
-    try { return window.self !== window.top; } catch(e) { return true; }
-  })();
+  function triggerDownload(url, filename) {
+    /* Always use an <a download> click — never window.open.
+       This keeps the download in the same context (no new tab)
+       and respects Content-Disposition: attachment from GitHub Releases. */
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
-  if (!isEmbedded && CACHE[key]) {
-    /* Opened directly in browser: instant blob download, no extra steps */
+  /* Strategy 1: if we have the raw text cached, build a blob and download
+     instantly — no network request, works in any context. */
+  if (CACHE[key]) {
     try {
-      var blobUrl = URL.createObjectURL(new Blob([CACHE[key]], { type: 'text/plain' }));
-      var a = document.createElement('a');
-      a.href = blobUrl; a.download = s.filename;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 2000);
+      var blobUrl = URL.createObjectURL(
+        new Blob([CACHE[key]], { type: 'text/plain' })
+      );
+      triggerDownload(blobUrl, s.filename);
+      setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 3000);
       btn.innerHTML = '✓&nbsp; Downloaded!';
       btn.style.opacity = '.85';
       setTimeout(function() { btn.innerHTML = orig; btn.style.opacity = ''; }, 2500);
       return;
-    } catch(e) { /* fall through to Drive */ }
+    } catch(e) { /* cache failed — fall through */ }
   }
 
-  /* Inside Notion/iframe or blob failed: open GitHub Release URL.
-     GitHub releases serve files with Content-Disposition: attachment — direct download. */
-  var opened = window.open(s.releaseUrl, '_blank');
-  if (opened) {
-    btn.innerHTML = '↗&nbsp; Opening download…';
-  } else {
-    btn.innerHTML = '⚠&nbsp; Allow popups and try again';
-  }
-  setTimeout(function() { btn.innerHTML = orig; }, 2500);
+  /* Strategy 2: fetch the file, build a blob, download.
+     Works even inside iframes because we own the blob URL. */
+  btn.innerHTML = '↓&nbsp; Downloading…';
+  fetch(s.releaseUrl)
+    .then(function(r) {
+      if (!r.ok) throw new Error('fetch failed');
+      return r.blob();
+    })
+    .then(function(blob) {
+      var blobUrl = URL.createObjectURL(blob);
+      triggerDownload(blobUrl, s.filename);
+      setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 3000);
+      btn.innerHTML = '✓&nbsp; Downloaded!';
+      btn.style.opacity = '.85';
+      setTimeout(function() { btn.innerHTML = orig; btn.style.opacity = ''; }, 2500);
+    })
+    .catch(function() {
+      /* Strategy 3: last resort — direct anchor to release URL.
+         GitHub release links have Content-Disposition: attachment so
+         most browsers will download rather than navigate. */
+      triggerDownload(s.releaseUrl, s.filename);
+      btn.innerHTML = '✓&nbsp; Starting…';
+      setTimeout(function() { btn.innerHTML = orig; }, 2500);
+    });
 }
 
 var TOTAL = 12;
