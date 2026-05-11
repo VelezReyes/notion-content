@@ -465,8 +465,9 @@ code {
           <div class="step-row">
             <div class="step-num">2</div>
             <div class="step-content">
-              <h3>Go to Settings → Capabilities → Skills</h3>
-              <p>In claude.ai, click your profile icon → <strong>Settings</strong> → <strong>Capabilities</strong> → scroll to <strong>Skills</strong> → click <strong>Manage Skills</strong>.</p>
+              <h3>Go to Customize → Skills</h3>
+              <p>In Claude (Cowork or Chat), open the <strong>Customize</strong> menu → <strong>Skills</strong> (Habilidades) → click <strong>+</strong> → <strong>Upload from the computer</strong> → select the <code>.md</code> file.</p>
+              <p class="tip">→ Wait until the skill appears in your list before starting a chat.</p>
             </div>
           </div>
           <div class="step-row">
@@ -569,8 +570,8 @@ code {
       </div>
       <div class="cg-body">
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Downloaded the <code>.md</code> skill file for my brand from the buttons above</div></div>
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Went to <strong>Settings → Capabilities → Skills → Manage Skills</strong></div></div>
-        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Uploaded the <code>.md</code> and confirmed it appears in my skills list</div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Opened <strong>Customize → Skills (Habilidades)</strong> in Claude Cowork or Chat</div></div>
+        <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Clicked <strong>+</strong> → <strong>Upload from the computer</strong> → selected the <code>.md</code> and confirmed it appears in the list</div></div>
         <div class="ci" onclick="tick(this)"><div class="cb"></div><div class="ct">Tested <code>/</code> in a chat and the skill appears in the menu</div></div>
         <button class="reset-btn" onclick="resetCg('cg1')">Reset</button>
       </div>
@@ -659,16 +660,16 @@ Content:
 /* ── Skill downloads ── */
 var SKILLS = {
   verp: {
-    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/ver%2B-presentation-skill.md',
-    driveUrl: 'https://drive.usercontent.google.com/download?id=1k3G91TRP3pRWhI_O6yoQbdPpP235vdFW&export=download&authuser=0',
-    filename: 'ver+-presentation-skill.md',
-    btnId:    'btn-verp'
+    rawUrl:     'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/ver%2B-presentation-skill.md',
+    releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/ver%2B-presentation-skill.md',
+    filename:   'ver+-presentation-skill.md',
+    btnId:      'btn-verp'
   },
   vere: {
-    rawUrl:   'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/vere-presentation-skill.md',
-    driveUrl: 'https://drive.usercontent.google.com/download?id=1S2eF_LeBaVHQScR-CFQLpPXDjWAJxlfO&export=download&authuser=0',
-    filename: 'vere-presentation-skill.md',
-    btnId:    'btn-vere'
+    rawUrl:     'https://raw.githubusercontent.com/VelezReyes/notion-content/main/ai/skills/vere-presentation-skill.md',
+    releaseUrl: 'https://github.com/VelezReyes/notion-content/releases/download/skills-v1/vere-presentation-skill.md',
+    filename:   'vere-presentation-skill.md',
+    btnId:      'btn-vere'
   }
 };
 
@@ -706,9 +707,9 @@ function dlSkill(key) {
     } catch(e) { /* fall through to Drive */ }
   }
 
-  /* Inside Notion (or blob failed): open Drive download link in a new tab.
-     drive.usercontent.google.com triggers a direct download in the new tab. */
-  var opened = window.open(s.driveUrl, '_blank');
+  /* Inside Notion/iframe or blob failed: open GitHub Release URL.
+     GitHub releases serve files with Content-Disposition: attachment — direct download. */
+  var opened = window.open(s.releaseUrl, '_blank');
   if (opened) {
     btn.innerHTML = '↗&nbsp; Opening download…';
   } else {
