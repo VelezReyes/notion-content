@@ -374,9 +374,9 @@ code {
             VélezReyes+
           </div>
           <p class="hdr-cta-desc">Brand colors, layout system, and design rules for VR+ presentations. Includes the full visual identity — colors, type, and slide methodology.</p>
-          <button id="btn-verp" onclick="dlSkill('verp')" class="hdr-dl-btn" style="background:#A62BFF;color:#fff;">
+          <a href="https://drive.google.com/file/d/1L2jzVpeg5ZNlP6z-Awdqp4c2MfmxAlwK/view?usp=sharing" target="_blank" rel="noopener" class="hdr-dl-btn" style="background:#A62BFF;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">
             &#8595; Download Skill <span class="hdr-dl-ext">.md</span>
-          </button>
+          </a>
           <a href="https://docs.google.com/presentation/d/1bD_Gjw2ldGFscn5VWJTMvnd1xxzb7Sm5/edit?usp=sharing&ouid=103599941875695457184&rtpof=true&sd=true" target="_blank" rel="noopener" class="hdr-assets-link">
           🎨 &nbsp;VER+ Brand Assets &nbsp;→</a>
         </div>
@@ -388,9 +388,9 @@ code {
             VERE
           </div>
           <p class="hdr-cta-desc">Brand colors, layout system, and design rules for VERE presentations. Same methodology, tuned to VERE's visual identity and tone.</p>
-          <button id="btn-vere" onclick="dlSkill('vere')" class="hdr-dl-btn" style="background:#7d7863;color:#fff;">
+          <a href="https://drive.google.com/file/d/1S2eF_LeBaVHQScR-CFQLpPXDjWAJxlfO/view?usp=drive_link" target="_blank" rel="noopener" class="hdr-dl-btn" style="background:#7d7863;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">
             &#8595; Download Skill <span class="hdr-dl-ext">.md</span>
-          </button>
+          </a>
         </div>
 
       </div>
@@ -658,31 +658,6 @@ Content:
 </div><!-- /root -->
 
 <script>
-/* ── Skill downloads ── */
-var SKILLS = {
-  verp: {
-    driveUrl: 'https://drive.google.com/file/d/1L2jzVpeg5ZNlP6z-Awdqp4c2MfmxAlwK/view?usp=sharing',
-    filename: 'ver+-presentation-skill.md',
-    btnId:    'btn-verp'
-  },
-  vere: {
-    driveUrl: 'https://drive.google.com/file/d/1S2eF_LeBaVHQScR-CFQLpPXDjWAJxlfO/view?usp=drive_link',
-    filename: 'vere-presentation-skill.md',
-    btnId:    'btn-vere'
-  }
-};
-
-/* Skills loaded */
-
-function dlSkill(key) {
-  var s   = SKILLS[key];
-  var btn = document.getElementById(s.btnId);
-  var orig = btn.innerHTML;
-  /* Opens Drive in a new tab — file previews in Drive, use File → Download */
-  window.open(s.driveUrl, '_blank');
-  btn.innerHTML = '↗&nbsp; Abriendo en Drive…';
-  setTimeout(function() { btn.innerHTML = orig; }, 2500);
-}
 
 var TOTAL = 12;
 
