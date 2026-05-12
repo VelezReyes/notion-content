@@ -630,7 +630,6 @@ code {
     <div class="prompt-wrap">
       <div class="prompt-top">
         <span class="prompt-lbl">Master prompt — copy and fill in the brackets</span>
-        <button class="copy-btn" onclick="copyPb(this)">Copy</button>
       </div>
       <div class="pb" id="master-prompt">Using this skill, build a presentation with the following:
 
@@ -644,7 +643,6 @@ Content:
       <div style="margin-top:.5rem;padding:.65rem .85rem;background:var(--s2);border-radius:var(--rs);border:1px solid var(--b1);">
         <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--td);margin-bottom:.35rem;">Optional — add this line if your content is very raw</div>
         <div class="pb" id="optional-prompt" style="background:transparent;border:none;padding:0;font-size:12px;">Before generating, show me the slide-by-slide outline for my approval.</div>
-        <button class="copy-btn" style="margin-top:.4rem;" onclick="copyOptional(this)">Copy</button>
       </div>
     </div>
 
@@ -702,43 +700,6 @@ function updateAll() {
   document.getElementById('prog-fill').style.width = pct + '%';
 }
 
-function execCopy(el, btn) {
-  var ok = false;
-  /* Try modern clipboard API first (works when opened directly) */
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(el.innerText).then(function() {
-      flashBtn(btn);
-    }).catch(function() {
-      ok = legacyCopy(el, btn);
-    });
-    return;
-  }
-  /* Fallback: select + execCommand (works inside Notion sandbox) */
-  legacyCopy(el, btn);
-}
-
-function legacyCopy(el, btn) {
-  try {
-    var range = document.createRange();
-    range.selectNodeContents(el);
-    var sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    document.execCommand('copy');
-    sel.removeAllRanges();
-    flashBtn(btn);
-  } catch(e) {}
-}
-
-function flashBtn(btn) {
-  btn.textContent = 'Copied!';
-  btn.style.color = '#27CF77';
-  btn.style.borderColor = '#27CF77';
-  setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = ''; btn.style.borderColor = ''; }, 1800);
-}
-
-function copyOptional(btn) { execCopy(document.getElementById('optional-prompt'), btn); }
-function copyPb(btn)       { execCopy(document.getElementById('master-prompt'), btn); }
 </script>
 </body>
 </html>
