@@ -630,7 +630,7 @@ code {
     <div class="prompt-wrap">
       <div class="prompt-top">
         <span class="prompt-lbl">Master prompt — copy and fill in the brackets</span>
-        <button class="copy-btn" onclick="copyPb()">Copy</button>
+        <button class="copy-btn" onclick="copyPb(this)">Copy</button>
       </div>
       <div class="pb" id="master-prompt">Using this skill, build a presentation with the following:
 
@@ -644,7 +644,7 @@ Content:
       <div style="margin-top:.5rem;padding:.65rem .85rem;background:var(--s2);border-radius:var(--rs);border:1px solid var(--b1);">
         <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--td);margin-bottom:.35rem;">Optional — add this line if your content is very raw</div>
         <div class="pb" id="optional-prompt" style="background:transparent;border:none;padding:0;font-size:12px;">Before generating, show me the slide-by-slide outline for my approval.</div>
-        <button class="copy-btn" style="margin-top:.4rem;" onclick="copyOptional()">Copy</button>
+        <button class="copy-btn" style="margin-top:.4rem;" onclick="copyOptional(this)">Copy</button>
       </div>
     </div>
 
@@ -727,10 +727,9 @@ function updateAll() {
   document.getElementById('prog-fill').style.width = pct + '%';
 }
 
-function copyOptional() {
+function copyOptional(btn) {
   var text = document.getElementById('optional-prompt').innerText;
   navigator.clipboard.writeText(text).then(function() {
-    var btn = event.currentTarget;
     btn.textContent = 'Copied!';
     btn.style.color = '#27CF77';
     btn.style.borderColor = '#27CF77';
@@ -738,11 +737,10 @@ function copyOptional() {
   });
 }
 
-function copyPb() {
+function copyPb(btn) {
   var el = document.getElementById('master-prompt');
   var text = el.innerText;
   navigator.clipboard.writeText(text).then(function() {
-    var btn = event.currentTarget;
     btn.textContent = 'Copied!';
     btn.style.color = '#27CF77';
     btn.style.borderColor = '#27CF77';
