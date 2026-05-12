@@ -702,26 +702,43 @@ function updateAll() {
   document.getElementById('prog-fill').style.width = pct + '%';
 }
 
-function copyOptional(btn) {
-  var text = document.getElementById('optional-prompt').innerText;
-  navigator.clipboard.writeText(text).then(function() {
-    btn.textContent = 'Copied!';
-    btn.style.color = '#27CF77';
-    btn.style.borderColor = '#27CF77';
-    setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = ''; btn.style.borderColor = ''; }, 1800);
-  });
+function execCopy(el, btn) {
+  var ok = false;
+  /* Try modern clipboard API first (works when opened directly) */
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(el.innerText).then(function() {
+      flashBtn(btn);
+    }).catch(function() {
+      ok = legacyCopy(el, btn);
+    });
+    return;
+  }
+  /* Fallback: select + execCommand (works inside Notion sandbox) */
+  legacyCopy(el, btn);
 }
 
-function copyPb(btn) {
-  var el = document.getElementById('master-prompt');
-  var text = el.innerText;
-  navigator.clipboard.writeText(text).then(function() {
-    btn.textContent = 'Copied!';
-    btn.style.color = '#27CF77';
-    btn.style.borderColor = '#27CF77';
-    setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = ''; btn.style.borderColor = ''; }, 1800);
-  });
+function legacyCopy(el, btn) {
+  try {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
+    flashBtn(btn);
+  } catch(e) {}
 }
+
+function flashBtn(btn) {
+  btn.textContent = 'Copied!';
+  btn.style.color = '#27CF77';
+  btn.style.borderColor = '#27CF77';
+  setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = ''; btn.style.borderColor = ''; }, 1800);
+}
+
+function copyOptional(btn) { execCopy(document.getElementById('optional-prompt'), btn); }
+function copyPb(btn)       { execCopy(document.getElementById('master-prompt'), btn); }
 </script>
 </body>
 </html>
