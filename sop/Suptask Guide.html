@@ -569,6 +569,7 @@ body {
       </div>
       <div class="emerg-body">
         <p>For <strong>document signing requests</strong>: NDAs, agreements, letters, or any document that needs an authorized signature. Include the document, the parties involved, and any hard deadline.</p>
+        <p style="margin-top:.4rem;"><strong>⚠️ Before submitting this ticket:</strong> Make sure you already have the correct internal approvals in place. Do not request a signature without prior authorization. Additionally, any legal agreement involving third parties must have been reviewed by the relevant local lawyers before it is submitted for signature.</p>
         <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel, type <span class="method-pill">/suptask</span>, and select <em>Sign Documents</em>. Admin channels:</p>
         <p style="margin-top:.35rem;">
           <span class="channel-tag">#charity-ops</span>
@@ -661,34 +662,29 @@ body {
       <table class="data-table">
         <thead>
           <tr>
-            <th style="width:20%;">Priority</th>
-            <th style="width:20%;">First Response</th>
-            <th style="width:22%;">Resolution</th>
+            <th style="width:22%;">Priority</th>
+            <th style="width:24%;">Resolution Window</th>
             <th>When to use it</th>
           </tr>
         </thead>
         <tbody>
           <tr class="pr-critical">
-            <td><span class="pbadge critical"><span class="dot"></span>Critical</span></td>
-            <td class="td-label">2 hours</td>
-            <td class="td-label">24 hours</td>
-            <td>Blocking operations, major incident, immediate legal or financial risk. Everything stops until this is resolved.</td>
+            <td class="td-label">Critical</td>
+            <td class="td-label">1 working day</td>
+            <td>Major incident, immediate legal or financial risk, or any matter flagged by David / Mariel. Everything stops until this is resolved.</td>
           </tr>
           <tr class="pr-high">
-            <td><span class="pbadge high"><span class="dot"></span>High</span></td>
-            <td class="td-label">4–8 hours</td>
-            <td class="td-label">2–3 working days</td>
-            <td>Significant impact on work or a person, but not fully blocking. Needs attention the same day it's opened.</td>
+            <td class="td-label">High</td>
+            <td class="td-label">Up to 4 working days</td>
+            <td>Significant impact, but not fully blocked. Needs attention without delay.</td>
           </tr>
           <tr class="pr-medium">
-            <td><span class="pbadge medium"><span class="dot"></span>Medium</span></td>
-            <td class="td-label">1–2 working days</td>
-            <td class="td-label">5 working days</td>
-            <td>Important but can wait for the normal queue. No immediate blockers. Can be planned and scheduled.</td>
+            <td class="td-label">Medium</td>
+            <td class="td-label">Up to 7 working days</td>
+            <td>Important but can wait for the normal queue. No immediate blockers.</td>
           </tr>
           <tr class="pr-low">
-            <td><span class="pbadge low"><span class="dot"></span>Low</span></td>
-            <td class="td-label">3 working days</td>
+            <td class="td-label">Low</td>
             <td class="td-label">No fixed date · Best effort</td>
             <td>No urgency. Informational, optional, or nice to have addressed eventually.</td>
           </tr>
@@ -701,28 +697,6 @@ body {
       For <strong>Due Diligence</strong> and <strong>Legal</strong> tickets, internal first-response times above still apply — the team will acknowledge and engage quickly. However, <strong>resolution depends on external parties</strong> (trust and/or lawyers) whose availability is outside VélezReyes+' control.
       <br><br>
       When opening these tickets: include any external deadline in the ticket itself, set expectations with your stakeholders upfront, and do not treat the internal SLA as a commitment for final resolution.
-    </div>
-
-    <div class="block-title" style="margin-top:1rem;">How to choose the right priority</div>
-
-    <div class="emerg-item" id="p-choose">
-      <div class="emerg-header" onclick="toggleEmerg('p-choose')">
-        <div class="emerg-dot gray"></div>
-        <span class="emerg-title">Ask yourself these questions before selecting a priority</span>
-        <span class="emerg-chevron">▾</span>
-      </div>
-      <div class="emerg-body">
-        <p><strong>Is something actively broken or blocked right now?</strong> → Critical or High.</p>
-        <p><strong>Does this need to be resolved today to avoid a problem?</strong> → High.</p>
-        <p><strong>Is this important but can wait a few days without consequence?</strong> → Medium.</p>
-        <p><strong>Is there no deadline and no real urgency?</strong> → Low.</p>
-        <p style="margin-top:.5rem;color:var(--text-mt);">If in doubt, choose <span class="pbadge medium" style="vertical-align:middle;font-size:10px;padding:2px 7px;"><span class="dot"></span>Medium</span>. It's better to under-prioritize and let the team reprioritize than to mark everything Critical and dilute the signal.</p>
-      </div>
-    </div>
-
-    <div class="callout black" style="margin-top:.25rem;">
-      <div class="callout-title">Priority is a shared signal, not a personal preference</div>
-      Setting everything to Critical or High doesn't make your ticket move faster — it makes the system less useful for everyone. Use the levels honestly so the team can triage effectively.
     </div>
 
   </div><!-- /priorities -->
