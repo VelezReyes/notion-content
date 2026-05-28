@@ -153,7 +153,7 @@ body {
   color: var(--text-mt); margin-bottom: .15rem;
 }
 .step-title { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
-.step-who   { font-size: 12px; color: var(--text-mt); }
+.step-who   { font-size: 14px; color: var(--text-mt); }
 .step-chevron {
   font-size: 14px; color: var(--text-mt);
   transition: transform .2s;
@@ -164,7 +164,7 @@ body {
 .step-body-expand {
   display: none;
   padding: .75rem 1.25rem 1rem 4.1rem;
-  font-size: 13px;
+  font-size: 15px;
   border-top: 1px solid var(--border);
 }
 .step-card.open .step-body-expand { display: block; }
@@ -177,7 +177,7 @@ body {
   border-radius: var(--radius-sm);
   padding: .8rem 1rem;
   margin: .6rem 0;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.6;
   border-left: 4px solid var(--purple);
   background: var(--purple-lt);
@@ -219,7 +219,7 @@ body {
   color: var(--text-mt); margin-bottom: .3rem;
 }
 .fw-name { font-size: 15px; font-weight: 700; color: var(--text-dk); margin-bottom: .35rem; }
-.fw-pillar p { font-size: 12px; color: var(--text-md); line-height: 1.5; margin-bottom: .3rem; }
+.fw-pillar p { font-size: 14px; color: var(--text-md); line-height: 1.5; margin-bottom: .3rem; }
 .fw-pillar p:last-child { margin-bottom: 0; }
 
 /* ── Accordion items ── */
@@ -246,7 +246,7 @@ body {
 .emerg-dot.green  { background: var(--green); }
 .emerg-dot.purple { background: var(--purple); }
 .emerg-dot.gray   { background: #AAA; }
-.emerg-title { font-size: 13px; font-weight: 600; color: var(--text-dk); flex: 1; }
+.emerg-title { font-size: 15px; font-weight: 600; color: var(--text-dk); flex: 1; }
 .emerg-badge {
   font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
   padding: 2px 9px; border-radius: 20px; flex-shrink: 0;
@@ -258,7 +258,7 @@ body {
 .emerg-body {
   display: none;
   padding: .1rem 1rem .8rem 2.15rem;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-md);
   line-height: 1.6;
   border-top: 1px solid var(--border);
@@ -268,7 +268,7 @@ body {
 .emerg-body p:last-child { margin-bottom: 0; }
 
 /* ── Data table ── */
-.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 15px; }
 .data-table th { text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--black); color: var(--white); padding: 7px 11px; }
 .data-table td { padding: 8px 11px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .data-table tr:last-child td { border-bottom: none; }
@@ -323,9 +323,9 @@ body {
 }
 
 /* ── Block / section titles ── */
-.block-title { font-size: 14px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
-.sec-title   { font-size: 19px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
-.sec-sub     { font-size: 12px; color: var(--text-mt); margin-bottom: .85rem; }
+.block-title { font-size: 16px; font-weight: 700; color: var(--text-dk); margin-bottom: .5rem; }
+.sec-title   { font-size: 21px; font-weight: 700; color: var(--text-dk); margin-bottom: .15rem; }
+.sec-sub     { font-size: 14px; color: var(--text-mt); margin-bottom: .85rem; }
 
 /* ── Responsive ── */
 @media (max-width: 560px) {
@@ -376,8 +376,8 @@ body {
 
     <div class="card">
       <div class="block-title">What is Suptask?</div>
-      <p style="font-size:13px;line-height:1.7;color:var(--text-md);">Suptask is our internal ticketing system, built directly into Slack. It lets anyone on the team create structured requests — for HR, legal, design, operations, or anything that requires a tracked response — without leaving the tools we already use every day.</p>
-      <p style="font-size:13px;line-height:1.7;color:var(--text-md);margin-top:.5rem;">Every ticket goes to the right team through the right channel, with the right context attached. No lost messages, no unclear ownership.</p>
+      <p style="font-size:15px;line-height:1.7;color:var(--text-md);">Suptask is our internal ticketing system, built directly into Slack. It lets anyone on the team create structured requests (for HR, legal, design, operations, or anything that requires a tracked response) without leaving the tools we already use every day.</p>
+      <p style="font-size:15px;line-height:1.7;color:var(--text-md);margin-top:.5rem;">Every ticket goes to the right team through the right channel, with the right context attached. No lost messages, no unclear ownership.</p>
     </div>
 
     <div class="block-title" style="margin-top:.25rem;">Two ways to open a ticket</div>
@@ -385,7 +385,7 @@ body {
       <div class="fw-pillar private">
         <div class="fw-label">Method 1</div>
         <div class="fw-name"><span class="method-pill">/suptask</span></div>
-        <p style="margin-top:.5rem;">Type <strong>/suptask</strong> in any Slack chat — a DM or a channel. A form selector will appear. Pick the right form and fill it out.</p>
+        <p style="margin-top:.5rem;">Type <strong>/suptask</strong> in any Slack chat (a DM or a channel). A form selector will appear. Pick the right form and fill it out.</p>
         <p style="color:var(--purple);font-weight:600;font-size:12px;">Works everywhere in Slack.</p>
       </div>
       <div class="fw-pillar channel">
@@ -398,7 +398,7 @@ body {
 
     <div class="callout yellow">
       <div class="callout-title">Which method should I use?</div>
-      Use <strong>/suptask</strong> when you're starting fresh and want to fill in all the details yourself. Use the <strong>emoji reaction</strong> when there's already a Slack message that captures the full context of the request — the message becomes the ticket body.
+      We recommend the <strong>emoji reaction 🎫</strong> for most cases: it's the easiest and fastest way. Share your context in Slack as you normally would, then react to your message with the ticket emoji to turn it into a tracked request. Suptask captures the message and its thread automatically. Use <strong>/suptask</strong> when you need to start a ticket from scratch without an existing message.
     </div>
 
     <div class="block-title" style="margin-top:1rem;">Two types of forms</div>
@@ -406,7 +406,7 @@ body {
       <div class="fw-pillar private">
         <div class="fw-label">🔒 Private Forms</div>
         <div class="fw-name">Open via Direct Message</div>
-        <p>For personal or individual topics. Always opened from a DM — never from a public channel.</p>
+        <p>For personal or individual topics. Always opened from a DM, never from a public channel.</p>
         <p style="margin-top:.35rem;font-size:11px;color:var(--text-mt);">Deel · General Questions · HR · Profit.co</p>
       </div>
       <div class="fw-pillar channel">
@@ -415,11 +415,6 @@ body {
         <p>For team or operational requests. Must be opened from the specific channel they belong to.</p>
         <p style="margin-top:.35rem;font-size:11px;color:var(--text-mt);">Design/Comms · Due Diligence · Legal · Sign Documents</p>
       </div>
-    </div>
-
-    <div class="callout green">
-      <div class="callout-title">Quick rule of thumb</div>
-      If it's about <strong>you personally</strong> (contract, salary, HR, OKRs) → open it from a DM using <span class="method-pill" style="font-size:11px;">/suptask</span>. If it's a <strong>team request or operational matter</strong> → go to the correct channel and open it there.
     </div>
 
   </div><!-- /overview -->
@@ -433,8 +428,8 @@ body {
     <div class="sec-sub">Eight forms across two types. Tap each one to see what it's for and where to open it.</div>
 
     <!-- Private forms -->
-    <div class="block-title" style="margin-top:.25rem;">🔒 Private Forms — Open from a Direct Message</div>
-    <p style="font-size:12px;color:var(--text-mt);margin-bottom:.75rem;">These forms deal with personal or individual topics. Always use them via a DM with <span class="method-pill">/suptask</span>. Do not open them from a public channel.</p>
+    <div class="block-title" style="margin-top:.25rem;">🔒 Private Forms: Open from a Direct Message</div>
+    <p style="font-size:14px;color:var(--text-mt);margin-bottom:.75rem;">These forms deal with personal or individual topics. Always use them via a DM: type <span class="method-pill">/suptask</span> or react to any message with the <strong>🎫 ticket emoji</strong>. Do not open them from a public channel.</p>
 
     <div class="emerg-item" id="f-deel">
       <div class="emerg-header" onclick="toggleEmerg('f-deel')">
@@ -445,7 +440,7 @@ body {
       </div>
       <div class="emerg-body">
         <p>For questions or issues related to your <strong>Deel account</strong>: contract details, payment setup, invoice generation, document requests, or anything connected to your employment relationship through Deel.</p>
-        <p style="margin-top:.4rem;"><strong>How to open:</strong> Open a DM, type <span class="method-pill">/suptask</span>, and select <em>Deel</em>.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>Deel</em>.</p>
       </div>
     </div>
 
@@ -458,7 +453,7 @@ body {
       </div>
       <div class="emerg-body">
         <p>A catch-all for <strong>individual questions that don't fit another category</strong>. If you're unsure which form to use and the topic is personal or internal to you, General Questions is a safe default.</p>
-        <p style="margin-top:.4rem;"><strong>How to open:</strong> Open a DM, type <span class="method-pill">/suptask</span>, and select <em>General Questions</em>.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>General Questions</em>.</p>
       </div>
     </div>
 
@@ -471,7 +466,7 @@ body {
       </div>
       <div class="emerg-body">
         <p>For <strong>human resources topics</strong>: onboarding questions, team policies, time off, internal procedures, or any matter involving the people operations function.</p>
-        <p style="margin-top:.4rem;"><strong>How to open:</strong> Open a DM, type <span class="method-pill">/suptask</span>, and select <em>HR</em>.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>HR</em>.</p>
       </div>
     </div>
 
@@ -484,13 +479,13 @@ body {
       </div>
       <div class="emerg-body">
         <p>For questions about <strong>OKRs, objectives, key results, or how to use Profit.co</strong>. Use this to report platform issues, request changes to your objectives, or get guidance on how the tool works.</p>
-        <p style="margin-top:.4rem;"><strong>How to open:</strong> Open a DM, type <span class="method-pill">/suptask</span>, and select <em>Profit.co</em>.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>Profit.co</em>.</p>
       </div>
     </div>
 
     <!-- Channel forms -->
-    <div class="block-title" style="margin-top:1.25rem;">📢 Channel Forms — Open from the Right Channel</div>
-    <p style="font-size:12px;color:var(--text-mt);margin-bottom:.75rem;">These forms are tied to specific Slack channels. Open them from the corresponding channel using <span class="method-pill">/suptask</span> or the ticket emoji reaction. The form will only appear in the correct channel.</p>
+    <div class="block-title" style="margin-top:1.25rem;">📢 Channel Forms: Open from the Right Channel</div>
+    <p style="font-size:14px;color:var(--text-mt);margin-bottom:.75rem;">These forms are tied to specific Slack channels. If you previously handled these types of requests by reaching out to Cris directly, that now goes through Suptask. Go to your team's designated channel and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>, to select from the available forms. The form will only appear in the correct channel.</p>
 
     <div class="emerg-item" id="f-dc">
       <div class="emerg-header" onclick="toggleEmerg('f-dc')">
@@ -501,7 +496,7 @@ body {
       </div>
       <div class="emerg-body">
         <p>For <strong>design and communications requests</strong>: creative briefs, visual assets, copywriting, brand-related work, or any request directed to the Design/Comms team.</p>
-        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's comms channel and use <span class="method-pill">/suptask</span> or react with the ticket emoji. Available comms channels:</p>
+        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's comms channel and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Available comms channels:</p>
         <p style="margin-top:.35rem;">
           <span class="channel-tag">#fot-comms</span>
           <span class="channel-tag">#ecd-comms</span>
@@ -526,14 +521,18 @@ body {
       <div class="emerg-body">
         <p>For <strong>due diligence processes</strong> that require review, documentation, or coordination. The requesting team owns the ticket and is responsible for providing full context upfront.</p>
         <p style="margin-top:.4rem;"><strong>⚠️ External parties involved:</strong> Due diligence always requires the <strong>trust and/or external lawyers</strong>. Resolution timelines depend on their availability, which is outside internal control. Set stakeholder expectations accordingly.</p>
-        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel, type <span class="method-pill">/suptask</span>, and select <em>Due Diligence</em>. Admin channels:</p>
+        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>Due Diligence</em>. Admin channels:</p>
         <p style="margin-top:.35rem;">
           <span class="channel-tag">#charity-ops</span>
-          <span class="channel-tag">#admin-ecd</span>
-          <span class="channel-tag">#admin-fot</span>
-          <span class="channel-tag">#admin-democracy</span>
-          <span class="channel-tag">#admin-mel</span>
-          <span style="font-size:10px;color:var(--text-mt);font-style:italic;">· admin-mel to be confirmed</span>
+          <span class="channel-tag">#cepe</span>
+          <span class="channel-tag">#crackthecode</span>
+          <span class="channel-tag">#becas-colombia-admin</span>
+          <span class="channel-tag">#becas-peru-admin</span>
+          <span class="channel-tag">#democracia-admin</span>
+          <span class="channel-tag">#rl-admin</span>
+          <span class="channel-tag">#ecd-admin</span>
+          <span class="channel-tag">#fot-admin</span>
+          <span class="channel-tag">#mel-admin</span>
         </p>
       </div>
     </div>
@@ -548,14 +547,18 @@ body {
       <div class="emerg-body">
         <p>For <strong>legal consultations, reviews, or matters</strong> requiring legal input: contract reviews, compliance checks, legal questions, or situations requiring legal counsel.</p>
         <p style="margin-top:.4rem;"><strong>⚠️ External parties involved:</strong> Legal matters involve the <strong>trust and/or external lawyers</strong>. Internal response will be fast, but final resolution depends on external availability. Always communicate expected timelines to stakeholders upfront.</p>
-        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel, type <span class="method-pill">/suptask</span>, and select <em>Legal</em>. Admin channels:</p>
+        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>Legal</em>. Admin channels:</p>
         <p style="margin-top:.35rem;">
           <span class="channel-tag">#charity-ops</span>
-          <span class="channel-tag">#admin-ecd</span>
-          <span class="channel-tag">#admin-fot</span>
-          <span class="channel-tag">#admin-democracy</span>
-          <span class="channel-tag">#admin-mel</span>
-          <span style="font-size:10px;color:var(--text-mt);font-style:italic;">· admin-mel to be confirmed</span>
+          <span class="channel-tag">#cepe</span>
+          <span class="channel-tag">#crackthecode</span>
+          <span class="channel-tag">#becas-colombia-admin</span>
+          <span class="channel-tag">#becas-peru-admin</span>
+          <span class="channel-tag">#democracia-admin</span>
+          <span class="channel-tag">#rl-admin</span>
+          <span class="channel-tag">#ecd-admin</span>
+          <span class="channel-tag">#fot-admin</span>
+          <span class="channel-tag">#mel-admin</span>
         </p>
       </div>
     </div>
@@ -570,14 +573,18 @@ body {
       <div class="emerg-body">
         <p>For <strong>document signing requests</strong>: NDAs, agreements, letters, or any document that needs an authorized signature. Include the document, the parties involved, and any hard deadline.</p>
         <p style="margin-top:.4rem;"><strong>⚠️ Before submitting this ticket:</strong> Make sure you already have the correct internal approvals in place. Do not request a signature without prior authorization. Additionally, any legal agreement involving third parties must have been reviewed by the relevant local lawyers before it is submitted for signature.</p>
-        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel, type <span class="method-pill">/suptask</span>, and select <em>Sign Documents</em>. Admin channels:</p>
+        <p style="margin-top:.4rem;"><strong>Where to open:</strong> Go to your team's admin channel and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Select <em>Sign Documents</em>. Admin channels:</p>
         <p style="margin-top:.35rem;">
           <span class="channel-tag">#charity-ops</span>
-          <span class="channel-tag">#admin-ecd</span>
-          <span class="channel-tag">#admin-fot</span>
-          <span class="channel-tag">#admin-democracy</span>
-          <span class="channel-tag">#admin-mel</span>
-          <span style="font-size:10px;color:var(--text-mt);font-style:italic;">· admin-mel to be confirmed</span>
+          <span class="channel-tag">#cepe</span>
+          <span class="channel-tag">#crackthecode</span>
+          <span class="channel-tag">#becas-colombia-admin</span>
+          <span class="channel-tag">#becas-peru-admin</span>
+          <span class="channel-tag">#democracia-admin</span>
+          <span class="channel-tag">#rl-admin</span>
+          <span class="channel-tag">#ecd-admin</span>
+          <span class="channel-tag">#fot-admin</span>
+          <span class="channel-tag">#mel-admin</span>
         </p>
       </div>
     </div>
@@ -589,8 +596,8 @@ body {
   <!-- ══════════════════════════════════════════════════════════════════ -->
   <div class="section" id="sec-howto">
 
-    <div class="sec-title">How to Open a Ticket</div>
-    <div class="sec-sub">Two methods. Pick the one that fits the situation. Tap each to expand.</div>
+    <div class="sec-title">How to Create a Ticket</div>
+    <div class="sec-sub">Two ways to open a ticket, one simple form to complete. Both lead to the same result.</div>
 
     <div class="step-card" id="m-1">
       <div class="step-header" onclick="toggleStep('m-1')">
@@ -603,12 +610,10 @@ body {
         <div class="step-chevron">▾</div>
       </div>
       <div class="step-body-expand">
-        <p><strong>Step 1:</strong> Navigate to the right place in Slack. For <strong>private forms</strong> (Deel, HR, General Questions, Profit.co) → go to a direct message. For <strong>channel forms</strong> (Design/Comms, Due Diligence, Legal, Sign Documents) → go to the corresponding channel.</p>
-        <p><strong>Step 2:</strong> Type <span class="method-pill">/suptask</span> in the message input and press Enter. A form selector will appear showing the forms available in that context.</p>
-        <p><strong>Step 3:</strong> Select the right form, fill in all fields with as much context as possible, and submit.</p>
+        <p>Navigate to the right place in Slack first (a DM for private forms, or the correct channel for channel forms), then type <span class="method-pill">/suptask</span> and press Enter. A form selector will appear.</p>
         <div class="callout green" style="margin-top:.5rem;">
           <div class="callout-title">Best for</div>
-          Starting fresh when you want to provide all the details yourself. The most reliable way to make sure you select the right form and send complete information.
+          Starting fresh when no message already exists that captures the request. Fill in all the details directly in the form.
         </div>
       </div>
     </div>
@@ -617,30 +622,77 @@ body {
       <div class="step-header" onclick="toggleStep('m-2')">
         <div class="step-num-circle emoji">🎫</div>
         <div class="step-main">
-          <div class="step-timing">When there's already a message with full context</div>
+          <div class="step-timing">Recommended for most cases</div>
           <div class="step-title">React to a message with the ticket emoji</div>
           <div class="step-who">Works in channels and direct messages</div>
         </div>
         <div class="step-chevron">▾</div>
       </div>
       <div class="step-body-expand">
-        <p><strong>Step 1:</strong> Find the Slack message that contains the full context of the request. Make sure it stands on its own — it should be understandable without reading the surrounding thread.</p>
-        <p><strong>Step 2:</strong> Hover over the message and open the emoji picker. Find and select the <strong>ticket emoji 🎫</strong>.</p>
-        <p><strong>Step 3:</strong> Suptask captures that message as the ticket body. A form selector may appear to complete any required fields.</p>
-        <div class="callout yellow" style="margin-top:.5rem;">
-          <div class="callout-title">Context is everything</div>
-          The message you react to <strong>becomes the ticket</strong>. It must contain all the information the recipient needs to act: what, who, why, and any relevant deadline. If it's just one line in a longer thread, the context will be lost.
-        </div>
-        <div class="callout red" style="margin-top:.5rem;">
-          <div class="callout-title">Do not react to thread replies</div>
-          Avoid reacting to a message inside a thread where the context is spread across multiple replies. Suptask only captures that one message — not the whole thread. If the context lives in a thread, use <span class="method-pill" style="font-size:11px;">/suptask</span> and summarize it manually.
+        <p>Send your message with all the context: what you need, why, who it affects, and any deadline. Then react to it with the <strong>ticket emoji 🎫</strong>. Suptask captures the full message and thread automatically, pre-filling the ticket.</p>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">Recommended</div>
+          This is the easiest method. Share the context as part of a normal Slack conversation and turn it into a ticket at any point, no need to retype anything. Suptask captures the message and its full thread.
         </div>
       </div>
     </div>
 
     <div class="callout black" style="margin-top:.75rem;">
-      <div class="callout-title">Both methods create the same ticket</div>
-      The difference is the starting point. <strong>/suptask</strong> is best when initiating a new request. The <strong>emoji reaction</strong> is best when something that came up in conversation needs to be formalized into a tracked ticket.
+      <div class="callout-title">Both methods open the same form</div>
+      The only difference is the starting point. Whichever method you use, you'll go through the same steps to complete the ticket.
+    </div>
+
+    <div class="block-title" style="margin-top:1.25rem;">Selecting the inbox and form</div>
+
+    <div class="framework-grid" style="margin-top:.5rem;">
+      <div class="fw-pillar private">
+        <div class="fw-label">🔒 Private tickets</div>
+        <p>In the form selector, under <strong>"Who do you need help from?"</strong>, select <strong>HR / Admin</strong> (this inbox is usually pre-selected). Then choose the form: <strong>Deel</strong>, <strong>HR</strong>, or <strong>Profit.co</strong>.</p>
+      </div>
+      <div class="fw-pillar channel">
+        <div class="fw-label">📢 Channel tickets</div>
+        <p>The channel is <strong>automatically set</strong> based on where you opened the ticket. Select the form from the list: <strong>Due Diligence</strong>, <strong>Legal</strong>, or <strong>Sign Documents</strong>.</p>
+      </div>
+    </div>
+
+    <div class="block-title" style="margin-top:1.25rem;">Fields to complete</div>
+    <p style="font-size:14px;color:var(--text-mt);margin-bottom:.75rem;">These two fields apply to every ticket, regardless of form type or method used.</p>
+
+    <div class="step-card open" id="f-priority">
+      <div class="step-header" onclick="toggleStep('f-priority')">
+        <div class="step-num-circle">1</div>
+        <div class="step-main">
+          <div class="step-title">Priority</div>
+          <div class="step-who">Critical · High · Medium · Low</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Select the level that best reflects the urgency and impact of your request. Use the levels consistently: they're how the team manages and triages the queue.</p>
+        <p style="margin-top:.4rem;">→ For a full breakdown of each level and when to use each one, see the <a href="#" onclick="showMain('priorities', document.querySelectorAll('.main-nav .nav-btn')[3]); return false;" style="color:var(--text-dk);font-weight:600;text-decoration:underline;">④ Priorities</a> tab.</p>
+      </div>
+    </div>
+
+    <div class="step-card open" id="f-description">
+      <div class="step-header" onclick="toggleStep('f-description')">
+        <div class="step-num-circle">2</div>
+        <div class="step-main">
+          <div class="step-title">Description</div>
+          <div class="step-who">All context the recipient needs to act</div>
+        </div>
+        <div class="step-chevron">▾</div>
+      </div>
+      <div class="step-body-expand">
+        <p>Include everything the person handling the ticket needs: what you need, why it matters, who it affects, and any deadlines. Write it so the recipient can act without asking follow-up questions.</p>
+        <div class="callout yellow" style="margin-top:.5rem;">
+          <div class="callout-title">Using the emoji reaction?</div>
+          The description is <strong>automatically pre-filled</strong> with the content of the message you reacted to, including its thread. Review and add any missing context before submitting.
+        </div>
+        <div class="callout green" style="margin-top:.35rem;">
+          <div class="callout-title">Using /suptask?</div>
+          Fill this field manually. Be thorough: the more context you provide, the faster your ticket gets resolved.
+        </div>
+      </div>
     </div>
 
   </div><!-- /howto -->
@@ -671,7 +723,7 @@ body {
           <tr class="pr-critical">
             <td class="td-label">Critical</td>
             <td class="td-label">1 working day</td>
-            <td>Major incident, immediate legal or financial risk, or any matter flagged by David / Mariel. Everything stops until this is resolved.</td>
+            <td>Major incident, immediate legal or financial risk, any matter that requires or directly involves an executive-level decision, or anything directly affecting D+M.</td>
           </tr>
           <tr class="pr-high">
             <td class="td-label">High</td>
@@ -693,8 +745,8 @@ body {
     </div>
 
     <div class="callout red" style="margin-top:.25rem;">
-      <div class="callout-title">⚠️ Due Diligence &amp; Legal — External dependency</div>
-      For <strong>Due Diligence</strong> and <strong>Legal</strong> tickets, internal first-response times above still apply — the team will acknowledge and engage quickly. However, <strong>resolution depends on external parties</strong> (trust and/or lawyers) whose availability is outside VélezReyes+' control.
+      <div class="callout-title">⚠️ Due Diligence &amp; Legal: External dependency</div>
+      For <strong>Due Diligence</strong> and <strong>Legal</strong> tickets, internal response times above still apply; the team will acknowledge and engage quickly. However, <strong>resolution depends on external parties</strong> (trust and/or lawyers) whose availability is outside VélezReyes+' control.
       <br><br>
       When opening these tickets: include any external deadline in the ticket itself, set expectations with your stakeholders upfront, and do not treat the internal SLA as a commitment for final resolution.
     </div>
@@ -736,36 +788,12 @@ body {
     <div class="emerg-item" id="bp-3">
       <div class="emerg-header" onclick="toggleEmerg('bp-3')">
         <div class="emerg-dot green"></div>
-        <span class="emerg-title">Keep private forms in DMs — not public channels</span>
+        <span class="emerg-title">Keep private forms in DMs, not public channels</span>
         <span class="emerg-chevron">▾</span>
       </div>
       <div class="emerg-body">
-        <p>Forms like HR, Deel, and Profit.co contain personal or sensitive information. Always open them from a <strong>direct message</strong> — never from a public or team channel.</p>
+        <p>Forms like HR, Deel, and Profit.co contain personal or sensitive information. Always open them from a <strong>direct message</strong>, never from a public or team channel.</p>
         <p>This protects your privacy and ensures the request reaches the right person without exposing it to the broader team.</p>
-      </div>
-    </div>
-
-    <div class="emerg-item" id="bp-4">
-      <div class="emerg-header" onclick="toggleEmerg('bp-4')">
-        <div class="emerg-dot red"></div>
-        <span class="emerg-title">Don't react to a thread reply — react to a standalone message</span>
-        <span class="emerg-chevron">▾</span>
-      </div>
-      <div class="emerg-body">
-        <p>When using the ticket emoji reaction, Suptask captures <strong>only that specific message</strong> — not the thread around it. Reacting to a reply inside a thread means the surrounding context is lost.</p>
-        <p><strong>Best practice:</strong> React to the parent message at the top of a thread, or use <span class="method-pill" style="font-size:11px;">/suptask</span> to write a clean summary manually.</p>
-      </div>
-    </div>
-
-    <div class="emerg-item" id="bp-5">
-      <div class="emerg-header" onclick="toggleEmerg('bp-5')">
-        <div class="emerg-dot red"></div>
-        <span class="emerg-title">Don't react to a message that only makes sense inside a thread</span>
-        <span class="emerg-chevron">▾</span>
-      </div>
-      <div class="emerg-body">
-        <p>If a message says something like <em>"yes, let's go with the second option"</em>, reacting to it creates a ticket with no useful context — the handler won't know what the second option is.</p>
-        <p>Make sure the message you react to is <strong>self-explanatory and actionable on its own</strong>. If it's not, use <span class="method-pill" style="font-size:11px;">/suptask</span> and write a proper description instead.</p>
       </div>
     </div>
 
@@ -776,7 +804,7 @@ body {
         <span class="emerg-chevron">▾</span>
       </div>
       <div class="emerg-body">
-        <p>Prioritize based on actual impact and urgency — not on how quickly you personally want something done. Overusing Critical or High makes those levels meaningless and forces the team to re-triage the entire queue.</p>
+        <p>Prioritize based on actual impact and urgency, not on how quickly you personally want something done. Overusing Critical or High makes those levels meaningless and forces the team to re-triage the entire queue.</p>
         <p>If you're unsure, default to Medium. The team can always escalate once they see the full context of the ticket.</p>
       </div>
     </div>
@@ -788,7 +816,7 @@ body {
         <span class="emerg-chevron">▾</span>
       </div>
       <div class="emerg-body">
-        <p>These tickets involve external parties (trust, lawyers) whose timelines are not under internal control. The moment you open the ticket, communicate to your stakeholders that resolution will depend on external availability — not just internal SLAs.</p>
+        <p>These tickets involve external parties (trust, lawyers) whose timelines are not under internal control. The moment you open the ticket, communicate to your stakeholders that resolution will depend on external availability, not just internal SLAs.</p>
         <p>Include any hard external deadline in the ticket itself. Monitor actively and follow up proactively if there's no movement.</p>
       </div>
     </div>
