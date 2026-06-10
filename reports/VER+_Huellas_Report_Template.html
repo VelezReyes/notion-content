@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Huellas · June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   VER+ HUELLAS — Design System
+   Palette: #EFEFE4 · #000000 · #F3FF00 · #27CF77 · #A62BFF
+   Exceptions: Democracia+ #BD97F1 · Charity #A7B2AA
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #EFEFE4;
+  --black:    #000000;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --dp:       #BD97F1; /* Democracia+ exception */
+  --charity:  #A7B2AA; /* Charity exception */
+
+  --text-dk:  #111111;
+  --text-md:  #444444;
+  --text-mt:  #888880;
+  --border:   rgba(0,0,0,0.10);
+  --border-md:rgba(0,0,0,0.18);
+  --cream-card: #F5F5EE;
+  --radius:   10px;
+  --radius-sm:6px;
+  --font:     'Montserrat', -apple-system, sans-serif;
+  --serif:    'DM Serif Display', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--cream);
+  color: var(--text-dk);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: 15px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTPRINTS — animated background layer in header
+───────────────────────────────────────────────────────────── */
+.footprints-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fp {
+  position: absolute;
+  opacity: 0;
+  fill: var(--cream);
+  animation: footstep 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  transform-origin: center bottom;
+}
+.fp.left  { transform: scaleX(-1); }
+
+@keyframes footstep {
+  0%   { opacity: 0;    transform: scale(0.5); }
+  40%  { opacity: 0.13; transform: scale(1.08); }
+  70%  { opacity: 0.10; transform: scale(0.97); }
+  100% { opacity: 0.07; transform: scale(1); }
+}
+/* left foot mirrors on X axis around its own center */
+.fp.left {
+  transform-origin: center bottom;
+  animation: footstep-left 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes footstep-left {
+  0%   { opacity: 0;    transform: scaleX(-1) scale(0.5); }
+  40%  { opacity: 0.13; transform: scaleX(-1) scale(1.08); }
+  70%  { opacity: 0.10; transform: scaleX(-1) scale(0.97); }
+  100% { opacity: 0.07; transform: scaleX(-1) scale(1); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   COMPACT HEADER  ~160px — full-width, dark
+   First thing D+M see — no scroll needed
+───────────────────────────────────────────────────────────── */
+.site-header {
+  background: var(--black);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+}
+/* gradient stripe */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+/* left accent bar */
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--yellow);
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.25rem 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header-brand { flex-shrink: 0; }
+.header-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.3rem;
+}
+.header-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 34px);
+  color: #FFF;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+.header-title-accent { color: var(--yellow); }
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.edition-pill {
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.header-period {
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+}
+.header-for {
+  font-size: 12px;
+  color: #888;
+}
+
+/* header stats */
+.header-stats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.hstat {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  text-align: center;
+  min-width: 72px;
+}
+.hstat-n {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--green);
+}
+.hstat-n.yellow { color: var(--yellow); }
+.hstat-n.purple { color: var(--purple); }
+.hstat-n.white  { color: #CCC; }
+.hstat-l {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   STICKY NAV
+───────────────────────────────────────────────────────────── */
+.main-nav {
+  background: var(--black);
+  padding: 4px clamp(1.25rem, 4vw, 3.5rem);
+  display: flex;
+  gap: 3px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.18);
+}
+.main-nav::-webkit-scrollbar { display: none; }
+.nav-inner {
+  display: flex;
+  gap: 3px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nav-btn {
+  flex: 1;
+  min-width: 72px;
+  text-align: center;
+  padding: 9px 11px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  font-family: var(--font);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: #1A1A1A; color: #999; }
+/* Active states — each team gets its exact brand color */
+.nav-btn.active            { background: var(--cream); color: var(--black); }
+.nav-btn.active.col-green  { background: var(--green); color: var(--black); }
+.nav-btn.active.col-purple { background: var(--purple); color: #FFF; }
+.nav-btn.active.col-dp     { background: var(--dp); color: var(--black); }
+.nav-btn.active.col-charity{ background: var(--charity); color: var(--black); }
+
+/* ─────────────────────────────────────────────────────────────
+   PAGE WRAPPER
+───────────────────────────────────────────────────────────── */
+.page-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 4rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECTIONS
+───────────────────────────────────────────────────────────── */
+.section { display: none; }
+.section.visible { display: block; }
+
+/* ─────────────────────────────────────────────────────────────
+   EDITOR'S NOTE — inside Overview, compact
+───────────────────────────────────────────────────────────── */
+.editor-note {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.editor-note::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--green);
+}
+.editor-note-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.35rem;
+}
+.editor-note p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: #BBBBBB;
+  line-height: 1.65;
+}
+.editor-note-sig {
+  font-size: 11px;
+  color: #888;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HIGHLIGHT CARD
+───────────────────────────────────────────────────────────── */
+.highlight-card {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--yellow), var(--green));
+}
+.hl-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 0.4rem;
+}
+.hl-team-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+  margin-bottom: 0.5rem;
+}
+.hl-title {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2vw, 21px);
+  color: #FFF;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.hl-body {
+  font-size: 14px;
+  color: #AAA;
+  line-height: 1.7;
+}
+.hl-stat-big { text-align: center; flex-shrink: 0; }
+.hl-stat-n {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  display: block;
+}
+.hl-stat-l {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   OVERVIEW — TEAM GRID
+───────────────────────────────────────────────────────────── */
+.ov-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.ov-card {
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 0.9rem;
+  cursor: pointer;
+  transition: border-color .15s, transform .12s;
+  position: relative;
+  overflow: hidden;
+}
+.ov-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.ov-card:hover { border-color: var(--border-md); transform: translateY(-2px); }
+.ov-card-name  { font-size: 13px; font-weight: 700; color: var(--text-dk); margin-bottom: 2px; }
+.ov-card-count { font-size: 11px; color: var(--text-mt); margin-bottom: 0.7rem; }
+.ov-card-n     { font-family: var(--serif); font-size: 30px; line-height: 1; margin-bottom: 3px; }
+.ov-card-l     { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-mt); }
+
+/* ─────────────────────────────────────────────────────────────
+   TEAM SECTION HEADER
+───────────────────────────────────────────────────────────── */
+.team-hdr {
+  background: var(--black);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+.team-hdr::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+}
+.team-hdr-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.3rem;
+}
+.team-hdr-name {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: #FFF;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+.team-hdr-lead { font-size: 12px; color: #999; }
+.team-hdr-stats { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.team-hdr-stat {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 7px;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+}
+.team-hdr-stat-n { font-family: var(--serif); font-size: 22px; line-height: 1; }
+.team-hdr-stat-l { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #888; margin-top: 2px; }
+
+/* ─────────────────────────────────────────────────────────────
+   STORIES CONTAINER
+───────────────────────────────────────────────────────────── */
+.stories-wrap {
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+/* Charity intro */
+.charity-intro {
+  background: rgba(167,178,170,0.12);
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 1.35rem;
+  font-size: 14px;
+  color: var(--text-md);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   STORY ACCORDION
+───────────────────────────────────────────────────────────── */
+.story-item { border-bottom: 1px solid var(--border); }
+.story-item:last-child { border-bottom: none; }
+
+.story-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.35rem;
+  cursor: pointer;
+  transition: background .12s;
+  user-select: none;
+}
+.story-header:hover { background: rgba(0,0,0,0.025); }
+
+.story-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: #CCC;
+  flex-shrink: 0;
+  min-width: 22px;
+}
+.story-title-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dk);
+  flex: 1;
+  line-height: 1.4;
+}
+.story-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.story-chevron {
+  font-size: 11px;
+  color: #CCC;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.story-item.open .story-chevron { transform: rotate(180deg); }
+
+.story-body {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 1.35rem 1.35rem 1.6rem;
+  background: var(--cream-card);
+}
+.story-item.open .story-body { display: block; }
+
+/* 2×2 narrative grid */
+.narrative-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
+}
+.narrative-block {
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+}
+.narrative-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.narrative-text {
+  font-size: 14px;
+  color: var(--text-md);
+  line-height: 1.75;
+}
+
+/* Stats row */
+.story-stats {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.story-stat {
+  flex: 1;
+  min-width: 100px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+.story-stat-n {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.story-stat-l {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-mt);
+}
+
+/* Investment tag */
+.investment-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-mt);
+  background: #E8E8DC;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-top: 0.9rem;
+}
+.investment-tag::before { content: '◈'; font-size: 10px; color: #BBB; }
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--black);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.5rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.footer-left  { font-family: var(--serif); font-style: italic; font-size: 13px; color: #999; }
+.footer-right { display: flex; gap: 0.5rem; align-items: center; }
+.footer-note  { font-size: 11px; color: #888; }
+.print-btn {
+  background: var(--cream);
+  color: var(--black);
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.print-btn:hover { opacity: 0.8; }
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ov-grid { grid-template-columns: repeat(3, 1fr); }
+  .highlight-card { grid-template-columns: 1fr; }
+  .hl-stat-big { display: none; }
+}
+@media (max-width: 680px) {
+  .header-inner { grid-template-columns: 1fr; gap: 0.85rem; }
+  .header-stats { justify-content: flex-start; }
+  .ov-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-hdr { grid-template-columns: 1fr; }
+  .narrative-grid { grid-template-columns: 1fr; }
+  .story-pill { display: none; }
+  .story-stats { flex-direction: column; }
+  .story-stat { min-width: unset; }
+}
+@media (max-width: 480px) {
+  .ov-grid { grid-template-columns: 1fr 1fr; }
+  .header-stats { display: none; }
+  .hstat { min-width: 60px; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PRINT — all dark sections get light bg / dark text
+───────────────────────────────────────────────────────────── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  .main-nav, .print-btn { display: none !important; }
+
+  /* Every dark surface flips to cream/white */
+  .site-header,
+  .editor-note,
+  .highlight-card,
+  .team-hdr,
+  .site-footer {
+    background: var(--cream) !important;
+    border: 1px solid #DDD !important;
+  }
+  .site-header::after { background: var(--black) !important; }
+
+  /* Text that was white becomes dark */
+  .header-title, .hl-title, .team-hdr-name, .footer-left { color: var(--black) !important; }
+  .header-eyebrow, .team-hdr-eyebrow, .editor-note-label { color: var(--text-mt) !important; }
+  .header-period, .header-for, .team-hdr-lead, .footer-note { color: var(--text-md) !important; }
+  .editor-note p { color: var(--text-md) !important; }
+  .editor-note-sig { color: var(--text-mt) !important; }
+  .hl-body { color: var(--text-md) !important; }
+
+  /* Yellow on cream/white = invisible — override ALL yellow text to dark olive */
+  .header-title-accent,
+  .hl-label,
+  .hstat-n.yellow,
+  [style*="color: #F3FF00"],
+  [style*="color:var(--yellow)"],
+  [style*="color: var(--yellow)"] { color: #4A4A00 !important; }
+
+  /* Stats on dark → light bg */
+  .hstat, .team-hdr-stat {
+    background: #EEE !important;
+    border-color: #DDD !important;
+  }
+  .hstat-n, .team-hdr-stat-n { color: var(--black) !important; }
+  .hstat-n.yellow { color: #4A4A00 !important; }
+
+  /* Show all sections for print */
+  .section { display: block !important; page-break-before: auto; }
+  .story-body { display: block !important; }
+
+  body { background: #FFF !important; }
+  .page-body { padding-top: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     DATA  — update this object each month
+═══════════════════════════════════════════════ -->
+<script>
+const DATA = {
+  edition:    "01",
+  month:      "June",
+  year:       2026,
+  preparedBy: "Comms & Ops",
+  audience:   "David & Mariel",
+  reportName: "VER+ Huellas",
+
+  totals: {
+    people: "1,240+", communities: 12, countries: 6, initiatives: 8
+  },
+
+  editorsNote: "This month the team showed what it means to build with rigor and care. From a historic first training cycle reaching rural teachers in Oaxaca, to a civic simulation that turned first-time voters into future electoral observers — June was proof that scale and depth are not opposites.",
+
+  highlight: {
+    team: "ECD", teamColor: "#27CF77",
+    title: "150 teachers certified. 4 communities. A training cycle that had never reached this far.",
+    body: "The first in-person training cycle for rural teachers in Oaxaca reached communities where structured professional development had been absent for over five years. 78% of participants committed to applying at least one methodological change in their classroom within 30 days.",
+    stat: "150", statLabel: "Teachers certified"
+  },
+
+  teams: [
+    /* ── ECD ── */
+    {
+      id: "ecd", name: "Early Childhood & Education", short: "ECD",
+      lead: "Elisa Mansur", color: "#27CF77", navClass: "col-green",
+      totalReach: "150+", reachLabel: "People reached",
+      stories: [
+        {
+          title: "First rural teacher training cycle reaches 4 communities in Oaxaca",
+          pill: "150 teachers",
+          context: "Target communities have precarious educational infrastructure and high teacher turnover. Structured professional development rarely reaches them — and when it does, it arrives without follow-through.",
+          challenge: "Design a training cycle that works without reliable connectivity, adapts to very different levels of digital literacy, and doesn't sacrifice pedagogical rigor.",
+          development: "Adapted the training module into a hybrid format — printed materials plus 3-hour in-person sessions. Eight local facilitators were trained and deployed in parallel across four communities.",
+          impact: "150 teachers certified across 4 communities. 78% stated they will apply at least one methodological change in their classroom within the next 30 days.",
+          stats: [
+            { n: "150", l: "Teachers certified",            c: "#27CF77" },
+            { n: "4",   l: "Communities activated",         c: "#27CF77" },
+            { n: "78%", l: "Committed to applying changes", c: "#27CF77" }
+          ],
+          investment: "3 weeks of field operations · 8 local facilitators · $42,000 MXN in materials"
+        },
+        {
+          title: "aprendo+ legally incorporated and first CEO on board",
+          pill: "Milestone",
+          context: "aprendo+ was operating without a legal entity, limiting its ability to receive grants, hire staff, or enter formal partnerships.",
+          challenge: "Complete incorporation with pro-bono legal support while simultaneously recruiting the first CEO and keeping grant disbursement on track.",
+          development: "Incorporation completed in Lima on May 5 with pro-bono legal support. CEO recruitment process concluded. Grant disbursement pipeline secured for Q2.",
+          impact: "aprendo+ is now a fully independent legal entity with its first CEO in place — ready to execute its Q2 scale plan with institutional autonomy.",
+          stats: [
+            { n: "1",  l: "New independent entity", c: "#27CF77" },
+            { n: "Q2", l: "Scale plan active",       c: "#27CF77" }
+          ],
+          investment: "Pro-bono legal support · CEO recruitment process · 2 months of team coordination"
+        }
+      ]
+    },
+
+    /* ── FoT ── */
+    {
+      id: "fot", name: "Future of Talent", short: "FoT",
+      lead: "Maribel Corrales", color: "#27CF77", navClass: "col-green",
+      totalReach: "340+", reachLabel: "Active scholars",
+      stories: [
+        {
+          title: "340 active scholars, operational efficiency baseline established",
+          pill: "340 scholars",
+          context: "The scholarship platform has been operational for over a year, but without a clear baseline for operational efficiency or a decision-grade dashboard to track scholar progress.",
+          challenge: "Establish an efficiency baseline without disrupting ongoing scholarship delivery — and build a dashboard governance structure that actually drives decisions.",
+          development: "Q2 milestone completed: minimum indicators, data sources, and governance structure defined for the scholar dashboard. Operational efficiency baseline reached 41% completion.",
+          impact: "340 scholars actively receiving support. Dashboard governance in place for Q3 deployment. Efficiency baseline defined and in execution.",
+          stats: [
+            { n: "340", l: "Active scholars",            c: "#27CF77" },
+            { n: "41%", l: "Efficiency baseline progress", c: "#27CF77" }
+          ],
+          investment: "Ongoing platform operations · Dashboard design sprint · Q2 milestone review"
+        }
+      ]
+    },
+
+    /* ── K-12 ── */
+    {
+      id: "k12", name: "K-12", short: "K-12",
+      lead: "Maribel Corrales", color: "#27CF77", navClass: "col-green",
+      totalReach: "1",   reachLabel: "Active initiative",
+      stories: [
+        {
+          title: "CEPE initiative: KPI summary built, team structure defined",
+          pill: "CEPE active",
+          context: "K-12 had one primary active initiative — CEPE — but without a proper KPI structure, task breakdown, or reporting cadence to capture the team's real contribution.",
+          challenge: "Build a rigorous reporting and monitoring structure for CEPE without adding significant overhead to a lean team already in execution mode.",
+          development: "Status report framework designed. KPI summary structure completed ahead of June 1 deadline. Task structure built to properly reflect team dedication and track progress.",
+          impact: "CEPE now has a KPI-aligned monitoring framework ready. Team's contribution is visible and traceable for the first time in a structured way.",
+          stats: [
+            { n: "1",   l: "Initiative KPI-tracked", c: "#27CF77" },
+            { n: "Jun", l: "First structured report", c: "#27CF77" }
+          ],
+          investment: "K-12 team · KPI framework design · CEPE stakeholder alignment session"
+        }
+      ]
+    },
+
+    /* ── DEMOCRACY ── */
+    {
+      id: "dem", name: "Democracy", short: "DEM",
+      lead: "Tamara Taraciuk", color: "#A62BFF", navClass: "col-purple",
+      totalReach: "320+", reachLabel: "Young people engaged",
+      stories: [
+        {
+          title: "320 young people experienced their first electoral simulation with real rules",
+          pill: "320 participants",
+          context: "Disconnection between young people and democratic processes is structural. They don't vote because they don't understand the system — and no one has taught it experientially.",
+          challenge: "Design an experience real enough to generate genuine impact, accessible enough not to lose participants starting from zero.",
+          development: "A 4-hour simulation with fictional parties, campaigns, debates, and a real voting process. Participants didn't just take part — they designed parts of the process themselves. Two sessions delivered in June.",
+          impact: "320 participants across 2 sessions. 89% reported better understanding of why voting matters. 47 expressed interest in becoming electoral observers in 2027.",
+          stats: [
+            { n: "320", l: "Young participants",             c: "#A62BFF" },
+            { n: "89%", l: "Improved civic understanding",   c: "#A62BFF" },
+            { n: "47",  l: "Interested in 2027 observer role", c: "#A62BFF" }
+          ],
+          investment: "4 hours per session · 2 sessions · $18,000 MXN in materials and logistics"
+        }
+      ]
+    },
+
+    /* ── DEMOCRACIA+ ── */
+    {
+      id: "dp", name: "Democracia+", short: "D+",
+      lead: "Andrés Valenciano", color: "#BD97F1", navClass: "col-dp",
+      totalReach: "8",   reachLabel: "Orgs in active support",
+      stories: [
+        {
+          title: "Grant renewals completed for 5 D+ organizations; 8 orgs with active MEL frameworks",
+          pill: "5 renewals done",
+          context: "D+ portfolio organizations depend on timely grant renewals and structured MEL support to maintain operational momentum and deliver on their commitments.",
+          challenge: "Coordinate 5 grant renewal processes simultaneously across different legal jurisdictions while running an active MEL framework rollout for 8 portfolio organizations.",
+          development: "Uruguay, Argentina, Legisla, RenovaBR, and Recambio renewals in progress — two completed in Q1. MEL frameworks defined for all 8 D+ organizations; data collection and indicator tracking underway.",
+          impact: "5 organizations moving forward with renewed grant cycles. 8 organizations operating with structured MEL frameworks for the first time, creating evidence-based accountability infrastructure.",
+          stats: [
+            { n: "5", l: "Grants in renewal cycle",   c: "#BD97F1" },
+            { n: "8", l: "Orgs with MEL frameworks",  c: "#BD97F1" }
+          ],
+          investment: "Grant management process · MEL coordination across 8 orgs · Q2 reporting cycles"
+        }
+      ]
+    },
+
+    /* ── CHARITY ── */
+    {
+      id: "charity", name: "Charity", short: "Charity",
+      lead: "Cristina Londoño", color: "#A7B2AA", navClass: "col-charity",
+      totalReach: "180+", reachLabel: "Families reached",
+      isCharity: true,
+      intro: "Charity captures VélezReyes+'s direct philanthropic activity — contributions that go beyond our programmatic portfolio to support people and communities facing immediate need.",
+      stories: [
+        {
+          title: "Emergency relief fund activated for partner communities affected by flooding in Tabasco",
+          pill: "180 families",
+          context: "Three partner communities in Tabasco experienced severe flooding in early June, affecting approximately 180 families in areas where VER+ has active education and development programs.",
+          challenge: "Mobilize resources quickly through existing partner networks without displacing ongoing program activity or creating dependency structures.",
+          development: "Activated the newly completed Charity emergency protocol. Coordinated with 2 local NGO partners already present in the communities. Disbursed emergency supply kits and connected families to government assistance channels.",
+          impact: "180 families received emergency supply kits. 2 partner organizations activated as distribution nodes. Families connected to 3 government assistance programs they were previously unaware of.",
+          stats: [
+            { n: "180", l: "Families reached",         c: "#A7B2AA" },
+            { n: "2",   l: "Partner orgs activated",   c: "#A7B2AA" },
+            { n: "3",   l: "Gov. programs connected",  c: "#A7B2AA" }
+          ],
+          investment: "Emergency protocol activation · $28,000 MXN in relief supplies · 2 partner NGOs"
+        }
+      ]
+    }
+  ]
+};
+</script>
+
+<!-- ═══════════════════════════════════════════════
+     SITE HEADER
+═══════════════════════════════════════════════ -->
+<header class="site-header">
+
+  <!-- Animated footprints layer -->
+  <div class="footprints-layer" id="footprints-layer" aria-hidden="true">
+    <!-- SVG footprint symbol — reused via <use> -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <symbol id="fp-shape" viewBox="0 0 34 64">
+          <!-- Toes -->
+          <ellipse cx="7"  cy="10"   rx="4"   ry="5"   transform="rotate(-22,7,10)"/>
+          <ellipse cx="14" cy="6.5"  rx="3.8" ry="5.2" transform="rotate(-10,14,6.5)"/>
+          <ellipse cx="20.5" cy="6"  rx="3.4" ry="4.8" transform="rotate(4,20.5,6)"/>
+          <ellipse cx="26.5" cy="8"  rx="3"   ry="4.5" transform="rotate(17,26.5,8)"/>
+          <ellipse cx="30.5" cy="13" rx="2.6" ry="4"   transform="rotate(28,30.5,13)"/>
+          <!-- Ball of foot -->
+          <ellipse cx="17" cy="25" rx="13" ry="10"/>
+          <!-- Arch (narrow bridge) -->
+          <rect x="7" y="29" width="8" height="18" rx="4"/>
+          <!-- Heel -->
+          <ellipse cx="15" cy="52" rx="11" ry="12"/>
+        </symbol>
+      </defs>
+    </svg>
+    <!-- Footprint elements — JS sets position + delay -->
+  </div>
+
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-eyebrow">VélezReyes+ · Monthly Report</div>
+      <div class="header-title">
+        VER+&nbsp;<span class="header-title-accent">Huellas</span>
+      </div>
+      <div class="header-meta">
+        <span class="edition-pill" id="hdr-edition"></span>
+        <span class="header-period" id="hdr-period"></span>
+        <span class="header-for"   id="hdr-for"></span>
+      </div>
+    </div>
+    <div><!-- spacer --></div>
+    <div class="header-stats" id="hdr-stats"></div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     STICKY NAV
+═══════════════════════════════════════════════ -->
+<nav class="main-nav">
+  <div class="nav-inner" id="main-nav">
+    <button class="nav-btn active" id="nb-overview" onclick="showTab('overview')">Overview</button>
+    <!-- team buttons injected by JS -->
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE BODY
+═══════════════════════════════════════════════ -->
+<div class="page-body">
+
+  <!-- OVERVIEW -->
+  <div class="section visible" id="tab-overview">
+    <div class="editor-note" id="editor-note-el">
+      <div class="editor-note-label">Editor's Note</div>
+      <p id="en-text"></p>
+      <div class="editor-note-sig" id="en-sig"></div>
+    </div>
+    <div class="highlight-card" id="highlight-el"></div>
+    <div class="ov-grid" id="ov-grid"></div>
+  </div>
+
+  <!-- TEAM SECTIONS injected -->
+  <div id="team-sections"></div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <div class="footer-left"  id="ft-left"></div>
+    <div class="footer-right">
+      <span class="footer-note" id="ft-note"></span>
+      <button class="print-btn" onclick="window.print()">↓ Export PDF</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     RENDER ENGINE
+═══════════════════════════════════════════════ -->
+<script>
+/* ─── Header ─── */
+function renderHeader() {
+  document.getElementById('hdr-edition').textContent = `Edition ${DATA.edition}`;
+  document.getElementById('hdr-period').textContent  = `${DATA.month} ${DATA.year}`;
+  document.getElementById('hdr-for').textContent     = `For ${DATA.audience}`;
+  const t = DATA.totals;
+  document.getElementById('hdr-stats').innerHTML = `
+    <div class="hstat"><div class="hstat-n">${t.people}</div><div class="hstat-l">People reached</div></div>
+    <div class="hstat"><div class="hstat-n purple">${t.communities}</div><div class="hstat-l">Communities</div></div>
+    <div class="hstat"><div class="hstat-n yellow">${t.countries}</div><div class="hstat-l">Countries</div></div>
+    <div class="hstat"><div class="hstat-n white">${t.initiatives}</div><div class="hstat-l">Initiatives</div></div>
+  `;
+}
+
+/* ─── Editor's note ─── */
+function renderEditorsNote() {
+  document.getElementById('en-text').textContent = DATA.editorsNote;
+  document.getElementById('en-sig').textContent  = `— ${DATA.preparedBy} · ${DATA.month} ${DATA.year}`;
+}
+
+/* ─── Highlight ─── */
+function renderHighlight() {
+  const h = DATA.highlight;
+  document.getElementById('highlight-el').innerHTML = `
+    <div>
+      <div class="hl-label">Highlight of the Month</div>
+      <span class="hl-team-tag" style="color:${h.teamColor};border-color:${h.teamColor}55;">${h.team}</span>
+      <div class="hl-title">${h.title}</div>
+      <div class="hl-body">${h.body}</div>
+    </div>
+    <div class="hl-stat-big">
+      <span class="hl-stat-n" style="color:${h.teamColor}">${h.stat}</span>
+      <span class="hl-stat-l">${h.statLabel}</span>
+    </div>
+  `;
+}
+
+/* ─── Overview grid ─── */
+function renderOvGrid() {
+  document.getElementById('ov-grid').innerHTML = DATA.teams.map(t => `
+    <div class="ov-card" onclick="showTab('${t.id}')" style="">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${t.color};border-radius:${getComputedStyle(document.documentElement).getPropertyValue('--radius')} 0 0 ${getComputedStyle(document.documentElement).getPropertyValue('--radius')};"></div>
+      <div class="ov-card-name">${t.short}</div>
+      <div class="ov-card-count">${t.stories.length} stor${t.stories.length===1?'y':'ies'} this month</div>
+      <div class="ov-card-n" style="color:${t.color}">${t.totalReach}</div>
+      <div class="ov-card-l">${t.reachLabel}</div>
+    </div>
+  `).join('');
+}
+
+/* ─── Team sections ─── */
+function renderTeamSections() {
+  const nav = document.getElementById('main-nav');
+  const container = document.getElementById('team-sections');
+  let navHTML = '', secHTML = '';
+
+  DATA.teams.forEach(t => {
+    navHTML += `<button class="nav-btn" id="nb-${t.id}" onclick="showTab('${t.id}')">${t.short}</button>`;
+
+    const stories = t.stories.map((s, i) => {
+      const statsHTML = s.stats.map(st => `
+        <div class="story-stat">
+          <div class="story-stat-n" style="color:${st.c}">${st.n}</div>
+          <div class="story-stat-l">${st.l}</div>
+        </div>`).join('');
+
+      return `
+        <div class="story-item" id="si-${t.id}-${i}">
+          <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
+            <span class="story-num">${String(i+1).padStart(2,'0')}</span>
+            <span class="story-title-text">${s.title}</span>
+            <span class="story-pill" style="background:${t.color}1A;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
+            <span class="story-chevron">▼</span>
+          </div>
+          <div class="story-body">
+            <div class="narrative-grid">
+              <div class="narrative-block">
+                <span class="narrative-label" style="color:${t.color}">Context</span>
+                <p class="narrative-text">${s.context}</p>
+              </div>
+              <div class="narrative-block">
+                <span class="narrative-label" style="color:${t.color}">The Challenge</span>
+                <p class="narrative-text">${s.challenge}</p>
+              </div>
+              <div class="narrative-block">
+                <span class="narrative-label" style="color:${t.color}">Development</span>
+                <p class="narrative-text">${s.development}</p>
+              </div>
+              <div class="narrative-block">
+                <span class="narrative-label" style="color:${t.color}">Impact</span>
+                <p class="narrative-text">${s.impact}</p>
+              </div>
+            </div>
+            <div class="story-stats">${statsHTML}</div>
+            <div class="investment-tag">${s.investment}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    const charityIntro = t.isCharity
+      ? `<div class="charity-intro">${t.intro}</div>` : '';
+
+    secHTML += `
+      <div class="section" id="tab-${t.id}">
+        <div class="team-hdr" style="--accent:${t.color}">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${t.color};border-radius:${getComputedStyle(document.documentElement).getPropertyValue('--radius')} 0 0 ${getComputedStyle(document.documentElement).getPropertyValue('--radius')};"></div>
+          <div>
+            <div class="team-hdr-eyebrow">Huellas · ${DATA.month} ${DATA.year}</div>
+            <div class="team-hdr-name">${t.name}</div>
+            <div class="team-hdr-lead">Lead: ${t.lead}</div>
+          </div>
+          <div class="team-hdr-stats">
+            <div class="team-hdr-stat">
+              <div class="team-hdr-stat-n" style="color:${t.color}">${t.totalReach}</div>
+              <div class="team-hdr-stat-l">${t.reachLabel}</div>
+            </div>
+            <div class="team-hdr-stat">
+              <div class="team-hdr-stat-n" style="color:#555">${t.stories.length}</div>
+              <div class="team-hdr-stat-l">Stor${t.stories.length===1?'y':'ies'}</div>
+            </div>
+          </div>
+        </div>
+        <div class="stories-wrap">
+          ${charityIntro}
+          ${stories}
+        </div>
+      </div>`;
+  });
+
+  nav.insertAdjacentHTML('beforeend', navHTML);
+  container.innerHTML = secHTML;
+}
+
+/* ─── Footer ─── */
+function renderFooter() {
+  document.getElementById('ft-left').textContent = `VER+ Huellas · ${DATA.month} ${DATA.year} · Edition ${DATA.edition}`;
+  document.getElementById('ft-note').textContent = `Prepared by ${DATA.preparedBy}`;
+}
+
+/* ─── Tab switching ─── */
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); DATA.teams.forEach(t => b.classList.remove(t.navClass)); });
+  const sec = document.getElementById('tab-' + id);
+  if (sec) sec.classList.add('visible');
+  const btn = id === 'overview' ? document.getElementById('nb-overview') : document.getElementById('nb-' + id);
+  if (btn) {
+    btn.classList.add('active');
+    if (id !== 'overview') {
+      const team = DATA.teams.find(t => t.id === id);
+      if (team) btn.classList.add(team.navClass);
+    }
+  }
+  document.querySelector('.main-nav').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ─── Story accordion ─── */
+function toggleStory(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ─── Footprints ─── */
+function renderFootprints() {
+  const layer = document.getElementById('footprints-layer');
+  const headerEl = document.querySelector('.site-header');
+  const h = headerEl.offsetHeight || 160;
+
+  // Walking path: alternating right (R) / left (L)
+  // Each step: [side, leftPercent, topPercent, rotationDeg]
+  const steps = [
+    ['R',  3,  38,  -8],
+    ['L', 10,  58,   6],
+    ['R', 18,  35,  -6],
+    ['L', 26,  60,   8],
+    ['R', 34,  36,  -7],
+    ['L', 42,  58,   5],
+    ['R', 50,  34,  -8],
+    ['L', 58,  60,   7],
+    ['R', 66,  35,  -6],
+    ['L', 74,  58,   5],
+    ['R', 82,  33,  -9],
+    ['L', 90,  60,   6],
+    ['R', 97,  36,  -7],
+  ];
+
+  const size = Math.min(h * 0.55, 70); // footprint height scales with header
+
+  steps.forEach(([side, left, top, rot], i) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width',  Math.round(size * 0.55));
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox', '0 0 34 64');
+    svg.style.cssText = `
+      position: absolute;
+      left: ${left}%;
+      top:  ${top}%;
+      transform-origin: center;
+      animation-delay: ${(i * 0.18).toFixed(2)}s;
+    `;
+    svg.classList.add('fp');
+    if (side === 'L') svg.classList.add('left');
+
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', '#fp-shape');
+    use.setAttribute('transform', `rotate(${rot}, 17, 32)`);
+    svg.appendChild(use);
+    layer.appendChild(svg);
+  });
+}
+
+/* ─── INIT ─── */
+renderHeader();
+renderEditorsNote();
+renderHighlight();
+renderOvGrid();
+renderTeamSections();
+renderFooter();
+renderFootprints();
+</script>
+</body>
+</html>
