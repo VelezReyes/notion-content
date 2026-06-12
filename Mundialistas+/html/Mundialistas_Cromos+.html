@@ -675,12 +675,40 @@ const LS = {
 };
 
 /* ─ Seed ─ */
+/* Compact v1 format: indices instead of IDs, seconds instead of ms, no URI escape.
+   Saves ~50-60% vs legacy format. Legacy seeds still decode for backward compatibility. */
 function encodeSeed() {
-  const d = { c:LS.collected(), h:LS.history(), d2:LS.dates(), du:LS.dupes() };
-  return btoa(unescape(encodeURIComponent(JSON.stringify(d))));
+  const idIdx = {};
+  PLAYERS.forEach((p, i) => { idIdx[p.id] = i; });
+  const coll = LS.collected();
+  const hist = LS.history();
+  const dates = LS.dates();
+  const pd = LS.packDates();
+
+  const c = coll.map(id => idIdx[id]).filter(i => i !== undefined);
+  // Omit hist entries with count <= 1 (1 is implicit for any collected card)
+  const h = Object.entries(hist)
+    .filter(([id, ct]) => ct > 1 && idIdx[id] !== undefined)
+    .map(([id, ct]) => [idIdx[id], ct]);
+  // Dates → seconds (drops 3 digits per timestamp)
+  const d = Object.entries(dates)
+    .filter(([id]) => idIdx[id] !== undefined)
+    .map(([id, ts]) => [idIdx[id], Math.floor(ts / 1000)]);
+  // Pack dates → seconds, cap last 60 entries (plenty for week-streak math)
+  const pdShort = pd.slice(-60).map(ts => Math.floor(ts / 1000));
+
+  const data = { v:1, c, h, d, u: LS.dupes(), p: LS.packs(), pd: pdShort };
+  return btoa(JSON.stringify(data));
 }
+
 function decodeSeed(s) {
-  try{ return JSON.parse(decodeURIComponent(escape(atob(s)))); }catch{ return null; }
+  // Try v1 first (plain base64 → JSON, no URI escape)
+  try {
+    const obj = JSON.parse(atob(s));
+    if (obj && typeof obj === 'object') return obj;
+  } catch {}
+  // Fallback: legacy format with URI escaping
+  try { return JSON.parse(decodeURIComponent(escape(atob(s)))); } catch { return null; }
 }
 
 /* ─ Navigation ─ */
@@ -1306,16 +1334,59 @@ function closeCardDetail(e) {
 
 /* ─ Seed import / reset ─ */
 function importSeed() {
-  const raw=document.getElementById('seed-input').value.trim();
-  if(!raw) return;
-  const data=decodeSeed(raw);
-  if(!data||!data.c){ showToast('Invalid progress code'); return; }
-  const merged=[...new Set([...LS.collected(),...data.c])];
-  LS.saveColl(merged);
-  LS.saveHist({...LS.history(),...(data.h||{})});
-  LS.saveDates({...LS.dates(),...(data.d2||{})});
-  if(data.du) LS.saveDupes(data.du);
-  document.getElementById('seed-input').value='';
+  const raw = document.getElementById('seed-input').value.trim();
+  if (!raw) return;
+  const data = decodeSeed(raw);
+  if (!data) { showToast('Invalid progress code'); return; }
+
+  if (data.v === 1) {
+    /* ─ Compact v1 format ─ */
+    const importedColl = (data.c || []).map(i => PLAYERS[i]?.id).filter(Boolean);
+    const mergedColl = [...new Set([...LS.collected(), ...importedColl])];
+    LS.saveColl(mergedColl);
+
+    // hist: defaults to 1 for collected, overrides for higher counts. Take max with existing.
+    const histImported = {};
+    importedColl.forEach(id => { histImported[id] = 1; });
+    (data.h || []).forEach(([i, ct]) => {
+      const id = PLAYERS[i]?.id;
+      if (id) histImported[id] = ct;
+    });
+    const mergedHist = { ...LS.history() };
+    Object.entries(histImported).forEach(([id, ct]) => {
+      mergedHist[id] = Math.max(mergedHist[id] || 0, ct);
+    });
+    LS.saveHist(mergedHist);
+
+    // dates: convert seconds → ms, take max with existing
+    const mergedDates = { ...LS.dates() };
+    (data.d || []).forEach(([i, ts]) => {
+      const id = PLAYERS[i]?.id;
+      if (id) mergedDates[id] = Math.max(mergedDates[id] || 0, ts * 1000);
+    });
+    LS.saveDates(mergedDates);
+
+    // counters: take max
+    LS.saveDupes(Math.max(LS.dupes(), data.u || 0));
+    LS.savePacks(Math.max(LS.packs(), data.p || 0));
+
+    // pack-dates: union + dedupe, cap last 200
+    const importedPd = (data.pd || []).map(ts => ts * 1000);
+    const unionPd = [...new Set([...LS.packDates(), ...importedPd])].sort((a, b) => a - b);
+    if (unionPd.length > 200) unionPd.splice(0, unionPd.length - 200);
+    LS.savePackDates(unionPd);
+  } else {
+    /* ─ Legacy format ─ */
+    if (!data.c) { showToast('Invalid progress code'); return; }
+    const merged = [...new Set([...LS.collected(), ...data.c])];
+    LS.saveColl(merged);
+    LS.saveHist({ ...LS.history(), ...(data.h || {}) });
+    LS.saveDates({ ...LS.dates(), ...(data.d2 || {}) });
+    if (data.du) LS.saveDupes(data.du);
+    // Legacy seeds had no packs tracking — preserve whatever local has
+  }
+
+  document.getElementById('seed-input').value = '';
   renderAlbum();
   showToast('Progress restored! 🎴');
 }
