@@ -194,12 +194,18 @@ body { font-family: var(--font); background: #0D0D0D; color: #CCC; min-height: 1
 .obj-body { display: none; border-top: 1px solid #1A1A1A; padding: .6rem 1.1rem .8rem; }
 .obj-item.open .obj-body { display: block; }
 .kr-list  { display: flex; flex-direction: column; gap: .45rem; }
-.kr-row   { display: grid; grid-template-columns: 1fr 100px 36px; align-items: start; gap: .65rem; font-size: 11.5px; }
+.kr-row   { display: grid; grid-template-columns: 1fr 64px 90px 32px; align-items: start; gap: .5rem; font-size: 11.5px; }
 .kr-name      { color: #777; }
 .kr-bar-track { height: 5px; background: #222; border-radius: 3px; overflow: hidden; margin-top: 5px; }
 .kr-bar-fill  { height: 100%; border-radius: 3px; }
 .kr-pct       { font-size: 11px; font-weight: 700; color: #666; text-align: right; margin-top: 2px; }
 .kr-detail    { font-size: 10px; color: #4A4A4A; margin-top: 3px; line-height: 1.45; font-weight: 400; }
+.kr-code      { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .04em; padding: 2px 6px; border-radius: 4px; background: #222; color: #666; margin-right: 4px; vertical-align: middle; flex-shrink: 0; }
+.kr-badge     { display: inline-block; font-size: 8.5px; font-weight: 700; padding: 2px 6px; border-radius: 10px; white-space: nowrap; margin-top: 3px; letter-spacing: .03em; }
+.kr-badge.on-track    { background: #0D2B1A; color: #27CF77; }
+.kr-badge.at-risk     { background: #1C0800; color: #F97316; }
+.kr-badge.completed   { background: #0A2010; color: #27CF77; }
+.kr-badge.not-started { background: #1A1A1A; color: #555; }
 
 /* ── Task summary ── */
 .task-card { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1rem 1.35rem; margin-bottom: .75rem; }
@@ -671,6 +677,10 @@ function krStatusColor(s) {
   if (s === 'on-track' || s === 'completed')  return '#27CF77';
   return '#3A3A3A'; /* not-started */
 }
+function krStatusLabel(s) {
+  const m = { 'on-track':'On Track', 'at-risk':'At Risk', 'completed':'Completed', 'not-started':'Not Started', 'in-trouble':'At Risk' };
+  return m[s] || 'Not Started';
+}
 function badge(s) {
   return `<span class="badge ${statusClass(s)}">${statusLabel(s)}</span>`;
 }
@@ -770,12 +780,13 @@ function renderTeamSections() {
 
     /* objective rows */
     const objRows = t.objectives.map((o,i)=>{
-      const krRows = o.krs.map(kr=>`
+      const krRows = o.krs.map((kr,ki)=>`
         <div class="kr-row">
           <div class="kr-name">
-            ${kr.name}
+            <span class="kr-code" style="background:${t.color}18;color:${t.color}CC">${o.code}.${ki+1}</span>${kr.name}
             ${kr.detail ? `<div class="kr-detail">${kr.detail}</div>` : ''}
           </div>
+          <div><span class="kr-badge ${kr.status||'not-started'}">${krStatusLabel(kr.status)}</span></div>
           <div class="kr-bar-track"><div class="kr-bar-fill" style="width:${kr.actual}%;background:${krStatusColor(kr.status)};"></div></div>
           <div class="kr-pct" style="color:${krStatusColor(kr.status)}">${kr.actual}%</div>
         </div>
