@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKR Progress Report · May 2026 · VélezReyes+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   VER+ DESIGN SYSTEM — OKR Report
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:     #000000;
+  --cream:     #EFEFE4;
+  --yellow:    #F3FF00;
+  --green:     #27CF77;
+  --purple:    #A62BFF;
+  --white:     #FFFFFF;
+  --font:      'Montserrat', -apple-system, sans-serif;
+  --radius:    10px;
+  --radius-sm: 6px;
+  --c-ontrack:  #27CF77;
+  --c-atrisk:   #F3FF00;
+  --c-trouble:  #FF6B6B;
+  --c-ns:       #555555;
+  /* team colors */
+  --c-dem:  #A62BFF;
+  --c-ecd:  #27CF77;
+  --c-fot:  #22C4CF;
+  --c-k12:  #3B82F6;
+  --c-mel:  #F97316;
+  --c-ops:  #F59E0B;
+  --c-tech: #6366F1;
+  --c-fin:  #EC4899;
+}
+
+body { font-family: var(--font); background: #0D0D0D; color: #CCC; min-height: 100vh; padding: 1.25rem 1rem 3rem; line-height: 1.55; }
+.root { max-width: 1100px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: #0D0D0D;
+  border: 1px solid #222;
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem 1.25rem;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.header-top   { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.header-label { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #555; margin-bottom: .3rem; font-weight: 600; }
+.header h1    { font-size: 22px; font-weight: 800; color: #FFF; line-height: 1.1; }
+.header-period { font-size: 13px; color: var(--yellow); font-weight: 700; margin-top: .25rem; }
+.header-right  { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
+.header-stats  { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+.hstat         { background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 8px; padding: .6rem .9rem; text-align: center; min-width: 80px; }
+.hstat-num     { font-size: 20px; font-weight: 800; line-height: 1; }
+.hstat-label   { font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #555; margin-top: 3px; }
+.hstat.yellow .hstat-num { color: var(--yellow); }
+.hstat.green  .hstat-num { color: var(--green); }
+.hstat.orange .hstat-num { color: #F97316; }
+.header-teams  { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .75rem; }
+.team-pill     { font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 3px 10px; border-radius: 20px; border: 1px solid; }
+
+/* ── PDF Download Button ── */
+.pdf-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: var(--yellow); color: #000;
+  font-family: var(--font); font-size: 10px; font-weight: 800;
+  padding: .5rem .9rem; border-radius: 8px; border: none; cursor: pointer;
+  letter-spacing: .04em; text-transform: uppercase;
+  transition: opacity .18s, transform .1s; white-space: nowrap;
+}
+.pdf-btn:hover  { opacity: .85; transform: translateY(-1px); }
+.pdf-btn:active { transform: translateY(0); }
+.pdf-btn svg    { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* ── Nav ── */
+.main-nav {
+  background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: var(--radius);
+  padding: 4px; display: flex; gap: 3px; margin-bottom: .75rem; overflow-x: auto;
+}
+.nav-btn {
+  flex: 1; min-width: 80px; text-align: center; padding: 9px 10px;
+  border-radius: 7px; border: none; background: transparent;
+  color: #555; font-size: 11px; font-weight: 700; cursor: pointer;
+  transition: background .18s, color .18s; font-family: var(--font);
+  letter-spacing: .02em; white-space: nowrap;
+}
+.nav-btn:hover  { background: #252525; color: #999; }
+.nav-btn.active { background: var(--yellow); color: #000; }
+
+/* ── Sections ── */
+.section { display: none; }
+.section.visible { display: block; }
+.sec-title { font-size: 17px; font-weight: 700; color: #E8E8E0; margin-bottom: .15rem; }
+.sec-sub   { font-size: 12px; color: #555; margin-bottom: .85rem; }
+
+/* ── Cards ── */
+.card       { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1.1rem 1.35rem; margin-bottom: .75rem; }
+.card-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #555; margin-bottom: .75rem; }
+
+/* ── Status badge ── */
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; }
+.badge.on-track    { background: #0D2B1A; color: var(--c-ontrack); }
+.badge.at-risk     { background: #2B2B00; color: var(--c-atrisk); }
+.badge.in-trouble  { background: #2B0D0D; color: var(--c-trouble); }
+.badge.not-started { background: #1A1A1A; color: #555; }
+
+/* ── Overview: Team grid ── */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-bottom: .75rem; }
+.team-card {
+  background: #141414; border: 1px solid #222; border-radius: var(--radius);
+  padding: .9rem 1rem; cursor: pointer;
+  transition: border-color .18s, background .18s; position: relative; overflow: hidden;
+}
+.team-card:hover { background: #1A1A1A; border-color: #333; }
+.tc-top     { display: flex; align-items: center; justify-content: space-between; margin-bottom: .5rem; }
+.tc-name    { font-size: 11px; font-weight: 700; color: #DDD; }
+.tc-lead    { font-size: 10px; color: #444; margin-top: 1px; }
+.tc-donut-wrap   { position: relative; width: 54px; height: 54px; }
+.tc-donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.tc-pct     { font-size: 13px; font-weight: 800; line-height: 1; }
+.tc-bar-wrap   { margin-top: .5rem; }
+.tc-bar-row    { display: flex; align-items: center; gap: .4rem; font-size: 10px; }
+.tc-bar-label  { color: #444; width: 54px; flex-shrink: 0; }
+.tc-bar-track  { flex: 1; height: 5px; background: #252525; border-radius: 3px; overflow: hidden; }
+.tc-bar-fill   { height: 100%; border-radius: 3px; }
+.tc-bar-pct    { color: #666; min-width: 26px; }
+.tc-status-row { display: flex; align-items: center; justify-content: space-between; margin-top: .5rem; }
+.tc-counts     { display: flex; gap: .35rem; }
+.tc-count      { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; }
+.tc-count.on   { background: #0D2B1A; color: var(--c-ontrack); }
+.tc-count.risk { background: #2B2B00; color: var(--c-atrisk); }
+.tc-count.ns   { background: #1A1A1A; color: #555; }
+
+/* ── Org objectives ── */
+.org-obj-list { display: flex; flex-direction: column; gap: .5rem; }
+.org-obj-row  { display: grid; grid-template-columns: 1fr 160px 50px; align-items: center; gap: .75rem; }
+.org-obj-name { font-size: 12px; color: #BBB; font-weight: 500; }
+.org-bar-track { height: 8px; background: #252525; border-radius: 4px; overflow: hidden; }
+.org-bar-fill  { height: 100%; border-radius: 4px; }
+.org-obj-pct   { font-size: 12px; font-weight: 700; color: #999; text-align: right; }
+
+/* ── Callout ── */
+.callout { border-radius: var(--radius-sm); padding: .75rem 1rem; margin: .6rem 0; font-size: 12px; line-height: 1.6; border-left: 3px solid #333; background: #1A1A1A; color: #888; }
+.callout.orange { border-left-color: #F97316; background: #1C1000; color: #BB8800; }
+.callout.dim    { border-left-color: #333; background: #131313; color: #555; font-size: 11px; }
+.callout-title  { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .25rem; }
+.callout.orange .callout-title { color: #F97316; }
+
+/* ── Team section header ── */
+.team-hdr {
+  background: #141414; border: 1px solid #222; border-radius: var(--radius);
+  padding: 1.1rem 1.35rem; margin-bottom: .6rem;
+  display: grid; grid-template-columns: 100px 1fr auto; align-items: center; gap: 1.25rem;
+}
+.team-donut-wrap   { position: relative; width: 100px; height: 100px; }
+.team-donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.team-donut-pct    { font-size: 24px; font-weight: 800; line-height: 1; }
+.team-donut-label  { font-size: 9px; color: #555; font-weight: 600; letter-spacing: .05em; margin-top: 2px; }
+.team-info-name    { font-size: 18px; font-weight: 800; color: #FFF; line-height: 1.1; margin-bottom: .3rem; }
+.team-info-lead    { font-size: 11px; color: #555; margin-bottom: .6rem; }
+.team-info-stats   { display: flex; gap: .4rem; flex-wrap: wrap; align-items: center; }
+.team-stat   { background: #1A1A1A; border: 1px solid #282828; border-radius: 6px; padding: .4rem .7rem; text-align: center; }
+.team-stat-n { font-size: 16px; font-weight: 800; line-height: 1; }
+.team-stat-l { font-size: 9px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #555; margin-top: 2px; }
+.team-counts { display: flex; flex-direction: column; gap: .35rem; align-items: flex-end; }
+
+/* ── Objectives accordion ── */
+.obj-list    { display: flex; flex-direction: column; gap: .45rem; margin-bottom: .75rem; }
+.obj-item    { background: #141414; border: 1px solid #222; border-radius: var(--radius); overflow: hidden; }
+.obj-header  { display: flex; align-items: center; gap: .75rem; padding: .75rem 1.1rem; cursor: pointer; transition: background .15s; }
+.obj-header:hover { background: #1A1A1A; }
+.obj-code    { font-size: 10px; font-weight: 700; letter-spacing: .05em; padding: 3px 8px; border-radius: 5px; background: #222; color: #666; flex-shrink: 0; }
+.obj-name    { font-size: 12.5px; font-weight: 600; color: #CCC; flex: 1; }
+.obj-pct     { font-size: 13px; font-weight: 800; min-width: 36px; text-align: right; flex-shrink: 0; }
+.obj-bar-wrap  { width: 90px; flex-shrink: 0; }
+.obj-bar-track { height: 6px; background: #252525; border-radius: 3px; overflow: hidden; }
+.obj-bar-fill  { height: 100%; border-radius: 3px; }
+.obj-chevron   { font-size: 11px; color: #333; transition: transform .2s; flex-shrink: 0; }
+.obj-item.open .obj-chevron { transform: rotate(180deg); }
+.obj-body { display: none; border-top: 1px solid #1A1A1A; padding: .6rem 1.1rem .8rem; }
+.obj-item.open .obj-body { display: block; }
+.kr-list  { display: flex; flex-direction: column; gap: .45rem; }
+.kr-row   { display: grid; grid-template-columns: 1fr 100px 36px; align-items: center; gap: .65rem; font-size: 11.5px; }
+.kr-name      { color: #777; }
+.kr-bar-track { height: 5px; background: #222; border-radius: 3px; overflow: hidden; }
+.kr-bar-fill  { height: 100%; border-radius: 3px; }
+.kr-pct       { font-size: 11px; font-weight: 700; color: #666; text-align: right; }
+
+/* ── Task summary ── */
+.task-card { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1rem 1.35rem; margin-bottom: .75rem; }
+.task-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; margin-top: .6rem; }
+.task-list li { display: flex; align-items: flex-start; gap: .6rem; font-size: 12px; color: #888; line-height: 1.6; }
+.task-list li::before { content: '›'; font-size: 14px; font-weight: 700; color: #444; flex-shrink: 0; margin-top: 1px; }
+.task-ref  { font-size: 9px; font-weight: 800; letter-spacing: .06em; padding: 2px 6px; border-radius: 4px; background: #222; color: #555; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+
+/* ── Footer ── */
+.site-footer { margin-top: 2.5rem; padding: 1.25rem 0 .5rem; text-align: center; border-top: 1px solid #1E1E1E; }
+.footer-note { font-size: 11px; color: #333; letter-spacing: .04em; }
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .team-hdr  { grid-template-columns: 80px 1fr; }
+  .team-counts { display: none; }
+  .org-obj-row { grid-template-columns: 1fr 100px 40px; }
+}
+@media (max-width: 420px) {
+  .team-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PDF / PRINT — optimized for CEO readability
+   ============================================================ */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #0D0D0D !important; padding: 0 !important; font-size: 11px !important; }
+  .main-nav, .pdf-btn { display: none !important; }
+  .section { display: block !important; }
+  .section:not(:first-child) { page-break-before: always; }
+  .obj-body { display: block !important; }
+  .obj-chevron { display: none !important; }
+  .root { max-width: 100%; padding: 0; }
+  .card, .team-hdr, .obj-item, .task-card { break-inside: avoid; }
+  .site-footer { border-top: 1px solid #222 !important; }
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+<!-- ============================================================
+     DATA — UPDATED FROM V2 MATERIAL · Extracted: 2026-06-16
+     Source: Profit.co — VélezReyes+ OKR Report
+     ============================================================ -->
+<script>
+const DATA = {
+  period:     { month: "May", year: 2026 },
+  reportDate: "June 16, 2026",  /* Data extraction date (V2 from Profit.co) */
+
+  /* ── Org-level (VélezReyes+ parent objective)
+     Updated: 39% At Risk (was 32% In Trouble in V1) */
+  org: {
+    actual: 39, status: "at-risk",
+    objectives: [
+      /* O1: 31% → 40%; still In Trouble but improved */
+      { name: "Refined Big Bets and Toolkit",              actual: 40, status: "in-trouble" },
+      /* O2: 39% → 44%; At Risk */
+      { name: "Disciplined Execution and Learning",         actual: 44, status: "at-risk"   },
+      /* O3: 27% → 34%; At Risk */
+      { name: "Conducive Structure for 5-Year Plan",        actual: 34, status: "at-risk"   },
+    ]
+  },
+
+  teams: [
+
+    /* ── DEMOCRACY · Lead: Tamara Taraciuk
+       39% (was 37%) · At Risk
+       Key change: D4 moved At Risk → On Track;
+       Investment Thesis D4.1 jumped 53% → 77% ── */
+    {
+      id: "dem", name: "Democracy", short: "DEM",
+      lead: "Tamara Taraciuk",
+      color: "#A62BFF",
+      actual: 39,
+      status: "at-risk",
+      onTrack: 4, atRisk: 0, notStarted: 0,
+      note: null,
+      objectives: [
+        { code:"D1", name:"Turn Democracia+ into a robust Big Bet for 2027–2031",
+          actual:32, status:"on-track",
+          krs:[
+            { name:"D+ Operating Model Decision (Q4)",              actual:40 },
+            { name:"Program Delivery Quality meets Targets (Q4)",   actual:32 },
+            { name:"Results Dashboard used in Decisions (Q4)",      actual:20 },
+          ]
+        },
+        { code:"D2", name:"Deepen and decide continuity of ecosystem bets",
+          actual:43, status:"on-track",
+          krs:[
+            { name:"Ecosystem Bets Leveraged — RIL + DAL (Q4)",    actual:43 },
+          ]
+        },
+        { code:"D3", name:"Test democratic innovations as potential levers to strengthen states",
+          actual:38, status:"on-track",
+          krs:[
+            /* D3.1: minor drop 46% → 44% */
+            { name:"DPI Big Bet Decision (Q4)",                     actual:44 },
+            { name:"New Hypotheses Tested & Closed-loop (Q4)",      actual:32 },
+          ]
+        },
+        { code:"D4", name:"Define the democracy strategy for 2026 and 2027-2031",
+          actual:42, status:"on-track",  /* was at-risk → now on-track */
+          krs:[
+            /* D4.1: KEY JUMP 53% → 77% · awaiting June board feedback */
+            { name:"Investment Thesis (Q2)",                        actual:77 },
+            { name:"Evidence & Results Dashboard (Q3)",             actual:50 },
+            { name:"Thesis Decision (Q4)",                          actual: 0 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"D4.1", text:"Investment Thesis at 77% — awaiting June board feedback (meeting June 5) to finalize plan for rest of 2026. Strategy document delivered as board input." },
+        { ref:"D1.2", text:"Grant renewals in progress for 5 D+ organizations (Q2): Recambio, Uruguay, Potencia Argentina, Legisla, and RenovaBR. KPI tracker being updated for Q2 across all 7 orgs." },
+        { ref:"D2.1", text:"MEL work on RIL and DAL ongoing. Decision made to be more hands-on with RIL; less day-to-day involvement with DAL." },
+        { ref:"D3.1", text:"DPI Big Bet at 44% — portfolio of grants and consultancies being finalized. 2026 DPI Test & Learn strategy revised post-São Paulo offsite; confirmation pending after June board." },
+        { ref:"D4.2", text:"Evidence & Results Dashboard at 50% — post-mortem exercises completed across democracy portfolio ahead of May offsite. Next review: September leadership offsite." },
+      ]
+    },
+
+    /* ── ECD · Lead: Elisa Mansur
+       34% (was 26%) · At Risk
+       Key change: EC3.1 Investment Thesis COMPLETED 100%;
+       Caregiver Support EC2.1 jumped 35% → 58% ── */
+    {
+      id: "ecd", name: "ECD", short: "ECD",
+      lead: "Elisa Mansur",
+      color: "#27CF77",
+      actual: 34,
+      status: "at-risk",
+      onTrack: 1, atRisk: 3, notStarted: 0,  /* EC2 On Track; EC1, EC3, EC4 At Risk */
+      note: null,
+      objectives: [
+        { code:"EC1", name:"Deepen / double down on current big bets to close the ECD development gap at scale",
+          actual:31, status:"at-risk",
+          krs:[
+            /* EC1.1: 47% → 43% · aprendo+ CEO needs to strengthen role */
+            { name:"aprendo+ Spin-off Ready (Q2)",                  actual:43 },
+            { name:"aprendo+ Delivery Quality & Scale Plan (Q4)",   actual:24 },
+            /* EC1.3: 29% → 39% · Ipsos work approved for Colombia & Peru */
+            { name:"ECDI Baseline Created (Q4)",                    actual:39 },
+            /* EC1.4: 20% → 25% · Govinho launch set for June 23 */
+            { name:"Brazil ECD DPI National Scale Readiness (Q4)",  actual:25 },
+          ]
+        },
+        { code:"EC2", name:"Test and learn new hypotheses to identify the next ECD bets",
+          actual:49, status:"on-track",
+          krs:[
+            /* EC2.1: KEY JUMP 35% → 58% · redirected internally with Armida */
+            { name:"Caregiver Support Decision (Q4)",               actual:58 },
+            /* EC2.2: 35% → 40% · Impulso approved; invited to Piauí core group */
+            { name:"New Hypothesis Tests and Closed-loop (Q4)",     actual:40 },
+          ]
+        },
+        { code:"EC3", name:"Define the ECD strategy for 2026 and 2027-2031",
+          actual:42, status:"at-risk",
+          krs:[
+            /* EC3.1: ✓ COMPLETED 65% → 100% */
+            { name:"Investment Thesis (Q2) ✓ COMPLETED",            actual:100 },
+            /* EC3.2: 33% → 50% */
+            { name:"Evidence & Results Dashboard (Q3)",             actual:50 },
+            { name:"Thesis Decision (Q4)",                          actual: 0 },
+          ]
+        },
+        { code:"EC4", name:"Deepen and decide continuity of ecosystem bets",
+          actual:15, status:"at-risk",  /* changed to At Risk; not enough interventions for MEL */
+          krs:[
+            { name:"Ecosystem Bets Decision (Q3)",                  actual:15 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"EC3.1", text:"Investment Thesis ✓ COMPLETED at 100%. Evidence & Results Dashboard at 50% — post-mortem data collected; dashboard in progress." },
+        { ref:"EC1.1", text:"aprendo+ Spin-off at 43% (At Risk) — CEO Aldo needs to strengthen his role and hire an operations right hand. 3 informal agreements active for scale target." },
+        { ref:"EC1.3", text:"ECDI Baseline at 39% — work with Ipsos approved (signed memo) for Colombia and Peru. QEdu platform launched with dedicated early childhood section." },
+        { ref:"EC1.4", text:"Brazil ECD DPI at 25% (At Risk) — 'Govinho' launch date confirmed for June 23. Government-led; limited internal control." },
+        { ref:"EC2.1", text:"Caregiver Support at 58% — efforts redirected to internal work with Armida on quality measurement; pending June board input. Impulso memo approved; invited to join the Piauí blueprint core group." },
+      ]
+    },
+
+    /* ── FUTURE OF TALENT · Lead: Maribel Corrales
+       11% (was 10%) · On Track (was At Risk) ── */
+    {
+      id: "fot", name: "Future of Talent", short: "FoT",
+      lead: "Maribel Corrales",
+      color: "#22C4CF",
+      actual: 11,
+      status: "on-track",  /* changed At Risk → On Track per Profit.co */
+      onTrack: 1, atRisk: 1, notStarted: 2,
+      note: null,
+      objectives: [
+        { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
+          actual:31, status:"on-track",
+          krs:[
+            /* FT1.1: 27% → 32% */
+            { name:"Scholarships Delivered with Quality (Q4)",            actual:32 },
+            /* FT1.2: 41% → 30% · university agreements in transition */
+            { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30 },
+            /* FT1.3: same · scholar CRM being built */
+            { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30 },
+          ]
+        },
+        { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Test & Learn Portfolio Closed-loop (Q4)",             actual: 0 },
+          ]
+        },
+        { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
+          actual:13, status:"at-risk",
+          krs:[
+            { name:"Investment Thesis (Q2)",                              actual:37 },
+            { name:"Evidence & Results Dashboard (Q3)",                   actual: 3 },
+            { name:"Thesis Decision (Q4)",                                actual: 0 },
+          ]
+        },
+        { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Ecosystem Bets Decision (Q3)",                        actual: 0 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"FT1.1", text:"Scholar satisfaction survey results shared with operators in Colombia and Peru. Retention follow-up by cohort/country in progress (Semester 1, due July 20)." },
+        { ref:"FT1.2", text:"University agreements in transition — 5 completed agreements awaiting Trust confirmation; ICESI in final validation stage; EAFIT pending due diligence documents (due June 19)." },
+        { ref:"FT1.3", text:"Scholar CRM dashboard being built — minimum indicators, data sources, and governance being defined (due June 10). Dashboard + decision log launch targeted Q3 (July 10)." },
+        { ref:"FT3.1", text:"Investment Thesis at 37% — concept notes planned for Peru Makers, Colombia U Ventures incubation model, and Peru Fondo Luchante." },
+        { ref:"FT2/FT4", text:"Test & Learn and Ecosystem Bets objectives not yet initiated." },
+      ]
+    },
+
+    /* ── K-12 · Lead: Maribel Corrales
+       3% (no change) · At Risk ── */
+    {
+      id: "k12", name: "K-12", short: "K12",
+      lead: "Maribel Corrales",
+      color: "#3B82F6",
+      actual: 3,
+      status: "at-risk",
+      onTrack: 1, atRisk: 0, notStarted: 2,  /* K1 On Track; K2 and K3 Not Started */
+      note: null,
+      objectives: [
+        { code:"K1", name:"Deepen / double down on current ecosystem bets",
+          actual:10, status:"on-track",
+          krs:[
+            { name:"Ecosystem Bets Decision (Q3)",            actual:10 },
+          ]
+        },
+        { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0 },
+            { name:"Impact Investing Approach (Q4)",          actual: 0 },
+          ]
+        },
+        { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Investment Thesis (Q2)",                  actual: 0 },
+            { name:"Evidence & Results Dashboard (Q3)",       actual: 0 },
+            { name:"Thesis Decision (Q2)",                    actual: 0 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"K1.1", text:"Primary active initiative is CEPE. Status report, KPIs, and learnings due June 1. Task structure being built to properly reflect team dedication." },
+        { ref:"K2/K3", text:"AI lever testing, impact investing approach, and strategy definition not yet started. Team in early planning and scoping stage." },
+      ]
+    },
+
+    /* ── MEL · Lead: Juan Guillermo Bedoya
+       63% (was 50%) · On Track (was At Risk)
+       Key change: M1.1 Portfolio SBL Map COMPLETED 100% ── */
+    {
+      id: "mel", name: "MEL", short: "MEL",
+      lead: "Juan Guillermo Bedoya",
+      color: "#F97316",
+      actual: 63,
+      status: "on-track",  /* changed At Risk → On Track */
+      onTrack: 1, atRisk: 0, notStarted: 0,
+      note: "Portfolio SBL Map (M1.1) ✓ completed at 100% in Q2 (originally planned for Q1). MEL is operating significantly above planned pace across all KRs.",
+      objectives: [
+        { code:"M1", name:"Make portfolio decisions evidence-based through SBL and MEL services across VER+",
+          actual:63, status:"on-track",
+          krs:[
+            /* M1.1: ✓ COMPLETED 54% → 100% */
+            { name:"Portfolio SBL Map Completed (Q1→Q2) ✓",         actual:100 },
+            /* M1.2: 58% → 62% */
+            { name:"SSOT + Decision Package Standard Adopted (Q2)",  actual:62 },
+            /* M1.3: 36% → 39% · 17 active projects */
+            { name:"Stage-based MEL Support Delivered (Q3)",         actual:39 },
+            /* M1.4: no change */
+            { name:"Evidence used in Portfolio Governance (Q4)",     actual:65 },
+            /* M1.5: 36% → 50% · approach presented at São Paulo offsite */
+            { name:"Equality of Opportunity Measurement Pilot (Q4)", actual:50 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"M1.1", text:"Portfolio SBL Map ✓ COMPLETED at 100% in Q2. Mapping data collected, codified, and validated with stakeholders." },
+        { ref:"M1.2", text:"SSOT at 62% — investment process defined and piloted. Program team onboarding and system completion targeted for Q2 (June 30)." },
+        { ref:"M1.3", text:"17 active org-level MEL projects across 5 batches: 8 D+ orgs, 3 RIL projects, aeioTU, Crack the Code, aprendo+, DAL, Peru DPI, and education coalition." },
+        { ref:"M1.3", text:"Crack the Code: 721 surveys completed; analysis shows early signs of impact on higher education access. aeioTU fieldwork started June 1 (30 households; ends June 19). RIL pilot testing underway." },
+        { ref:"M1.5", text:"Equality of Opportunity at 50% — measurement approach for 5-year plan defined and presented at São Paulo offsite. Data requirements assessed and included in board proposal." },
+      ]
+    },
+
+    /* ── PEOPLE & OPS · Lead: Cristina Londoño
+       53% (was 44%) · At Risk
+       Key changes: OKR Adoption 52% → 80%; Charity 30% → 44%;
+       Suptask launched at All Hands May 29 ── */
+    {
+      id: "ops", name: "People & Ops", short: "OPS",
+      lead: "Cristina Londoño",
+      color: "#F59E0B",
+      actual: 53,
+      status: "at-risk",
+      onTrack: 0, atRisk: 3, notStarted: 0,
+      note: null,
+      objectives: [
+        { code:"OP1", name:"Build operational rigor through clear and standardized processes",
+          actual:56, status:"at-risk",
+          krs:[
+            /* OP1.1: 54% → 60% · all policies sent to CEO */
+            { name:"Core Process Standardization (Q3)",         actual:60 },
+            /* OP1.2: 34% → 46% · Employee Hub delivered to CEO May 26 */
+            { name:"Operational Visibility & Collaboration",    actual:46 },
+          ]
+        },
+        { code:"OP2", name:"Reliable daily operations and continuity",
+          actual:34, status:"at-risk",
+          krs:[
+            /* OP2.1: 16% → 24% */
+            { name:"Operational Continuity (Q4)",               actual:24 },
+            /* OP2.2: 30% → 44% · policy and process created; pending CEO approval */
+            { name:"Charity Framework",                         actual:44 },
+          ]
+        },
+        { code:"OP3", name:"Aligned team with right capabilities",
+          actual:60, status:"at-risk",
+          krs:[
+            /* OP3.1: KEY JUMP 52% → 80% · re-onboarding completed May 6 */
+            { name:"OKR System Adoption (Q2)",                  actual:80 },
+            { name:"5-Year Organizational Design (Q4)",         actual:13 },
+            /* OP3.3: 83% → 86% · insurance benefit implementation complete */
+            { name:"Team Health & Wellness (Q2)",               actual:86 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"OP2.1", text:"Suptask officially launched at All Hands (May 29) — covers HR/Admin requests, Deel questions, Design/Comms, Due Diligence, Legal, and document signing. Guides and policy published." },
+        { ref:"OP3.1", text:"OKR System Adoption at 80% — re-onboarding completed May 6; teams running first check-ins; some pending correct review period adjustments." },
+        { ref:"OP1.2", text:"Notion Employee Hub delivered to CEO for review on May 26. On track for final approval before June 19." },
+        { ref:"OP3.3", text:"Team Health & Wellness at 86% — insurance benefit implementation completed; insurance withholding resolution in progress." },
+      ]
+    },
+
+    /* ── TECH · Lead: Felipe Costa
+       3% (no change) · At Risk ── */
+    {
+      id: "tech", name: "Tech", short: "Tech",
+      lead: "Felipe Costa",
+      color: "#6366F1",
+      actual: 3,
+      status: "at-risk",
+      onTrack: 0, atRisk: 1, notStarted: 0,
+      note: null,
+      objectives: [
+        { code:"T1", name:"Tech enables reliable, secure portfolio decisions and execution through adopted systems",
+          actual: 3, status:"at-risk",
+          krs:[
+            { name:"Foundations + Governance in place (Q2)",         actual:10 },
+            { name:"Portfolio Support Model + SLAs Delivered (Q4)",  actual: 0 },
+            { name:"AI & Productivity (Q4)",                         actual: 0 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"T1.1", text:"Foundations & Governance at 10% — only KR with active progress. Governance structure and tooling foundations in early setup." },
+        { ref:"T1.2", text:"Portfolio Support Model and SLAs not yet started; support model definition and SLA agreements pending." },
+        { ref:"T1.3", text:"AI & Productivity workstream not started; scope and priorities pending definition." },
+        { ref:"T1",   text:"Team in early-stage setup. Task breakdown to be built out in Q2." },
+      ]
+    },
+
+    /* ── FINANCE — NEW team registered in Profit.co
+       0% · Not Started · scope in early stages ── */
+    {
+      id: "fin", name: "Finance", short: "FIN",
+      lead: "—",
+      color: "#EC4899",
+      actual: 0,
+      status: "not-started",
+      onTrack: 0, atRisk: 0, notStarted: 1,
+      note: "Finance OKRs formally registered in Profit.co this period. All KRs are Not Started (0%) — scope and planning in early stages.",
+      objectives: [
+        { code:"F1", name:"VR+ enables disciplined portfolio investment through decision-ready financial visibility, scenario-based planning, and reliable, compliant disbursement operations",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Financial Visibility (Q1)",                    actual: 0 },
+            { name:"Predictable Disbursements + Compliance (Q4)",  actual: 0 },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"F1.1/F1.2", text:"Finance OKRs formally registered in Profit.co. Financial Visibility and Predictable Disbursements + Compliance not yet started." },
+        { ref:"F1",        text:"Scope, planning, and task breakdown pending definition with Finance lead." },
+      ]
+    },
+
+  ] /* end teams */
+}; /* end DATA */
+</script>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">VélezReyes+ · OKR Progress Report</div>
+      <h1>May 2026<br><span style="color:#555;font-weight:400;font-size:14px;">Organizational Overview</span></h1>
+      <div class="header-period" id="hdr-period"></div>
+    </div>
+    <div class="header-right">
+      <!-- PDF download button -->
+      <button class="pdf-btn" onclick="downloadPDF()" title="Download full report as PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download PDF
+      </button>
+      <div class="header-stats" id="hdr-stats"></div>
+    </div>
+  </div>
+  <div class="header-teams" id="hdr-teams"></div>
+</div>
+
+<!-- ── Nav ── -->
+<div class="main-nav" id="main-nav">
+  <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+  <!-- team buttons injected by JS -->
+</div>
+
+<!-- ── OVERVIEW ── -->
+<div class="section visible" id="tab-overview">
+  <div class="sec-title">Company Overview</div>
+  <div class="sec-sub" id="ov-sub"></div>
+
+  <!-- Org objectives -->
+  <div class="card">
+    <div class="card-title">VélezReyes+ — Company Objectives</div>
+    <div class="org-obj-list" id="org-obj-list"></div>
+  </div>
+
+  <!-- Team grid -->
+  <div class="card">
+    <div class="card-title">Team Progress at a Glance</div>
+    <div class="team-grid" id="team-grid"></div>
+  </div>
+
+  <!-- Status legend -->
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;padding:.35rem 0 .1rem;">
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-ontrack);"></div> On Track
+    </div>
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-atrisk);"></div> At Risk
+    </div>
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-trouble);"></div> In Trouble
+    </div>
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#555;"></div> Not Started
+    </div>
+  </div>
+
+  <!-- Profit.co note -->
+  <div class="callout dim" style="margin-top:.85rem;">
+    Percentages reflect data as of June 16, 2026. For full context on any KR, check-in history, or task detail, refer directly to <strong style="color:#666;">Profit.co</strong>.
+  </div>
+</div>
+
+<!-- ── TEAM SECTIONS (injected) ── -->
+<div id="team-sections"></div>
+
+<div class="site-footer">
+  <div class="footer-note">Data extracted on <span id="ft-date"></span> · Source: Profit.co · VélezReyes+ · Reporting period: May 2026</div>
+</div>
+
+</div><!-- .root -->
+
+<!-- ============================================================
+     RENDER ENGINE
+     ============================================================ -->
+<script>
+/* ── Helpers ── */
+function statusClass(s) {
+  const m = { 'on-track':'on-track','at-risk':'at-risk','in-trouble':'in-trouble','not-started':'not-started' };
+  return m[s] || 'not-started';
+}
+function statusLabel(s) {
+  const m = { 'on-track':'On Track','at-risk':'At Risk','in-trouble':'In Trouble','not-started':'Not Started' };
+  return m[s] || 'Not Started';
+}
+function statusColor(s) {
+  const m = { 'on-track':'var(--c-ontrack)','at-risk':'var(--c-atrisk)','in-trouble':'var(--c-trouble)','not-started':'var(--c-ns)' };
+  return m[s] || 'var(--c-ns)';
+}
+function badge(s) {
+  return `<span class="badge ${statusClass(s)}">${statusLabel(s)}</span>`;
+}
+
+/* ── Header ── */
+function renderHeader() {
+  document.getElementById('hdr-period').textContent = DATA.reportDate;
+  document.getElementById('ft-date').textContent    = DATA.reportDate;
+
+  const totalOn = DATA.teams.reduce((a,t)=>a+t.onTrack,0);
+  const totalAt = DATA.teams.reduce((a,t)=>a+t.atRisk,0);
+  const totalNs = DATA.teams.reduce((a,t)=>a+t.notStarted,0);
+
+  document.getElementById('hdr-stats').innerHTML = `
+    <div class="hstat yellow"><div class="hstat-num">${DATA.org.actual}%</div><div class="hstat-label">Org Progress</div></div>
+    <div class="hstat green"><div class="hstat-num">${totalOn}</div><div class="hstat-label">On Track</div></div>
+    <div class="hstat orange"><div class="hstat-num">${totalAt}</div><div class="hstat-label">At Risk</div></div>
+    <div class="hstat"><div class="hstat-num" style="color:#555">${totalNs}</div><div class="hstat-label">Not Started</div></div>
+  `;
+
+  document.getElementById('hdr-teams').innerHTML = DATA.teams.map(t=>
+    `<span class="team-pill" style="color:${t.color};border-color:${t.color}33;">${t.short} — ${t.actual}%</span>`
+  ).join('');
+}
+
+/* ── Overview sub-text ── */
+function renderOvSub() {
+  document.getElementById('ov-sub').innerHTML =
+    `VélezReyes+ overall at <strong style="color:#FFF">${DATA.org.actual}%</strong> · ${badge(DATA.org.status)} · Period: ${DATA.period.month} ${DATA.period.year}`;
+}
+
+/* ── Org objectives ── */
+function renderOrgObjs() {
+  document.getElementById('org-obj-list').innerHTML = DATA.org.objectives.map(o=>`
+    <div class="org-obj-row">
+      <div class="org-obj-name">${o.name}</div>
+      <div class="org-bar-track">
+        <div class="org-bar-fill" style="width:${o.actual}%;background:${statusColor(o.status)};"></div>
+      </div>
+      <div class="org-obj-pct" style="color:${statusColor(o.status)}">${o.actual}%</div>
+    </div>
+  `).join('');
+}
+
+/* ── Team mini-donut charts (overview grid) ── */
+const miniCharts = {};
+function renderTeamGrid() {
+  const grid = document.getElementById('team-grid');
+  grid.innerHTML = DATA.teams.map(t=>`
+    <div class="team-card" onclick="showTab('${t.id}')" title="View ${t.name} detail">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:${t.color};"></div>
+      <div class="tc-top">
+        <div>
+          <div class="tc-name">${t.name}</div>
+          <div class="tc-lead">${t.lead}</div>
+        </div>
+        <div class="tc-donut-wrap">
+          <canvas id="mc-${t.id}" width="54" height="54"></canvas>
+          <div class="tc-donut-center">
+            <span class="tc-pct" style="color:${t.color}">${t.actual}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row">
+          <div class="tc-bar-label">Progress</div>
+          <div class="tc-bar-track">
+            <div class="tc-bar-fill" style="width:${t.actual}%;background:${t.color};"></div>
+          </div>
+          <div class="tc-bar-pct">${t.actual}%</div>
+        </div>
+      </div>
+      <div class="tc-status-row">
+        ${badge(t.status)}
+        <div class="tc-counts">
+          ${t.onTrack    ? `<span class="tc-count on">${t.onTrack} On Track</span>`    : ''}
+          ${t.atRisk     ? `<span class="tc-count risk">${t.atRisk} At Risk</span>`    : ''}
+          ${t.notStarted ? `<span class="tc-count ns">${t.notStarted} Not Started</span>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  DATA.teams.forEach(t=>{
+    const ctx = document.getElementById('mc-'+t.id).getContext('2d');
+    miniCharts[t.id] = new Chart(ctx, {
+      type: 'doughnut',
+      data: { datasets:[{ data:[t.actual,100-t.actual], backgroundColor:[t.color,'#1E1E1E'], borderWidth:0, hoverOffset:0 }] },
+      options: { cutout:'72%', animation:false, plugins:{legend:{display:false},tooltip:{enabled:false}}, events:[] }
+    });
+  });
+}
+
+/* ── Team detail sections ── */
+const teamCharts = {};
+function renderTeamSections() {
+  const nav = document.getElementById('main-nav');
+  const container = document.getElementById('team-sections');
+  let navHTML = '';
+  let secHTML = '';
+
+  DATA.teams.forEach(t=>{
+    navHTML += `<button class="nav-btn" id="nb-${t.id}" onclick="showTab('${t.id}')">${t.short}</button>`;
+
+    /* objective rows */
+    const objRows = t.objectives.map((o,i)=>{
+      const krRows = o.krs.map(kr=>`
+        <div class="kr-row">
+          <div class="kr-name">${kr.name}</div>
+          <div class="kr-bar-track"><div class="kr-bar-fill" style="width:${kr.actual}%;background:${t.color}66;"></div></div>
+          <div class="kr-pct" style="color:${t.color}">${kr.actual}%</div>
+        </div>
+      `).join('');
+
+      return `
+        <div class="obj-item" id="obj-${t.id}-${i}">
+          <div class="obj-header" onclick="toggleObj('obj-${t.id}-${i}')">
+            <span class="obj-code" style="background:${t.color}22;color:${t.color}">${o.code}</span>
+            <span class="obj-name">${o.name}</span>
+            <div class="obj-bar-wrap">
+              <div class="obj-bar-track">
+                <div class="obj-bar-fill" style="width:${o.actual}%;background:${statusColor(o.status)};"></div>
+              </div>
+            </div>
+            <span class="obj-pct" style="color:${statusColor(o.status)}">${o.actual}%</span>
+            ${badge(o.status)}
+            <span class="obj-chevron">▼</span>
+          </div>
+          <div class="obj-body">
+            <div class="kr-list">${krRows}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    /* task bullets with KR reference chips */
+    const taskHTML = t.tasks.map(tx=>`
+      <li>
+        <span class="task-ref">${tx.ref}</span>
+        <span>${tx.text}</span>
+      </li>
+    `).join('');
+
+    /* context note callout */
+    const noteHTML = t.note
+      ? `<div class="callout orange"><div class="callout-title">📌 Context Note</div>${t.note}</div>`
+      : '';
+
+    secHTML += `
+      <div class="section" id="tab-${t.id}">
+        <!-- team header -->
+        <div class="team-hdr">
+          <div class="team-donut-wrap">
+            <canvas id="td-${t.id}" width="100" height="100"></canvas>
+            <div class="team-donut-center">
+              <span class="team-donut-pct" style="color:${t.color}">${t.actual}%</span>
+              <span class="team-donut-label">Actual</span>
+            </div>
+          </div>
+          <div>
+            <div class="team-info-name">${t.name}</div>
+            <div class="team-info-lead">Lead: ${t.lead}</div>
+            <div class="team-info-stats">
+              <div class="team-stat">
+                <div class="team-stat-n" style="color:${t.color}">${t.actual}%</div>
+                <div class="team-stat-l">Progress</div>
+              </div>
+              <div style="display:flex;align-items:center;">${badge(t.status)}</div>
+            </div>
+          </div>
+          <div class="team-counts">
+            ${t.onTrack    ? `<span class="badge on-track">${t.onTrack} On Track</span>`      : ''}
+            ${t.atRisk     ? `<span class="badge at-risk">${t.atRisk} At Risk</span>`          : ''}
+            ${t.notStarted ? `<span class="badge not-started">${t.notStarted} Not Started</span>` : ''}
+          </div>
+        </div>
+
+        ${noteHTML}
+
+        <!-- objectives -->
+        <div class="sec-title" style="margin-bottom:.5rem;">Objectives & Key Results</div>
+        <div class="obj-list">${objRows}</div>
+
+        <!-- task summary -->
+        <div class="task-card">
+          <div class="card-title">Executive Task Summary</div>
+          <ul class="task-list">${taskHTML}</ul>
+        </div>
+      </div>
+    `;
+  });
+
+  nav.insertAdjacentHTML('beforeend', navHTML);
+  container.innerHTML = secHTML;
+
+  /* draw team donuts */
+  DATA.teams.forEach(t=>{
+    const ctx2 = document.getElementById('td-'+t.id).getContext('2d');
+    teamCharts[t.id] = new Chart(ctx2, {
+      type: 'doughnut',
+      data: { datasets:[{ data:[t.actual,100-t.actual], backgroundColor:[t.color,'#1E1E1E'], borderWidth:0, hoverOffset:0 }] },
+      options: { cutout:'70%', animation:{duration:600}, plugins:{legend:{display:false},tooltip:{enabled:false}}, events:[] }
+    });
+  });
+}
+
+/* ── Tab switching ── */
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const sec = document.getElementById('tab-'+id);
+  if (sec) sec.classList.add('visible');
+  if (id==='overview') document.querySelector('.nav-btn[onclick*="overview"]').classList.add('active');
+  else { const b = document.getElementById('nb-'+id); if(b) b.classList.add('active'); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── Objective accordion ── */
+function toggleObj(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── PDF / Print
+   Expands all sections and accordions before printing,
+   then restores the original state afterward.
+   ──────────────────────────────────────────────────── */
+function downloadPDF() {
+  /* 1. Save current state */
+  const currentTab = document.querySelector('.section.visible')?.id || 'tab-overview';
+  const openObjs   = Array.from(document.querySelectorAll('.obj-item.open')).map(el=>el.id);
+
+  /* 2. Prepare: show all, expand all */
+  document.querySelectorAll('.section').forEach(s=>s.classList.add('visible'));
+  document.querySelectorAll('.obj-item').forEach(el=>el.classList.add('open'));
+
+  /* 3. Print */
+  window.print();
+
+  /* 4. Restore after print dialog */
+  setTimeout(()=>{
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+    const active = document.getElementById(currentTab);
+    if (active) active.classList.add('visible');
+    document.querySelectorAll('.obj-item').forEach(el=>{
+      if (!openObjs.includes(el.id)) el.classList.remove('open');
+    });
+  }, 1500);
+}
+
+/* ── INIT ── */
+renderHeader();
+renderOvSub();
+renderOrgObjs();
+renderTeamGrid();
+renderTeamSections();
+</script>
+</body>
+</html>
