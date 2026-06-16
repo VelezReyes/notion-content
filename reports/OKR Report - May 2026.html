@@ -194,11 +194,12 @@ body { font-family: var(--font); background: #0D0D0D; color: #CCC; min-height: 1
 .obj-body { display: none; border-top: 1px solid #1A1A1A; padding: .6rem 1.1rem .8rem; }
 .obj-item.open .obj-body { display: block; }
 .kr-list  { display: flex; flex-direction: column; gap: .45rem; }
-.kr-row   { display: grid; grid-template-columns: 1fr 100px 36px; align-items: center; gap: .65rem; font-size: 11.5px; }
+.kr-row   { display: grid; grid-template-columns: 1fr 100px 36px; align-items: start; gap: .65rem; font-size: 11.5px; }
 .kr-name      { color: #777; }
-.kr-bar-track { height: 5px; background: #222; border-radius: 3px; overflow: hidden; }
+.kr-bar-track { height: 5px; background: #222; border-radius: 3px; overflow: hidden; margin-top: 5px; }
 .kr-bar-fill  { height: 100%; border-radius: 3px; }
-.kr-pct       { font-size: 11px; font-weight: 700; color: #666; text-align: right; }
+.kr-pct       { font-size: 11px; font-weight: 700; color: #666; text-align: right; margin-top: 2px; }
+.kr-detail    { font-size: 10px; color: #4A4A4A; margin-top: 3px; line-height: 1.45; font-weight: 400; }
 
 /* ── Task summary ── */
 .task-card { background: #141414; border: 1px solid #222; border-radius: var(--radius); padding: 1rem 1.35rem; margin-bottom: .75rem; }
@@ -251,26 +252,19 @@ const DATA = {
   period:     { month: "May", year: 2026 },
   reportDate: "June 16, 2026",  /* Data extraction date (V2 from Profit.co) */
 
-  /* ── Org-level (VélezReyes+ parent objective)
-     Updated: 39% At Risk (was 32% In Trouble in V1) */
+  /* ── Org-level (VélezReyes+ parent objective) ── */
   org: {
     actual: 39, status: "at-risk",
     objectives: [
-      /* O1: 31% → 40%; still In Trouble but improved */
       { name: "Refined Big Bets and Toolkit",              actual: 40, status: "in-trouble" },
-      /* O2: 39% → 44%; At Risk */
       { name: "Disciplined Execution and Learning",         actual: 44, status: "at-risk"   },
-      /* O3: 27% → 34%; At Risk */
       { name: "Conducive Structure for 5-Year Plan",        actual: 34, status: "at-risk"   },
     ]
   },
 
   teams: [
 
-    /* ── DEMOCRACY · Lead: Tamara Taraciuk
-       39% (was 37%) · At Risk
-       Key change: D4 moved At Risk → On Track;
-       Investment Thesis D4.1 jumped 53% → 77% ── */
+    /* ── DEMOCRACY · Lead: Tamara Taraciuk · 39% · At Risk ── */
     {
       id: "dem", name: "Democracy", short: "DEM",
       lead: "Tamara Taraciuk",
@@ -283,32 +277,30 @@ const DATA = {
         { code:"D1", name:"Turn Democracia+ into a robust Big Bet for 2027–2031",
           actual:32, status:"on-track",
           krs:[
-            { name:"D+ Operating Model Decision (Q4)",              actual:40 },
-            { name:"Program Delivery Quality meets Targets (Q4)",   actual:32 },
-            { name:"Results Dashboard used in Decisions (Q4)",      actual:20 },
+            { name:"D+ Operating Model Decision (Q4)",              actual:40, status:"on-track",    detail:"Programmatic Strategy & Curriculum Plan both completed ✓ (Q1)" },
+            { name:"Program Delivery Quality meets Targets (Q4)",   actual:32, status:"on-track",    detail:"5 grant renewals in progress (Q2): Recambio, Uruguay, Potencia Argentina, Legisla, RenovaBR" },
+            { name:"Results Dashboard used in Decisions (Q4)",      actual:20, status:"on-track",    detail:"4 of 7 orgs delivered information; 3 still pending" },
           ]
         },
         { code:"D2", name:"Deepen and decide continuity of ecosystem bets",
           actual:43, status:"on-track",
           krs:[
-            { name:"Ecosystem Bets Leveraged — RIL + DAL (Q4)",    actual:43 },
+            { name:"Ecosystem Bets Leveraged — RIL + DAL (Q4)",    actual:43, status:"on-track",    detail:"More hands-on with RIL; DAL operating more autonomously by design" },
           ]
         },
         { code:"D3", name:"Test democratic innovations as potential levers to strengthen states",
           actual:38, status:"on-track",
           krs:[
-            /* D3.1: minor drop 46% → 44% */
-            { name:"DPI Big Bet Decision (Q4)",                     actual:44 },
-            { name:"New Hypotheses Tested & Closed-loop (Q4)",      actual:32 },
+            { name:"DPI Big Bet Decision (Q4)",                     actual:44, status:"on-track",    detail:"Grants & consultancies list being finalized; 2026 T&L strategy pending board confirmation June 5" },
+            { name:"New Hypotheses Tested & Closed-loop (Q4)",      actual:32, status:"on-track",    detail:"Portfolio of grants and consultancies pending board confirmation June 5" },
           ]
         },
         { code:"D4", name:"Define the democracy strategy for 2026 and 2027-2031",
-          actual:42, status:"on-track",  /* was at-risk → now on-track */
+          actual:42, status:"on-track",
           krs:[
-            /* D4.1: KEY JUMP 53% → 77% · awaiting June board feedback */
-            { name:"Investment Thesis (Q2)",                        actual:77 },
-            { name:"Evidence & Results Dashboard (Q3)",             actual:50 },
-            { name:"Thesis Decision (Q4)",                          actual: 0 },
+            { name:"Investment Thesis (Q2)",                        actual:77, status:"on-track",    detail:"Strategy document delivered as board input — 53% → 77%; awaiting June 5 board feedback" },
+            { name:"Evidence & Results Dashboard (Q3)",             actual:50, status:"on-track",    detail:"Post-mortem exercise completed across portfolio ahead of May offsite; next review: September" },
+            { name:"Thesis Decision (Q4)",                          actual: 0, status:"not-started", detail:null },
           ]
         },
       ],
@@ -321,54 +313,44 @@ const DATA = {
       ]
     },
 
-    /* ── ECD · Lead: Elisa Mansur
-       34% (was 26%) · At Risk
-       Key change: EC3.1 Investment Thesis COMPLETED 100%;
-       Caregiver Support EC2.1 jumped 35% → 58% ── */
+    /* ── ECD · Lead: Elisa Mansur · 34% · At Risk ── */
     {
       id: "ecd", name: "ECD", short: "ECD",
       lead: "Elisa Mansur",
       color: "#27CF77",
       actual: 34,
       status: "at-risk",
-      onTrack: 1, atRisk: 3, notStarted: 0,  /* EC2 On Track; EC1, EC3, EC4 At Risk */
+      onTrack: 1, atRisk: 3, notStarted: 0,
       note: null,
       objectives: [
         { code:"EC1", name:"Deepen / double down on current big bets to close the ECD development gap at scale",
           actual:31, status:"at-risk",
           krs:[
-            /* EC1.1: 47% → 43% · aprendo+ CEO needs to strengthen role */
-            { name:"aprendo+ Spin-off Ready (Q2)",                  actual:43 },
-            { name:"aprendo+ Delivery Quality & Scale Plan (Q4)",   actual:24 },
-            /* EC1.3: 29% → 39% · Ipsos work approved for Colombia & Peru */
-            { name:"ECDI Baseline Created (Q4)",                    actual:39 },
-            /* EC1.4: 20% → 25% · Govinho launch set for June 23 */
-            { name:"Brazil ECD DPI National Scale Readiness (Q4)",  actual:25 },
+            { name:"aprendo+ Spin-off Ready (Q2)",                  actual:43, status:"at-risk",     detail:"CEO (Aldo) needs to hire an operations right hand; 3 informal scale agreements active" },
+            { name:"aprendo+ Delivery Quality & Scale Plan (Q4)",   actual:24, status:"on-track",    detail:"3 informal agreements for child scale target; engagement metrics with families on track" },
+            { name:"ECDI Baseline Created (Q4)",                    actual:39, status:"on-track",    detail:"Signed memo with Ipsos for Colombia & Peru; QEdu launched with early childhood section" },
+            { name:"Brazil ECD DPI National Scale Readiness (Q4)",  actual:25, status:"at-risk",     detail:"'Govinho' launch date confirmed: June 23 — government-led, limited internal control" },
           ]
         },
         { code:"EC2", name:"Test and learn new hypotheses to identify the next ECD bets",
           actual:49, status:"on-track",
           krs:[
-            /* EC2.1: KEY JUMP 35% → 58% · redirected internally with Armida */
-            { name:"Caregiver Support Decision (Q4)",               actual:58 },
-            /* EC2.2: 35% → 40% · Impulso approved; invited to Piauí core group */
-            { name:"New Hypothesis Tests and Closed-loop (Q4)",     actual:40 },
+            { name:"Caregiver Support Decision (Q4)",               actual:58, status:"on-track",    detail:"Redirected to internal work with Armida on quality measurement — 35% → 58%; pending board June 5" },
+            { name:"New Hypothesis Tests and Closed-loop (Q4)",     actual:40, status:"on-track",    detail:"Impulso memo approved; invited to join Piauí blueprint core group; Staton agreement pending" },
           ]
         },
         { code:"EC3", name:"Define the ECD strategy for 2026 and 2027-2031",
           actual:42, status:"at-risk",
           krs:[
-            /* EC3.1: ✓ COMPLETED 65% → 100% */
-            { name:"Investment Thesis (Q2) ✓ COMPLETED",            actual:100 },
-            /* EC3.2: 33% → 50% */
-            { name:"Evidence & Results Dashboard (Q3)",             actual:50 },
-            { name:"Thesis Decision (Q4)",                          actual: 0 },
+            { name:"Investment Thesis (Q2) ✓ COMPLETED",            actual:100, status:"completed",  detail:"Delivered on time — Q2 milestone achieved (65% → 100%)" },
+            { name:"Evidence & Results Dashboard (Q3)",             actual:50,  status:"on-track",   detail:"Post-mortem data collected; dashboard in progress" },
+            { name:"Thesis Decision (Q4)",                          actual: 0,  status:"not-started", detail:null },
           ]
         },
         { code:"EC4", name:"Deepen and decide continuity of ecosystem bets",
-          actual:15, status:"at-risk",  /* changed to At Risk; not enough interventions for MEL */
+          actual:15, status:"at-risk",
           krs:[
-            { name:"Ecosystem Bets Decision (Q3)",                  actual:15 },
+            { name:"Ecosystem Bets Decision (Q3)",                  actual:15, status:"at-risk",     detail:"MEL for aeioTU ongoing; insufficient interventions to run MEL for preschool coalition yet" },
           ]
         },
       ],
@@ -381,46 +363,42 @@ const DATA = {
       ]
     },
 
-    /* ── FUTURE OF TALENT · Lead: Maribel Corrales
-       11% (was 10%) · On Track (was At Risk) ── */
+    /* ── FUTURE OF TALENT · Lead: Maribel Corrales · 11% · On Track ── */
     {
       id: "fot", name: "Future of Talent", short: "FoT",
       lead: "Maribel Corrales",
       color: "#22C4CF",
       actual: 11,
-      status: "on-track",  /* changed At Risk → On Track per Profit.co */
+      status: "on-track",
       onTrack: 1, atRisk: 1, notStarted: 2,
       note: null,
       objectives: [
         { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
           actual:31, status:"on-track",
           krs:[
-            /* FT1.1: 27% → 32% */
-            { name:"Scholarships Delivered with Quality (Q4)",            actual:32 },
-            /* FT1.2: 41% → 30% · university agreements in transition */
-            { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30 },
-            /* FT1.3: same · scholar CRM being built */
-            { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30 },
+            { name:"Scholarships Delivered with Quality (Q4)",            actual:32, status:"on-track",    detail:"Satisfaction survey shared with operators in Colombia & Peru; retention follow-up by cohort due July 20" },
+            { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30, status:"on-track",    detail:"5 agreements completed; ICESI in final validation; EAFIT pending due diligence (due June 19)" },
+            { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30, status:"on-track",    detail:"CRM minimum indicators & governance being defined (due June 10); dashboard launch targeted Q3" },
           ]
         },
         { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
           actual: 0, status:"not-started",
           krs:[
-            { name:"Test & Learn Portfolio Closed-loop (Q4)",             actual: 0 },
+            { name:"Test & Learn Portfolio Closed-loop (Q4)",             actual: 0, status:"not-started", detail:null },
           ]
         },
         { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
           actual:13, status:"at-risk",
           krs:[
-            { name:"Investment Thesis (Q2)",                              actual:37 },
-            { name:"Evidence & Results Dashboard (Q3)",                   actual: 3 },
-            { name:"Thesis Decision (Q4)",                                actual: 0 },
+            { name:"Investment Thesis (Q2)",                              actual:37, status:"on-track",    detail:"Concept notes planned: Peru Makers, Colombia U Ventures (incubation model), Peru Fondo Luchante" },
+            { name:"Evidence & Results Dashboard (Q3)",                   actual: 3, status:"on-track",    detail:"Dashboard structure and ROI data pending; data collection not started" },
+            { name:"Thesis Decision (Q4)",                                actual: 0, status:"not-started", detail:null },
           ]
         },
         { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
           actual: 0, status:"not-started",
           krs:[
-            { name:"Ecosystem Bets Decision (Q3)",                        actual: 0 },
+            { name:"Ecosystem Bets Decision (Q3)",                        actual: 0, status:"not-started", detail:null },
           ]
         },
       ],
@@ -433,36 +411,35 @@ const DATA = {
       ]
     },
 
-    /* ── K-12 · Lead: Maribel Corrales
-       3% (no change) · At Risk ── */
+    /* ── K-12 · Lead: Maribel Corrales · 3% · At Risk ── */
     {
       id: "k12", name: "K-12", short: "K12",
       lead: "Maribel Corrales",
       color: "#3B82F6",
       actual: 3,
       status: "at-risk",
-      onTrack: 1, atRisk: 0, notStarted: 2,  /* K1 On Track; K2 and K3 Not Started */
+      onTrack: 1, atRisk: 0, notStarted: 2,
       note: null,
       objectives: [
         { code:"K1", name:"Deepen / double down on current ecosystem bets",
           actual:10, status:"on-track",
           krs:[
-            { name:"Ecosystem Bets Decision (Q3)",            actual:10 },
+            { name:"Ecosystem Bets Decision (Q3)",            actual:10, status:"on-track",    detail:"Primary initiative: CEPE — status report, KPIs & learnings due June 1; task structure being built" },
           ]
         },
         { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
           actual: 0, status:"not-started",
           krs:[
-            { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0 },
-            { name:"Impact Investing Approach (Q4)",          actual: 0 },
+            { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0, status:"not-started", detail:null },
+            { name:"Impact Investing Approach (Q4)",          actual: 0, status:"not-started", detail:null },
           ]
         },
         { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
           actual: 0, status:"not-started",
           krs:[
-            { name:"Investment Thesis (Q2)",                  actual: 0 },
-            { name:"Evidence & Results Dashboard (Q3)",       actual: 0 },
-            { name:"Thesis Decision (Q2)",                    actual: 0 },
+            { name:"Investment Thesis (Q2)",                  actual: 0, status:"not-started", detail:null },
+            { name:"Evidence & Results Dashboard (Q3)",       actual: 0, status:"not-started", detail:null },
+            { name:"Thesis Decision (Q2)",                    actual: 0, status:"not-started", detail:null },
           ]
         },
       ],
@@ -472,31 +449,24 @@ const DATA = {
       ]
     },
 
-    /* ── MEL · Lead: Juan Guillermo Bedoya
-       63% (was 50%) · On Track (was At Risk)
-       Key change: M1.1 Portfolio SBL Map COMPLETED 100% ── */
+    /* ── MEL · Lead: Juan Guillermo Bedoya · 63% · On Track ── */
     {
       id: "mel", name: "MEL", short: "MEL",
       lead: "Juan Guillermo Bedoya",
       color: "#F97316",
       actual: 63,
-      status: "on-track",  /* changed At Risk → On Track */
+      status: "on-track",
       onTrack: 1, atRisk: 0, notStarted: 0,
       note: "Portfolio SBL Map (M1.1) ✓ completed at 100% in Q2 (originally planned for Q1). MEL is operating significantly above planned pace across all KRs.",
       objectives: [
         { code:"M1", name:"Make portfolio decisions evidence-based through SBL and MEL services across VER+",
           actual:63, status:"on-track",
           krs:[
-            /* M1.1: ✓ COMPLETED 54% → 100% */
-            { name:"Portfolio SBL Map Completed (Q1→Q2) ✓",         actual:100 },
-            /* M1.2: 58% → 62% */
-            { name:"SSOT + Decision Package Standard Adopted (Q2)",  actual:62 },
-            /* M1.3: 36% → 39% · 17 active projects */
-            { name:"Stage-based MEL Support Delivered (Q3)",         actual:39 },
-            /* M1.4: no change */
-            { name:"Evidence used in Portfolio Governance (Q4)",     actual:65 },
-            /* M1.5: 36% → 50% · approach presented at São Paulo offsite */
-            { name:"Equality of Opportunity Measurement Pilot (Q4)", actual:50 },
+            { name:"Portfolio SBL Map Completed (Q1→Q2) ✓",         actual:100, status:"completed",  detail:"Mapping data collected, codified & validated with stakeholders — completed in Q2" },
+            { name:"SSOT + Decision Package Standard Adopted (Q2)",  actual:62,  status:"on-track",   detail:"Investment process defined and piloted; system completion targeted June 30" },
+            { name:"Stage-based MEL Support Delivered (Q3)",         actual:39,  status:"on-track",   detail:"17 active projects: 8 D+ orgs, 3 RIL, aeioTU, CTC, aprendo+, DAL, Peru DPI, education coalition" },
+            { name:"Evidence used in Portfolio Governance (Q4)",     actual:65,  status:"on-track",   detail:"Evidence templates embedded in investment process; decision log standard being defined" },
+            { name:"Equality of Opportunity Measurement Pilot (Q4)", actual:50,  status:"on-track",   detail:"Measurement approach presented at São Paulo offsite; included in board proposal" },
           ]
         },
       ],
@@ -509,10 +479,7 @@ const DATA = {
       ]
     },
 
-    /* ── PEOPLE & OPS · Lead: Cristina Londoño
-       53% (was 44%) · At Risk
-       Key changes: OKR Adoption 52% → 80%; Charity 30% → 44%;
-       Suptask launched at All Hands May 29 ── */
+    /* ── PEOPLE & OPS · Lead: Cristina Londoño · 53% · At Risk ── */
     {
       id: "ops", name: "People & Ops", short: "OPS",
       lead: "Cristina Londoño",
@@ -525,42 +492,36 @@ const DATA = {
         { code:"OP1", name:"Build operational rigor through clear and standardized processes",
           actual:56, status:"at-risk",
           krs:[
-            /* OP1.1: 54% → 60% · all policies sent to CEO */
-            { name:"Core Process Standardization (Q3)",         actual:60 },
-            /* OP1.2: 34% → 46% · Employee Hub delivered to CEO May 26 */
-            { name:"Operational Visibility & Collaboration",    actual:46 },
+            { name:"Core Process Standardization (Q3)",         actual:60, status:"on-track",    detail:"All policies sent to CEO (54% → 60%); awaiting approval post-board meeting" },
+            { name:"Operational Visibility & Collaboration",    actual:46, status:"on-track",    detail:"Notion Employee Hub delivered to CEO (May 26); approval expected before June 19" },
           ]
         },
         { code:"OP2", name:"Reliable daily operations and continuity",
           actual:34, status:"at-risk",
           krs:[
-            /* OP2.1: 16% → 24% */
-            { name:"Operational Continuity (Q4)",               actual:24 },
-            /* OP2.2: 30% → 44% · policy and process created; pending CEO approval */
-            { name:"Charity Framework",                         actual:44 },
+            { name:"Operational Continuity (Q4)",               actual:24, status:"on-track",    detail:"Suptask launched at All Hands (May 29) — HR/Admin, Design/Comms, Legal, Due Diligence" },
+            { name:"Charity Framework",                         actual:44, status:"on-track",    detail:"Policy, SOP & templates created (30% → 44%); sent to CEO April 30; pending final approval" },
           ]
         },
         { code:"OP3", name:"Aligned team with right capabilities",
           actual:60, status:"at-risk",
           krs:[
-            /* OP3.1: KEY JUMP 52% → 80% · re-onboarding completed May 6 */
-            { name:"OKR System Adoption (Q2)",                  actual:80 },
-            { name:"5-Year Organizational Design (Q4)",         actual:13 },
-            /* OP3.3: 83% → 86% · insurance benefit implementation complete */
-            { name:"Team Health & Wellness (Q2)",               actual:86 },
+            { name:"OKR System Adoption (Q2)",                  actual:80, status:"on-track",    detail:"Re-onboarding completed May 6 — 52% → 80%; all teams running first check-ins" },
+            { name:"5-Year Organizational Design (Q4)",         actual:13, status:"on-track",    detail:"Feedback sessions completed Q1; advancing in parallel with strategy definition process" },
+            { name:"Team Health & Wellness (Q2)",               actual:86, status:"on-track",    detail:"Insurance benefit implementation complete (83% → 86%); withholding resolution in progress" },
           ]
         },
       ],
       tasks: [
-        { ref:"OP2.1", text:"Suptask officially launched at All Hands (May 29) — covers HR/Admin requests, Deel questions, Design/Comms, Due Diligence, Legal, and document signing. Guides and policy published." },
-        { ref:"OP3.1", text:"OKR System Adoption at 80% — re-onboarding completed May 6; teams running first check-ins; some pending correct review period adjustments." },
-        { ref:"OP1.2", text:"Notion Employee Hub delivered to CEO for review on May 26. On track for final approval before June 19." },
-        { ref:"OP3.3", text:"Team Health & Wellness at 86% — insurance benefit implementation completed; insurance withholding resolution in progress." },
+        { ref:"OP2.1", text:"Suptask officially launched at All Hands (May 29) — centralizes HR/Admin requests, Deel questions, Design/Comms, Due Diligence, Legal, and document signing. Full guides and policy published." },
+        { ref:"OP3.1", text:"OKR System Adoption at 80% — re-onboarding completed May 6; all teams running first check-ins. Q2 Review & Reports due July 15. Re-onboarding Q3 scheduled for September 14." },
+        { ref:"OP1.2", text:"Notion Employee Hub delivered to CEO for review on May 26. On track for final approval before June 19. This KR tracks operational visibility — a single source of truth enabling all-team collaboration." },
+        { ref:"OP1.1", text:"Core Process Standardization at 60% — all updated policies sent to CEO. Variable Compensation definition deferred post-June board meeting. Due Diligence process being scoped (owners: Miguel/Dharla, due Aug 10)." },
+        { ref:"OP3.3", text:"Team Health & Wellness at 86% — insurance benefit implementation completed for all employees; insurance withholding (retenciones) resolution in progress with Cristina." },
       ]
     },
 
-    /* ── TECH · Lead: Felipe Costa
-       3% (no change) · At Risk ── */
+    /* ── TECH · Lead: Felipe Costa · 3% · At Risk ── */
     {
       id: "tech", name: "Tech", short: "Tech",
       lead: "Felipe Costa",
@@ -573,9 +534,9 @@ const DATA = {
         { code:"T1", name:"Tech enables reliable, secure portfolio decisions and execution through adopted systems",
           actual: 3, status:"at-risk",
           krs:[
-            { name:"Foundations + Governance in place (Q2)",         actual:10 },
-            { name:"Portfolio Support Model + SLAs Delivered (Q4)",  actual: 0 },
-            { name:"AI & Productivity (Q4)",                         actual: 0 },
+            { name:"Foundations + Governance in place (Q2)",         actual:10, status:"on-track",    detail:"Governance structure and tooling foundations in early setup — only active KR this period" },
+            { name:"Portfolio Support Model + SLAs Delivered (Q4)",  actual: 0, status:"not-started", detail:"Support model definition and SLA agreements pending" },
+            { name:"AI & Productivity (Q4)",                         actual: 0, status:"not-started", detail:"Scope and priorities pending definition" },
           ]
         },
       ],
@@ -587,8 +548,7 @@ const DATA = {
       ]
     },
 
-    /* ── FINANCE — NEW team registered in Profit.co
-       0% · Not Started · scope in early stages ── */
+    /* ── FINANCE · 0% · Not Started ── */
     {
       id: "fin", name: "Finance", short: "FIN",
       lead: "—",
@@ -601,8 +561,8 @@ const DATA = {
         { code:"F1", name:"VR+ enables disciplined portfolio investment through decision-ready financial visibility, scenario-based planning, and reliable, compliant disbursement operations",
           actual: 0, status:"not-started",
           krs:[
-            { name:"Financial Visibility (Q1)",                    actual: 0 },
-            { name:"Predictable Disbursements + Compliance (Q4)",  actual: 0 },
+            { name:"Financial Visibility (Q1)",                    actual: 0, status:"not-started", detail:"Not started — scope and planning pending definition with Finance lead" },
+            { name:"Predictable Disbursements + Compliance (Q4)",  actual: 0, status:"not-started", detail:"Not started — scope and planning pending definition with Finance lead" },
           ]
         },
       ],
@@ -661,19 +621,16 @@ const DATA = {
     <div class="team-grid" id="team-grid"></div>
   </div>
 
-  <!-- Status legend -->
+  <!-- KR Status legend -->
   <div style="display:flex;gap:.75rem;flex-wrap:wrap;padding:.35rem 0 .1rem;">
     <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-ontrack);"></div> On Track
+      <div style="width:8px;height:8px;border-radius:50%;background:#27CF77;"></div> On Track / Completed
     </div>
     <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-atrisk);"></div> At Risk
+      <div style="width:8px;height:8px;border-radius:50%;background:#F97316;"></div> At Risk
     </div>
     <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--c-trouble);"></div> In Trouble
-    </div>
-    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555;">
-      <div style="width:8px;height:8px;border-radius:50%;background:#555;"></div> Not Started
+      <div style="width:8px;height:8px;border-radius:50%;background:#3A3A3A;"></div> Not Started
     </div>
   </div>
 
@@ -709,6 +666,11 @@ function statusColor(s) {
   const m = { 'on-track':'var(--c-ontrack)','at-risk':'var(--c-atrisk)','in-trouble':'var(--c-trouble)','not-started':'var(--c-ns)' };
   return m[s] || 'var(--c-ns)';
 }
+function krStatusColor(s) {
+  if (s === 'at-risk' || s === 'in-trouble') return '#F97316';
+  if (s === 'on-track' || s === 'completed')  return '#27CF77';
+  return '#3A3A3A'; /* not-started */
+}
 function badge(s) {
   return `<span class="badge ${statusClass(s)}">${statusLabel(s)}</span>`;
 }
@@ -718,9 +680,10 @@ function renderHeader() {
   document.getElementById('hdr-period').textContent = DATA.reportDate;
   document.getElementById('ft-date').textContent    = DATA.reportDate;
 
-  const totalOn = DATA.teams.reduce((a,t)=>a+t.onTrack,0);
-  const totalAt = DATA.teams.reduce((a,t)=>a+t.atRisk,0);
-  const totalNs = DATA.teams.reduce((a,t)=>a+t.notStarted,0);
+  const allKrs  = DATA.teams.flatMap(t=>t.objectives.flatMap(o=>o.krs));
+  const totalOn = allKrs.filter(k=>k.status==='on-track'||k.status==='completed').length;
+  const totalAt = allKrs.filter(k=>k.status==='at-risk'||k.status==='in-trouble').length;
+  const totalNs = allKrs.filter(k=>k.status==='not-started'||!k.status).length;
 
   document.getElementById('hdr-stats').innerHTML = `
     <div class="hstat yellow"><div class="hstat-num">${DATA.org.actual}%</div><div class="hstat-label">Org Progress</div></div>
@@ -737,7 +700,7 @@ function renderHeader() {
 /* ── Overview sub-text ── */
 function renderOvSub() {
   document.getElementById('ov-sub').innerHTML =
-    `VélezReyes+ overall at <strong style="color:#FFF">${DATA.org.actual}%</strong> · ${badge(DATA.org.status)} · Period: ${DATA.period.month} ${DATA.period.year}`;
+    `VélezReyes+ overall at <strong style="color:#FFF">${DATA.org.actual}%</strong> · Period: ${DATA.period.month} ${DATA.period.year}`;
 }
 
 /* ── Org objectives ── */
@@ -781,14 +744,6 @@ function renderTeamGrid() {
           <div class="tc-bar-pct">${t.actual}%</div>
         </div>
       </div>
-      <div class="tc-status-row">
-        ${badge(t.status)}
-        <div class="tc-counts">
-          ${t.onTrack    ? `<span class="tc-count on">${t.onTrack} On Track</span>`    : ''}
-          ${t.atRisk     ? `<span class="tc-count risk">${t.atRisk} At Risk</span>`    : ''}
-          ${t.notStarted ? `<span class="tc-count ns">${t.notStarted} Not Started</span>` : ''}
-        </div>
-      </div>
     </div>
   `).join('');
 
@@ -817,9 +772,12 @@ function renderTeamSections() {
     const objRows = t.objectives.map((o,i)=>{
       const krRows = o.krs.map(kr=>`
         <div class="kr-row">
-          <div class="kr-name">${kr.name}</div>
-          <div class="kr-bar-track"><div class="kr-bar-fill" style="width:${kr.actual}%;background:${t.color}66;"></div></div>
-          <div class="kr-pct" style="color:${t.color}">${kr.actual}%</div>
+          <div class="kr-name">
+            ${kr.name}
+            ${kr.detail ? `<div class="kr-detail">${kr.detail}</div>` : ''}
+          </div>
+          <div class="kr-bar-track"><div class="kr-bar-fill" style="width:${kr.actual}%;background:${krStatusColor(kr.status)};"></div></div>
+          <div class="kr-pct" style="color:${krStatusColor(kr.status)}">${kr.actual}%</div>
         </div>
       `).join('');
 
@@ -830,11 +788,10 @@ function renderTeamSections() {
             <span class="obj-name">${o.name}</span>
             <div class="obj-bar-wrap">
               <div class="obj-bar-track">
-                <div class="obj-bar-fill" style="width:${o.actual}%;background:${statusColor(o.status)};"></div>
+                <div class="obj-bar-fill" style="width:${o.actual}%;background:${t.color};"></div>
               </div>
             </div>
-            <span class="obj-pct" style="color:${statusColor(o.status)}">${o.actual}%</span>
-            ${badge(o.status)}
+            <span class="obj-pct" style="color:${t.color}">${o.actual}%</span>
             <span class="obj-chevron">▼</span>
           </div>
           <div class="obj-body">
@@ -876,13 +833,7 @@ function renderTeamSections() {
                 <div class="team-stat-n" style="color:${t.color}">${t.actual}%</div>
                 <div class="team-stat-l">Progress</div>
               </div>
-              <div style="display:flex;align-items:center;">${badge(t.status)}</div>
             </div>
-          </div>
-          <div class="team-counts">
-            ${t.onTrack    ? `<span class="badge on-track">${t.onTrack} On Track</span>`      : ''}
-            ${t.atRisk     ? `<span class="badge at-risk">${t.atRisk} At Risk</span>`          : ''}
-            ${t.notStarted ? `<span class="badge not-started">${t.notStarted} Not Started</span>` : ''}
           </div>
         </div>
 
