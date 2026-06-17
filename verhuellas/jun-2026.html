@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Huellas · June 2026 · Edition 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #EFEFE4;
+  --black:      #000000;
+  --yellow:     #F3FF00;
+  --green:      #27CF77;
+  --purple:     #A62BFF;
+  --dp:         #BD97F1;
+  --charity:    #A7B2AA;
+  --text-dk:    #111111;
+  --text-md:    #555555;
+  --text-mt:    #999990;
+  --border:     rgba(0,0,0,0.08);
+  --cream-card: #F5F5EE;
+  --radius:     12px;
+  --radius-sm:  8px;
+  --font:       'Montserrat', -apple-system, sans-serif;
+  --serif:      'DM Serif Display', Georgia, serif;
+  --site-nav-h: 56px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--cream); color: var(--text-dk); line-height: 1.6; overflow-x: hidden; font-size: 15px; }
+
+/* ─── FOOTPRINTS ─── */
+.footprints-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.fp { position: absolute; opacity: 0; fill: var(--cream); animation: footstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; transform-origin: center bottom; }
+.fp.left { animation-name: footstep-left; }
+@keyframes footstep {
+  0%   { opacity:0; transform:scale(.5); }
+  40%  { opacity:.13; transform:scale(1.08); }
+  100% { opacity:.07; transform:scale(1); }
+}
+@keyframes footstep-left {
+  0%   { opacity:0; transform:scaleX(-1) scale(.5); }
+  40%  { opacity:.13; transform:scaleX(-1) scale(1.08); }
+  100% { opacity:.07; transform:scaleX(-1) scale(1); }
+}
+
+/* ─── SITE NAV ─── */
+.site-nav {
+  height: var(--site-nav-h);
+  background: var(--black);
+  position: sticky; top: 0; z-index: 200;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+  border-bottom: 1px solid #111;
+}
+.site-nav-inner {
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.site-nav-left { display: flex; align-items: center; gap: 1.25rem; }
+.site-logo-link { display: flex; align-items: center; }
+.site-logo { height: 20px; width: auto; opacity: 0.85; transition: opacity .15s; }
+.site-logo:hover { opacity: 1; }
+.nav-sep { width: 1px; height: 18px; background: #222; flex-shrink: 0; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--black); background: var(--yellow);
+  text-decoration: none; font-size: 11px; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 6px;
+  transition: background 0.15s, transform 0.15s; white-space: nowrap;
+}
+.back-link:hover { background: #FFF; transform: translateX(-1px); }
+.back-arrow { display: inline-block; transition: transform 0.2s; font-size: 13px; }
+.back-link:hover .back-arrow { transform: translateX(-3px); }
+.nav-edition-tag { font-size: 11px; font-weight: 700; color: #333; letter-spacing: 0.06em; }
+
+/* ─── REPORT HEADER ─── */
+.site-header {
+  background: var(--black); width: 100%; position: relative; overflow: hidden;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+}
+.site-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.site-header::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--yellow);
+}
+.header-inner {
+  padding: 2rem 0;
+  max-width: 1100px; margin: 0 auto;
+}
+.header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #777; margin-bottom: 0.5rem; }
+.header-title { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 42px); color: #FFF; line-height: 1; display: flex; align-items: baseline; gap: 0.35rem; }
+.header-title-accent { color: var(--yellow); }
+.header-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.65rem; flex-wrap: wrap; }
+.edition-pill { background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; }
+.header-period { font-size: 13px; color: #888; font-weight: 500; }
+.header-for { font-size: 13px; color: #777; }
+
+/* ─── CEO NOTE (optional, rendered only if DATA.ceoNote exists) ─── */
+.ceo-note {
+  background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
+  position: relative; overflow: hidden;
+}
+.ceo-note::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--yellow); border-radius: var(--radius) 0 0 var(--radius);
+}
+.ceo-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+.ceo-note p { font-family: var(--serif); font-style: italic; font-size: 16px; color: #CCC; line-height: 1.7; }
+.ceo-note-sig { font-size: 11px; color: #888; margin-top: 0.65rem; font-weight: 600; }
+
+/* ─── PAGE BODY ─── */
+.page-body { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+
+/* ─── TEAM SECTION ─── */
+.team-section { margin-bottom: 2rem; }
+.team-hdr {
+  background: var(--black); border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem 1.75rem;
+  position: relative; overflow: hidden;
+}
+.team-hdr::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #888; margin-bottom: .35rem; }
+.team-hdr-name { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); color: #FFF; line-height: 1.1; margin-bottom: .35rem; }
+.team-hdr-meta { font-size: 12px; color: #888; }
+
+/* ─── STORIES WRAP ─── */
+.stories-wrap {
+  background: #FFF; border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius); overflow: hidden;
+}
+.charity-intro {
+  background: rgba(167,178,170,.10); border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem; font-size: 14px; color: var(--text-md); line-height: 1.75;
+}
+
+/* ─── STORY ACCORDION ─── */
+.story-item { border-bottom: 1px solid var(--border); }
+.story-item:last-child { border-bottom: none; }
+.story-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.35rem 1.5rem; cursor: pointer;
+  transition: background .12s; user-select: none;
+}
+.story-header:hover { background: rgba(0,0,0,.02); }
+.story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
+.story-title-text { font-size: 15px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.45; }
+.story-pill { font-size: 11px; font-weight: 700; padding: 4px 13px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+.story-chevron { font-size: 11px; color: #CCC; transition: transform .25s; flex-shrink: 0; }
+.story-item.open .story-chevron { transform: rotate(180deg); }
+.story-body { display: none; border-top: 1px solid var(--border); padding: 2rem 1.5rem 2.25rem; background: var(--cream-card); }
+.story-item.open .story-body { display: block; }
+
+/* ─── STORY MEDIA ─── */
+.story-media {
+  width: 100%; border-radius: var(--radius); margin-bottom: 1.75rem;
+  overflow: hidden; position: relative;
+  background: linear-gradient(135deg, #E8E8DC 0%, #D2D2C6 100%);
+  border: 1.5px dashed rgba(0,0,0,0.11);
+}
+/* Aspect ratios */
+.story-media.landscape { aspect-ratio: 16 / 9; }
+.story-media.portrait  { aspect-ratio: 9 / 16; max-width: 420px; margin-left: auto; margin-right: auto; }
+.story-media.square    { aspect-ratio: 1 / 1; max-width: 520px; margin-left: auto; margin-right: auto; }
+/* When a real image/video is loaded, no dashed border */
+.story-media.has-media { border: none; }
+.story-media img,
+.story-media video,
+.story-media iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; display: block;
+}
+.story-media-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; color: #BCBCB0; pointer-events: none; user-select: none;
+}
+.story-media-ph svg { width: 28px; height: 28px; }
+.story-media-ph-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ─── STORY SUMMARY ─── */
+.story-summary {
+  background: #FFF; border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 1.5rem;
+}
+.story-summary-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; display: block; margin-bottom: 0.85rem;
+}
+.story-summary p { font-size: 14px; color: var(--text-md); line-height: 1.85; margin-bottom: 0.75rem; }
+.story-summary p:last-child { margin-bottom: 0; }
+.story-summary a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.story-summary a:hover { opacity: 0.75; }
+
+/* ─── STATS ROW ─── */
+.story-stats { display: flex; gap: 0.65rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 1.25rem; }
+.story-stat { flex: 1; min-width: 100px; background: var(--cream); border-radius: var(--radius-sm); padding: 1rem 1.1rem; text-align: center; }
+.story-stat-n { font-family: var(--serif); font-size: 30px; line-height: 1; margin-bottom: 5px; }
+.story-stat-l { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); }
+.investment-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-mt);
+  background: #E4E4D8; padding: 6px 16px; border-radius: 20px; margin-top: 1rem;
+}
+.investment-tag::before { content: '◈'; font-size: 10px; color: #C0C0B4; }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.25rem 1.75rem; margin-top: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-brand { font-family: var(--serif); font-style: italic; font-size: 14px; color: #777; }
+.footer-brand strong { color: #FFF; font-style: normal; }
+.print-btn {
+  background: rgba(255,255,255,.07); color: #BBB;
+  border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+  padding: 7px 18px; font-size: 12px; font-weight: 700;
+  font-family: var(--font); cursor: pointer; letter-spacing: .04em;
+  transition: background .15s, color .15s;
+}
+.print-btn:hover { background: var(--cream); color: var(--black); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .narrative-grid { grid-template-columns: 1fr; }
+  .narrative-block.full-width { grid-column: auto; }
+  .story-pill { display: none; }
+  .story-stats { flex-direction: column; }
+  .story-stat { min-width: unset; }
+}
+@media (max-width: 480px) {
+  .site-nav .nav-edition-tag { display: none; }
+}
+
+/* ─── PRINT ─── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
+      page-break-inside: avoid !important; break-inside: avoid !important;
+      page-break-before: avoid !important; break-before: avoid !important;
+      page-break-after: avoid !important; break-after: avoid !important; }
+  html, body { height: auto !important; overflow: visible !important; }
+  .site-nav, .print-btn, .back-link { display: none !important; }
+  .story-body { display: block !important; }
+  .site-header, .ceo-note, .team-hdr, .site-footer {
+    background: var(--cream) !important; border: 1px solid #DDD !important;
+  }
+  .site-header::after { background: var(--black) !important; }
+  .header-title, .team-hdr-name, .footer-brand, .footer-brand strong { color: var(--black) !important; }
+  .header-title-accent { color: #4A4A00 !important; }
+  .ceo-note p { color: var(--text-md) !important; }
+  .ceo-note-label { color: #4A4A00 !important; }
+  body { background: #FFF !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     DATA — update each edition.
+     teams array: Education first, then ECD, DEM, D+, Charity.
+     story.img: URL or null (shows placeholder).
+     story.imgRatio: 'landscape' | 'portrait' | 'square'.
+     story.impact: text or null (skips impact block).
+     DATA.ceoNote: text or null (hides the note section).
+══════════════════════════════════════ -->
+<script>
+const DATA = {
+  edition:    "01",
+  month:      "June",
+  year:       2026,
+  audience:   "David & Mariel",
+  ceoNote:    null,
+
+  teams: [
+    /* ══ EDUCATION (FoT + K-12) ═══════════════════════════ */
+    {
+      id: "education", name: "Education", short: "Education",
+      lead: "Lorem Ipsum", color: "#27CF77",
+      stories: [
+        {
+          title: "VER+ Beca Tech Scholars Win First Prize at ASC25, Xining, China",
+          pill: "VER+ Beca Tech",
+          img: "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/template/chinabecatech.png?raw=true",
+          imgRatio: "landscape",
+          summary: `<p>We are proud to share that <a href="https://www.linkedin.com/in/laura-castrillon-610765287/" target="_blank">Laura Andrea Castrillón Fajardo</a> and <a href="https://www.linkedin.com/in/jeronimo-campuzano-casta%C3%B1o/" target="_blank">Jerónimo Campuzano Castaño</a>, VER+ Beca Tech scholars, represented <a href="https://www.linkedin.com/school/universidadeafit/" target="_blank">Universidad EAFIT</a> at the international supercomputing competition ASC25, held in Xining, China 🇨🇳.</p><p>Over six days they competed against universities from across the world, following months of intensive preparation, dedicating more than 25 hours per week to technical training. Their talent, discipline, and commitment led them to win the First Prize 🥇, placing them among the top 25 teams globally.</p><p>This achievement shows that when talent meets opportunity, anything is possible. Seeing Laura and Jerónimo stand out on a global stage is a reminder of the power of education to open doors and transform lives.</p>`,
+          stats: [
+            { n: "🥇", l: "First Prize, ASC25", c: "#27CF77" },
+            { n: "25+", l: "Training hrs / week", c: "#27CF77" },
+            { n: "Top 25", l: "Teams globally", c: "#27CF77" }
+          ],
+          investment: "VER+ Beca Tech scholarship · EAFIT partnership · ASC25 registration and travel support"
+        }
+      ]
+    },
+
+    /* ══ ECD ══════════════════════════════════════════════ */
+    {
+      id: "ecd", name: "Early Childhood & Development", short: "ECD",
+      lead: "Lorem Ipsum", color: "#27CF77",
+      stories: [
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
+          pill: "Lorem ipsum",
+          img: null, imgRatio: "landscape",
+          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
+          stats: [{n:"00",l:"Lorem ipsum",c:"#27CF77"},{n:"0",l:"Consectetur",c:"#27CF77"},{n:"00%",l:"Adipiscing elit",c:"#27CF77"}],
+          investment: "Lorem ipsum dolor · Consectetur adipiscing · Lorem dolor sit"
+        },
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod",
+          pill: "Lorem ipsum",
+          img: null, imgRatio: "landscape",
+          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>`,
+          stats: [{n:"0",l:"Lorem ipsum",c:"#27CF77"},{n:"00",l:"Consectetur",c:"#27CF77"}],
+          investment: "Lorem ipsum · Consectetur adipiscing · Lorem ipsum dolor"
+        }
+      ]
+    },
+
+    /* ══ DEMOCRACY ════════════════════════════════════════ */
+    {
+      id: "dem", name: "Democracy", short: "DEM",
+      lead: "Lorem Ipsum", color: "#A62BFF",
+      stories: [
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
+          pill: "Lorem ipsum",
+          img: null, imgRatio: "landscape",
+          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
+          stats: [{n:"00",l:"Lorem ipsum",c:"#A62BFF"},{n:"00%",l:"Consectetur elit",c:"#A62BFF"},{n:"00",l:"Adipiscing",c:"#A62BFF"}],
+          investment: "Lorem ipsum dolor · Consectetur adipiscing · Lorem dolor sit"
+        }
+      ]
+    },
+
+    /* ══ DEMOCRACIA+ ══════════════════════════════════════ */
+    {
+      id: "dp", name: "Democracia+", short: "D+",
+      lead: "Lorem Ipsum", color: "#BD97F1",
+      stories: [
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod",
+          pill: "Lorem ipsum",
+          img: null, imgRatio: "landscape",
+          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>`,
+          stats: [{n:"0",l:"Lorem ipsum",c:"#BD97F1"},{n:"0",l:"Consectetur",c:"#BD97F1"}],
+          investment: "Lorem ipsum · Consectetur adipiscing · Lorem ipsum"
+        }
+      ]
+    },
+
+    /* ══ CHARITY ══════════════════════════════════════════ */
+    {
+      id: "charity", name: "Charity", short: "Charity",
+      lead: "Lorem Ipsum", color: "#A7B2AA",
+      isCharity: true,
+      intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      stories: [
+        {
+          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
+          pill: "Lorem ipsum",
+          img: null, imgRatio: "landscape",
+          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
+          stats: [{n:"00",l:"Lorem ipsum",c:"#A7B2AA"},{n:"0",l:"Consectetur",c:"#A7B2AA"},{n:"0",l:"Adipiscing",c:"#A7B2AA"}],
+          investment: "Lorem ipsum · Consectetur adipiscing · Lorem dolor sit"
+        }
+      ]
+    }
+  ]
+};
+
+const LOGO_URL = "https://velezreyes.github.io/static-mail/ver%2B/mailing_siganture_ver%2B/images/1_ver_logo.png";
+const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+</script>
+
+<!-- SVG footprint symbol -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <symbol id="fp-shape" viewBox="0 0 34 64">
+      <ellipse cx="7" cy="10" rx="4" ry="5" transform="rotate(-22,7,10)"/>
+      <ellipse cx="14" cy="6.5" rx="3.8" ry="5.2" transform="rotate(-10,14,6.5)"/>
+      <ellipse cx="20.5" cy="6" rx="3.4" ry="4.8" transform="rotate(4,20.5,6)"/>
+      <ellipse cx="26.5" cy="8" rx="3" ry="4.5" transform="rotate(17,26.5,8)"/>
+      <ellipse cx="30.5" cy="13" rx="2.6" ry="4" transform="rotate(28,30.5,13)"/>
+      <ellipse cx="17" cy="25" rx="13" ry="10"/>
+      <rect x="7" y="29" width="8" height="18" rx="4"/>
+      <ellipse cx="15" cy="52" rx="11" ry="12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ══════════════════════════════════════
+     SITE NAV
+══════════════════════════════════════ -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <div class="site-nav-left">
+      <a href="index.html" class="site-logo-link">
+        <img class="site-logo" id="site-logo" src="" alt="VélezReyes+">
+      </a>
+      <div class="nav-sep"></div>
+      <a href="index.html" class="back-link">
+        <span class="back-arrow">←</span> All editions
+      </a>
+    </div>
+    <span class="nav-edition-tag" id="nav-edition-tag"></span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     REPORT HEADER
+══════════════════════════════════════ -->
+<header class="site-header">
+  <div class="footprints-layer" id="footprints-layer" aria-hidden="true"></div>
+  <div class="header-inner">
+    <div class="header-eyebrow">VélezReyes+ · Monthly Impact Report</div>
+    <div class="header-title">VER+&nbsp;<span class="header-title-accent">Huellas</span></div>
+    <div class="header-meta">
+      <span class="edition-pill" id="hdr-edition"></span>
+      <span class="header-period" id="hdr-period"></span>
+      <span class="header-for" id="hdr-for"></span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     PAGE BODY
+══════════════════════════════════════ -->
+<div class="page-body">
+  <div id="ceo-note-container"></div>
+  <div id="team-sections"></div>
+
+  <footer class="site-footer">
+    <div class="footer-brand" id="ft-brand"></div>
+    <button class="print-btn" onclick="exportPDF()">↓ Export PDF</button>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     RENDER ENGINE
+══════════════════════════════════════ -->
+<script>
+function renderSiteNav() {
+  document.getElementById('site-logo').src = LOGO_URL;
+  document.getElementById('nav-edition-tag').textContent =
+    `Edition ${DATA.edition} · ${DATA.month} ${DATA.year}`;
+}
+
+function renderHeader() {
+  document.getElementById('hdr-edition').textContent = `Edition ${DATA.edition}`;
+  document.getElementById('hdr-period').textContent  = `${DATA.month} ${DATA.year}`;
+  document.getElementById('hdr-for').textContent     = `For ${DATA.audience}`;
+}
+
+function renderCeoNote() {
+  if (!DATA.ceoNote) return;
+  document.getElementById('ceo-note-container').innerHTML = `
+    <div class="ceo-note">
+      <div class="ceo-note-label">Note from the CEO</div>
+      <p>${DATA.ceoNote}</p>
+    </div>`;
+}
+
+function buildStoryHTML(t, s, i) {
+  // Media block
+  const hasMedia = !!s.img;
+  const ratio = s.imgRatio || 'landscape';
+  const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
+  const mediaInner = hasMedia
+    ? `<img src="${s.img}" alt="${s.title}" loading="lazy">`
+    : `<div class="story-media-ph">${CAM_ICON}<span class="story-media-ph-label">Add story image or video</span></div>`;
+  const mediaHTML = `<div class="${mediaClass}">${mediaInner}</div>`;
+
+  // Impact summary — single paragraph block, optional
+  const summaryHTML = s.summary
+    ? `<div class="story-summary">
+        <span class="story-summary-label" style="color:${t.color}">Impact Summary</span>
+        ${s.summary}
+      </div>`
+    : '';
+
+  const statsHTML = s.stats && s.stats.length
+    ? `<div class="story-stats">${s.stats.map(st =>
+        `<div class="story-stat">
+          <div class="story-stat-n" style="color:${st.c}">${st.n}</div>
+          <div class="story-stat-l">${st.l}</div>
+        </div>`).join('')}</div>`
+    : '';
+
+  const investHTML = s.investment
+    ? `<div class="investment-tag">${s.investment}</div>`
+    : '';
+
+  return `
+    <div class="story-item" id="si-${t.id}-${i}">
+      <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
+        <span class="story-num">${String(i+1).padStart(2,'0')}</span>
+        <span class="story-title-text">${s.title}</span>
+        <span class="story-pill" style="background:${t.color}18;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
+        <span class="story-chevron">▼</span>
+      </div>
+      <div class="story-body">
+        ${mediaHTML}
+        ${summaryHTML}
+        ${statsHTML}
+        ${investHTML}
+      </div>
+    </div>`;
+}
+
+function renderTeamSections() {
+  const container = document.getElementById('team-sections');
+  container.innerHTML = DATA.teams.map(t => {
+    const charityIntro = t.isCharity && t.intro
+      ? `<div class="charity-intro">${t.intro}</div>`
+      : '';
+    const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
+    const storyCount = t.stories.length;
+
+    return `
+      <div class="team-section">
+        <div class="team-hdr" style="--team-color:${t.color}">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${t.color};border-radius:var(--radius) 0 0 var(--radius);"></div>
+          <div class="team-hdr-eyebrow">VER+ Huellas · ${DATA.month} ${DATA.year}</div>
+          <div class="team-hdr-name">${t.name}</div>
+          <div class="team-hdr-meta">${storyCount} stor${storyCount === 1 ? 'y' : 'ies'} this month</div>
+        </div>
+        <div class="stories-wrap">${charityIntro}${storiesHTML}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderFooter() {
+  document.getElementById('ft-brand').innerHTML =
+    `<strong>VélezReyes+</strong> · VER+ Huellas · Edition ${DATA.edition}`;
+}
+
+function toggleStory(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function renderFootprints() {
+  const layer = document.getElementById('footprints-layer');
+  const h = document.querySelector('.site-header').offsetHeight || 160;
+  const steps = [
+    ['R',3,38,-8],['L',10,58,6],['R',18,35,-6],['L',26,60,8],
+    ['R',34,36,-7],['L',42,58,5],['R',50,34,-8],['L',58,60,7],
+    ['R',66,35,-6],['L',74,58,5],['R',82,33,-9],['L',90,60,6],['R',97,36,-7]
+  ];
+  const size = Math.min(h * 0.55, 70);
+  steps.forEach(([side, left, top, rot], i) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('width', Math.round(size*.55));
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox','0 0 34 64');
+    svg.style.cssText = `position:absolute;left:${left}%;top:${top}%;animation-delay:${(i*.18).toFixed(2)}s;`;
+    svg.classList.add('fp');
+    if (side === 'L') svg.classList.add('left');
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#fp-shape');
+    use.setAttribute('transform',`rotate(${rot},17,32)`);
+    svg.appendChild(use);
+    layer.appendChild(svg);
+  });
+}
+
+/* ── Export PDF: single continuous page ── */
+function exportPDF() {
+  // Open all story bodies for complete render
+  document.querySelectorAll('.story-body').forEach(b => b.style.display = 'block');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const totalPx = document.documentElement.scrollHeight;
+      const totalMm = Math.ceil(totalPx * 0.2646) + 20;
+      const tag = document.createElement('style');
+      tag.id = '__print_page_size__';
+      tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 12mm 18mm; }`;
+      document.head.appendChild(tag);
+
+      window.print();
+
+      setTimeout(() => {
+        const el = document.getElementById('__print_page_size__');
+        if (el) el.remove();
+        // Restore accordion state (collapse all)
+        document.querySelectorAll('.story-body').forEach(b => b.style.display = '');
+      }, 1500);
+    });
+  });
+}
+
+renderSiteNav();
+renderHeader();
+renderCeoNote();
+renderTeamSections();
+renderFooter();
+renderFootprints();
+</script>
+</body>
+</html>

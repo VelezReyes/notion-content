@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Huellas · Monthly Impact Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:   #EFEFE4;
+  --black:   #000000;
+  --yellow:  #F3FF00;
+  --green:   #27CF77;
+  --purple:  #A62BFF;
+  --dp:      #BD97F1;
+  --charity: #A7B2AA;
+  --text-dk: #111111;
+  --text-md: #555555;
+  --text-mt: #999990;
+  --border:  rgba(0,0,0,0.08);
+  --radius:  12px;
+  --font:    'Montserrat', -apple-system, sans-serif;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --site-nav-h: 60px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--cream);
+  color: var(--text-dk);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.site-nav {
+  height: var(--site-nav-h);
+  background: var(--black);
+  position: sticky; top: 0; z-index: 200;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid #111;
+}
+.site-nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  height: 100%; display: flex;
+  align-items: center; justify-content: space-between;
+}
+.site-logo-link { display: flex; align-items: center; }
+.site-logo { height: 22px; width: auto; opacity: 0.88; transition: opacity .15s; }
+.site-logo:hover { opacity: 1; }
+.nav-wordmark {
+  font-family: var(--serif); font-size: 14px; font-style: italic; color: #555;
+}
+.nav-wordmark span { color: var(--yellow); }
+
+/* FOOTPRINTS */
+.fp-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.fp { position: absolute; opacity: 0; fill: #ffffff; animation: fstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; }
+.fp.left { animation-name: fstep-l; }
+@keyframes fstep {
+  0%   { opacity:0; transform:scale(.5); }
+  40%  { opacity:.09; transform:scale(1.06); }
+  100% { opacity:.05; transform:scale(1); }
+}
+@keyframes fstep-l {
+  0%   { opacity:0; transform:scaleX(-1) scale(.5); }
+  40%  { opacity:.09; transform:scaleX(-1) scale(1.06); }
+  100% { opacity:.05; transform:scaleX(-1) scale(1); }
+}
+
+/* HERO */
+.hero {
+  background: var(--black);
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 3.5rem 0 3rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 3rem; align-items: end;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #666; margin-bottom: 0.65rem;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 72px);
+  color: #FFF; line-height: 0.95; margin-bottom: 0.9rem;
+}
+.hero-title-accent { color: var(--yellow); }
+.hero-sub { font-size: 15px; color: #888; max-width: 420px; line-height: 1.75; }
+.hero-stat-group { display: flex; }
+.hero-stat {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px; padding: 1.1rem 1.75rem; text-align: center;
+}
+.hero-stat-n { font-family: var(--serif); font-size: 38px; line-height: 1; color: var(--yellow); display: block; }
+.hero-stat-l { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #666; margin-top: 6px; }
+
+/* PAGE BODY */
+.page-body {
+  max-width: 1200px; margin: 0 auto;
+  padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 5rem;
+}
+.section-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text-mt); margin-bottom: 1.25rem;
+}
+
+/* EDITIONS GRID */
+.editions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+.edition-card {
+  background: #FFFFFF; border-radius: var(--radius);
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s, transform 0.15s;
+  overflow: hidden;
+}
+.edition-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-3px); }
+.card-stripe { height: 4px; width: 100%; background: linear-gradient(90deg, var(--yellow), var(--green)); }
+.card-body { padding: 1.5rem 1.75rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.card-date {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-mt); margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.card-edition-badge {
+  background: var(--black); color: var(--yellow);
+  font-size: 9px; font-weight: 800; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px;
+}
+.card-title { font-family: var(--serif); font-size: 20px; line-height: 1.2; color: var(--text-dk); margin-bottom: 0.6rem; }
+.card-summary { font-size: 13px; color: var(--text-md); line-height: 1.75; margin-bottom: 1.25rem; flex: 1; }
+.card-teams { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.card-team-tag { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
+.card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 1rem;
+  font-size: 12px; font-weight: 700; color: var(--text-dk); letter-spacing: 0.04em;
+}
+.card-cta-arrow { font-size: 16px; transition: transform 0.2s; }
+.edition-card:hover .card-cta-arrow { transform: translateX(4px); }
+
+.coming-soon-card {
+  background: rgba(0,0,0,.03); border: 2px dashed rgba(0,0,0,.1);
+  border-radius: var(--radius); padding: 2rem 1.75rem;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; min-height: 200px; gap: 0.65rem;
+}
+.cs-icon { font-size: 28px; opacity: 0.2; }
+.cs-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #BBB; }
+
+/* ABOUT STRIP */
+.about-strip {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.75rem 2rem; margin-top: 2.5rem;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.about-strip::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--yellow), var(--green));
+}
+.about-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.4rem; }
+.about-title { font-family: var(--serif); font-size: 20px; color: #FFF; margin-bottom: 0.5rem; }
+.about-body { font-size: 13px; color: #888; line-height: 1.75; }
+.about-teams { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.about-team-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* FOOTER */
+.site-footer {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.1rem 1.75rem; margin-top: 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.75rem;
+}
+.footer-brand { font-family: var(--serif); font-style: italic; font-size: 14px; color: #777; }
+.footer-brand strong { color: #FFF; font-style: normal; }
+.footer-note { font-size: 11px; color: #444; }
+
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-strip { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .editions-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<script>
+const LOGO_URL = "https://velezreyes.github.io/static-mail/ver%2B/mailing_siganture_ver%2B/images/1_ver_logo.png";
+
+const TEAM_COLORS = {
+  ECD:       "#27CF77",
+  Education: "#27CF77",
+  DEM:       "#A62BFF",
+  "D+":      "#BD97F1",
+  Charity:   "#A7B2AA"
+};
+
+const EDITIONS = [
+  {
+    num: "01",
+    month: "June",
+    year: 2026,
+    file: "jun-2026.html",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    teams: ["ECD", "Education", "DEM", "D+", "Charity"]
+  }
+];
+</script>
+
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <symbol id="fp-shape" viewBox="0 0 34 64">
+      <ellipse cx="7" cy="10" rx="4" ry="5" transform="rotate(-22,7,10)"/>
+      <ellipse cx="14" cy="6.5" rx="3.8" ry="5.2" transform="rotate(-10,14,6.5)"/>
+      <ellipse cx="20.5" cy="6" rx="3.4" ry="4.8" transform="rotate(4,20.5,6)"/>
+      <ellipse cx="26.5" cy="8" rx="3" ry="4.5" transform="rotate(17,26.5,8)"/>
+      <ellipse cx="30.5" cy="13" rx="2.6" ry="4" transform="rotate(28,30.5,13)"/>
+      <ellipse cx="17" cy="25" rx="13" ry="10"/>
+      <rect x="7" y="29" width="8" height="18" rx="4"/>
+      <ellipse cx="15" cy="52" rx="11" ry="12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-logo-link">
+      <img class="site-logo" id="site-logo" src="" alt="VélezReyes+">
+    </a>
+    <div class="nav-wordmark">VER+ <span>Huellas</span></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="fp-layer" id="fp-layer" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Huellas</span></h1>
+      <p class="hero-sub">Every month we document the mark our teams leave: in communities, in people, in systems. This is our footprint.</p>
+    </div>
+    <div class="hero-stat-group" id="hero-stats"></div>
+  </div>
+</section>
+
+<div class="page-body">
+  <div class="section-label">All Editions</div>
+  <div class="editions-grid" id="editions-grid"></div>
+
+  <div class="about-strip">
+    <div>
+      <div class="about-tag">About VER+ Huellas</div>
+      <div class="about-title">What are we measuring?</div>
+    </div>
+    <div>
+      <p class="about-body">VER+ Huellas is VélezReyes+'s monthly impact report: a structured narrative of what our teams accomplished, who they reached, and what changed. Each edition features stories from whichever teams had active initiatives that month. Not every team appears in every edition.</p>
+      <div class="about-teams" style="margin-top:0.85rem;" id="about-teams"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><strong>VélezReyes+</strong> · VER+ Huellas</div>
+    <div class="footer-note" id="footer-note"></div>
+  </footer>
+</div>
+
+<script>
+function renderSiteNav() {
+  document.getElementById('site-logo').src = LOGO_URL;
+}
+
+function renderHeroStats() {
+  document.getElementById('hero-stats').innerHTML = `
+    <div class="hero-stat">
+      <span class="hero-stat-n">${EDITIONS.length}</span>
+      <div class="hero-stat-l">Edition${EDITIONS.length === 1 ? '' : 's'}</div>
+    </div>`;
+}
+
+function renderEditions() {
+  const grid = document.getElementById('editions-grid');
+  let html = EDITIONS.slice().reverse().map(e => {
+    const teamTags = e.teams.map(t => {
+      const c = TEAM_COLORS[t] || '#AAA';
+      return `<span class="card-team-tag" style="background:${c}18;color:${c};border:1px solid ${c}44;">${t}</span>`;
+    }).join('');
+    return `
+      <a href="${e.file}" class="edition-card">
+        <div class="card-stripe"></div>
+        <div class="card-body">
+          <div class="card-date">
+            <span class="card-edition-badge">Edition ${e.num}</span>
+            ${e.month} ${e.year}
+          </div>
+          <div class="card-title">VER+ Huellas · ${e.month} ${e.year}</div>
+          <p class="card-summary">${e.summary}</p>
+          <div class="card-teams">${teamTags}</div>
+          <div class="card-cta"><span>Open report</span><span class="card-cta-arrow">→</span></div>
+        </div>
+      </a>`;
+  }).join('');
+
+  html += `
+    <div class="coming-soon-card">
+      <div class="cs-icon">📍</div>
+      <div class="cs-label">Next edition coming</div>
+    </div>`;
+
+  grid.innerHTML = html;
+}
+
+function renderAboutTeams() {
+  document.getElementById('about-teams').innerHTML = Object.entries(TEAM_COLORS).map(
+    ([name, color]) => `<div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#888;">
+      <div class="about-team-dot" style="background:${color};"></div>${name}</div>`
+  ).join('');
+}
+
+function renderFooter() {
+  const latest = EDITIONS[EDITIONS.length - 1];
+  document.getElementById('footer-note').textContent =
+    `${EDITIONS.length} edition${EDITIONS.length === 1 ? '' : 's'} · Latest: ${latest.month} ${latest.year}`;
+}
+
+function renderFootprints() {
+  const layer = document.getElementById('fp-layer');
+  const h = document.querySelector('.hero').offsetHeight || 220;
+  const steps = [
+    ['R',3,40,-8],['L',10,62,6],['R',18,37,-6],['L',26,63,8],
+    ['R',34,38,-7],['L',42,62,5],['R',50,36,-8],['L',58,63,7],
+    ['R',66,37,-6],['L',74,62,5],['R',82,35,-9],['L',90,63,6],['R',97,38,-7]
+  ];
+  const size = Math.min(h * 0.5, 75);
+  steps.forEach(([side, left, top, rot], i) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('width', Math.round(size*.55));
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox','0 0 34 64');
+    svg.style.cssText = `position:absolute;left:${left}%;top:${top}%;animation-delay:${(i*.18).toFixed(2)}s;`;
+    svg.classList.add('fp');
+    if (side === 'L') svg.classList.add('left');
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#fp-shape');
+    use.setAttribute('transform',`rotate(${rot},17,32)`);
+    svg.appendChild(use);
+    layer.appendChild(svg);
+  });
+}
+
+renderSiteNav();
+renderHeroStats();
+renderEditions();
+renderAboutTeams();
+renderFooter();
+renderFootprints();
+</script>
+</body>
+</html>
