@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mundialistas+ · Cromos+</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -337,8 +338,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="welcome-sub">Open a pack, discover your teammates, and recognize what makes them unique.</div>
   </div>
   <div class="how-grid">
-    <div class="how-card"><div class="how-num">01</div><div class="how-title">Pick your team</div><div class="how-desc">Select ver+ or VERE. Your team shapes the card distribution in each pack.</div></div>
-    <div class="how-card"><div class="how-num">02</div><div class="how-title">Open your pack</div><div class="how-desc">3 cards are revealed: fair distribution, fail-safe so no one disappears.</div></div>
+    <div class="how-card"><div class="how-num">01</div><div class="how-title">Open your pack</div><div class="how-desc">Click the pack and 3 random teammates appear — from ver+ and VERE, mixed.</div></div>
+    <div class="how-card"><div class="how-num">02</div><div class="how-title">Flip your cards</div><div class="how-desc">3 cards are revealed — fair draw, so no teammate disappears for too long.</div></div>
     <div class="how-card"><div class="how-num">03</div><div class="how-title">Reflect — totally optional</div><div class="how-desc">Assign a behavior to each card and add a note. Or hit <strong>"Skip reflections"</strong> to bypass all three at once. No obligation.</div></div>
     <div class="how-card"><div class="how-num">04</div><div class="how-title">Share whenever you want</div><div class="how-desc">At the end of every pack tap <strong>"📸 Download image"</strong> to share it in <strong>#mundialistas</strong> — with or without reflection.</div></div>
   </div>
@@ -391,10 +392,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="screen-inner" style="height:100%;display:flex;flex-direction:column">
   <div class="topbar">
     <img class="topbar-logo" src="https://raw.githubusercontent.com/VelezReyes/notion-content/refs/heads/main/Mundialistas%2B/logos/Mundialistas_negativo.png" alt="Mundialistas+">
-    <button class="btn-back" onclick="showScreen('screen-team')">← Change team</button>
+    <button class="btn-back" onclick="showScreen('screen-welcome')">← Back</button>
   </div>
   <div class="sobre-stage">
-    <div class="sobre-team-pill">Playing as: <span id="sobre-team-label">—</span></div>
     <div class="sobre-instruction">Click to open your pack</div>
     <div class="sobre-sprite-wrap" onclick="openSobre()">
       <div class="sobre-glow"></div>
@@ -417,9 +417,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="screen-sub">Reflect on each card, just share the moment, or skip straight to the result. Your call.</div>
   </div>
   <div class="reveal-cards-grid" id="reveal-grid"></div>
-  <div style="text-align:center;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
-    <button class="btn-primary" onclick="goToInteract()">Reflect on each card →</button>
-    <button class="btn-primary ghost" onclick="skipAllReflections()">Skip reflections →</button>
+  <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem">
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" onclick="goToInteract()">Reflect on each card →</button>
+      <button class="btn-primary ghost" onclick="skipAllReflections()">Skip reflections →</button>
+    </div>
+    <div style="font-size:12px;color:var(--text-dim);letter-spacing:.04em">Reflection is 100% optional — skip anytime.</div>
   </div>
 </div>
 </div>
@@ -721,15 +724,15 @@ function showScreen(id) {
 
 /* ─ Team Select ─ */
 function goToTeamSelect() {
-  const saved = LS.team();
-  if (saved) {
-    STATE.team = saved;
-    const el = document.getElementById(saved==='ver'?'tcc-ver':'tcc-vere');
-    el && el.classList.add('selected');
-    const btn = document.getElementById('btn-team-continue');
-    btn.disabled=false; btn.style.opacity='1'; btn.style.cursor='pointer';
-  }
-  showScreen('screen-team');
+  goToSobre();
+}
+function goToSobre() {
+  sobreOpened = false;
+  const img = document.getElementById('sobre-img');
+  if (img) img.src = SPRITE_FRAMES[0];
+  const wrap = document.querySelector('.sobre-sprite-wrap');
+  if (wrap) wrap.style.pointerEvents = '';
+  showScreen('screen-sobre');
 }
 
 function selectTeam(team, el) {
@@ -751,11 +754,11 @@ function confirmTeam() {
 
 /* ─ Fair-random draw ─ */
 function drawCards() {
-  const hist = LS.history(), dates = LS.dates(), team = STATE.team;
+  const hist = LS.history(), dates = LS.dates();
   const now = Date.now(), THREE_WEEKS = 21*24*60*60*1000;
 
   const pool = PLAYERS.map(p => {
-    let w = p.type==='special' ? 1 : p.type===team ? 10 : (team==='ver' ? 2 : 3);
+    let w = p.type==='special' ? 1 : 10;
     w = w / ((hist[p.id]||0) + 1);
     if (dates[p.id] && (now - dates[p.id]) >= THREE_WEEKS) w = 9999;
     return { player:p, weight:Math.max(w,0.01) };
@@ -906,11 +909,11 @@ function buildCard(player) {
       }).join('')}</div>`;
     }
   } else if (isVer) {
-    // ver+ card with no Clifton yet (e.g. Luisa)
+    // ver+ card with no Clifton yet
     statsHTML = `<div class="card-special-label"><span>📊 CLIFTON COMING SOON</span></div>`;
   } else {
-    // VERE card
-    statsHTML = `<div class="card-special-label"><span>✦ SPECIAL CARD</span></div>`;
+    // VERE card — no tag
+    statsHTML = '';
   }
 
   return `<div class="player-card type-${player.type}">
@@ -1162,13 +1165,7 @@ function renderResult() {
 
 function openNewSobre() {
   STATE.drawnCards=[]; STATE.interactions=[]; STATE.currentCardIndex=0;
-  sobreOpened = false;
-  // Explicit sprite reset before showing screen
-  const img = document.getElementById('sobre-img');
-  if (img) img.src = SPRITE_FRAMES[0];
-  const wrap = document.querySelector('.sobre-sprite-wrap');
-  if (wrap) wrap.style.pointerEvents = '';
-  showScreen('screen-sobre');
+  goToSobre();
 }
 
 /* ─ Exchange Modal ─ */
@@ -1314,9 +1311,7 @@ function showCardDetail(playerId) {
   // Info below card
   document.getElementById('card-detail-role').textContent = `${p.country}  ${p.role}`;
   const hasClifton = p.type === 'ver' && p.clifton && p.clifton[0] !== '—';
-  // Clifton tags already visible inside the card — only show special-card label for VERE
-  const cliftonHTML = (p.type === 'vere' ? '✦ Special Card' : '');
-  document.getElementById('card-detail-clifton').innerHTML = cliftonHTML;
+  document.getElementById('card-detail-clifton').innerHTML = '';
   // Gallup link only for ver+ cards with real Clifton data
   document.getElementById('card-detail-gallup').innerHTML = hasClifton
     ? `<a href="https://www.gallup.com/cliftonstrengths/en/253715/34-cliftonstrengths-themes.aspx" target="_blank"
