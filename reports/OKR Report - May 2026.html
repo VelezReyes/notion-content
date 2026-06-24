@@ -369,89 +369,92 @@ const DATA = {
       ]
     },
 
-    /* ── FUTURE OF TALENT · Lead: Maribel Corrales · 11% · On Track ── */
+    /* ── EDUCATION (FoT + K-12) · Lead: Maribel Corrales · 7% · At Risk ── */
     {
-      id: "fot", name: "Future of Talent", short: "FoT",
+      id: "edu", name: "Education", short: "EDU",
       lead: "Maribel Corrales",
       color: "#22C4CF",
-      actual: 11,
-      status: "on-track",
-      onTrack: 1, atRisk: 1, notStarted: 2,
-      note: null,
-      objectives: [
-        { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
-          actual:31, status:"on-track",
-          krs:[
-            { name:"Scholarships Delivered with Quality (Q4)",            actual:32, status:"on-track",    detail:"Satisfaction survey shared with operators in Colombia & Peru; retention follow-up by cohort due July 20" },
-            { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30, status:"on-track",    detail:"5 agreements completed; ICESI in final validation; EAFIT pending due diligence (due June 19)" },
-            { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30, status:"on-track",    detail:"CRM minimum indicators & governance being defined (due June 10); dashboard launch targeted Q3" },
-          ]
-        },
-        { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
-          actual: 0, status:"not-started",
-          krs:[
-            { name:"Test & Learn Portfolio Closed-loop (Q4)",             actual: 0, status:"not-started", detail:null },
-          ]
-        },
-        { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
-          actual:13, status:"at-risk",
-          krs:[
-            { name:"Investment Thesis (Q2)",                              actual:37, status:"on-track",    detail:"Concept notes planned: Peru Makers, Colombia U Ventures (incubation model), Peru Fondo Luchante" },
-            { name:"Evidence & Results Dashboard (Q3)",                   actual: 3, status:"on-track",    detail:"Dashboard structure and ROI data pending; data collection not started" },
-            { name:"Thesis Decision (Q4)",                                actual: 0, status:"not-started", detail:null },
-          ]
-        },
-        { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
-          actual: 0, status:"not-started",
-          krs:[
-            { name:"Ecosystem Bets Decision (Q3)",                        actual: 0, status:"not-started", detail:null },
-          ]
-        },
-      ],
-      tasks: [
-        { ref:"FT1.1", text:"Scholar satisfaction survey results shared with operators in Colombia and Peru. Retention follow-up by cohort/country in progress (Semester 1, due July 20)." },
-        { ref:"FT1.2", text:"University agreements in transition — 5 completed agreements awaiting Trust confirmation; ICESI in final validation stage; EAFIT pending due diligence documents (due June 19)." },
-        { ref:"FT1.3", text:"Scholar CRM dashboard being built — minimum indicators, data sources, and governance being defined (due June 10). Dashboard + decision log launch targeted Q3 (July 10)." },
-        { ref:"FT3.1", text:"Investment Thesis at 37% — concept notes planned for Peru Makers, Colombia U Ventures incubation model, and Peru Fondo Luchante." },
-        { ref:"FT2/FT4", text:"Test & Learn and Ecosystem Bets objectives not yet initiated." },
-      ]
-    },
-
-    /* ── K-12 · Lead: Maribel Corrales · 3% · At Risk ── */
-    {
-      id: "k12", name: "K-12", short: "K12",
-      lead: "Maribel Corrales",
-      color: "#3B82F6",
-      actual: 3,
+      actual: 7,
       status: "at-risk",
-      onTrack: 1, atRisk: 0, notStarted: 2,
+      onTrack: 2, atRisk: 1, notStarted: 4,
       note: null,
-      objectives: [
-        { code:"K1", name:"Deepen / double down on current ecosystem bets",
-          actual:10, status:"on-track",
-          krs:[
-            { name:"Ecosystem Bets Decision (Q3)",            actual:10, status:"on-track",    detail:"Primary initiative: CEPE — status report, KPIs & learnings due June 1; task structure being built" },
+      isEducation: true,
+      objectives: [], tasks: [],
+      subteams: [
+        /* FoT first */
+        {
+          id: "fot", name: "Future of Talent", short: "FoT",
+          color: "#22C4CF", actual: 11, status: "on-track",
+          objectives: [
+            { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
+              actual:31, status:"on-track",
+              krs:[
+                { name:"Scholarships Delivered with Quality (Q4)",            actual:32, status:"on-track",    detail:"Satisfaction survey shared with operators in Colombia & Peru; retention follow-up by cohort due July 20" },
+                { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30, status:"on-track",    detail:"5 agreements completed; ICESI in final validation; EAFIT pending due diligence (due June 19)" },
+                { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30, status:"on-track",    detail:"CRM minimum indicators & governance being defined (due June 10); dashboard launch targeted Q3" },
+              ]
+            },
+            { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
+              actual: 0, status:"not-started",
+              krs:[
+                { name:"Test & Learn Portfolio Closed-loop (Q4)", actual: 0, status:"not-started", detail:null },
+              ]
+            },
+            { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
+              actual:13, status:"at-risk",
+              krs:[
+                { name:"Investment Thesis (Q2)",            actual:37, status:"on-track",    detail:"Concept notes planned: Peru Makers, Colombia U Ventures (incubation model), Peru Fondo Luchante" },
+                { name:"Evidence & Results Dashboard (Q3)", actual: 3, status:"on-track",    detail:"Dashboard structure and ROI data pending; data collection not started" },
+                { name:"Thesis Decision (Q4)",              actual: 0, status:"not-started", detail:null },
+              ]
+            },
+            { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
+              actual: 0, status:"not-started",
+              krs:[
+                { name:"Ecosystem Bets Decision (Q3)", actual: 0, status:"not-started", detail:null },
+              ]
+            },
+          ],
+          tasks: [
+            { ref:"FT1.1",   text:"Scholar satisfaction survey results shared with operators in Colombia and Peru. Retention follow-up by cohort/country in progress (Semester 1, due July 20)." },
+            { ref:"FT1.2",   text:"University agreements in transition — 5 completed agreements awaiting Trust confirmation; ICESI in final validation stage; EAFIT pending due diligence documents (due June 19)." },
+            { ref:"FT1.3",   text:"Scholar CRM dashboard being built — minimum indicators, data sources, and governance being defined (due June 10). Dashboard + decision log launch targeted Q3 (July 10)." },
+            { ref:"FT3.1",   text:"Investment Thesis at 37% — concept notes planned for Peru Makers, Colombia U Ventures incubation model, and Peru Fondo Luchante." },
+            { ref:"FT2/FT4", text:"Test & Learn and Ecosystem Bets objectives not yet initiated." },
           ]
         },
-        { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
-          actual: 0, status:"not-started",
-          krs:[
-            { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0, status:"not-started", detail:null },
-            { name:"Impact Investing Approach (Q4)",          actual: 0, status:"not-started", detail:null },
+        /* K-12 second */
+        {
+          id: "k12", name: "K-12", short: "K12",
+          color: "#3B82F6", actual: 3, status: "at-risk",
+          objectives: [
+            { code:"K1", name:"Deepen / double down on current ecosystem bets",
+              actual:10, status:"on-track",
+              krs:[
+                { name:"Ecosystem Bets Decision (Q3)", actual:10, status:"on-track", detail:"Primary initiative: CEPE — status report, KPIs & learnings due June 1; task structure being built" },
+              ]
+            },
+            { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
+              actual: 0, status:"not-started",
+              krs:[
+                { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0, status:"not-started", detail:null },
+                { name:"Impact Investing Approach (Q4)",          actual: 0, status:"not-started", detail:null },
+              ]
+            },
+            { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
+              actual: 0, status:"not-started",
+              krs:[
+                { name:"Investment Thesis (Q2)",            actual: 0, status:"not-started", detail:null },
+                { name:"Evidence & Results Dashboard (Q3)", actual: 0, status:"not-started", detail:null },
+                { name:"Thesis Decision (Q2)",              actual: 0, status:"not-started", detail:null },
+              ]
+            },
+          ],
+          tasks: [
+            { ref:"K1.1",  text:"Primary active initiative is CEPE. Status report, KPIs, and learnings due June 1. Task structure being built to properly reflect team dedication." },
+            { ref:"K2/K3", text:"AI lever testing, impact investing approach, and strategy definition not yet started. Team in early planning and scoping stage." },
           ]
-        },
-        { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
-          actual: 0, status:"not-started",
-          krs:[
-            { name:"Investment Thesis (Q2)",                  actual: 0, status:"not-started", detail:null },
-            { name:"Evidence & Results Dashboard (Q3)",       actual: 0, status:"not-started", detail:null },
-            { name:"Thesis Decision (Q2)",                    actual: 0, status:"not-started", detail:null },
-          ]
-        },
-      ],
-      tasks: [
-        { ref:"K1.1", text:"Primary active initiative is CEPE. Status report, KPIs, and learnings due June 1. Task structure being built to properly reflect team dedication." },
-        { ref:"K2/K3", text:"AI lever testing, impact investing approach, and strategy definition not yet started. Team in early planning and scoping stage." },
+        }
       ]
     },
 
