@@ -222,9 +222,10 @@ const EDITIONS = [
     num: "01",
     month: "June",
     year: 2026,
+    name: "From Knowing to Doing",
     file: "jun-2026.html",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    teams: ["ECD", "Education", "DEM", "D+", "Charity"]
+    summary: "Two long-term learning investments, now measured: Crack the Code connects youth in Barranquilla to higher education at rates above every available benchmark, and RIL demonstrates how peer knowledge networks are translating into better decisions inside local governments.",
+    teams: ["Education", "Democracy"]
   }
 ];
 </script>
@@ -314,7 +315,7 @@ function renderEditions() {
             <span class="card-edition-badge">Edition ${e.num}</span>
             ${e.month} ${e.year}
           </div>
-          <div class="card-title">VER+ Huellas · ${e.month} ${e.year}</div>
+          <div class="card-title">${e.name || `VER+ Huellas · ${e.month} ${e.year}`}</div>
           <p class="card-summary">${e.summary}</p>
           <div class="card-teams">${teamTags}</div>
           <div class="card-cta"><span>Open report</span><span class="card-cta-arrow">→</span></div>

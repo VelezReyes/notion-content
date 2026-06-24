@@ -35,26 +35,24 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 
 /* ─── FOOTPRINTS ─── */
 .footprints-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.fp { position: absolute; opacity: 0; fill: var(--cream); animation: footstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; transform-origin: center bottom; }
+.fp { position: absolute; opacity: 0; fill: var(--cream); animation: footstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; }
 .fp.left { animation-name: footstep-left; }
 @keyframes footstep {
-  0%   { opacity:0; transform:scale(.5); }
-  40%  { opacity:.13; transform:scale(1.08); }
-  100% { opacity:.07; transform:scale(1); }
+  0%  { opacity:0; transform:scale(.5); }
+  40% { opacity:.13; transform:scale(1.08); }
+  100%{ opacity:.07; transform:scale(1); }
 }
 @keyframes footstep-left {
-  0%   { opacity:0; transform:scaleX(-1) scale(.5); }
-  40%  { opacity:.13; transform:scaleX(-1) scale(1.08); }
-  100% { opacity:.07; transform:scaleX(-1) scale(1); }
+  0%  { opacity:0; transform:scaleX(-1) scale(.5); }
+  40% { opacity:.13; transform:scaleX(-1) scale(1.08); }
+  100%{ opacity:.07; transform:scaleX(-1) scale(1); }
 }
 
 /* ─── SITE NAV ─── */
 .site-nav {
-  height: var(--site-nav-h);
-  background: var(--black);
+  height: var(--site-nav-h); background: var(--black);
   position: sticky; top: 0; z-index: 200;
-  padding: 0 clamp(1.25rem, 4vw, 3.5rem);
-  border-bottom: 1px solid #111;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem); border-bottom: 1px solid #111;
 }
 .site-nav-inner {
   max-width: 1100px; margin: 0 auto; width: 100%;
@@ -74,13 +72,13 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
   transition: background 0.15s, transform 0.15s; white-space: nowrap;
 }
 .back-link:hover { background: #FFF; transform: translateX(-1px); }
-.back-arrow { display: inline-block; transition: transform 0.2s; font-size: 13px; }
+.back-arrow { display: inline-block; transition: transform 0.2s; }
 .back-link:hover .back-arrow { transform: translateX(-3px); }
-.nav-edition-tag { font-size: 11px; font-weight: 700; color: #333; letter-spacing: 0.06em; }
+.nav-edition-tag { font-size: 11px; font-weight: 700; color: #444; letter-spacing: 0.06em; }
 
 /* ─── REPORT HEADER ─── */
 .site-header {
-  background: var(--black); width: 100%; position: relative; overflow: hidden;
+  background: var(--black); position: relative; overflow: hidden;
   padding: 0 clamp(1.25rem, 4vw, 3.5rem);
 }
 .site-header::before {
@@ -90,19 +88,32 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 .site-header::after {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--yellow);
 }
-.header-inner {
-  padding: 2rem 0;
-  max-width: 1100px; margin: 0 auto;
+.header-inner { padding: 2rem 0 2.25rem; max-width: 1100px; margin: 0 auto; }
+.header-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #666; margin-bottom: 0.5rem;
 }
-.header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #777; margin-bottom: 0.5rem; }
-.header-title { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 42px); color: #FFF; line-height: 1; display: flex; align-items: baseline; gap: 0.35rem; }
+.header-title {
+  font-family: var(--serif); font-size: clamp(28px, 3.8vw, 46px);
+  color: #FFF; line-height: 1; display: flex; align-items: baseline; gap: 0.35rem;
+}
 .header-title-accent { color: var(--yellow); }
-.header-meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.65rem; flex-wrap: wrap; }
-.edition-pill { background: var(--yellow); color: var(--black); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; }
+.header-edition-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px, 2vw, 20px); color: #666; margin-top: 0.5rem;
+}
+.header-meta {
+  display: flex; align-items: center; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap;
+}
+.edition-pill {
+  background: var(--yellow); color: var(--black);
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 12px; border-radius: 20px;
+}
 .header-period { font-size: 13px; color: #888; font-weight: 500; }
-.header-for { font-size: 13px; color: #777; }
+.header-for    { font-size: 13px; color: #666; }
 
-/* ─── CEO NOTE (optional, rendered only if DATA.ceoNote exists) ─── */
+/* ─── CEO NOTE (optional) ─── */
 .ceo-note {
   background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
   position: relative; overflow: hidden;
@@ -122,14 +133,13 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 .team-section { margin-bottom: 2rem; }
 .team-hdr {
   background: var(--black); border-radius: var(--radius) var(--radius) 0 0;
-  padding: 1.5rem 1.75rem;
-  position: relative; overflow: hidden;
+  padding: 1.5rem 1.75rem; position: relative; overflow: hidden;
 }
 .team-hdr::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
   border-radius: var(--radius) 0 0 var(--radius);
 }
-.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #888; margin-bottom: .35rem; }
+.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #666; margin-bottom: .35rem; }
 .team-hdr-name { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); color: #FFF; line-height: 1.1; margin-bottom: .35rem; }
 .team-hdr-meta { font-size: 12px; color: #888; }
 
@@ -138,26 +148,36 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
   background: #FFF; border: 1px solid var(--border); border-top: none;
   border-radius: 0 0 var(--radius) var(--radius); overflow: hidden;
 }
-.charity-intro {
-  background: rgba(167,178,170,.10); border-bottom: 1px solid var(--border);
-  padding: 1rem 1.5rem; font-size: 14px; color: var(--text-md); line-height: 1.75;
-}
 
 /* ─── STORY ACCORDION ─── */
 .story-item { border-bottom: 1px solid var(--border); }
 .story-item:last-child { border-bottom: none; }
 .story-header {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 1.35rem 1.5rem; cursor: pointer;
-  transition: background .12s; user-select: none;
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1.35rem 1.5rem; cursor: pointer; transition: background .12s; user-select: none;
 }
 .story-header:hover { background: rgba(0,0,0,.02); }
 .story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
 .story-title-text { font-size: 15px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.45; }
-.story-pill { font-size: 11px; font-weight: 700; padding: 4px 13px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+
+/* Universal story tag (Learning Agenda / Success Stories) */
+.story-tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-tag.learning-agenda { background: #1A1A1A; color: #B0B098; border: 1px solid #2D2D2D; }
+.story-tag.success-stories { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
+
+/* Initiative pill */
+.story-pill {
+  font-size: 11px; font-weight: 700; padding: 4px 13px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
 .story-chevron { font-size: 11px; color: #CCC; transition: transform .25s; flex-shrink: 0; }
 .story-item.open .story-chevron { transform: rotate(180deg); }
-.story-body { display: none; border-top: 1px solid var(--border); padding: 2rem 1.5rem 2.25rem; background: var(--cream-card); }
+.story-body {
+  display: none; border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem 2.25rem; background: var(--cream-card);
+}
 .story-item.open .story-body { display: block; }
 
 /* ─── STORY MEDIA ─── */
@@ -167,20 +187,18 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
   background: linear-gradient(135deg, #E8E8DC 0%, #D2D2C6 100%);
   border: 1.5px dashed rgba(0,0,0,0.11);
 }
-/* Aspect ratios */
 .story-media.landscape { aspect-ratio: 16 / 9; }
 .story-media.portrait  { aspect-ratio: 9 / 16; max-width: 420px; margin-left: auto; margin-right: auto; }
 .story-media.square    { aspect-ratio: 1 / 1; max-width: 520px; margin-left: auto; margin-right: auto; }
-/* When a real image/video is loaded, no dashed border */
 .story-media.has-media { border: none; }
 .story-media img,
-.story-media video,
-.story-media iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; display: block;
+.story-media video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: none;
 }
 .story-media-ph {
-  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; color: #BCBCB0; pointer-events: none; user-select: none;
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  color: #BCBCB0; pointer-events: none; user-select: none;
 }
 .story-media-ph svg { width: 28px; height: 28px; }
 .story-media-ph-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -199,11 +217,21 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 .story-summary a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .story-summary a:hover { opacity: 0.75; }
 
-/* ─── STATS ROW ─── */
-.story-stats { display: flex; gap: 0.65rem; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 1.25rem; }
-.story-stat { flex: 1; min-width: 100px; background: var(--cream); border-radius: var(--radius-sm); padding: 1rem 1.1rem; text-align: center; }
-.story-stat-n { font-family: var(--serif); font-size: 30px; line-height: 1; margin-bottom: 5px; }
-.story-stat-l { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mt); }
+/* ─── STATS GRID ─── */
+.story-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.65rem; border-top: 1px solid var(--border); padding-top: 1.25rem;
+}
+.story-stat {
+  background: var(--cream); border-radius: var(--radius-sm);
+  padding: 1.1rem 1.25rem;
+}
+.story-stat-n { font-family: var(--serif); font-size: 32px; line-height: 1; margin-bottom: 4px; }
+.story-stat-l { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dk); margin-bottom: 5px; }
+.story-stat-ctx { font-size: 11px; color: var(--text-mt); line-height: 1.45; }
+
+/* ─── INVESTMENT TAG ─── */
 .investment-tag {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 12px; color: var(--text-mt);
@@ -230,14 +258,13 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 680px) {
-  .narrative-grid { grid-template-columns: 1fr; }
-  .narrative-block.full-width { grid-column: auto; }
+  .story-stats { grid-template-columns: 1fr 1fr; }
+  .story-tag { display: none; }
   .story-pill { display: none; }
-  .story-stats { flex-direction: column; }
-  .story-stat { min-width: unset; }
 }
 @media (max-width: 480px) {
-  .site-nav .nav-edition-tag { display: none; }
+  .nav-edition-tag { display: none; }
+  .story-stats { grid-template-columns: 1fr; }
 }
 
 /* ─── PRINT ─── */
@@ -249,131 +276,95 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
   html, body { height: auto !important; overflow: visible !important; }
   .site-nav, .print-btn, .back-link { display: none !important; }
   .story-body { display: block !important; }
+  .story-media { display: none !important; }
   .site-header, .ceo-note, .team-hdr, .site-footer {
     background: var(--cream) !important; border: 1px solid #DDD !important;
   }
   .site-header::after { background: var(--black) !important; }
-  .header-title, .team-hdr-name, .footer-brand, .footer-brand strong { color: var(--black) !important; }
+  .header-title, .team-hdr-name, .footer-brand strong { color: var(--black) !important; }
   .header-title-accent { color: #4A4A00 !important; }
-  .ceo-note p { color: var(--text-md) !important; }
-  .ceo-note-label { color: #4A4A00 !important; }
+  .header-edition-name, .header-eyebrow, .team-hdr-eyebrow { color: var(--text-mt) !important; }
+  .footer-brand { color: var(--black) !important; }
   body { background: #FFF !important; }
+  .story-stat { background: #EEE !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     DATA — update each edition.
-     teams array: Education first, then ECD, DEM, D+, Charity.
-     story.img: URL or null (shows placeholder).
-     story.imgRatio: 'landscape' | 'portrait' | 'square'.
-     story.impact: text or null (skips impact block).
-     DATA.ceoNote: text or null (hides the note section).
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════
+     DATA — update per edition.
+     story.tag:       'Learning Agenda' | 'Success Stories' | null
+     story.pill:      initiative / project name
+     story.img:       URL or null (shows placeholder)
+     story.mediaType: 'image' | 'video' (default: image)
+     story.imgRatio:  'landscape' | 'portrait' | 'square'
+     story.summary:   HTML string with <p> tags
+     story.stats:     [{n, l, ctx (optional), c}]
+     story.investment: string or null
+     DATA.ceoNote:    string or null (hides section if null)
+══════════════════════════════════════════════════════ -->
 <script>
 const DATA = {
-  edition:    "01",
-  month:      "June",
-  year:       2026,
-  audience:   "David & Mariel",
-  ceoNote:    null,
+  edition:      "01",
+  month:        "June",
+  year:         2026,
+  editionName:  "From Knowing to Doing",
+  audience:     "David & Mariel",
+  ceoNote:      null,
 
   teams: [
-    /* ══ EDUCATION (FoT + K-12) ═══════════════════════════ */
+
+    /* ══ EDUCATION (Future of Talent) ═══════════════════ */
     {
       id: "education", name: "Education", short: "Education",
-      lead: "Lorem Ipsum", color: "#27CF77",
+      color: "#27CF77",
       stories: [
         {
-          title: "VER+ Beca Tech Scholars Win First Prize at ASC25, Xining, China",
-          pill: "VER+ Beca Tech",
-          img: "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/template/chinabecatech.png?raw=true",
+          title: "Crack the Code: Opening Real Pathways into Post-Secondary Education",
+          pill: "Crack the Code",
+          tag: "Learning Agenda",
+          img: "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/CtC.mp4",
+          mediaType: "video",
           imgRatio: "landscape",
-          summary: `<p>We are proud to share that <a href="https://www.linkedin.com/in/laura-castrillon-610765287/" target="_blank">Laura Andrea Castrillón Fajardo</a> and <a href="https://www.linkedin.com/in/jeronimo-campuzano-casta%C3%B1o/" target="_blank">Jerónimo Campuzano Castaño</a>, VER+ Beca Tech scholars, represented <a href="https://www.linkedin.com/school/universidadeafit/" target="_blank">Universidad EAFIT</a> at the international supercomputing competition ASC25, held in Xining, China 🇨🇳.</p><p>Over six days they competed against universities from across the world, following months of intensive preparation, dedicating more than 25 hours per week to technical training. Their talent, discipline, and commitment led them to win the First Prize 🥇, placing them among the top 25 teams globally.</p><p>This achievement shows that when talent meets opportunity, anything is possible. Seeing Laura and Jerónimo stand out on a global stage is a reminder of the power of education to open doors and transform lives.</p>`,
+          summary: `<p>Crack the Code is opening real pathways into post-secondary education: in a follow-up survey of 719 students who graduated in 2025, implemented with the support of VER+, 74.7% report being connected to some form of education and 67% are enrolled in higher education, between 4 and 6 percentage points above the available benchmarks for comparable youth in Barranquilla and for the same schools before the intervention.</p><p>The challenge now is to turn that educational connection into protected labor opportunities: only 20.9% are working and, among those who work, informal arrangements predominate, with only 4.6% contributing to social security. CTC has already created formal opportunities for some young people, but the broader transition into quality formal employment is still under construction.</p>`,
           stats: [
-            { n: "🥇", l: "First Prize, ASC25", c: "#27CF77" },
-            { n: "25+", l: "Training hrs / week", c: "#27CF77" },
-            { n: "Top 25", l: "Teams globally", c: "#27CF77" }
+            { n: "719",   l: "Students surveyed",              ctx: "CTC graduates from 2025",                                      c: "#27CF77" },
+            { n: "74.7%", l: "Connected to education",         ctx: "4 to 6 pp above comparable benchmarks in Barranquilla",        c: "#27CF77" },
+            { n: "67%",   l: "Enrolled in higher education",   ctx: "4 to 6 pp above pre-intervention baseline in the same schools", c: "#27CF77" },
+            { n: "20.9%", l: "Currently working",              ctx: "Labor transition into quality employment is still underway",    c: "#27CF77" },
+            { n: "4.6%",  l: "Contributing to social security",ctx: "Informal work predominates among those employed",              c: "#27CF77" }
           ],
-          investment: "VER+ Beca Tech scholarship · EAFIT partnership · ASC25 registration and travel support"
-        }
-      ]
-    },
-
-    /* ══ ECD ══════════════════════════════════════════════ */
-    {
-      id: "ecd", name: "Early Childhood & Development", short: "ECD",
-      lead: "Lorem Ipsum", color: "#27CF77",
-      stories: [
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
-          pill: "Lorem ipsum",
-          img: null, imgRatio: "landscape",
-          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
-          stats: [{n:"00",l:"Lorem ipsum",c:"#27CF77"},{n:"0",l:"Consectetur",c:"#27CF77"},{n:"00%",l:"Adipiscing elit",c:"#27CF77"}],
-          investment: "Lorem ipsum dolor · Consectetur adipiscing · Lorem dolor sit"
-        },
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod",
-          pill: "Lorem ipsum",
-          img: null, imgRatio: "landscape",
-          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>`,
-          stats: [{n:"0",l:"Lorem ipsum",c:"#27CF77"},{n:"00",l:"Consectetur",c:"#27CF77"}],
-          investment: "Lorem ipsum · Consectetur adipiscing · Lorem ipsum dolor"
+          investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity"
         }
       ]
     },
 
     /* ══ DEMOCRACY ════════════════════════════════════════ */
     {
-      id: "dem", name: "Democracy", short: "DEM",
-      lead: "Lorem Ipsum", color: "#A62BFF",
+      id: "dem", name: "Democracy", short: "Democracy",
+      color: "#A62BFF",
       stories: [
         {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
-          pill: "Lorem ipsum",
-          img: null, imgRatio: "landscape",
-          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
-          stats: [{n:"00",l:"Lorem ipsum",c:"#A62BFF"},{n:"00%",l:"Consectetur elit",c:"#A62BFF"},{n:"00",l:"Adipiscing",c:"#A62BFF"}],
-          investment: "Lorem ipsum dolor · Consectetur adipiscing · Lorem dolor sit"
-        }
-      ]
-    },
-
-    /* ══ DEMOCRACIA+ ══════════════════════════════════════ */
-    {
-      id: "dp", name: "Democracia+", short: "D+",
-      lead: "Lorem Ipsum", color: "#BD97F1",
-      stories: [
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod",
-          pill: "Lorem ipsum",
-          img: null, imgRatio: "landscape",
-          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>`,
-          stats: [{n:"0",l:"Lorem ipsum",c:"#BD97F1"},{n:"0",l:"Consectetur",c:"#BD97F1"}],
-          investment: "Lorem ipsum · Consectetur adipiscing · Lorem ipsum"
-        }
-      ]
-    },
-
-    /* ══ CHARITY ══════════════════════════════════════════ */
-    {
-      id: "charity", name: "Charity", short: "Charity",
-      lead: "Lorem Ipsum", color: "#A7B2AA",
-      isCharity: true,
-      intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-      stories: [
-        {
-          title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor",
-          pill: "Lorem ipsum",
-          img: null, imgRatio: "landscape",
-          summary: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>`,
-          stats: [{n:"00",l:"Lorem ipsum",c:"#A7B2AA"},{n:"0",l:"Consectetur",c:"#A7B2AA"},{n:"0",l:"Adipiscing",c:"#A7B2AA"}],
-          investment: "Lorem ipsum · Consectetur adipiscing · Lorem dolor sit"
+          title: "RIL: A Decade of Public Knowledge, Now Measured",
+          pill: "RIL",
+          tag: "Learning Agenda",
+          img: "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/june/RIL.jpg?raw=true",
+          mediaType: "image",
+          imgRatio: "landscape",
+          summary: `<p>After more than 10 years of work, RIL took a historic step: with the support of VER+, it set out to systematically listen to those who have experienced its support in public service. The results celebrate a network with concrete value: 79% would recommend RIL with the highest possible score, 88% say it improved their access to knowledge about local management, and 83% believe their participation improves the quality of decisions in their government.</p><p>The evidence also shows movement toward action: 35% have already adopted or adapted practices from other local governments, and 48% are evaluating them. In the acceleration programs, the strongest perceived impacts appear in policy design, data use, and implementation. More than a measurement exercise, this first effort strongly indicates that RIL is turning shared knowledge into public capabilities. We will conclude this learning exercise by August, when we expect to have more profound data on RIL's impact on officials' abilities to execute and innovate.</p>`,
+          stats: [
+            { n: "79%", l: "Would recommend RIL",          ctx: "With the highest possible score",                         c: "#A62BFF" },
+            { n: "88%", l: "Improved access to knowledge", ctx: "About local management practices",                        c: "#A62BFF" },
+            { n: "83%", l: "Better government decisions",  ctx: "Reported by participating officials",                     c: "#A62BFF" },
+            { n: "35%", l: "Already adopted practices",    ctx: "From other local governments",                            c: "#A62BFF" },
+            { n: "48%", l: "Currently evaluating adoption",ctx: "Of practices from peer governments",                      c: "#A62BFF" }
+          ],
+          investment: "USD 875,000 across 2 grants · First grant: USD 370,000 · Second grant: USD 500,000"
         }
       ]
     }
+
   ]
 };
 
@@ -381,7 +372,6 @@ const LOGO_URL = "https://velezreyes.github.io/static-mail/ver%2B/mailing_sigant
 const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
 </script>
 
-<!-- SVG footprint symbol -->
 <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
   <defs>
     <symbol id="fp-shape" viewBox="0 0 34 64">
@@ -423,6 +413,7 @@ const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
   <div class="header-inner">
     <div class="header-eyebrow">VélezReyes+ · Monthly Impact Report</div>
     <div class="header-title">VER+&nbsp;<span class="header-title-accent">Huellas</span></div>
+    <div class="header-edition-name" id="hdr-edition-name"></div>
     <div class="header-meta">
       <span class="edition-pill" id="hdr-edition"></span>
       <span class="header-period" id="hdr-period"></span>
@@ -455,6 +446,7 @@ function renderSiteNav() {
 }
 
 function renderHeader() {
+  document.getElementById('hdr-edition-name').textContent = DATA.editionName || '';
   document.getElementById('hdr-edition').textContent = `Edition ${DATA.edition}`;
   document.getElementById('hdr-period').textContent  = `${DATA.month} ${DATA.year}`;
   document.getElementById('hdr-for').textContent     = `For ${DATA.audience}`;
@@ -470,16 +462,23 @@ function renderCeoNote() {
 }
 
 function buildStoryHTML(t, s, i) {
-  // Media block
+  /* ── MEDIA ── */
   const hasMedia = !!s.img;
   const ratio = s.imgRatio || 'landscape';
   const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
-  const mediaInner = hasMedia
-    ? `<img src="${s.img}" alt="${s.title}" loading="lazy">`
-    : `<div class="story-media-ph">${CAM_ICON}<span class="story-media-ph-label">Add story image or video</span></div>`;
+  let mediaInner;
+  if (hasMedia && s.mediaType === 'video') {
+    mediaInner = `<video controls playsinline preload="metadata">
+      <source src="${s.img}" type="video/mp4">
+    </video>`;
+  } else if (hasMedia) {
+    mediaInner = `<img src="${s.img}" alt="${s.title}" loading="lazy">`;
+  } else {
+    mediaInner = `<div class="story-media-ph">${CAM_ICON}<span class="story-media-ph-label">Add story image or video</span></div>`;
+  }
   const mediaHTML = `<div class="${mediaClass}">${mediaInner}</div>`;
 
-  // Impact summary — single paragraph block, optional
+  /* ── SUMMARY ── */
   const summaryHTML = s.summary
     ? `<div class="story-summary">
         <span class="story-summary-label" style="color:${t.color}">Impact Summary</span>
@@ -487,16 +486,24 @@ function buildStoryHTML(t, s, i) {
       </div>`
     : '';
 
+  /* ── STATS ── */
   const statsHTML = s.stats && s.stats.length
-    ? `<div class="story-stats">${s.stats.map(st =>
-        `<div class="story-stat">
+    ? `<div class="story-stats">${s.stats.map(st => `
+        <div class="story-stat">
           <div class="story-stat-n" style="color:${st.c}">${st.n}</div>
           <div class="story-stat-l">${st.l}</div>
+          ${st.ctx ? `<div class="story-stat-ctx">${st.ctx}</div>` : ''}
         </div>`).join('')}</div>`
     : '';
 
+  /* ── INVESTMENT ── */
   const investHTML = s.investment
     ? `<div class="investment-tag">${s.investment}</div>`
+    : '';
+
+  /* ── TAG ── */
+  const tagHTML = s.tag
+    ? `<span class="story-tag ${s.tag.toLowerCase().replace(/\s+/g, '-')}">${s.tag}</span>`
     : '';
 
   return `
@@ -504,6 +511,7 @@ function buildStoryHTML(t, s, i) {
       <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
         <span class="story-num">${String(i+1).padStart(2,'0')}</span>
         <span class="story-title-text">${s.title}</span>
+        ${tagHTML}
         <span class="story-pill" style="background:${t.color}18;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
         <span class="story-chevron">▼</span>
       </div>
@@ -517,23 +525,18 @@ function buildStoryHTML(t, s, i) {
 }
 
 function renderTeamSections() {
-  const container = document.getElementById('team-sections');
-  container.innerHTML = DATA.teams.map(t => {
-    const charityIntro = t.isCharity && t.intro
-      ? `<div class="charity-intro">${t.intro}</div>`
-      : '';
-    const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
+  document.getElementById('team-sections').innerHTML = DATA.teams.map(t => {
     const storyCount = t.stories.length;
-
+    const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
     return `
       <div class="team-section">
-        <div class="team-hdr" style="--team-color:${t.color}">
+        <div class="team-hdr">
           <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${t.color};border-radius:var(--radius) 0 0 var(--radius);"></div>
           <div class="team-hdr-eyebrow">VER+ Huellas · ${DATA.month} ${DATA.year}</div>
           <div class="team-hdr-name">${t.name}</div>
-          <div class="team-hdr-meta">${storyCount} stor${storyCount === 1 ? 'y' : 'ies'} this month</div>
+          <div class="team-hdr-meta">${storyCount} stor${storyCount === 1 ? 'y' : 'ies'} this edition</div>
         </div>
-        <div class="stories-wrap">${charityIntro}${storiesHTML}</div>
+        <div class="stories-wrap">${storiesHTML}</div>
       </div>`;
   }).join('');
 }
@@ -574,28 +577,20 @@ function renderFootprints() {
 
 /* ── Export PDF: single continuous page ── */
 function exportPDF() {
-  // Open all story bodies for complete render
   document.querySelectorAll('.story-body').forEach(b => b.style.display = 'block');
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const totalPx = document.documentElement.scrollHeight;
-      const totalMm = Math.ceil(totalPx * 0.2646) + 20;
-      const tag = document.createElement('style');
-      tag.id = '__print_page_size__';
-      tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 12mm 18mm; }`;
-      document.head.appendChild(tag);
-
-      window.print();
-
-      setTimeout(() => {
-        const el = document.getElementById('__print_page_size__');
-        if (el) el.remove();
-        // Restore accordion state (collapse all)
-        document.querySelectorAll('.story-body').forEach(b => b.style.display = '');
-      }, 1500);
-    });
-  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const totalMm = Math.ceil(document.documentElement.scrollHeight * 0.2646) + 20;
+    const tag = document.createElement('style');
+    tag.id = '__print_page_size__';
+    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 12mm 18mm; }`;
+    document.head.appendChild(tag);
+    window.print();
+    setTimeout(() => {
+      const el = document.getElementById('__print_page_size__');
+      if (el) el.remove();
+      document.querySelectorAll('.story-body').forEach(b => b.style.display = '');
+    }, 1500);
+  }));
 }
 
 renderSiteNav();
