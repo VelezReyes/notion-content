@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OKR Progress Report · May 2026 · VélezReyes+ · V3</title>
+<title>OKR Progress Report · May 2026 · VélezReyes+</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -369,94 +369,89 @@ const DATA = {
       ]
     },
 
-    /* ── EDUCATION (FoT + K-12) · Lead: Maribel Corrales · 7% · At Risk ── */
+    /* ── FUTURE OF TALENT · Lead: Maribel Corrales · 11% · On Track ── */
     {
-      id: "edu", name: "Education", short: "EDU",
+      id: "fot", name: "Future of Talent", short: "FoT",
       lead: "Maribel Corrales",
       color: "#22C4CF",
-      actual: 7,
-      status: "at-risk",
-      onTrack: 2, atRisk: 1, notStarted: 4,
+      actual: 11,
+      status: "on-track",
+      onTrack: 1, atRisk: 1, notStarted: 2,
       note: null,
-      isEducation: true,
-      objectives: [], tasks: [],
-      subteams: [
-        /* FoT first */
-        {
-          id: "fot", name: "Future of Talent", short: "FoT",
-          color: "#22C4CF",
-          actual: 11, status: "on-track",
-          objectives: [
-            { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
-              actual:31, status:"on-track",
-              krs:[
-                { name:"Scholarships Delivered with Quality (Q4)",            actual:32, status:"on-track",    detail:"Satisfaction survey shared with operators in Colombia & Peru; retention follow-up by cohort due July 20" },
-                { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30, status:"on-track",    detail:"5 agreements completed; ICESI in final validation; EAFIT pending due diligence (due June 19)" },
-                { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30, status:"on-track",    detail:"CRM minimum indicators & governance being defined (due June 10); dashboard launch targeted Q3" },
-              ]
-            },
-            { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
-              actual: 0, status:"not-started",
-              krs:[
-                { name:"Test & Learn Portfolio Closed-loop (Q4)", actual: 0, status:"not-started", detail:null },
-              ]
-            },
-            { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
-              actual:13, status:"at-risk",
-              krs:[
-                { name:"Investment Thesis (Q2)",            actual:37, status:"on-track",    detail:"Concept notes planned: Peru Makers, Colombia U Ventures (incubation model), Peru Fondo Luchante" },
-                { name:"Evidence & Results Dashboard (Q3)", actual: 3, status:"on-track",    detail:"Dashboard structure and ROI data pending; data collection not started" },
-                { name:"Thesis Decision (Q4)",              actual: 0, status:"not-started", detail:null },
-              ]
-            },
-            { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
-              actual: 0, status:"not-started",
-              krs:[
-                { name:"Ecosystem Bets Decision (Q3)", actual: 0, status:"not-started", detail:null },
-              ]
-            },
-          ],
-          tasks: [
-            { ref:"FT1.1",  text:"Scholar satisfaction survey results shared with operators in Colombia and Peru. Retention follow-up by cohort/country in progress (Semester 1, due July 20)." },
-            { ref:"FT1.2",  text:"University agreements in transition — 5 completed agreements awaiting Trust confirmation; ICESI in final validation stage; EAFIT pending due diligence documents (due June 19)." },
-            { ref:"FT1.3",  text:"Scholar CRM dashboard being built — minimum indicators, data sources, and governance being defined (due June 10). Dashboard + decision log launch targeted Q3 (July 10)." },
-            { ref:"FT3.1",  text:"Investment Thesis at 37% — concept notes planned for Peru Makers, Colombia U Ventures incubation model, and Peru Fondo Luchante." },
-            { ref:"FT2/FT4",text:"Test & Learn and Ecosystem Bets objectives not yet initiated." },
+      objectives: [
+        { code:"FT1", name:"Deliver and improve the tech scholarship platform at scale",
+          actual:31, status:"on-track",
+          krs:[
+            { name:"Scholarships Delivered with Quality (Q4)",            actual:32, status:"on-track",    detail:"Satisfaction survey shared with operators in Colombia & Peru; retention follow-up by cohort due July 20" },
+            { name:"Operational Efficiency Baseline + Improvements (Q4)", actual:30, status:"on-track",    detail:"5 agreements completed; ICESI in final validation; EAFIT pending due diligence (due June 19)" },
+            { name:"Scholar Progress Dashboard used in Decisions (Q4)",   actual:30, status:"on-track",    detail:"CRM minimum indicators & governance being defined (due June 10); dashboard launch targeted Q3" },
           ]
         },
-        /* K-12 second */
-        {
-          id: "k12", name: "K-12", short: "K12",
-          color: "#3B82F6",
-          actual: 3, status: "at-risk",
-          objectives: [
-            { code:"K1", name:"Deepen / double down on current ecosystem bets",
-              actual:10, status:"on-track",
-              krs:[
-                { name:"Ecosystem Bets Decision (Q3)", actual:10, status:"on-track", detail:"Primary initiative: CEPE — status report, KPIs & learnings due June 1; task structure being built" },
-              ]
-            },
-            { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
-              actual: 0, status:"not-started",
-              krs:[
-                { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0, status:"not-started", detail:null },
-                { name:"Impact Investing Approach (Q4)",          actual: 0, status:"not-started", detail:null },
-              ]
-            },
-            { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
-              actual: 0, status:"not-started",
-              krs:[
-                { name:"Investment Thesis (Q2)",            actual: 0, status:"not-started", detail:null },
-                { name:"Evidence & Results Dashboard (Q3)", actual: 0, status:"not-started", detail:null },
-                { name:"Thesis Decision (Q2)",              actual: 0, status:"not-started", detail:null },
-              ]
-            },
-          ],
-          tasks: [
-            { ref:"K1.1",  text:"Primary active initiative is CEPE. Status report, KPIs, and learnings due June 1. Task structure being built to properly reflect team dedication." },
-            { ref:"K2/K3", text:"AI lever testing, impact investing approach, and strategy definition not yet started. Team in early planning and scoping stage." },
+        { code:"FT2", name:"Test and Learn new hypotheses to identify the next FoT bets",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Test & Learn Portfolio Closed-loop (Q4)",             actual: 0, status:"not-started", detail:null },
           ]
-        }
+        },
+        { code:"FT3", name:"Define the FoT Strategy for 2026 and 2027-2031",
+          actual:13, status:"at-risk",
+          krs:[
+            { name:"Investment Thesis (Q2)",                              actual:37, status:"on-track",    detail:"Concept notes planned: Peru Makers, Colombia U Ventures (incubation model), Peru Fondo Luchante" },
+            { name:"Evidence & Results Dashboard (Q3)",                   actual: 3, status:"on-track",    detail:"Dashboard structure and ROI data pending; data collection not started" },
+            { name:"Thesis Decision (Q4)",                                actual: 0, status:"not-started", detail:null },
+          ]
+        },
+        { code:"FT4", name:"Deepen and decide continuity of ecosystem bets",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Ecosystem Bets Decision (Q3)",                        actual: 0, status:"not-started", detail:null },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"FT1.1", text:"Scholar satisfaction survey results shared with operators in Colombia and Peru. Retention follow-up by cohort/country in progress (Semester 1, due July 20)." },
+        { ref:"FT1.2", text:"University agreements in transition — 5 completed agreements awaiting Trust confirmation; ICESI in final validation stage; EAFIT pending due diligence documents (due June 19)." },
+        { ref:"FT1.3", text:"Scholar CRM dashboard being built — minimum indicators, data sources, and governance being defined (due June 10). Dashboard + decision log launch targeted Q3 (July 10)." },
+        { ref:"FT3.1", text:"Investment Thesis at 37% — concept notes planned for Peru Makers, Colombia U Ventures incubation model, and Peru Fondo Luchante." },
+        { ref:"FT2/FT4", text:"Test & Learn and Ecosystem Bets objectives not yet initiated." },
+      ]
+    },
+
+    /* ── K-12 · Lead: Maribel Corrales · 3% · At Risk ── */
+    {
+      id: "k12", name: "K-12", short: "K12",
+      lead: "Maribel Corrales",
+      color: "#3B82F6",
+      actual: 3,
+      status: "at-risk",
+      onTrack: 1, atRisk: 0, notStarted: 2,
+      note: null,
+      objectives: [
+        { code:"K1", name:"Deepen / double down on current ecosystem bets",
+          actual:10, status:"on-track",
+          krs:[
+            { name:"Ecosystem Bets Decision (Q3)",            actual:10, status:"on-track",    detail:"Primary initiative: CEPE — status report, KPIs & learnings due June 1; task structure being built" },
+          ]
+        },
+        { code:"K2", name:"Test and learn K-12 levers — AI + impact investing",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Test & Learn Portfolio Closed Loop (Q4)", actual: 0, status:"not-started", detail:null },
+            { name:"Impact Investing Approach (Q4)",          actual: 0, status:"not-started", detail:null },
+          ]
+        },
+        { code:"K3", name:"Define the K-12 Strategy for 2026-2031",
+          actual: 0, status:"not-started",
+          krs:[
+            { name:"Investment Thesis (Q2)",                  actual: 0, status:"not-started", detail:null },
+            { name:"Evidence & Results Dashboard (Q3)",       actual: 0, status:"not-started", detail:null },
+            { name:"Thesis Decision (Q2)",                    actual: 0, status:"not-started", detail:null },
+          ]
+        },
+      ],
+      tasks: [
+        { ref:"K1.1", text:"Primary active initiative is CEPE. Status report, KPIs, and learnings due June 1. Task structure being built to properly reflect team dedication." },
+        { ref:"K2/K3", text:"AI lever testing, impact investing approach, and strategy definition not yet started. Team in early planning and scoping stage." },
       ]
     },
 
@@ -778,7 +773,7 @@ function renderTeamGrid() {
   });
 }
 
-/* ── Reusable: build objective accordion rows for a given team object ── */
+/* ── Reusable: build objective accordion rows ── */
 function buildObjRows(t) {
   return t.objectives.map((o,i)=>{
     const krRows = o.krs.map((kr,ki)=>`
@@ -790,16 +785,13 @@ function buildObjRows(t) {
         <div><span class="kr-badge ${kr.status||'not-started'}">${krStatusLabel(kr.status)}</span></div>
         <div class="kr-bar-track"><div class="kr-bar-fill" style="width:${kr.actual}%;background:${krStatusColor(kr.status)};"></div></div>
         <div class="kr-pct" style="color:${krStatusColor(kr.status)}">${kr.actual}%</div>
-      </div>
-    `).join('');
+      </div>`).join('');
     return `
       <div class="obj-item" id="obj-${t.id}-${i}">
         <div class="obj-header" onclick="toggleObj('obj-${t.id}-${i}')">
           <span class="obj-code" style="background:${t.color}22;color:${t.color}">${o.code}</span>
           <span class="obj-name">${o.name}</span>
-          <div class="obj-bar-wrap">
-            <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${o.actual}%;background:${t.color};"></div></div>
-          </div>
+          <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:${o.actual}%;background:${t.color};"></div></div></div>
           <span class="obj-pct" style="color:${t.color}">${o.actual}%</span>
           <span class="obj-chevron">▼</span>
         </div>
@@ -807,11 +799,8 @@ function buildObjRows(t) {
       </div>`;
   }).join('');
 }
-
 function buildTaskList(tasks) {
-  return tasks.map(tx=>`
-    <li><span class="task-ref">${tx.ref}</span><span>${tx.text}</span></li>
-  `).join('');
+  return tasks.map(tx=>`<li><span class="task-ref">${tx.ref}</span><span>${tx.text}</span></li>`).join('');
 }
 
 /* ── Team detail sections ── */
@@ -826,7 +815,6 @@ function renderTeamSections() {
     navHTML += `<button class="nav-btn" id="nb-${t.id}" onclick="showTab('${t.id}')">${t.short}</button>`;
 
     if (t.isEducation) {
-      /* ── Special: Education (FoT + K-12 sub-sections) ── */
       const subSecs = t.subteams.map(st=>`
         <div style="border-left:3px solid ${st.color};padding-left:1.1rem;margin:.9rem 0 1.25rem;">
           <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem;">
@@ -839,9 +827,7 @@ function renderTeamSections() {
             <div class="card-title">Executive Task Summary — ${st.name}</div>
             <ul class="task-list">${buildTaskList(st.tasks)}</ul>
           </div>
-        </div>
-      `).join('');
-
+        </div>`).join('');
       secHTML += `
         <div class="section" id="tab-${t.id}">
           <div class="team-hdr">
@@ -869,13 +855,9 @@ function renderTeamSections() {
           ${subSecs}
         </div>`;
     } else {
-      /* ── Standard team section ── */
       const objRows  = buildObjRows(t);
       const taskHTML = buildTaskList(t.tasks);
-      const noteHTML = t.note
-        ? `<div class="callout orange"><div class="callout-title">📌 Context Note</div>${t.note}</div>`
-        : '';
-
+      const noteHTML = t.note ? `<div class="callout orange"><div class="callout-title">📌 Context Note</div>${t.note}</div>` : '';
       secHTML += `
         <div class="section" id="tab-${t.id}">
           <div class="team-hdr">
@@ -908,13 +890,10 @@ function renderTeamSections() {
     }
   });
 
-  /* ── Institutional tab button ── */
   navHTML += `<button class="nav-btn" id="nb-institutional" onclick="showTab('institutional')">Institutional</button>`;
-
   nav.insertAdjacentHTML('beforeend', navHTML);
   container.innerHTML = secHTML + renderInstitutional();
 
-  /* draw team donuts */
   DATA.teams.forEach(t=>{
     const ctx2 = document.getElementById('td-'+t.id).getContext('2d');
     teamCharts[t.id] = new Chart(ctx2, {
@@ -928,11 +907,9 @@ function renderTeamSections() {
 /* ── Institutional Tab ── */
 function renderInstitutional() {
 
-  /* ── Helper: aligned-KR row ── */
   function aRow(teamColor, teamShort, krCode, krName, actual, status) {
     const sc = (status==='completed'||status==='on-track') ? 'var(--c-ontrack)'
-              : (status==='at-risk'||status==='in-trouble') ? 'var(--c-atrisk)'
-              : '#3A3A3A';
+              : (status==='at-risk'||status==='in-trouble') ? 'var(--c-atrisk)' : '#3A3A3A';
     return `
       <div style="display:flex;align-items:center;gap:.55rem;padding:.45rem .7rem;background:#0D0D0D;border-radius:6px;margin-bottom:.3rem;">
         <span style="font-size:9px;font-weight:800;color:${teamColor};min-width:28px;letter-spacing:.04em;">${teamShort}</span>
@@ -943,7 +920,6 @@ function renderInstitutional() {
       </div>`;
   }
 
-  /* ── Helper: institutional KR card ── */
   function instKR(code, name, actual, status, alignedRows, extraHTML='') {
     const sc = statusColor(status);
     return `
@@ -963,7 +939,6 @@ function renderInstitutional() {
       </div>`;
   }
 
-  /* ── Helper: completed task list ── */
   function completedTasks(items) {
     const rows = items.map(t=>`
       <li style="display:flex;align-items:flex-start;gap:.45rem;font-size:11px;color:#888;line-height:1.55;margin-bottom:.25rem;">
@@ -975,7 +950,6 @@ function renderInstitutional() {
       <ul style="list-style:none;padding:0;margin:0 0 .6rem;">${rows}</ul>`;
   }
 
-  /* ── Helper: sub-KR deep-dive card (KR3.3) ── */
   function deepKR(code, name, actual, status, owner, tasks) {
     const sc = (status==='completed'||status==='on-track') ? 'var(--c-ontrack)' : statusColor(status);
     const taskRows = tasks.map(t=>`
@@ -1000,75 +974,61 @@ function renderInstitutional() {
       </div>`;
   }
 
-  /* ══════════════════════════════════════════════════════
-     OBJECTIVE 1 — Refined Big Bets and Toolkit — 40%
-  ══════════════════════════════════════════════════════ */
-  const obj1body = `
-    ${instKR('KR1.1','Institutional Toolkit (Q1)',61,'on-track','',
+  /* ── Objective 1 ── */
+  const obj1body =
+    instKR('KR1.1','Institutional Toolkit (Q1)',61,'on-track','',
       completedTasks([
         'Prepare white paper on the Futures Lab (May 21, 2026)',
         'Define minimum "decision packet" template and evidence standards — template complete; to be filled by end of Q3',
         'Draft toolkit v1 + iterate with leadership/Board pre-briefs',
         'Set the 2026 portfolio review cadence + decision log format — review in August 31 in Brazil; decision log format in Profit.co',
-      ])
-    )}
-    ${instKR('KR1.2','Thematic Portfolio (Q2)',54,'on-track',
+      ]))+
+    instKR('KR1.2','Thematic Portfolio (Q2)',54,'on-track',
       aRow('#A62BFF','DEM','D4.1','Investment Thesis (Q2)',77,'on-track')+
       aRow('#27CF77','ECD','EC3.1','Investment Thesis (Q2) ✓',100,'completed')+
       aRow('#22C4CF','FoT','FT3.1','Investment Thesis (Q2)',37,'on-track')+
-      aRow('#3B82F6','K-12','K3.1','Investment Thesis (Q2)',0,'not-started')
-    )}
-    ${instKR('KR1.3','Portfolio Decisions (Q3)',34,'on-track',
+      aRow('#3B82F6','K-12','K3.1','Investment Thesis (Q2)',0,'not-started'))+
+    instKR('KR1.3','Portfolio Decisions (Q3)',34,'on-track',
       aRow('#F97316','MEL','M1.4','Evidence used in Portfolio Governance (Q4)',65,'on-track')+
       aRow('#A62BFF','DEM','D4.2','Evidence & Results Dashboard (Q3)',50,'on-track')+
       aRow('#27CF77','ECD','EC3.2','Evidence & Results Dashboard (Q3)',50,'on-track')+
       aRow('#22C4CF','FoT','FT3.2','Evidence & Results Dashboard (Q3)',3,'on-track')+
-      aRow('#3B82F6','K-12','K3.2','Evidence & Results Dashboard (Q3)',0,'not-started')
-    )}
-    ${instKR('KR1.4','5-Year Plan (Q4)',10,'on-track',
+      aRow('#3B82F6','K-12','K3.2','Evidence & Results Dashboard (Q3)',0,'not-started'))+
+    instKR('KR1.4','5-Year Plan (Q4)',10,'on-track',
       aRow('#F97316','MEL','M1.5','Equality of Opportunity Measurement Pilot (Q4)',50,'on-track')+
       aRow('#A62BFF','DEM','D4.3','Thesis Decision (Q4)',0,'not-started')+
       aRow('#27CF77','ECD','EC3.3','Thesis Decision (Q4)',0,'not-started')+
       aRow('#22C4CF','FoT','FT3.3','Thesis Decision (Q4)',0,'not-started')+
-      aRow('#3B82F6','K-12','K3.3','Thesis Decision (Q2)',0,'not-started')
-    )}`;
+      aRow('#3B82F6','K-12','K3.3','Thesis Decision (Q2)',0,'not-started'));
 
-  /* ══════════════════════════════════════════════════════
-     OBJECTIVE 2 — Disciplined Execution and Learning — 44%
-  ══════════════════════════════════════════════════════ */
-  const obj2body = `
-    ${instKR('KR2.1','Execution Reliability (Q4)',23,'on-track',
+  /* ── Objective 2 ── */
+  const obj2body =
+    instKR('KR2.1','Execution Reliability (Q4)',23,'on-track',
       aRow('#A62BFF','DEM','D1','Turn Democracia+ into a robust Big Bet for 2027–2031',32,'on-track')+
       aRow('#A62BFF','DEM','D2','Deepen and decide continuity of ecosystem bets',43,'on-track')+
       aRow('#27CF77','ECD','EC1','Deepen / double down on current big bets to close the ECD gap',31,'at-risk')+
       aRow('#27CF77','ECD','EC4','Deepen and decide continuity of ecosystem bets',15,'at-risk')+
       aRow('#22C4CF','FoT','FT1','Deliver and improve the tech scholarship platform at scale',31,'on-track')+
       aRow('#22C4CF','FoT','FT4','Deepen and decide continuity of ecosystem bets',0,'not-started')+
-      aRow('#3B82F6','K-12','K1','Deepen / double down on current ecosystem bets',10,'on-track')
-    )}
-    ${instKR('KR2.2','Decision Readiness (Q3)',67,'on-track',
+      aRow('#3B82F6','K-12','K1','Deepen / double down on current ecosystem bets',10,'on-track'))+
+    instKR('KR2.2','Decision Readiness (Q3)',67,'on-track',
       aRow('#F97316','MEL','M1.1','Portfolio SBL Map Completed (Q1→Q2) ✓',100,'completed')+
       aRow('#F97316','MEL','M1.2','SSOT + Decision Package Standard Adopted (Q2)',62,'on-track')+
-      aRow('#F97316','MEL','M1.3','Stage-based MEL Support Delivered (Q3)',39,'on-track')
-    )}
-    ${instKR('KR2.3','Invest to Test (Q4)',22,'on-track',
+      aRow('#F97316','MEL','M1.3','Stage-based MEL Support Delivered (Q3)',39,'on-track'))+
+    instKR('KR2.3','Invest to Test (Q4)',22,'on-track',
       aRow('#A62BFF','DEM','D3','Test democratic innovations as potential levers to strengthen states',38,'on-track')+
       aRow('#27CF77','ECD','EC2','Test and learn new hypotheses to identify the next ECD bets',49,'on-track')+
       aRow('#22C4CF','FoT','FT2','Test and Learn new hypotheses to identify the next FoT bets',0,'not-started')+
-      aRow('#3B82F6','K-12','K2','Test and learn K-12 levers — AI + impact investing',0,'not-started')
-    )}
-    ${instKR('KR2.4','Learning → Decisions (Q3)',65,'on-track',
-      aRow('#F97316','MEL','M1.4','Evidence used in Portfolio Governance (Q4)',65,'on-track')
-    )}`;
+      aRow('#3B82F6','K-12','K2','Test and learn K-12 levers — AI + impact investing',0,'not-started'))+
+    instKR('KR2.4','Learning → Decisions (Q3)',65,'on-track',
+      aRow('#F97316','MEL','M1.4','Evidence used in Portfolio Governance (Q4)',65,'on-track'));
 
-  /* ══════════════════════════════════════════════════════
-     OBJECTIVE 3 — Conducive Structure for 5-Year Plan — 34%
-  ══════════════════════════════════════════════════════ */
+  /* ── Objective 3 ── */
   const kr33deep =
-    deepKR('KR 3.3.1','Investment Decision Process',100,'completed','Strategy / Migue',[
+    deepKR('KR 3.3.1','Investment Decision Process',100,'completed','People & Ops',[
       'Define the investment process',
     ])+
-    deepKR('KR 3.3.2','Knowledge Management System',77,'on-track','Strategy / Migue',[
+    deepKR('KR 3.3.2','Knowledge Management System',77,'on-track','People & Ops',[
       'Run a set of folders in Drive and an index in a complementary tool',
     ])+
     deepKR('KR M1.3','Stage-based MEL Support Delivered (Q3)',39,'on-track','MEL — Juan Guillermo Bedoya',[
@@ -1076,7 +1036,7 @@ function renderInstitutional() {
       'Batch #1: EUI vs. TT product',
       'Batch #1: Pylatino product',
     ])+
-    deepKR('KR OP1.1','Core Process Standardization (Q3)',86,'on-track','People & Ops — Cristina Londoño',[
+    deepKR('KR OP1.1','Core Process Standardization (Q3)',86,'on-track','People & Ops',[
       'PTO policy update',
       'Publish SOPs/templates and train users',
       'Operational Request System',
@@ -1087,23 +1047,21 @@ function renderInstitutional() {
       'Reimbursement policy update',
       'Employee Hub',
     ])+
-    deepKR('KR OP1.2','Operational Visibility & Collaboration',39,'on-track','People & Ops — Cristina Londoño',[
+    deepKR('KR OP1.2','Operational Visibility & Collaboration',39,'on-track','People & Ops',[
       'Suptask setup and adoption — launched at All Hands (May 29). Private Forms: Deel, General Questions, HR, Profit.co. Channel Forms: Design / Comms.',
       'World Cup Comms Plan — proposal completed, pitched to CEO, approved. Campaign live.',
       'Internal Communication Plan — strategy developed during offsite; implementation in progress.',
       'DPI event in Sao Paulo',
     ]);
 
-  const obj3body = `
-    ${instKR('KR3.1','Organizational Enablement (Q4)',60,'on-track',
+  const obj3body =
+    instKR('KR3.1','Organizational Enablement (Q4)',60,'on-track',
       aRow('#F59E0B','OPS','OP3.3','Team Health & Wellness (Q2)',86,'on-track')+
       aRow('#F59E0B','OPS','OP3.1','OKR System Adoption (Q2)',80,'on-track')+
-      aRow('#F59E0B','OPS','OP3.2','5-Year Organizational Design (Q4)',13,'on-track')
-    )}
-    ${instKR('KR3.2','Operational Excellence (Q4)',24,'on-track',
-      aRow('#F59E0B','OPS','OP2.1','Operational Continuity (Q4)',24,'on-track')
-    )}
-    <div style="border:1px solid #A62BFF33;border-radius:var(--radius);padding:.85rem 1.1rem;margin-bottom:.55rem;">
+      aRow('#F59E0B','OPS','OP3.2','5-Year Organizational Design (Q4)',13,'on-track'))+
+    instKR('KR3.2','Operational Excellence (Q4)',24,'on-track',
+      aRow('#F59E0B','OPS','OP2.1','Operational Continuity (Q4)',24,'on-track'))+
+    `<div style="border:1px solid #A62BFF33;border-radius:var(--radius);padding:.85rem 1.1rem;margin-bottom:.55rem;">
       <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem;flex-wrap:wrap;">
         <span class="kr-code" style="background:#A62BFF22;color:#A62BFF;">KR3.3</span>
         <span style="font-size:12.5px;font-weight:800;color:#FFF;flex:1;">Execution Infrastructure (Q3)</span>
@@ -1113,14 +1071,12 @@ function renderInstitutional() {
       <div style="height:4px;background:#252525;border-radius:3px;overflow:hidden;margin-bottom:.5rem;">
         <div style="width:68%;height:100%;background:var(--c-ontrack);border-radius:3px;"></div>
       </div>
-      <div style="font-size:9px;color:#555;margin-bottom:.75rem;">5 KRs aligned across MEL, People &amp; Ops, and Strategy — deep dive below.</div>
+      <div style="font-size:9px;color:#555;margin-bottom:.75rem;">5 KRs aligned across MEL, People &amp; Ops — deep dive below.</div>
       ${kr33deep}
-    </div>
-    ${instKR('KR3.4','Clarity & Engagement (Q4)',0,'not-started',
-      `<div style="font-size:11px;color:#444;margin-bottom:.4rem;">No aligned KRs registered yet — data pending.</div>`
-    )}`;
+    </div>`+
+    instKR('KR3.4','Clarity & Engagement (Q4)',0,'not-started',
+      `<div style="font-size:11px;color:#444;margin-bottom:.4rem;">No aligned KRs registered yet — data pending.</div>`);
 
-  /* ══ Build accordion sections ══ */
   function objAccordion(id, code, name, actual, status, body) {
     const c = statusColor(status);
     return `
@@ -1128,9 +1084,7 @@ function renderInstitutional() {
         <div class="obj-header" onclick="toggleObj('${id}')">
           <span class="obj-code" style="background:#A62BFF22;color:#A62BFF;">${code}</span>
           <span class="obj-name">${name}</span>
-          <div class="obj-bar-wrap">
-            <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${actual}%;background:${c};"></div></div>
-          </div>
+          <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:${actual}%;background:${c};"></div></div></div>
           <span class="obj-pct" style="color:${c}">${actual}%</span>
           <span class="obj-chevron">▼</span>
         </div>
@@ -1142,13 +1096,11 @@ function renderInstitutional() {
     <div class="section" id="tab-institutional">
       <div class="sec-title">Institutional KR Alignment</div>
       <div class="sec-sub">Company-level objectives and how team KRs connect to each — data sourced from Profit.co as reflected in this report</div>
-
       ${objAccordion('inst-obj-1','O1','Refined Big Bets and Toolkit',40,'at-risk',obj1body)}
       ${objAccordion('inst-obj-2','O2','Disciplined Execution and Learning',44,'at-risk',obj2body)}
       ${objAccordion('inst-obj-3','O3','Conducive Structure for 5-Year Plan',34,'at-risk',obj3body)}
-
       <div class="callout dim" style="margin-top:.5rem;">
-        Progress for institutional KRs is derived from the average of their aligned team KRs. KR2.1 progress reflects the average of all thematic delivery objectives. KR3.4 pending alignment.
+        Progress for institutional KRs is derived from the average of their aligned team KRs. KR3.4 pending alignment.
       </div>
     </div>`;
 }
@@ -1161,7 +1113,6 @@ function showTab(id) {
   if (sec) sec.classList.add('visible');
   if (id==='overview') document.querySelector('.nav-btn[onclick*="overview"]').classList.add('active');
   else { const b = document.getElementById('nb-'+id); if(b) b.classList.add('active'); }
-  /* sync institutional button */
   if (id==='institutional') { const b = document.getElementById('nb-institutional'); if(b) b.classList.add('active'); }
   window.scrollTo({top:0, behavior:'smooth'});
 }
