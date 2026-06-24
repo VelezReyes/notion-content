@@ -240,18 +240,19 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 }
 .investment-tag::before { content: '◈'; font-size: 10px; color: #C0C0B4; }
 
-/* ─── ONE-PAGER CTA ─── */
-.study-cta { margin: 1.75rem 0 0; text-align: center; }
-.study-cta-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--black); color: #CCC;
-  text-decoration: none; font-size: 13px; font-weight: 700;
-  font-family: var(--font); padding: 13px 26px; border-radius: 8px;
-  border: 1px solid #222; letter-spacing: 0.02em;
-  transition: background 0.15s, color 0.15s;
+/* ─── ONE-PAGER BUTTON (inside story body) ─── */
+.onepager-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--text-mt);
+  text-decoration: none; font-size: 11px; font-weight: 700;
+  font-family: var(--font); padding: 5px 14px 5px 14px;
+  border-radius: 999px; border: 1px solid var(--border-md, rgba(0,0,0,0.14));
+  letter-spacing: 0.04em; margin-top: 0.85rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  cursor: pointer;
 }
-.study-cta-btn:hover { background: #111; color: #FFF; }
-.study-cta-btn span { font-size: 16px; }
+.onepager-btn:hover { background: var(--black); color: #CCC; border-color: var(--black); }
+.onepager-btn .btn-arrow { font-size: 12px; }
 
 /* ─── FOOTER ─── */
 .site-footer {
@@ -349,7 +350,8 @@ const DATA = {
             { n: "20.9%", l: "Currently working",              ctx: "Labor transition into quality employment is still underway",    c: "#27CF77" },
             { n: "4.6%",  l: "Contributing to social security",ctx: "Informal work predominates among those employed",              c: "#27CF77" }
           ],
-          investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity"
+          investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity",
+          onepager: "#"
         }
       ]
     },
@@ -374,7 +376,8 @@ const DATA = {
             { n: "35%", l: "Already adopted practices",    ctx: "From other local governments",                            c: "#A62BFF" },
             { n: "48%", l: "Currently evaluating adoption",ctx: "Of practices from peer governments",                      c: "#A62BFF" }
           ],
-          investment: "USD 875,000 across 2 grants · First grant: USD 370,000 · Second grant: USD 500,000"
+          investment: "USD 875,000 across 2 grants · First grant: USD 370,000 · Second grant: USD 500,000",
+          onepager: "#"
         }
       ]
     }
@@ -442,12 +445,6 @@ const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 <div class="page-body">
   <div id="ceo-note-container"></div>
   <div id="team-sections"></div>
-
-  <div class="study-cta">
-    <a href="#" class="study-cta-btn">
-      For more information, consult the one-pager on this impact study <span>→</span>
-    </a>
-  </div>
 
   <footer class="site-footer">
     <div class="footer-brand" id="ft-brand"></div>
@@ -521,6 +518,14 @@ function buildStoryHTML(t, s, i) {
     ? `<div class="investment-tag">${s.investment}</div>`
     : '';
 
+  /* ── ONE-PAGER BUTTON ── */
+  const onepagerHTML = s.onepager
+    ? `<br><a href="${s.onepager}" class="onepager-btn" target="_blank">
+        For more information, consult the one-pager on this impact study
+        <span class="btn-arrow">→</span>
+      </a>`
+    : '';
+
   /* ── TAG ── */
   const tagHTML = s.tag
     ? `<span class="story-tag ${s.tag.toLowerCase().replace(/\s+/g, '-')}">${s.tag}</span>`
@@ -540,6 +545,7 @@ function buildStoryHTML(t, s, i) {
         ${summaryHTML}
         ${statsHTML}
         ${investHTML}
+        ${onepagerHTML}
       </div>
     </div>`;
 }
