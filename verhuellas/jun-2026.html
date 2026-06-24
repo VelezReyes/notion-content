@@ -240,6 +240,19 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 }
 .investment-tag::before { content: '◈'; font-size: 10px; color: #C0C0B4; }
 
+/* ─── ONE-PAGER CTA ─── */
+.study-cta { margin: 1.75rem 0 0; text-align: center; }
+.study-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--black); color: #CCC;
+  text-decoration: none; font-size: 13px; font-weight: 700;
+  font-family: var(--font); padding: 13px 26px; border-radius: 8px;
+  border: 1px solid #222; letter-spacing: 0.02em;
+  transition: background 0.15s, color 0.15s;
+}
+.study-cta-btn:hover { background: #111; color: #FFF; }
+.study-cta-btn span { font-size: 16px; }
+
 /* ─── FOOTER ─── */
 .site-footer {
   background: var(--black); border-radius: var(--radius);
@@ -429,6 +442,12 @@ const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 <div class="page-body">
   <div id="ceo-note-container"></div>
   <div id="team-sections"></div>
+
+  <div class="study-cta">
+    <a href="#" class="study-cta-btn">
+      For more information, consult the one-pager on this impact study <span>→</span>
+    </a>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-brand" id="ft-brand"></div>
