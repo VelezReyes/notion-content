@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Huellas · Impact Reports</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/huellas%2Bfavicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #EFEFE4;
+  --black:      #000000;
+  --yellow:     #F3FF00;
+  --green:      #27CF77;
+  --purple:     #A62BFF;
+  --dp:         #BD97F1;
+  --charity:    #A7B2AA;
+  --text-dk:    #111111;
+  --text-md:    #555555;
+  --text-mt:    #999990;
+  --border:     rgba(0,0,0,0.08);
+  --cream-card: #F5F5EE;
+  --radius:     12px;
+  --radius-sm:  8px;
+  --font:       'Montserrat', -apple-system, sans-serif;
+  --serif:      'DM Serif Display', Georgia, serif;
+  --nav-h:      60px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); background: var(--cream);
+  color: var(--text-dk); line-height: 1.6;
+  overflow-x: hidden; font-size: 15px;
+}
+
+/* ─── FOOTPRINTS ─────────────────────────────────────── */
+.footprints-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.fp { position: absolute; opacity: 0; fill: #ffffff; animation: fstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; }
+.fp.left { animation-name: fstep-l; }
+@keyframes fstep  { 0%{opacity:0;transform:scale(.5)} 40%{opacity:.09;transform:scale(1.06)} 100%{opacity:.05;transform:scale(1)} }
+@keyframes fstep-l{ 0%{opacity:0;transform:scaleX(-1) scale(.5)} 40%{opacity:.09;transform:scaleX(-1) scale(1.06)} 100%{opacity:.05;transform:scaleX(-1) scale(1)} }
+
+/* ─── SITE NAV ───────────────────────────────────────── */
+.site-nav {
+  height: var(--nav-h); background: var(--black);
+  position: sticky; top: 0; z-index: 200;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid #111;
+}
+.site-nav-inner {
+  max-width: 1200px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo-link { display: flex; align-items: center; }
+.site-logo { height: 22px; width: auto; opacity: 0.88; transition: opacity .15s; }
+.site-logo:hover { opacity: 1; }
+.nav-wordmark { font-family: var(--serif); font-size: 14px; font-style: italic; color: #555; }
+.nav-wordmark span { color: var(--yellow); }
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  background: var(--black); position: relative; overflow: hidden;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 3.5rem 0 3.25rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 3rem; align-items: end;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #666; margin-bottom: 0.65rem;
+}
+.hero-title {
+  font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
+  color: #FFF; line-height: 0.95; margin-bottom: 0.9rem;
+}
+.hero-title-accent { color: var(--yellow); }
+.hero-sub { font-size: 15px; color: #888; max-width: 420px; line-height: 1.75; }
+.hero-audience { font-size: 12px; color: #555; margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.04em; }
+
+/* Edition card (hero right) */
+.hero-ed-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 1.25rem 1.75rem; text-align: center; min-width: 160px;
+}
+.hero-ed-card-label { font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+.hero-ed-card-num { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--yellow); }
+.hero-ed-card-name { font-family: var(--serif); font-style: italic; font-size: 13px; color: #777; margin-top: 6px; line-height: 1.35; max-width: 130px; }
+.hero-ed-card-date { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-top: 8px; }
+
+/* ─── PAGE BODY ──────────────────────────────────────── */
+.page-body { max-width: 1200px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 5rem; }
+
+/* ─── EDITION FILTER ─────────────────────────────────── */
+.filter-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.ef-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mt); }
+.edition-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ef-btn {
+  font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 5px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12);
+  background: transparent; color: var(--text-mt); cursor: pointer; transition: all 0.15s;
+}
+.ef-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-dk); border-color: rgba(0,0,0,0.2); }
+.ef-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ─── CEO NOTE (optional, per edition) ──────────────── */
+.ceo-note {
+  background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.ceo-note::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--yellow); border-radius: var(--radius) 0 0 var(--radius);
+}
+.ceo-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+.ceo-note p { font-family: var(--serif); font-style: italic; font-size: 16px; color: #CCC; line-height: 1.7; }
+
+/* ─── TEAM SECTION ───────────────────────────────────── */
+.team-section { margin-bottom: 2rem; }
+.team-hdr {
+  background: var(--black); border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem 1.75rem; position: relative; overflow: hidden;
+}
+.team-hdr::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #666; margin-bottom: .35rem; }
+.team-hdr-name { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); color: #FFF; line-height: 1.1; margin-bottom: .35rem; }
+.team-hdr-meta { font-size: 12px; color: #888; }
+
+/* ─── STORIES WRAP ───────────────────────────────────── */
+.stories-wrap {
+  background: #FFF; border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius); overflow: hidden;
+}
+
+/* ─── STORY ACCORDION ────────────────────────────────── */
+.story-item { border-bottom: 1px solid var(--border); }
+.story-item:last-child { border-bottom: none; }
+.story-header {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 1.25rem 1.5rem; cursor: pointer; transition: background .12s; user-select: none;
+}
+.story-header:hover { background: rgba(0,0,0,.02); }
+.story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
+
+/* Edition badge per story */
+.story-ed-badge {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-mt); background: rgba(0,0,0,0.05);
+  padding: 2px 8px; border-radius: 10px; flex-shrink: 0; white-space: nowrap;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+
+.story-title-text { font-size: 15px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.4; }
+
+/* Story type tag */
+.story-tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-tag.learning-agenda { background: #1A1A1A; color: #B0B098; border: 1px solid #2D2D2D; }
+.story-tag.success-stories { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
+
+/* Initiative pill */
+.story-pill {
+  font-size: 11px; font-weight: 700; padding: 4px 13px;
+  border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-chevron { font-size: 11px; color: #CCC; transition: transform .25s; flex-shrink: 0; }
+.story-item.open .story-chevron { transform: rotate(180deg); }
+.story-body {
+  display: none; border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem 2.25rem; background: var(--cream-card);
+}
+.story-item.open .story-body { display: block; }
+
+/* ─── STORY MEDIA ────────────────────────────────────── */
+.story-media {
+  width: 100%; border-radius: var(--radius); margin-bottom: 1.75rem;
+  overflow: hidden; position: relative;
+  background: linear-gradient(135deg, #E8E8DC 0%, #D2D2C6 100%);
+  border: 1.5px dashed rgba(0,0,0,0.11);
+}
+.story-media.landscape { aspect-ratio: 16 / 9; }
+.story-media.portrait  { aspect-ratio: 9 / 16; max-width: 420px; margin-left: auto; margin-right: auto; }
+.story-media.square    { aspect-ratio: 1 / 1;  max-width: 520px; margin-left: auto; margin-right: auto; }
+.story-media.has-media { border: none; }
+.story-media img,
+.story-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: none; }
+.story-media-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  color: #BCBCB0; pointer-events: none; user-select: none;
+}
+.story-media-ph svg { width: 28px; height: 28px; }
+.story-media-ph-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ─── STORY SUMMARY ──────────────────────────────────── */
+.story-summary {
+  background: #FFF; border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 1.5rem;
+}
+.story-summary-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; display: block; margin-bottom: 0.85rem;
+}
+.story-summary p { font-size: 14px; color: var(--text-md); line-height: 1.85; margin-bottom: 0.75rem; }
+.story-summary p:last-child { margin-bottom: 0; }
+
+/* ─── STATS GRID ─────────────────────────────────────── */
+.story-stats {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.65rem; border-top: 1px solid var(--border); padding-top: 1.25rem;
+}
+.story-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; }
+.story-stat-n { font-family: var(--serif); font-size: 32px; line-height: 1; margin-bottom: 4px; }
+.story-stat-l { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dk); margin-bottom: 5px; }
+.story-stat-ctx { font-size: 11px; color: var(--text-mt); line-height: 1.45; }
+
+/* ─── INVESTMENT TAG ─────────────────────────────────── */
+.investment-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-mt);
+  background: #E4E4D8; padding: 6px 16px; border-radius: 20px; margin-top: 1rem;
+}
+.investment-tag::before { content: '◈'; font-size: 10px; color: #C0C0B4; }
+
+/* ─── ONE-PAGER BUTTON ───────────────────────────────── */
+.onepager-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--text-mt); text-decoration: none;
+  font-size: 11px; font-weight: 700; font-family: var(--font);
+  padding: 5px 14px; border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.14); letter-spacing: 0.04em; margin-top: 0.85rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s; cursor: pointer;
+}
+.onepager-btn:hover { background: var(--black); color: #CCC; border-color: var(--black); }
+.onepager-btn .btn-arrow { font-size: 12px; }
+
+/* ─── ABOUT STRIP ───────────────────────────────────── */
+.about-strip {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.75rem 2rem; margin-top: 2rem;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.about-strip::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--yellow), var(--green));
+}
+.about-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.4rem; white-space: nowrap; }
+.about-title { font-family: var(--serif); font-size: 20px; color: #FFF; white-space: nowrap; }
+.about-body { font-size: 13px; color: #888; line-height: 1.75; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+.site-footer {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.25rem 1.75rem; margin-top: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-brand { font-family: var(--serif); font-style: italic; font-size: 14px; color: #777; }
+.footer-brand strong { color: #FFF; font-style: normal; }
+.print-btn {
+  background: rgba(255,255,255,.07); color: #BBB;
+  border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+  padding: 7px 18px; font-size: 12px; font-weight: 700;
+  font-family: var(--font); cursor: pointer; letter-spacing: .04em;
+  transition: background .15s, color .15s;
+}
+.print-btn:hover { background: var(--cream); color: var(--black); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-ed-card { display: none; }
+}
+@media (max-width: 680px) {
+  .story-stats { grid-template-columns: 1fr 1fr; }
+  .story-tag { display: none; }
+  .story-pill { display: none; }
+  .story-ed-badge { display: none; }
+}
+@media (max-width: 480px) {
+  .story-stats { grid-template-columns: 1fr; }
+}
+
+/* ─── PRINT ──────────────────────────────────────────── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { height: auto !important; overflow: visible !important; }
+  .site-nav, .print-btn, .filter-row { display: none !important; }
+  .story-body { display: block !important; }
+  .story-media { display: none !important; }
+  .site-footer { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .team-hdr { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .hero { background: var(--cream) !important; border-bottom: 2px solid #DDD !important; }
+  .hero::before { display: none !important; }
+  .hero-title, .team-hdr-name { color: var(--black) !important; }
+  .hero-title-accent { color: #4A4A00 !important; }
+  .hero-eyebrow, .hero-sub, .hero-audience, .team-hdr-eyebrow, .team-hdr-meta { color: var(--text-mt) !important; }
+  .footer-brand { color: var(--black) !important; }
+  .footer-brand strong { color: var(--black) !important; }
+  body { background: #FFF !important; }
+  .story-stat { background: #EEE !important; }
+  /* Hide team sections filtered out */
+  .team-section[style*="display: none"] { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     DATA  ─  How to update each month:
+       1. Add new edition object to DATA.editions
+       2. Add stories with { edition: "02", ... } to the right team
+       3. If a team is new, add it to DATA.teams
+     Every story MUST have an `edition` field.
+══════════════════════════════════════════════════════════ -->
+<script>
+const LOGO_URL = "https://velezreyes.github.io/static-mail/ver%2B/mailing_siganture_ver%2B/images/1_ver_logo.png";
+const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+
+const DATA = {
+
+  /* ── EDITIONS ─────────────────────────────────────────────
+     Add one entry per month published.                        */
+  editions: [
+    {
+      num:      "01",
+      month:    "June",
+      year:     2026,
+      name:     "From Knowing to Doing",
+      audience: "David & Mariel",
+      ceoNote:  null
+    }
+    /* Next month example:
+    ,{
+      num:      "02",
+      month:    "July",
+      year:     2026,
+      name:     "Edition Creative Name",
+      audience: "David & Mariel",
+      ceoNote:  null
+    }
+    */
+  ],
+
+  /* ── TEAMS ────────────────────────────────────────────────
+     Stories stack inside each team as editions grow.
+     Each story must include an `edition` field.              */
+  teams: [
+
+    /* ══ EDUCATION (Future of Talent) ══════════════════════ */
+    {
+      id: "education", name: "Education", color: "#27CF77",
+      stories: [
+        {
+          edition:   "01",
+          title:     "Crack the Code: Opening Real Pathways into Post-Secondary Education",
+          pill:      "Crack the Code",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/CtC.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Crack the Code is opening real pathways into post-secondary education: in a follow-up survey of 719 students who graduated in 2025, implemented with the support of VER+, 67% are enrolled in higher education, between 4 and 6 percentage points above the available benchmarks for comparable youth in Barranquilla and for the same schools before the intervention.</p><p>The challenge now is to turn that educational connection into protected labor opportunities: only 20.9% are working and, among those who work, informal arrangements predominate, with only 4.6% contributing to social security. CTC has already created formal opportunities for some young people, but the broader transition into quality formal employment is still under construction.</p>`,
+          stats: [
+            { n: "719",   l: "Students surveyed",               ctx: "CTC graduates from 2025",                                      c: "#27CF77" },
+            { n: "67%",   l: "Enrolled in higher education",    ctx: "4 to 6 pp above pre-intervention baseline in the same schools", c: "#27CF77" },
+            { n: "20.9%", l: "Currently working",               ctx: "Labor transition into quality employment is still underway",    c: "#27CF77" },
+            { n: "4.6%",  l: "Contributing to social security", ctx: "Informal work predominates among those employed",              c: "#27CF77" }
+          ],
+          investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity",
+          onepager:   "https://docs.google.com/document/d/1strEhr-HGSqAZ-8XJXww7t2YvnNaN2FM96dbposSiCo/edit?usp=sharing"
+        }
+      ]
+    },
+
+    /* ══ DEMOCRACY ══════════════════════════════════════════ */
+    {
+      id: "dem", name: "Democracy", color: "#A62BFF",
+      stories: [
+        {
+          edition:   "01",
+          title:     "RIL: A Decade of Public Knowledge, Now Measured",
+          pill:      "RIL",
+          tag:       "Learning Agenda",
+          img:       "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/june/RIL.jpg?raw=true",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>After more than 10 years of work, RIL took a historic step: with the support of VER+, it set out to systematically listen to those who have experienced its support in public service. The results celebrate a network with concrete value: 79% would recommend RIL with the highest possible score, 88% say it improved their access to knowledge about local management, and 83% believe their participation improves the quality of decisions in their government.</p><p>The evidence also shows movement toward action: 35% have already adopted or adapted practices from other local governments, and 48% are evaluating them. In the acceleration programs, the strongest perceived impacts appear in policy design, data use, and implementation. More than a measurement exercise, this first effort strongly indicates that RIL is turning shared knowledge into public capabilities. We will conclude this learning exercise by August, when we expect to have more profound data on RIL's impact on officials' abilities to execute and innovate.</p>`,
+          stats: [
+            { n: "79%", l: "Would recommend RIL",           ctx: "With the highest possible score",     c: "#A62BFF" },
+            { n: "88%", l: "Improved access to knowledge",  ctx: "About local management practices",    c: "#A62BFF" },
+            { n: "83%", l: "Better government decisions",   ctx: "Reported by participating officials", c: "#A62BFF" },
+            { n: "35%", l: "Already adopted practices",     ctx: "From other local governments",        c: "#A62BFF" },
+            { n: "48%", l: "Currently evaluating adoption", ctx: "Of practices from peer governments",  c: "#A62BFF" }
+          ],
+          investment: "USD 875,000 across 2 grants · First grant: USD 370,000 · Second grant: USD 500,000",
+          onepager:   "https://docs.google.com/document/d/1Mv1Ox5C2ayTI6GgiOnTFltZwPTmsVGF7q58B4LRVUVk/edit?usp=sharing"
+        }
+      ]
+    }
+
+  ] /* end teams */
+
+}; /* end DATA */
+</script>
+
+<!-- SVG SYMBOLS ─────────────────────────────────────── -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <symbol id="fp-shape" viewBox="0 0 34 64">
+      <ellipse cx="7"    cy="10"  rx="4"    ry="5"    transform="rotate(-22,7,10)"/>
+      <ellipse cx="14"   cy="6.5" rx="3.8"  ry="5.2"  transform="rotate(-10,14,6.5)"/>
+      <ellipse cx="20.5" cy="6"   rx="3.4"  ry="4.8"  transform="rotate(4,20.5,6)"/>
+      <ellipse cx="26.5" cy="8"   rx="3"    ry="4.5"  transform="rotate(17,26.5,8)"/>
+      <ellipse cx="30.5" cy="13"  rx="2.6"  ry="4"    transform="rotate(28,30.5,13)"/>
+      <ellipse cx="17"   cy="25"  rx="13"   ry="10"/>
+      <rect    x="7"    y="29"   width="8"  height="18" rx="4"/>
+      <ellipse cx="15"   cy="52"  rx="11"   ry="12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV ─────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="#" class="site-logo-link">
+      <img class="site-logo" id="site-logo" src="" alt="VélezReyes+">
+    </a>
+    <div class="nav-wordmark">VER+ <span>Huellas</span></div>
+  </div>
+</nav>
+
+<!-- HERO ────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="footprints-layer" id="footprints-layer" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Huellas</span></h1>
+      <p class="hero-sub">A growing record of the mark our teams leave in communities, people, and systems.</p>
+      <p class="hero-audience" id="hero-audience"></p>
+    </div>
+    <div class="hero-ed-card" id="hero-ed-card"></div>
+  </div>
+</section>
+
+<!-- PAGE BODY ───────────────────────────────────────── -->
+<div class="page-body">
+
+  <!-- CEO Note (only when filtering to an edition that has one) -->
+  <div id="ceo-note-container"></div>
+
+  <!-- Edition filter -->
+  <div class="filter-row">
+    <span class="ef-label">Edition</span>
+    <div class="edition-filter" id="edition-filter"></div>
+  </div>
+
+  <!-- Team sections (stories stack here) -->
+  <div id="team-sections"></div>
+
+  <!-- About strip -->
+  <div class="about-strip">
+    <div>
+      <div class="about-tag">About VER+ Huellas</div>
+      <div class="about-title">What are we measuring?</div>
+    </div>
+    <div>
+      <p class="about-body">VER+ Huellas is VélezReyes+'s monthly impact report. Each edition brings together two types of stories. Learning Agenda covers our long-term bets and what we are discovering along the way. Success Stories features impact stories from our partner organizations and grantees. Not every team appears in every edition.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-brand" id="ft-brand"></div>
+    <button class="print-btn" onclick="exportPDF()">↓ Export PDF</button>
+  </footer>
+</div>
+
+<!-- RENDER ENGINE ───────────────────────────────────── -->
+<script>
+/* ── State ── */
+let activeFilter = 'all';
+
+/* ── Helpers ── */
+function getEditionObj(num) {
+  return DATA.editions.find(e => e.num === num) || null;
+}
+
+function editionShortLabel(e) {
+  return `Ed.${e.num} · ${e.month} ${e.year}`;
+}
+
+/* ── NAV / LOGO ── */
+function renderNav() {
+  document.getElementById('site-logo').src = LOGO_URL;
+}
+
+/* ── HERO ── */
+function renderHero() {
+  const latest = DATA.editions[DATA.editions.length - 1];
+  document.getElementById('hero-audience').textContent =
+    latest.audience ? `For ${latest.audience}` : '';
+  document.getElementById('hero-ed-card').innerHTML = `
+    <div class="hero-ed-card-label">Now on</div>
+    <div class="hero-ed-card-num">Edition ${latest.num}</div>
+    <div class="hero-ed-card-date">${latest.month} ${latest.year}</div>
+  `;
+}
+
+/* ── EDITION FILTER ── */
+function renderEditionFilter() {
+  const container = document.getElementById('edition-filter');
+  const buttons = [
+    `<button class="ef-btn active" data-edition="all" onclick="filterByEdition('all')">All</button>`,
+    ...DATA.editions.slice().reverse().map(e =>
+      `<button class="ef-btn" data-edition="${e.num}" onclick="filterByEdition('${e.num}')">${editionShortLabel(e)}</button>`
+    )
+  ];
+  container.innerHTML = buttons.join('');
+}
+
+function filterByEdition(edition) {
+  activeFilter = edition;
+
+  /* Update active button */
+  document.querySelectorAll('.ef-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.edition === edition);
+  });
+
+  /* Show/hide stories */
+  document.querySelectorAll('.story-item').forEach(item => {
+    const match = edition === 'all' || item.dataset.edition === edition;
+    item.style.display = match ? '' : 'none';
+    /* Close hidden stories */
+    if (!match) item.classList.remove('open');
+  });
+
+  /* Hide team sections with no visible stories */
+  document.querySelectorAll('.team-section').forEach(section => {
+    const hasVisible = [...section.querySelectorAll('.story-item')]
+      .some(item => item.style.display !== 'none');
+    section.style.display = hasVisible ? '' : 'none';
+  });
+
+  /* CEO Note: only for specific edition filter */
+  const edObj = edition === 'all' ? null : getEditionObj(edition);
+  renderCeoNote(edObj);
+}
+
+/* ── CEO NOTE ── */
+function renderCeoNote(edObj) {
+  const container = document.getElementById('ceo-note-container');
+  if (!edObj || !edObj.ceoNote) { container.innerHTML = ''; return; }
+  container.innerHTML = `
+    <div class="ceo-note">
+      <div class="ceo-note-label">Note from the CEO</div>
+      <p>${edObj.ceoNote}</p>
+    </div>`;
+}
+
+/* ── BUILD STORY HTML ── */
+function buildStoryHTML(t, s, i) {
+  /* Edition badge */
+  const edObj = getEditionObj(s.edition);
+  const edLabel = edObj ? editionShortLabel(edObj) : `Ed.${s.edition}`;
+  const edBadgeHTML = `<span class="story-ed-badge">${edLabel}</span>`;
+
+  /* Media */
+  const hasMedia = !!s.img;
+  const ratio = s.imgRatio || 'landscape';
+  const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
+  let mediaInner;
+  if (hasMedia && s.mediaType === 'video') {
+    mediaInner = `<video controls playsinline preload="metadata"><source src="${s.img}" type="video/mp4"></video>`;
+  } else if (hasMedia) {
+    mediaInner = `<img src="${s.img}" alt="${s.title}" loading="lazy">`;
+  } else {
+    mediaInner = `<div class="story-media-ph">${CAM_ICON}<span class="story-media-ph-label">Add story image or video</span></div>`;
+  }
+  const mediaHTML = `<div class="${mediaClass}">${mediaInner}</div>`;
+
+  /* Summary */
+  const summaryHTML = s.summary
+    ? `<div class="story-summary"><span class="story-summary-label" style="color:${t.color}">Impact Summary</span>${s.summary}</div>`
+    : '';
+
+  /* Stats */
+  const statsHTML = s.stats && s.stats.length
+    ? `<div class="story-stats">${s.stats.map(st => `
+        <div class="story-stat">
+          <div class="story-stat-n" style="color:${st.c}">${st.n}</div>
+          <div class="story-stat-l">${st.l}</div>
+          ${st.ctx ? `<div class="story-stat-ctx">${st.ctx}</div>` : ''}
+        </div>`).join('')}</div>`
+    : '';
+
+  /* Investment */
+  const investHTML = s.investment
+    ? `<div class="investment-tag">${s.investment}</div>`
+    : '';
+
+  /* One-pager button */
+  const onepagerHTML = s.onepager
+    ? `<br><a href="${s.onepager}" class="onepager-btn" target="_blank">For more information, consult the one-pager on this impact study <span class="btn-arrow">→</span></a>`
+    : '';
+
+  /* Type tag */
+  const tagHTML = s.tag
+    ? `<span class="story-tag ${s.tag.toLowerCase().replace(/\s+/g, '-')}">${s.tag}</span>`
+    : '';
+
+  return `
+    <div class="story-item" id="si-${t.id}-${i}" data-edition="${s.edition}">
+      <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
+        <span class="story-num">${String(i+1).padStart(2,'0')}</span>
+        ${edBadgeHTML}
+        <span class="story-title-text">${s.title}</span>
+        ${tagHTML}
+        <span class="story-pill" style="background:${t.color}18;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
+        <span class="story-chevron">▼</span>
+      </div>
+      <div class="story-body">
+        ${mediaHTML}
+        ${summaryHTML}
+        ${statsHTML}
+        ${investHTML}
+        ${onepagerHTML}
+      </div>
+    </div>`;
+}
+
+/* ── TEAM SECTIONS ── */
+function renderTeamSections() {
+  document.getElementById('team-sections').innerHTML = DATA.teams
+    .filter(t => t.stories.length > 0)
+    .map(t => {
+      const count = t.stories.length;
+      const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
+      return `
+        <div class="team-section" data-team="${t.id}">
+          <div class="team-hdr" style="position:relative;overflow:hidden;">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${t.color};border-radius:var(--radius) 0 0 var(--radius);"></div>
+            <div class="team-hdr-eyebrow">VER+ Huellas</div>
+            <div class="team-hdr-name">${t.name}</div>
+            <div class="team-hdr-meta">${count} stor${count === 1 ? 'y' : 'ies'}</div>
+          </div>
+          <div class="stories-wrap">${storiesHTML}</div>
+        </div>`;
+    }).join('');
+}
+
+/* ── FOOTER ── */
+function renderFooter() {
+  const latest = DATA.editions[DATA.editions.length - 1];
+  document.getElementById('ft-brand').innerHTML =
+    `<strong>VélezReyes+</strong> · VER+ Huellas · ${DATA.editions.length} Edition${DATA.editions.length === 1 ? '' : 's'} · Latest: ${latest.month} ${latest.year}`;
+}
+
+/* ── STORY TOGGLE ── */
+function toggleStory(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── FOOTPRINTS ANIMATION ── */
+function renderFootprints() {
+  const layer = document.getElementById('footprints-layer');
+  const h = document.querySelector('.hero').offsetHeight || 220;
+  const steps = [
+    ['R',3,40,-8],['L',10,62,6],['R',18,37,-6],['L',26,63,8],
+    ['R',34,38,-7],['L',42,62,5],['R',50,36,-8],['L',58,63,7],
+    ['R',66,37,-6],['L',74,62,5],['R',82,35,-9],['L',90,63,6],['R',97,38,-7]
+  ];
+  const size = Math.min(h * 0.5, 75);
+  steps.forEach(([side, left, top, rot], i) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('width', Math.round(size*.55));
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox','0 0 34 64');
+    svg.style.cssText = `position:absolute;left:${left}%;top:${top}%;animation-delay:${(i*.18).toFixed(2)}s;`;
+    svg.classList.add('fp');
+    if (side === 'L') svg.classList.add('left');
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#fp-shape');
+    use.setAttribute('transform',`rotate(${rot},17,32)`);
+    svg.appendChild(use);
+    layer.appendChild(svg);
+  });
+}
+
+/* ── EXPORT PDF (respects active filter) ── */
+function exportPDF() {
+  /* Expand only visible stories */
+  document.querySelectorAll('.story-item').forEach(item => {
+    if (item.style.display !== 'none') {
+      item.querySelector('.story-body').style.display = 'block';
+    }
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const totalMm = Math.ceil(document.documentElement.scrollHeight * 0.2646) + 20;
+    const tag = document.createElement('style');
+    tag.id = '__print_page_size__';
+    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 12mm 18mm; }`;
+    document.head.appendChild(tag);
+    window.print();
+    setTimeout(() => {
+      const el = document.getElementById('__print_page_size__');
+      if (el) el.remove();
+      /* Restore only the ones that were not manually opened */
+      document.querySelectorAll('.story-item:not(.open) .story-body').forEach(b => b.style.display = '');
+    }, 1500);
+  }));
+}
+
+/* ── INIT ── */
+renderNav();
+renderHero();
+renderEditionFilter();
+renderTeamSections();
+renderFooter();
+renderFootprints();
+</script>
+</body>
+</html>
