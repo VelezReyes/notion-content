@@ -87,7 +87,6 @@ body {
 }
 .hero-title-accent { color: var(--yellow); }
 .hero-sub { font-size: 15px; color: #888; max-width: 420px; line-height: 1.75; }
-.hero-audience { font-size: 12px; color: #555; margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.04em; }
 
 /* Edition card (hero right) */
 .hero-ed-card {
@@ -250,6 +249,18 @@ body {
 .onepager-btn:hover { background: var(--black); color: #CCC; border-color: var(--black); }
 .onepager-btn .btn-arrow { font-size: 12px; }
 
+/* ─── PORTRAIT SIDE-BY-SIDE LAYOUT ─────────────────── */
+.story-portrait-layout {
+  display: flex; gap: 1.75rem; align-items: flex-start;
+}
+.story-portrait-media { width: 260px; flex-shrink: 0; }
+.story-portrait-media .story-media { margin-bottom: 0; width: 100%; max-width: 100%; }
+.story-portrait-content { flex: 1; min-width: 0; }
+@media (max-width: 680px) {
+  .story-portrait-layout { flex-direction: column; }
+  .story-portrait-media { width: 100%; max-width: 280px; margin: 0 auto; }
+}
+
 /* ─── ABOUT STRIP ───────────────────────────────────── */
 .about-strip {
   background: var(--black); border-radius: var(--radius);
@@ -385,6 +396,45 @@ const DATA = {
           ],
           investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity",
           onepager:   "https://docs.google.com/document/d/1strEhr-HGSqAZ-8XJXww7t2YvnNaN2FM96dbposSiCo/edit?usp=sharing"
+        },
+        {
+          edition:   "01",
+          title:     "Beca Tech: Expanding Access to Higher Education for Talented Young People",
+          pill:      "Beca Tech",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/Jero-BecaTech.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>Beca Tech is expanding access to higher education for talented young people in Colombia: using a matched comparison analysis of the first two cohorts, implemented with the support of VER+, the program increased the probability of enrolling in higher education by 11%, enrolling in university by 27%, and enrolling in a private university by 176%. These results show that Beca Tech is not only providing financial support, it is opening doors that many beneficiaries had already started to see as closed.</p><p>The program is also strengthening students' expectations and aspirations: beneficiaries show 20% higher expectations of completing higher education on time and 5% higher aspirations about their professional future. The support system appears to be a distinctive asset, with students using tutoring, psychosocial support, community, allowances, and other resources at higher rates than comparable students. The challenge now is to convert this strong access effect into long-term persistence, graduation, and successful professional transitions.</p>`,
+          stats: [
+            { n: "+11%",  l: "Probability of enrolling in higher education", ctx: "vs. matched comparison group",            c: "#27CF77" },
+            { n: "+27%",  l: "Probability of enrolling in university",        ctx: "vs. matched comparison group",            c: "#27CF77" },
+            { n: "+176%", l: "Probability of enrolling in a private university", ctx: "Doors previously seen as closed",      c: "#27CF77" },
+            { n: "+20%",  l: "Higher expectations of completing on time",     ctx: "Strengthened academic self-confidence",   c: "#27CF77" },
+            { n: "+5%",   l: "Higher professional aspirations",               ctx: "Beyond access, shaping long-term outlook",c: "#27CF77" }
+          ],
+          investment: null,
+          onepager:   "https://docs.google.com/document/d/1UM22sejtr3d1xslW7s8ess_TBrcZ18hxyt3_X-T38ds/edit?usp=sharing"
+        },
+        {
+          edition:   "01",
+          title:     "Pylatino: Proven Regional Demand, Incomplete Conversion",
+          pill:      "Pylatino",
+          tag:       "Learning Agenda",
+          img:       "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/june/Pylatino.png?raw=true",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>Pylatino proved that there is strong regional demand for Python training, but the current model did not convert that demand into sustained learning: the program attracted 21,008 applicants from 67 countries, selected 2,400 participants in Colombia and Peru, but only 48% completed onboarding and only 36.4% of onboarded learners completed the 40-hour course. This means that just 17.5% of selected participants completed the program, well below the 60% benchmark.</p><p>The experience was positive for those who stayed, student NPS reached 84% and mentors also reported high satisfaction, but the implementation challenge is too central to ignore. The program struggled to retain learners and did not establish its mentoring component as a clear differentiator: students valued content and platform more than mentor support, while mentors reported low perceptions of student commitment and quality.</p>`,
+          stats: [
+            { n: "21,008", l: "Applicants",                    ctx: "From 67 countries across the region",          c: "#27CF77" },
+            { n: "2,400",  l: "Participants selected",          ctx: "In Colombia and Peru",                         c: "#27CF77" },
+            { n: "48%",    l: "Completed onboarding",           ctx: "Of selected participants",                     c: "#27CF77" },
+            { n: "36.4%",  l: "Completed the 40-hour course",   ctx: "Of onboarded learners",                        c: "#27CF77" },
+            { n: "17.5%",  l: "Overall program completion",     ctx: "Well below the 60% benchmark",                 c: "#27CF77" },
+            { n: "84%",    l: "Student NPS",                    ctx: "High satisfaction among those who completed",  c: "#27CF77" }
+          ],
+          investment: null,
+          onepager:   "https://docs.google.com/document/d/15wtPz7AI9_0__chf2PUwsek0oxGcN1Nrr9aLWf7YSU4/edit?usp=sharing"
         }
       ]
     },
@@ -454,7 +504,6 @@ const DATA = {
       <div class="hero-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
       <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Huellas</span></h1>
       <p class="hero-sub">A growing record of the mark our teams leave in communities, people, and systems.</p>
-      <p class="hero-audience" id="hero-audience"></p>
     </div>
     <div class="hero-ed-card" id="hero-ed-card"></div>
   </div>
@@ -515,8 +564,6 @@ function renderNav() {
 /* ── HERO ── */
 function renderHero() {
   const latest = DATA.editions[DATA.editions.length - 1];
-  document.getElementById('hero-audience').textContent =
-    latest.audience ? `For ${latest.audience}` : '';
   document.getElementById('hero-ed-card').innerHTML = `
     <div class="hero-ed-card-label">Now on</div>
     <div class="hero-ed-card-num">Edition ${latest.num}</div>
@@ -618,13 +665,22 @@ function buildStoryHTML(t, s, i) {
 
   /* One-pager button */
   const onepagerHTML = s.onepager
-    ? `<br><a href="${s.onepager}" class="onepager-btn" target="_blank">For more information, consult the one-pager on this impact study <span class="btn-arrow">→</span></a>`
+    ? `<br><a href="${s.onepager}" class="onepager-btn" target="_blank">Find the technical report here <span class="btn-arrow">→</span></a>`
     : '';
 
   /* Type tag */
   const tagHTML = s.tag
     ? `<span class="story-tag ${s.tag.toLowerCase().replace(/\s+/g, '-')}">${s.tag}</span>`
     : '';
+
+  /* Portrait: video/image left, content right */
+  const isPortrait = s.imgRatio === 'portrait' && hasMedia;
+  const bodyContent = isPortrait
+    ? `<div class="story-portrait-layout">
+        <div class="story-portrait-media">${mediaHTML}</div>
+        <div class="story-portrait-content">${summaryHTML}${statsHTML}${investHTML}${onepagerHTML}</div>
+      </div>`
+    : `${mediaHTML}${summaryHTML}${statsHTML}${investHTML}${onepagerHTML}`;
 
   return `
     <div class="story-item" id="si-${t.id}-${i}" data-edition="${s.edition}">
@@ -636,13 +692,7 @@ function buildStoryHTML(t, s, i) {
         <span class="story-pill" style="background:${t.color}18;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
         <span class="story-chevron">▼</span>
       </div>
-      <div class="story-body">
-        ${mediaHTML}
-        ${summaryHTML}
-        ${statsHTML}
-        ${investHTML}
-        ${onepagerHTML}
-      </div>
+      <div class="story-body">${bodyContent}</div>
     </div>`;
 }
 
