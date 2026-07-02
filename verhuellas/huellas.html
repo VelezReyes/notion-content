@@ -309,25 +309,54 @@ body {
   .story-stats { grid-template-columns: 1fr; }
 }
 
+/* ─── PRINT HEADER (screen: hidden · PDF: visible) ──── */
+.print-header { display: none; }
+.print-hdr-logo { height: 20px; width: auto; display: block; margin-bottom: 12px; }
+.print-hdr-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+.print-hdr-title { font-size: 26px; font-weight: 800; color: #111; line-height: 1; margin-bottom: 5px; }
+.print-hdr-edition { font-size: 12px; font-weight: 700; color: #555; margin-bottom: 14px; }
+.print-hdr-divider { height: 2px; background: linear-gradient(90deg, #111 0%, #DDD 100%); }
+
 /* ─── PRINT ──────────────────────────────────────────── */
 @media print {
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  html, body { height: auto !important; overflow: visible !important; }
-  .site-nav, .print-btn, .filter-row { display: none !important; }
+  html, body { height: auto !important; overflow: visible !important; background: #FFF !important; }
+
+  /* Show print header · hide screen chrome */
+  .print-header { display: block !important; padding: 0 0 1.5rem; margin-bottom: 1.5rem; }
+  .site-nav, .hero, .print-btn, .filter-row { display: none !important; }
+
+  /* Stories: expand, hide media */
   .story-body { display: block !important; }
   .story-media { display: none !important; }
-  .site-footer { background: var(--cream) !important; border: 1px solid #DDD !important; }
+
+  /* Portrait layout: collapse to single column (media already hidden) */
+  .story-portrait-media { display: none !important; }
+  .story-portrait-layout { display: block !important; }
+
+  /* Story header: less cramped — remove badge and chevron, wrap title */
+  .story-header { padding: 0.9rem 1.25rem !important; flex-wrap: wrap !important; gap: 0.4rem !important; }
+  .story-ed-badge, .story-chevron { display: none !important; }
+  .story-title-text { font-size: 13px !important; }
+  .story-tag { font-size: 8px !important; padding: 2px 7px !important; }
+  .story-pill { font-size: 9px !important; padding: 2px 9px !important; }
+
+  /* Block colors: work on white paper */
   .team-hdr { background: var(--cream) !important; border: 1px solid #DDD !important; }
-  .hero { background: var(--cream) !important; border-bottom: 2px solid #DDD !important; }
-  .hero::before { display: none !important; }
-  .hero-title, .team-hdr-name { color: var(--black) !important; }
-  .hero-title-accent { color: #4A4A00 !important; }
-  .hero-eyebrow, .hero-sub, .hero-audience, .team-hdr-eyebrow, .team-hdr-meta { color: var(--text-mt) !important; }
-  .footer-brand { color: var(--black) !important; }
-  .footer-brand strong { color: var(--black) !important; }
-  body { background: #FFF !important; }
+  .team-hdr-name { color: var(--black) !important; }
+  .team-hdr-eyebrow, .team-hdr-meta { color: var(--text-mt) !important; }
+  .site-footer { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .footer-brand, .footer-brand strong { color: var(--black) !important; }
+  .about-strip { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .about-strip::before { display: none !important; }
+  .about-tag { color: #4A4A00 !important; }
+  .about-title { color: var(--black) !important; }
+  .about-body { color: #555 !important; }
+  .ceo-note { background: var(--cream) !important; border: 1px solid #DDD !important; }
   .story-stat { background: #EEE !important; }
-  /* Hide team sections filtered out */
+  .story-summary { box-shadow: none !important; border: 1px solid #DDD !important; }
+
+  /* Hide filtered-out sections */
   .team-section[style*="display: none"] { display: none !important; }
 }
 </style>
@@ -413,7 +442,7 @@ const DATA = {
             { n: "+20%",  l: "Higher expectations of completing on time",     ctx: "Strengthened academic self-confidence",   c: "#27CF77" },
             { n: "+5%",   l: "Higher professional aspirations",               ctx: "Beyond access, shaping long-term outlook",c: "#27CF77" }
           ],
-          investment: "USD 7,937,544",
+          investment: "USD 7,937,544 · Up to now",
           onepager:   "https://docs.google.com/document/d/1UM22sejtr3d1xslW7s8ess_TBrcZ18hxyt3_X-T38ds/edit?usp=sharing"
         },
         {
@@ -485,6 +514,9 @@ const DATA = {
     </symbol>
   </defs>
 </svg>
+
+<!-- PRINT HEADER (hidden in screen · populated by exportPDF) ── -->
+<div class="print-header" id="print-header"></div>
 
 <!-- NAV ─────────────────────────────────────────────── -->
 <nav class="site-nav">
@@ -756,23 +788,44 @@ function renderFootprints() {
 
 /* ── EXPORT PDF (respects active filter) ── */
 function exportPDF() {
+  /* Populate print header with edition snapshot info */
+  const ph = document.getElementById('print-header');
+  const latest = DATA.editions[DATA.editions.length - 1];
+  if (activeFilter === 'all') {
+    ph.innerHTML = `
+      <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
+      <div class="print-hdr-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <div class="print-hdr-title">VER+ Huellas</div>
+      <div class="print-hdr-edition">All Editions · Through ${latest.month} ${latest.year}</div>
+      <div class="print-hdr-divider"></div>`;
+  } else {
+    const edObj = getEditionObj(activeFilter);
+    ph.innerHTML = `
+      <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
+      <div class="print-hdr-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <div class="print-hdr-title">VER+ Huellas · Edition ${edObj.num}</div>
+      <div class="print-hdr-edition">${edObj.name} · ${edObj.month} ${edObj.year}</div>
+      <div class="print-hdr-divider"></div>`;
+  }
+
   /* Expand only visible stories */
   document.querySelectorAll('.story-item').forEach(item => {
     if (item.style.display !== 'none') {
       item.querySelector('.story-body').style.display = 'block';
     }
   });
+
   requestAnimationFrame(() => requestAnimationFrame(() => {
     const totalMm = Math.ceil(document.documentElement.scrollHeight * 0.2646) + 20;
     const tag = document.createElement('style');
     tag.id = '__print_page_size__';
-    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 12mm 18mm; }`;
+    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 15mm 18mm; }`;
     document.head.appendChild(tag);
     window.print();
     setTimeout(() => {
+      ph.innerHTML = '';
       const el = document.getElementById('__print_page_size__');
       if (el) el.remove();
-      /* Restore only the ones that were not manually opened */
       document.querySelectorAll('.story-item:not(.open) .story-body').forEach(b => b.style.display = '');
     }, 1500);
   }));
