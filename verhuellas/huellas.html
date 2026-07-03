@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VER+ Huellas · Impact Reports</title>
+<title>VER+ Huellas · Impact Report</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/huellas%2Bfavicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -469,6 +469,33 @@ const DATA = {
       ]
     },
 
+    /* ══ ECE (Early Childhood Education) ═══════════════════ */
+    {
+      id: "ece", name: "ECE", color: "#27CF77",
+      stories: [
+        {
+          edition:   "01",
+          title:     "Aprendo+: Turning WhatsApp into a Bridge Between Schools and Families",
+          pill:      "Aprendo+",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/aprendo-RECAP.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Aprendo+ is turning WhatsApp into a powerful bridge between schools and families: across 32 schools in Peru, around 80% of parents and 98% of teachers shared evidence of participation at least once, showing that a simple, familiar channel can mobilize families and educators around early childhood learning. With the support of VER+, the evidence also shows that principals, teachers, and parents perceive Aprendo+ as useful, practical, and aligned with everyday routines and classroom practice.</p><p>The most encouraging result is that Aprendo+ is changing how adults understand and practice play. Parents report a 26% increase in the importance they assign to spending time on play and a 31% increase in the frequency of play with their children; teachers report around 20% higher confidence in supporting communication, math, and socio-emotional development. The next step is to move from strong perceived changes to stronger evidence on child development outcomes, but the program is already showing a clear and promising path: small, joyful, everyday interactions can become meaningful learning moments.</p>`,
+          stats: [
+            { n: "32",   l: "Schools in Peru",                       ctx: "Program implementation sites",                                                          c: "#27CF77" },
+            { n: "~80%", l: "Parents participated",                   ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "98%",  l: "Teachers participated",                  ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "+26%", l: "Parents value play more",                ctx: "Increase in importance assigned to spending time on play",                              c: "#27CF77" },
+            { n: "+31%", l: "Parents play more with their children",  ctx: "Increase in frequency of play at home",                                                 c: "#27CF77" },
+            { n: "~20%", l: "Teachers more confident",                ctx: "Higher confidence in supporting communication, math, and socio-emotional development",  c: "#27CF77" }
+          ],
+          investment: "USD 1,104,250 committed through 2027",
+          onepager:   "https://docs.google.com/document/d/1qDrVrsdhNCcGc6im9WdIj8x8xUOs7tThK_M9Ms2hh2A/edit?usp=sharing"
+        }
+      ]
+    },
+
     /* ══ DEMOCRACY ══════════════════════════════════════════ */
     {
       id: "dem", name: "Democracy", color: "#A62BFF",
@@ -494,6 +521,7 @@ const DATA = {
         }
       ]
     }
+
 
   ] /* end teams */
 
@@ -534,7 +562,7 @@ const DATA = {
   <div class="footprints-layer" id="footprints-layer" aria-hidden="true"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">VélezReyes+ - Monthly Impact Reports</div>
+      <div class="hero-eyebrow">VélezReyes+ · Impact Report</div>
       <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Huellas</span></h1>
       <p class="hero-sub">A growing record of the mark our teams leave in communities, people, and systems.</p>
     </div>
@@ -564,7 +592,7 @@ const DATA = {
       <div class="about-title">What are we measuring?</div>
     </div>
     <div>
-      <p class="about-body">VER+ Huellas is VélezReyes+'s monthly impact report. Each edition brings together two types of stories. Learning Agenda covers our long-term bets and what we are discovering along the way. Success Stories features impact stories from our partner organizations and grantees. Not every team appears in every edition.</p>
+      <p class="about-body">VER+ Huellas is VélezReyes+'s repository of evidence on impact. Updated monthly, it combines two types of stories. "Learning Agenda" summarizes the findings from the MEL exercises we are internally carrying out as part of the Stage-Based Learning Framework. "Success Stories" features impact stories from our partner organizations.</p>
     </div>
   </div>
 
@@ -795,7 +823,7 @@ function exportPDF() {
   if (activeFilter === 'all') {
     ph.innerHTML = `
       <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
-      <div class="print-hdr-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <div class="print-hdr-eyebrow">VélezReyes+ · Impact Report</div>
       <div class="print-hdr-title">VER+ Huellas</div>
       <div class="print-hdr-edition">All Editions · Through ${latest.month} ${latest.year}</div>
       <div class="print-hdr-divider"></div>`;
@@ -803,7 +831,7 @@ function exportPDF() {
     const edObj = getEditionObj(activeFilter);
     ph.innerHTML = `
       <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
-      <div class="print-hdr-eyebrow">VélezReyes+ · Monthly Impact Reports</div>
+      <div class="print-hdr-eyebrow">VélezReyes+ · Impact Report</div>
       <div class="print-hdr-title">VER+ Huellas · Edition ${edObj.num}</div>
       <div class="print-hdr-edition">${edObj.name} · ${edObj.month} ${edObj.year}</div>
       <div class="print-hdr-divider"></div>`;
