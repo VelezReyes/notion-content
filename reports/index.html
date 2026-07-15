@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VélezReyes+ · OKR Reports Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:       #0a0a0a;
+  --bg2:      #111111;
+  --bg3:      #181818;
+  --glass:    rgba(255,255,255,0.04);
+  --glass-bd: rgba(255,255,255,0.09);
+  --glass-hi: rgba(255,255,255,0.06);
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.12);
+  --text:     #EBEBEB;
+  --muted:    #666;
+  --muted2:   #444;
+  --yellow:   #F3FF00;
+  --green:    #27CF77;
+  --purple:   #A62BFF;
+  --orange:   #F97316;
+  --red:      #FF6B6B;
+  --grad:     linear-gradient(90deg,#F3FF00 0%,#27CF77 50%,#A62BFF 100%);
+  --font:     'Montserrat',-apple-system,sans-serif;
+  --serif:    'DM Serif Display',Georgia,serif;
+  --r:        14px;
+  --r-sm:     8px;
+  --shadow:   0 4px 24px rgba(0,0,0,.55), inset 0 1px 0 var(--glass-hi);
+  --shadow-card: 0 8px 32px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.05) inset;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font);min-height:100vh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+/* ── NAV ─────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:200;
+  height:60px;background:rgba(10,10,10,.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 clamp(1.25rem,5vw,3rem);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.nav-brand{display:flex;align-items:center;gap:.65rem}
+.nav-logo{height:22px;width:auto;opacity:.88;transition:opacity .15s;flex-shrink:0}
+.nav-logo:hover{opacity:1}
+.nav-title{font-size:.75rem;font-weight:700;letter-spacing:.04em;color:var(--text)}
+.nav-sub{font-size:.6rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:1px}
+/* ── REPORT MODAL ────────────────────────────────── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.96);backdrop-filter:blur(10px);
+  flex-direction:column;animation:fadeIn .18s ease;
+}
+.modal-overlay.open{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.modal-bar{
+  height:56px;
+  background:rgba(15,15,15,.95);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 2px 16px rgba(0,0,0,.6), inset 0 -1px 0 rgba(255,255,255,.03);
+  display:flex;align-items:center;gap:.85rem;padding:0 1.25rem;flex-shrink:0;
+  position:relative;
+}
+/* gradient top stripe — matches report */
+.modal-bar::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,#F3FF00 0%,#27CF77 50%,#A62BFF 100%);
+}
+.modal-bar-logo{height:20px;width:auto;opacity:.75;flex-shrink:0}
+.modal-bar-divider{width:1px;height:22px;background:rgba(255,255,255,.08);flex-shrink:0}
+.modal-bar-title{font-size:.75rem;font-weight:700;color:var(--text);flex:1;letter-spacing:.01em}
+.modal-back{
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  color:#ddd;border-radius:8px;padding:7px 16px;
+  font-size:.72rem;font-weight:800;font-family:var(--font);
+  cursor:pointer;transition:background .15s,color .15s,border-color .15s;
+  letter-spacing:.04em;white-space:nowrap;
+}
+.modal-back:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.2)}
+.modal-back svg{flex-shrink:0;transition:transform .15s}
+.modal-back:hover svg{transform:translateX(-2px)}
+.modal-esc-hint{font-size:.58rem;color:var(--muted);white-space:nowrap;letter-spacing:.04em}
+.modal-frame{flex:1;border:none;background:var(--bg)}
+
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.search-wrap{position:relative}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);opacity:.4;pointer-events:none}
+#search{
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--text);border-radius:var(--r-sm);
+  padding:.38rem .7rem .38rem 2rem;font-size:.7rem;font-family:var(--font);
+  width:180px;outline:none;transition:border .2s;
+}
+#search:focus{border-color:var(--purple)}
+#search::placeholder{color:var(--muted)}
+.year-pill{
+  background:var(--glass);border:1px solid var(--border);
+  color:var(--muted);border-radius:var(--r-sm);
+  padding:.38rem .7rem;font-size:.7rem;font-family:var(--font);
+  outline:none;cursor:pointer;transition:border .2s;
+}
+.year-pill:focus{border-color:var(--purple)}
+
+/* ── HERO ────────────────────────────────────────── */
+.hero{
+  background:var(--bg2);position:relative;overflow:hidden;
+  padding:0 clamp(1.25rem,5vw,3rem);
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--grad);
+}
+/* subtle glow blob */
+.hero::after{
+  content:'';position:absolute;top:-100px;left:-100px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(166,43,255,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;
+  padding:3rem 0 2.75rem;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;
+}
+.hero-eyebrow{
+  font-size:.6rem;font-weight:800;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;
+}
+.hero-title{
+  font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);
+  color:#fff;line-height:.95;margin-bottom:.8rem;
+}
+.hero-accent{color:var(--yellow)}
+.hero-sub{font-size:.8rem;color:#777;max-width:380px;line-height:1.75}
+.hero-stat-group{display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-stat-chip{
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:10px;padding:.85rem 1.25rem;text-align:center;min-width:110px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.hero-stat-chip::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+}
+.hero-stat-n{font-family:var(--serif);font-size:1.75rem;line-height:1;margin-bottom:2px}
+.hero-stat-l{font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ── PAGE BODY ───────────────────────────────────── */
+.body{max-width:1200px;margin:0 auto;padding:2.5rem clamp(1.25rem,5vw,3rem) 5rem}
+
+/* ── SECTION LABEL ───────────────────────────────── */
+.section-label{
+  font-size:.55rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── REPORT CARDS ────────────────────────────────── */
+.cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1.25rem;margin-bottom:3rem;
+}
+.report-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.02) 100%);
+  border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow-card);
+  display:flex;flex-direction:column;transition:transform .18s,border-color .18s,box-shadow .18s;
+  position:relative;
+}
+.report-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+}
+.report-card:hover{
+  transform:translateY(-3px);border-color:var(--border2);
+  box-shadow:0 16px 48px rgba(0,0,0,.7),0 1px 0 rgba(255,255,255,.08) inset;
+}
+.report-card.latest{border-color:rgba(166,43,255,.45);box-shadow:0 8px 32px rgba(166,43,255,.15),inset 0 1px 0 rgba(166,43,255,.12)}
+.report-card.latest::before{background:linear-gradient(90deg,transparent,rgba(166,43,255,.4),transparent)}
+/* accent bar top */
+.card-accent{height:3px;background:var(--grad)}
+.card-body{padding:1.5rem 1.5rem 1rem;flex:1}
+.card-top-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:.5rem}
+.card-latest-badge{
+  font-size:.55rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;
+  background:rgba(166,43,255,.15);color:var(--purple);border:1px solid rgba(166,43,255,.3);
+}
+.card-date-badge{
+  font-size:.55rem;font-weight:600;letter-spacing:.06em;
+  padding:3px 9px;border-radius:20px;
+  background:var(--glass);color:var(--muted);border:1px solid var(--border);
+}
+.card-month{font-family:var(--serif);font-size:2rem;line-height:1;color:#fff}
+.card-year{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.04em;margin-top:2px}
+.card-overall{margin:1rem 0 .75rem;display:flex;align-items:baseline;gap:.4rem}
+.card-pct-n{font-family:var(--serif);font-size:3rem;line-height:1;color:var(--purple)}
+.card-pct-label{font-size:.65rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.card-obj-list{display:flex;flex-direction:column;gap:7px;margin-bottom:1rem}
+.card-obj-row{display:flex;align-items:center;gap:.5rem;font-size:.65rem}
+.card-obj-name{color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-obj-bar{flex:2;height:4px;background:rgba(255,255,255,.06);border-radius:2px;position:relative;overflow:hidden}
+.card-obj-fill{position:absolute;top:0;left:0;height:100%;border-radius:2px}
+.card-obj-pct{min-width:28px;text-align:right;font-weight:700}
+.card-status-row{display:flex;gap:.4rem;flex-wrap:wrap}
+.status-chip{font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
+.chip-on{background:rgba(39,207,119,.12);color:var(--green);border:1px solid rgba(39,207,119,.2)}
+.chip-risk{background:rgba(243,255,0,.08);color:#d4df00;border:1px solid rgba(243,255,0,.18)}
+.chip-ns{background:rgba(255,255,255,.04);color:#444;border:1px solid rgba(255,255,255,.06)}
+.chip-done{background:rgba(166,43,255,.1);color:var(--purple);border:1px solid rgba(166,43,255,.2)}
+.card-footer{padding:.85rem 1.5rem;border-top:1px solid var(--border)}
+.btn-open{
+  display:block;width:100%;text-align:center;
+  background:rgba(166,43,255,.9);color:#fff;
+  border-radius:var(--r-sm);padding:.55rem .75rem;
+  font-size:.7rem;font-weight:700;font-family:var(--font);letter-spacing:.04em;
+  transition:background .15s,box-shadow .15s;
+  box-shadow:0 2px 12px rgba(166,43,255,.35);
+}
+.btn-open:hover{background:var(--purple);box-shadow:0 4px 20px rgba(166,43,255,.55)}
+
+/* ── EMPTY STATE ─────────────────────────────────── */
+.empty-state{text-align:center;color:var(--muted);padding:3rem;font-size:.85rem;display:none}
+
+/* ── DELTA OVERVIEW ──────────────────────────────── */
+.delta-panel{
+  background:linear-gradient(145deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
+  border:1px solid var(--border);border-radius:var(--r);
+  box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+  margin-bottom:1.5rem;
+}
+.delta-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+}
+.delta-panel-head{
+  padding:1.25rem 1.75rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+}
+.delta-panel-title{font-size:.85rem;font-weight:800;letter-spacing:-.01em}
+.delta-period-pill{
+  font-size:.6rem;font-weight:700;letter-spacing:.06em;
+  padding:3px 12px;border-radius:20px;
+  background:var(--glass);border:1px solid var(--border);color:var(--muted);
+}
+.delta-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1px;background:var(--border);
+}
+.delta-cell{background:var(--bg2);padding:1.25rem 1.5rem}
+.delta-cell-label{font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.65rem}
+.delta-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.delta-old{font-size:1rem;font-weight:700;color:#333}
+.delta-arrow-icon{font-size:.85rem;color:var(--muted)}
+.delta-new{font-size:1.75rem;font-weight:900;letter-spacing:-.03em;line-height:1}
+.delta-badge{
+  font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:20px;
+  margin-left:auto;align-self:center;white-space:nowrap;
+}
+.delta-badge.up{background:rgba(39,207,119,.12);color:var(--green)}
+.delta-badge.down{background:rgba(255,107,107,.12);color:var(--red)}
+.delta-badge.flat{background:rgba(255,255,255,.04);color:#444}
+.delta-bar-track{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:.8rem;position:relative}
+.delta-bar-may{position:absolute;top:0;left:0;height:100%;border-radius:2px;background:#2a2a2a}
+.delta-bar-jun{position:absolute;top:0;left:0;height:100%;border-radius:2px}
+
+/* ── KR STATUS ROW ───────────────────────────────── */
+.kr-status-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border-top:1px solid var(--border);
+}
+.kr-status-cell{background:var(--bg2);padding:1rem 1.25rem}
+.kr-status-n{font-family:var(--serif);font-size:2rem;line-height:1;margin-bottom:2px}
+.kr-status-lbl{font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kr-status-delta{font-size:.65rem;font-weight:700;margin-top:.2rem}
+
+/* ── STATUS CHANGES ──────────────────────────────── */
+.changes-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.change-row{
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:.7rem 1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+.change-code{
+  font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:4px;
+  background:#1a1a1a;color:#666;flex-shrink:0;border:1px solid #2a2a2a;
+}
+.change-name{font-size:.75rem;flex:1}
+.change-from,.change-to{font-size:.6rem;font-weight:700;padding:2px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.arrow-mid{font-size:.75rem;color:var(--muted)}
+.badge-risk{background:rgba(243,255,0,.08);color:#c4cd00;border:1px solid rgba(243,255,0,.18)}
+.badge-track{background:rgba(39,207,119,.08);color:var(--green);border:1px solid rgba(39,207,119,.2)}
+
+/* ── TOP MOVERS ──────────────────────────────────── */
+.movers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+@media(max-width:640px){.movers-grid{grid-template-columns:1fr}}
+.movers-card{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.25rem 1.5rem;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.movers-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+}
+.movers-title{font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+.movers-title.up{color:var(--green)}
+.movers-sub{font-size:.6rem;color:var(--muted);margin-bottom:1rem;line-height:1.4}
+.mover-row{display:flex;align-items:center;gap:.5rem;padding:.45rem 0;border-bottom:1px solid var(--border)}
+.mover-row:last-child{border-bottom:none}
+.mover-code{
+  font-size:.55rem;font-weight:800;padding:2px 7px;border-radius:4px;
+  background:#111;color:#555;flex-shrink:0;min-width:44px;text-align:center;
+  border:1px solid #1e1e1e;
+}
+.mover-name{font-size:.7rem;color:var(--muted);flex:1;line-height:1.3}
+.mover-vals{font-size:.65rem;color:#333;white-space:nowrap;font-weight:600}
+.mover-delta{font-size:.75rem;font-weight:800;min-width:42px;text-align:right;flex-shrink:0}
+.mover-delta.up{color:var(--green)}
+.status-flip{
+  font-size:.5rem;font-weight:800;padding:1px 6px;border-radius:3px;flex-shrink:0;
+  background:rgba(39,207,119,.1);color:var(--green);border:1px solid rgba(39,207,119,.2);
+  white-space:nowrap;
+}
+/* task activity card */
+.task-act-row{display:flex;align-items:center;gap:.5rem;padding:.45rem 0;border-bottom:1px solid var(--border)}
+.task-act-row:last-child{border-bottom:none}
+.task-act-code{
+  font-size:.55rem;font-weight:800;padding:2px 7px;border-radius:4px;
+  background:#111;color:#555;flex-shrink:0;min-width:44px;text-align:center;
+  border:1px solid #1e1e1e;
+}
+.task-act-name{font-size:.68rem;color:var(--muted);flex:1;line-height:1.3}
+.task-act-meta{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+.task-chip{font-size:.55rem;font-weight:700;padding:1px 7px;border-radius:3px;white-space:nowrap}
+.task-chip.added{background:rgba(166,43,255,.1);color:#C97AFF;border:1px solid rgba(166,43,255,.2)}
+.task-chip.done{background:rgba(39,207,119,.1);color:var(--green);border:1px solid rgba(39,207,119,.2)}
+.task-pct-note{font-size:.6rem;color:#333;font-weight:600;white-space:nowrap}
+
+/* ── TEAM COMPARISON ─────────────────────────────── */
+.team-panel{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.5rem;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  margin-bottom:1.5rem;
+}
+.team-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+}
+.team-comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.75rem}
+.team-comp-row{
+  background:rgba(255,255,255,.025);border:1px solid var(--border);
+  border-radius:var(--r-sm);padding:.9rem 1rem;
+}
+.team-comp-name{
+  font-size:.7rem;font-weight:700;
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:.65rem;
+}
+.team-delta{font-size:.65rem;font-weight:800}
+.bar-labels{font-size:.55rem;display:flex;justify-content:space-between;margin-bottom:3px}
+.dual-bar{height:5px;background:rgba(255,255,255,.04);border-radius:3px;position:relative;overflow:hidden}
+.bar-may{position:absolute;top:0;left:0;height:100%;border-radius:3px;background:#222}
+.bar-jun{position:absolute;top:0;left:0;height:100%;border-radius:3px;opacity:.9}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.site-footer{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.25rem 1.75rem;margin-top:1.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.footer-brand{font-family:var(--serif);font-style:italic;font-size:.85rem;color:#555}
+.footer-brand strong{color:#888;font-style:normal}
+.footer-meta{font-size:.6rem;color:var(--muted);letter-spacing:.04em}
+
+@media(max-width:600px){
+  .nav,.body{padding-left:1.25rem;padding-right:1.25rem}
+  .delta-grid{grid-template-columns:1fr 1fr}
+  .kr-status-strip{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img class="nav-logo" src="https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true" alt="VélezReyes+">
+      <div>
+        <div class="nav-title">OKR Reports Hub</div>
+        <div class="nav-sub">Strategy · 2026</div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="search-wrap">
+        <svg class="search-icon" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search" type="text" placeholder="Search month, year…" oninput="filterCards()">
+      </div>
+      <select class="year-pill" id="yearFilter" onchange="filterCards()">
+        <option value="">All years</option>
+        <option value="2026" selected>2026</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">VélezReyes+ · OKR Progress</div>
+      <h1 class="hero-title">Reports<br><span class="hero-accent">Hub.</span></h1>
+      <p class="hero-sub">Monthly OKR progress reports across all teams. Track what's moving, what's at risk, and where we're headed.</p>
+    </div>
+    <div class="hero-stat-group">
+      <div class="hero-stat-chip">
+        <div class="hero-stat-n" style="color:var(--purple)">48%</div>
+        <div class="hero-stat-l">June Overall</div>
+      </div>
+      <div class="hero-stat-chip">
+        <div class="hero-stat-n" style="color:var(--green)">↑9%</div>
+        <div class="hero-stat-l">vs May</div>
+      </div>
+      <div class="hero-stat-chip">
+        <div class="hero-stat-n" style="color:var(--text)">56</div>
+        <div class="hero-stat-l">KRs On Track</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<div class="body">
+
+  <!-- ══ 1. REPORT CARDS ══ -->
+  <div class="section-label">Monthly reports</div>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="empty-state" id="emptyState">No reports match your search.</div>
+
+  <!-- ══ 2. MOM COMPARISON ══ -->
+  <div class="section-label">Month-over-month · May → June 2026</div>
+
+  <!-- ORG DELTA PANEL -->
+  <div class="delta-panel">
+    <div class="delta-panel-head">
+      <span class="delta-panel-title">Organization Progress</span>
+      <span class="delta-period-pill">May 2026 → June 2026</span>
+    </div>
+    <div class="delta-grid">
+      <div class="delta-cell">
+        <div class="delta-cell-label">Overall</div>
+        <div class="delta-row">
+          <span class="delta-old">39%</span>
+          <span class="delta-arrow-icon">→</span>
+          <span class="delta-new" style="color:var(--purple)">48%</span>
+          <span class="delta-badge up">↑9%</span>
+        </div>
+        <div class="delta-bar-track"><div class="delta-bar-may" style="width:39%"></div><div class="delta-bar-jun" style="width:48%;background:var(--purple)"></div></div>
+      </div>
+      <div class="delta-cell">
+        <div class="delta-cell-label">O1 · Refined Big Bets &amp; Toolkit</div>
+        <div class="delta-row">
+          <span class="delta-old">40%</span>
+          <span class="delta-arrow-icon">→</span>
+          <span class="delta-new" style="color:var(--purple)">50%</span>
+          <span class="delta-badge up">↑10%</span>
+        </div>
+        <div class="delta-bar-track"><div class="delta-bar-may" style="width:40%"></div><div class="delta-bar-jun" style="width:50%;background:var(--purple)"></div></div>
+      </div>
+      <div class="delta-cell">
+        <div class="delta-cell-label">O2 · Disciplined Execution &amp; Learning</div>
+        <div class="delta-row">
+          <span class="delta-old">44%</span>
+          <span class="delta-arrow-icon">→</span>
+          <span class="delta-new" style="color:var(--green)">51%</span>
+          <span class="delta-badge up">↑7%</span>
+        </div>
+        <div class="delta-bar-track"><div class="delta-bar-may" style="width:44%"></div><div class="delta-bar-jun" style="width:51%;background:var(--green)"></div></div>
+      </div>
+      <div class="delta-cell">
+        <div class="delta-cell-label">O3 · Conducive Structure for 5-Year Plan</div>
+        <div class="delta-row">
+          <span class="delta-old">34%</span>
+          <span class="delta-arrow-icon">→</span>
+          <span class="delta-new" style="color:var(--orange)">43%</span>
+          <span class="delta-badge up">↑9%</span>
+        </div>
+        <div class="delta-bar-track"><div class="delta-bar-may" style="width:34%"></div><div class="delta-bar-jun" style="width:43%;background:var(--orange)"></div></div>
+      </div>
+    </div>
+    <div class="kr-status-strip">
+      <div class="kr-status-cell">
+        <div class="kr-status-n" style="color:var(--green)">56</div>
+        <div class="kr-status-lbl">On Track</div>
+        <div class="kr-status-delta" style="color:var(--green)">↑2 vs May</div>
+      </div>
+      <div class="kr-status-cell">
+        <div class="kr-status-n" style="color:#c4cd00">10</div>
+        <div class="kr-status-lbl">At Risk</div>
+        <div class="kr-status-delta" style="color:var(--green)">↓2 vs May</div>
+      </div>
+      <div class="kr-status-cell">
+        <div class="kr-status-n" style="color:#333">20</div>
+        <div class="kr-status-lbl">Not Started</div>
+        <div class="kr-status-delta" style="color:#333">— same</div>
+      </div>
+      <div class="kr-status-cell">
+        <div class="kr-status-n" style="color:var(--purple)">6</div>
+        <div class="kr-status-lbl">Completed</div>
+        <div class="kr-status-delta" style="color:#333">— same</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATUS CHANGES -->
+  <div class="section-label">Status changes</div>
+  <div class="changes-list">
+    <div class="change-row">
+      <span class="change-code">FT2.1</span>
+      <span class="change-name">CEPE execution across 7 territories</span>
+      <span class="change-from badge-risk">At Risk</span>
+      <span class="arrow-mid">→</span>
+      <span class="change-to badge-track">On Track</span>
+    </div>
+    <div class="change-row">
+      <span class="change-code">D1.1</span>
+      <span class="change-name">D+ Network: 8 renewals · ≥3,000 trained · NPS &gt;85</span>
+      <span class="change-from badge-risk">At Risk</span>
+      <span class="arrow-mid">→</span>
+      <span class="change-to badge-track">On Track</span>
+    </div>
+  </div>
+
+  <!-- TOP MOVERS -->
+  <div class="section-label">KR movement · May → June</div>
+  <div class="movers-grid">
+
+    <!-- GAINS -->
+    <div class="movers-card">
+      <div class="movers-title up">↑ Biggest gains</div>
+      <div class="movers-sub">KRs with the highest % increase vs May</div>
+      <div class="mover-row">
+        <span class="mover-code">K1.1</span>
+        <span class="mover-name">K-12 partnerships active</span>
+        <span class="mover-vals">10%→65%</span>
+        <span class="mover-delta up">↑55%</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">FT2.1</span>
+        <span class="mover-name">CEPE execution across 7 territories</span>
+        <span class="mover-vals">0%→30%</span>
+        <span class="mover-delta up">↑30%</span>
+        <span class="status-flip">status ↑</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">M1.5</span>
+        <span class="mover-name">Equality of Opportunity Measurement</span>
+        <span class="mover-vals">50%→77%</span>
+        <span class="mover-delta up">↑27%</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">FT1.3</span>
+        <span class="mover-name">Trajetórias: students · govts · unis</span>
+        <span class="mover-vals">45%→65%</span>
+        <span class="mover-delta up">↑20%</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">D3.2</span>
+        <span class="mover-name">AI governance pilot launched</span>
+        <span class="mover-vals">35%→52%</span>
+        <span class="mover-delta up">↑17%</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">D3.1</span>
+        <span class="mover-name">Deliberative innovations piloted</span>
+        <span class="mover-vals">40%→56%</span>
+        <span class="mover-delta up">↑16%</span>
+      </div>
+      <div class="mover-row">
+        <span class="mover-code">D1.1</span>
+        <span class="mover-name">D+ Network: renewals · training · NPS</span>
+        <span class="mover-vals">32%→46%</span>
+        <span class="mover-delta up">↑14%</span>
+        <span class="status-flip">status ↑</span>
+      </div>
+    </div>
+
+    <!-- TASK ACTIVITY (replaces "drops") -->
+    <div class="movers-card">
+      <div class="movers-title" style="color:var(--yellow)">⟳ Task Activity · Where scope grew</div>
+      <div class="movers-sub">KRs with most new tasks or completions. % shifts often reflect scope expansion or reprioritization — not regression.</div>
+
+      <div class="task-act-row">
+        <span class="task-act-code">OP1.2</span>
+        <span class="task-act-name">Operational Visibility &amp; Collaboration</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+9 tasks</span>
+          <span class="task-chip done">5 done</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">OP1.1</span>
+        <span class="task-act-name">Core Process Standardization</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+7 tasks</span>
+          <span class="task-chip done">10 done</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">FT1.2</span>
+        <span class="task-act-name">Scholar CRM dashboard</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+6 tasks</span>
+          <span class="task-chip done">9 done</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">OP3.2</span>
+        <span class="task-act-name">5-Year Organizational Design</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+5 tasks</span>
+          <span class="task-chip done">1 done</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">M1.3</span>
+        <span class="task-act-name">Stage-based MEL Support</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+4 tasks</span>
+          <span class="task-chip done">2 done</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">EC4.1</span>
+        <span class="task-act-name">Ecosystem partnerships consolidated</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+4 tasks</span>
+          <span class="task-chip done" style="opacity:.4">new KR</span>
+        </div>
+      </div>
+      <div class="task-act-row">
+        <span class="task-act-code">D4.2</span>
+        <span class="task-act-name">Evidence &amp; Results Dashboard</span>
+        <div class="task-act-meta">
+          <span class="task-chip added">+3 tasks</span>
+          <span class="task-chip done">3 done</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TEAM COMPARISON -->
+  <div class="section-label">Team progress · May vs June</div>
+  <div class="team-panel">
+    <div class="team-comp-grid" id="teamGrid"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <div class="footer-brand"><strong>VélezReyes+</strong> · OKR Reports Hub</div>
+    <div class="footer-meta">Data as of July 14, 2026 · Built with Claude</div>
+  </div>
+
+</div><!-- /body -->
+
+<!-- ── REPORT MODAL ────────────────────────── -->
+<div class="modal-overlay" id="reportModal" onclick="handleOverlayClick(event)">
+  <div class="modal-bar">
+    <img class="modal-bar-logo" src="https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true" alt="VR+">
+    <div class="modal-bar-divider"></div>
+    <span class="modal-bar-title" id="modalTitle">OKR Report</span>
+    <span class="modal-esc-hint">Esc</span>
+    <button class="modal-back" onclick="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Hub
+    </button>
+  </div>
+  <iframe class="modal-frame" id="reportFrame" src="" allowfullscreen></iframe>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────
+const REPORTS = [
+  {
+    id:'june-2026', month:'June', year:2026, latest:true,
+    dataDate:'July 14, 2026',
+    url:'JUNE/OKR Report - June 2026.html',
+    overall:48, o1:50, o2:51, o3:43,
+    teams:{dem:46,dp:42,ecd:35,edu:23,mel:69,ops:62,tech:3,fin:0},
+    krs:{onTrack:56,atRisk:10,notStarted:20,completed:6}
+  },
+  {
+    id:'may-2026', month:'May', year:2026, latest:false,
+    dataDate:'June 16, 2026',
+    url:'MAY/FINAL/OKR Report - May 2026.html',
+    overall:39, o1:40, o2:44, o3:34,
+    teams:{dem:41,dp:37,ecd:34,edu:27,mel:63,ops:53,tech:3,fin:0},
+    krs:{onTrack:54,atRisk:12,notStarted:20,completed:6}
+  }
+];
+
+const TEAM_LABELS = {
+  dem:'Democracy', dp:'Democracia+', ecd:'ECD',
+  edu:'Education', mel:'MEL', ops:'People & Ops',
+  tech:'Tech', fin:'Finance'
+};
+const TEAM_COLORS = {
+  dem:'#A62BFF', dp:'#C97AFF', ecd:'#27CF77',
+  edu:'#22C4CF', mel:'#F97316', ops:'#F59E0B',
+  tech:'#6366F1', fin:'#EC4899'
+};
+
+// ── RENDER CARDS ───────────────────────────────────
+function renderCards(list){
+  const grid = document.getElementById('cardsGrid');
+  const empty = document.getElementById('emptyState');
+  if(!list.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  grid.innerHTML = list.map(r => {
+    const objs = [
+      {l:'O1 · Big Bets', p:r.o1, c:'#A62BFF'},
+      {l:'O2 · Execution', p:r.o2, c:'#27CF77'},
+      {l:'O3 · Structure', p:r.o3, c:'#F97316'}
+    ].map(o=>`
+      <div class="card-obj-row">
+        <span class="card-obj-name">${o.l}</span>
+        <div class="card-obj-bar"><div class="card-obj-fill" style="width:${o.p}%;background:${o.c}"></div></div>
+        <span class="card-obj-pct" style="color:${o.c}">${o.p}%</span>
+      </div>`).join('');
+    return `
+    <div class="report-card${r.latest?' latest':''}" data-month="${r.month}" data-year="${r.year}">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-top-row">
+          ${r.latest?'<span class="card-latest-badge">Latest</span>':'<span></span>'}
+          <span class="card-date-badge">Data: ${r.dataDate}</span>
+        </div>
+        <div class="card-month">${r.month}</div>
+        <div class="card-year">${r.year}</div>
+        <div class="card-overall">
+          <span class="card-pct-n">${r.overall}%</span>
+          <span class="card-pct-label">org progress</span>
+        </div>
+        <div class="card-obj-list">${objs}</div>
+        <div class="card-status-row">
+          <span class="status-chip chip-on">✓ ${r.krs.onTrack} On Track</span>
+          <span class="status-chip chip-risk">⚠ ${r.krs.atRisk} At Risk</span>
+          <span class="status-chip chip-ns">— ${r.krs.notStarted} NS</span>
+          <span class="status-chip chip-done">★ ${r.krs.completed} Done</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-open" onclick="openReport('${r.url}','${r.month} ${r.year}')">Open Report →</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+renderCards(REPORTS);
+
+// ── FILTER ─────────────────────────────────────────
+function filterCards(){
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const yr = document.getElementById('yearFilter').value;
+  renderCards(REPORTS.filter(r=>{
+    const mq = !q || r.month.toLowerCase().includes(q) || String(r.year).includes(q);
+    const my = !yr || String(r.year)===yr;
+    return mq && my;
+  }));
+}
+
+// ── MODAL ──────────────────────────────────────────
+function openReport(url, title){
+  document.getElementById('reportFrame').src = url;
+  document.getElementById('modalTitle').textContent = 'OKR Report · ' + title;
+  document.getElementById('reportModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  const modal = document.getElementById('reportModal');
+  modal.classList.remove('open');
+  document.getElementById('reportFrame').src = '';
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e){
+  if(e.target === document.getElementById('reportModal')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+// ── TEAM COMPARISON ────────────────────────────────
+const jun=REPORTS[0], may=REPORTS[1];
+document.getElementById('teamGrid').innerHTML = Object.keys(TEAM_LABELS).map(k=>{
+  const mp=may.teams[k], jp=jun.teams[k], d=jp-mp, col=TEAM_COLORS[k];
+  const dLabel = d>0?`<span style="color:var(--green)">↑${d}%</span>`
+               : d<0?`<span style="color:var(--red)">↓${Math.abs(d)}%</span>`
+               : `<span style="color:#333">—</span>`;
+  return `
+  <div class="team-comp-row">
+    <div class="team-comp-name">
+      <span style="color:${col}">${TEAM_LABELS[k]}</span>
+      <span class="team-delta">${dLabel}</span>
+    </div>
+    <div class="bar-labels">
+      <span style="color:#444">May ${mp}%</span>
+      <span style="color:${col}">Jun ${jp}%</span>
+    </div>
+    <div class="dual-bar">
+      <div class="bar-may" style="width:${mp}%"></div>
+      <div class="bar-jun" style="width:${jp}%;background:${col}"></div>
+    </div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>
