@@ -166,6 +166,45 @@ a{text-decoration:none;color:inherit}
 /* ── PAGE BODY ───────────────────────────────────── */
 .body{max-width:1200px;margin:0 auto;padding:2.5rem clamp(1.25rem,5vw,3rem) 5rem}
 
+/* ── STRATEGY BANNER ─────────────────────────────── */
+.strategy-banner{
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  background:#FFFFFF;border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);padding:1.4rem 1.6rem;
+  margin-bottom:1.5rem;text-decoration:none;
+  box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative;overflow:hidden;transition:box-shadow .2s,transform .15s;
+}
+.strategy-banner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#F3FF00 0%,#27CF77 50%,#A62BFF 100%);
+}
+.strategy-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(166,43,255,.06) 0%,rgba(39,207,119,.04) 50%,rgba(243,255,0,.03) 100%);
+  pointer-events:none;
+}
+.strategy-banner:hover{box-shadow:0 8px 36px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1);transform:translateY(-1px)}
+.strategy-banner-left{flex:1}
+.strategy-banner-eyebrow{font-size:.55rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#999;margin-bottom:.3rem;}
+.strategy-banner-title{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#111;
+  margin-bottom:.25rem;line-height:1.2;}
+.strategy-banner-sub{font-size:.65rem;color:#777;font-weight:600;letter-spacing:.02em;}
+.strategy-banner-right{display:flex;align-items:center;gap:1.5rem;flex-shrink:0;}
+.strategy-banner-pcts{display:flex;gap:1rem;}
+.strategy-banner-pcts>div{display:flex;flex-direction:column;align-items:center;gap:.15rem;}
+.strategy-banner-pcts>div>span:first-child{font-family:'DM Serif Display',serif;font-size:1.1rem;}
+.strategy-banner-pcts>div>span:last-child{font-size:.55rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#888;}
+.strategy-banner-btn{
+  background:linear-gradient(135deg,#111 0%,#222 100%);
+  color:#fff;border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:.65rem 1.2rem;
+  font-size:.7rem;font-weight:800;font-family:var(--font);letter-spacing:.04em;
+  white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+.strategy-banner:hover .strategy-banner-btn{background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);}
+
 /* ── SECTION LABEL ───────────────────────────────── */
 .section-label{
   font-size:.55rem;font-weight:800;letter-spacing:.16em;
@@ -450,6 +489,23 @@ a{text-decoration:none;color:inherit}
 
 <!-- BODY -->
 <div class="body">
+
+  <!-- ══ STRATEGY BANNER ══ -->
+  <a href="strategy-2026.html" class="strategy-banner">
+    <div class="strategy-banner-left">
+      <div class="strategy-banner-eyebrow">2026 Institutional Plan</div>
+      <div class="strategy-banner-title">What Success Looks Like</div>
+      <div class="strategy-banner-sub">O1 · O2 · O3 · KR progress · latest actions</div>
+    </div>
+    <div class="strategy-banner-right">
+      <div class="strategy-banner-pcts">
+        <div><span style="color:#A62BFF;font-weight:800">50%</span><span>O1</span></div>
+        <div><span style="color:#27CF77;font-weight:800">51%</span><span>O2</span></div>
+        <div><span style="color:#F97316;font-weight:800">43%</span><span>O3</span></div>
+      </div>
+      <div class="strategy-banner-btn">View report →</div>
+    </div>
+  </a>
 
   <!-- ══ 1. REPORT CARDS ══ -->
   <div class="section-label">Monthly reports</div>
