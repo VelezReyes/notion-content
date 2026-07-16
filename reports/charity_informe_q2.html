@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Charity · Q2 2026 Case Report</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20id%3D%27Capa_1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20343.9%20511.3%27%3E%3Cpath%20fill%3D%27%2327cf77%27%20d%3D%27M278.4%2C246.3c0%2C7.6-3%2C14.8-8.4%2C20.2l-60.7%2C60.7-60.7-60.7c-11.1-11.1-11.1-29.3%2C0-40.4%2C5.6-5.6%2C12.9-8.4%2C20.2-8.4s14.6%2C2.8%2C20.2%2C8.4l9.7%2C9.7c2.8%2C2.8%2C6.7%2C4.4%2C10.6%2C4.4%2C4%2C0%2C7.8-1.6%2C10.6-4.4l9.7-9.7c11.1-11.1%2C29.3-11.1%2C40.4%2C0s8.4%2C12.6%2C8.4%2C20.2h0Z%27%2F%3E%3Cpath%20fill%3D%27%2327cf77%27%20d%3D%27M343.9%2C122.7v256.2c0%2C39.8-8.8%2C74.7-26.3%2C103.6-6.6%2C10.9-13.2%2C18.9-18.2%2C24.1-2.8%2C3-6.8%2C4.7-10.9%2C4.7H47.8c-5.2%2C0-10-2.7-12.7-7.1C12.2%2C468-.2%2C426.2%2C0%2C384.9H0v-131.6c0-12.1%2C9.4-22.5%2C21.5-22.9%2C12.7-.5%2C23.2%2C9.8%2C23.2%2C22.4v83.7c0%2C7.2%2C5%2C13.3%2C12.1%2C14.7%2C2.7.6%2C66.2%2C14.7%2C66.4%2C100%2C0%2C8%2C6.1%2C15%2C14.2%2C15.4%2C8.7.5%2C15.8-6.4%2C15.8-15%2C0-57.4-24.3-89.7-44.7-106.6-12.4-10.3-25-16.3-33.8-19.6v-72.6s0%2C0%2C0%2C0V60.4c0-12.4%2C10.1-23%2C22.5-23%2C12-.2%2C22.5%2C10.4%2C22.3%2C22.4v154.9c-14.5%2C22.7-11.9%2C53.2%2C7.9%2C73l71.3%2C71.3c5.9%2C5.9%2C15.4%2C5.8%2C21.2%2C0l70.6-70.6c11.2-11.2%2C17.8-26.3%2C17.8-42.2%2C0-11.3-3.3-22.2-9.2-31.5v-92.6c-.3-12%2C10.3-22.6%2C22.3-22.4%2C12.3%2C0%2C22.4%2C10.6%2C22.4%2C23h0Z%27%2F%3E%3Cpath%20fill%3D%27%2327cf77%27%20d%3D%27M194.4%2C22.4v171.2c-14-6.8-30.2-7.6-44.8-2.6V22.4C149.3%2C10.4%2C159.9-.2%2C172%2C0c12.3%2C0%2C22.4%2C10%2C22.4%2C22.4Z%27%2F%3E%3Cpath%20fill%3D%27%2327cf77%27%20d%3D%27M269.1%2C72.3v118.8c-14.6-5.1-30.8-4.2-44.8%2C2.6v-121.3c0-12.3%2C10-22.4%2C22.4-22.4%2C12-.2%2C22.6%2C10.3%2C22.4%2C22.4h0Z%27%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #EFEFE4;
+  --black:      #000000;
+  --yellow:     #F3FF00;
+  --green:      #27CF77;
+  --purple:     #A62BFF;
+  --dp:         #BD97F1;
+  --charity:    #A7B2AA;
+  --charity-b:  #7C8880;
+  --ok:         #27CF77;
+  --warn:       #D69A3B;
+  --bad:        #C65B4E;
+  --text-dk:    #111111;
+  --text-md:    #555555;
+  --text-mt:    #999990;
+  --border:     rgba(0,0,0,0.08);
+  --cream-card: #F5F5EE;
+  --radius:     12px;
+  --radius-sm:  8px;
+  --font:       'Montserrat', -apple-system, sans-serif;
+  --serif:      'DM Serif Display', Georgia, serif;
+  --nav-h:      60px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); background: var(--cream);
+  color: var(--text-dk); line-height: 1.6;
+  overflow-x: hidden; font-size: 15px;
+}
+
+/* SITE NAV */
+.site-nav {
+  height: var(--nav-h); background: var(--black);
+  position: sticky; top: 0; z-index: 200;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid #111;
+}
+.site-nav-inner {
+  max-width: 1200px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo-link { display: flex; align-items: center; }
+.site-logo { height: 22px; width: auto; opacity: 0.88; transition: opacity .15s; }
+.site-logo:hover { opacity: 1; }
+.nav-wordmark { font-family: var(--serif); font-size: 14px; font-style: italic; color: #555; }
+.nav-wordmark span { color: var(--charity); }
+
+/* HERO */
+.hero {
+  background: var(--black); position: relative; overflow: hidden;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--charity) 0%, var(--ok) 50%, var(--purple) 100%);
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 3.5rem 0 3.25rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 3rem; align-items: end;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #666; margin-bottom: 0.65rem;
+}
+.hero-title {
+  font-family: var(--serif); font-size: clamp(40px, 6vw, 68px);
+  color: #FFF; line-height: 0.95; margin-bottom: 0.9rem;
+}
+.hero-title-accent { color: var(--charity); }
+.hero-sub { font-size: 15px; color: #888; max-width: 440px; line-height: 1.75; }
+.hero-stat-group { display: flex; gap: 0.75rem; }
+.hero-stat {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px; padding: 1.1rem 1.5rem; text-align: center; min-width: 130px;
+}
+.hero-stat-n { font-family: var(--serif); font-size: 38px; line-height: 1; color: var(--charity); display: block; }
+.hero-stat-l { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #666; margin-top: 6px; }
+
+/* PAGE BODY */
+.page-body { max-width: 1200px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 5rem; }
+
+/* METHODOLOGY NOTE */
+.ceo-note {
+  background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.ceo-note::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--charity); border-radius: var(--radius) 0 0 var(--radius);
+}
+.ceo-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--charity); margin-bottom: 0.5rem; }
+.ceo-note p { font-size: 13.5px; color: #CCC; line-height: 1.85; margin-bottom: 0.6rem; }
+.ceo-note p:last-child { margin-bottom: 0; }
+.ceo-note b { color: #FFF; }
+
+/* VIEW TABS */
+.view-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.75rem; }
+.view-tab {
+  font-family: var(--font); font-size: 12.5px; font-weight: 700; letter-spacing: 0.02em;
+  padding: 9px 20px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1);
+  background: #fff; color: var(--text-md); cursor: pointer; transition: all 0.15s;
+}
+.view-tab:hover { border-color: rgba(0,0,0,0.25); }
+.view-tab.active { background: var(--black); color: #FFF; border-color: var(--black); }
+
+/* METRICS */
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.metric-card {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+}
+.metric-card-n { font-family: var(--serif); font-size: 36px; line-height: 1; margin-bottom: 6px; }
+.metric-card-l { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--text-dk); margin-bottom: 6px; }
+.metric-card-ctx { font-size: 11.5px; color: var(--text-mt); line-height: 1.55; }
+
+.metrics-panels { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+@media (max-width: 860px) { .metrics-panels { grid-template-columns: 1fr; } }
+.panel {
+  background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.75rem;
+}
+.panel-title { font-family: var(--serif); font-size: 18px; margin-bottom: 1.1rem; }
+
+.donut-block { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+.donut { width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0; }
+.donut-hole {
+  position: relative; width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0;
+}
+.donut-hole::after {
+  content: ''; position: absolute; inset: 26px; background: #fff; border-radius: 50%;
+}
+.donut-center {
+  position: absolute; inset: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;
+}
+.donut-center-n { font-family: var(--serif); font-size: 22px; line-height: 1; }
+.donut-center-l { font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--text-mt); margin-top: 3px; }
+.donut-legend { flex: 1; min-width: 200px; }
+.legend-row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--text-md); padding: 5px 0; }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-n { font-weight: 800; color: var(--text-dk); margin-left: auto; padding-left: 10px; }
+.legend-item { border-bottom: 1px solid var(--border); }
+.legend-item:last-child { border-bottom: none; }
+.legend-row.toggleable { cursor: pointer; user-select: none; }
+.legend-row.toggleable:hover { color: var(--text-dk); }
+.legend-chevron { font-size: 8px; color: #CCC; transition: transform .2s; margin-left: 4px; flex-shrink: 0; }
+.legend-item.open .legend-chevron { transform: rotate(180deg); }
+.legend-cases { display: none; padding: 0 0 8px 19px; }
+.legend-item.open .legend-cases { display: block; }
+.legend-case-row {
+  font-size: 11.5px; color: var(--text-md); padding: 4px 0;
+  display: flex; justify-content: space-between; gap: 10px; border-top: 1px dashed var(--border);
+}
+.legend-case-row:first-child { border-top: none; }
+.legend-case-track { color: var(--text-mt); font-size: 10px; flex-shrink: 0; }
+
+.bar-block { display: flex; flex-direction: column; gap: 0.9rem; }
+.bar-row-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 5px; }
+.bar-track { height: 20px; background: var(--cream); border-radius: 6px; overflow: hidden; display: flex; }
+.bar-seg { height: 100%; transition: width .3s; }
+
+.highlight-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.highlight-item {
+  display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--text-md);
+  background: var(--cream-card); border-radius: var(--radius-sm); padding: 0.7rem 1rem;
+}
+.highlight-item b { color: var(--text-dk); }
+.highlight-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.highlight-dot.warn { background: var(--warn); }
+.highlight-dot.bad { background: var(--bad); }
+.metrics-note { font-size: 11.5px; color: var(--text-mt); line-height: 1.7; margin-top: 0.25rem; }
+
+/* FILTER */
+.filter-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.ef-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mt); }
+.edition-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ef-btn {
+  font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 5px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12);
+  background: transparent; color: var(--text-mt); cursor: pointer; transition: all 0.15s;
+}
+.ef-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-dk); border-color: rgba(0,0,0,0.2); }
+.ef-btn.active { background: var(--black); color: var(--charity); border-color: var(--black); }
+.search-box {
+  font-family: var(--font); font-size: 12px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.14); background: #fff; color: var(--text-dk); min-width: 220px;
+}
+
+/* TEAM SECTION */
+.team-section { margin-bottom: 2rem; }
+.team-hdr {
+  background: var(--black); border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem 1.75rem; position: relative; overflow: hidden;
+}
+.team-hdr::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #666; margin-bottom: .35rem; }
+.team-hdr-name { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); color: #FFF; line-height: 1.1; margin-bottom: .35rem; }
+.team-hdr-meta { font-size: 12px; color: #888; }
+.team-hdr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.team-toggle {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+  color: #CCC; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  transition: transform .25s, background .15s;
+}
+.team-toggle:hover { background: rgba(255,255,255,.16); }
+.team-section.collapsed .team-toggle { transform: rotate(-90deg); }
+.team-section.collapsed .team-body { display: none; }
+
+.stories-wrap {
+  background: #FFF; border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius); overflow: hidden;
+}
+
+/* CASE ACCORDION */
+.story-item { border-bottom: 1px solid var(--border); }
+.story-item:last-child { border-bottom: none; }
+.story-item.nodata { opacity: 0.75; }
+.story-header {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 1.15rem 1.5rem; cursor: pointer; transition: background .12s; user-select: none;
+  flex-wrap: wrap;
+}
+.story-header:hover { background: rgba(0,0,0,.02); }
+.story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
+.story-title-text { font-size: 14.5px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.4; min-width: 160px; }
+.story-title-text .country { font-weight: 500; color: #9a958a; font-size: 11.5px; margin-left: 6px; }
+.story-tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-tag.gestionado-yes { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
+.story-tag.gestionado-no { background: rgba(198,91,78,0.12); color: #A3312B; border: 1px solid rgba(198,91,78,0.4); }
+.story-tag.gestionado-nodata { background: #1A1A1A; color: #B0B098; border: 1px solid #2D2D2D; }
+.story-pill {
+  font-size: 11px; font-weight: 700; padding: 4px 13px;
+  border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-chevron { font-size: 11px; color: #CCC; transition: transform .25s; flex-shrink: 0; }
+.story-item.open .story-chevron { transform: rotate(180deg); }
+.story-body {
+  display: none; border-top: 1px solid var(--border);
+  padding: 1.75rem 1.5rem 2rem; background: var(--cream-card);
+}
+.story-item.open .story-body { display: block; }
+
+/* SUMMARY BOX */
+.story-summary {
+  background: #FFF; border-radius: var(--radius-sm);
+  padding: 1.4rem 1.65rem; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 1.25rem;
+}
+.story-summary-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; display: block; margin-bottom: 0.6rem;
+}
+.story-summary p { font-size: 13.5px; color: var(--text-md); line-height: 1.8; margin-bottom: 0.6rem; }
+.story-summary p:last-child { margin-bottom: 0; }
+.story-summary p.flag { color: #A3312B; }
+.story-summary p.correction { color: #8A5A10; font-style: italic; }
+
+/* STATS GRID */
+.story-stats {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+.story-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 1rem 1.1rem; }
+.story-stat-n { font-family: var(--serif); font-size: 22px; line-height: 1.1; margin-bottom: 4px; }
+.story-stat-l { font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dk); margin-bottom: 5px; }
+.story-stat-ctx { font-size: 10.5px; color: var(--text-mt); line-height: 1.45; }
+
+.investment-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; color: var(--text-mt);
+  background: #E4E4D8; padding: 6px 16px; border-radius: 20px; margin-top: 1rem;
+}
+.investment-tag::before { content: '\25C8'; font-size: 10px; color: #C0C0B4; }
+
+/* MINI SECTIONS: pending / prior period, kept apart from the main tracked cases */
+.mini-section { margin-top: 0.85rem; }
+.mini-hdr {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-mt); padding: 0.6rem 0.25rem 0.5rem; display: flex; align-items: center; gap: 8px;
+}
+.mini-hdr::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.mini-hdr.toggleable { cursor: pointer; user-select: none; }
+.mini-hdr.toggleable:hover { color: var(--text-dk); }
+.mini-chevron { font-size: 9px; color: #CCC; transition: transform .2s; flex-shrink: 0; }
+.mini-section.collapsed .mini-chevron { transform: rotate(-90deg); }
+.mini-section.collapsed .mini-wrap { display: none; }
+.mini-wrap {
+  background: #FBFBF6; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden;
+}
+.mini-row { padding: 0.75rem 1.1rem; font-size: 12.5px; color: var(--text-mt); display: flex; gap: 10px; align-items: baseline; border-bottom: 1px solid var(--border); }
+.mini-row:last-child { border-bottom: none; }
+.mini-row b { color: var(--text-dk); min-width: 210px; flex-shrink: 0; font-size: 13px; }
+.mini-badge {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; margin-right: 2px;
+}
+.mini-badge.pending { background: #1A1A1A; color: #B0B098; }
+.mini-badge.resolved { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
+
+/* FOOTER */
+.site-footer {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.25rem 1.75rem; margin-top: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-brand { font-family: var(--serif); font-style: italic; font-size: 14px; color: #777; }
+.footer-brand strong { color: #FFF; font-style: normal; }
+.print-btn {
+  background: rgba(255,255,255,.07); color: #BBB;
+  border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+  padding: 7px 18px; font-size: 12px; font-weight: 700;
+  font-family: var(--font); cursor: pointer; letter-spacing: .04em;
+  transition: background .15s, color .15s;
+}
+.print-btn:hover { background: var(--cream); color: var(--black); }
+
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-stat-group { display: none; }
+}
+@media (max-width: 680px) {
+  .story-stats { grid-template-columns: 1fr 1fr; }
+  .story-tag { display: none; }
+}
+
+.print-header { display: none; }
+.print-hdr-logo { height: 20px; width: auto; display: block; margin-bottom: 12px; }
+.print-hdr-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+.print-hdr-title { font-size: 26px; font-weight: 800; color: #111; line-height: 1; margin-bottom: 5px; }
+.print-hdr-edition { font-size: 12px; font-weight: 700; color: #555; margin-bottom: 14px; }
+.print-hdr-divider { height: 2px; background: linear-gradient(90deg, #111 0%, #DDD 100%); }
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { height: auto !important; overflow: visible !important; background: #FFF !important; }
+  .print-header { display: block !important; padding: 0 0 1.5rem; margin-bottom: 1.5rem; }
+  .site-nav, .hero, .print-btn, .filter-row, .view-tabs { display: none !important; }
+  #view-timeline { display: block !important; }
+  #view-metrics { display: none !important; }
+  .team-section.collapsed .team-body { display: block !important; }
+  .team-toggle { display: none !important; }
+  .mini-section.collapsed .mini-wrap { display: block !important; }
+  .mini-hdr.toggleable { cursor: default !important; }
+  .story-body { display: block !important; }
+  .story-header { padding: 0.9rem 1.25rem !important; flex-wrap: wrap !important; gap: 0.4rem !important; }
+  .story-chevron { display: none !important; }
+  .story-title-text { font-size: 13px !important; }
+  .team-hdr { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .team-hdr-name { color: var(--black) !important; }
+  .team-hdr-eyebrow, .team-hdr-meta { color: var(--text-mt) !important; }
+  .site-footer { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .footer-brand, .footer-brand strong { color: var(--black) !important; }
+  .ceo-note { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .ceo-note p, .ceo-note b { color: #222 !important; }
+  .story-stat { background: #EEE !important; }
+  .story-summary { box-shadow: none !important; border: 1px solid #DDD !important; }
+}
+</style>
+</head>
+<body>
+
+<script>
+const LOGO_URL_DARK = "https://velezreyes.github.io/static-mail/ver%2B/mailing_siganture_ver%2B/images/1_ver_logo.png";
+const LOGO_URL_LIGHT = "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true";
+
+const REPORT = {
+  asOf: "July 15, 2026",
+  kpiPct: "85.7%",
+  kpiFrac: "12 of 14",
+  noDataCount: 8
+};
+
+const TEAMS = [
+  {
+    id: "trackA", name: "Track A: Education Support", color: "#A7B2AA",
+    cases: [
+      {
+        name: "Maria Antonia Robles Vega", country: "Colombia", stage: "Stage 9, Disbursed (corrected)",
+        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        amount: "COP $13.8M", amountFull: "COP $13,847,900 (approx. USD $3,900)",
+        timeline: "Initial contact through her mother, via David (April 2026, exact date unconfirmed). Memo approved by D&M: April 27, 2026. Due diligence sent to R&H Trust: May 20, 2026. Documents signed and transfer confirmed by the beneficiary: June 24, 2026. Ticket closed the same day.",
+        context: "Student from Medellin (25), full scholarship at EAFIT (GPA 4.59/5.0) and a 60% merit scholarship at Monash University. A Lumni loan (COP 60M at 18% annual interest) was blocking her graduation; at the time of the ask, COP 13,847,900 was 120 days past due. She reported working in Australia on an anti bullying program focused on youth mental health (Melbourne/Victoria).",
+        pending: "Lumni proof of settlement and graduation certificate still pending for the file. A one minute video for D&M was requested but not confirmed as received in the material reviewed.",
+        correction: "The tracker still shows this case at Stage 8, Pre-disbursement compliance, with no disbursement date and the note \"Waiting for response from Trust.\" Slack confirms the case has been closed since June 24, 2026. Update tracker to Stage 9 or 10.",
+        source: "Slack #charity-ops (May 20, May 29, June 24, 2026)"
+      },
+      {
+        name: "Estephania Rueda Ramirez", country: "Colombia", stage: "Stage 10, Monitoring",
+        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        amount: "USD $11.6K", amountFull: "USD $11,600",
+        timeline: "Memo shared internally: May 22, 2026. Approved around May 22 to 27, 2026. Due diligence sent to Trust: May 29, 2026. Document signing, with resends due to address and signing date corrections, through June 2026. Disbursement: June 23, 2026. Ticket closed: July 8, 2026.",
+        context: "Colombian economist (Giron, Santander), family displaced by paramilitary violence from Barrancabermeja. PhD in Econometrics at Monash University (top 20 globally), scholarship covering 100% tuition plus a stipend for 4 years. The grant covered entry costs only. Actual use of funds: 100% went to OSHC health cover (AUD $22,199, approx. USD $15,404). The team decided to waive the volunteer hours requirement during the first year of the PhD given academic demands.",
+        pending: "Photo of arrival in Melbourne for a D&M update; periodic academic progress updates.",
+        correction: null,
+        source: "Slack #charity-ops and #ops-ceo (May 21 to 22, May 29, June 9 to 10, June 17 to 19, July 8, 2026)"
+      },
+      {
+        name: "Cristobal & Matias Hoyos Guzman", country: "USA, Northwestern University", stage: "Stage 8, Pre-disbursement compliance",
+        gestionado: "yes", disbursed: false, bucket: "compliance",
+        amount: "USD $20K", amountFull: "USD $20,000 total (USD $10,000 each), Fall 2026, one time",
+        timeline: "Informal approval referenced as early as February 27, 2026 (per Cristina). Memo presented to D&M: June 24, 2026. Final green light from Laura Oller: July 3, 2026. Due diligence started with R&H Trust: July 14, 2026 (documents plus certifier Slendy Avila verified). In process, no disbursement yet as of this report.",
+        context: "Colombian twin brothers at Northwestern University. Cristobal (Industrial Engineering, GPA 3.43/4.0), Matias (Economics, GPA 3.6/4.0). Family business entered Chapter 11 in 2022. Original gap of USD $86,400 reduced to USD $20,000 through a university loan exception, a personal loan from an alumnus (Stuart Bewley), and internship income (Coca-Cola and William Blair). Northwestern does not allow financial aid post-admission for international students.",
+        pending: "Confirm which bank account should receive the disbursement; Northwestern's response to the financial aid exception request, expected mid-summer 2026. This case is very recent, due diligence started only one day before this report, well within a normal window, not stalled.",
+        correction: null,
+        source: "Slack #charity-ops and #ops-ceo (June 24, 26, 30, July 2, 3, 14, 2026)"
+      },
+      {
+        name: "Laura Sofia Castillo Parra", country: "Colombia", stage: "Stage 8, Pre-disbursement compliance",
+        gestionado: "yes", disbursed: false, bucket: "compliance",
+        amount: "USD $3.2K", amountFull: "USD $1,600/semester (55% tuition). Payment requested today: USD $3,200 (2 semesters)",
+        timeline: "Originally approved months earlier, case on hold while she pursued a scholarship at Javeriana (not obtained). Memo resent for signature: May 27, 2026. Final confirmation from D&M: June 2, 2026. Due diligence started: June 17, 2026, special case, she is a minor, so disbursement is made to her father, Carlos Enrique Castillo Riano. Agreements approved and payment requested to Vere: TODAY, July 15, 2026.",
+        context: "Minor student, Dentistry at Universidad Cooperativa de Colombia. High school GPA 91.39/100 (4.57/5.0), ICFES 329/500 (89th percentile). Family contribution: USD $1,316/semester (approx. 45%), her father took a personal loan for the first semester. VR+ covers 55%, above the standard 50%, given the family's effort and the lower cost of Cooperativa versus other options considered.",
+        pending: "This case is one step from closing, payment was requested literally today. Follow up in the next 48 to 72 hours to confirm disbursement.",
+        correction: null,
+        source: "Slack #charity-ops (June 2, 17 to 18, 30, July 15, 2026) and #ops-ceo (May 27 to 29, June 2, 2026)"
+      },
+      {
+        name: "Laura Fernanda Martinez Galindo", country: "Colombia", stage: "Stage 5, Memo drafting",
+        gestionado: "no", disbursed: false, bucket: "not_managed",
+        amount: "COP $14.1M", amountFull: "COP $14,101,500 (50% of tuition, single semester)",
+        timeline: "First contact: April 2, 2026. Meeting: April 15, 2026. Case blocked for lack of backing for the remaining 50% until June 2026. Beca Vamos Pa'Lante denied, under reconsideration: June 8, 2026. Confirmation of backing (donor increases from COP $5M to $10M, plus the Biomedical Engineering Department's fund): July 11, 2026. One minute video received: July 9, 2026. Memo updated and ready: July 15, 2026, still not sent to D&M.",
+        context: "Dual degree, Biomedical Engineering plus Systems and Computer Engineering, Universidad de los Andes, GPA 4.7/5.0. Generacion E scholarship covered 8 of 9 semesters, the ninth, extra due to the dual program, falls outside scope. Parents are informal avocado vendors. Research internship at Purdue with an invitation to a PhD program.",
+        pending: "Missing the original email from Laura needed to send the case for D&M approval, this is the item currently blocking submission. Timing risk: university payment deadline is July 31, 2026. Even if D&M approves immediately, due diligence, signature, and disbursement take additional time, as she was told directly, so there is real risk of missing the deadline. The university offered to temporarily cover the amount with reimbursement afterward, which mitigates the risk. No mentions in Slack #ops-ceo or #charity-ops, this process lived entirely over direct email.",
+        correction: null,
+        source: "Direct emails (April 2 to July 13, 2026); Case Status Report"
+      },
+      {
+        name: "Andres Leonardo Pimentel Alvarez", country: "Colombia", stage: "No-Go (pre-memo)",
+        gestionado: "yes", disbursed: false, bucket: "rejected",
+        amount: "N/A", amountFull: "N/A, No-Go",
+        timeline: "First contact, via Carlos Camilo Prada at Nu Colombia, to Cristina: May 27, 2026. Interview and documents: May 28 to June 10, 2026. Official GPA received: 3.72/5.0 (74.4%, below the 80% minimum). No-Go communicated to the student: June 11, 2026. Formal internal decision and D&M agreement: June 19, 2026. Student appeal, regrading of the Ultimate sports course: June 25, 2026. Final rejection confirmed the same day.",
+        context: "19 years old, homeschooled since age 9, Saber 11 exam 100th percentile, Medicine at Universidad de los Andes. SISBEN B6. Blocked from all public scholarships (SER, Ecopetrol, Atenea, ICETEX) due to his \"validante\" status, meaning a validated rather than attended high school diploma. First semester financed informally (Isabel Rios, approx. COP $20M).",
+        pending: "Reason communicated to the student: GPA below minimum. Secondary considerations, his mother's involvement in the process, evasive answers to questions, unsustainable co-funding, were kept for internal record only, not communicated to the student.",
+        correction: null,
+        source: "Slack #charity-ops and #ops-ceo (May 27, June 9, 19, 2026); direct emails (May 27 to June 25, 2026)"
+      }
+    ],
+    nodata: [
+      { name: "Jose Miguel Cuadros Benavides", note: "No data available yet, pending update with context. Tracker shows Stage 4, Evidence collection, Screening Pending." },
+      { name: "Jessica Geremias de Souza Silva", note: "No data available yet, pending update with context. Tracker shows Rejected by D&M, intake January 15, 2026, no confirmed decision date." },
+      { name: "Gustavo Do Carmo", note: "No data available yet, pending update with context. Tracker shows No-Go (pre-memo), intake January 19, 2026." },
+      { name: "Maria Jose Velasquez (renewal)", note: "No data available yet, pending update with context. Tracker shows disbursement on June 23, 2026." },
+      { name: "Samuel Andres Lamilla Verjan (renewal)", note: "No data available yet, pending update with context. Tracker shows Stage 10, Monitoring, no 2026 disbursement date confirmed." }
+    ],
+    priorPeriod: []
+  },
+  {
+    id: "trackB", name: "Track B: Discretionary Giving", color: "#A7B2AA",
+    cases: [
+      {
+        name: "Sebastian Holguin Villa", country: "Colombia", stage: "Stage 8, Pre-disbursement compliance (blocked)",
+        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true, escalate: true,
+        amount: "USD $8.9K", amountFull: "USD $8,900 (30% of 2026-2027 pre-season costs)",
+        timeline: "Initial meeting: April 28, 2026. David reviews expanding support, a possible NuBank sponsorship, but confirms the original proposal: May 18, 2026. Due diligence started with Trust: June 1, 2026. Trust confirms review in progress: June 18, 2026. Blocked by a trust deed interpretation issue, requires legal advice from Walkers, a Cayman Islands law firm: identified June 30, 2026, still unresolved as of this report.",
+        context: "Elite downhill mountain biker, top 30 worldwide (UCI), Colombian National Champion, Pan American runner up. Base salary USD $15,000/year through his team (MS Racing), often paid late. The grant covers 30% of pre-season costs. Expanding support to USD $55,000, covering the current season too, was evaluated but David chose to keep the original proposal.",
+        pending: "Active blocker, still unresolved. The team told Sebastian the payment is delayed due to an \"internal policy adjustment,\" but it is actually a trust deed interpretation issue requiring outside legal advice (Walkers). This matches the Policy's escalation criteria: if R&H Trust due diligence uncovers a risk issue, pause disbursement and escalate to DoS and CEO. We recommend formally escalating this rather than treating it as a routine delay, it has been open since June 30, 2026.",
+        correction: null,
+        source: "Slack #charity-ops and #ops-ceo (May 21, June 1, 18, 30, 2026)"
+      },
+      {
+        name: "Olimpiadas Matematicas / FONMAT", country: "Uruguay", stage: "Stage 8, Pre-disbursement compliance (blocked)",
+        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        amount: "USD $10K", amountFull: "USD $10,000 (approx. 55% of an USD $18,000 pilot)",
+        timeline: "Memo shared internally: May 21, 2026. David approves, same thread as Sebastian Holguin: May 18, 2026. Due diligence form sent (JotForm) after approval. As of June 28, 2026, documentation is still incomplete on the applicant's side, due diligence not yet submitted to the Trust.",
+        context: "Maximiliano Stock Lorenzo, PhD candidate at Chicago Booth (operations research), Director of the Mathematics Olympiad of Uruguay (30+ years, approx. 30,000 students/year), and President of FONMAT. Funds the \"Com-Partida Matematica del Uruguay\" pilot (June to December 2026, 10 intervention schools plus 10 comparison schools in Montevideo). Maxi is securing the remaining USD $8,000 on his own.",
+        pending: "Blocker is on the beneficiary's side, FONMAT, not the team's. Documentation is still pending before due diligence can be submitted to the Trust.",
+        correction: null,
+        source: "Slack #charity-ops (May 21, 2026) and #ops-ceo (Cris OOO note, June 28, 2026)"
+      },
+      {
+        name: "Redalco", country: "Uruguay", stage: "Stage 8, Pre-disbursement compliance (blocked)",
+        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        amount: "USD $5K", amountFull: "USD $5,000, third and final grant; prior grants: USD $5,000 plus USD $10,000",
+        timeline: "Initial discussion of the amount, inside or outside the Mision Platos campaign: May 21, 2026. Final confirmation from Mariel, USD $5K, outside the campaign, final grant: June 2, 2026. Trust requirements received, ESCF, signatory confirmation, certified IDs, 2026 certificate of existence: June 9, 2026. Follow ups with no response: June 18 and July 8, 2026. No documents received from Redalco as of this report.",
+        context: "Uruguayan NGO (founded 2016), recovers surplus fruit and vegetables from wholesale markets and distributes them to approximately 300 social organizations, reaching 50,000+ people per week. Its main KPI, recovered tonnage, fell 29% since 2022 (2,051 to 1,459 tons) after losing two government contracts. Authorized signatories: Marcelo Javier Sus Drzymalkowski and Mario Gabriel Perez Fernandez.",
+        pending: "Redalco has not submitted the documentation requested by the Trust since June 9, 2026, more than a month without response as of this report. Blocker on the beneficiary's side.",
+        correction: null,
+        source: "Slack #charity-ops (June 2, 9, 18, July 8, 2026) and #ops-ceo (May 21, June 2, 28, 2026)"
+      },
+      {
+        name: "Operacion Todos con Venezuela", country: "Venezuela, disbursed via USA", stage: "Stage 8, in due diligence",
+        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        amount: "USD $50K", amountFull: "USD $50,000",
+        timeline: "Earthquake in Venezuela: June 24, 2026. David requests a donation: Saturday, June 27, 2026. Memo prepared and signed by David: June 29, 2026. Due diligence started with Trust: June 30, 2026. Trust flags a name mismatch between the memo (Human Capital for the World) and the due diligence documents (Alimenta la Solidaridad Inc), corrected: July 2, 2026. Payment request sent to the Trust: July 8, 2026. Still in due diligence, currently blocked because the Trust asked for reissued ID Verification letters.",
+        context: "Funds routed through Alimenta la Solidaridad Inc, a US 501(c)(3) entity in Madison WI, to avoid OFAC and Venezuela restrictions. On the ground execution via the Miranda Center for Democracy and PYMART. This same process led to the legitimacy review that also approved Hogar Bambi. David and Mariel considered splitting the original amount across several organizations, CADENA, IsraAID, Hogar Bambi, and Friends of Yahad, and ultimately prioritized Hogar Bambi and CADENA, with no response from CADENA as of this report.",
+        pending: "Still in due diligence, blocked on reissuing ID Verification letters.",
+        correction: "The tracker records the D&M decision date as June 26, 2026, before the recorded intake date of June 29, 2026. Slack indicates David's actual signature was June 29, 2026, which resolves the inconsistency. Recommend updating the tracker's D&M Decision Date to June 29, 2026.",
+        source: "Slack #charity-ops (June 30, July 8, 2026) and #ops-ceo (June 29, 2026, two threads)"
+      },
+      {
+        name: "Gael Mathias Puentes Posada", country: "Colombia / USA", stage: "Stage 4, Evidence collection",
+        gestionado: "no", disbursed: false, bucket: "not_managed",
+        amount: "TBD", amountFull: "No ask defined yet, target treatment approx. USD $2.1M, VR+ is evaluating only specific medical equipment",
+        timeline: "First contact, forwarded story: April 21, 2026. Initial meeting: April 24, 2026. Family sent full medical documentation: April 28, 2026. Follow up on medical equipment, Cough Assist and BiPAP: May 7 and May 21, 2026. Family reports a housing crisis and asks for initial economic help: June 16, 2026. Last response from the team: June 22, 2026, clarifying that only the medical equipment is being evaluated, not general financial assistance.",
+        context: "Child with Type 1 Spinal Muscular Atrophy, diagnosed at 10 months. Case opened due to David's interest, referred by Hugo Moreno, who asked to keep a low profile. Target treatment: Zolgensma, approx. USD $2.1M, with a critical window before 24 months of age. In practice, the case has narrowed to evaluating two specific pieces of medical equipment, not the full treatment.",
+        pending: "This case is actively being worked, but is waiting on the family for a final response on equipment specifications before a memo can be built, which is why it does not count as gestionado yet. Verification of Gael's age against the 24 month window is still unconfirmed in any source reviewed, this is the most urgent open item, flagged as critical since April and still open. The family reported on June 16, 2026 that they were about to lose their housing in the US, there is no record of an immediate assistance response beyond the medical equipment scope.",
+        correction: null,
+        source: "Direct emails (April 21 to June 22, 2026); Case Status Report; Informe de Casos"
+      },
+      {
+        name: "Hogar Bambi", country: "Venezuela, disbursed via USA", stage: "Stage 8, approved, in due diligence",
+        gestionado: "yes", disbursed: false, bucket: "compliance",
+        amount: "USD $25K", amountFull: "USD $25,000",
+        timeline: "Legitimacy review completed, as part of the Venezuela organizations analysis: June 29, 2026. Formal request opened, email to Cristina Medici, Fundraising Director: July 6, 2026. Memo shared for review: July 6, 2026. D&M approval, Mariel had suggested USD $25K: July 13, 2026. Memo pending signature, currently moving into due diligence.",
+        context: "Venezuelan NGO with 30 years of uninterrupted operation, founded 1992 in Caracas, 5 residential homes, approximately 120 children cared for at a time. Responding to the June 24, 2026 earthquake emergency with 5 active lines of action: shelter, socio-legal team, psychological support, coordination with partners, and donor management. Disbursement via Bambi International Foundation, a US entity in Weston FL, to avoid OFAC restrictions.",
+        pending: null,
+        correction: "The tracker still shows this case at Stage 6, Internal review, with Screening Decision Pending. Slack confirms approval on July 13, 2026, and that the case is already moving into due diligence. Update tracker.",
+        source: "Slack #ops-ceo (June 29, July 6, 13, 2026); direct email (July 6, 2026)"
+      },
+      {
+        name: "Novica", country: "USA / Global", stage: "Stage 8, approved, in due diligence",
+        gestionado: "yes", disbursed: false, bucket: "compliance",
+        amount: "USD $30K", amountFull: "USD $30,000, not confirmed in the tracker",
+        timeline: "Mariel approves, it is her cousin's business: July 6, 2026. Memo shared for internal review: July 7, 2026. Due diligence started with Roberto Milk, co founder and CEO: July 7, 2026. Documents received, adjustments requested: July 14, 2026. Memo signed by D&M: confirmed July 16, 2026, exact signature date not specified. Case now moving into due diligence.",
+        context: "Artisan marketplace platform, NOVICA.com, Handmade.com, UnicefMarket.org, 75,000+ artisans supported, USD $142M+ channeled historically. Conflict of interest disclosed: relationship with an advisory committee member, by team decision, not documented in the memo.",
+        pending: "Approval, memo, and signature all happened within Q2 2026, so the case counts toward this semester's KPI. The USD $30,000 amount appears in Slack and reports but is not recorded in the tracker, verify before reporting it externally.",
+        correction: null,
+        source: "Slack #ops-ceo (July 6, 7, 13, 2026); direct emails (July 7 to 14, 2026); update July 16, 2026"
+      },
+      {
+        name: "Fundacion Sophia (6 students, 2026-2030 renewal)", country: "Uruguay", stage: "Disbursed, 2026 cycle",
+        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        amount: "USD $6.6K", amountFull: "USD $6,600 (6 x USD $1,100) of a total USD $46,200 commitment (2024-2030)",
+        timeline: "Renewal request: May 27, 2026. 2026 due diligence started: May 28, 2026. Bank information confirmed: June 10, 2026. ESCF adjustments: June 19 to 23, 2026. Due diligence completed, sent to payments (Vere): July 3, 2026. Receipt letter signed by the beneficiary: July 9, 2026.",
+        context: "Uruguayan NGO, 29 Catholic schools, 5,000+ students. The \"Construi Oportunidades\" program covers full tuition for 6 students at Colegio y Liceo Ntra. Sra. del Perpetuo Socorro (Montevideo). Relationship active since 2024, VR+ already honored the 2024 and 2025 payments (USD $13,200 accumulated).",
+        pending: "Structural finding: this entire case cycle, recommendation, decision, due diligence, disbursement, all between May and July 2026, has no row of its own in the tracker's Cases sheet, it only appears as 6 individual beneficiaries in Monitoring. This suggests annual renewals of active relationships do not generate a new Case ID, so the tracker likely undercounts the real volume of cases managed in the semester. Recommend creating a Case ID row for every renewal cycle, even if recurring.",
+        correction: null,
+        source: "Slack #charity-ops (May 27, June 17 to 19, 23, 30, July 13, 2026) and #ops-ceo (June 28, 2026)"
+      }
+    ],
+    nodata: [
+      { name: "Proyecto Medellin", note: "No data available yet, pending update with context. Tracker shows no stage assigned, Screening Pending, Grant Tuition % set at 50% with no further progress." },
+      { name: "Magdalena Guille Mauricio", note: "No data available yet, pending update with context. Tracker note: \"Exceptional case,\" no further context available." },
+      { name: "Apontar", note: "No data available yet, pending update with context. Cases sheet has no disbursement date, but Monitoring lists it as an active beneficiary with USD $50,000 committed, a tracker sync gap." }
+    ],
+    priorPeriod: [
+      { name: "Ruralia", note: "Peru. Disbursed October 2025, resolved before the Q1 to Q2 2026 window through the same process. Kept here for continuity, not counted in the KPI above." },
+      { name: "Peluffo", note: "Uruguay. Disbursed October 2025, resolved before the Q1 to Q2 2026 window through the same process. Kept here for continuity, not counted in the KPI above." }
+    ]
+  }
+];
+
+function gestTagClass(g) {
+  if (g === "yes") return "gestionado-yes";
+  if (g === "no") return "gestionado-no";
+  return "gestionado-nodata";
+}
+function gestTagLabel(g) {
+  if (g === "yes") return "Managed";
+  if (g === "no") return "Not Managed";
+  return "No data";
+}
+
+function buildCaseHTML(team, c, i) {
+  const summaryParts = [
+    `<p><b>Timeline.</b> ${c.timeline}</p>`,
+    `<p><b>Context.</b> ${c.context}</p>`,
+    c.pending ? `<p class="flag"><b>Pending / open item.</b> ${c.pending}</p>` : "",
+    c.correction ? `<p class="correction"><b>Correction vs. tracker.</b> ${c.correction}</p>` : ""
+  ].join("");
+
+  const statsHTML = `<div class="story-stats">
+    <div class="story-stat"><div class="story-stat-n" style="color:${team.color}">${c.stage.split(",")[0]}</div><div class="story-stat-l">Tracker Stage</div><div class="story-stat-ctx">${c.stage}</div></div>
+    <div class="story-stat"><div class="story-stat-n" style="color:${c.gestionado === 'yes' ? '#1A8050' : (c.gestionado === 'no' ? '#A3312B' : '#999')}">${gestTagLabel(c.gestionado)}</div><div class="story-stat-l">Status</div><div class="story-stat-ctx">Team recommendation reached a D&M decision and is moving forward</div></div>
+    <div class="story-stat"><div class="story-stat-n" style="color:${team.color}">${c.amount}</div><div class="story-stat-l">Amount</div><div class="story-stat-ctx">${c.amountFull}</div></div>
+  </div>`;
+
+  const sourceHTML = `<div class="investment-tag">Source: ${c.source}</div>`;
+
+  return `
+    <div class="story-item" id="${team.id}-${i}">
+      <div class="story-header" onclick="document.getElementById('${team.id}-${i}').classList.toggle('open')">
+        <span class="story-num">${String(i+1).padStart(2,'0')}</span>
+        <span class="story-title-text">${c.name}<span class="country">${c.country || ""}</span></span>
+        <span class="story-tag ${gestTagClass(c.gestionado)}">${gestTagLabel(c.gestionado)}</span>
+        <span class="story-pill" style="background:${team.color}22;color:${team.color === '#A7B2AA' ? '#5B6660' : team.color};border:1px solid ${team.color}55;">${c.stage}</span>
+        <span class="story-chevron">&#9660;</span>
+      </div>
+      <div class="story-body">
+        <div class="story-summary"><span class="story-summary-label" style="color:${team.color === '#A7B2AA' ? '#5B6660' : team.color}">Case Detail</span>${summaryParts}</div>
+        ${statsHTML}
+        ${sourceHTML}
+      </div>
+    </div>`;
+}
+
+function buildMiniHTML(item, kind) {
+  const badge = kind === 'pending'
+    ? `<span class="mini-badge pending">Pending</span>`
+    : `<span class="mini-badge resolved">Resolved</span>`;
+  return `<div class="mini-row">${badge}<b>${item.name}</b><span>${item.note}</span></div>`;
+}
+
+function renderTeams() {
+  document.getElementById('team-sections').innerHTML = TEAMS.map(team => {
+    const casesHTML = team.cases.map((c, i) => buildCaseHTML(team, c, i)).join("");
+    const priorHTML = (team.priorPeriod || []).map(n => buildMiniHTML(n, 'resolved')).join("");
+    const nodataHTML = team.nodata.map(n => buildMiniHTML(n, 'pending')).join("");
+    const priorSection = priorHTML ? `
+        <div class="mini-section" data-default="open">
+          <div class="mini-hdr">Prior period, already resolved elsewhere</div>
+          <div class="mini-wrap">${priorHTML}</div>
+        </div>` : "";
+    const nodataSection = nodataHTML ? `
+        <div class="mini-section collapsed" id="${team.id}-nodata" data-default="collapsed">
+          <div class="mini-hdr toggleable" onclick="toggleMini('${team.id}-nodata')">
+            Pending update, no data yet (${team.nodata.length})
+            <span class="mini-chevron">&#9660;</span>
+          </div>
+          <div class="mini-wrap">${nodataHTML}</div>
+        </div>` : "";
+    return `
+      <div class="team-section" data-team="${team.id}">
+        <div class="team-hdr" style="position:relative;overflow:hidden;">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${team.color};border-radius:var(--radius) 0 0 var(--radius);"></div>
+          <div class="team-hdr-top">
+            <div>
+              <div class="team-hdr-eyebrow">VER+ Charity</div>
+              <div class="team-hdr-name">${team.name}</div>
+              <div class="team-hdr-meta">${team.cases.length} case${team.cases.length === 1 ? '' : 's'} with context &middot; ${team.nodata.length} pending update &middot; ${(team.priorPeriod || []).length} prior period</div>
+            </div>
+            <button class="team-toggle" onclick="toggleTrack('${team.id}')" aria-label="Collapse track">&#9660;</button>
+          </div>
+        </div>
+        <div class="team-body">
+          <div class="stories-wrap">${casesHTML}</div>
+          ${priorSection}
+          ${nodataSection}
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function toggleTrack(id) {
+  const sec = document.querySelector(`.team-section[data-team="${id}"]`);
+  if (sec) sec.classList.toggle('collapsed');
+}
+
+function toggleMini(id) {
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.toggle('collapsed');
+}
+
+function renderNav() { document.getElementById('site-logo').src = LOGO_URL_LIGHT; }
+
+function renderHero() {
+  document.getElementById('hero-stats').innerHTML = `
+    <div class="hero-stat"><span class="hero-stat-n">${REPORT.kpiPct}</span><div class="hero-stat-l">Managed</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${REPORT.kpiFrac}</span><div class="hero-stat-l">Cases w/ context</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${REPORT.noDataCount}</span><div class="hero-stat-l">Pending update</div></div>
+  `;
+}
+
+function filterTrack(track) {
+  document.querySelectorAll('.ef-btn').forEach(b => b.classList.toggle('active', b.dataset.track === track));
+  document.querySelectorAll('.team-section').forEach(sec => {
+    sec.style.display = (track === 'all' || sec.dataset.team === track) ? '' : 'none';
+  });
+}
+
+function searchCases(q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('.story-item').forEach(item => {
+    const name = item.querySelector('.story-title-text')?.textContent.toLowerCase() || "";
+    item.style.display = name.includes(q) ? "" : "none";
+  });
+  document.querySelectorAll('.mini-section').forEach(sec => {
+    let hasMatch = false;
+    sec.querySelectorAll('.mini-row').forEach(row => {
+      const name = row.querySelector('b')?.textContent.toLowerCase() || "";
+      const match = name.includes(q);
+      row.style.display = match ? "" : "none";
+      if (match) hasMatch = true;
+    });
+    if (q === "") { sec.classList.toggle('collapsed', sec.dataset.default === 'collapsed'); }
+    else if (hasMatch) { sec.classList.remove('collapsed'); }
+  });
+}
+
+function toggleLegend(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function switchView(view) {
+  document.querySelectorAll('.view-tab').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+  document.getElementById('view-timeline').style.display = view === 'timeline' ? '' : 'none';
+  document.getElementById('view-metrics').style.display = view === 'metrics' ? '' : 'none';
+}
+
+function renderMetrics() {
+  const allCases = TEAMS.flatMap(t => t.cases.map(c => Object.assign({}, c, { teamId: t.id, teamName: t.name, teamColor: t.color })));
+  const total = allCases.length;
+  const managed = allCases.filter(c => c.gestionado === 'yes').length;
+  const rejectedCount = allCases.filter(c => c.bucket === 'rejected').length;
+  const disbursedCount = allCases.filter(c => c.disbursed).length;
+  const approvedTrack = managed - rejectedCount;
+  const blockedCount = allCases.filter(c => c.blocked).length;
+  const escalateCases = allCases.filter(c => c.escalate);
+  const totalNoData = TEAMS.reduce((s, t) => s + t.nodata.length, 0);
+  const totalPrior = TEAMS.reduce((s, t) => s + (t.priorPeriod || []).length, 0);
+
+  const bucketDefs = [
+    { key: 'disbursed', label: 'Disbursed', color: '#27CF77' },
+    { key: 'pending_signature', label: 'Approved, pending signature', color: '#E3C400' },
+    { key: 'compliance', label: 'Approved, in compliance or due diligence', color: '#A7B2AA' },
+    { key: 'not_managed', label: 'Not yet managed', color: '#D69A3B' },
+    { key: 'rejected', label: 'Rejected (No-Go)', color: '#C65B4E' }
+  ].map(b => Object.assign({}, b, { count: allCases.filter(c => c.bucket === b.key).length }));
+
+  let acc = 0;
+  const stops = bucketDefs.filter(b => b.count > 0).map(b => {
+    const start = (acc / total * 100).toFixed(2);
+    acc += b.count;
+    const end = (acc / total * 100).toFixed(2);
+    return `${b.color} ${start}% ${end}%`;
+  }).join(', ');
+
+  const legendHTML = bucketDefs.filter(b => b.count > 0).map(b => {
+    const id = `bucket-${b.key}`;
+    const cases = allCases.filter(c => c.bucket === b.key);
+    const casesHTML = cases.map(c =>
+      `<div class="legend-case-row"><span>${c.name}</span><span class="legend-case-track">${c.teamId === 'trackA' ? 'Track A' : 'Track B'}</span></div>`
+    ).join('');
+    return `
+      <div class="legend-item" id="${id}">
+        <div class="legend-row toggleable" onclick="toggleLegend('${id}')">
+          <span class="legend-dot" style="background:${b.color}"></span>${b.label}<span class="legend-n">${b.count}</span><span class="legend-chevron">&#9660;</span>
+        </div>
+        <div class="legend-cases">${casesHTML}</div>
+      </div>`;
+  }).join('');
+
+  const rateApproved = approvedTrack ? (disbursedCount / approvedTrack * 100).toFixed(1) : '0.0';
+  const rateManaged = managed ? (disbursedCount / managed * 100).toFixed(1) : '0.0';
+
+  const trackBarsHTML = TEAMS.map(t => {
+    const tCases = t.cases;
+    const tManaged = tCases.filter(c => c.gestionado === 'yes').length;
+    const tDisbursed = tCases.filter(c => c.disbursed).length;
+    const wManaged = tCases.length ? (tManaged / tCases.length * 100) : 0;
+    return `
+      <div>
+        <div class="bar-row-label"><span>${t.name.split(':')[0]}</span><span>${tCases.length} cases</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:${wManaged}%;background:${t.color === '#A7B2AA' ? '#7C8880' : t.color};"></div>
+          <div class="bar-seg" style="width:${100 - wManaged}%;background:var(--cream);"></div>
+        </div>
+        <div class="metrics-note">${tManaged} managed, ${tDisbursed} disbursed, of ${tCases.length} tracked</div>
+      </div>`;
+  }).join('');
+
+  const escalateHTML = escalateCases.map(c =>
+    `<div class="highlight-item"><span class="highlight-dot bad"></span><b>${c.name}</b>: escalation needed per Policy, R&amp;H Trust due diligence uncovered a risk issue, pause disbursement and escalate to DoS and CEO.</div>`
+  ).join('');
+
+  const blockedOtherHTML = allCases.filter(c => c.blocked && !c.escalate).map(c =>
+    `<div class="highlight-item"><span class="highlight-dot warn"></span><b>${c.name}</b>: blocked on a third party, Trust review or missing documents, not a team delay.</div>`
+  ).join('');
+
+  document.getElementById('view-metrics').innerHTML = `
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#1A8050">${REPORT.kpiPct}</div>
+        <div class="metric-card-l">Managed</div>
+        <div class="metric-card-ctx">${managed} of ${total} tracked cases reached a D&amp;M decision and are moving forward. No-data and prior-period cases are kept apart and not counted here.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#27CF77">${rateApproved}%</div>
+        <div class="metric-card-l">Disbursement rate</div>
+        <div class="metric-card-ctx">${disbursedCount} of ${approvedTrack} cases on an active funding track have actually disbursed funds. Rejected cases are excluded from this denominator. Against all ${managed} managed cases, the rate is ${rateManaged}%.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#D69A3B">${blockedCount}</div>
+        <div class="metric-card-l">Blocked cases</div>
+        <div class="metric-card-ctx">Currently stalled on a third party, Trust review, missing documents, or a legal opinion. ${escalateCases.length} flagged for formal CEO escalation per Policy.</div>
+      </div>
+    </div>
+
+    <div class="metrics-panels">
+      <div class="panel">
+        <div class="panel-title">Case funnel</div>
+        <div class="donut-block">
+          <div class="donut-hole" style="background: conic-gradient(${stops});">
+            <div class="donut-center"><div class="donut-center-n">${total}</div><div class="donut-center-l">Tracked</div></div>
+          </div>
+          <div class="donut-legend">${legendHTML}</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Track A vs Track B</div>
+        <div class="bar-block">${trackBarsHTML}</div>
+        <div class="metrics-note">Bar shows the share of managed cases within each track.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Data coverage and flags</div>
+      <div class="highlight-list">
+        <div class="highlight-item"><b>${total}</b> cases tracked with full context, counted in the KPI above.</div>
+        <div class="highlight-item"><b>${totalNoData}</b> cases pending update, no context yet, kept apart and excluded from the KPI.</div>
+        <div class="highlight-item"><b>${totalPrior}</b> prior period cases, already resolved through an earlier cycle, kept for continuity only, excluded from the KPI.</div>
+        ${escalateHTML}
+        ${blockedOtherHTML}
+      </div>
+    </div>
+  `;
+}
+
+function exportPDF() {
+  const ph = document.getElementById('print-header');
+  ph.innerHTML = `
+    <img class="print-hdr-logo" src="${LOGO_URL_DARK}" alt="VelezReyes+">
+    <div class="print-hdr-eyebrow">VelezReyes+ &middot; Charity Report</div>
+    <div class="print-hdr-title">VER+ Charity &middot; Q2 2026 Case Report</div>
+    <div class="print-hdr-edition">As of ${REPORT.asOf}</div>
+    <div class="print-hdr-divider"></div>`;
+  document.querySelectorAll('.story-item').forEach(item => {
+    if (item.style.display !== 'none') item.querySelector('.story-body').style.display = 'block';
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const totalMm = Math.ceil(document.documentElement.scrollHeight * 0.2646) + 20;
+    const tag = document.createElement('style');
+    tag.id = '__print_page_size__';
+    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 15mm 18mm; }`;
+    document.head.appendChild(tag);
+    window.print();
+    setTimeout(() => {
+      ph.innerHTML = '';
+      const el = document.getElementById('__print_page_size__');
+      if (el) el.remove();
+      document.querySelectorAll('.story-item:not(.open) .story-body').forEach(b => b.style.display = '');
+    }, 1500);
+  }));
+}
+</script>
+
+<div class="print-header" id="print-header"></div>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="#" class="site-logo-link">
+      <img class="site-logo" id="site-logo" src="" alt="VelezReyes+">
+    </a>
+    <div class="nav-wordmark">VER+ <span>Charity</span></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">VelezReyes+ &middot; Charity Report</div>
+      <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Charity</span></h1>
+      <p class="hero-sub">Case-by-case timeline for Track A and Track B, Q2 2026, as of July 15, 2026.</p>
+    </div>
+    <div class="hero-stat-group" id="hero-stats"></div>
+  </div>
+</section>
+
+<div class="page-body">
+
+  <div class="view-tabs">
+    <button class="view-tab active" data-view="timeline" onclick="switchView('timeline')">Case Timeline</button>
+    <button class="view-tab" data-view="metrics" onclick="switchView('metrics')">Metrics</button>
+  </div>
+
+  <div id="view-timeline">
+
+    <div class="ceo-note">
+      <div class="ceo-note-label">Methodology</div>
+      <p><b>Managed</b> means the team's recommendation work reached a D&amp;M decision, approved, resolved by disbursement, or resolved by rejection, and the case is actively moving forward, even if it is currently blocked somewhere in downstream compliance execution such as Trust review, ID verification, or missing documents from a third party.</p>
+      <p><b>Not managed</b> means the team itself has not yet been able to finish its own evaluation or submission work because something is still pending before a decision can even be requested. Laura Fernanda Martinez is missing the original email needed to send her case for D&amp;M approval. Gael Puentes is still waiting on a final response from the family before a memo can be built.</p>
+      <p>Cases with no supporting documentation in this round are marked <b>No data</b> and kept apart in a separate list, excluded from the percentage rather than assumed either way. Prior period cases already resolved through an earlier cycle are also kept apart, for continuity only. Result: <b>12 of 14 cases with real context are managed, 85.7%.</b></p>
+    </div>
+
+    <div class="filter-row">
+      <span class="ef-label">Track</span>
+      <div class="edition-filter">
+        <button class="ef-btn active" data-track="all" onclick="filterTrack('all')">All</button>
+        <button class="ef-btn" data-track="trackA" onclick="filterTrack('trackA')">Track A</button>
+        <button class="ef-btn" data-track="trackB" onclick="filterTrack('trackB')">Track B</button>
+      </div>
+      <input class="search-box" type="text" placeholder="Search by name..." oninput="searchCases(this.value)">
+    </div>
+
+    <div id="team-sections"></div>
+
+  </div>
+
+  <div id="view-metrics" style="display:none;"></div>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><strong>VelezReyes+</strong> &middot; VER+ Charity &middot; As of ${new Date().toDateString()}</div>
+    <button class="print-btn" onclick="exportPDF()">&#8595; Export PDF</button>
+  </footer>
+</div>
+
+<script>
+renderNav();
+renderHero();
+renderTeams();
+renderMetrics();
+</script>
+</body>
+</html>
