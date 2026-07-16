@@ -138,7 +138,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .kr-card.open .kr-chevron{transform:rotate(180deg);}
 .kr-card-hdr{display:flex;align-items:center;gap:.55rem;padding:.7rem .85rem;}
 .kr-code{font-size:.58rem;font-weight:800;letter-spacing:.07em;padding:3px 7px;border-radius:4px;flex-shrink:0;}
-.kr-name{font-size:.7rem;font-weight:700;color:var(--text);flex:1;line-height:1.3;}
+.kr-name{font-size:.76rem;font-weight:700;color:var(--text);flex:1;line-height:1.3;}
 .kr-bar-wrap{width:52px;height:4px;background:var(--bg3);border-radius:3px;overflow:hidden;flex-shrink:0;}
 .kr-bar-fill{height:100%;border-radius:3px;}
 .kr-pct{font-size:.72rem;font-weight:800;min-width:28px;text-align:right;flex-shrink:0;}
@@ -154,7 +154,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   background:var(--bg3);border-radius:5px;margin-bottom:.2rem;}
 .aligned-team{font-size:.58rem;font-weight:800;min-width:30px;letter-spacing:.04em;}
 .aligned-kcode{font-size:.6rem;font-weight:700;color:var(--muted);min-width:38px;}
-.aligned-name{font-size:.62rem;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.aligned-name{font-size:.66rem;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .aligned-pct{font-size:.65rem;font-weight:800;min-width:28px;text-align:right;}
 
 /* Task lists (KR1.1 style) */
@@ -162,14 +162,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   background:var(--bg3);border-radius:5px;margin-bottom:.2rem;}
 .task-icon{font-size:.7rem;flex-shrink:0;margin-top:.05rem;line-height:1.4;}
 .task-content{flex:1}
-.task-name{font-size:.63rem;font-weight:600;color:var(--text);line-height:1.4;display:block;}
-.task-note{font-size:.58rem;color:var(--muted);line-height:1.4;margin-top:.15rem;display:block;font-style:italic;}
+.task-name{font-size:.67rem;font-weight:600;color:var(--text);line-height:1.4;display:block;}
+.task-note{font-size:.62rem;color:var(--muted);line-height:1.4;margin-top:.15rem;display:block;font-style:italic;}
 .task-done .task-icon{color:#1BAA60;}
 .task-deprio .task-icon{color:var(--muted2);}
 .task-deprio .task-name{color:var(--muted);text-decoration:line-through;}
 
 /* Recent activity */
-.recent-item{font-size:.63rem;color:var(--muted);line-height:1.5;display:flex;gap:.4rem;margin-bottom:.2rem;}
+.recent-item{font-size:.67rem;color:var(--muted);line-height:1.5;display:flex;gap:.4rem;margin-bottom:.2rem;}
 .recent-item::before{content:'↳';color:var(--muted2);flex-shrink:0}
 .recent-completed{color:#1BAA60;}
 .recent-completed::before{content:'✓';color:#1BAA60}
@@ -743,11 +743,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
         <span class="kr-chevron">▼</span>
       </div>
       <div class="kr-body">
-        <div class="sub-label">Context</div>
-        <div class="recent-item">No aligned KRs registered yet — pending staff survey / all-hands alignment</div>
-        <div class="recent-item">All-hands meeting moved to in-progress (June)</div>
-        <div class="recent-item">Internal Communication Plan developed at offsite — implementation in progress</div>
-        <div class="recent-item">Sao Paulo offsite in progress as enabler for strategy clarity</div>
+        <div class="sub-label">Definition</div>
+        <div class="recent-item" style="color:var(--text);font-style:italic;">In the 2026 staff survey, achieve ≥80% positive responses on: understanding the strategy, clarity of priorities, how my work connects to VR+'s strategy, and seeing in ver+ an opportunity for growth.</div>
       </div>
     </div>
 
