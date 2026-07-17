@@ -575,7 +575,6 @@ function buildCaseHTML(team, c, i) {
   const summaryParts = [
     `<p><b>Timeline.</b> ${c.timeline}</p>`,
     `<p><b>Context.</b> ${c.context}</p>`,
-    c.pending ? `<p class="flag"><b>Pending / open item.</b> ${c.pending}</p>` : "",
     c.correction ? `<p class="correction"><b>Correction vs. tracker.</b> ${c.correction}</p>` : ""
   ].join("");
 
@@ -663,11 +662,35 @@ function toggleMini(id) {
 
 function renderNav() { document.getElementById('site-logo').src = LOGO_URL_LIGHT; }
 
+function computeCaseStats() {
+  const allCases = TEAMS.flatMap(t => t.cases.map(c => Object.assign({}, c, { teamId: t.id, teamName: t.name, teamColor: t.color })));
+  const total = allCases.length;
+  const managedCases = allCases.filter(c => c.gestionado === 'yes');
+  const rejectedCases = allCases.filter(c => c.bucket === 'rejected');
+  const pipelineCases = allCases.filter(c => c.gestionado === 'no');
+  const disbursedCount = allCases.filter(c => c.disbursed).length;
+  const approvedTrack = managedCases.length - rejectedCases.length;
+  const blockedCount = allCases.filter(c => c.blocked).length;
+  const escalateCases = allCases.filter(c => c.escalate);
+  const totalNoData = TEAMS.reduce((s, t) => s + t.nodata.length, 0);
+  const totalPrior = TEAMS.reduce((s, t) => s + (t.priorPeriod || []).length, 0);
+  const pct = (n, d) => d ? (n / d * 100).toFixed(1) : '0.0';
+  return {
+    allCases, total, managedCases, rejectedCases, pipelineCases, disbursedCount, approvedTrack, blockedCount, escalateCases, totalNoData, totalPrior,
+    pipelinePct: total ? '100' : '0',
+    approvedPct: pct(managedCases.length, total),
+    noGoPct: pct(rejectedCases.length, total),
+    disbursementRateApproved: pct(disbursedCount, approvedTrack),
+    disbursementRateManaged: pct(disbursedCount, managedCases.length)
+  };
+}
+
 function renderHero() {
+  const s = computeCaseStats();
   document.getElementById('hero-stats').innerHTML = `
-    <div class="hero-stat"><span class="hero-stat-n">${REPORT.kpiPct}</span><div class="hero-stat-l">Managed</div></div>
-    <div class="hero-stat"><span class="hero-stat-n">${REPORT.kpiFrac}</span><div class="hero-stat-l">Cases w/ context</div></div>
-    <div class="hero-stat"><span class="hero-stat-n">${REPORT.noDataCount}</span><div class="hero-stat-l">Pending update</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${s.pipelinePct}%</span><div class="hero-stat-l">Pipeline</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${s.approvedPct}%</span><div class="hero-stat-l">Presented &amp; approved</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${s.noGoPct}%</span><div class="hero-stat-l">No-Gos</div></div>
   `;
 }
 
@@ -709,16 +732,16 @@ function switchView(view) {
 }
 
 function renderMetrics() {
-  const allCases = TEAMS.flatMap(t => t.cases.map(c => Object.assign({}, c, { teamId: t.id, teamName: t.name, teamColor: t.color })));
-  const total = allCases.length;
-  const managed = allCases.filter(c => c.gestionado === 'yes').length;
-  const rejectedCount = allCases.filter(c => c.bucket === 'rejected').length;
-  const disbursedCount = allCases.filter(c => c.disbursed).length;
-  const approvedTrack = managed - rejectedCount;
-  const blockedCount = allCases.filter(c => c.blocked).length;
-  const escalateCases = allCases.filter(c => c.escalate);
-  const totalNoData = TEAMS.reduce((s, t) => s + t.nodata.length, 0);
-  const totalPrior = TEAMS.reduce((s, t) => s + (t.priorPeriod || []).length, 0);
+  const s = computeCaseStats();
+  const { allCases, total, blockedCount, escalateCases, totalNoData, totalPrior } = s;
+  const managed = s.managedCases.length;
+  const approvedTrack = s.approvedTrack;
+  const disbursedCount = s.disbursedCount;
+  const rejectedCases = s.rejectedCases;
+  const pipelinePct = s.pipelinePct;
+  const approvedPct = s.approvedPct;
+  const noGoPct = s.noGoPct;
+  const nameList = arr => arr.map(c => c.name).join(', ');
 
   const bucketDefs = [
     { key: 'disbursed', label: 'Disbursed', color: '#27CF77' },
@@ -751,8 +774,8 @@ function renderMetrics() {
       </div>`;
   }).join('');
 
-  const rateApproved = approvedTrack ? (disbursedCount / approvedTrack * 100).toFixed(1) : '0.0';
-  const rateManaged = managed ? (disbursedCount / managed * 100).toFixed(1) : '0.0';
+  const rateApproved = s.disbursementRateApproved;
+  const rateManaged = s.disbursementRateManaged;
 
   const trackBarsHTML = TEAMS.map(t => {
     const tCases = t.cases;
@@ -794,6 +817,25 @@ function renderMetrics() {
         <div class="metric-card-n" style="color:#D69A3B">${blockedCount}</div>
         <div class="metric-card-l">Blocked cases</div>
         <div class="metric-card-ctx">Currently stalled on a third party, Trust review, missing documents, or a legal opinion. ${escalateCases.length} flagged for formal CEO escalation per Policy.</div>
+      </div>
+    </div>
+
+    <div class="panel-title" style="margin: 0 0 1rem;">Pipeline classification (proposed)</div>
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#7C8880">${pipelinePct}%</div>
+        <div class="metric-card-l">Pipeline</div>
+        <div class="metric-card-ctx">${total} of ${total} tracked cases entered active team management. This is the full pipeline covered by this report, everything the team touched and worked in Q1 to Q2 2026.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#1A8050">${approvedPct}%</div>
+        <div class="metric-card-l">Presented and approved</div>
+        <div class="metric-card-ctx">${managed} of ${total} cases were presented to D&amp;M and reached a decision, approved and signed or formally rejected. Same figure as the Managed KPI above.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card-n" style="color:#C65B4E">${noGoPct}%</div>
+        <div class="metric-card-l">No-Gos</div>
+        <div class="metric-card-ctx">${rejectedCases.length} of ${total} cases, ${nameList(rejectedCases)}. Presented internally and formally rejected. Already included within the 85.7% presented and approved above, called out here for visibility.</div>
       </div>
     </div>
 
