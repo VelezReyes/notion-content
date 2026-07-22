@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VER+ Huellas · Open Call Builder</title>
+<title>VER+ Huellas · Announcement Builder</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/huellas%2Bfavicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,12 +30,12 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--font); background: var(--cream); color: var(--text-dk); min-height: 100vh; }
 
-/* ─── NAV ── */
+/* ─── NAV ───────────────────────────────────────────── */
 .site-nav {
   height: 58px; background: var(--black);
   padding: 0 clamp(1.25rem, 5vw, 3.5rem);
   display: flex; align-items: center; justify-content: space-between;
-  position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #111;
+  border-bottom: 1px solid #111; position: sticky; top: 0; z-index: 100;
 }
 .nav-brand { font-family: var(--serif); font-size: 14px; font-style: italic; color: #555; }
 .nav-brand span { color: var(--yellow); }
@@ -44,51 +44,31 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
   color: var(--black); background: var(--yellow); padding: 4px 12px; border-radius: 20px;
 }
 
-/* ─── PAGE ── */
-.page { max-width: 960px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 3rem) 5rem; }
-.page-title { font-family: var(--serif); font-size: clamp(22px, 3.5vw, 32px); margin-bottom: 0.3rem; }
+/* ─── PAGE LAYOUT ────────────────────────────────────── */
+.page { max-width: 900px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 3rem) 5rem; }
+.page-title { font-family: var(--serif); font-size: clamp(22px, 3.5vw, 32px); color: var(--text-dk); margin-bottom: 0.3rem; }
 .page-sub { font-size: 13px; color: var(--text-mt); margin-bottom: 2rem; }
 
-/* ─── CONTROLS ── */
+/* ─── CONTROLS ───────────────────────────────────────── */
 .controls {
   background: #FFF; border: 1px solid var(--border); border-radius: var(--radius);
   padding: 1.5rem 1.75rem; margin-bottom: 2rem;
-}
-.controls-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;
-  margin-bottom: 1.25rem;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem;
 }
 .ctrl-group { display: flex; flex-direction: column; gap: 5px; }
 .ctrl-label { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mt); }
 .ctrl-input, .ctrl-select {
   font-family: var(--font); font-size: 13px; font-weight: 600; color: var(--text-dk);
   background: var(--cream); border: 1px solid rgba(0,0,0,0.12); border-radius: 8px;
-  padding: 8px 11px; outline: none; width: 100%; transition: border-color 0.15s;
+  padding: 8px 12px; outline: none; width: 100%;
+  transition: border-color 0.15s;
 }
 .ctrl-input:focus, .ctrl-select:focus { border-color: var(--green); }
 
-/* MEL stories */
-.mel-section { border-top: 1px solid var(--border); padding-top: 1.25rem; margin-bottom: 1.25rem; }
-.mel-section-label { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mt); margin-bottom: 0.75rem; }
-.mel-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
-.mel-row .ctrl-input { flex: 1; }
-.mel-remove {
-  background: none; border: 1px solid rgba(0,0,0,0.12); border-radius: 6px;
-  width: 30px; height: 30px; font-size: 16px; cursor: pointer; color: #BBB;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  transition: all 0.15s;
+.controls-actions {
+  grid-column: 1 / -1; display: flex; gap: 0.75rem; padding-top: 0.5rem;
+  border-top: 1px solid var(--border); margin-top: 0.25rem; flex-wrap: wrap;
 }
-.mel-remove:hover { background: #FEE; border-color: #F99; color: #C00; }
-.add-mel-btn {
-  font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-  text-transform: uppercase; padding: 7px 16px; border-radius: 8px; cursor: pointer;
-  background: transparent; color: var(--text-mt); border: 1px dashed rgba(0,0,0,0.18);
-  transition: all 0.15s;
-}
-.add-mel-btn:hover { border-color: var(--green); color: var(--green); }
-
-/* Actions */
-.controls-actions { border-top: 1px solid var(--border); padding-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 .btn {
   font-family: var(--font); font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
   text-transform: uppercase; padding: 9px 22px; border-radius: 8px; cursor: pointer;
@@ -99,137 +79,109 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 .btn-secondary { background: transparent; color: var(--text-md); border: 1px solid rgba(0,0,0,0.15); }
 .btn-secondary:hover { background: rgba(0,0,0,0.05); color: var(--text-dk); }
 
-/* ─── SECTION LABEL ── */
+/* ─── SECTION LABEL ──────────────────────────────────── */
 .section-label {
   font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--text-mt); margin-bottom: 1rem;
 }
 
-/* ─── PREVIEW WRAP ── */
+/* ─── BANNER PREVIEW WRAP ────────────────────────────── */
 .preview-wrap {
-  background: #141414; border-radius: var(--radius);
-  padding: 1.75rem; margin-bottom: 2rem; overflow: hidden;
+  background: #1A1A1A; border-radius: var(--radius);
+  padding: 2rem; margin-bottom: 2rem; overflow: hidden;
 }
-.banner-scale-outer { width: 100%; position: relative; }
+.banner-scale-outer {
+  width: 100%;
+  position: relative;
+}
 
-/* ══════════════════════════════════════════════════════
-   BANNER  ·  designed at 1200 × 630px
-   scaled to fit preview via JS
-══════════════════════════════════════════════════════ */
+/* ─────────────────────────────────────────────────────
+   THE BANNER  (designed at 1200 × 630)
+   Scaled to fit the preview via JS transform
+───────────────────────────────────────────────────── */
 #banner {
   width: 1200px;
   height: 630px;
-  background: #050505;
+  background: #000;
   position: relative;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
   transform-origin: top left;
+  /* scale set by JS */
 }
 
-/* top gradient stripe */
+/* gradient stripe */
 #banner::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, #F3FF00 0%, #27CF77 55%, #A62BFF 100%);
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #F3FF00 0%, #27CF77 60%, #A62BFF 100%);
   z-index: 2;
 }
 
-/* inner padding */
-.bn-wrap {
+.bn-inner {
   position: absolute; inset: 0;
-  padding: 36px 56px 40px;
+  padding: 40px 64px 44px;
   display: flex; flex-direction: column;
 }
 
-/* ── TOP BAR ── */
-.bn-topbar {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 36px;
+/* top row */
+.bn-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
 }
-.bn-logo-svg { height: 22px; width: auto; display: block; }
-.bn-topbar-right {
-  display: flex; align-items: center; gap: 14px;
+.bn-brand {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-style: italic; font-size: 15px; color: #555;
 }
-.bn-channel-pill {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
-  color: #444; background: #0F0F0F; padding: 7px 18px; border-radius: 20px;
-  border: 1px solid #1C1C1C;
-}
-.bn-edition-pill-top {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
-  color: #000; background: #F3FF00; padding: 7px 18px; border-radius: 20px;
+.bn-brand span { color: #F3FF00; font-style: normal; }
+.bn-channel {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #333; background: #111; padding: 6px 14px; border-radius: 20px;
+  border: 1px solid #222;
 }
 
-/* ── MAIN CONTENT: two columns ── */
-.bn-main { flex: 1; display: flex; gap: 0; }
-
-/* Left: Open Call */
-.bn-left {
+/* main */
+.bn-main {
   flex: 1; display: flex; flex-direction: column; justify-content: center;
-  padding-right: 56px;
-  border-right: 1px solid #1A1A1A;
+  padding: 0 0 10px;
 }
-.bn-eyebrow {
-  font-size: 10px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
-  color: #333; margin-bottom: 16px;
+.bn-tag {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #F3FF00; margin-bottom: 12px;
 }
-.bn-headline {
+.bn-title {
   font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 88px; line-height: 0.88; color: #FFF;
-  letter-spacing: -1.5px; margin-bottom: 22px;
+  font-size: 96px; line-height: 0.9; color: #FFF; margin-bottom: 18px;
+  letter-spacing: -1px;
 }
-.bn-date-row {
-  font-size: 16px; font-weight: 700; color: #27CF77; letter-spacing: 0.03em; margin-bottom: 28px;
+.bn-edition {
+  font-size: 18px; font-weight: 700; color: #444; letter-spacing: 0.04em;
 }
-.bn-divider { width: 40px; height: 3px; background: #F3FF00; margin-bottom: 22px; }
-.bn-cta-text {
-  font-size: 14px; font-weight: 600; color: #666; line-height: 1.65;
-}
-.bn-cta-text strong { color: #999; font-weight: 700; }
+.bn-edition span { color: #27CF77; }
 
-/* Right: MEL section */
-.bn-right {
-  width: 420px; flex-shrink: 0;
-  display: flex; flex-direction: column; justify-content: center;
-  padding-left: 52px;
-}
-.bn-mel-eyebrow {
-  font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
-  color: #333; margin-bottom: 10px;
-}
-.bn-mel-title {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 17px; color: #888; line-height: 1.3; margin-bottom: 24px;
-}
-.bn-mel-title span { color: #F3FF00; }
-.bn-mel-list { display: flex; flex-direction: column; gap: 10px; }
-.bn-mel-item {
-  display: flex; align-items: flex-start; gap: 10px;
-}
-.bn-mel-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #27CF77; flex-shrink: 0; margin-top: 6px;
-}
-.bn-mel-name {
-  font-size: 14px; font-weight: 700; color: #CCC; line-height: 1.35;
+/* divider */
+.bn-divider {
+  width: 56px; height: 3px; background: #F3FF00; margin: 28px 0;
 }
 
-/* ── BOTTOM BAR ── */
-.bn-bottombar {
+/* cta */
+.bn-cta {
+  font-size: 17px; font-weight: 600; color: #888; line-height: 1.65;
+  max-width: 600px;
+}
+.bn-cta strong { color: #CCC; font-weight: 700; }
+
+/* bottom */
+.bn-bottom {
   display: flex; justify-content: space-between; align-items: flex-end;
-  margin-top: 32px; padding-top: 20px; border-top: 1px solid #111;
 }
-.bn-submit-label { font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #333; margin-bottom: 4px; }
-.bn-submit-value {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 20px; color: #F3FF00;
-}
-.bn-footer-right { text-align: right; }
-.bn-footer-brand { font-size: 10px; font-weight: 700; color: #2A2A2A; letter-spacing: 0.1em; text-transform: uppercase; }
-.bn-footer-sub { font-size: 9px; color: #1C1C1C; margin-top: 3px; letter-spacing: 0.08em; }
+.bn-deadline-label { font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #333; margin-bottom: 4px; }
+.bn-deadline-value { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; color: #F3FF00; }
+.bn-footer-brand { font-size: 11px; font-weight: 700; color: #333; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ─── SLACK TEXT ── */
+/* ─── SLACK TEXT SECTION ─────────────────────────────── */
 .slack-card {
-  background: #FFF; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  background: #FFF; border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
 }
 .slack-card-header {
   background: #1A1A1A; padding: 0.9rem 1.5rem;
@@ -245,13 +197,15 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 .copy-btn:hover { background: var(--cream); color: var(--black); }
 .copy-btn.copied { background: var(--green); color: var(--black); border-color: var(--green); }
 .slack-body {
-  padding: 1.5rem 1.75rem; font-size: 13px; line-height: 1.85; color: var(--text-md);
+  padding: 1.5rem 1.75rem;
+  font-size: 13px; line-height: 1.85; color: var(--text-md);
   white-space: pre-wrap; font-family: 'SF Mono', 'Fira Code', monospace;
   background: #F9F9F5;
 }
 
+/* ─── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 600px) {
-  .controls-grid { grid-template-columns: 1fr 1fr; }
+  .controls { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -259,223 +213,119 @@ body { font-family: var(--font); background: var(--cream); color: var(--text-dk)
 
 <nav class="site-nav">
   <div class="nav-brand">VER+ <span>Huellas</span></div>
-  <div class="nav-tag">Open Call Builder</div>
+  <div class="nav-tag">Announcement Builder</div>
 </nav>
 
 <div class="page">
   <h1 class="page-title">Open Call Builder</h1>
-  <p class="page-sub">Configure the edition, list the MEL stories, and download the banner for Slack.</p>
+  <p class="page-sub">Configure the edition details, preview the banner, and copy the Slack message.</p>
 
-  <!-- Controls -->
+  <!-- ── Controls ── -->
   <div class="controls">
-    <div class="controls-grid">
-      <div class="ctrl-group">
-        <label class="ctrl-label">Edition</label>
-        <input class="ctrl-input" id="ctrl-edition" type="text" value="02" maxlength="3" oninput="updateBanner()">
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label">Month</label>
-        <select class="ctrl-select" id="ctrl-month" onchange="updateBanner()">
-          <option>January</option><option>February</option><option>March</option>
-          <option>April</option><option>May</option><option>June</option>
-          <option selected>July</option><option>August</option><option>September</option>
-          <option>October</option><option>November</option><option>December</option>
-        </select>
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label">Year</label>
-        <input class="ctrl-input" id="ctrl-year" type="number" value="2026" oninput="updateBanner()">
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label">Submit by</label>
-        <input class="ctrl-input" id="ctrl-deadline" type="text" value="July 24" oninput="updateBanner()">
-      </div>
+    <div class="ctrl-group">
+      <label class="ctrl-label">Edition</label>
+      <input class="ctrl-input" id="ctrl-edition" type="text" value="02" maxlength="3" oninput="updateBanner()">
     </div>
-
-    <!-- MEL Stories -->
-    <div class="mel-section">
-      <div class="mel-section-label">MEL stories proposed for this edition</div>
-      <div id="mel-list">
-        <div class="mel-row">
-          <input class="ctrl-input" type="text" placeholder="e.g. Crack the Code" oninput="updateBanner()">
-          <button class="mel-remove" onclick="removeMel(this)">×</button>
-        </div>
-        <div class="mel-row">
-          <input class="ctrl-input" type="text" placeholder="e.g. RIL" oninput="updateBanner()">
-          <button class="mel-remove" onclick="removeMel(this)">×</button>
-        </div>
-      </div>
-      <button class="add-mel-btn" onclick="addMel()">+ Add story</button>
+    <div class="ctrl-group">
+      <label class="ctrl-label">Month</label>
+      <select class="ctrl-select" id="ctrl-month" onchange="updateBanner()">
+        <option>January</option><option>February</option><option>March</option>
+        <option>April</option><option>May</option><option>June</option>
+        <option selected>July</option><option>August</option><option>September</option>
+        <option>October</option><option>November</option><option>December</option>
+      </select>
     </div>
-
+    <div class="ctrl-group">
+      <label class="ctrl-label">Year</label>
+      <input class="ctrl-input" id="ctrl-year" type="number" value="2026" oninput="updateBanner()">
+    </div>
+    <div class="ctrl-group">
+      <label class="ctrl-label">Deadline</label>
+      <input class="ctrl-input" id="ctrl-deadline" type="text" placeholder="July 24" value="July 24" oninput="updateBanner()">
+    </div>
     <div class="controls-actions">
       <button class="btn btn-primary" onclick="downloadBanner()">↓ Download Banner</button>
-      <button class="btn btn-secondary" id="copy-btn" onclick="copySlack()">Copy Slack Message</button>
+      <button class="btn btn-secondary" onclick="copySlack()">Copy Slack Message</button>
     </div>
   </div>
 
-  <!-- Banner Preview -->
-  <div class="section-label">Banner Preview · 1200 × 630px</div>
+  <!-- ── Banner Preview ── -->
+  <div class="section-label">Banner Preview</div>
   <div class="preview-wrap">
     <div class="banner-scale-outer" id="banner-scale-outer">
-
       <div id="banner">
-        <div class="bn-wrap">
-
-          <!-- Top bar -->
-          <div class="bn-topbar">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 577.96 91.69" fill="#efefe4" style="height:22px;width:auto;display:block;">
-              <polygon points="27.41 57.15 11.99 21.55 0 21.55 22.17 71.19 32.04 71.19 54.21 21.55 42.62 21.55 27.41 57.15"/>
-              <polygon points="102.68 0 89.08 0 79.51 14.11 89.38 14.11 102.68 0"/>
-              <path d="M96.7,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM69.4,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
-              <path d="M130.36,56.46V0h-10.88v59.48c0,9.37,5.24,13,12.39,13,3.22,0,5.94-.5,8.06-1.61v-9.37c-1.21.71-2.62,1.01-4.13,1.01-3.63,0-5.44-2.01-5.44-6.05Z"/>
-              <path d="M185.16,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM157.86,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
-              <polygon points="246.93 29 246.93 21.55 205.52 21.55 205.52 31.12 231.21 31.12 203.7 63.76 203.7 71.02 248.54 71.02 248.54 61.44 219.42 61.44 246.93 29"/>
-              <path d="M270.8,30.28v-8.56h-10.88v49.47h10.88v-30.33c2.32-5.14,8.46-9.67,16.22-9.67,1.11,0,2.12.1,3.02.2v-10.88c-.3-.1-.6-.1-1.01-.1-7.66,0-14.91,4.13-18.24,9.87Z"/>
-              <path d="M334.78,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM307.47,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
-              <path d="M378.91,56.42l-14.91-34.86h-12.09l21.66,47.66c-3.73,8.87-7.15,12.9-12.8,12.9-2.52,0-4.94-.5-7.15-1.61v9.57c1.91,1.11,4.84,1.61,8.97,1.61,8.16,0,14.41-5.14,18.84-15.31l23.68-54.81h-11.79l-14.41,34.86Z"/>
-              <path d="M448.33,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM421.02,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
-              <polygon points="558.07 41.45 558.07 21.56 548.28 21.56 548.28 41.45 528.49 41.45 528.49 51.15 548.28 51.15 548.28 71.03 558.07 71.03 558.07 51.15 577.96 51.15 577.96 41.45 558.07 41.45"/>
-              <polygon points="509.72 31.14 509.72 21.56 468.31 21.56 468.31 29.02 495.81 61.46 466.69 61.46 466.69 71.03 511.53 71.03 511.53 63.78 484.02 31.14 509.72 31.14"/>
-            </svg>
-            <div class="bn-topbar-right">
-              <div class="bn-channel-pill">#ver+-huellas</div>
-              <div class="bn-edition-pill-top">Edition <span id="bn-ed-top">02</span></div>
-            </div>
+        <div class="bn-inner">
+          <div class="bn-top">
+            <div class="bn-brand">VélezReyes<span>+</span></div>
+            <div class="bn-channel">#vermás-huellas</div>
           </div>
 
-          <!-- Main: two columns -->
           <div class="bn-main">
-
-            <!-- Left: Open Call -->
-            <div class="bn-left">
-              <div class="bn-eyebrow">VER+ Huellas · Open Call</div>
-              <div class="bn-headline">Open<br>Call.</div>
-              <div class="bn-date-row"><span id="bn-month">July</span> <span id="bn-year">2026</span></div>
-              <div class="bn-divider"></div>
-              <div class="bn-cta-text">
-                Share your team's story or<br>
-                <strong>complement what MEL proposed.</strong><br>
-                Reply in thread by <strong><span id="bn-deadline-inline">July 24</span>.</strong>
-              </div>
+            <div class="bn-tag">VER+ Huellas · Open Call</div>
+            <div class="bn-title">Open<br>Call.</div>
+            <div class="bn-edition">Edition <span id="bn-edition">02</span> · <span id="bn-month">July</span> <span id="bn-year">2026</span></div>
+            <div class="bn-divider"></div>
+            <div class="bn-cta">
+              MEL has anchored this edition.<br>
+              <strong>Share what goes beyond — reply in thread by <span id="bn-deadline">July 24</span>.</strong>
             </div>
-
-            <!-- Right: MEL stories -->
-            <div class="bn-right">
-              <div class="bn-mel-eyebrow">MEL proposed</div>
-              <div class="bn-mel-title">for Edition <span id="bn-mel-edition">02</span></div>
-              <div class="bn-mel-list" id="bn-mel-list">
-                <!-- populated by JS -->
-              </div>
-            </div>
-
           </div>
 
-          <!-- Bottom bar -->
-          <div class="bn-bottombar">
+          <div class="bn-bottom">
             <div>
-              <div class="bn-submit-label">Submit by</div>
-              <div class="bn-submit-value" id="bn-deadline-bottom">July 24</div>
+              <div class="bn-deadline-label">Submit by</div>
+              <div class="bn-deadline-value" id="bn-deadline-big">July 24</div>
             </div>
-            <div class="bn-footer-right">
-              <div class="bn-footer-brand">VER+ Huellas · VélezReyes+</div>
-              <div class="bn-footer-sub">Updated monthly · Impact Report</div>
-            </div>
+            <div class="bn-footer-brand">VER+ Huellas · VélezReyes+</div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Slack Message -->
+  <!-- ── Slack Text ── -->
   <div class="section-label">Slack Message</div>
   <div class="slack-card">
     <div class="slack-card-header">
-      <div class="slack-card-title">Paste in #ver+-huellas</div>
-      <button class="copy-btn" id="copy-slack-btn" onclick="copySlack()">Copy</button>
+      <div class="slack-card-title">Copy and paste into #vermás-huellas</div>
+      <button class="copy-btn" id="copy-btn" onclick="copySlack()">Copy</button>
     </div>
     <div class="slack-body" id="slack-body"></div>
   </div>
 </div>
 
 <script>
-const LOGO_URL = "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true";
-
-/* ── Get values ── */
-function getVals() {
-  const melInputs = [...document.querySelectorAll('#mel-list .ctrl-input')]
-    .map(i => i.value.trim()).filter(Boolean);
+/* ── State ── */
+function getValues() {
   return {
     edition:  document.getElementById('ctrl-edition').value.trim() || '02',
     month:    document.getElementById('ctrl-month').value,
     year:     document.getElementById('ctrl-year').value,
-    deadline: document.getElementById('ctrl-deadline').value.trim() || 'TBD',
-    melStories: melInputs
+    deadline: document.getElementById('ctrl-deadline').value.trim() || 'TBD'
   };
 }
 
-/* ── Update banner ── */
+/* ── Update Banner ── */
 function updateBanner() {
-  const v = getVals();
-
-  document.getElementById('bn-ed-top').textContent         = v.edition;
-  document.getElementById('bn-month').textContent          = v.month;
-  document.getElementById('bn-year').textContent           = v.year;
-  document.getElementById('bn-mel-edition').textContent    = v.edition;
-  document.getElementById('bn-deadline-inline').textContent = v.deadline;
-  document.getElementById('bn-deadline-bottom').textContent = v.deadline;
-
-  /* MEL list */
-  const list = document.getElementById('bn-mel-list');
-  if (v.melStories.length === 0) {
-    list.innerHTML = `<div class="bn-mel-item"><div class="bn-mel-dot"></div><div class="bn-mel-name" style="color:#2A2A2A">No stories added yet</div></div>`;
-  } else {
-    list.innerHTML = v.melStories.map(s => `
-      <div class="bn-mel-item">
-        <div class="bn-mel-dot"></div>
-        <div class="bn-mel-name">${s}</div>
-      </div>`).join('');
-  }
-
-  updateSlack(v);
+  const v = getValues();
+  document.getElementById('bn-edition').textContent      = v.edition;
+  document.getElementById('bn-month').textContent        = v.month;
+  document.getElementById('bn-year').textContent         = v.year;
+  document.getElementById('bn-deadline').textContent     = v.deadline;
+  document.getElementById('bn-deadline-big').textContent = v.deadline;
+  updateSlackText(v);
 }
 
-/* ── MEL story rows ── */
-function addMel() {
-  const row = document.createElement('div');
-  row.className = 'mel-row';
-  row.innerHTML = `<input class="ctrl-input" type="text" placeholder="Story name" oninput="updateBanner()">
-    <button class="mel-remove" onclick="removeMel(this)">×</button>`;
-  document.getElementById('mel-list').appendChild(row);
-  row.querySelector('input').focus();
-}
+/* ── Slack Text ── */
+function updateSlackText(v) {
+  const text = `📢 *Open Call · VER+ Huellas · Edition ${v.edition} · ${v.month} ${v.year}*
 
-function removeMel(btn) {
-  const rows = document.querySelectorAll('#mel-list .mel-row');
-  if (rows.length > 1) {
-    btn.closest('.mel-row').remove();
-    updateBanner();
-  }
-}
+MEL has already anchored this edition with impact stories. Now it's your turn.
 
-/* ── Slack text ── */
-function updateSlack(v) {
-  const melLines = v.melStories.length
-    ? v.melStories.map(s => `  → ${s}`).join('\n')
-    : '  → (no stories added yet)';
-
-  const text =
-`📢 *Open Call · VER+ Huellas · Edition ${v.edition} · ${v.month} ${v.year}*
-
-MEL proposed these stories for this edition:
-${melLines}
-
-If your team has something that goes beyond — a story, a win, context, a visual — reply in this thread by *${v.deadline}*.
+If your team has a story, a win, or something to add — reply in this thread by *${v.deadline}*.
 
 → Check first if your initiative is already covered this month.
-→ Open format: text, bullets, Google Doc, video/photo.
+→ Open format: text, bullets, Google Doc, video/photo — whatever works.
 → Questions? Ping Laura directly.
 
 VER+ Huellas publishes before the 10th of next month. 🌱`;
@@ -483,49 +333,55 @@ VER+ Huellas publishes before the 10th of next month. 🌱`;
   document.getElementById('slack-body').textContent = text;
 }
 
-/* ── Copy Slack ── */
-function copySlack() {
-  const text = document.getElementById('slack-body').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copy-slack-btn');
-    btn.textContent = 'Copied ✓';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-  });
-}
-
-/* ── Scale banner ── */
+/* ── Scale Banner to Fit Container ── */
 function scaleBanner() {
   const outer = document.getElementById('banner-scale-outer');
   const banner = document.getElementById('banner');
-  const scale = outer.offsetWidth / 1200;
+  const availableWidth = outer.offsetWidth;
+  const scale = availableWidth / 1200;
   banner.style.transform = `scale(${scale})`;
   outer.style.height = (630 * scale) + 'px';
 }
 
-/* ── Download banner ── */
+/* ── Download Banner ── */
 function downloadBanner() {
   const banner = document.getElementById('banner');
-  const v = getVals();
-  const prev = banner.style.transform;
+  const v = getValues();
+
+  /* Temporarily reset transform for capture */
+  const prevTransform = banner.style.transform;
   banner.style.transform = 'none';
 
   html2canvas(banner, {
     scale: 2,
     useCORS: true,
-    backgroundColor: '#050505',
+    backgroundColor: '#000000',
     logging: false,
     width: 1200,
     height: 630
   }).then(canvas => {
-    banner.style.transform = prev;
-    const a = document.createElement('a');
-    a.download = `VER+Huellas_OpenCall_Ed${v.edition}_${v.month}${v.year}.png`;
-    a.href = canvas.toDataURL('image/png');
-    a.click();
+    banner.style.transform = prevTransform;
+    const link = document.createElement('a');
+    link.download = `VER+Huellas_OpenCall_Ed${v.edition}_${v.month}${v.year}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   }).catch(() => {
-    banner.style.transform = prev;
-    alert('Could not auto-download. Right-click the banner preview and save the image manually.');
+    banner.style.transform = prevTransform;
+    alert('Download failed. Try right-clicking the banner and saving the image.');
+  });
+}
+
+/* ── Copy Slack Text ── */
+function copySlack() {
+  const text = document.getElementById('slack-body').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
   });
 }
 
