@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beca Tech+ · Estrategia de Marca · 3 Paths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'BookmanJFPro';
+  src: url('https://cdn.jsdelivr.net/gh/VelezReyes/notion-content@main/BookmanJFPro-Regular.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --cream:#efefe4;
+  --black:#000000;
+  --yellow:#f3ff00;
+  --green:#27cf77;
+  --purple:#a62bff;
+  --yellow-light:#f7ff66;
+  --yellow-dark:#c9d400;
+  --green-light:#6fe0a7;
+  --green-dark:#1a9054;
+  --purple-light:#c97aff;
+  --purple-dark:#6f15c4;
+  --grid:rgba(239,239,228,0.04);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:#000;
+  color:var(--cream);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+.blobs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.6}
+.blob-y{width:480px;height:480px;background:radial-gradient(circle,rgba(243,255,0,.4) 0%,transparent 68%);top:-160px;right:-80px;animation:blobFloat1 14s ease-in-out infinite}
+.blob-g{width:360px;height:360px;background:radial-gradient(circle,rgba(39,207,119,.35) 0%,transparent 68%);bottom:5%;left:-100px;animation:blobFloat2 17s ease-in-out infinite}
+.blob-p{width:320px;height:320px;background:radial-gradient(circle,rgba(166,43,255,.45) 0%,transparent 68%);top:45%;right:8%;animation:blobFloat3 11s ease-in-out infinite}
+@keyframes blobFloat1{0%,100%{translate:0px 0px;scale:1;opacity:.6}20%{translate:-55px 65px;scale:1.14;opacity:.72}50%{translate:32px -40px;scale:.88;opacity:.5}75%{translate:-22px 28px;scale:1.07;opacity:.65}}
+@keyframes blobFloat2{0%,100%{translate:0px 0px;scale:1;opacity:.6}30%{translate:90px -65px;scale:1.12;opacity:.48}65%{translate:-45px 50px;scale:.86;opacity:.7}}
+@keyframes blobFloat3{0%,100%{translate:0px 0px;scale:1;opacity:.6}25%{translate:-58px 66px;scale:1.18;opacity:.72}55%{translate:36px -44px;scale:.82;opacity:.48}80%{translate:20px 26px;scale:1.1;opacity:.66}}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(239,239,228,.06);
+}
+.nav-brand{font-family:'BookmanJFPro',Georgia,serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);opacity:.6;text-decoration:none}
+.nav-brand span{color:var(--yellow);opacity:1}
+.nav-back{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(239,239,228,.4);text-decoration:none;border:1px solid rgba(239,239,228,.15);padding:7px 16px;border-radius:2px;transition:all .2s}
+.nav-back:hover{color:var(--yellow);border-color:var(--yellow)}
+
+#progress-bar{position:fixed;top:0;left:0;z-index:999;height:2px;width:0%;background:linear-gradient(90deg,var(--yellow),var(--green));transition:width .08s linear;pointer-events:none}
+
+section{position:relative;z-index:10;padding:120px 48px 80px}
+.section-header{display:flex;align-items:baseline;gap:20px;border-bottom:1px solid rgba(239,239,228,.07);padding-bottom:20px;margin-bottom:44px}
+.section-num{font-family:'BookmanJFPro',Georgia,serif;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--yellow)}
+.section-title{font-family:'BookmanJFPro',Georgia,serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--cream);letter-spacing:-.01em}
+.section-desc{max-width:620px;font-size:14px;color:rgba(239,239,228,.45);line-height:1.7;margin-top:6px;flex-basis:100%}
+
+/* ══ HERO ══ */
+#hero{padding-top:150px;padding-bottom:60px}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--yellow)}
+.hero-heading{font-family:'BookmanJFPro',Georgia,serif;font-weight:800;font-size:clamp(40px,7vw,84px);line-height:1.05;letter-spacing:.005em;color:var(--cream);margin-bottom:28px;max-width:900px}
+.hero-heading .plus{color:var(--yellow)}
+.hero-body{max-width:620px;font-size:16px;font-weight:300;color:rgba(239,239,228,.6);line-height:1.75;border-left:2px solid var(--green);padding-left:20px}
+
+/* ══ TABS ══ */
+.path-tabs{display:flex;gap:2px;margin-bottom:56px;flex-wrap:wrap}
+.path-tab{
+  flex:1;min-width:220px;
+  background:rgba(239,239,228,.025);
+  border:1px solid rgba(239,239,228,.08);
+  padding:22px 24px;cursor:pointer;text-align:left;
+  transition:all .25s;color:var(--cream);font-family:'Instrument Sans',sans-serif;
+}
+.path-tab:hover{background:rgba(239,239,228,.06)}
+.path-tab.active{background:rgba(243,255,0,.06);border-color:var(--yellow)}
+.path-tab-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,239,228,.35);margin-bottom:8px;display:block}
+.path-tab.active .path-tab-num{color:var(--yellow)}
+.path-tab-name{font-family:'BookmanJFPro',Georgia,serif;font-size:20px;font-weight:800;margin-bottom:6px;display:block}
+.path-tab-tag{font-size:12px;color:rgba(239,239,228,.4);display:block}
+.path-tab-cta{display:block;margin-top:14px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--yellow);opacity:.75;transition:opacity .2s}
+.path-tab:hover .path-tab-cta,.path-tab.active .path-tab-cta{opacity:1}
+
+/* ══ PATH PANEL ══ */
+.path-panel{display:none}
+.path-panel.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.path-hero{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:40px;align-items:flex-start}
+.path-hero-main{flex:1;min-width:320px}
+.path-name-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:10px}
+.path-name{font-family:'BookmanJFPro',Georgia,serif;font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.15;letter-spacing:.005em;margin-bottom:18px}
+.path-lead{font-size:15px;color:rgba(239,239,228,.55);line-height:1.7;max-width:560px;font-weight:300}
+
+.stat-row{display:flex;flex-direction:column;gap:16px;min-width:260px}
+.stat-chip{background:rgba(239,239,228,.03);border-left:2px solid var(--purple);padding:14px 18px}
+.stat-chip-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,239,228,.3);margin-bottom:4px}
+.stat-chip-val{font-size:13px;color:var(--cream);font-weight:500;line-height:1.5}
+.stat-chip.green{border-color:var(--green)}
+.stat-chip.yellow{border-color:var(--yellow)}
+
+.path-body-grid{display:block;max-width:720px;margin-bottom:48px}
+.path-block-title{font-family:'BookmanJFPro',Georgia,serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(239,239,228,.35);margin-bottom:16px}
+.path-narrative{font-size:14.5px;color:rgba(239,239,228,.65);line-height:1.75;font-weight:300;margin-bottom:28px}
+
+.path-message{
+  background:linear-gradient(135deg,rgba(243,255,0,.08),rgba(166,43,255,.08));
+  border:1px solid rgba(239,239,228,.1);
+  padding:28px 32px;margin-top:8px;
+}
+.path-message-lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,239,228,.35);margin-bottom:10px}
+.path-message-txt{font-family:'BookmanJFPro',Georgia,serif;font-size:clamp(18px,2.4vw,26px);font-weight:800;line-height:1.25;color:var(--cream)}
+
+/* ══ LOGO GRID (reused pattern from brandbook) ══ */
+.logo-toggle-row{display:flex;gap:8px;margin-bottom:20px}
+.toggle-btn{padding:6px 14px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-family:'Instrument Sans',sans-serif;border:1px solid rgba(239,239,228,.2);background:transparent;color:var(--cream);cursor:pointer;border-radius:2px;transition:all .2s;opacity:.5}
+.toggle-btn.active{background:var(--yellow);color:#000;border-color:var(--yellow);opacity:1}
+.toggle-btn:hover{opacity:.8}
+
+.path-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.logo-card{position:relative;padding:32px 28px 24px;border:1px solid transparent;display:flex;flex-direction:column;gap:14px;min-height:190px;transition:all .25s}
+.logo-card.on-dark{background:rgba(239,239,228,.025)}
+.logo-card.on-light{background:var(--cream)}
+.logo-card.on-dark:hover{background:rgba(239,239,228,.06);border-color:rgba(239,239,228,.1)}
+.logo-card.on-light:hover{background:#e8e8dc}
+.logo-card.on-dark .logo-svg svg{fill:var(--cream)}
+.logo-card.on-light .logo-svg svg{fill:#000}
+.logo-card.on-dark .logo-svg svg path,.logo-card.on-dark .logo-svg svg g{fill:var(--cream)}
+.logo-card.on-light .logo-svg svg path,.logo-card.on-light .logo-svg svg g{fill:#000}
+.logo-svg{flex:1;display:flex;align-items:center;justify-content:center;padding:10px 0;min-height:70px}
+.logo-svg svg{width:100%;height:auto;max-height:64px}
+.logo-card-meta{display:flex;flex-direction:column;gap:4px}
+.logo-card-name{font-family:'BookmanJFPro',Georgia,serif;font-size:14px;font-weight:800}
+.logo-card.on-dark .logo-card-name{color:var(--cream)}
+.logo-card.on-light .logo-card-name{color:#000}
+.logo-card-desc{font-size:11.5px;line-height:1.5}
+.logo-card.on-dark .logo-card-desc{color:rgba(239,239,228,.45)}
+.logo-card.on-light .logo-card-desc{color:rgba(0,0,0,.5)}
+
+/* ══ RELATION SECTION ══ */
+#relacion{padding-top:100px}
+.relation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:32px}
+.relation-step{background:rgba(239,239,228,.025);padding:28px 26px}
+.relation-step-num{font-family:'BookmanJFPro',Georgia,serif;font-size:28px;font-weight:800;color:var(--yellow);margin-bottom:12px}
+.relation-step-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.relation-step-desc{font-size:13px;color:rgba(239,239,228,.45);line-height:1.6;font-weight:300}
+
+/* ══ FOOTNOTE / CASE DEMO ══ */
+#nota{padding-top:60px;padding-bottom:100px}
+.footnote-box{border-top:1px solid rgba(239,239,228,.1);padding-top:32px}
+.footnote-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--purple-light);margin-bottom:14px}
+.footnote-txt{font-size:13.5px;color:rgba(239,239,228,.55);line-height:1.75;font-weight:300;max-width:760px;margin-bottom:28px}
+.case-demo{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.case-demo-buttons{display:flex;gap:8px}
+.case-sample{
+  font-family:'BookmanJFPro',Georgia,serif;font-weight:800;
+  font-size:clamp(24px,3vw,36px);color:var(--cream);
+  transition:.2s;
+}
+.case-sample.tt-upper{text-transform:uppercase}
+.case-sample.tt-lower{text-transform:lowercase}
+.case-sample.tt-none{text-transform:none}
+
+/* ══ LIGHT ZONE (secciones 02 + nota, separadas visualmente en positivo) ══ */
+.light-zone{background:var(--cream)}
+.light-zone .section-header{border-bottom-color:rgba(0,0,0,.1)}
+.light-zone .section-num{color:var(--purple-dark)}
+.light-zone .section-title{color:#000}
+.light-zone .section-desc{color:rgba(0,0,0,.55)}
+.light-zone .relation-step{background:rgba(0,0,0,.035)}
+.light-zone .relation-step-num{color:var(--purple-dark)}
+.light-zone .relation-step-title{color:#000}
+.light-zone .relation-step-desc{color:rgba(0,0,0,.55)}
+.light-zone .footnote-box{border-top-color:rgba(0,0,0,.12)}
+.light-zone .footnote-lbl{color:var(--purple-dark)}
+.light-zone .footnote-txt{color:rgba(0,0,0,.6)}
+.light-zone .case-sample{color:#000}
+.light-zone .toggle-btn{color:#000;border-color:rgba(0,0,0,.25)}
+.light-zone .toggle-btn.active{background:#000;color:var(--cream);border-color:#000}
+
+footer.page-footer{margin-top:0;padding:24px 48px;border-top:1px solid rgba(239,239,228,.07);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10}
+.page-footer-l{font-family:'BookmanJFPro',Georgia,serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(239,239,228,.2)}
+.page-footer-r{font-size:11px;letter-spacing:.08em;color:rgba(239,239,228,.15)}
+
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  section{padding:100px 24px 60px}
+  .path-logos{grid-template-columns:1fr}
+  .path-hero{flex-direction:column}
+  .relation-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="blobs">
+  <div class="blob blob-y"></div>
+  <div class="blob blob-g"></div>
+  <div class="blob blob-p"></div>
+</div>
+<div id="progress-bar"></div>
+
+<nav>
+  <a class="nav-brand" href="#hero">Beca <span>Tech+</span></a>
+  <a class="nav-back" href="becatech-brandbook.html">← Brandbook</a>
+</nav>
+
+<!-- ════════════════════════════
+     HERO
+════════════════════════════ -->
+<section id="hero">
+  <div class="hero-eyebrow">Estrategia de marca · Draft</div>
+  <div class="hero-heading">Tres paths para decidir qué es Beca Tech<span class="plus">+</span></div>
+  <p class="hero-body">Antes de bajar a brandbook necesitamos acordar el camino: no solo qué logo gusta más, sino qué tanto cambia el nombre, el tono y la promesa detrás de la marca. Aquí están las tres rutas posibles, cada una con su propia lógica, su propia narrativa y tres exploraciones tipográficas para verla en uso.</p>
+</section>
+
+<!-- ════════════════════════════
+     PATHS
+════════════════════════════ -->
+<section id="paths">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div>
+      <div class="section-title">Los 3 paths</div>
+      <p class="section-desc">Cada path resuelve una pregunta distinta sobre qué tan lejos debe llegar el cambio. Elige uno para ver su argumento completo y sus 3 exploraciones de logo.</p>
+    </div>
+  </div>
+
+  <div class="path-tabs" id="path-tabs">
+    <button class="path-tab active" data-path="1">
+      <span class="path-tab-num">Path 01 · Transición cuidadosa</span>
+      <span class="path-tab-name">Beca Tech +</span>
+      <span class="path-tab-tag">De VER+ Beca Tech a BecaTech+, sin perder la cercanía con VER+</span>
+      <span class="path-tab-cta">Ver variaciones y propuesta →</span>
+    </button>
+    <button class="path-tab" data-path="2">
+      <span class="path-tab-num">Path 02 · Cercanía</span>
+      <span class="path-tab-name">Becatec +</span>
+      <span class="path-tab-tag">Ajuste fonético: se lee como suena y como sigla de "Beca de Tecnología"</span>
+      <span class="path-tab-cta">Ver variaciones y propuesta →</span>
+    </button>
+    <button class="path-tab" data-path="3">
+      <span class="path-tab-num">Path 03 · Síntesis</span>
+      <span class="path-tab-name">becate+</span>
+      <span class="path-tab-tag">Simplificación radical: nombre propio</span>
+      <span class="path-tab-cta">Ver variaciones y propuesta →</span>
+    </button>
+  </div>
+
+  <!-- ══════ PATH 1 ══════ -->
+  <div class="path-panel active" id="panel-1">
+    <div class="path-hero">
+      <div class="path-hero-main">
+        <div class="path-name-tag">Path 01: Transición cuidadosa</div>
+        <div class="path-name">Beca Tech +</div>
+        <p class="path-lead">La marca ya existe bajo el paraguas de VER+; el cambio de nombre va a pasar de todas formas, de "VER+ Beca Tech" a "BecaTech+". Este es el camino más seguro: acompaña esa migración sin cortar de un tajo el vínculo que la gente ya reconoce con VER+.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Qué cambia</div>
+          <div class="stat-chip-val">El nombre migra de "VER+ Beca Tech" a "BecaTech+", pero de forma gradual: se actualiza el sistema visual y se conserva la cercanía con VER+ como respaldo.</div>
+        </div>
+        <div class="stat-chip green">
+          <div class="stat-chip-lbl">Idea fuerza</div>
+          <div class="stat-chip-val">Evolución sin ruptura: se avanza hacia el nuevo nombre sin perder solidez ni la conexión con VER+.</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Relación con VER+ (fonética)</div>
+          <div class="stat-chip-val">"Beca Tech+" suena casi igual a "VER+ Beca Tech": mismo orden de palabras y cadencia. Es la conexión sonora más clara con el nombre anterior de los tres paths.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-body-grid">
+      <div class="path-block-title">Narrativa</div>
+      <p class="path-narrative">BecaTech+ nace de una promesa clara: conectar beca, futuro y tecnología, bajo el respaldo de VER+. Este camino no evita el cambio de nombre, lo asume, pero con cautela: pasa de "VER+ Beca Tech" a "BecaTech+" cuidando que el público no pierda la referencia de quién está detrás. La oportunidad no está en reinventar de golpe sino en migrar con cuidado, convirtiendo una marca funcional en una marca memorable sin desconectarla de su casa matriz.</p>
+    </div>
+
+    <div class="path-message">
+      <div class="path-message-lbl">Mensaje estratégico</div>
+      <div class="path-message-txt">No rompemos con VER+. Migramos hacia BecaTech+ con cuidado.</div>
+    </div>
+  </div>
+
+  <!-- ══════ PATH 2 ══════ -->
+  <div class="path-panel" id="panel-2">
+    <div class="path-hero">
+      <div class="path-hero-main">
+        <div class="path-name-tag">Path 02: Ajuste fonético y lectura como sigla</div>
+        <div class="path-name">Becatec +</div>
+        <p class="path-lead">"Beca Tech" y "Beca Tec" se pronuncian exactamente igual en español: la H no se escucha. Este camino ajusta la escritura para que calce con la pronunciación, y de paso deja leer el nombre como la sigla natural de "Beca de Tecnología".</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Qué cambia</div>
+          <div class="stat-chip-val">Se conserva casi toda la estructura del nombre; se elimina la H porque no se pronuncia.</div>
+        </div>
+        <div class="stat-chip green">
+          <div class="stat-chip-lbl">Idea fuerza</div>
+          <div class="stat-chip-val">Alinear escritura y pronunciación: "Becatec+" se lee como la sigla natural de "Beca de Tecnología".</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Relación con VER+ (fonética)</div>
+          <div class="stat-chip-val">"Becatec+" quita la H pero conserva casi la misma cadencia de "VER+ Beca Tech": sigue siendo reconocible al oído, aunque un poco más lejano que en el Path 1.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-body-grid">
+      <div class="path-block-title">Narrativa</div>
+      <p class="path-narrative">En vez de corregir al usuario, este camino decide escucharlo: "Beca Tech" y "Beca Tec" suenan igual en español, así que la H sobra en la escritura. Eliminarla no es solo un ajuste estético, es una decisión de sentido: "Becatec+" se lee como la sigla natural de "Beca de Tecnología", reforzando de qué se trata el programa sin necesidad de explicarlo. La migración desde "VER+ Beca Tech" avanza un paso más, pero VER+ sigue presente como respaldo.</p>
+    </div>
+
+    <div class="path-message">
+      <div class="path-message-lbl">Mensaje estratégico</div>
+      <div class="path-message-txt">Se escribe como se pronuncia, se lee como lo que es: Beca de Tecnología.</div>
+    </div>
+  </div>
+
+  <!-- ══════ PATH 3 ══════ -->
+  <div class="path-panel" id="panel-3">
+    <div class="path-hero">
+      <div class="path-hero-main">
+        <div class="path-name-tag">Path 03: Simplificación radical y ownership</div>
+        <div class="path-name">becate+</div>
+        <p class="path-lead">Las marcas más contemporáneas dejan de explicar tanto y empiezan a significar más. becate+ no describe: identifica. Es el salto de programa a plataforma.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Qué cambia</div>
+          <div class="stat-chip-val">Se abandona el nombre descriptivo por una versión condensada y propia.</div>
+        </div>
+        <div class="stat-chip green">
+          <div class="stat-chip-lbl">Idea fuerza</div>
+          <div class="stat-chip-val">Un signo más contundente, moderno y escalable.</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-lbl">Relación con VER+ (fonética)</div>
+          <div class="stat-chip-val">"becate+" ya no suena a "VER+ Beca Tech": es el path que más se aleja del eco sonoro del nombre anterior, la conexión queda más histórica que audible.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-body-grid">
+      <div class="path-block-title">Narrativa</div>
+      <p class="path-narrative">becate+ nace como una evolución valiente: no busca solo facilitar la pronunciación, busca una marca con más carácter y mayor posibilidad de expansión. Menos descriptiva, más icónica: un código propio para todo lo que la marca puede llegar a ser. Es el salto más grande frente a "VER+ Beca Tech", pero VER+ no desaparece: queda como aval de fondo.</p>
+    </div>
+
+    <div class="path-message">
+      <div class="path-message-lbl">Mensaje estratégico</div>
+      <div class="path-message-txt">Menos explicación. Más identidad.</div>
+    </div>
+  </div>
+
+  <!-- ══════ SHARED LOGO GRID (changes per active path via JS) ══════ -->
+  <div style="margin-top:56px">
+    <div class="path-block-title">Tres exploraciones tipográficas para este path</div>
+    <div class="logo-toggle-row">
+      <button class="toggle-btn active" id="btn-dark" onclick="setBg('dark')">Fondo oscuro</button>
+      <button class="toggle-btn" id="btn-light" onclick="setBg('light')">Fondo claro</button>
+    </div>
+    <div class="path-logos" id="path-logos"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     RELACIÓN LOGOS / PATHS
+════════════════════════════ -->
+<section id="relacion" class="light-zone">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-title">Logos como lenguaje, no respuesta cerrada</div>
+      <p class="section-desc">Ningún logo está amarrado a un solo path. La estructura recomendada para la presentación es elegir primero el camino y después la tipografía que mejor lo exprese.</p>
+    </div>
+  </div>
+  <div class="relation-grid">
+    <div class="relation-step">
+      <div class="relation-step-num">01</div>
+      <div class="relation-step-title">Elegir el camino</div>
+      <div class="relation-step-desc">Continuidad (Path 1), cercanía fonética (Path 2) o simplificación y salto estratégico (Path 3).</div>
+    </div>
+    <div class="relation-step">
+      <div class="relation-step-num">02</div>
+      <div class="relation-step-title">Elegir la expresión</div>
+      <div class="relation-step-desc">SoftCircuit, BoldForge o SharpEdge: cuál se siente más cercana, cuál tiene más potencia de síntesis.</div>
+    </div>
+    <div class="relation-step">
+      <div class="relation-step-num">03</div>
+      <div class="relation-step-title">Cruzar ambas</div>
+      <div class="relation-step-desc">La misma tipografía puede aplicarse a los tres nombres: la decisión de naming y la decisión tipográfica son independientes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     NOTA AL PIE
+════════════════════════════ -->
+<section id="nota" class="light-zone">
+  <div class="footnote-box">
+    <div class="footnote-lbl">Nota</div>
+    <p class="footnote-txt">Los tres paths no son mutuamente excluyentes: se pueden combinar elementos entre ellos, por ejemplo, la cercanía fonética del Path 2 con el sistema visual del Path 1. Cada propuesta, además, admite variaciones de mayúsculas y minúsculas que cambian el tono sin tocar el sistema. Prueba con el nombre de ejemplo:</p>
+    <div class="case-demo">
+      <div class="case-demo-buttons">
+        <button class="toggle-btn active" data-case="none" onclick="setCase('none')">Beca Tech+</button>
+        <button class="toggle-btn" data-case="upper" onclick="setCase('upper')">BECA TECH+</button>
+        <button class="toggle-btn" data-case="lower" onclick="setCase('lower')">beca tech+</button>
+      </div>
+      <div class="case-sample tt-none" id="case-sample">Beca Tech+</div>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="page-footer-l">Beca Tech+ · Estrategia de Marca · Draft v1</div>
+  <div class="page-footer-r">VélezReyes+</div>
+</footer>
+
+<!-- ░░░ SVG LOGO DEFINITIONS (hidden, referenced via <use>) ░░░ -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+
+<g id="svg-soft-1"><svg viewBox="0 0 1013.95 165.26" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,20.33h38.42c36.59,0,56.92,14.64,56.92,40.66,0,9.76-3.25,18.09-9.15,24.6,12.4,7.52,19.31,19.11,19.31,33.34,0,27.04-24.19,43.71-63.42,43.71H0V20.33ZM37,75.21c20.12,0,31.3-5.08,31.3-14.23,0-9.96-9.35-14.23-31.3-14.23h-10.57v28.46h10.57ZM41.67,136.2c27.04,0,36.79-4.07,36.79-15.25,0-12.4-13.01-19.31-36.79-19.31h-15.25v34.56h15.25Z"/>
+<path d="M117.7,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.67,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM194.13,94.32c-2.03-13.42-10.37-18.91-23.38-18.91-11.79,0-20.73,4.88-24.19,18.91h47.57Z"/>
+<path d="M233.36,106.11c0-33.95,22.97-57.93,55.49-57.93,17.89,0,32.93,6.5,42.28,18.29l-15.45,17.69c-6.71-6.3-15.45-8.94-25.82-8.94-18.29,0-29.27,12.4-29.27,31.1s12.6,31.71,29.27,31.71c10.37,0,19.11-2.64,25.82-8.94l15.25,17.48c-9.35,11.79-23.78,18.7-41.67,18.7-32.32,0-55.9-25.21-55.9-59.15Z"/>
+<path d="M343.33,106.11c0-32.32,23.58-57.93,53.67-57.93,10.57,0,20.94,3.05,28.66,7.72v-5.08h26.43v111.8h-26.43v-3.46c-7.52,3.86-16.47,6.1-26.43,6.1-32.32,0-55.9-25.21-55.9-59.15ZM425.66,88.63c0-6.71-9.55-13.42-25.41-13.42-18.09,0-29.68,11.79-29.68,30.49s12.2,32.32,29.27,32.32c10.37,0,19.11-2.64,25.82-8.94v-40.45Z"/>
+<path d="M578.12,46.75h-43.7v115.87h-26.43V46.75h-43.7v-26.43h113.84v26.43Z"/>
+<path d="M558.61,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.67,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM635.04,94.32c-2.03-13.42-10.37-18.91-23.38-18.91-11.79,0-20.73,4.88-24.19,18.91h47.57Z"/>
+<path d="M674.27,106.11c0-33.95,22.97-57.93,55.49-57.93,17.89,0,32.93,6.5,42.28,18.29l-15.45,17.69c-6.71-6.3-15.45-8.94-25.82-8.94-18.29,0-29.27,12.4-29.27,31.1s12.6,31.71,29.27,31.71c10.37,0,19.11-2.64,25.82-8.94l15.25,17.48c-9.35,11.79-23.78,18.7-41.67,18.7-32.32,0-55.9-25.21-55.9-59.15Z"/>
+<path d="M810.67,162.62h-26.43V0h26.43v56.51c6.91-5.08,15.45-8.13,25-8.13,27.85,0,45.33,20.94,45.33,55.09v58.95h-26.43v-54.88c0-21.95-6.5-32.12-19.92-32.12-14.23,0-23.99,11.59-23.99,31.71v55.5Z"/>
+<path d="M1008.16,98.61h-7.52c-1.9,0-3.75.71-5.09,2.05-2.07,2.06-4.94,3.33-8.09,3.33-4.1,0-7.69-2.15-9.72-5.38h-.01c-1.11-1.78-1.75-3.87-1.75-6.12,0-1.68.36-3.27,1.01-4.71.45-1,.74-2.07.74-3.18v-16.44c0-2.9-3.14-5.79-6.76-5.79h-14.26c-3.62,0-6.76,2.9-6.76,5.79v16.37c0,1.11.29,2.19.76,3.2.66,1.45,1.03,3.05,1.03,4.75,0,6.35-5.15,11.5-11.48,11.5-3.16,0-6.02-1.28-8.09-3.34-1.35-1.34-3.19-2.04-5.09-2.04h-7.56c-2.9,0-5.79,3.14-5.79,6.52v14.49c0,3.62,2.9,6.76,5.79,6.76h7.56c1.9,0,3.74-.71,5.09-2.04,2.08-2.06,4.93-3.34,8.09-3.34,6.34,0,11.48,5.15,11.48,11.5,0,1.7-.37,3.3-1.03,4.75-.46,1.01-.76,2.09-.76,3.2v16.37c0,2.9,3.14,5.79,6.76,5.79h14.26c3.62,0,6.76-2.9,6.76-5.79v-16.44c0-1.1-.29-2.17-.74-3.18-.65-1.44-1.01-3.03-1.01-4.71,0-2.24.65-4.34,1.75-6.1h.01c2.03-3.24,5.62-5.39,9.72-5.39,3.16,0,6.02,1.27,8.09,3.33,1.35,1.34,3.19,2.05,5.09,2.05h7.52c2.9,0,5.79-3.14,5.79-6.76v-14.49c0-3.38-2.9-6.52-5.79-6.52Z"/>
+</svg></g>
+
+<g id="svg-soft-2"><svg viewBox="0 0 783.47 165.26" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.43,159.37v3.25H0V0h26.43v53.87c7.32-3.66,15.86-5.69,25-5.69,31.51,0,53.06,23.78,53.06,57.93s-21.95,59.15-53.46,59.15c-8.94,0-17.48-2.03-24.6-5.89ZM26.43,125.83c2.85,8.13,11.79,12.4,21.55,12.4,18.29,0,29.27-10.77,29.27-31.91s-9.55-31.1-27.85-31.1c-10.37,0-19.31,4.47-22.97,12.6v38.01Z"/>
+<path d="M116.68,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.67,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM193.12,94.32c-2.03-13.42-10.37-18.91-23.38-18.91-11.79,0-20.73,4.88-24.19,18.91h47.57Z"/>
+<path d="M232.35,106.11c0-33.95,22.97-57.93,55.49-57.93,17.89,0,32.93,6.5,42.28,18.29l-15.45,17.69c-6.71-6.3-15.45-8.94-25.82-8.94-18.3,0-29.27,12.4-29.27,31.1s12.6,31.71,29.27,31.71c10.37,0,19.11-2.64,25.82-8.94l15.25,17.48c-9.35,11.79-23.78,18.7-41.67,18.7-32.32,0-55.9-25.21-55.9-59.15Z"/>
+<path d="M342.32,106.11c0-32.32,23.58-57.93,53.67-57.93,10.57,0,20.94,3.05,28.66,7.72v-5.08h26.43v111.8h-26.43v-3.46c-7.52,3.86-16.47,6.1-26.43,6.1-32.32,0-55.9-25.21-55.9-59.15ZM424.65,88.63c0-6.71-9.55-13.42-25.41-13.42-18.09,0-29.68,11.79-29.68,30.49s12.2,32.32,29.27,32.32c10.37,0,19.11-2.64,25.82-8.94v-40.45Z"/>
+<path d="M505.35,99c0,30.08,5.69,37.4,29.07,37.2v26.43c-38.83,0-55.49-18.09-55.49-60.37v-25h-15.65v-26.43h15.65v-22.77h26.43v22.77h17.08v26.43h-17.08v21.75Z"/>
+<path d="M546.61,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.67,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM623.04,94.32c-2.03-13.42-10.37-18.91-23.38-18.91-11.79,0-20.73,4.88-24.19,18.91h47.57Z"/>
+<path d="M777.68,91.61h-7.52c-1.9,0-3.75.71-5.09,2.05-2.07,2.06-4.94,3.33-8.09,3.33-4.1,0-7.69-2.15-9.72-5.38h-.01c-1.11-1.78-1.75-3.87-1.75-6.12,0-1.68.36-3.27,1.01-4.71.45-1,.74-2.07.74-3.18v-16.44c0-2.9-3.14-5.79-6.76-5.79h-14.26c-3.62,0-6.76,2.9-6.76,5.79v16.37c0,1.11.29,2.19.76,3.2.66,1.45,1.03,3.05,1.03,4.75,0,6.35-5.15,11.5-11.48,11.5-3.16,0-6.02-1.28-8.09-3.34-1.35-1.34-3.19-2.04-5.09-2.04h-7.56c-2.9,0-5.79,3.14-5.79,6.52v14.49c0,3.62,2.9,6.76,5.79,6.76h7.56c1.9,0,3.74-.71,5.09-2.04,2.08-2.06,4.93-3.34,8.09-3.34,6.34,0,11.48,5.15,11.48,11.5,0,1.7-.37,3.3-1.03,4.75-.46,1.01-.76,2.09-.76,3.2v16.37c0,2.9,3.14,5.79,6.76,5.79h14.26c3.62,0,6.76-2.9,6.76-5.79v-16.44c0-1.1-.29-2.17-.74-3.18-.65-1.44-1.01-3.03-1.01-4.71,0-2.24.65-4.34,1.75-6.1h.01c2.03-3.24,5.62-5.39,9.72-5.39,3.16,0,6.02,1.27,8.09,3.33,1.35,1.34,3.19,2.05,5.09,2.05h7.52c2.9,0,5.79-3.14,5.79-6.76v-14.49c0-3.38-2.9-6.52-5.79-6.52Z"/>
+</svg></g>
+
+<g id="svg-soft-3"><svg viewBox="0 0 887.59 165.26" xmlns="http://www.w3.org/2000/svg">
+<path d="M26.43,159.37v3.25H0V0h26.43v53.87c7.32-3.66,15.86-5.69,25-5.69,31.51,0,53.06,23.78,53.06,57.93s-21.95,59.15-53.46,59.15c-8.94,0-17.48-2.03-24.6-5.9ZM26.43,125.83c2.85,8.13,11.79,12.4,21.55,12.4,18.29,0,29.27-10.77,29.27-31.91s-9.55-31.1-27.85-31.1c-10.37,0-19.31,4.47-22.97,12.6v38.01Z"/>
+<path d="M116.68,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.68,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM193.12,94.32c-2.03-13.42-10.37-18.9-23.38-18.9-11.79,0-20.73,4.88-24.19,18.9h47.57Z"/>
+<path d="M232.35,106.11c0-33.95,22.97-57.93,55.49-57.93,17.89,0,32.93,6.5,42.28,18.29l-15.45,17.69c-6.71-6.3-15.45-8.94-25.82-8.94-18.29,0-29.27,12.4-29.27,31.1s12.6,31.71,29.27,31.71c10.37,0,19.11-2.64,25.82-8.94l15.25,17.48c-9.35,11.79-23.78,18.7-41.67,18.7-32.32,0-55.9-25.21-55.9-59.15Z"/>
+<path d="M342.32,106.11c0-32.32,23.58-57.93,53.67-57.93,10.57,0,20.94,3.05,28.66,7.72v-5.08h26.43v111.8h-26.43v-3.46c-7.52,3.86-16.47,6.1-26.43,6.1-32.32,0-55.9-25.21-55.9-59.15ZM424.65,88.63c0-6.71-9.55-13.42-25.41-13.42-18.09,0-29.68,11.79-29.68,30.49s12.2,32.32,29.27,32.32c10.37,0,19.11-2.64,25.82-8.94v-40.45Z"/>
+<path d="M505.35,99c0,30.08,5.69,37.4,29.07,37.2v26.43c-38.83,0-55.49-18.09-55.49-60.37v-25h-15.65v-26.43h15.65v-22.77h26.43v22.77h17.08v26.43h-17.08v21.75Z"/>
+<path d="M546.61,106.72c0-33.54,21.55-58.34,52.65-58.34s50.82,18.5,50.82,52.24v20.12h-75.82c0,11.59,13.01,17.28,27.85,17.28,10.37,0,20.94-4.68,27.65-10.98l15.25,19.51c-9.35,11.79-25.21,18.5-43.09,18.5-32.12,0-55.29-24.39-55.29-58.34ZM623.04,94.32c-2.03-13.42-10.37-18.9-23.38-18.9-11.79,0-20.73,4.88-24.19,18.9h47.57Z"/>
+<path d="M662.28,106.11c0-33.95,22.97-57.93,55.49-57.93,17.89,0,32.93,6.5,42.28,18.29l-15.45,17.69c-6.71-6.3-15.45-8.94-25.82-8.94-18.29,0-29.27,12.4-29.27,31.1s12.6,31.71,29.27,31.71c10.37,0,19.11-2.64,25.82-8.94l15.25,17.48c-9.35,11.79-23.78,18.7-41.67,18.7-32.32,0-55.9-25.21-55.9-59.15Z"/>
+<path d="M881.8,91.61h-7.52c-1.9,0-3.75.71-5.09,2.05-2.07,2.06-4.94,3.33-8.09,3.33-4.1,0-7.69-2.15-9.72-5.38h-.01c-1.11-1.78-1.75-3.87-1.75-6.12,0-1.68.36-3.27,1.01-4.71.45-1,.74-2.07.74-3.18v-16.44c0-2.9-3.14-5.79-6.76-5.79h-14.26c-3.62,0-6.76,2.9-6.76,5.79v16.37c0,1.11.29,2.19.76,3.2.66,1.45,1.03,3.05,1.03,4.75,0,6.35-5.15,11.5-11.48,11.5-3.16,0-6.02-1.28-8.09-3.34-1.35-1.34-3.19-2.04-5.09-2.04h-7.56c-2.9,0-5.79,3.14-5.79,6.52v14.49c0,3.62,2.9,6.76,5.79,6.76h7.56c1.9,0,3.74-.71,5.09-2.04,2.08-2.06,4.93-3.34,8.09-3.34,6.34,0,11.48,5.15,11.48,11.5,0,1.7-.37,3.3-1.03,4.75-.46,1.01-.76,2.09-.76,3.2v16.37c0,2.9,3.14,5.79,6.76,5.79h14.26c3.62,0,6.76-2.9,6.76-5.79v-16.44c0-1.1-.29-2.17-.74-3.18-.65-1.44-1.01-3.03-1.01-4.71,0-2.24.65-4.34,1.75-6.1h.01c2.03-3.24,5.62-5.39,9.72-5.39,3.16,0,6.02,1.27,8.09,3.33,1.35,1.34,3.19,2.05,5.09,2.05h7.52c2.9,0,5.79-3.14,5.79-6.76v-14.49c0-3.38-2.9-6.52-5.79-6.52Z"/>
+</svg></g>
+
+<g id="svg-bold-1"><svg viewBox="0 0 1200.25 175.31" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,0h79.01c40.99,0,56.3,19.26,56.3,40.99,0,17.78-10.12,30.62-21.48,35.06v6.42c18.27,3.95,28.89,21.73,28.89,41.73,0,26.42-18.52,48.64-62.96,48.64H0V0ZM49.38,41.98v20.25h21.73c9.88,0,16.05-4.44,16.05-10.62,0-5.19-4.2-9.63-13.83-9.63h-23.95ZM49.38,127.16h20.25c17.28,0,22.47-6.42,22.47-14.07s-5.19-13.83-22.47-13.83h-20.25v27.9Z"/>
+<path d="M278.28,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,60.5-64.2,61.48,25.93,61.48,61.73v6.67ZM231.11,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M351.61,46.92c35.56,0,56.05,21.73,60.74,50.62h-46.42c-2.22-6.67-6.67-11.11-13.09-11.11-10.37,0-15.31,11.11-15.31,24.2,0,14.07,4.94,25.19,15.31,25.19,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,62.22-64.2Z"/>
+<path d="M549.14,94.32v78.52h-46.91v-2.22c0-6.17.99-10.62,6.17-18.02l-4.94-2.72c-8.39,16.79-21.23,25.43-39.26,25.43-22.22,0-38.03-13.33-38.03-34.07,0-23.21,19.75-38.52,48.15-38.52,8.64,0,18.02,1.48,27.9,4.45v-9.38c0-10.87-5.19-15.06-11.36-15.06s-10.62,3.95-12.35,9.63h-46.17c3.46-21.48,22.22-45.43,60.5-45.43,32.1,0,56.3,16.79,56.3,47.41ZM502.22,122.47c-4.2-1.73-7.9-2.47-11.36-2.47-10.12,0-16.54,6.67-16.54,16.05,0,8.4,4.94,13.09,11.36,13.09,9.63,0,16.54-11.11,16.54-22.22v-4.44Z"/>
+<path d="M562.72,0h141.48v45.68h-48.64v127.16h-49.38V45.68h-43.46V0Z"/>
+<path d="M810.38,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,60.5-64.2,61.48,25.93,61.48,61.73v6.67ZM763.21,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M883.71,46.92c35.56,0,56.05,21.73,60.74,50.62h-46.42c-2.22-6.67-6.67-11.11-13.09-11.11-10.37,0-15.31,11.11-15.31,24.2,0,14.07,4.94,25.19,15.31,25.19,6.42,0,10.87-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.23-64.2,62.22-64.2Z"/>
+<path d="M1093.09,172.84h-46.91v-58.03c0-20-6.42-27.16-15.56-27.16-14.81,0-21.73,18.77-21.73,37.78v47.41h-46.91V0h46.91v49.88c0,11.36-2.22,21.48-6.17,32.1l4.94,2.47c9.88-25.43,24.45-37.53,46.67-37.53,24.45,0,38.77,14.81,38.77,40v85.93Z"/>
+<path d="M1200.25,111.36h-27.41v32.1h-36.05v-32.1h-27.66v-32.1h27.66v-32.35h36.05v32.35h27.41v32.1Z"/>
+</svg></g>
+
+<g id="svg-bold-2"><svg viewBox="0 0 1014.81 175.31" xmlns="http://www.w3.org/2000/svg">
+<path d="M132.35,109.63c0,40-19.75,65.68-50.62,65.68-15.31,0-26.17-6.17-34.82-14.81v12.35H0V0h46.91v52.35c0,11.36-2.72,19.75-6.67,29.63l4.94,1.73c6.91-24.2,22.47-36.79,41.98-36.79,27.65,0,45.19,25.19,45.19,62.72ZM46.91,115.8v17.28c3.7,11.11,9.38,16.3,17.28,16.3,12.1,0,20-12.35,20-33.09,0-19.51-7.16-31.11-18.27-31.11s-19.01,11.36-19.01,30.62Z"/>
+<path d="M264.2,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.87-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.23-64.2,60.49-64.2,61.48,25.93,61.48,61.73v6.67ZM217.04,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M337.53,46.92c35.56,0,56.05,21.73,60.74,50.62h-46.42c-2.22-6.67-6.67-11.11-13.09-11.11-10.37,0-15.31,11.11-15.31,24.2,0,14.07,4.94,25.19,15.31,25.19,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,62.22-64.2Z"/>
+<path d="M535.06,94.32v78.52h-46.91v-2.22c0-6.17.99-10.62,6.17-18.02l-4.94-2.72c-8.4,16.79-21.24,25.43-39.26,25.43-22.22,0-38.03-13.33-38.03-34.07,0-23.21,19.75-38.52,48.15-38.52,8.64,0,18.03,1.48,27.9,4.45v-9.38c0-10.87-5.19-15.06-11.36-15.06s-10.62,3.95-12.35,9.63h-46.17c3.46-21.48,22.22-45.43,60.5-45.43,32.1,0,56.3,16.79,56.3,47.41ZM488.15,122.47c-4.2-1.73-7.9-2.47-11.36-2.47-10.12,0-16.54,6.67-16.54,16.05,0,8.4,4.94,13.09,11.36,13.09,9.63,0,16.54-11.11,16.54-22.22v-4.44Z"/>
+<path d="M567.65,111.85c0-10.37,4.2-18.27,11.11-20.49v-4.94h-30.12v-37.04h20.25l3.95-34.57h41.73v34.57h31.85v37.04h-31.85v27.16c0,11.6,3.46,16.05,11.11,16.05h20.74v43.21h-30.37c-30.12,0-48.4-15.8-48.4-41.98v-19.01Z"/>
+<path d="M777.04,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,60.5-64.2,61.48,25.93,61.48,61.73v6.67ZM729.88,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M850.37,46.92c35.56,0,56.05,21.73,60.74,50.62h-46.42c-2.22-6.67-6.67-11.11-13.09-11.11-10.37,0-15.31,11.11-15.31,24.2,0,14.07,4.94,25.19,15.31,25.19,6.42,0,10.87-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.23-64.2,62.22-64.2Z"/>
+<path d="M1014.81,111.36h-27.41v32.1h-36.05v-32.1h-27.66v-32.1h27.66v-32.35h36.05v32.35h27.41v32.1Z"/>
+</svg></g>
+
+<g id="svg-bold-3"><svg viewBox="0 0 881.73 175.31" xmlns="http://www.w3.org/2000/svg">
+<path d="M132.35,109.63c0,40-19.75,65.68-50.62,65.68-15.31,0-26.17-6.17-34.82-14.81v12.35H0V0h46.91v52.35c0,11.36-2.72,19.75-6.67,29.63l4.94,1.73c6.91-24.2,22.47-36.79,41.98-36.79,27.65,0,45.19,25.19,45.19,62.72ZM46.91,115.8v17.28c3.7,11.11,9.38,16.3,17.28,16.3,12.1,0,20-12.35,20-33.09,0-19.51-7.16-31.11-18.27-31.11s-19.01,11.36-19.01,30.62Z"/>
+<path d="M264.2,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.87-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.23-64.2,60.49-64.2,61.48,25.93,61.48,61.73v6.67ZM217.04,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M337.53,46.92c35.56,0,56.05,21.73,60.74,50.62h-46.42c-2.22-6.67-6.67-11.11-13.09-11.11-10.37,0-15.31,11.11-15.31,24.2,0,14.07,4.94,25.19,15.31,25.19,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,62.22-64.2Z"/>
+<path d="M535.06,94.32v78.52h-46.91v-2.22c0-6.17.99-10.62,6.17-18.02l-4.94-2.72c-8.4,16.79-21.24,25.43-39.26,25.43-22.22,0-38.03-13.33-38.03-34.07,0-23.21,19.75-38.52,48.15-38.52,8.64,0,18.03,1.48,27.9,4.45v-9.38c0-10.87-5.19-15.06-11.36-15.06s-10.62,3.95-12.35,9.63h-46.17c3.46-21.48,22.22-45.43,60.5-45.43,32.1,0,56.3,16.79,56.3,47.41ZM488.15,122.47c-4.2-1.73-7.9-2.47-11.36-2.47-10.12,0-16.54,6.67-16.54,16.05,0,8.4,4.94,13.09,11.36,13.09,9.63,0,16.54-11.11,16.54-22.22v-4.44Z"/>
+<path d="M567.65,111.85c0-10.37,4.2-18.27,11.11-20.49v-4.94h-30.12v-37.04h20.25l3.95-34.57h41.73v34.57h31.85v37.04h-31.85v27.16c0,11.6,3.46,16.05,11.11,16.05h20.74v43.21h-30.37c-30.12,0-48.4-15.8-48.4-41.98v-19.01Z"/>
+<path d="M777.04,115.31h-73.58c.99,11.85,5.93,20.49,15.06,20.49,6.42,0,10.86-4.44,13.09-11.36h46.67c-4.94,28.89-25.43,50.86-60.99,50.86-40.99,0-62.22-28.89-62.22-64.2s21.24-64.2,60.5-64.2,61.48,25.93,61.48,61.73v6.67ZM729.88,98.03c-2.22-5.93-6.42-11.6-12.84-11.6-5.93,0-10.12,4.69-12.1,11.6h24.94Z"/>
+<path d="M881.73,111.36h-27.41v32.1h-36.05v-32.1h-27.66v-32.1h27.66v-32.35h36.05v32.35h27.41v32.1Z"/>
+</svg></g>
+
+<g id="svg-sharp-1"><svg viewBox="0 0 931.25 137.79" xmlns="http://www.w3.org/2000/svg">
+<path d="M64.72,136.05h-26.24c-7.19,0-11.27-3.5-11.27-10.3h-1.17v5.64c0,2.33-2.33,4.67-5.25,4.67H5.25c-2.72,0-5.25-2.33-5.25-4.67v-40.81c0-23.71,16.91-35.57,36.34-35.57h21.38c12.24,0,18.46-5.83,18.46-14.19s-6.02-14.77-18.46-14.77h-26.43c-3.69,0-5.25,2.33-5.25,6.22v16.52c0,2.53-2.33,4.67-5.25,4.67H5.25c-2.72,0-5.25-2.14-5.25-4.67v-16.52c0-2.53,2.53-4.86,5.25-4.86h15.55c4.08,0,5.25-1.94,5.25-6.03V4.66c0-2.33,2.53-4.66,5.25-4.66h30.71c26.63,0,40.23,15.55,40.23,37.51,0,12.63-5.44,22.93-15.94,29.15,35.18,15.55,27.99,69.38-21.57,69.38ZM63.36,110c11.86,0,17.69-6.41,17.69-14.38.19-7.97-5.83-14.58-17.69-14.58h-27.01c-7.39,0-10.3,3.5-10.3,12.44v10.3c0,3.69,1.56,6.03,5.25,6.22h32.07Z"/>
+<path d="M214.56,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.91,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.56,0,2.92.39,4.08,1.55,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.56,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.8-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM189.69,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M315.63,116.8c1.17.97,1.75,2.53,1.75,4.08s-.78,3.11-1.94,4.28c-9.13,7.77-22.35,12.63-37.7,12.63-71.52,0-71.52-109.81,0-109.81,15.35,0,28.57,4.66,37.7,12.63,1.17.97,1.94,2.53,1.94,4.08s-.58,3.11-1.75,4.28c-2.72,2.53-6.22,6.03-8.94,8.55-.97.97-2.53,1.56-3.89,1.56-1.17,0-2.33-.39-3.3-1.17-5.64-4.28-12.44-6.61-20.99-6.41-38.87.78-38.87,61.8,0,62.58,8.55.19,15.35-2.14,20.99-6.41.97-.78,2.14-.97,3.3-.97,1.36,0,2.72.39,3.89,1.55,2.72,2.53,6.22,5.83,8.94,8.55Z"/>
+<path d="M370.63,28.18c22.35,0,44.7,12.44,44.7,41.4v61.61c0,2.53-2.33,4.86-5.25,4.86h-14.38c-2.92,0-5.44-2.33-5.44-4.86v-5.64h-.58c0,7-4.28,10.5-11.27,10.5h-19.63c-22.74,0-34.21-13.41-34.21-31.29s11.47-31.1,34.21-31.1h31.48v-4.08c0-12.63-8.16-18.85-18.27-18.85-6.41,0-13.6,2.53-19.82,7.39-.97.78-2.14,1.17-3.5,1.17s-2.92-.58-3.89-1.55c-2.72-2.53-6.41-6.22-9.13-8.75-1.17-1.17-1.75-2.53-1.75-4.08s.58-2.91,1.75-4.08c8.36-8.16,21.57-12.63,34.98-12.63ZM390.26,99.9c0-3.69-1.55-6.03-5.44-6.03h-24.68c-8.16,0-11.47,3.5-11.47,9.72s3.11,10.11,11.47,10.11h25.27c3.5-.19,4.86-2.53,4.86-6.03v-7.77Z"/>
+<path d="M484.13,114.67c0-3.69-1.55-6.22-5.44-6.22h-15.35c-2.92,0-5.25-2.14-5.25-4.67V29.35c0-3.69-1.56-6.22-5.44-6.22h-25.07c-2.33,0-4.66-2.33-4.66-5.25V5.25c0-2.92,2.33-5.25,4.66-5.25h86.88c2.33,0,4.66,2.33,4.66,5.25v12.63c0,2.91-2.33,5.25-4.66,5.25h-25.07c-3.89,0-5.25,2.53-5.25,6.22v74.44c0,4.28.97,6.22,5.25,6.22h15.35c2.92,0,5.44,2.33,5.44,4.67v16.71c0,2.33-2.53,4.67-5.44,4.67h-15.35c-2.92,0-5.25-2.33-5.25-4.67v-16.71Z"/>
+<path d="M614.93,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.91,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.56,0,2.92.39,4.08,1.55,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.56,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.8-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM590.05,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M715.99,116.8c1.17.97,1.75,2.53,1.75,4.08s-.78,3.11-1.94,4.28c-9.13,7.77-22.35,12.63-37.7,12.63-71.52,0-71.52-109.81,0-109.81,15.35,0,28.57,4.66,37.7,12.63,1.17.97,1.94,2.53,1.94,4.08s-.58,3.11-1.75,4.28c-2.72,2.53-6.22,6.03-8.94,8.55-.97.97-2.53,1.56-3.89,1.56-1.17,0-2.33-.39-3.3-1.17-5.64-4.28-12.44-6.61-20.99-6.41-38.87.78-38.87,61.8,0,62.58,8.55.19,15.35-2.14,20.99-6.41.97-.78,2.14-.97,3.3-.97,1.36,0,2.72.39,3.89,1.55,2.72,2.53,6.22,5.83,8.94,8.55Z"/>
+<path d="M826.19,61.42v69.77c0,2.53-2.33,4.86-5.25,4.86h-14.58c-2.92,0-5.25-2.33-5.25-4.86v-66.86c0-8.94-3.89-12.05-11.27-12.05h-29.93c-3.3.39-4.86,2.72-4.86,6.22v72.69c0,2.53-2.33,4.86-5.25,4.86h-14.58c-2.72,0-5.25-2.33-5.25-4.86V4.66c0-2.53,2.53-4.66,5.25-4.66h14.58c2.92,0,5.25,2.14,5.25,4.66v35.76h1.17c0-7,4.28-10.3,11.27-10.3h24.29c19.44,0,34.4,6.61,34.4,31.29Z"/>
+<path d="M926.69,58.66c2.28,0,4.56,2.47,4.56,5.13v11.41c0,2.85-2.28,5.32-4.56,5.32h-23.95v23.95c0,2.28-2.47,4.56-5.32,4.56h-11.22c-2.85,0-5.32-2.28-5.32-4.56v-23.95h-23.95c-2.28,0-4.56-2.47-4.56-5.32v-11.41c0-2.66,2.28-5.13,4.56-5.13h23.95v-23.95c0-2.28,2.47-4.56,5.32-4.56h11.22c2.85,0,5.32,2.28,5.32,4.56v23.95h23.95Z"/>
+<path d="M902.73,104.49c0,4.18.95,6.08,5.13,6.08h15.02c2.85,0,5.32,2.28,5.32,4.56v16.35c0,2.28-2.47,4.56-5.32,4.56h-15.02c-2.85,0-5.13-2.28-5.13-4.56v-16.35c0-3.61-1.52-6.08-5.32-6.08"/>
+</svg></g>
+
+<g id="svg-sharp-2"><svg viewBox="0 0 796.24 137.79" xmlns="http://www.w3.org/2000/svg">
+<path d="M47.03,30.12c41.79,0,53.06,26.43,53.06,52.86s-10.5,53.06-53.06,53.06h-9.52c-7,0-11.27-3.5-11.27-10.3h-1.17v5.64c0,2.33-2.33,4.66-5.25,4.66H5.25c-2.72,0-5.25-2.33-5.25-4.66v-39.06c0-2.53,2.53-4.67,5.25-4.67h14.58c3.69,0,5.25-2.53,5.25-6.22v-15.74c0-2.33,2.53-4.67,5.44-4.67h14.38c2.92,0,5.25,2.33,5.25,4.67v15.74c0,2.33-2.33,4.66-5.25,4.66h-14.38c-4.28,0-5.44,1.94-5.44,6.22v15.35c0,3.5,1.55,5.83,4.86,6.02h16.52c20.6-.58,27.6-12.83,27.6-30.71s-8.16-30.71-29.35-30.71h-7.19C18.07,52.28,0,40.43,0,16.71V4.67C0,2.33,2.53,0,5.25,0h14.58c2.92,0,5.25,2.33,5.25,4.67v9.13c0,8.94,5.05,16.33,12.44,16.33h9.52Z"/>
+<path d="M206.59,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.9,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.56,0,2.92.39,4.08,1.55,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.56,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.8-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM181.72,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M307.66,116.81c1.17.97,1.75,2.53,1.75,4.08s-.78,3.11-1.94,4.28c-9.13,7.77-22.35,12.63-37.7,12.63-71.52,0-71.52-109.81,0-109.81,15.35,0,28.57,4.66,37.7,12.63,1.17.97,1.94,2.53,1.94,4.08s-.58,3.11-1.75,4.28c-2.72,2.53-6.22,6.03-8.94,8.55-.97.97-2.53,1.55-3.89,1.55-1.17,0-2.33-.39-3.3-1.17-5.64-4.28-12.44-6.61-20.99-6.41-38.87.78-38.87,61.8,0,62.58,8.55.19,15.35-2.14,20.99-6.41.97-.78,2.14-.97,3.3-.97,1.36,0,2.72.39,3.89,1.55,2.72,2.53,6.22,5.83,8.94,8.55Z"/>
+<path d="M362.66,28.18c22.35,0,44.7,12.44,44.7,41.4v61.61c0,2.53-2.33,4.86-5.25,4.86h-14.38c-2.92,0-5.44-2.33-5.44-4.86v-5.64h-.58c0,7-4.28,10.5-11.27,10.5h-19.63c-22.74,0-34.21-13.41-34.21-31.29s11.47-31.1,34.21-31.1h31.48v-4.08c0-12.63-8.16-18.85-18.27-18.85-6.41,0-13.6,2.53-19.82,7.39-.97.78-2.14,1.17-3.5,1.17s-2.92-.58-3.89-1.55c-2.72-2.53-6.41-6.22-9.13-8.75-1.17-1.17-1.75-2.53-1.75-4.08s.58-2.92,1.75-4.08c8.36-8.16,21.57-12.63,34.98-12.63ZM382.29,99.9c0-3.69-1.55-6.02-5.44-6.02h-24.68c-8.16,0-11.47,3.5-11.47,9.72s3.11,10.11,11.47,10.11h25.27c3.5-.19,4.86-2.53,4.86-6.02v-7.77Z"/>
+<path d="M480.04,114.28c2.53,0,4.66,2.33,4.66,5.25v11.08c0,2.92-2.14,5.44-4.66,5.44h-13.6c-19.44,0-34.4-7.19-34.4-31.87v-46.06c0-3.89-1.56-6.22-5.44-6.22h-4.66c-2.33,0-4.66-2.53-4.66-5.44v-11.08c0-2.92,2.33-5.25,4.66-5.25h4.66c3.89,0,5.44-2.53,5.44-6.22v-11.08c0-2.33,2.33-4.47,5.05-4.47h14.96c2.72,0,5.05,2.14,5.05,4.47v11.08c0,3.69,1.55,6.22,5.25,6.22h15.94c2.33,0,4.66,2.33,4.66,5.25v11.08c0,2.92-2.33,5.44-4.66,5.44h-15.94c-3.69,0-5.25,2.33-5.25,6.22v43.53c0,8.94,3.89,12.63,11.27,12.63h11.66Z"/>
+<path d="M587.52,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.9,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.56,0,2.92.39,4.08,1.55,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.56,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.8-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM562.65,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M688.59,116.81c1.17.97,1.75,2.53,1.75,4.08s-.78,3.11-1.94,4.28c-9.13,7.77-22.35,12.63-37.7,12.63-71.52,0-71.52-109.81,0-109.81,15.35,0,28.57,4.66,37.7,12.63,1.17.97,1.94,2.53,1.94,4.08s-.58,3.11-1.75,4.28c-2.72,2.53-6.22,6.03-8.94,8.55-.97.97-2.53,1.55-3.89,1.55-1.17,0-2.33-.39-3.3-1.17-5.64-4.28-12.44-6.61-20.99-6.41-38.87.78-38.87,61.8,0,62.58,8.55.19,15.35-2.14,20.99-6.41.97-.78,2.14-.97,3.3-.97,1.36,0,2.72.39,3.89,1.55,2.72,2.53,6.22,5.83,8.94,8.55Z"/>
+<path d="M791.68,58.66c2.28,0,4.56,2.47,4.56,5.13v11.41c0,2.85-2.28,5.32-4.56,5.32h-23.95v23.95c0,2.28-2.47,4.56-5.32,4.56h-11.22c-2.85,0-5.32-2.28-5.32-4.56v-23.95h-23.95c-2.28,0-4.56-2.47-4.56-5.32v-11.41c0-2.66,2.28-5.13,4.56-5.13h23.95v-23.95c0-2.28,2.47-4.56,5.32-4.56h11.22c2.85,0,5.32,2.28,5.32,4.56v23.95h23.95Z"/>
+<path d="M767.72,104.49c0,4.18.95,6.08,5.13,6.08h15.02c2.85,0,5.32,2.28,5.32,4.56v16.35c0,2.28-2.47,4.56-5.32,4.56h-15.02c-2.85,0-5.13-2.28-5.13-4.56v-16.35c0-3.61-1.52-6.08-5.32-6.08"/>
+</svg></g>
+
+<g id="svg-sharp-3"><svg viewBox="0 0 713.1 137.79" xmlns="http://www.w3.org/2000/svg">
+<path d="M64.72,136.05h-26.24c-7.19,0-11.27-3.5-11.27-10.3h-1.17v5.64c0,2.33-2.33,4.66-5.25,4.66H5.25c-2.72,0-5.25-2.33-5.25-4.66v-40.81c0-23.71,16.91-35.57,36.34-35.57h21.38c12.24,0,18.46-5.83,18.46-14.19s-6.02-14.77-18.46-14.77h-26.43c-3.69,0-5.25,2.33-5.25,6.22v16.52c0,2.53-2.33,4.66-5.25,4.66H5.25c-2.72,0-5.25-2.14-5.25-4.66v-16.52c0-2.53,2.53-4.86,5.25-4.86h15.55c4.08,0,5.25-1.94,5.25-6.02V4.67c0-2.33,2.53-4.67,5.25-4.67h30.71c26.63,0,40.23,15.55,40.23,37.51,0,12.63-5.44,22.93-15.94,29.15,35.18,15.55,27.99,69.38-21.57,69.38ZM63.36,110c11.86,0,17.69-6.41,17.69-14.38.19-7.97-5.83-14.58-17.69-14.58h-27.01c-7.38,0-10.3,3.5-10.3,12.44v10.3c0,3.69,1.56,6.02,5.25,6.22h32.07Z"/>
+<path d="M214.56,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.9,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.55,0,2.92.39,4.08,1.56,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.55,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.79-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM189.69,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M315.63,116.81c1.17.97,1.75,2.53,1.75,4.08s-.78,3.11-1.94,4.28c-9.13,7.77-22.35,12.63-37.7,12.63-71.52,0-71.52-109.81,0-109.81,15.35,0,28.57,4.66,37.7,12.63,1.17.97,1.94,2.53,1.94,4.08s-.58,3.11-1.75,4.28c-2.72,2.53-6.22,6.02-8.94,8.55-.97.97-2.53,1.55-3.89,1.55-1.17,0-2.33-.39-3.3-1.17-5.64-4.28-12.44-6.61-20.99-6.41-38.87.78-38.87,61.8,0,62.58,8.55.19,15.35-2.14,20.99-6.41.97-.78,2.14-.97,3.3-.97,1.36,0,2.72.39,3.89,1.56,2.72,2.53,6.22,5.83,8.94,8.55Z"/>
+<path d="M370.63,28.18c22.35,0,44.7,12.44,44.7,41.4v61.61c0,2.53-2.33,4.86-5.25,4.86h-14.38c-2.92,0-5.44-2.33-5.44-4.86v-5.64h-.58c0,7-4.28,10.5-11.27,10.5h-19.63c-22.74,0-34.21-13.41-34.21-31.29s11.47-31.1,34.21-31.1h31.48v-4.08c0-12.63-8.16-18.85-18.27-18.85-6.41,0-13.6,2.53-19.82,7.38-.97.78-2.14,1.17-3.5,1.17s-2.92-.58-3.89-1.56c-2.72-2.53-6.41-6.22-9.13-8.75-1.17-1.17-1.75-2.53-1.75-4.08s.58-2.92,1.75-4.08c8.36-8.16,21.57-12.63,34.98-12.63ZM390.26,99.9c0-3.69-1.55-6.02-5.44-6.02h-24.68c-8.16,0-11.47,3.5-11.47,9.72s3.11,10.11,11.47,10.11h25.27c3.5-.19,4.86-2.53,4.86-6.02v-7.77Z"/>
+<path d="M488.01,114.28c2.53,0,4.67,2.33,4.67,5.25v11.08c0,2.92-2.14,5.44-4.67,5.44h-13.6c-19.43,0-34.4-7.19-34.4-31.87v-46.06c0-3.89-1.56-6.22-5.44-6.22h-4.66c-2.33,0-4.67-2.53-4.67-5.44v-11.08c0-2.92,2.33-5.25,4.67-5.25h4.66c3.89,0,5.44-2.53,5.44-6.22v-11.08c0-2.33,2.33-4.47,5.05-4.47h14.96c2.72,0,5.05,2.14,5.05,4.47v11.08c0,3.69,1.55,6.22,5.25,6.22h15.94c2.33,0,4.67,2.33,4.67,5.25v11.08c0,2.92-2.33,5.44-4.67,5.44h-15.94c-3.69,0-5.25,2.33-5.25,6.22v43.54c0,8.94,3.89,12.63,11.27,12.63h11.66Z"/>
+<path d="M595.49,77.16v7.58c0,2.72-2.14,5.25-4.66,5.25h-66.66c1.94,16.71,14.38,23.9,28.57,24.1,8.36.19,15.35-2.14,20.8-6.41.97-.78,2.14-.97,3.3-.97,1.55,0,2.92.39,4.08,1.56,2.72,2.53,6.22,5.83,8.94,8.55.97.97,1.75,2.53,1.55,4.08,0,1.55-.58,3.11-1.75,4.28-9.13,7.77-22.54,12.63-37.9,12.63-28.18,0-52.86-15.55-52.86-55s20.79-54.61,49.37-54.61c25.85,0,47.23,17.3,47.23,48.98ZM570.62,70.55c-1.36-13.41-10.3-20.21-22.93-20.41-13.02-.19-22.16,6.61-23.71,20.41h46.64Z"/>
+<path d="M708.53,58.66c2.28,0,4.56,2.47,4.56,5.13v11.41c0,2.85-2.28,5.32-4.56,5.32h-23.95v23.95c0,2.28-2.47,4.56-5.32,4.56h-11.22c-2.85,0-5.32-2.28-5.32-4.56v-23.95h-23.95c-2.28,0-4.56-2.47-4.56-5.32v-11.41c0-2.66,2.28-5.13,4.56-5.13h23.95v-23.95c0-2.28,2.47-4.56,5.32-4.56h11.22c2.85,0,5.32,2.28,5.32,4.56v23.95h23.95Z"/>
+<path d="M684.57,104.49c0,4.18.95,6.08,5.13,6.08h15.02c2.85,0,5.32,2.28,5.32,4.56v16.35c0,2.28-2.47,4.56-5.32,4.56h-15.02c-2.85,0-5.13-2.28-5.13-4.56v-16.35c0-3.61-1.52-6.08-5.32-6.08"/>
+</svg></g>
+
+</defs>
+</svg>
+
+<script>
+// ── Reading progress bar ──
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  const pct = window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  progressBar.style.width = Math.min(pct,100)+'%';
+},{passive:true});
+
+// ── Logo data per path ──
+const LOGO_DATA = {
+  1: [
+    {id:'svg-soft-1', vb:'0 0 1013.95 165.26', name:'SoftCircuit', desc:'Geométrico redondeado, trazo uniforme y cálido: amigable sin perder solidez tech.'},
+    {id:'svg-bold-1', vb:'0 0 1200.25 175.31', name:'BoldForge', desc:'Tipografía de palo seco, pesada y compacta: asertiva, confiable, con presencia inmediata.'},
+    {id:'svg-sharp-1', vb:'0 0 931.25 137.79', name:'SharpEdge', desc:'Cortes geométricos distintivos: técnica, precisa, la más "diseñada" de las tres.'},
+  ],
+  2: [
+    {id:'svg-soft-3', vb:'0 0 887.59 165.26', name:'SoftCircuit', desc:'La misma calidez redondeada, ahora sobre "becatec+": un nombre que se lee de corrido.'},
+    {id:'svg-bold-2', vb:'0 0 1014.81 175.31', name:'BoldForge', desc:'Peso y compacidad que refuerzan la fluidez fonética de "becatec+".'},
+    {id:'svg-sharp-2', vb:'0 0 796.24 137.79', name:'SharpEdge', desc:'Precisión geométrica aplicada a un nombre más corto y directo.'},
+  ],
+  3: [
+    {id:'svg-soft-2', vb:'0 0 783.47 165.26', name:'SoftCircuit', desc:'Síntesis y calidez a la vez: cercano incluso en su versión más corta.'},
+    {id:'svg-bold-3', vb:'0 0 881.73 175.31', name:'BoldForge', desc:'Máxima compacidad: el peso bold refuerza el carácter icónico de "becate+".'},
+    {id:'svg-sharp-3', vb:'0 0 713.1 137.79', name:'SharpEdge', desc:'La versión más sintética y técnica: un signo, no una palabra que se explica.'},
+  ],
+};
+
+const logoGrid = document.getElementById('path-logos');
+let currentBg = 'dark';
+
+function renderLogos(pathNum){
+  logoGrid.innerHTML = '';
+  LOGO_DATA[pathNum].forEach(item=>{
+    const card = document.createElement('div');
+    card.className = 'logo-card on-' + currentBg;
+    card.innerHTML = `
+      <div class="logo-svg"><svg viewBox="${item.vb}" xmlns="http://www.w3.org/2000/svg"><use href="#${item.id}"></use></svg></div>
+      <div class="logo-card-meta">
+        <div class="logo-card-name">${item.name}</div>
+        <div class="logo-card-desc">${item.desc}</div>
+      </div>`;
+    logoGrid.appendChild(card);
+  });
+}
+
+function setBg(mode){
+  currentBg = mode;
+  document.getElementById('btn-dark').classList.toggle('active', mode==='dark');
+  document.getElementById('btn-light').classList.toggle('active', mode==='light');
+  document.querySelectorAll('.logo-card').forEach(c=>{
+    c.classList.remove('on-dark','on-light');
+    c.classList.add('on-'+mode);
+  });
+}
+
+// ── Path tabs ──
+const tabs = document.querySelectorAll('.path-tab');
+const panels = document.querySelectorAll('.path-panel');
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const n = tab.dataset.path;
+    tabs.forEach(t=>t.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+n).classList.add('active');
+    renderLogos(n);
+  });
+});
+renderLogos(1);
+
+// ── Case demo ──
+function setCase(mode){
+  const sample = document.getElementById('case-sample');
+  sample.classList.remove('tt-none','tt-upper','tt-lower');
+  sample.classList.add('tt-'+mode);
+  document.querySelectorAll('.case-demo-buttons .toggle-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.case-demo-buttons [data-case="${mode}"]`).classList.add('active');
+}
+</script>
+
+</body>
+</html>
