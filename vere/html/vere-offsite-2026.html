@@ -366,6 +366,172 @@
     /* footer-logo definido arriba junto a hero-logo */
 
     /* ═══════════════════════════════
+       PRE-OFFSITE CHECKLIST
+    ═══════════════════════════════ */
+    .checklist-section {
+      background: var(--text);
+      padding: 0 24px 56px;
+    }
+
+    .checklist-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(234,230,218,.1);
+      padding-top: 40px;
+    }
+
+    .checklist-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(234,230,218,.38);
+      margin-bottom: 10px;
+    }
+
+    .checklist-title {
+      font-family: 'abacaxi', 'Abacaxi', serif;
+      font-size: clamp(22px, 5vw, 36px);
+      color: #e8e5de;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .checklist-body {
+      font-size: 14px;
+      color: rgba(234,230,218,.55);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+
+    /* ── Progress bar ── */
+    .checklist-progress {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 2px;
+      background: rgba(234,230,218,.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--activity);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.45s cubic-bezier(.4,0,.2,1);
+    }
+
+    .progress-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(234,230,218,.35);
+      white-space: nowrap;
+      min-width: 100px;
+      text-align: right;
+      transition: color 0.3s;
+    }
+
+    .progress-label.all-done {
+      color: var(--activity);
+    }
+
+    /* ── Items ── */
+    .checklist-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .check-item {
+      border-radius: 8px;
+      transition: background 0.12s;
+    }
+
+    .check-item:hover { background: rgba(234,230,218,.04); }
+
+    .check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 13px 12px;
+      cursor: pointer;
+    }
+
+    .check-input {
+      position: absolute;
+      opacity: 0;
+      width: 0; height: 0;
+      pointer-events: none;
+    }
+
+    .check-box {
+      width: 20px; height: 20px;
+      border: 1.5px solid rgba(234,230,218,.25);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .check-input:checked ~ .check-box {
+      background: var(--activity);
+      border-color: var(--activity);
+    }
+
+    .check-input:checked ~ .check-box::after {
+      content: '';
+      display: block;
+      width: 5px; height: 9px;
+      border: 1.8px solid var(--text);
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translateY(-1px);
+    }
+
+    .check-text {
+      font-size: 14px;
+      color: rgba(234,230,218,.72);
+      line-height: 1.6;
+      transition: color 0.25s, text-decoration 0.25s;
+    }
+
+    .check-text a {
+      color: var(--activity);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(203,178,121,.35);
+      transition: border-color 0.15s;
+    }
+
+    .check-text a:hover { border-color: var(--activity); }
+
+    .check-item.done .check-text {
+      color: rgba(234,230,218,.28);
+      text-decoration: line-through;
+      text-decoration-color: rgba(234,230,218,.2);
+    }
+
+    .checklist-note {
+      margin-top: 20px;
+      font-size: 11px;
+      color: rgba(234,230,218,.22);
+      letter-spacing: 0.02em;
+    }
+
+    /* ═══════════════════════════════
        RESPONSIVE
     ═══════════════════════════════ */
     @media (max-width: 520px) {
@@ -405,6 +571,79 @@
     <span class="leg"><span class="leg-pip" style="background:var(--travel)"></span>Travel</span>
   </nav>
 </header>
+
+<!-- ═══════ PRE-OFFSITE CHECKLIST ═══════ -->
+<section class="checklist-section" aria-labelledby="checklist-title">
+  <div class="checklist-wrap">
+
+    <p class="checklist-eyebrow">Pre-Offsite Checklist</p>
+    <h2 class="checklist-title" id="checklist-title">A few things before we land</h2>
+    <p class="checklist-body">
+    This offsite is a meaningful investment of time for all of us, and the more prepared we each arrive, the more valuable every session will be. Take a few minutes to work through this list at your own pace.</p>
+
+    <div class="checklist-progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" id="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <span class="progress-label" id="progress-label">0 of 6 complete</span>
+    </div>
+
+    <ul class="checklist-items" id="checklist-items">
+
+      <li class="check-item" id="ci-0">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="0">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Review and update your OKRs in <a href="https://profit.co" target="_blank" rel="noopener noreferrer">profit.co</a> ahead of our group sessions</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-1">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="1">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Confirm your air tickets and travel logistics to San José</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-2">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="2">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Complete your Clifton Strengths assessment and share your results with Cristina</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-3">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="3">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Pack comfortable clothes for exercise, yoga, and outdoor activities</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-4">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="4">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Think about how we can strengthen our weekly and monthly team calls — come ready to share ideas</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-5">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="5">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Write down your top priorities for this quarter — we'll build on them together during our sessions</span>
+        </label>
+      </li>
+
+    </ul>
+
+    <p class="checklist-note">Progress is stored locally in your browser and is not shared with anyone else.</p>
+
+  </div>
+</section>
 
 <!-- ═══════ SCHEDULE ═══════ -->
 <main class="main">
@@ -756,6 +995,63 @@
 </footer>
 
 <script>
+  /* ── Pre-Offsite Checklist ──────────────────────────────
+     Each browser saves its own state in localStorage.
+     Key: vere_offsite_cr26  Value: JSON { "0": true, "3": true, … }
+  ────────────────────────────────────────────────────── */
+  const STORE_KEY = 'vere_offsite_cr26';
+  const TOTAL     = 6;
+
+  function clSave() {
+    const state = {};
+    document.querySelectorAll('.check-input').forEach(inp => {
+      if (inp.checked) state[inp.dataset.id] = true;
+    });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function clLoad() {
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch(e) {}
+    document.querySelectorAll('.check-input').forEach(inp => {
+      if (state[inp.dataset.id]) {
+        inp.checked = true;
+        inp.closest('.check-item').classList.add('done');
+      }
+    });
+    clUpdateUI();
+  }
+
+  function clUpdateUI() {
+    const done  = document.querySelectorAll('.check-input:checked').length;
+    const pct   = Math.round((done / TOTAL) * 100);
+    const fill  = document.getElementById('progress-fill');
+    const label = document.getElementById('progress-label');
+    const bar   = document.getElementById('progress-bar');
+
+    fill.style.width = pct + '%';
+    bar.setAttribute('aria-valuenow', done);
+
+    if (done === TOTAL) {
+      label.textContent = 'All set — see you in Costa Rica!';
+      label.classList.add('all-done');
+    } else {
+      label.textContent = done + ' of ' + TOTAL + ' complete';
+      label.classList.remove('all-done');
+    }
+  }
+
+  document.querySelectorAll('.check-input').forEach(inp => {
+    inp.addEventListener('change', function() {
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      clSave();
+      clUpdateUI();
+    });
+  });
+
+  clLoad();
+
+  /* ── Accordion ───────────────────────────────────────── */
   function toggle(id) {
     const el = document.getElementById(id);
     const btn = el.querySelector('.day-btn');
