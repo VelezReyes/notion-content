@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERE Offsite CR 2026</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2328251E'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23EAE6DA' stroke-width='1.5'/%3E%3Cpath d='M16 7v18M7 16h18M10.5 10.5l11 11M21.5 10.5l-11 11' stroke='%23EAE6DA' stroke-width='1.5'/%3E%3C/svg%3E">
+  <!-- Adobe Typekit — FMBolyar Sans Pro + Abacaxi -->
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/rvl7ucv.css">
+  <!-- Google Fonts — Abacaxi (display fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'FMBolyarSansPro';
+      src: url('https://cdn.jsdelivr.net/gh/VelezReyes/notion-content@main/vere/brand/fonts/FMBolyarSansPro-500.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #EAE6DA;
+      --bg-alt:       #E1DBCE;
+      --surface:      #F3F0EB;
+      --surface-hov:  #ECEAE4;
+      --text:         #28251E;
+      --text-mid:     #4B4640;
+      --text-muted:   #8A8278;
+      --border:       #D2CCBF;
+      --border-light: #E2DDD4;
+
+      --work:         #28251E;
+      --work-bg:      rgba(40,37,30,.08);
+      --activity:     #CBB279;
+      --activity-bg:  rgba(203,178,121,.12);
+      --social:       #6E8D5E;
+      --social-bg:    rgba(110,141,94,.10);
+      --rest:         #9E9488;
+      --rest-bg:      rgba(158,148,136,.12);
+      --travel:       #857E77;
+      --travel-bg:    rgba(133,126,119,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* Body: neutral system font — FM Bolyar reserved for hero only */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════
+       HERO — FM Bolyar only here
+    ═══════════════════════════════ */
+    .hero {
+      background: var(--text);
+      color: #EAE6DA;
+      padding: 60px 24px 0;
+      text-align: center;
+      font-family: 'fmbolyar-sans-pro', 'FMBolyarSansPro', system-ui, sans-serif;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-variation-settings: "wght" 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(234,230,218,.4);
+      margin-bottom: 20px;
+    }
+
+    .hero-logo {
+      display: block;
+      height: 48px;
+      width: auto;
+      margin: 0 auto 28px;
+    }
+
+    .footer-logo {
+      display: block;
+      height: 22px;
+      width: auto;
+      margin: 0 auto 10px;
+      opacity: 0.35;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 8vw, 64px);
+      font-variation-settings: "wght" 500;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      margin-bottom: 10px;
+    }
+
+    .hero-title .muted {
+      font-variation-settings: "wght" 300;
+      color: rgba(234,230,218,.38);
+    }
+
+    .hero-meta {
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-variation-settings: "wght" 300;
+      color: rgba(234,230,218,.48);
+      letter-spacing: 0.04em;
+      margin-bottom: 44px;
+    }
+
+    /* ═══════════════════════════════
+       LEGEND
+    ═══════════════════════════════ */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      padding: 18px 24px 20px;
+      border-top: 1px solid rgba(234,230,218,.08);
+      font-family: system-ui, sans-serif;
+    }
+
+    .leg {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(234,230,218,.45);
+    }
+
+    .leg-pip {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+      /* ring makes the dark Work Session pip visible on dark hero bg */
+      outline: 1.5px solid rgba(234,230,218,.28);
+      outline-offset: 1px;
+    }
+
+    /* ═══════════════════════════════
+       MAIN / CONTAINER
+    ═══════════════════════════════ */
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 16px 88px;
+    }
+
+    /* ═══════════════════════════════
+       ACCORDION
+    ═══════════════════════════════ */
+    .days {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .day {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* ── Day toggle — Abacaxi ── */
+    .day-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'abacaxi', 'Abacaxi', serif;
+      transition: background 0.15s;
+    }
+
+    .day-btn:hover { background: var(--surface-hov); }
+    .day-btn:focus-visible { outline: 2px solid var(--text); outline-offset: -2px; }
+
+    .day-num {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      min-width: 44px;
+      flex-shrink: 0;
+      font-family: 'abacaxi', 'Abacaxi', serif;
+    }
+
+    .day-info { flex: 1; min-width: 0; }
+
+    .day-date-lbl {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-family: 'abacaxi', 'Abacaxi', serif;
+    }
+
+    .day-theme {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.15;
+      font-family: 'abacaxi', 'Abacaxi', serif;
+    }
+
+    .day-chev {
+      width: 18px; height: 18px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .day.open .day-chev { transform: rotate(180deg); }
+
+    /* ── Smooth expand via grid rows ── */
+    .day-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(.4,0,.2,1);
+    }
+
+    .day.open .day-body { grid-template-rows: 1fr; }
+
+    .day-inner {
+      overflow: hidden;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* ── Location bar ── */
+    .day-loc {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 22px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-light);
+      background: rgba(0,0,0,.018);
+    }
+
+    .day-loc svg { flex-shrink: 0; }
+
+    /* ═══════════════════════════════
+       EVENTS / TIMELINE
+    ═══════════════════════════════ */
+    .events { padding: 4px 0 8px; }
+
+    /* Base event — left bar via border-left */
+    .event {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 0 16px;
+      padding: 14px 22px 14px 19px;
+      border-bottom: 1px solid var(--border-light);
+      border-left: 3px solid transparent;
+      transition: background 0.1s;
+    }
+
+    .event:last-child { border-bottom: none; }
+    .event:hover { background: rgba(0,0,0,.015); }
+
+    /* Category left-bar colors */
+    .cat-work     { border-left-color: var(--work); }
+    .cat-activity { border-left-color: var(--activity); }
+    .cat-social   { border-left-color: var(--social); }
+    .cat-rest     { border-left-color: var(--rest); }
+    .cat-travel   { border-left-color: var(--travel); }
+
+    .ev-time {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding-top: 5px;
+      white-space: nowrap;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .ev-body { min-width: 0; }
+
+    /* ── Category tag ── */
+    .ev-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      white-space: nowrap;
+    }
+
+    .ev-pip { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Tag color variants */
+    .t-work     { background: var(--work-bg);     color: var(--work); }
+    .t-activity { background: var(--activity-bg); color: var(--activity); }
+    .t-social   { background: var(--social-bg);   color: var(--social); }
+    .t-rest     { background: var(--rest-bg);     color: var(--rest); }
+    .t-travel   { background: var(--travel-bg);   color: var(--travel); }
+
+    .p-work     { background: var(--work); }
+    .p-activity { background: var(--activity); }
+    .p-social   { background: var(--social); }
+    .p-rest     { background: var(--rest); }
+    .p-travel   { background: var(--travel); }
+
+    .ev-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .ev-desc {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .ev-by {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    .site-footer {
+      text-align: center;
+      padding: 28px 24px 40px;
+      color: var(--text-muted);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    /* footer-logo definido arriba junto a hero-logo */
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 520px) {
+      .hero { padding: 44px 20px 0; }
+      .hero-logo { height: 38px; }
+      .main { padding: 20px 12px 64px; }
+      .day-btn { padding: 16px 16px; gap: 12px; }
+      .day-num { min-width: 36px; font-size: 11px; }
+      .day-theme { font-size: clamp(18px, 5.5vw, 24px); }
+      .event { grid-template-columns: 40px 1fr; padding: 12px 16px 12px 14px; gap: 0 10px; }
+      .day-loc { padding: 9px 16px; }
+      .legend { gap: 6px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<header class="hero">
+  <p class="hero-eyebrow">VERE Family Office</p>
+  <!-- Logo inline — fill #e8e5de sobre fondo oscuro -->
+  <svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 487.73 101.45" fill="#e8e5de" role="img" aria-label="VERE">
+    <path d="M123.57,68.79c-3.1,5.58-7.56,10.6-13.24,14.92-5.72,4.35-12.39,7.77-19.83,10.16-7.72,2.48-15.93,3.74-24.4,3.74s-16.67-1.26-24.4-3.74c-7.44-2.39-14.11-5.81-19.83-10.16-5.68-4.32-10.14-9.34-13.24-14.92-3.19-5.73-4.8-11.81-4.8-18.06s1.62-12.34,4.8-18.06c3.1-5.58,7.56-10.6,13.24-14.92,5.72-4.35,12.39-7.77,19.83-10.16,7.72-2.48,15.93-3.74,24.4-3.74s16.67,1.26,24.4,3.74c7.44,2.39,14.11,5.81,19.83,10.16,5.68,4.32,10.14,9.34,13.24,14.92,3.19,5.73,4.8,11.8,4.8,18.06s-1.62,12.34-4.8,18.06M126.93,30.8c-3.36-6.05-8.17-11.47-14.27-16.11-6.07-4.62-13.13-8.23-20.98-10.76-8.11-2.61-16.71-3.93-25.57-3.93s-17.46,1.32-25.57,3.93c-7.85,2.52-14.91,6.14-20.98,10.76-6.11,4.64-10.91,10.06-14.27,16.11C1.78,37.1,0,43.81,0,50.73s1.78,13.63,5.29,19.93c3.36,6.05,8.16,11.47,14.27,16.11,6.07,4.61,13.13,8.23,20.98,10.76,8.1,2.61,16.71,3.93,25.57,3.93s17.47-1.32,25.57-3.93c7.85-2.53,14.91-6.14,20.98-10.76,6.11-4.64,10.91-10.06,14.27-16.11,3.51-6.31,5.29-13.01,5.29-19.93s-1.78-13.62-5.29-19.93"/>
+    <path d="M102.47,32.76c-.5-.18-1.05-.02-1.38.4-7.09,8.88-18.07,14.62-30.14,15.75-.47.04-.92-.12-1.26-.45-.33-.33-.5-.79-.47-1.25.92-11.27,5.73-21.48,13.55-28.76.43-.4.57-.99.35-1.54-.22-.55-.72-.89-1.31-.89h-2c-.95,0-1.86.4-2.51,1.09-4.86,5.19-8.58,11.63-10.76,18.64-.08.25-.27.31-.45.33-.17-.02-.37-.08-.44-.33-2.18-7.01-5.9-13.45-10.76-18.64-.65-.69-1.56-1.09-2.51-1.09h-2c-.59,0-1.09.34-1.31.89-.22.55-.08,1.14.35,1.54,7.82,7.28,12.63,17.49,13.55,28.76.04.47-.13.92-.47,1.25-.33.33-.79.49-1.26.45-12.06-1.13-23.05-6.87-30.14-15.75-.33-.42-.88-.57-1.38-.4s-.83.64-.83,1.17v3.02c0,.7.27,1.38.76,1.9,5.11,5.44,11.67,9.66,18.98,12.22.26.09.36.32.35.5,0,.18-.1.41-.37.49-5.11,1.59-9.87,3.96-14.12,7.04-.45.32-.72.85-.72,1.41v2.69c0,.48.27.91.7,1.12.43.21.93.15,1.31-.15,7.1-5.64,16.2-9.02,25.65-9.52.44-.02.87.13,1.19.44.32.3.49.71.49,1.14v28.79c0,.82.66,1.48,1.48,1.48h2.98c.82,0,1.48-.66,1.48-1.48v-28.79c0-.44.17-.84.49-1.14.32-.3.74-.46,1.19-.44,9.44.5,18.55,3.88,25.65,9.52.38.3.88.36,1.31.15s.7-.64.7-1.12v-2.69c0-.56-.27-1.09-.72-1.41-4.26-3.08-9.01-5.45-14.12-7.04-.27-.08-.37-.31-.37-.49,0-.18.09-.41.35-.5,7.31-2.56,13.87-6.79,18.98-12.22.49-.52.76-1.19.76-1.9v-3.02c0-.53-.32-.99-.83-1.17"/>
+    <polygon points="179.37 17.49 205.03 74.07 230.6 17.49 242.41 17.49 211.68 84.68 198.2 84.68 167.47 17.49 179.37 17.49"/>
+    <polygon points="315.51 17.49 315.51 27.09 270.93 27.09 270.93 46.19 312.74 46.19 308.86 55.51 270.93 55.51 270.93 75.08 318.19 75.08 318.19 84.68 259.95 84.68 259.95 17.49 315.51 17.49"/>
+    <path d="M380.94,17.49c7.48,0,13.38,1.85,17.9,5.54,4.52,3.69,6.74,8.68,6.74,14.86,0,10.34-6.74,17.44-17.91,19.29l20.86,27.5h-13.66l-19.66-26.4h-17.07l4.06-9.51h19.47c7.85,0,12.92-4.24,12.92-10.8s-4.98-10.98-12.37-10.98h-29.35v57.69h-10.98V17.49h39.04Z"/>
+    <path d="M444.16,55.51l3.88-9.32h36.09v9.32h-39.96ZM440.47,75.08h47.26v9.6h-58.24V17.49h55.56v9.6h-44.58v47.99Z"/>
+  </svg>
+  <h1 class="hero-title">Offsite CR <span class="muted">2026</span></h1>
+  <p class="hero-meta">Costa Rica · August 17–21 · Pura Vida Retreat &amp; Spa, Alajuela</p>
+  <nav class="legend" aria-label="Event categories">
+    <span class="leg"><span class="leg-pip" style="background:var(--work)"></span>Work Session</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--activity)"></span>Activity</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--social)"></span>Social / Food</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--rest)"></span>Free / Rest</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--travel)"></span>Travel</span>
+  </nav>
+</header>
+
+<!-- ═══════ SCHEDULE ═══════ -->
+<main class="main">
+<div class="days" id="schedule">
+
+  <!-- ───────── DAY 1 ───────── -->
+  <div class="day open" id="d1">
+    <button class="day-btn" onclick="toggle('d1')" aria-expanded="true" aria-controls="d1-body">
+      <span class="day-num">Day 1</span>
+      <div class="day-info">
+        <div class="day-date-lbl">Mon · Aug 17</div>
+        <div class="day-theme">Arrival day</div>
+      </div>
+      <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="day-body" id="d1-body" role="region">
+      <div class="day-inner">
+        <div class="events">
+
+          <div class="event cat-travel">
+            <div class="ev-time">PM</div>
+            <div class="ev-body">
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
+              <div class="ev-title">Arrive in San José</div>
+              <div class="ev-desc">Team arrives, check in, settle in (Hyatt or Sheraton)</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── DAY 2 ───────── -->
+  <div class="day" id="d2">
+    <button class="day-btn" onclick="toggle('d2')" aria-expanded="false" aria-controls="d2-body">
+      <span class="day-num">Day 2</span>
+      <div class="day-info">
+        <div class="day-date-lbl">Tue · Aug 18</div>
+        <div class="day-theme">Team identity &amp; culture</div>
+      </div>
+      <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="day-body" id="d2-body" role="region">
+      <div class="day-inner">
+        <div class="day-loc">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Pura Vida Retreat &amp; Spa, Alajuela
+        </div>
+        <div class="events">
+
+          <div class="event cat-travel">
+            <div class="ev-time">AM</div>
+            <div class="ev-body">
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
+              <div class="ev-title">Drive to Pura Vida</div>
+              <div class="ev-desc">~1 hr from San José — arrive, settle in, coffee</div>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">9:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
+              <div class="ev-title">Opening session — "Who is Vere Family Office?"</div>
+              <div class="ev-desc">CEO-led. Vision, mission, and the story of how we got here. Each person shares who they are, what brought them here, and one thing they hope this team becomes.</div>
+              <span class="ev-by">— Raquel</span>
+            </div>
+          </div>
+
+          <div class="event cat-social">
+            <div class="ev-time">12:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Lunch</div>
+              <div class="ev-desc">Shared meal at the retreat</div>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">14:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
+              <div class="ev-title">Team culture session — "How do we want to work together?"</div>
+              <div class="ev-desc">Walk through the culture deck and employee hub. Define 3–5 team norms: communication styles, handling conflict, celebrating wins, protecting each other's time. Brainstorm: dynamic meetings, all-hands format, weekly team activities, skills to develop, and what we want to learn together — all ideas on the board.</div>
+              <span class="ev-by">— Cristina</span>
+            </div>
+          </div>
+
+          <div class="event cat-rest">
+            <div class="ev-time">16:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
+              <div class="ev-title">Free time &amp; coworking</div>
+              <div class="ev-desc">Walk the grounds, spa, or work independently</div>
+            </div>
+          </div>
+
+          <div class="event cat-social">
+            <div class="ev-time">18:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Dinner</div>
+              <div class="ev-desc">Evening meal together, relax</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── DAY 3 ───────── -->
+  <div class="day" id="d3">
+    <button class="day-btn" onclick="toggle('d3')" aria-expanded="false" aria-controls="d3-body">
+      <span class="day-num">Day 3</span>
+      <div class="day-info">
+        <div class="day-date-lbl">Wed · Aug 19</div>
+        <div class="day-theme">OKR Deep dive</div>
+      </div>
+      <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="day-body" id="d3-body" role="region">
+      <div class="day-inner">
+        <div class="day-loc">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Pura Vida Retreat &amp; Spa, Alajuela
+        </div>
+        <div class="events">
+
+          <div class="event cat-activity">
+            <div class="ev-time">7:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
+              <div class="ev-title">Yoga</div>
+              <div class="ev-desc">Group yoga session or a walk around the grounds</div>
+            </div>
+          </div>
+
+          <div class="event cat-social">
+            <div class="ev-time">8:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Get ready &amp; breakfast</div>
+              <div class="ev-desc">Leisurely breakfast before the work day begins</div>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">9:15</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
+              <div class="ev-title">Working session</div>
+              <span class="ev-by">— Soraya</span>
+            </div>
+          </div>
+
+          <div class="event cat-rest">
+            <div class="ev-time">10:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
+              <div class="ev-title">Coffee break</div>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">11:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
+              <div class="ev-title">OKR session 1 — Review &amp; honest read</div>
+              <div class="ev-desc">Review all OKRs and identify coverage gaps. Each person gives an honest read on key results: what's on track, at risk, or blocked. Transparency conversation — not a performance review.</div>
+            </div>
+          </div>
+
+          <div class="event cat-social">
+            <div class="ev-time">12:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Lunch</div>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">13:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
+              <div class="ev-title">OKR session 2 — Quarter review &amp; priorities</div>
+              <div class="ev-desc">Zoom out: how are we tracking as a team this quarter? What needs to be adjusted, accelerated, or dropped? Leave with clear priorities and shared accountability for the weeks ahead.</div>
+            </div>
+          </div>
+
+          <div class="event cat-activity">
+            <div class="ev-time">15:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
+              <div class="ev-title">Sound healing session</div>
+              <div class="ev-desc">Guided group sound bath — unwind and reset after a full work day</div>
+            </div>
+          </div>
+
+          <div class="event cat-activity">
+            <div class="ev-time">18:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
+              <div class="ev-title">Team activity / Dinner</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── DAY 4 ───────── -->
+  <div class="day" id="d4">
+    <button class="day-btn" onclick="toggle('d4')" aria-expanded="false" aria-controls="d4-body">
+      <span class="day-num">Day 4</span>
+      <div class="day-info">
+        <div class="day-date-lbl">Thu · Aug 20</div>
+        <div class="day-theme">Nature, reflection &amp; farewell</div>
+      </div>
+      <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="day-body" id="d4-body" role="region">
+      <div class="day-inner">
+        <div class="day-loc">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Pura Vida Retreat &amp; Spa → Poás Volcano → San José
+        </div>
+        <div class="events">
+
+          <div class="event cat-social">
+            <div class="ev-time">7:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Early breakfast</div>
+              <div class="ev-desc">Quick breakfast before heading out</div>
+            </div>
+          </div>
+
+          <div class="event cat-travel">
+            <div class="ev-time">8:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
+              <div class="ev-title">Drive to Poás Volcano</div>
+              <div class="ev-desc">~45 min from Pura Vida — arrive early for the clearest views</div>
+            </div>
+          </div>
+
+          <div class="event cat-activity">
+            <div class="ev-time">9:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
+              <div class="ev-title">Poás Volcano visit</div>
+              <div class="ev-desc">Walk to the active crater and the Botos lagoon trail — one of the largest active craters in the world. Short, accessible trails. Café on site.</div>
+            </div>
+          </div>
+
+          <div class="event cat-social">
+            <div class="ev-time">13:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
+              <div class="ev-title">Closing lunch</div>
+              <div class="ev-desc">Each person shares one highlight from the offsite and one commitment for the quarter ahead</div>
+            </div>
+          </div>
+
+          <div class="event cat-travel">
+            <div class="ev-time">14:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
+              <div class="ev-title">Drive back to San José</div>
+              <div class="ev-desc">~1 hr — arrive in the city by early evening</div>
+            </div>
+          </div>
+
+          <div class="event cat-rest">
+            <div class="ev-time">15:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
+              <div class="ev-title">Free time for the rest of the day</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────── DAY 5 ───────── -->
+  <div class="day" id="d5">
+    <button class="day-btn" onclick="toggle('d5')" aria-expanded="false" aria-controls="d5-body">
+      <span class="day-num">Day 5</span>
+      <div class="day-info">
+        <div class="day-date-lbl">Fri · Aug 21</div>
+        <div class="day-theme">Departure</div>
+      </div>
+      <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="day-body" id="d5-body" role="region">
+      <div class="day-inner">
+        <div class="events">
+
+          <div class="event cat-travel">
+            <div class="ev-time">14:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
+              <div class="ev-title">Fly back</div>
+              <div class="ev-desc">Transfer to SJO and depart</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.days -->
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="site-footer">
+  <!-- Logo inline — fill original #524934 sobre fondo claro -->
+  <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 487.73 101.45" fill="#524934" role="img" aria-label="VERE">
+    <path d="M123.57,68.79c-3.1,5.58-7.56,10.6-13.24,14.92-5.72,4.35-12.39,7.77-19.83,10.16-7.72,2.48-15.93,3.74-24.4,3.74s-16.67-1.26-24.4-3.74c-7.44-2.39-14.11-5.81-19.83-10.16-5.68-4.32-10.14-9.34-13.24-14.92-3.19-5.73-4.8-11.81-4.8-18.06s1.62-12.34,4.8-18.06c3.1-5.58,7.56-10.6,13.24-14.92,5.72-4.35,12.39-7.77,19.83-10.16,7.72-2.48,15.93-3.74,24.4-3.74s16.67,1.26,24.4,3.74c7.44,2.39,14.11,5.81,19.83,10.16,5.68,4.32,10.14,9.34,13.24,14.92,3.19,5.73,4.8,11.8,4.8,18.06s-1.62,12.34-4.8,18.06M126.93,30.8c-3.36-6.05-8.17-11.47-14.27-16.11-6.07-4.62-13.13-8.23-20.98-10.76-8.11-2.61-16.71-3.93-25.57-3.93s-17.46,1.32-25.57,3.93c-7.85,2.52-14.91,6.14-20.98,10.76-6.11,4.64-10.91,10.06-14.27,16.11C1.78,37.1,0,43.81,0,50.73s1.78,13.63,5.29,19.93c3.36,6.05,8.16,11.47,14.27,16.11,6.07,4.61,13.13,8.23,20.98,10.76,8.1,2.61,16.71,3.93,25.57,3.93s17.47-1.32,25.57-3.93c7.85-2.53,14.91-6.14,20.98-10.76,6.11-4.64,10.91-10.06,14.27-16.11,3.51-6.31,5.29-13.01,5.29-19.93s-1.78-13.62-5.29-19.93"/>
+    <path d="M102.47,32.76c-.5-.18-1.05-.02-1.38.4-7.09,8.88-18.07,14.62-30.14,15.75-.47.04-.92-.12-1.26-.45-.33-.33-.5-.79-.47-1.25.92-11.27,5.73-21.48,13.55-28.76.43-.4.57-.99.35-1.54-.22-.55-.72-.89-1.31-.89h-2c-.95,0-1.86.4-2.51,1.09-4.86,5.19-8.58,11.63-10.76,18.64-.08.25-.27.31-.45.33-.17-.02-.37-.08-.44-.33-2.18-7.01-5.9-13.45-10.76-18.64-.65-.69-1.56-1.09-2.51-1.09h-2c-.59,0-1.09.34-1.31.89-.22.55-.08,1.14.35,1.54,7.82,7.28,12.63,17.49,13.55,28.76.04.47-.13.92-.47,1.25-.33.33-.79.49-1.26.45-12.06-1.13-23.05-6.87-30.14-15.75-.33-.42-.88-.57-1.38-.4s-.83.64-.83,1.17v3.02c0,.7.27,1.38.76,1.9,5.11,5.44,11.67,9.66,18.98,12.22.26.09.36.32.35.5,0,.18-.1.41-.37.49-5.11,1.59-9.87,3.96-14.12,7.04-.45.32-.72.85-.72,1.41v2.69c0,.48.27.91.7,1.12.43.21.93.15,1.31-.15,7.1-5.64,16.2-9.02,25.65-9.52.44-.02.87.13,1.19.44.32.3.49.71.49,1.14v28.79c0,.82.66,1.48,1.48,1.48h2.98c.82,0,1.48-.66,1.48-1.48v-28.79c0-.44.17-.84.49-1.14.32-.3.74-.46,1.19-.44,9.44.5,18.55,3.88,25.65,9.52.38.3.88.36,1.31.15s.7-.64.7-1.12v-2.69c0-.56-.27-1.09-.72-1.41-4.26-3.08-9.01-5.45-14.12-7.04-.27-.08-.37-.31-.37-.49,0-.18.09-.41.35-.5,7.31-2.56,13.87-6.79,18.98-12.22.49-.52.76-1.19.76-1.9v-3.02c0-.53-.32-.99-.83-1.17"/>
+    <polygon points="179.37 17.49 205.03 74.07 230.6 17.49 242.41 17.49 211.68 84.68 198.2 84.68 167.47 17.49 179.37 17.49"/>
+    <polygon points="315.51 17.49 315.51 27.09 270.93 27.09 270.93 46.19 312.74 46.19 308.86 55.51 270.93 55.51 270.93 75.08 318.19 75.08 318.19 84.68 259.95 84.68 259.95 17.49 315.51 17.49"/>
+    <path d="M380.94,17.49c7.48,0,13.38,1.85,17.9,5.54,4.52,3.69,6.74,8.68,6.74,14.86,0,10.34-6.74,17.44-17.91,19.29l20.86,27.5h-13.66l-19.66-26.4h-17.07l4.06-9.51h19.47c7.85,0,12.92-4.24,12.92-10.8s-4.98-10.98-12.37-10.98h-29.35v57.69h-10.98V17.49h39.04Z"/>
+    <path d="M444.16,55.51l3.88-9.32h36.09v9.32h-39.96ZM440.47,75.08h47.26v9.6h-58.24V17.49h55.56v9.6h-44.58v47.99Z"/>
+  </svg>
+  VERE Family Office · Costa Rica Offsite 2026
+</footer>
+
+<script>
+  function toggle(id) {
+    const el = document.getElementById(id);
+    const btn = el.querySelector('.day-btn');
+    const isOpen = el.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.day').forEach(d => {
+      d.classList.remove('open');
+      d.querySelector('.day-btn').setAttribute('aria-expanded', 'false');
+    });
+
+    // Open if it was closed
+    if (!isOpen) {
+      el.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      if (window.innerWidth <= 520) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
