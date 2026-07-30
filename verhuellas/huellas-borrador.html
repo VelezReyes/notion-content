@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Huellas · Impact Report</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/huellas%2Bfavicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #EFEFE4;
+  --black:      #000000;
+  --yellow:     #F3FF00;
+  --green:      #27CF77;
+  --purple:     #A62BFF;
+  --dp:         #BD97F1;
+  --charity:    #A7B2AA;
+  --text-dk:    #111111;
+  --text-md:    #555555;
+  --text-mt:    #999990;
+  --border:     rgba(0,0,0,0.08);
+  --cream-card: #F5F5EE;
+  --radius:     12px;
+  --radius-sm:  8px;
+  --font:       'Montserrat', -apple-system, sans-serif;
+  --serif:      'DM Serif Display', Georgia, serif;
+  --nav-h:      60px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); background: var(--cream);
+  color: var(--text-dk); line-height: 1.6;
+  overflow-x: hidden; font-size: 15px;
+}
+
+/* ─── FOOTPRINTS ─────────────────────────────────────── */
+.footprints-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.fp { position: absolute; opacity: 0; fill: #ffffff; animation: fstep 0.55s cubic-bezier(0.22,.61,.36,1) forwards; }
+.fp.left { animation-name: fstep-l; }
+@keyframes fstep  { 0%{opacity:0;transform:scale(.5)} 40%{opacity:.09;transform:scale(1.06)} 100%{opacity:.05;transform:scale(1)} }
+@keyframes fstep-l{ 0%{opacity:0;transform:scaleX(-1) scale(.5)} 40%{opacity:.09;transform:scaleX(-1) scale(1.06)} 100%{opacity:.05;transform:scaleX(-1) scale(1)} }
+
+/* ─── SITE NAV ───────────────────────────────────────── */
+.site-nav {
+  height: var(--nav-h); background: var(--black);
+  position: sticky; top: 0; z-index: 200;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid #111;
+}
+.site-nav-inner {
+  max-width: 1200px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-logo-link { display: flex; align-items: center; }
+.site-logo { height: 22px; width: auto; opacity: 0.88; transition: opacity .15s; }
+.site-logo:hover { opacity: 1; }
+.nav-wordmark { font-family: var(--serif); font-size: 14px; font-style: italic; color: #555; }
+.nav-wordmark span { color: var(--yellow); }
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  background: var(--black); position: relative; overflow: hidden;
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
+}
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 3.5rem 0 3.25rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 3rem; align-items: end;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #666; margin-bottom: 0.65rem;
+}
+.hero-title {
+  font-family: var(--serif); font-size: clamp(40px, 6vw, 72px);
+  color: #FFF; line-height: 0.95; margin-bottom: 0.9rem;
+}
+.hero-title-accent { color: var(--yellow); }
+.hero-sub { font-size: 15px; color: #888; max-width: 420px; line-height: 1.75; }
+
+/* Edition card (hero right) */
+.hero-ed-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 1.25rem 1.75rem; text-align: center; min-width: 160px;
+}
+.hero-ed-card-label { font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+.hero-ed-card-num { font-family: var(--serif); font-size: 40px; line-height: 1; color: var(--yellow); }
+.hero-ed-card-name { font-family: var(--serif); font-style: italic; font-size: 13px; color: #777; margin-top: 6px; line-height: 1.35; max-width: 130px; }
+.hero-ed-card-date { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-top: 8px; }
+
+/* ─── PAGE BODY ──────────────────────────────────────── */
+.page-body { max-width: 1200px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 5rem; }
+
+/* ─── EDITION FILTER ─────────────────────────────────── */
+.filter-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.ef-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mt); }
+.edition-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ef-btn {
+  font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 5px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.12);
+  background: transparent; color: var(--text-mt); cursor: pointer; transition: all 0.15s;
+}
+.ef-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-dk); border-color: rgba(0,0,0,0.2); }
+.ef-btn.active { background: var(--black); color: var(--yellow); border-color: var(--black); }
+
+/* ─── CEO NOTE (optional, per edition) ──────────────── */
+.ceo-note {
+  background: var(--black); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.ceo-note::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--yellow); border-radius: var(--radius) 0 0 var(--radius);
+}
+.ceo-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.5rem; }
+.ceo-note p { font-family: var(--serif); font-style: italic; font-size: 16px; color: #CCC; line-height: 1.7; }
+
+/* ─── TEAM SECTION ───────────────────────────────────── */
+.team-section { margin-bottom: 2rem; }
+.team-hdr {
+  background: var(--black); border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem 1.75rem; position: relative; overflow: hidden;
+}
+.team-hdr::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.team-hdr-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #666; margin-bottom: .35rem; }
+.team-hdr-name { font-family: var(--serif); font-size: clamp(20px, 2.8vw, 30px); color: #FFF; line-height: 1.1; margin-bottom: .35rem; }
+.team-hdr-meta { font-size: 12px; color: #888; }
+
+/* ─── STORIES WRAP ───────────────────────────────────── */
+.stories-wrap {
+  background: #FFF; border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius); overflow: hidden;
+}
+
+/* ─── STORY ACCORDION ────────────────────────────────── */
+.story-item { border-bottom: 1px solid var(--border); }
+.story-item:last-child { border-bottom: none; }
+.story-header {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 1.25rem 1.5rem; cursor: pointer; transition: background .12s; user-select: none;
+}
+.story-header:hover { background: rgba(0,0,0,.02); }
+.story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
+
+/* Edition badge per story */
+.story-ed-badge {
+  font-size: 8px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-mt); background: rgba(0,0,0,0.05);
+  padding: 2px 8px; border-radius: 10px; flex-shrink: 0; white-space: nowrap;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+.story-ed-badge.is-new {
+  background: var(--yellow); color: #1A1A00;
+  border-color: rgba(180,160,0,0.35);
+}
+
+.story-title-text { font-size: 15px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.4; }
+
+/* Story type tag */
+.story-tag {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-tag.learning-agenda { background: #1A1A1A; color: #B0B098; border: 1px solid #2D2D2D; }
+.story-tag.success-stories { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
+
+/* Initiative pill */
+.story-pill {
+  font-size: 11px; font-weight: 700; padding: 4px 13px;
+  border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+}
+.story-chevron { font-size: 11px; color: #CCC; transition: transform .25s; flex-shrink: 0; }
+.story-item.open .story-chevron { transform: rotate(180deg); }
+.story-body {
+  display: none; border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem 2.25rem; background: var(--cream-card);
+}
+.story-item.open .story-body { display: block; }
+
+/* ─── STORY MEDIA ────────────────────────────────────── */
+.story-media {
+  width: 100%; border-radius: var(--radius); margin-bottom: 1.75rem;
+  overflow: hidden; position: relative;
+  background: linear-gradient(135deg, #E8E8DC 0%, #D2D2C6 100%);
+  border: 1.5px dashed rgba(0,0,0,0.11);
+}
+.story-media.landscape { aspect-ratio: 16 / 9; }
+.story-media.portrait  { aspect-ratio: 9 / 16; max-width: 420px; margin-left: auto; margin-right: auto; }
+.story-media.square    { aspect-ratio: 1 / 1;  max-width: 520px; margin-left: auto; margin-right: auto; }
+.story-media.has-media { border: none; }
+.story-media img,
+.story-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: none; }
+.story-media-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  color: #BCBCB0; pointer-events: none; user-select: none;
+}
+.story-media-ph svg { width: 28px; height: 28px; }
+.story-media-ph-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ─── STORY SUMMARY ──────────────────────────────────── */
+.story-summary {
+  background: #FFF; border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 1.5rem;
+}
+.story-summary-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; display: block; margin-bottom: 0.85rem;
+}
+.story-summary p { font-size: 14px; color: var(--text-md); line-height: 1.85; margin-bottom: 0.75rem; }
+.story-summary p:last-child { margin-bottom: 0; }
+
+/* ─── STATS GRID ─────────────────────────────────────── */
+.story-stats {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.65rem; border-top: 1px solid var(--border); padding-top: 1.25rem;
+}
+.story-stat { background: var(--cream); border-radius: var(--radius-sm); padding: 1.1rem 1.25rem; }
+.story-stat-n { font-family: var(--serif); font-size: 32px; line-height: 1; margin-bottom: 4px; }
+.story-stat-l { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dk); margin-bottom: 5px; }
+.story-stat-ctx { font-size: 11px; color: var(--text-mt); line-height: 1.45; }
+
+/* ─── INVESTMENT TAG ─────────────────────────────────── */
+.investment-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-mt);
+  background: #E4E4D8; padding: 6px 16px; border-radius: 20px; margin-top: 1rem;
+}
+.investment-tag::before { content: '◈'; font-size: 10px; color: #C0C0B4; }
+
+/* ─── ONE-PAGER BUTTON ───────────────────────────────── */
+.onepager-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--text-mt); text-decoration: none;
+  font-size: 11px; font-weight: 700; font-family: var(--font);
+  padding: 5px 14px; border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.14); letter-spacing: 0.04em; margin-top: 0.85rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s; cursor: pointer;
+}
+.onepager-btn:hover { background: var(--black); color: #CCC; border-color: var(--black); }
+.onepager-btn .btn-arrow { font-size: 12px; }
+
+/* ─── GALLERY ────────────────────────────────────────── */
+.story-gallery {
+  position: relative; width: 100%; border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 1.75rem; aspect-ratio: 16/9;
+  background: linear-gradient(135deg,#E8E8DC 0%,#D2D2C6 100%);
+}
+.sg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease; }
+.sg-img.sg-active { opacity: 1; }
+.sg-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.45); color: #FFF; border: none; cursor: pointer;
+  font-size: 22px; line-height: 1; width: 38px; height: 38px; border-radius: 8px;
+  z-index: 2; transition: background 0.15s; display: flex; align-items: center; justify-content: center;
+}
+.sg-arrow:hover { background: rgba(0,0,0,0.72); }
+.sg-prev { left: 10px; }
+.sg-next { right: 10px; }
+.sg-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+.sg-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,0.45); cursor: pointer; transition: background 0.15s; padding: 0; }
+.sg-dot.sg-dot-active { background: #FFF; }
+
+/* ─── DEMOCRACIA+ SUBPILL ────────────────────────────── */
+.story-subpill {
+  font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
+  background: rgba(166,43,255,0.1); color: #A62BFF; border: 1px solid rgba(166,43,255,0.3);
+}
+
+/* ─── PORTRAIT SIDE-BY-SIDE LAYOUT ─────────────────── */
+.story-portrait-layout {
+  display: flex; gap: 1.75rem; align-items: flex-start;
+}
+.story-portrait-media { width: 260px; flex-shrink: 0; }
+.story-portrait-media .story-media { margin-bottom: 0; width: 100%; max-width: 100%; }
+.story-portrait-content { flex: 1; min-width: 0; }
+@media (max-width: 680px) {
+  .story-portrait-layout { flex-direction: column; }
+  .story-portrait-media { width: 100%; max-width: 280px; margin: 0 auto; }
+}
+
+/* ─── ABOUT STRIP ───────────────────────────────────── */
+.about-strip {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.75rem 2rem; margin-top: 2rem;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.about-strip::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--yellow), var(--green));
+}
+.about-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.4rem; white-space: nowrap; }
+.about-title { font-family: var(--serif); font-size: 20px; color: #FFF; white-space: nowrap; }
+.about-body { font-size: 13px; color: #888; line-height: 1.75; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+.site-footer {
+  background: var(--black); border-radius: var(--radius);
+  padding: 1.25rem 1.75rem; margin-top: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.footer-brand { font-family: var(--serif); font-style: italic; font-size: 14px; color: #777; }
+.footer-brand strong { color: #FFF; font-style: normal; }
+.print-btn {
+  background: rgba(255,255,255,.07); color: #BBB;
+  border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+  padding: 7px 18px; font-size: 12px; font-weight: 700;
+  font-family: var(--font); cursor: pointer; letter-spacing: .04em;
+  transition: background .15s, color .15s;
+}
+.print-btn:hover { background: var(--cream); color: var(--black); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-ed-card { display: none; }
+  .about-strip { grid-template-columns: 1fr; gap: 1rem; }
+}
+@media (max-width: 680px) {
+  .story-stats { grid-template-columns: 1fr 1fr; }
+  .story-tag { display: none; }
+  .story-pill { display: none; }
+  .story-ed-badge { display: none; }
+}
+@media (max-width: 480px) {
+  .story-stats { grid-template-columns: 1fr; }
+}
+
+/* ─── PRINT HEADER (screen: hidden · PDF: visible) ──── */
+.print-header { display: none; }
+.print-hdr-logo { height: 20px; width: auto; display: block; margin-bottom: 12px; }
+.print-hdr-eyebrow { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+.print-hdr-title { font-size: 26px; font-weight: 800; color: #111; line-height: 1; margin-bottom: 5px; }
+.print-hdr-edition { font-size: 12px; font-weight: 700; color: #555; margin-bottom: 14px; }
+.print-hdr-divider { height: 2px; background: linear-gradient(90deg, #111 0%, #DDD 100%); }
+
+/* ─── PRINT ──────────────────────────────────────────── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { height: auto !important; overflow: visible !important; background: #FFF !important; }
+
+  /* Show print header · hide screen chrome */
+  .print-header { display: block !important; padding: 0 0 1.5rem; margin-bottom: 1.5rem; }
+  .site-nav, .hero, .print-btn, .filter-row { display: none !important; }
+
+  /* Stories: expand, hide media */
+  .story-body { display: block !important; }
+  .story-media { display: none !important; }
+
+  /* Portrait layout: collapse to single column (media already hidden) */
+  .story-portrait-media { display: none !important; }
+  .story-portrait-layout { display: block !important; }
+
+  /* Story header: less cramped — remove badge and chevron, wrap title */
+  .story-header { padding: 0.9rem 1.25rem !important; flex-wrap: wrap !important; gap: 0.4rem !important; }
+  .story-ed-badge, .story-chevron { display: none !important; }
+  .story-title-text { font-size: 13px !important; }
+  .story-tag { font-size: 8px !important; padding: 2px 7px !important; }
+  .story-pill { font-size: 9px !important; padding: 2px 9px !important; }
+
+  /* Block colors: work on white paper */
+  .team-hdr { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .team-hdr-name { color: var(--black) !important; }
+  .team-hdr-eyebrow, .team-hdr-meta { color: var(--text-mt) !important; }
+  .site-footer { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .footer-brand, .footer-brand strong { color: var(--black) !important; }
+  .about-strip { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .about-strip::before { display: none !important; }
+  .about-tag { color: #4A4A00 !important; }
+  .about-title { color: var(--black) !important; }
+  .about-body { color: #555 !important; }
+  .ceo-note { background: var(--cream) !important; border: 1px solid #DDD !important; }
+  .story-stat { background: #EEE !important; }
+  .story-summary { box-shadow: none !important; border: 1px solid #DDD !important; }
+
+  /* Hide filtered-out sections */
+  .team-section[style*="display: none"] { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     DATA  ─  How to update each month:
+       1. Add new edition object to DATA.editions
+       2. Add stories with { edition: "02", ... } to the right team
+       3. If a team is new, add it to DATA.teams
+     Every story MUST have an `edition` field.
+══════════════════════════════════════════════════════════ -->
+<script>
+const LOGO_URL = "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true";
+const CAM_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`;
+
+const DATA = {
+
+  /* ── EDITIONS ─────────────────────────────────────────────
+     Add one entry per month published.                        */
+  editions: [
+    {
+      num:      "01",
+      month:    "June",
+      year:     2026,
+      name:     "From Knowing to Doing",
+      audience: "David & Mariel",
+      ceoNote:  null
+    },
+    {
+      num:      "02",
+      month:    "July",
+      year:     2026,
+      name:     "TBD",   /* ← update with creative name */
+      audience: "David & Mariel",
+      ceoNote:  null
+    }
+  ],
+
+  /* ── TEAMS ────────────────────────────────────────────────
+     Stories stack inside each team as editions grow.
+     Each story must include an `edition` field.              */
+  teams: [
+
+    /* ══ ECE (Early Childhood Education) ═══════════════════ */
+    {
+      id: "ece", name: "ECE", color: "#27CF77",
+      stories: [
+        {
+          edition:   "01",
+          title:     "Aprendo+: Turning WhatsApp into a Bridge Between Schools and Families",
+          pill:      "Aprendo+",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/aprendo-RECAP.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Aprendo+ is turning WhatsApp into a powerful bridge between schools and families: across 32 schools in Peru, around 80% of parents and 98% of teachers shared evidence of participation at least once, showing that a simple, familiar channel can mobilize families and educators around early childhood learning. With the support of VER+, the evidence also shows that principals, teachers, and parents perceive Aprendo+ as useful, practical, and aligned with everyday routines and classroom practice.</p><p>The most encouraging result is that Aprendo+ is changing how adults understand and practice play. Parents report a 26% increase in the importance they assign to spending time on play and a 31% increase in the frequency of play with their children; teachers report around 20% higher confidence in supporting communication, math, and socio-emotional development. The next step is to move from strong perceived changes to stronger evidence on child development outcomes, but the program is already showing a clear and promising path: small, joyful, everyday interactions can become meaningful learning moments.</p>`,
+          stats: [
+            { n: "32",   l: "Schools in Peru",                       ctx: "Program implementation sites",                                                          c: "#27CF77" },
+            { n: "~80%", l: "Parents participated",                   ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "98%",  l: "Teachers participated",                  ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "+26%", l: "Parents value play more",                ctx: "Increase in importance assigned to spending time on play",                              c: "#27CF77" },
+            { n: "+31%", l: "Parents play more with their children",  ctx: "Increase in frequency of play at home",                                                 c: "#27CF77" },
+            { n: "~20%", l: "Teachers more confident",                ctx: "Higher confidence in supporting communication, math, and socio-emotional development",  c: "#27CF77" }
+          ],
+          investment: "USD 1,104,250 committed through 2027",
+          onepager:   "https://docs.google.com/document/d/1qDrVrsdhNCcGc6im9WdIj8x8xUOs7tThK_M9Ms2hh2A/edit?usp=sharing"
+        },
+        {
+          edition:   "02",
+          title:     "aeioTU: Mapping the Quality of Informal Childcare Spaces",
+          pill:      "aeioTU",
+          tag:       "Learning Agenda",
+          mediaType: "gallery",
+          imgs: [
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/Portada.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/1.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/2.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/4.jpg"
+          ],
+          imgRatio:  "landscape",
+          summary: `<p>The aeioTU diagnostic shows that informal childcare spaces are still far from consistently offering the kinds of interactions that best support early learning. Across 29 spaces observed in Bogotá, Cartagena, and Medellín, the strongest dimensions were sensitivity and responsiveness and affective treatment, with average scores of 3.55 and 3.37 on a 1–5 scale. By contrast, the lowest scores were in learning strategies and interaction through play, with averages of 2.78 and 2.85. In practice, this means that many caregivers provide warmth and basic care, but do not yet consistently use language, questions, exploration, materials, or play as intentional learning opportunities.</p><p>The main concern is that the weakest dimensions are precisely the ones most connected to child learning. Large groups sharply reduce interaction quality: in spaces with four children or fewer, interaction through play reached 3.69, but in groups of more than 12 children it fell to 1.72. The presence of babies under age two is also associated with lower scores across all dimensions. The instrument provides a useful baseline, but the current evidence points to a substantial implementation challenge: aeioTU's strengthening pathway will need to move these spaces beyond affective care toward more intentional, structured, and developmentally rich interactions.</p>`,
+          stats: [
+            { n: "29",   l: "Spaces observed",                       ctx: "Bogotá, Cartagena, and Medellín",                                      c: "#27CF77" },
+            { n: "3.55", l: "Sensitivity & responsiveness",          ctx: "Strongest dimension · Average score on a 1–5 scale",                    c: "#27CF77" },
+            { n: "2.78", l: "Learning strategies",                   ctx: "Lowest-scoring dimension",                                              c: "#27CF77" },
+            { n: "1.72", l: "Interaction through play (large groups)", ctx: "Groups of more than 12 children vs. 3.69 in groups of 4 or fewer",    c: "#27CF77" }
+          ],
+          investment: "USD 310,000 · Total funding",
+          onepager:   "https://docs.google.com/document/d/1YVaUycG987Lk6BNYpXG6aQrP7Ckc2vQ5tSly82uSozE/edit?tab=t.0"
+        }
+      ]
+    },
+
+    /* ══ DEMOCRACY ══════════════════════════════════════════ */
+    {
+      id: "dem", name: "Democracy", color: "#A62BFF",
+      stories: [
+        {
+          edition:   "01",
+          title:     "RIL: A Decade of Public Knowledge, Now Measured",
+          pill:      "RIL",
+          tag:       "Learning Agenda",
+          img:       "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/june/RIL.jpg?raw=true",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>After more than 10 years of work, RIL took a historic step: with the support of VER+, it set out to systematically listen to those who have experienced its support in public service. The results celebrate a network with concrete value: 79% would recommend RIL with the highest possible score, 88% say it improved their access to knowledge about local management, and 83% believe their participation improves the quality of decisions in their government.</p><p>The evidence also shows movement toward action: 35% have already adopted or adapted practices from other local governments, and 48% are evaluating them. In the acceleration programs, the strongest perceived impacts appear in policy design, data use, and implementation. More than a measurement exercise, this first effort strongly indicates that RIL is turning shared knowledge into public capabilities. We will conclude this learning exercise by August, when we expect to have more profound data on RIL's impact on officials' abilities to execute and innovate.</p>`,
+          stats: [
+            { n: "79%", l: "Would recommend RIL",           ctx: "With the highest possible score",     c: "#A62BFF" },
+            { n: "88%", l: "Improved access to knowledge",  ctx: "About local management practices",    c: "#A62BFF" },
+            { n: "83%", l: "Better government decisions",   ctx: "Reported by participating officials", c: "#A62BFF" },
+            { n: "35%", l: "Already adopted practices",     ctx: "From other local governments",        c: "#A62BFF" },
+            { n: "48%", l: "Currently evaluating adoption", ctx: "Of practices from peer governments",  c: "#A62BFF" }
+          ],
+          investment: "USD 875,000 across 2 grants · First grant: USD 370,000 · Second grant: USD 500,000",
+          onepager:   "https://docs.google.com/document/d/1Mv1Ox5C2ayTI6GgiOnTFltZwPTmsVGF7q58B4LRVUVk/edit?usp=sharing"
+        },
+        {
+          edition:   "02",
+          title:     "Legisla Brasil: Building Evidence for Better Parliamentary Performance",
+          pill:      "Legisla Brasil",
+          subpill:   "Democracia+",
+          tag:       "Learning Agenda",
+          img:       null,
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Legisla Brasil is showing promising evidence that its consulting model can strengthen parliamentary performance. Compared with similar federal deputies, supported mandates improved more in the final Legisla Brasil Index, with an average gain of +0.15 points; in 64% of cases, supported deputies evolved more than their comparison groups. The clearest result appears in Oversight, where 79% of supported deputies outperformed their peers and the average gain reached +0.39 points.</p><p>This suggests that Legisla Brasil is helping mandates become more strategic, active, and effective in areas where their own behavior can make a difference: oversight requests, relevant bills with protagonism, amendments to provisional measures, and public hearing requests. The next step is to continue expanding and refining the evidence base, especially as more mandates receive support and more time passes after the consulting process. This will help strengthen confidence in how and where the model contributes most to legislative effectiveness.</p>`,
+          stats: [
+            { n: "+0.15", l: "Average gain in Legisla Index",     ctx: "Supported mandates vs. comparable deputies",          c: "#A62BFF" },
+            { n: "64%",   l: "Supported deputies evolved more",   ctx: "Compared to their respective comparison groups",      c: "#A62BFF" },
+            { n: "79%",   l: "Outperformed in Oversight",         ctx: "The clearest and strongest area of impact",           c: "#A62BFF" },
+            { n: "+0.39", l: "Average gain in Oversight score",   ctx: "Strongest improvement across all dimensions",         c: "#A62BFF" }
+          ],
+          investment: "USD 530,000 · Total grants",
+          onepager:   "https://docs.google.com/document/d/1KGwBu17HaBhJHQozwUPFuVXVWfLksKM4winp6YvivNg/edit?tab=t.0"
+        },
+        {
+          edition:   "02",
+          title:     "+ParaChile: Building a Strong Pipeline of Democratic Leadership in Chile",
+          pill:      "+ParaChile",
+          subpill:   "Democracia+",
+          tag:       "Learning Agenda",
+          img:       null,
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Más para Chile is building a strong pipeline of democratic political leadership in Chile. The program is attracting people with clear public vocation: 51% of applicants had worked in the public sector, four out of five had considered running for elected office in the previous five years, and many reported prior participation in volunteering, community spaces, party politics, or political activism. Among those selected, the profile is even stronger: 65% had worked in the public sector, 62% had previously run for election, and selected participants reported higher engagement in party politics, activism, and community participation.</p><p>The electoral and democratic signals are also encouraging. In the 2025 elections, 52 applicants ran for the Senate or Chamber of Deputies, and 12 were elected as deputies; 10 of those elected had been selected for the program. Selected participants also show high democratic commitment and stronger political tolerance: 84% reject limiting the opposition, 97% reject closing Congress, and 98% reject dissolving the Supreme Court. These results provide a strong starting point; the next opportunity is to keep following participants over time to better understand how the program contributes to electoral trajectories, collaboration across political lines, and democratic public leadership.</p>`,
+          stats: [
+            { n: "51%",   l: "Applicants from public sector",     ctx: "Strong public vocation across the applicant pool",    c: "#A62BFF" },
+            { n: "4 in 5",l: "Had considered running for office", ctx: "In the previous five years",                          c: "#A62BFF" },
+            { n: "12",    l: "Elected as deputies",               ctx: "10 of those elected were selected for the program · 2025 elections", c: "#A62BFF" },
+            { n: "98%",   l: "Reject dissolving the Supreme Court", ctx: "High democratic commitment among selected participants", c: "#A62BFF" }
+          ],
+          investment: "USD 500,000 · Total grants",
+          onepager:   "https://docs.google.com/document/d/1pEq_TiAVN-gOtsaWl39Z1AOgEW2ldU3osifTNGUa8No/edit?tab=t.0#heading=h.xz0am64mymw"
+        }
+      ]
+    },
+
+    /* ══ CHARITY (Education Support) ═══════════════════════ */
+    {
+      id: "charity", name: "Charity", color: "#A7B2AA",
+      stories: [
+        {
+          edition:   "02",
+          title:     "María José Velásquez González · Industrial Engineering + Data Science, Universidad de los Andes",
+          pill:      "Education Support",
+          tag:       "Success Stories",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/MariaJose-2026-01.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>VélezReyes+ covers 30% of María José's tuition plus a monthly stipend so she can pursue a dual degree at Universidad de los Andes. She took on her first teaching assistant role this semester, an experience she described, in her own video update, as one of the best she's had at university, watching her students grow in confidence. She is also meeting her volunteer commitment with distinction so far, supporting the Aprendo+ team in Peru on data and operations, from dashboard tracking by school district to teacher recognition reports, since the program's early stages and now through its rollout, with the team consistently praising her reliability and follow through.</p>`,
+          stats: [
+            { n: "4.45", l: "Semester average (2026-1)", ctx: "Out of 5.0",                                  c: "#A7B2AA" },
+            { n: "4.61", l: "Cumulative average",         ctx: "Out of 5.0",                                  c: "#A7B2AA" }
+          ],
+          investment: "USD 2,500 per semester · Support period: January 2025 – December 2026"
+        },
+        {
+          edition:   "02",
+          title:     "Samuel Andrés Lamilla Verján · Data Science, Pontificia Universidad Javeriana",
+          pill:      "Education Support",
+          tag:       "Success Stories",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/Samuel-2026-01.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>VélezReyes+ has covered Samuel's living costs in Bogotá since April 2024, renewed for January to December 2026, so he can continue his degree away from his family's home in rural Neiva, Huila. In his video update, he shared that this year he overcame a long standing fear of public speaking, delivering an elevator pitch at Javeriana's Auditorio Luis Carlos Galán, a big milestone for him!</p>`,
+          stats: [
+            { n: "4.011", l: "Semester average (2026-1)", ctx: "Out of 5.0",                                 c: "#A7B2AA" },
+            { n: "4.06",  l: "Cumulative average",         ctx: "Out of 5.0",                                 c: "#A7B2AA" }
+          ],
+          investment: "USD 500 monthly stipend · Support period: April 2024 – December 2026 (renewed January – December 2026)"
+        }
+      ]
+    }
+
+
+    ,
+
+    /* ══ EDUCATION (Future of Talent) ══════════════════════ */
+    {
+      id: "education", name: "Education", color: "#27CF77",
+      stories: [
+        {
+          edition:   "01",
+          title:     "Crack the Code: Opening Real Pathways into Post-Secondary Education",
+          pill:      "Crack the Code",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/CtC.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Crack the Code is opening real pathways into post-secondary education: in a follow-up survey of 719 students who graduated in 2025, implemented with the support of VER+, 67% are enrolled in higher education, between 4 and 6 percentage points above the available benchmarks for comparable youth in Barranquilla and for the same schools before the intervention.</p><p>The challenge now is to turn that educational connection into protected labor opportunities: only 20.9% are working and, among those who work, informal arrangements predominate, with only 4.6% contributing to social security. CTC has already created formal opportunities for some young people, but the broader transition into quality formal employment is still under construction.</p>`,
+          stats: [
+            { n: "719",   l: "Students surveyed",               ctx: "CTC graduates from 2025",                                      c: "#27CF77" },
+            { n: "67%",   l: "Enrolled in higher education",    ctx: "4 to 6 pp above pre-intervention baseline in the same schools", c: "#27CF77" },
+            { n: "20.9%", l: "Currently working",               ctx: "Labor transition into quality employment is still underway",    c: "#27CF77" },
+            { n: "4.6%",  l: "Contributing to social security", ctx: "Informal work predominates among those employed",              c: "#27CF77" }
+          ],
+          investment: "USD 555,000 total · USD 322,000 in grants · Remainder in equity",
+          onepager:   "https://docs.google.com/document/d/1strEhr-HGSqAZ-8XJXww7t2YvnNaN2FM96dbposSiCo/edit?usp=sharing"
+        },
+        {
+          edition:   "01",
+          title:     "Beca Tech: Expanding Access to Higher Education for Talented Young People",
+          pill:      "Beca Tech",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/Jero-BecaTech.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>Beca Tech is expanding access to higher education for talented young people in Colombia: using a matched comparison analysis of the first two cohorts, implemented with the support of VER+, the program increased the probability of enrolling in higher education by 11%, enrolling in university by 27%, and enrolling in a private university by 176%. These results show that Beca Tech is not only providing financial support, it is opening doors that many beneficiaries had already started to see as closed.</p><p>The program is also strengthening students' expectations and aspirations: beneficiaries show 20% higher expectations of completing higher education on time and 5% higher aspirations about their professional future. The support system appears to be a distinctive asset, with students using tutoring, psychosocial support, community, allowances, and other resources at higher rates than comparable students. The challenge now is to convert this strong access effect into long-term persistence, graduation, and successful professional transitions.</p>`,
+          stats: [
+            { n: "+11%",  l: "Probability of enrolling in higher education",    ctx: "vs. matched comparison group",             c: "#27CF77" },
+            { n: "+27%",  l: "Probability of enrolling in university",           ctx: "vs. matched comparison group",             c: "#27CF77" },
+            { n: "+176%", l: "Probability of enrolling in a private university", ctx: "Doors previously seen as closed",          c: "#27CF77" },
+            { n: "+20%",  l: "Higher expectations of completing on time",        ctx: "Strengthened academic self-confidence",    c: "#27CF77" },
+            { n: "+5%",   l: "Higher professional aspirations",                  ctx: "Beyond access, shaping long-term outlook", c: "#27CF77" }
+          ],
+          investment: "USD 7,937,544 · Up to now",
+          onepager:   "https://docs.google.com/document/d/1UM22sejtr3d1xslW7s8ess_TBrcZ18hxyt3_X-T38ds/edit?usp=sharing"
+        },
+        {
+          edition:   "01",
+          title:     "Pylatino: Proven Regional Demand, Incomplete Conversion",
+          pill:      "Pylatino",
+          tag:       "Learning Agenda",
+          img:       "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/june/Pylatino.png?raw=true",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>Pylatino proved that there is strong regional demand for Python training, but the current model did not convert that demand into sustained learning: the program attracted 21,008 applicants from 67 countries, selected 2,400 participants in Colombia and Peru, but only 48% completed onboarding and only 36.4% of onboarded learners completed the 40-hour course. This means that just 17.5% of selected participants completed the program, well below the 60% benchmark.</p><p>The experience was positive for those who stayed, student NPS reached 84% and mentors also reported high satisfaction, but the implementation challenge is too central to ignore. The program struggled to retain learners and did not establish its mentoring component as a clear differentiator: students valued content and platform more than mentor support, while mentors reported low perceptions of student commitment and quality.</p>`,
+          stats: [
+            { n: "21,008", l: "Applicants",                  ctx: "From 67 countries across the region",         c: "#27CF77" },
+            { n: "2,400",  l: "Participants selected",        ctx: "In Colombia and Peru",                        c: "#27CF77" },
+            { n: "48%",    l: "Completed onboarding",         ctx: "Of selected participants",                    c: "#27CF77" },
+            { n: "36.4%",  l: "Completed the 40-hour course", ctx: "Of onboarded learners",                       c: "#27CF77" },
+            { n: "17.5%",  l: "Overall program completion",   ctx: "Well below the 60% benchmark",               c: "#27CF77" },
+            { n: "84%",    l: "Student NPS",                  ctx: "High satisfaction among those who completed", c: "#27CF77" }
+          ],
+          investment: "USD 62,000 · Grant",
+          onepager:   "https://docs.google.com/document/d/15wtPz7AI9_0__chf2PUwsek0oxGcN1Nrr9aLWf7YSU4/edit?usp=sharing"
+        }
+      ]
+    }
+
+  ] /* end teams */
+
+}; /* end DATA */
+</script>
+
+<!-- SVG SYMBOLS ─────────────────────────────────────── -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <symbol id="fp-shape" viewBox="0 0 34 64">
+      <ellipse cx="7"    cy="10"  rx="4"    ry="5"    transform="rotate(-22,7,10)"/>
+      <ellipse cx="14"   cy="6.5" rx="3.8"  ry="5.2"  transform="rotate(-10,14,6.5)"/>
+      <ellipse cx="20.5" cy="6"   rx="3.4"  ry="4.8"  transform="rotate(4,20.5,6)"/>
+      <ellipse cx="26.5" cy="8"   rx="3"    ry="4.5"  transform="rotate(17,26.5,8)"/>
+      <ellipse cx="30.5" cy="13"  rx="2.6"  ry="4"    transform="rotate(28,30.5,13)"/>
+      <ellipse cx="17"   cy="25"  rx="13"   ry="10"/>
+      <rect    x="7"    y="29"   width="8"  height="18" rx="4"/>
+      <ellipse cx="15"   cy="52"  rx="11"   ry="12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- PRINT HEADER (hidden in screen · populated by exportPDF) ── -->
+<div class="print-header" id="print-header"></div>
+
+<!-- NAV ─────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="#" class="site-logo-link">
+      <img class="site-logo" id="site-logo" src="" alt="VélezReyes+">
+    </a>
+    <div class="nav-wordmark">VER+ <span>Huellas</span></div>
+  </div>
+</nav>
+
+<!-- HERO ────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="footprints-layer" id="footprints-layer" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">VélezReyes+ · Impact Report</div>
+      <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Huellas</span></h1>
+      <p class="hero-sub">A growing record of the mark our teams leave in communities, people, and systems.</p>
+    </div>
+    <div class="hero-ed-card" id="hero-ed-card"></div>
+  </div>
+</section>
+
+<!-- PAGE BODY ───────────────────────────────────────── -->
+<div class="page-body">
+
+  <!-- CEO Note (only when filtering to an edition that has one) -->
+  <div id="ceo-note-container"></div>
+
+  <!-- Edition filter -->
+  <div class="filter-row">
+    <span class="ef-label">Edition</span>
+    <div class="edition-filter" id="edition-filter"></div>
+  </div>
+
+  <!-- Team sections (stories stack here) -->
+  <div id="team-sections"></div>
+
+  <!-- About strip -->
+  <div class="about-strip">
+    <div>
+      <div class="about-tag">About VER+ Huellas</div>
+      <div class="about-title">What are we measuring?</div>
+    </div>
+    <div>
+      <p class="about-body">VER+ Huellas is VélezReyes+'s repository of evidence on impact. Updated monthly, it combines two types of stories. "Learning Agenda" summarizes the findings from the MEL exercises we are internally carrying out as part of the Stage-Based Learning Framework. "Success Stories" features impact stories from our partner organizations.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-brand" id="ft-brand"></div>
+    <button class="print-btn" onclick="exportPDF()">↓ Export PDF</button>
+  </footer>
+</div>
+
+<!-- RENDER ENGINE ───────────────────────────────────── -->
+<script>
+/* ── State ── */
+let activeFilter = 'all';
+
+/* ── Helpers ── */
+function getEditionObj(num) {
+  return DATA.editions.find(e => e.num === num) || null;
+}
+
+function editionShortLabel(e) {
+  return `Ed.${e.num} · ${e.month} ${e.year}`;
+}
+
+/* ── NAV / LOGO ── */
+function renderNav() {
+  document.getElementById('site-logo').src = LOGO_URL;
+}
+
+/* ── HERO ── */
+function renderHero() {
+  const latest = DATA.editions[DATA.editions.length - 1];
+  document.getElementById('hero-ed-card').innerHTML = `
+    <div class="hero-ed-card-label">Now on</div>
+    <div class="hero-ed-card-num">Edition ${latest.num}</div>
+    <div class="hero-ed-card-date">${latest.month} ${latest.year}</div>
+  `;
+}
+
+/* ── EDITION FILTER ── */
+function renderEditionFilter() {
+  const container = document.getElementById('edition-filter');
+  const buttons = [
+    `<button class="ef-btn active" data-edition="all" onclick="filterByEdition('all')">All</button>`,
+    ...DATA.editions.slice().reverse().map(e =>
+      `<button class="ef-btn" data-edition="${e.num}" onclick="filterByEdition('${e.num}')">${editionShortLabel(e)}</button>`
+    )
+  ];
+  container.innerHTML = buttons.join('');
+}
+
+function filterByEdition(edition) {
+  activeFilter = edition;
+
+  /* Update active button */
+  document.querySelectorAll('.ef-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.edition === edition);
+  });
+
+  /* Show/hide stories */
+  document.querySelectorAll('.story-item').forEach(item => {
+    const match = edition === 'all' || item.dataset.edition === edition;
+    item.style.display = match ? '' : 'none';
+    /* Close hidden stories */
+    if (!match) item.classList.remove('open');
+  });
+
+  /* Hide team sections with no visible stories */
+  document.querySelectorAll('.team-section').forEach(section => {
+    const hasVisible = [...section.querySelectorAll('.story-item')]
+      .some(item => item.style.display !== 'none');
+    section.style.display = hasVisible ? '' : 'none';
+  });
+
+  /* CEO Note: only for specific edition filter */
+  const edObj = edition === 'all' ? null : getEditionObj(edition);
+  renderCeoNote(edObj);
+}
+
+/* ── CEO NOTE ── */
+function renderCeoNote(edObj) {
+  const container = document.getElementById('ceo-note-container');
+  if (!edObj || !edObj.ceoNote) { container.innerHTML = ''; return; }
+  container.innerHTML = `
+    <div class="ceo-note">
+      <div class="ceo-note-label">Note from the CEO</div>
+      <p>${edObj.ceoNote}</p>
+    </div>`;
+}
+
+/* ── BUILD STORY HTML ── */
+function buildStoryHTML(t, s, i) {
+  /* Edition badge */
+  const edObj = getEditionObj(s.edition);
+  const edLabel = edObj ? editionShortLabel(edObj) : `Ed.${s.edition}`;
+  const isLatest = s.edition === DATA.editions[DATA.editions.length - 1].num;
+  const edBadgeHTML = `<span class="story-ed-badge${isLatest ? ' is-new' : ''}">${edLabel}</span>`;
+
+  /* Media */
+  const hasMedia = s.mediaType === 'gallery' ? (s.imgs && s.imgs.length > 0) : !!s.img;
+  const ratio = s.imgRatio || 'landscape';
+  let mediaHTML;
+  if (s.mediaType === 'gallery' && s.imgs && s.imgs.length > 0) {
+    const galId = `gal-${t.id}-${i}`;
+    const imgTags = s.imgs.map((url, idx) =>
+      `<img class="sg-img${idx === 0 ? ' sg-active' : ''}" src="${url}" alt="" loading="${idx === 0 ? 'eager' : 'lazy'}">`).join('');
+    const dotTags = s.imgs.map((_, idx) =>
+      `<button class="sg-dot${idx === 0 ? ' sg-dot-active' : ''}" onclick="sgGoTo('${galId}',${idx})" aria-label="Go to photo ${idx+1}"></button>`).join('');
+    mediaHTML = `<div class="story-gallery" id="${galId}">
+      ${imgTags}
+      <button class="sg-arrow sg-prev" onclick="sgNav('${galId}',-1)" aria-label="Previous">‹</button>
+      <button class="sg-arrow sg-next" onclick="sgNav('${galId}',1)" aria-label="Next">›</button>
+      <div class="sg-dots">${dotTags}</div>
+    </div>`;
+  } else {
+    const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
+    let mediaInner;
+    if (hasMedia && s.mediaType === 'video') {
+      mediaInner = `<video controls playsinline preload="metadata"><source src="${s.img}" type="video/mp4"></video>`;
+    } else if (hasMedia) {
+      mediaInner = `<img src="${s.img}" alt="${s.title}" loading="lazy">`;
+    } else {
+      mediaInner = `<div class="story-media-ph">${CAM_ICON}<span class="story-media-ph-label">Add story image or video</span></div>`;
+    }
+    mediaHTML = `<div class="${mediaClass}">${mediaInner}</div>`;
+  }
+
+  /* Summary */
+  const summaryHTML = s.summary
+    ? `<div class="story-summary"><span class="story-summary-label" style="color:${t.color}">Impact Summary</span>${s.summary}</div>`
+    : '';
+
+  /* Stats */
+  const statsHTML = s.stats && s.stats.length
+    ? `<div class="story-stats">${s.stats.map(st => `
+        <div class="story-stat">
+          <div class="story-stat-n" style="color:${st.c}">${st.n}</div>
+          <div class="story-stat-l">${st.l}</div>
+          ${st.ctx ? `<div class="story-stat-ctx">${st.ctx}</div>` : ''}
+        </div>`).join('')}</div>`
+    : '';
+
+  /* Investment */
+  const investHTML = s.investment
+    ? `<div class="investment-tag">${s.investment}</div>`
+    : '';
+
+  /* One-pager button */
+  const onepagerHTML = s.onepager
+    ? `<br><a href="${s.onepager}" class="onepager-btn" target="_blank">Find the technical report here <span class="btn-arrow">→</span></a>`
+    : '';
+
+  /* Type tag */
+  const tagHTML = s.tag
+    ? `<span class="story-tag ${s.tag.toLowerCase().replace(/\s+/g, '-')}">${s.tag}</span>`
+    : '';
+
+  /* Subpill (e.g. Democracia+) */
+  const subpillHTML = s.subpill
+    ? `<span class="story-subpill">${s.subpill}</span>`
+    : '';
+
+  /* Portrait: video/image left, content right (not gallery) */
+  const isPortrait = s.imgRatio === 'portrait' && hasMedia && s.mediaType !== 'gallery';
+  const bodyContent = isPortrait
+    ? `<div class="story-portrait-layout">
+        <div class="story-portrait-media">${mediaHTML}</div>
+        <div class="story-portrait-content">${summaryHTML}${statsHTML}${investHTML}${onepagerHTML}</div>
+      </div>`
+    : `${mediaHTML}${summaryHTML}${statsHTML}${investHTML}${onepagerHTML}`;
+
+  return `
+    <div class="story-item" id="si-${t.id}-${i}" data-edition="${s.edition}">
+      <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
+        <span class="story-num">${String(i+1).padStart(2,'0')}</span>
+        ${edBadgeHTML}
+        <span class="story-title-text">${s.title}</span>
+        ${tagHTML}
+        ${subpillHTML}
+        <span class="story-pill" style="background:${t.color}18;color:${t.color};border:1px solid ${t.color}44;">${s.pill}</span>
+        <span class="story-chevron">▼</span>
+      </div>
+      <div class="story-body">${bodyContent}</div>
+    </div>`;
+}
+
+/* ── TEAM SECTIONS ── */
+function renderTeamSections() {
+  document.getElementById('team-sections').innerHTML = DATA.teams
+    .filter(t => t.stories.length > 0)
+    .map(t => {
+      const count = t.stories.length;
+      const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
+      return `
+        <div class="team-section" data-team="${t.id}">
+          <div class="team-hdr" style="position:relative;overflow:hidden;">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:${t.color};border-radius:var(--radius) 0 0 var(--radius);"></div>
+            <div class="team-hdr-eyebrow">VER+ Huellas</div>
+            <div class="team-hdr-name">${t.name}</div>
+            <div class="team-hdr-meta">${count} stor${count === 1 ? 'y' : 'ies'}</div>
+          </div>
+          <div class="stories-wrap">${storiesHTML}</div>
+        </div>`;
+    }).join('');
+}
+
+/* ── FOOTER ── */
+function renderFooter() {
+  const latest = DATA.editions[DATA.editions.length - 1];
+  document.getElementById('ft-brand').innerHTML =
+    `<strong>VélezReyes+</strong> · VER+ Huellas · ${DATA.editions.length} Edition${DATA.editions.length === 1 ? '' : 's'} · Latest: ${latest.month} ${latest.year}`;
+}
+
+/* ── STORY TOGGLE ── */
+function toggleStory(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* ── FOOTPRINTS ANIMATION ── */
+function renderFootprints() {
+  const layer = document.getElementById('footprints-layer');
+  const h = document.querySelector('.hero').offsetHeight || 220;
+  const steps = [
+    ['R',3,40,-8],['L',10,62,6],['R',18,37,-6],['L',26,63,8],
+    ['R',34,38,-7],['L',42,62,5],['R',50,36,-8],['L',58,63,7],
+    ['R',66,37,-6],['L',74,62,5],['R',82,35,-9],['L',90,63,6],['R',97,38,-7]
+  ];
+  const size = Math.min(h * 0.5, 75);
+  steps.forEach(([side, left, top, rot], i) => {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('width', Math.round(size*.55));
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox','0 0 34 64');
+    svg.style.cssText = `position:absolute;left:${left}%;top:${top}%;animation-delay:${(i*.18).toFixed(2)}s;`;
+    svg.classList.add('fp');
+    if (side === 'L') svg.classList.add('left');
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#fp-shape');
+    use.setAttribute('transform',`rotate(${rot},17,32)`);
+    svg.appendChild(use);
+    layer.appendChild(svg);
+  });
+}
+
+/* ── GALLERY NAVIGATION ── */
+function sgNav(id, dir) {
+  const el = document.getElementById(id);
+  const imgs = el.querySelectorAll('.sg-img');
+  const dots = el.querySelectorAll('.sg-dot');
+  let cur = [...imgs].findIndex(img => img.classList.contains('sg-active'));
+  imgs[cur].classList.remove('sg-active');
+  dots[cur].classList.remove('sg-dot-active');
+  cur = (cur + dir + imgs.length) % imgs.length;
+  imgs[cur].classList.add('sg-active');
+  dots[cur].classList.add('sg-dot-active');
+}
+function sgGoTo(id, idx) {
+  const el = document.getElementById(id);
+  const imgs = el.querySelectorAll('.sg-img');
+  const dots = el.querySelectorAll('.sg-dot');
+  [...imgs].forEach((img, i) => img.classList.toggle('sg-active', i === idx));
+  [...dots].forEach((dot, i) => dot.classList.toggle('sg-dot-active', i === idx));
+}
+
+/* ── EXPORT PDF (respects active filter) ── */
+function exportPDF() {
+  /* Populate print header with edition snapshot info */
+  const ph = document.getElementById('print-header');
+  const latest = DATA.editions[DATA.editions.length - 1];
+  if (activeFilter === 'all') {
+    ph.innerHTML = `
+      <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
+      <div class="print-hdr-eyebrow">VélezReyes+ · Impact Report</div>
+      <div class="print-hdr-title">VER+ Huellas</div>
+      <div class="print-hdr-edition">All Editions · Through ${latest.month} ${latest.year}</div>
+      <div class="print-hdr-divider"></div>`;
+  } else {
+    const edObj = getEditionObj(activeFilter);
+    ph.innerHTML = `
+      <img class="print-hdr-logo" src="${LOGO_URL}" alt="VélezReyes+">
+      <div class="print-hdr-eyebrow">VélezReyes+ · Impact Report</div>
+      <div class="print-hdr-title">VER+ Huellas · Edition ${edObj.num}</div>
+      <div class="print-hdr-edition">${edObj.name} · ${edObj.month} ${edObj.year}</div>
+      <div class="print-hdr-divider"></div>`;
+  }
+
+  /* Expand only visible stories */
+  document.querySelectorAll('.story-item').forEach(item => {
+    if (item.style.display !== 'none') {
+      item.querySelector('.story-body').style.display = 'block';
+    }
+  });
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const totalMm = Math.ceil(document.documentElement.scrollHeight * 0.2646) + 20;
+    const tag = document.createElement('style');
+    tag.id = '__print_page_size__';
+    tag.textContent = `@page { size: 210mm ${totalMm}mm; margin: 15mm 18mm; }`;
+    document.head.appendChild(tag);
+    window.print();
+    setTimeout(() => {
+      ph.innerHTML = '';
+      const el = document.getElementById('__print_page_size__');
+      if (el) el.remove();
+      document.querySelectorAll('.story-item:not(.open) .story-body').forEach(b => b.style.display = '');
+    }, 1500);
+  }));
+}
+
+/* ── INIT ── */
+renderNav();
+renderHero();
+renderEditionFilter();
+renderTeamSections();
+renderFooter();
+renderFootprints();
+</script>
+</body>
+</html>
