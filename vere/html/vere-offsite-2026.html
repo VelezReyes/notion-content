@@ -531,6 +531,29 @@
       letter-spacing: 0.02em;
     }
 
+    /* ── Cards de llegada / regreso (sin "Día N") ── */
+    .day--travel .day-num {
+      visibility: hidden;
+    }
+    .day--travel .day-theme {
+      font-size: clamp(15px, 2.8vw, 18px);
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* ── Nota de preparación previa ── */
+    .ev-prep {
+      display: block;
+      font-size: 11.5px;
+      color: rgba(75,70,64,.85);
+      margin-top: 6px;
+      padding: 6px 10px;
+      background: rgba(203,178,121,.10);
+      border-radius: 4px;
+      border-left: 2px solid var(--activity);
+      line-height: 1.5;
+    }
+
     /* ═══════════════════════════════
        RESPONSIVE
     ═══════════════════════════════ */
@@ -562,13 +585,13 @@
     <path d="M444.16,55.51l3.88-9.32h36.09v9.32h-39.96ZM440.47,75.08h47.26v9.6h-58.24V17.49h55.56v9.6h-44.58v47.99Z"/>
   </svg>
   <h1 class="hero-title">Offsite CR <span class="muted">2026</span></h1>
-  <p class="hero-meta">Costa Rica · August 17–21 · Pura Vida Retreat &amp; Spa, Alajuela</p>
-  <nav class="legend" aria-label="Event categories">
-    <span class="leg"><span class="leg-pip" style="background:var(--work)"></span>Work Session</span>
-    <span class="leg"><span class="leg-pip" style="background:var(--activity)"></span>Activity</span>
-    <span class="leg"><span class="leg-pip" style="background:var(--social)"></span>Social / Food</span>
-    <span class="leg"><span class="leg-pip" style="background:var(--rest)"></span>Free / Rest</span>
-    <span class="leg"><span class="leg-pip" style="background:var(--travel)"></span>Travel</span>
+  <p class="hero-meta">Costa Rica · 17–21 de agosto · Pura Vida Retreat &amp; Spa, Alajuela</p>
+  <nav class="legend" aria-label="Categorías de actividades">
+    <span class="leg"><span class="leg-pip" style="background:var(--work)"></span>Sesión de trabajo</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--activity)"></span>Actividad</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--social)"></span>Social / Comida</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--rest)"></span>Descanso</span>
+    <span class="leg"><span class="leg-pip" style="background:var(--travel)"></span>Traslado</span>
   </nav>
 </header>
 
@@ -576,16 +599,16 @@
 <section class="checklist-section" aria-labelledby="checklist-title">
   <div class="checklist-wrap">
 
-    <p class="checklist-eyebrow">Pre-Offsite Checklist</p>
-    <h2 class="checklist-title" id="checklist-title">A few things before we land</h2>
+    <p class="checklist-eyebrow">Lista de preparación</p>
+    <h2 class="checklist-title" id="checklist-title">Antes de llegar a Costa Rica</h2>
     <p class="checklist-body">
-    This offsite is a meaningful investment of time for all of us, and the more prepared we each arrive, the more valuable every session will be. Take a few minutes to work through this list at your own pace.</p>
+    Este offsite es una inversión importante de tiempo para todo el equipo — y mientras más preparados lleguemos, más provecho le sacamos a cada sesión. Tómate unos minutos para revisar esta lista a tu propio ritmo.</p>
 
     <div class="checklist-progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" id="progress-bar">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" id="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
-      <span class="progress-label" id="progress-label">0 of 6 complete</span>
+      <span class="progress-label" id="progress-label">0 de 6 completos</span>
     </div>
 
     <ul class="checklist-items" id="checklist-items">
@@ -594,7 +617,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="0">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Review and update your OKRs in <a href="https://profit.co" target="_blank" rel="noopener noreferrer">profit.co</a> ahead of our group sessions</span>
+          <span class="check-text">Revisar y actualizar tus OKRs en <a href="https://profit.co" target="_blank" rel="noopener noreferrer">profit.co</a> antes de nuestras sesiones grupales</span>
         </label>
       </li>
 
@@ -602,7 +625,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="1">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Confirm your air tickets and travel logistics to San José</span>
+          <span class="check-text">Confirmar tus tiquetes aéreos y logística de viaje a San José</span>
         </label>
       </li>
 
@@ -610,7 +633,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="2">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Complete your Clifton Strengths assessment and share your results with Cristina</span>
+          <span class="check-text">Completar tu evaluación de Clifton Strengths y enviar los resultados a Cristina</span>
         </label>
       </li>
 
@@ -618,7 +641,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="3">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Pack comfortable clothes for exercise, yoga, and outdoor activities</span>
+          <span class="check-text">Empacar ropa cómoda para yoga, ejercicio y actividades al aire libre. La temperatura es de 25º promedio y puede haber lluvia</span>
         </label>
       </li>
 
@@ -626,7 +649,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="4">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Think about how we can strengthen our weekly and monthly team calls — come ready to share ideas</span>
+          <span class="check-text">Pensar en cómo podemos mejorar nuestros calls semanales y mensuales — llegar con ideas para compartir</span>
         </label>
       </li>
 
@@ -634,13 +657,21 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="5">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Write down your top priorities for this quarter — we'll build on them together during our sessions</span>
+          <span class="check-text">Anotar tus prioridades principales para este trimestre — las trabajaremos juntos en las sesiones</span>
+        </label>
+      </li>
+
+      <li class="check-item" id="ci-6">
+        <label class="check-label">
+          <input type="checkbox" class="check-input" data-id="6">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-text">Enviar restricciones alimenticias y alergias a Cristina</span>
         </label>
       </li>
 
     </ul>
 
-    <p class="checklist-note">Progress is stored locally in your browser and is not shared with anyone else.</p>
+    <p class="checklist-note">Tu progreso se guarda en tu navegador y no es visible para los demás.</p>
 
   </div>
 </section>
@@ -650,12 +681,12 @@
 <div class="days" id="schedule">
 
   <!-- ───────── DAY 1 ───────── -->
-  <div class="day open" id="d1">
-    <button class="day-btn" onclick="toggle('d1')" aria-expanded="true" aria-controls="d1-body">
-      <span class="day-num">Day 1</span>
+  <div class="day day--travel" id="d1">
+    <button class="day-btn" onclick="toggle('d1')" aria-expanded="false" aria-controls="d1-body">
+      <span class="day-num"></span>
       <div class="day-info">
-        <div class="day-date-lbl">Mon · Aug 17</div>
-        <div class="day-theme">Arrival day</div>
+        <div class="day-date-lbl">Lun · 17 ago</div>
+        <div class="day-theme">Llegada</div>
       </div>
       <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
@@ -668,9 +699,9 @@
           <div class="event cat-travel">
             <div class="ev-time">PM</div>
             <div class="ev-body">
-              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
-              <div class="ev-title">Arrive in San José</div>
-              <div class="ev-desc">Team arrives, check in, settle in (Hyatt or Sheraton)</div>
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Traslado</div>
+              <div class="ev-title">Llegada a San José</div>
+              <div class="ev-desc">El equipo llega, hace check-in y se instala (Hyatt o Sheraton)</div>
             </div>
           </div>
 
@@ -680,12 +711,12 @@
   </div>
 
   <!-- ───────── DAY 2 ───────── -->
-  <div class="day" id="d2">
-    <button class="day-btn" onclick="toggle('d2')" aria-expanded="false" aria-controls="d2-body">
-      <span class="day-num">Day 2</span>
+  <div class="day open" id="d2">
+    <button class="day-btn" onclick="toggle('d2')" aria-expanded="true" aria-controls="d2-body">
+      <span class="day-num">Día 1</span>
       <div class="day-info">
-        <div class="day-date-lbl">Tue · Aug 18</div>
-        <div class="day-theme">Team identity &amp; culture</div>
+        <div class="day-date-lbl">Mar · 18 ago</div>
+        <div class="day-theme">Equipo y cultura</div>
       </div>
       <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
@@ -702,58 +733,69 @@
         <div class="events">
 
           <div class="event cat-travel">
-            <div class="ev-time">AM</div>
+            <div class="ev-time">7:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
-              <div class="ev-title">Drive to Pura Vida</div>
-              <div class="ev-desc">~1 hr from San José — arrive, settle in, coffee</div>
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Traslado</div>
+              <div class="ev-title">Salida para Pura Vida Retreat</div>
+              <div class="ev-desc">Pura Vida queda a 1 hora de San José. Iremos en los carros de Raquel y Oswaldo. El punto de encuentro es en el hotel _________ a las 7 a.m.</div>
             </div>
           </div>
 
           <div class="event cat-work">
-            <div class="ev-time">9:30</div>
+            <div class="ev-time">10:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
-              <div class="ev-title">Opening session — "Who is Vere Family Office?"</div>
-              <div class="ev-desc">CEO-led. Vision, mission, and the story of how we got here. Each person shares who they are, what brought them here, and one thing they hope this team becomes.</div>
-              <span class="ev-by">— Raquel</span>
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">Opening Session</div>
+              <div class="ev-desc">Esta sesión estará enfocada en asegurarnos que todos estemos alineados con qué es Vere Family Office y que conozcamos los nuevos miembros del equipo. Vamos a hablar sobre las fortalezas de cada miembro del equipo y cómo podemos sacarle provecho.</div>
+              <span class="ev-by">Liderada por Raquel</span>
+              <span class="ev-prep">No requiere preparación</span>
             </div>
           </div>
 
           <div class="event cat-social">
             <div class="ev-time">12:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Lunch</div>
-              <div class="ev-desc">Shared meal at the retreat</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Almuerzo</div>
             </div>
           </div>
 
           <div class="event cat-work">
-            <div class="ev-time">14:00</div>
+            <div class="ev-time">13:30</div>
             <div class="ev-body">
-              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
-              <div class="ev-title">Team culture session — "How do we want to work together?"</div>
-              <div class="ev-desc">Walk through the culture deck and employee hub. Define 3–5 team norms: communication styles, handling conflict, celebrating wins, protecting each other's time. Brainstorm: dynamic meetings, all-hands format, weekly team activities, skills to develop, and what we want to learn together — all ideas on the board.</div>
-              <span class="ev-by">— Cristina</span>
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">¿Cómo trabajamos en Vere?</div>
+              <div class="ev-desc">¡Vamos a presentarles nuestro employee hub! Que tiene todas nuestras políticas y procesos. Queremos aprovechar este espacio para hacer un brainstorming de cómo podemos trabajar mejor siendo un equipo híbrido, asegurándonos que haya buena comunicación, que celebremos los logros, aprendamos de lo que no funciona y que estemos conectados a pesar de la distancia.</div>
+              <span class="ev-by">Liderada por Cristina</span>
+              <span class="ev-prep">Preparación: Traer ideas para nuestras llamadas semanales y mensuales y en general cualquier idea para mejorar cómo nos comunicamos y trabajamos.</span>
+            </div>
+          </div>
+
+          <div class="event cat-work">
+            <div class="ev-time">15:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">Temas varios</div>
+              <div class="ev-desc">A veces cuando estamos trabajando a distancia y estamos en medio de las mil cosas del día a día, hay conversaciones que no se dan. Aprovechemos este momento para tenerlas. Por ejemplo, prioridades del equipo Tech después de lo de Cyber Security.</div>
+              <span class="ev-by">Liderado por Cristina</span>
+              <span class="ev-prep">Preparación: Si hay algún tema que consideren importante que revisemos, enviárselo a Cristina UNA SEMANA antes del offsite.</span>
             </div>
           </div>
 
           <div class="event cat-rest">
             <div class="ev-time">16:30</div>
             <div class="ev-body">
-              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
-              <div class="ev-title">Free time &amp; coworking</div>
-              <div class="ev-desc">Walk the grounds, spa, or work independently</div>
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Descanso</div>
+              <div class="ev-title">Tiempo libre y Coworking</div>
+              <div class="ev-desc">Sentarnos juntos a trabajar en un mismo espacio, hacerse un masaje, dar una caminata o meditar.</div>
             </div>
           </div>
 
           <div class="event cat-social">
-            <div class="ev-time">18:30</div>
+            <div class="ev-time">19:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Dinner</div>
-              <div class="ev-desc">Evening meal together, relax</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Cena</div>
             </div>
           </div>
 
@@ -765,10 +807,10 @@
   <!-- ───────── DAY 3 ───────── -->
   <div class="day" id="d3">
     <button class="day-btn" onclick="toggle('d3')" aria-expanded="false" aria-controls="d3-body">
-      <span class="day-num">Day 3</span>
+      <span class="day-num">Día 2</span>
       <div class="day-info">
-        <div class="day-date-lbl">Wed · Aug 19</div>
-        <div class="day-theme">OKR Deep dive</div>
+        <div class="day-date-lbl">Mié · 19 ago</div>
+        <div class="day-theme">Estrategia y OKRs</div>
       </div>
       <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
@@ -787,78 +829,94 @@
           <div class="event cat-activity">
             <div class="ev-time">7:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
-              <div class="ev-title">Yoga</div>
-              <div class="ev-desc">Group yoga session or a walk around the grounds</div>
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Actividad</div>
+              <div class="ev-title">Clase de yoga</div>
+              <div class="ev-desc">Traigan su ropa más cómoda para tener una clase donde despejaremos la mente y recargaremos el cuerpo.</div>
+              <span class="ev-by">Liderada por un profesor</span>
             </div>
           </div>
 
           <div class="event cat-social">
             <div class="ev-time">8:30</div>
             <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Get ready &amp; breakfast</div>
-              <div class="ev-desc">Leisurely breakfast before the work day begins</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Desayuno</div>
             </div>
           </div>
 
           <div class="event cat-work">
             <div class="ev-time">9:15</div>
             <div class="ev-body">
-              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
-              <div class="ev-title">Working session</div>
-              <span class="ev-by">— Soraya</span>
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">Cyber Security</div>
+              <div class="ev-desc">Soraya nos hablará acerca de este tema tan importante para nuestra organización.</div>
+              <span class="ev-by">Liderado por Soraya</span>
+              <span class="ev-prep">No requiere preparación</span>
             </div>
           </div>
 
           <div class="event cat-rest">
             <div class="ev-time">10:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
-              <div class="ev-title">Coffee break</div>
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Descanso</div>
+              <div class="ev-title">Coffee Break y trabajo importante</div>
+              <div class="ev-desc">La idea es que estemos muy concentrados en las sesiones, y que no estemos respondiendo correos o hablando por teléfono. Por eso daremos este espacio para responder y hacer lo que es urgente.</div>
             </div>
           </div>
 
           <div class="event cat-work">
-            <div class="ev-time">11:00</div>
+            <div class="ev-time">10:45</div>
             <div class="ev-body">
-              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
-              <div class="ev-title">OKR session 1 — Review &amp; honest read</div>
-              <div class="ev-desc">Review all OKRs and identify coverage gaps. Each person gives an honest read on key results: what's on track, at risk, or blocked. Transparency conversation — not a performance review.</div>
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">Sesión 1 OKRs</div>
+              <div class="ev-desc">Vamos a revisar los OKRs que tenemos como organización para el 2026 y 2030. Esto no es un performance review sino un espacio en el que cada área va a decir cómo va con sus OKRs. Cuáles han sido las prioridades de este trimestre.</div>
+              <span class="ev-by">Liderado por Cristina</span>
+              <span class="ev-prep">Preparación: Revisar y actualizar tus OKRs en profit.co antes de la sesión.</span>
             </div>
           </div>
 
           <div class="event cat-social">
-            <div class="ev-time">12:00</div>
+            <div class="ev-time">12:30</div>
             <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Lunch</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Almuerzo</div>
             </div>
           </div>
 
           <div class="event cat-work">
-            <div class="ev-time">13:30</div>
+            <div class="ev-time">14:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Work Session</div>
-              <div class="ev-title">OKR session 2 — Quarter review &amp; priorities</div>
-              <div class="ev-desc">Zoom out: how are we tracking as a team this quarter? What needs to be adjusted, accelerated, or dropped? Leave with clear priorities and shared accountability for the weeks ahead.</div>
+              <div class="ev-tag t-work"><span class="ev-pip p-work"></span>Sesión de trabajo</div>
+              <div class="ev-title">Sesión 2 OKRs</div>
+              <div class="ev-desc">Este espacio tiene como objetivo alinearnos en qué va a pasar en el segundo semestre del año: cuáles son los focos, prioridades, y si hay algo que debamos depriorizar.</div>
+              <span class="ev-by">Liderado por Raquel</span>
+              <span class="ev-prep">Preparación: Este es el momento de señalar si creemos que hay algún OKR que no vamos a cumplir.</span>
+            </div>
+          </div>
+
+          <div class="event cat-rest">
+            <div class="ev-time">16:00</div>
+            <div class="ev-body">
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Descanso</div>
+              <div class="ev-title">Tiempo libre</div>
+              <div class="ev-desc">Para descansar, hacerse un masaje, responder emails.</div>
             </div>
           </div>
 
           <div class="event cat-activity">
-            <div class="ev-time">15:30</div>
+            <div class="ev-time">17:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
-              <div class="ev-title">Sound healing session</div>
-              <div class="ev-desc">Guided group sound bath — unwind and reset after a full work day</div>
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Actividad</div>
+              <div class="ev-title">Sorpresa 🌿</div>
+              <div class="ev-desc">Lleven ropa cómoda y la mejor actitud.</div>
             </div>
           </div>
 
-          <div class="event cat-activity">
-            <div class="ev-time">18:30</div>
+          <div class="event cat-social">
+            <div class="ev-time">19:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
-              <div class="ev-title">Team activity / Dinner</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Cena</div>
             </div>
           </div>
 
@@ -870,10 +928,10 @@
   <!-- ───────── DAY 4 ───────── -->
   <div class="day" id="d4">
     <button class="day-btn" onclick="toggle('d4')" aria-expanded="false" aria-controls="d4-body">
-      <span class="day-num">Day 4</span>
+      <span class="day-num">Día 3</span>
       <div class="day-info">
-        <div class="day-date-lbl">Thu · Aug 20</div>
-        <div class="day-theme">Nature, reflection &amp; farewell</div>
+        <div class="day-date-lbl">Jue · 20 ago</div>
+        <div class="day-theme">Naturaleza y reflexión</div>
       </div>
       <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
@@ -885,60 +943,49 @@
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
-          Pura Vida Retreat &amp; Spa → Poás Volcano → San José
+          Pura Vida Retreat &amp; Spa, Alajuela
         </div>
         <div class="events">
 
           <div class="event cat-social">
-            <div class="ev-time">7:00</div>
-            <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Early breakfast</div>
-              <div class="ev-desc">Quick breakfast before heading out</div>
-            </div>
-          </div>
-
-          <div class="event cat-travel">
             <div class="ev-time">8:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
-              <div class="ev-title">Drive to Poás Volcano</div>
-              <div class="ev-desc">~45 min from Pura Vida — arrive early for the clearest views</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Desayuno</div>
             </div>
           </div>
 
           <div class="event cat-activity">
             <div class="ev-time">9:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Activity</div>
-              <div class="ev-title">Poás Volcano visit</div>
-              <div class="ev-desc">Walk to the active crater and the Botos lagoon trail — one of the largest active craters in the world. Short, accessible trails. Café on site.</div>
+              <div class="ev-tag t-activity"><span class="ev-pip p-activity"></span>Actividad</div>
+              <div class="ev-title">Caminata ecológica</div>
+            </div>
+          </div>
+
+          <div class="event cat-rest">
+            <div class="ev-time">11:30</div>
+            <div class="ev-body">
+              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Descanso</div>
+              <div class="ev-title">Regreso al hotel</div>
+              <div class="ev-desc">Alistarnos para almorzar y regresar a SJO.</div>
             </div>
           </div>
 
           <div class="event cat-social">
-            <div class="ev-time">13:00</div>
+            <div class="ev-time">12:30</div>
             <div class="ev-body">
-              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Food</div>
-              <div class="ev-title">Closing lunch</div>
-              <div class="ev-desc">Each person shares one highlight from the offsite and one commitment for the quarter ahead</div>
+              <div class="ev-tag t-social"><span class="ev-pip p-social"></span>Social / Comida</div>
+              <div class="ev-title">Almuerzo</div>
+              <div class="ev-desc">Durante el almuerzo hablaremos de cómo nos pareció el offsite y qué podemos hacer diferente la próxima vez.</div>
             </div>
           </div>
 
           <div class="event cat-travel">
             <div class="ev-time">14:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
-              <div class="ev-title">Drive back to San José</div>
-              <div class="ev-desc">~1 hr — arrive in the city by early evening</div>
-            </div>
-          </div>
-
-          <div class="event cat-rest">
-            <div class="ev-time">15:00</div>
-            <div class="ev-body">
-              <div class="ev-tag t-rest"><span class="ev-pip p-rest"></span>Free / Rest</div>
-              <div class="ev-title">Free time for the rest of the day</div>
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Traslado</div>
+              <div class="ev-title">Regreso a San José</div>
             </div>
           </div>
 
@@ -948,12 +995,12 @@
   </div>
 
   <!-- ───────── DAY 5 ───────── -->
-  <div class="day" id="d5">
+  <div class="day day--travel" id="d5">
     <button class="day-btn" onclick="toggle('d5')" aria-expanded="false" aria-controls="d5-body">
-      <span class="day-num">Day 5</span>
+      <span class="day-num"></span>
       <div class="day-info">
-        <div class="day-date-lbl">Fri · Aug 21</div>
-        <div class="day-theme">Departure</div>
+        <div class="day-date-lbl">Vie · 21 ago</div>
+        <div class="day-theme">Regreso</div>
       </div>
       <svg class="day-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <polyline points="6 9 12 15 18 9"/>
@@ -966,9 +1013,9 @@
           <div class="event cat-travel">
             <div class="ev-time">14:00</div>
             <div class="ev-body">
-              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Travel</div>
-              <div class="ev-title">Fly back</div>
-              <div class="ev-desc">Transfer to SJO and depart</div>
+              <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Traslado</div>
+              <div class="ev-title">Vuelo de regreso</div>
+              <div class="ev-desc">Traslado al aeropuerto SJO y partida.</div>
             </div>
           </div>
 
@@ -991,7 +1038,7 @@
     <path d="M380.94,17.49c7.48,0,13.38,1.85,17.9,5.54,4.52,3.69,6.74,8.68,6.74,14.86,0,10.34-6.74,17.44-17.91,19.29l20.86,27.5h-13.66l-19.66-26.4h-17.07l4.06-9.51h19.47c7.85,0,12.92-4.24,12.92-10.8s-4.98-10.98-12.37-10.98h-29.35v57.69h-10.98V17.49h39.04Z"/>
     <path d="M444.16,55.51l3.88-9.32h36.09v9.32h-39.96ZM440.47,75.08h47.26v9.6h-58.24V17.49h55.56v9.6h-44.58v47.99Z"/>
   </svg>
-  VERE Family Office · Costa Rica Offsite 2026
+  VERE Family Office · Offsite Costa Rica 2026
 </footer>
 
 <script>
@@ -1000,7 +1047,7 @@
      Key: vere_offsite_cr26  Value: JSON { "0": true, "3": true, … }
   ────────────────────────────────────────────────────── */
   const STORE_KEY = 'vere_offsite_cr26';
-  const TOTAL     = 6;
+  const TOTAL     = 7;
 
   function clSave() {
     const state = {};
@@ -1033,10 +1080,10 @@
     bar.setAttribute('aria-valuenow', done);
 
     if (done === TOTAL) {
-      label.textContent = 'All set — see you in Costa Rica!';
+      label.textContent = '¡Todo listo — nos vemos en Costa Rica!';
       label.classList.add('all-done');
     } else {
-      label.textContent = done + ' of ' + TOTAL + ' complete';
+      label.textContent = done + ' de ' + TOTAL + ' completos';
       label.classList.remove('all-done');
     }
   }
