@@ -535,6 +535,40 @@
       letter-spacing: 0.02em;
     }
 
+    /* ── Lista de grupos en traslados ── */
+    .ev-groups {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .ev-groups li {
+      font-size: 12.5px;
+      color: var(--text-mid);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .ev-groups li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--travel);
+      font-weight: 600;
+    }
+    .ev-arrival {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--travel);
+      margin-top: 9px;
+      padding: 4px 10px;
+      background: var(--travel-bg);
+      border-radius: 4px;
+    }
+
     /* ── Cards de llegada / regreso (sin "Día N") ── */
     .day--travel .day-num {
       visibility: hidden;
@@ -649,7 +683,7 @@
         <label class="check-label">
           <input type="checkbox" class="check-input" data-id="3">
           <span class="check-box" aria-hidden="true"></span>
-          <span class="check-text">Empacar ropa cómoda para yoga, ejercicio y actividades al aire libre. La temperatura es de 25º promedio y puede haber lluvia</span>
+          <span class="check-text">Empacar ropa cómoda para yoga, ejercicio y actividades al aire libre, y vestido de baño. La temperatura es de 25º promedio y puede haber lluvia</span>
         </label>
       </li>
 
@@ -745,7 +779,13 @@
             <div class="ev-body">
               <div class="ev-tag t-travel"><span class="ev-pip p-travel"></span>Traslado</div>
               <div class="ev-title">Salida para Pura Vida Retreat</div>
-              <div class="ev-desc">Pura Vida queda a 1 hora de San José. Iremos en los carros de Raquel y Oswaldo. El punto de encuentro es en el hotel Fairfield by Marriott San Jose Airport Alajuela a las 8:30 a.m.</div>
+              <div class="ev-desc">Iremos en los carros de Raquel y Oswaldo. Cada uno sale desde su punto de encuentro:</div>
+              <ul class="ev-groups">
+                <li><strong>Oswaldo</strong> recoge a Cristina, Marcela y Laura — Hotel Fairfield by Marriott San José Airport, Alajuela · <strong>8:30 a.m.</strong></li>
+                <li><strong>Soraya y Eduardo</strong> llegan donde Raquel</li>
+                <li><strong>Fran y Gaby</strong> van juntas</li>
+              </ul>
+              <span class="ev-arrival">📍 Estimar la llegada a Pura Vida Retreat &amp; Spa a más tardar a las 9:30 a.m.</span>
             </div>
           </div>
 
