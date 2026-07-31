@@ -153,7 +153,6 @@ body {
   padding: 1.25rem 1.5rem; cursor: pointer; transition: background .12s; user-select: none;
 }
 .story-header:hover { background: rgba(0,0,0,.02); }
-.story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
 
 /* Edition badge per story */
 .story-ed-badge {
@@ -899,7 +898,6 @@ function buildStoryHTML(t, s, i) {
   return `
     <div class="story-item" id="si-${t.id}-${i}" data-edition="${s.edition}">
       <div class="story-header" onclick="toggleStory('si-${t.id}-${i}')">
-        <span class="story-num">${String(i+1).padStart(2,'0')}</span>
         ${edBadgeHTML}
         <span class="story-title-text">${s.title}</span>
         ${tagHTML}
@@ -917,7 +915,7 @@ function renderTeamSections() {
     .filter(t => t.stories.length > 0)
     .map(t => {
       const count = t.stories.length;
-      const storiesHTML = t.stories.map((s, i) => buildStoryHTML(t, s, i)).join('');
+      const storiesHTML = t.stories.slice().reverse().map((s, i) => buildStoryHTML(t, s, i)).join('');
       return `
         <div class="team-section" data-team="${t.id}">
           <div class="team-hdr" style="position:relative;overflow:hidden;">
