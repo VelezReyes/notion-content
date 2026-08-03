@@ -91,6 +91,7 @@ body {
 }
 .hero-stat-n { font-family: var(--serif); font-size: 38px; line-height: 1; color: var(--charity); display: block; }
 .hero-stat-l { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #666; margin-top: 6px; }
+.hero-stat-sub { font-size: 10px; color: #777; margin-top: 3px; }
 
 /* PAGE BODY */
 .page-body { max-width: 1200px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 4rem) 5rem; }
@@ -136,19 +137,42 @@ body {
 }
 .panel-title { font-family: var(--serif); font-size: 18px; margin-bottom: 1.1rem; }
 
-.donut-block { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
-.donut { width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0; }
-.donut-hole {
-  position: relative; width: 160px; height: 160px; border-radius: 50%; flex-shrink: 0;
+.summary-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+@media (max-width: 960px) { .summary-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } }
+.summary-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.1rem; text-align: center; }
+.summary-card-n { font-family: var(--serif); font-size: 27px; line-height: 1; margin-bottom: 5px; }
+.summary-card-l { font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--text-mt); }
+
+.metrics-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+@media (max-width: 560px) { .metrics-row-2 { grid-template-columns: 1fr; } }
+.metrics-group-label {
+  font-size: 12px; font-weight: 800; color: var(--text-dk); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 8px;
 }
-.donut-hole::after {
-  content: ''; position: absolute; inset: 26px; background: #fff; border-radius: 50%;
+.metrics-group-label .n { color: var(--charity-b); }
+
+.funnel-stage { margin-bottom: 1.5rem; }
+.funnel-stage:last-child { margin-bottom: 0; }
+.funnel-stage-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--text-mt); margin-bottom: 0.75rem; }
+.funnel-flow { display: flex; align-items: stretch; gap: 0.85rem; flex-wrap: wrap; }
+.funnel-source {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--black); color: #fff; border-radius: var(--radius);
+  padding: 1.25rem 1.75rem; min-width: 130px; text-align: center; flex-shrink: 0;
 }
-.donut-center {
-  position: absolute; inset: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;
-}
-.donut-center-n { font-family: var(--serif); font-size: 22px; line-height: 1; }
-.donut-center-l { font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--text-mt); margin-top: 3px; }
+.funnel-source .fn-n { font-family: var(--serif); font-size: 34px; line-height: 1; }
+.funnel-source .fn-l { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #999; margin-top: 5px; }
+.funnel-arrow-mid { display: flex; align-items: center; justify-content: center; font-size: 22px; color: #CCC; flex-shrink: 0; }
+.funnel-branches { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; min-width: 240px; }
+
+.funnel-table-wrap { overflow-x: auto; }
+.funnel-table { width: 100%; border-collapse: collapse; font-size: 12.5px; white-space: nowrap; }
+.funnel-table th, .funnel-table td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--border); }
+.funnel-table th:first-child, .funnel-table td:first-child { text-align: left; }
+.funnel-table th { font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--text-mt); }
+.funnel-table td:first-child { font-weight: 700; color: var(--text-dk); }
+
 .donut-legend { flex: 1; min-width: 200px; }
 .legend-row { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--text-md); padding: 5px 0; }
 .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
@@ -242,13 +266,6 @@ body {
 .story-num { font-size: 11px; font-weight: 800; color: #DDD; flex-shrink: 0; min-width: 22px; }
 .story-title-text { font-size: 14.5px; font-weight: 700; color: var(--text-dk); flex: 1; line-height: 1.4; min-width: 160px; }
 .story-title-text .country { font-weight: 500; color: #9a958a; font-size: 11.5px; margin-left: 6px; }
-.story-tag {
-  font-size: 9px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap;
-}
-.story-tag.gestionado-yes { background: rgba(39,207,119,0.12); color: #1A8050; border: 1px solid rgba(39,207,119,0.4); }
-.story-tag.gestionado-no { background: rgba(198,91,78,0.12); color: #A3312B; border: 1px solid rgba(198,91,78,0.4); }
-.story-tag.gestionado-nodata { background: #1A1A1A; color: #B0B098; border: 1px solid #2D2D2D; }
 .story-pill {
   font-size: 11px; font-weight: 700; padding: 4px 13px;
   border-radius: 20px; flex-shrink: 0; white-space: nowrap;
@@ -273,7 +290,6 @@ body {
 .story-summary p { font-size: 13.5px; color: var(--text-md); line-height: 1.8; margin-bottom: 0.6rem; }
 .story-summary p:last-child { margin-bottom: 0; }
 .story-summary p.flag { color: #A3312B; }
-.story-summary p.correction { color: #8A5A10; font-style: italic; }
 
 /* STATS GRID */
 .story-stats {
@@ -340,7 +356,6 @@ body {
 }
 @media (max-width: 680px) {
   .story-stats { grid-template-columns: 1fr 1fr; }
-  .story-tag { display: none; }
 }
 
 .print-header { display: none; }
@@ -384,10 +399,7 @@ const LOGO_URL_DARK = "https://velezreyes.github.io/static-mail/ver%2B/mailing_s
 const LOGO_URL_LIGHT = "https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true";
 
 const REPORT = {
-  asOf: "July 15, 2026",
-  kpiPct: "85.7%",
-  kpiFrac: "12 of 14",
-  noDataCount: 8
+  asOf: "July 21, 2026"
 };
 
 const TEAMS = [
@@ -395,63 +407,57 @@ const TEAMS = [
     id: "trackA", name: "Track A: Education Support", color: "#A7B2AA",
     cases: [
       {
-        name: "Maria Antonia Robles Vega", country: "Colombia", stage: "Stage 9, Disbursed (corrected)",
-        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        name: "Maria Antonia Robles Vega", country: "Colombia", stage: "Stage 9, Disbursed",
+        outcome: "approved", disbursed: true, bucket: "disbursed", period: "Q2 2026",
         amount: "COP $13.8M", amountFull: "COP $13,847,900 (approx. USD $3,900)",
         timeline: "Initial contact through her mother, via David (April 2026, exact date unconfirmed). Memo approved by D&M: April 27, 2026. Due diligence sent to R&H Trust: May 20, 2026. Documents signed and transfer confirmed by the beneficiary: June 24, 2026. Ticket closed the same day.",
         context: "Student from Medellin (25), full scholarship at EAFIT (GPA 4.59/5.0) and a 60% merit scholarship at Monash University. A Lumni loan (COP 60M at 18% annual interest) was blocking her graduation; at the time of the ask, COP 13,847,900 was 120 days past due. She reported working in Australia on an anti bullying program focused on youth mental health (Melbourne/Victoria).",
         pending: "Lumni proof of settlement and graduation certificate still pending for the file. A one minute video for D&M was requested but not confirmed as received in the material reviewed.",
-        correction: "The tracker still shows this case at Stage 8, Pre-disbursement compliance, with no disbursement date and the note \"Waiting for response from Trust.\" Slack confirms the case has been closed since June 24, 2026. Update tracker to Stage 9 or 10.",
         source: "Slack #charity-ops (May 20, May 29, June 24, 2026)"
       },
       {
         name: "Estephania Rueda Ramirez", country: "Colombia", stage: "Stage 10, Monitoring",
-        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        outcome: "approved", disbursed: true, bucket: "disbursed", period: "Q2 2026",
         amount: "USD $11.6K", amountFull: "USD $11,600",
         timeline: "Memo shared internally: May 22, 2026. Approved around May 22 to 27, 2026. Due diligence sent to Trust: May 29, 2026. Document signing, with resends due to address and signing date corrections, through June 2026. Disbursement: June 23, 2026. Ticket closed: July 8, 2026.",
         context: "Colombian economist (Giron, Santander), family displaced by paramilitary violence from Barrancabermeja. PhD in Econometrics at Monash University (top 20 globally), scholarship covering 100% tuition plus a stipend for 4 years. The grant covered entry costs only. Actual use of funds: 100% went to OSHC health cover (AUD $22,199, approx. USD $15,404). The team decided to waive the volunteer hours requirement during the first year of the PhD given academic demands.",
         pending: "Photo of arrival in Melbourne for a D&M update; periodic academic progress updates.",
-        correction: null,
         source: "Slack #charity-ops and #ops-ceo (May 21 to 22, May 29, June 9 to 10, June 17 to 19, July 8, 2026)"
       },
       {
         name: "Cristobal & Matias Hoyos Guzman", country: "USA, Northwestern University", stage: "Stage 8, Pre-disbursement compliance",
-        gestionado: "yes", disbursed: false, bucket: "compliance",
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "USD $20K", amountFull: "USD $20,000 total (USD $10,000 each), Fall 2026, one time",
         timeline: "Informal approval referenced as early as February 27, 2026 (per Cristina). Memo presented to D&M: June 24, 2026. Final green light from Laura Oller: July 3, 2026. Due diligence started with R&H Trust: July 14, 2026 (documents plus certifier Slendy Avila verified). In process, no disbursement yet as of this report.",
         context: "Colombian twin brothers at Northwestern University. Cristobal (Industrial Engineering, GPA 3.43/4.0), Matias (Economics, GPA 3.6/4.0). Family business entered Chapter 11 in 2022. Original gap of USD $86,400 reduced to USD $20,000 through a university loan exception, a personal loan from an alumnus (Stuart Bewley), and internship income (Coca-Cola and William Blair). Northwestern does not allow financial aid post-admission for international students.",
         pending: "Confirm which bank account should receive the disbursement; Northwestern's response to the financial aid exception request, expected mid-summer 2026. This case is very recent, due diligence started only one day before this report, well within a normal window, not stalled.",
-        correction: null,
         source: "Slack #charity-ops and #ops-ceo (June 24, 26, 30, July 2, 3, 14, 2026)"
       },
       {
         name: "Laura Sofia Castillo Parra", country: "Colombia", stage: "Stage 8, Pre-disbursement compliance",
-        gestionado: "yes", disbursed: false, bucket: "compliance",
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "USD $3.2K", amountFull: "USD $1,600/semester (55% tuition). Payment requested today: USD $3,200 (2 semesters)",
         timeline: "Originally approved months earlier, case on hold while she pursued a scholarship at Javeriana (not obtained). Memo resent for signature: May 27, 2026. Final confirmation from D&M: June 2, 2026. Due diligence started: June 17, 2026, special case, she is a minor, so disbursement is made to her father, Carlos Enrique Castillo Riano. Agreements approved and payment requested to Vere: TODAY, July 15, 2026.",
         context: "Minor student, Dentistry at Universidad Cooperativa de Colombia. High school GPA 91.39/100 (4.57/5.0), ICFES 329/500 (89th percentile). Family contribution: USD $1,316/semester (approx. 45%), her father took a personal loan for the first semester. VR+ covers 55%, above the standard 50%, given the family's effort and the lower cost of Cooperativa versus other options considered.",
         pending: "This case is one step from closing, payment was requested literally today. Follow up in the next 48 to 72 hours to confirm disbursement.",
-        correction: null,
         source: "Slack #charity-ops (June 2, 17 to 18, 30, July 15, 2026) and #ops-ceo (May 27 to 29, June 2, 2026)"
       },
       {
-        name: "Laura Fernanda Martinez Galindo", country: "Colombia", stage: "Stage 5, Memo drafting",
-        gestionado: "no", disbursed: false, bucket: "not_managed",
+        name: "Laura Fernanda Martinez Galindo", country: "Colombia", stage: "Stage 8, Pre-disbursement compliance",
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "COP $14.1M", amountFull: "COP $14,101,500 (50% of tuition, single semester)",
-        timeline: "First contact: April 2, 2026. Meeting: April 15, 2026. Case blocked for lack of backing for the remaining 50% until June 2026. Beca Vamos Pa'Lante denied, under reconsideration: June 8, 2026. Confirmation of backing (donor increases from COP $5M to $10M, plus the Biomedical Engineering Department's fund): July 11, 2026. One minute video received: July 9, 2026. Memo updated and ready: July 15, 2026, still not sent to D&M.",
+        timeline: "First contact: April 2, 2026. Meeting: April 15, 2026. Case blocked for lack of backing for the remaining 50% until June 2026. Beca Vamos Pa'Lante denied, under reconsideration: June 8, 2026. Confirmation of backing (donor increases from COP $5M to $10M, plus the Biomedical Engineering Department's fund): July 11, 2026. One minute video received: July 9, 2026. Memo updated and ready: July 15, 2026. Case sent to D&M and approved: Tuesday, July 21, 2026. Now in R&H Trust due diligence and pre-disbursement compliance.",
         context: "Dual degree, Biomedical Engineering plus Systems and Computer Engineering, Universidad de los Andes, GPA 4.7/5.0. Generacion E scholarship covered 8 of 9 semesters, the ninth, extra due to the dual program, falls outside scope. Parents are informal avocado vendors. Research internship at Purdue with an invitation to a PhD program.",
-        pending: "Missing the original email from Laura needed to send the case for D&M approval, this is the item currently blocking submission. Timing risk: university payment deadline is July 31, 2026. Even if D&M approves immediately, due diligence, signature, and disbursement take additional time, as she was told directly, so there is real risk of missing the deadline. The university offered to temporarily cover the amount with reimbursement afterward, which mitigates the risk. No mentions in Slack #ops-ceo or #charity-ops, this process lived entirely over direct email.",
-        correction: null,
-        source: "Direct emails (April 2 to July 13, 2026); Case Status Report"
+        pending: "In R&H Trust due diligence and Donation Agreement signature ahead of disbursement. The university, informed of the timing risk around its July 31, 2026 payment deadline, agreed to extend her payment window while due diligence and signature are completed, removing the risk of missing the cutoff. Memo conditions to be added once shared. No mentions in Slack #ops-ceo or #charity-ops, this process lived entirely over direct email.",
+        source: "Direct emails (April 2 to July 21, 2026); Case Status Report"
       },
       {
         name: "Andres Leonardo Pimentel Alvarez", country: "Colombia", stage: "No-Go (pre-memo)",
-        gestionado: "yes", disbursed: false, bucket: "rejected",
+        outcome: "no_go", disbursed: false, bucket: "rejected", period: "Q2 2026",
         amount: "N/A", amountFull: "N/A, No-Go",
         timeline: "First contact, via Carlos Camilo Prada at Nu Colombia, to Cristina: May 27, 2026. Interview and documents: May 28 to June 10, 2026. Official GPA received: 3.72/5.0 (74.4%, below the 80% minimum). No-Go communicated to the student: June 11, 2026. Formal internal decision and D&M agreement: June 19, 2026. Student appeal, regrading of the Ultimate sports course: June 25, 2026. Final rejection confirmed the same day.",
         context: "19 years old, homeschooled since age 9, Saber 11 exam 100th percentile, Medicine at Universidad de los Andes. SISBEN B6. Blocked from all public scholarships (SER, Ecopetrol, Atenea, ICETEX) due to his \"validante\" status, meaning a validated rather than attended high school diploma. First semester financed informally (Isabel Rios, approx. COP $20M).",
         pending: "Reason communicated to the student: GPA below minimum. Secondary considerations, his mother's involvement in the process, evasive answers to questions, unsustainable co-funding, were kept for internal record only, not communicated to the student.",
-        correction: null,
         source: "Slack #charity-ops and #ops-ceo (May 27, June 9, 19, 2026); direct emails (May 27 to June 25, 2026)"
       }
     ],
@@ -469,82 +475,76 @@ const TEAMS = [
     cases: [
       {
         name: "Sebastian Holguin Villa", country: "Colombia", stage: "Stage 8, Pre-disbursement compliance (blocked)",
-        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true, escalate: true,
+        outcome: "approved", disbursed: false, bucket: "compliance", blocked: true, escalate: true, period: "Q2 2026",
         amount: "USD $8.9K", amountFull: "USD $8,900 (30% of 2026-2027 pre-season costs)",
         timeline: "Initial meeting: April 28, 2026. David reviews expanding support, a possible NuBank sponsorship, but confirms the original proposal: May 18, 2026. Due diligence started with Trust: June 1, 2026. Trust confirms review in progress: June 18, 2026. Blocked by a trust deed interpretation issue, requires legal advice from Walkers, a Cayman Islands law firm: identified June 30, 2026, still unresolved as of this report.",
         context: "Elite downhill mountain biker, top 30 worldwide (UCI), Colombian National Champion, Pan American runner up. Base salary USD $15,000/year through his team (MS Racing), often paid late. The grant covers 30% of pre-season costs. Expanding support to USD $55,000, covering the current season too, was evaluated but David chose to keep the original proposal.",
         pending: "Active blocker, still unresolved. The team told Sebastian the payment is delayed due to an \"internal policy adjustment,\" but it is actually a trust deed interpretation issue requiring outside legal advice (Walkers). This matches the Policy's escalation criteria: if R&H Trust due diligence uncovers a risk issue, pause disbursement and escalate to DoS and CEO. We recommend formally escalating this rather than treating it as a routine delay, it has been open since June 30, 2026.",
-        correction: null,
         source: "Slack #charity-ops and #ops-ceo (May 21, June 1, 18, 30, 2026)"
       },
       {
         name: "Olimpiadas Matematicas / FONMAT", country: "Uruguay", stage: "Stage 8, Pre-disbursement compliance (blocked)",
-        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        outcome: "approved", disbursed: false, bucket: "compliance", blocked: true, period: "Q2 2026",
+        stallNote: "stalled, has not submitted the documents requested by the Trust.",
         amount: "USD $10K", amountFull: "USD $10,000 (approx. 55% of an USD $18,000 pilot)",
         timeline: "Memo shared internally: May 21, 2026. David approves, same thread as Sebastian Holguin: May 18, 2026. Due diligence form sent (JotForm) after approval. As of June 28, 2026, documentation is still incomplete on the applicant's side, due diligence not yet submitted to the Trust.",
         context: "Maximiliano Stock Lorenzo, PhD candidate at Chicago Booth (operations research), Director of the Mathematics Olympiad of Uruguay (30+ years, approx. 30,000 students/year), and President of FONMAT. Funds the \"Com-Partida Matematica del Uruguay\" pilot (June to December 2026, 10 intervention schools plus 10 comparison schools in Montevideo). Maxi is securing the remaining USD $8,000 on his own.",
         pending: "Blocker is on the beneficiary's side, FONMAT, not the team's. Documentation is still pending before due diligence can be submitted to the Trust.",
-        correction: null,
         source: "Slack #charity-ops (May 21, 2026) and #ops-ceo (Cris OOO note, June 28, 2026)"
       },
       {
         name: "Redalco", country: "Uruguay", stage: "Stage 8, Pre-disbursement compliance (blocked)",
-        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        outcome: "approved", disbursed: false, bucket: "compliance", blocked: true, period: "Q2 2026",
+        stallNote: "stalled, has not submitted the documents requested by the Trust.",
         amount: "USD $5K", amountFull: "USD $5,000, third and final grant; prior grants: USD $5,000 plus USD $10,000",
         timeline: "Initial discussion of the amount, inside or outside the Mision Platos campaign: May 21, 2026. Final confirmation from Mariel, USD $5K, outside the campaign, final grant: June 2, 2026. Trust requirements received, ESCF, signatory confirmation, certified IDs, 2026 certificate of existence: June 9, 2026. Follow ups with no response: June 18 and July 8, 2026. No documents received from Redalco as of this report.",
         context: "Uruguayan NGO (founded 2016), recovers surplus fruit and vegetables from wholesale markets and distributes them to approximately 300 social organizations, reaching 50,000+ people per week. Its main KPI, recovered tonnage, fell 29% since 2022 (2,051 to 1,459 tons) after losing two government contracts. Authorized signatories: Marcelo Javier Sus Drzymalkowski and Mario Gabriel Perez Fernandez.",
         pending: "Redalco has not submitted the documentation requested by the Trust since June 9, 2026, more than a month without response as of this report. Blocker on the beneficiary's side.",
-        correction: null,
         source: "Slack #charity-ops (June 2, 9, 18, July 8, 2026) and #ops-ceo (May 21, June 2, 28, 2026)"
       },
       {
         name: "Operacion Todos con Venezuela", country: "Venezuela, disbursed via USA", stage: "Stage 8, in due diligence",
-        gestionado: "yes", disbursed: false, bucket: "compliance", blocked: true,
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "USD $50K", amountFull: "USD $50,000",
         timeline: "Earthquake in Venezuela: June 24, 2026. David requests a donation: Saturday, June 27, 2026. Memo prepared and signed by David: June 29, 2026. Due diligence started with Trust: June 30, 2026. Trust flags a name mismatch between the memo (Human Capital for the World) and the due diligence documents (Alimenta la Solidaridad Inc), corrected: July 2, 2026. Payment request sent to the Trust: July 8, 2026. Still in due diligence, currently blocked because the Trust asked for reissued ID Verification letters.",
         context: "Funds routed through Alimenta la Solidaridad Inc, a US 501(c)(3) entity in Madison WI, to avoid OFAC and Venezuela restrictions. On the ground execution via the Miranda Center for Democracy and PYMART. This same process led to the legitimacy review that also approved Hogar Bambi. David and Mariel considered splitting the original amount across several organizations, CADENA, IsraAID, Hogar Bambi, and Friends of Yahad, and ultimately prioritized Hogar Bambi and CADENA, with no response from CADENA as of this report.",
         pending: "Still in due diligence, blocked on reissuing ID Verification letters.",
-        correction: "The tracker records the D&M decision date as June 26, 2026, before the recorded intake date of June 29, 2026. Slack indicates David's actual signature was June 29, 2026, which resolves the inconsistency. Recommend updating the tracker's D&M Decision Date to June 29, 2026.",
         source: "Slack #charity-ops (June 30, July 8, 2026) and #ops-ceo (June 29, 2026, two threads)"
       },
       {
         name: "Gael Mathias Puentes Posada", country: "Colombia / USA", stage: "Stage 4, Evidence collection",
-        gestionado: "no", disbursed: false, bucket: "not_managed",
+        outcome: "pipeline", disbursed: false, bucket: "not_managed", period: "Q2 2026",
         amount: "TBD", amountFull: "No ask defined yet, target treatment approx. USD $2.1M, VR+ is evaluating only specific medical equipment",
         timeline: "First contact, forwarded story: April 21, 2026. Initial meeting: April 24, 2026. Family sent full medical documentation: April 28, 2026. Follow up on medical equipment, Cough Assist and BiPAP: May 7 and May 21, 2026. Family reports a housing crisis and asks for initial economic help: June 16, 2026. Last response from the team: June 22, 2026, clarifying that only the medical equipment is being evaluated, not general financial assistance.",
         context: "Child with Type 1 Spinal Muscular Atrophy, diagnosed at 10 months. Case opened due to David's interest, referred by Hugo Moreno, who asked to keep a low profile. Target treatment: Zolgensma, approx. USD $2.1M, with a critical window before 24 months of age. In practice, the case has narrowed to evaluating two specific pieces of medical equipment, not the full treatment.",
-        pending: "This case is actively being worked, but is waiting on the family for a final response on equipment specifications before a memo can be built, which is why it does not count as gestionado yet. Verification of Gael's age against the 24 month window is still unconfirmed in any source reviewed, this is the most urgent open item, flagged as critical since April and still open. The family reported on June 16, 2026 that they were about to lose their housing in the US, there is no record of an immediate assistance response beyond the medical equipment scope.",
-        correction: null,
+        pending: "This case is actively being worked, but is waiting on the family for a final response on equipment specifications before a memo can be built, which is why it is still in pipeline rather than presented. Verification of Gael's age against the 24 month window is still unconfirmed in any source reviewed, this is the most urgent open item, flagged as critical since April and still open. The family reported on June 16, 2026 that they were about to lose their housing in the US, there is no record of an immediate assistance response beyond the medical equipment scope.",
         source: "Direct emails (April 21 to June 22, 2026); Case Status Report; Informe de Casos"
       },
       {
         name: "Hogar Bambi", country: "Venezuela, disbursed via USA", stage: "Stage 8, approved, in due diligence",
-        gestionado: "yes", disbursed: false, bucket: "compliance",
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "USD $25K", amountFull: "USD $25,000",
         timeline: "Legitimacy review completed, as part of the Venezuela organizations analysis: June 29, 2026. Formal request opened, email to Cristina Medici, Fundraising Director: July 6, 2026. Memo shared for review: July 6, 2026. D&M approval, Mariel had suggested USD $25K: July 13, 2026. Memo pending signature, currently moving into due diligence.",
         context: "Venezuelan NGO with 30 years of uninterrupted operation, founded 1992 in Caracas, 5 residential homes, approximately 120 children cared for at a time. Responding to the June 24, 2026 earthquake emergency with 5 active lines of action: shelter, socio-legal team, psychological support, coordination with partners, and donor management. Disbursement via Bambi International Foundation, a US entity in Weston FL, to avoid OFAC restrictions.",
         pending: null,
-        correction: "The tracker still shows this case at Stage 6, Internal review, with Screening Decision Pending. Slack confirms approval on July 13, 2026, and that the case is already moving into due diligence. Update tracker.",
         source: "Slack #ops-ceo (June 29, July 6, 13, 2026); direct email (July 6, 2026)"
       },
       {
         name: "Novica", country: "USA / Global", stage: "Stage 8, approved, in due diligence",
-        gestionado: "yes", disbursed: false, bucket: "compliance",
+        outcome: "approved", disbursed: false, bucket: "compliance", period: "Q2 2026",
         amount: "USD $30K", amountFull: "USD $30,000, not confirmed in the tracker",
         timeline: "Mariel approves, it is her cousin's business: July 6, 2026. Memo shared for internal review: July 7, 2026. Due diligence started with Roberto Milk, co founder and CEO: July 7, 2026. Documents received, adjustments requested: July 14, 2026. Memo signed by D&M: confirmed July 16, 2026, exact signature date not specified. Case now moving into due diligence.",
         context: "Artisan marketplace platform, NOVICA.com, Handmade.com, UnicefMarket.org, 75,000+ artisans supported, USD $142M+ channeled historically. Conflict of interest disclosed: relationship with an advisory committee member, by team decision, not documented in the memo.",
-        pending: "Approval, memo, and signature all happened within Q2 2026, so the case counts toward this semester's KPI. The USD $30,000 amount appears in Slack and reports but is not recorded in the tracker, verify before reporting it externally.",
-        correction: null,
+        pending: "Approval, memo, and signature all happened within Q2 2026, so the case counts toward this quarter's figures. The USD $30,000 amount appears in Slack and reports but is not recorded in the tracker, verify before reporting it externally.",
         source: "Slack #ops-ceo (July 6, 7, 13, 2026); direct emails (July 7 to 14, 2026); update July 16, 2026"
       },
       {
         name: "Fundacion Sophia (6 students, 2026-2030 renewal)", country: "Uruguay", stage: "Disbursed, 2026 cycle",
-        gestionado: "yes", disbursed: true, bucket: "disbursed",
+        outcome: "approved", disbursed: true, bucket: "disbursed", period: "Q2 2026",
         amount: "USD $6.6K", amountFull: "USD $6,600 (6 x USD $1,100) of a total USD $46,200 commitment (2024-2030)",
         timeline: "Renewal request: May 27, 2026. 2026 due diligence started: May 28, 2026. Bank information confirmed: June 10, 2026. ESCF adjustments: June 19 to 23, 2026. Due diligence completed, sent to payments (Vere): July 3, 2026. Receipt letter signed by the beneficiary: July 9, 2026.",
         context: "Uruguayan NGO, 29 Catholic schools, 5,000+ students. The \"Construi Oportunidades\" program covers full tuition for 6 students at Colegio y Liceo Ntra. Sra. del Perpetuo Socorro (Montevideo). Relationship active since 2024, VR+ already honored the 2024 and 2025 payments (USD $13,200 accumulated).",
         pending: "Structural finding: this entire case cycle, recommendation, decision, due diligence, disbursement, all between May and July 2026, has no row of its own in the tracker's Cases sheet, it only appears as 6 individual beneficiaries in Monitoring. This suggests annual renewals of active relationships do not generate a new Case ID, so the tracker likely undercounts the real volume of cases managed in the semester. Recommend creating a Case ID row for every renewal cycle, even if recurring.",
-        correction: null,
         source: "Slack #charity-ops (May 27, June 17 to 19, 23, 30, July 13, 2026) and #ops-ceo (June 28, 2026)"
       }
     ],
@@ -560,27 +560,38 @@ const TEAMS = [
   }
 ];
 
-function gestTagClass(g) {
-  if (g === "yes") return "gestionado-yes";
-  if (g === "no") return "gestionado-no";
-  return "gestionado-nodata";
+function outcomeLabel(o) {
+  if (o === "approved") return "Approved";
+  if (o === "rejected_dm") return "Rejected by D&M";
+  if (o === "no_go") return "No-Go";
+  return "Pipeline";
 }
-function gestTagLabel(g) {
-  if (g === "yes") return "Managed";
-  if (g === "no") return "Not Managed";
-  return "No data";
+function outcomeTextColor(o) {
+  if (o === "approved") return "#1A8050";
+  if (o === "rejected_dm" || o === "no_go") return "#A3312B";
+  return "#7C8880";
+}
+function outcomeCtx(o) {
+  if (o === "approved") return "Presented to David and Mariel and approved.";
+  if (o === "rejected_dm") return "Presented to David and Mariel and rejected.";
+  if (o === "no_go") return "Team recommended against moving forward before a memo was drafted, David and Mariel agreed with the recommendation.";
+  return "Still being worked by the team, not yet presented to David and Mariel.";
+}
+function pillStyle(o) {
+  if (o === "approved") return "background:rgba(39,207,119,0.12);color:#1A8050;border:1px solid rgba(39,207,119,0.4);";
+  if (o === "rejected_dm" || o === "no_go") return "background:rgba(198,91,78,0.12);color:#A3312B;border:1px solid rgba(198,91,78,0.4);";
+  return "background:#EAEAE0;color:#7C8880;border:1px solid rgba(0,0,0,0.1);";
 }
 
 function buildCaseHTML(team, c, i) {
   const summaryParts = [
     `<p><b>Timeline.</b> ${c.timeline}</p>`,
-    `<p><b>Context.</b> ${c.context}</p>`,
-    c.correction ? `<p class="correction"><b>Correction vs. tracker.</b> ${c.correction}</p>` : ""
+    `<p><b>Context.</b> ${c.context}</p>`
   ].join("");
 
   const statsHTML = `<div class="story-stats">
     <div class="story-stat"><div class="story-stat-n" style="color:${team.color}">${c.stage.split(",")[0]}</div><div class="story-stat-l">Tracker Stage</div><div class="story-stat-ctx">${c.stage}</div></div>
-    <div class="story-stat"><div class="story-stat-n" style="color:${c.gestionado === 'yes' ? '#1A8050' : (c.gestionado === 'no' ? '#A3312B' : '#999')}">${gestTagLabel(c.gestionado)}</div><div class="story-stat-l">Status</div><div class="story-stat-ctx">Team recommendation reached a D&M decision and is moving forward</div></div>
+    <div class="story-stat"><div class="story-stat-n" style="color:${outcomeTextColor(c.outcome)}">${outcomeLabel(c.outcome)}</div><div class="story-stat-l">Outcome</div><div class="story-stat-ctx">${outcomeCtx(c.outcome)}</div></div>
     <div class="story-stat"><div class="story-stat-n" style="color:${team.color}">${c.amount}</div><div class="story-stat-l">Amount</div><div class="story-stat-ctx">${c.amountFull}</div></div>
   </div>`;
 
@@ -591,8 +602,7 @@ function buildCaseHTML(team, c, i) {
       <div class="story-header" onclick="document.getElementById('${team.id}-${i}').classList.toggle('open')">
         <span class="story-num">${String(i+1).padStart(2,'0')}</span>
         <span class="story-title-text">${c.name}<span class="country">${c.country || ""}</span></span>
-        <span class="story-tag ${gestTagClass(c.gestionado)}">${gestTagLabel(c.gestionado)}</span>
-        <span class="story-pill" style="background:${team.color}22;color:${team.color === '#A7B2AA' ? '#5B6660' : team.color};border:1px solid ${team.color}55;">${c.stage}</span>
+        <span class="story-pill" style="${pillStyle(c.outcome)}">${c.stage}</span>
         <span class="story-chevron">&#9660;</span>
       </div>
       <div class="story-body">
@@ -662,35 +672,53 @@ function toggleMini(id) {
 
 function renderNav() { document.getElementById('site-logo').src = LOGO_URL_LIGHT; }
 
+function computeStatsForCases(casesArr) {
+  const received = casesArr.length;
+  const presented = casesArr.filter(c => c.outcome === 'approved' || c.outcome === 'rejected_dm');
+  const pipeline = casesArr.filter(c => c.outcome === 'pipeline');
+  const noGo = casesArr.filter(c => c.outcome === 'no_go');
+  const approved = casesArr.filter(c => c.outcome === 'approved');
+  const rejectedDM = casesArr.filter(c => c.outcome === 'rejected_dm');
+  const pct = (n, d) => d ? (n / d * 100).toFixed(1) : '0.0';
+  return {
+    received, presented, pipeline, noGo, approved, rejectedDM,
+    presentedPct: pct(presented.length, received),
+    approvedPct: pct(approved.length, presented.length),
+    rejectedPct: pct(rejectedDM.length, presented.length),
+    pipelinePct: pct(pipeline.length, received),
+    noGoPct: pct(noGo.length, received)
+  };
+}
+
 function computeCaseStats() {
   const allCases = TEAMS.flatMap(t => t.cases.map(c => Object.assign({}, c, { teamId: t.id, teamName: t.name, teamColor: t.color })));
-  const total = allCases.length;
-  const managedCases = allCases.filter(c => c.gestionado === 'yes');
-  const rejectedCases = allCases.filter(c => c.bucket === 'rejected');
-  const pipelineCases = allCases.filter(c => c.gestionado === 'no');
+  const base = computeStatsForCases(allCases);
   const disbursedCount = allCases.filter(c => c.disbursed).length;
-  const approvedTrack = managedCases.length - rejectedCases.length;
   const blockedCount = allCases.filter(c => c.blocked).length;
   const escalateCases = allCases.filter(c => c.escalate);
   const totalNoData = TEAMS.reduce((s, t) => s + t.nodata.length, 0);
   const totalPrior = TEAMS.reduce((s, t) => s + (t.priorPeriod || []).length, 0);
   const pct = (n, d) => d ? (n / d * 100).toFixed(1) : '0.0';
-  return {
-    allCases, total, managedCases, rejectedCases, pipelineCases, disbursedCount, approvedTrack, blockedCount, escalateCases, totalNoData, totalPrior,
-    pipelinePct: total ? '100' : '0',
-    approvedPct: pct(managedCases.length, total),
-    noGoPct: pct(rejectedCases.length, total),
-    disbursementRateApproved: pct(disbursedCount, approvedTrack),
-    disbursementRateManaged: pct(disbursedCount, managedCases.length)
-  };
+
+  const periodGroups = {};
+  allCases.forEach(c => {
+    const p = c.period || "Unassigned";
+    (periodGroups[p] = periodGroups[p] || []).push(c);
+  });
+  const periodRows = Object.keys(periodGroups).map(p => Object.assign({ period: p }, computeStatsForCases(periodGroups[p])));
+
+  return Object.assign({
+    allCases, disbursedCount, blockedCount, escalateCases, totalNoData, totalPrior, periodRows,
+    disbursementRateApproved: pct(disbursedCount, base.approved.length)
+  }, base);
 }
 
 function renderHero() {
   const s = computeCaseStats();
   document.getElementById('hero-stats').innerHTML = `
-    <div class="hero-stat"><span class="hero-stat-n">${s.pipelinePct}%</span><div class="hero-stat-l">Pipeline</div></div>
-    <div class="hero-stat"><span class="hero-stat-n">${s.approvedPct}%</span><div class="hero-stat-l">Presented &amp; approved</div></div>
-    <div class="hero-stat"><span class="hero-stat-n">${s.noGoPct}%</span><div class="hero-stat-l">No-Gos</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">100%</span><div class="hero-stat-l">Case Coverage, Managed</div><div class="hero-stat-sub">${s.received} of ${s.received} received</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${s.presentedPct}%</span><div class="hero-stat-l">Presented</div><div class="hero-stat-sub">${s.presented.length} of ${s.received} received</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">${s.pipelinePct}%</span><div class="hero-stat-l">In pipeline</div><div class="hero-stat-sub">${s.pipeline.length} of ${s.received} received</div></div>
   `;
 }
 
@@ -731,40 +759,12 @@ function switchView(view) {
   document.getElementById('view-metrics').style.display = view === 'metrics' ? '' : 'none';
 }
 
-function renderMetrics() {
-  const s = computeCaseStats();
-  const { allCases, total, blockedCount, escalateCases, totalNoData, totalPrior } = s;
-  const managed = s.managedCases.length;
-  const approvedTrack = s.approvedTrack;
-  const disbursedCount = s.disbursedCount;
-  const rejectedCases = s.rejectedCases;
-  const pipelinePct = s.pipelinePct;
-  const approvedPct = s.approvedPct;
-  const noGoPct = s.noGoPct;
-  const nameList = arr => arr.map(c => c.name).join(', ');
-
-  const bucketDefs = [
-    { key: 'disbursed', label: 'Disbursed', color: '#27CF77' },
-    { key: 'pending_signature', label: 'Approved, pending signature', color: '#E3C400' },
-    { key: 'compliance', label: 'Approved, in compliance or due diligence', color: '#A7B2AA' },
-    { key: 'not_managed', label: 'Not yet managed', color: '#D69A3B' },
-    { key: 'rejected', label: 'Rejected (No-Go)', color: '#C65B4E' }
-  ].map(b => Object.assign({}, b, { count: allCases.filter(c => c.bucket === b.key).length }));
-
-  let acc = 0;
-  const stops = bucketDefs.filter(b => b.count > 0).map(b => {
-    const start = (acc / total * 100).toFixed(2);
-    acc += b.count;
-    const end = (acc / total * 100).toFixed(2);
-    return `${b.color} ${start}% ${end}%`;
-  }).join(', ');
-
-  const legendHTML = bucketDefs.filter(b => b.count > 0).map(b => {
-    const id = `bucket-${b.key}`;
-    const cases = allCases.filter(c => c.bucket === b.key);
-    const casesHTML = cases.map(c =>
-      `<div class="legend-case-row"><span>${c.name}</span><span class="legend-case-track">${c.teamId === 'trackA' ? 'Track A' : 'Track B'}</span></div>`
-    ).join('');
+function buildFunnelBranches(branches, idPrefix) {
+  return branches.map(b => {
+    const id = `${idPrefix}-${b.key}`;
+    const casesHTML = b.cases.length
+      ? b.cases.map(c => `<div class="legend-case-row"><span>${c.name}</span><span class="legend-case-track">${c.teamId === 'trackA' ? 'Track A' : 'Track B'}</span></div>`).join('')
+      : `<div class="legend-case-row"><span>None in this period</span></div>`;
     return `
       <div class="legend-item" id="${id}">
         <div class="legend-row toggleable" onclick="toggleLegend('${id}')">
@@ -773,23 +773,97 @@ function renderMetrics() {
         <div class="legend-cases">${casesHTML}</div>
       </div>`;
   }).join('');
+}
 
+function renderMetrics() {
+  const s = computeCaseStats();
+  const { allCases, blockedCount, escalateCases, totalNoData, totalPrior } = s;
+  const received = s.received;
+  const presented = s.presented;
+  const pipeline = s.pipeline;
+  const noGo = s.noGo;
+  const approved = s.approved;
+  const rejectedDM = s.rejectedDM;
+  const disbursedCount = s.disbursedCount;
   const rateApproved = s.disbursementRateApproved;
-  const rateManaged = s.disbursementRateManaged;
+
+  const summaryCards = [
+    { n: received, l: 'Received' },
+    { n: presented.length, l: 'Presented' },
+    { n: pipeline.length, l: 'Pipeline' },
+    { n: noGo.length, l: 'Screened Out (No-Go)' },
+    { n: approved.length, l: 'Approved' },
+    { n: rejectedDM.length, l: 'Rejected by D&amp;M' }
+  ];
+  const summaryHTML = summaryCards.map(c => `
+    <div class="summary-card"><div class="summary-card-n">${c.n}</div><div class="summary-card-l">${c.l}</div></div>`
+  ).join('');
+  const activeManagementHTML = `
+    <div class="summary-card" style="grid-column: 1 / -1; display:flex; align-items:center; justify-content:center; gap:12px; text-align:left; background:var(--cream-card);">
+      <span class="summary-card-n" style="font-size:22px;margin:0;">100%</span>
+      <span style="font-size:12px;color:var(--text-md);line-height:1.5;"><b>Case Coverage, Managed,</b> not to be confused with the Pipeline metric below. All ${received} of ${received} received cases were actively worked by the team this period and reached a recommendation, none sat untouched. Tracks against the team target of &plus;90% of charity requests resolving after a team recommendation, "managed" means a recommendation was reached, not that every case has fully closed. Only ${pipeline.length} of them, ${pipeline.map(c=>c.name).join(', ') || 'none'}, is still short of being presented, that is the actual Pipeline figure below.</span>
+    </div>`;
+
+  const receivedMetrics = [
+    { n: s.presentedPct, l: 'Presented', color: '#1A8050', frac: `${presented.length} of ${received}` },
+    { n: s.pipelinePct, l: 'Pipeline', color: '#7C8880', frac: `${pipeline.length} of ${received}` },
+    { n: s.noGoPct, l: 'Screened Out (No-Go)', color: '#C65B4E', frac: `${noGo.length} of ${received}` }
+  ];
+  const presentedMetrics = [
+    { n: s.approvedPct, l: 'Approved', color: '#27CF77', frac: `${approved.length} of ${presented.length}` },
+    { n: s.rejectedPct, l: 'Rejected by D&amp;M', color: '#C65B4E', frac: `${rejectedDM.length} of ${presented.length}` }
+  ];
+  const cardHTML = m => `
+    <div class="metric-card">
+      <div class="metric-card-n" style="color:${m.color}">${m.n}%</div>
+      <div class="metric-card-l">${m.l}</div>
+      <div class="metric-card-ctx">${m.frac}</div>
+    </div>`;
+  const receivedMetricsHTML = receivedMetrics.map(cardHTML).join('');
+  const presentedMetricsHTML = presentedMetrics.map(cardHTML).join('');
+
+  const branches1 = [
+    { key: 'presented', label: 'Presented', color: '#1A8050', count: presented.length, cases: presented },
+    { key: 'pipeline', label: 'Pipeline', color: '#7C8880', count: pipeline.length, cases: pipeline },
+    { key: 'nogo', label: 'Screened Out (No-Go)', color: '#C65B4E', count: noGo.length, cases: noGo }
+  ];
+  const branches2 = [
+    { key: 'approved', label: 'Approved', color: '#1A8050', count: approved.length, cases: approved },
+    { key: 'rejecteddm', label: 'Rejected by D&M', color: '#C65B4E', count: rejectedDM.length, cases: rejectedDM }
+  ];
+  const branches1HTML = buildFunnelBranches(branches1, 'fn1');
+  const branches2HTML = buildFunnelBranches(branches2, 'fn2');
+
+  const periodRowsHTML = s.periodRows.map(r => `
+    <tr>
+      <td>${r.period}</td>
+      <td>${r.received}</td>
+      <td>${r.presented.length}</td>
+      <td>${r.pipeline.length}</td>
+      <td>${r.noGo.length}</td>
+      <td>${r.approved.length}</td>
+      <td>${r.rejectedDM.length}</td>
+      <td>${r.presentedPct}%</td>
+      <td>${r.approvedPct}%</td>
+      <td>${r.rejectedPct}%</td>
+      <td>${r.pipelinePct}%</td>
+      <td>${r.noGoPct}%</td>
+    </tr>`
+  ).join('');
 
   const trackBarsHTML = TEAMS.map(t => {
     const tCases = t.cases;
-    const tManaged = tCases.filter(c => c.gestionado === 'yes').length;
+    const tApproved = tCases.filter(c => c.outcome === 'approved').length;
     const tDisbursed = tCases.filter(c => c.disbursed).length;
-    const wManaged = tCases.length ? (tManaged / tCases.length * 100) : 0;
+    const wApproved = tCases.length ? (tApproved / tCases.length * 100) : 0;
     return `
       <div>
         <div class="bar-row-label"><span>${t.name.split(':')[0]}</span><span>${tCases.length} cases</span></div>
         <div class="bar-track">
-          <div class="bar-seg" style="width:${wManaged}%;background:${t.color === '#A7B2AA' ? '#7C8880' : t.color};"></div>
-          <div class="bar-seg" style="width:${100 - wManaged}%;background:var(--cream);"></div>
+          <div class="bar-seg" style="width:${wApproved}%;background:${t.color === '#A7B2AA' ? '#7C8880' : t.color};"></div>
+          <div class="bar-seg" style="width:${100 - wApproved}%;background:var(--cream);"></div>
         </div>
-        <div class="metrics-note">${tManaged} managed, ${tDisbursed} disbursed, of ${tCases.length} tracked</div>
+        <div class="metrics-note">${tApproved} approved, ${tDisbursed} disbursed, of ${tCases.length} received</div>
       </div>`;
   }).join('');
 
@@ -798,70 +872,83 @@ function renderMetrics() {
   ).join('');
 
   const blockedOtherHTML = allCases.filter(c => c.blocked && !c.escalate).map(c =>
-    `<div class="highlight-item"><span class="highlight-dot warn"></span><b>${c.name}</b>: blocked on a third party, Trust review or missing documents, not a team delay.</div>`
+    `<div class="highlight-item"><span class="highlight-dot warn"></span><b>${c.name}</b>: ${c.stallNote || 'blocked on a third party, Trust review or missing documents, not a team delay.'}</div>`
   ).join('');
 
   document.getElementById('view-metrics').innerHTML = `
-    <div class="metrics-row">
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#1A8050">${REPORT.kpiPct}</div>
-        <div class="metric-card-l">Managed</div>
-        <div class="metric-card-ctx">${managed} of ${total} tracked cases reached a D&amp;M decision and are moving forward. No-data and prior-period cases are kept apart and not counted here.</div>
+    <div class="panel-title" style="margin: 0 0 1rem;">1. Executive summary</div>
+    <div class="summary-grid">${summaryHTML}${activeManagementHTML}</div>
+
+    <div class="panel-title" style="margin: 0 0 1rem;">2. Key metrics</div>
+    <div class="metrics-group-label">Of the <span class="n">${received}</span> received cases</div>
+    <div class="metrics-row">${receivedMetricsHTML}</div>
+    <div class="metrics-group-label">Of the <span class="n">${presented.length}</span> presented cases</div>
+    <div class="metrics-row-2">${presentedMetricsHTML}</div>
+
+    <div class="ceo-note" style="margin-bottom:1.5rem;">
+      <div class="ceo-note-label">3. Reading logic &amp; 5. Naming recommendations</div>
+      <p><b>Received</b> is the 100% base for every percentage on this page, the full set of cases with complete context worked in this period. It splits three ways: <b>Presented</b> to David and Mariel as a full funding memo, still in <b>Pipeline</b> (not yet presented), or <b>Screened Out (No-Go)</b>, a case the team recommended not moving forward with before drafting a memo, with David and Mariel's agreement on that recommendation.</p>
+      <p><b>Approved</b> and <b>Rejected by D&amp;M</b> are calculated only over the Presented group, never over all Received cases. A case stuck in pipeline or screened out pre-memo can never pollute the approval rate. Rejected by D&amp;M is reserved for a full memo that was presented and then declined, which is different from a Screened Out case, where D&amp;M agreed with the team's own recommendation before any memo was drafted.</p>
+      <p>Naming: this report replaces the old ambiguous label "presented and approved" with five mutually exclusive terms, Presented, Pipeline, Screened Out (No-Go), Approved, and Rejected by D&amp;M, each case belongs to exactly one.</p>
+    </div>
+
+    <div class="panel-title" style="margin: 0 0 1rem;">4. Visual structure &middot; Case funnel</div>
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="funnel-stage">
+        <div class="funnel-stage-label">Stage 1 &middot; Received &rarr; Presented / Pipeline / Screened Out</div>
+        <div class="funnel-flow">
+          <div class="funnel-source"><span class="fn-n">${received}</span><span class="fn-l">Received</span></div>
+          <div class="funnel-arrow-mid">&#8594;</div>
+          <div class="funnel-branches">${branches1HTML}</div>
+        </div>
       </div>
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#27CF77">${rateApproved}%</div>
-        <div class="metric-card-l">Disbursement rate</div>
-        <div class="metric-card-ctx">${disbursedCount} of ${approvedTrack} cases on an active funding track have actually disbursed funds. Rejected cases are excluded from this denominator. Against all ${managed} managed cases, the rate is ${rateManaged}%.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#D69A3B">${blockedCount}</div>
-        <div class="metric-card-l">Blocked cases</div>
-        <div class="metric-card-ctx">Currently stalled on a third party, Trust review, missing documents, or a legal opinion. ${escalateCases.length} flagged for formal CEO escalation per Policy.</div>
+      <div class="funnel-stage">
+        <div class="funnel-stage-label">Stage 2 &middot; Presented &rarr; Approved / Rejected by D&amp;M</div>
+        <div class="funnel-flow">
+          <div class="funnel-source"><span class="fn-n">${presented.length}</span><span class="fn-l">Presented</span></div>
+          <div class="funnel-arrow-mid">&#8594;</div>
+          <div class="funnel-branches">${branches2HTML}</div>
+        </div>
       </div>
     </div>
 
-    <div class="panel-title" style="margin: 0 0 1rem;">Pipeline classification (proposed)</div>
-    <div class="metrics-row">
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#7C8880">${pipelinePct}%</div>
-        <div class="metric-card-l">Pipeline</div>
-        <div class="metric-card-ctx">${total} of ${total} tracked cases entered active team management. This is the full pipeline covered by this report, everything the team touched and worked in Q1 to Q2 2026.</div>
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="panel-title">Detailed table by period</div>
+      <div class="funnel-table-wrap">
+        <table class="funnel-table">
+          <thead><tr>
+            <th>Period</th><th>Received</th><th>Presented</th><th>Pipeline</th><th>No-Go</th><th>Approved</th><th>Rejected by D&amp;M</th>
+            <th>% Presented</th><th>% Approved</th><th>% Rejected</th><th>% Pipeline</th><th>% No-Go</th>
+          </tr></thead>
+          <tbody>${periodRowsHTML}</tbody>
+        </table>
       </div>
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#1A8050">${approvedPct}%</div>
-        <div class="metric-card-l">Presented and approved</div>
-        <div class="metric-card-ctx">${managed} of ${total} cases were presented to D&amp;M and reached a decision, approved and signed or formally rejected. Same figure as the Managed KPI above.</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-card-n" style="color:#C65B4E">${noGoPct}%</div>
-        <div class="metric-card-l">No-Gos</div>
-        <div class="metric-card-ctx">${rejectedCases.length} of ${total} cases, ${nameList(rejectedCases)}. Presented internally and formally rejected. Already included within the 85.7% presented and approved above, called out here for visibility.</div>
-      </div>
+      <div class="metrics-note">One row per period. Future quarters appear automatically as cases are tagged with a new period value.</div>
     </div>
 
     <div class="metrics-panels">
       <div class="panel">
-        <div class="panel-title">Case funnel</div>
-        <div class="donut-block">
-          <div class="donut-hole" style="background: conic-gradient(${stops});">
-            <div class="donut-center"><div class="donut-center-n">${total}</div><div class="donut-center-l">Tracked</div></div>
-          </div>
-          <div class="donut-legend">${legendHTML}</div>
+        <div class="panel-title">Disbursement</div>
+        <div class="metric-card" style="border:none;padding:0;">
+          <div class="metric-card-n" style="color:#27CF77">${rateApproved}%</div>
+          <div class="metric-card-l">Disbursement rate</div>
+          <div class="metric-card-ctx">${disbursedCount} of ${approved.length} approved cases have actually disbursed funds so far.</div>
         </div>
       </div>
       <div class="panel">
         <div class="panel-title">Track A vs Track B</div>
         <div class="bar-block">${trackBarsHTML}</div>
-        <div class="metrics-note">Bar shows the share of managed cases within each track.</div>
+        <div class="metrics-note">Bar shows the share of approved cases within each track.</div>
       </div>
     </div>
 
     <div class="panel">
       <div class="panel-title">Data coverage and flags</div>
       <div class="highlight-list">
-        <div class="highlight-item"><b>${total}</b> cases tracked with full context, counted in the KPI above.</div>
-        <div class="highlight-item"><b>${totalNoData}</b> cases pending update, no context yet, kept apart and excluded from the KPI.</div>
-        <div class="highlight-item"><b>${totalPrior}</b> prior period cases, already resolved through an earlier cycle, kept for continuity only, excluded from the KPI.</div>
+        <div class="highlight-item"><b>${received}</b> cases with full context, counted in the metrics above.</div>
+        <div class="highlight-item"><b>${totalNoData}</b> cases pending update, no context yet, kept apart and excluded from the metrics.</div>
+        <div class="highlight-item"><b>${totalPrior}</b> prior period cases, already resolved through an earlier cycle, kept for continuity only, excluded from the metrics.</div>
+        <div class="highlight-item"><b>${blockedCount}</b> approved cases currently stalled on a third party, Trust review, missing documents, or a legal opinion. ${escalateCases.length} flagged for formal CEO escalation per Policy.</div>
         ${escalateHTML}
         ${blockedOtherHTML}
       </div>
@@ -913,7 +1000,7 @@ function exportPDF() {
     <div>
       <div class="hero-eyebrow">VelezReyes+ &middot; Charity Report</div>
       <h1 class="hero-title">VER+&nbsp;<span class="hero-title-accent">Charity</span></h1>
-      <p class="hero-sub">Case-by-case timeline for Track A and Track B, Q2 2026, as of July 15, 2026.</p>
+      <p class="hero-sub">Case-by-case timeline for Track A and Track B, Q2 2026, as of July 21, 2026.</p>
     </div>
     <div class="hero-stat-group" id="hero-stats"></div>
   </div>
@@ -930,9 +1017,9 @@ function exportPDF() {
 
     <div class="ceo-note">
       <div class="ceo-note-label">Methodology</div>
-      <p><b>Managed</b> means the team's recommendation work reached a D&amp;M decision, approved, resolved by disbursement, or resolved by rejection, and the case is actively moving forward, even if it is currently blocked somewhere in downstream compliance execution such as Trust review, ID verification, or missing documents from a third party.</p>
-      <p><b>Not managed</b> means the team itself has not yet been able to finish its own evaluation or submission work because something is still pending before a decision can even be requested. Laura Fernanda Martinez is missing the original email needed to send her case for D&amp;M approval. Gael Puentes is still waiting on a final response from the family before a memo can be built.</p>
-      <p>Cases with no supporting documentation in this round are marked <b>No data</b> and kept apart in a separate list, excluded from the percentage rather than assumed either way. Prior period cases already resolved through an earlier cycle are also kept apart, for continuity only. Result: <b>12 of 14 cases with real context are managed, 85.7%.</b></p>
+      <p><b>Received</b> is the 100% base, the 14 cases with full context worked in Q2 2026. <b>Presented</b> means the team finished its own evaluation and sent a full funding memo to David &amp; Mariel for a decision. Of the 14 received, 12 were presented, 1 is still in <b>Pipeline</b> (Gael Puentes, still waiting on the family for final medical equipment details before a memo can be built), and 1 was <b>Screened Out (No-Go)</b>, the team recommended not moving forward before drafting a memo, and David &amp; Mariel agreed with that recommendation (Andres Leonardo Pimentel Alvarez, GPA below the 80% minimum).</p>
+      <p><b>Approved</b> and <b>Rejected by D&amp;M</b> are calculated only over the 12 presented cases, not over all 14 received, so a case stuck in pipeline or screened out pre-memo never distorts the approval rate. All 12 presented cases were approved, 0 rejected by D&amp;M.</p>
+      <p>Cases with no supporting documentation in this round are marked <b>No data</b> and kept apart in a separate list, excluded from every percentage rather than assumed either way. Prior period cases already resolved through an earlier cycle are also kept apart, for continuity only. See the Metrics tab for the full funnel and detailed table.</p>
     </div>
 
     <div class="filter-row">
