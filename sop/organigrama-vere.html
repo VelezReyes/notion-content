@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 VERE team — Organigrama</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --purple:#A62BFF;
+    --navy:#191256;
+    --gray:#9A9A90;
+    --olive:#6E6650;
+    --cream:#EFEFE4;
+    --cream-soft:#F7F6EF;
+    --ink:#141414;
+    --line:#3a3a38;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    padding:16px;
+    background:#FAFAF4;
+    font-family:'Montserrat',sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+
+  .frame{
+    width:100%;
+    max-width:900px;
+  }
+
+  .toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+
+  .toolbar-group{
+    display:flex;
+    gap:6px;
+  }
+
+  .btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:var(--ink);
+    font-family:'Montserrat',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    padding:7px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    transition:background .15s, transform .1s;
+  }
+  .btn:hover{background:#f1f1f1;}
+  .btn:active{transform:scale(0.96);}
+  .btn.accent{background:var(--olive);color:#fff;border-color:var(--olive);}
+  .btn.accent:hover{background:#5a5340;}
+
+  .hint{
+    font-size:12px;
+    color:#8a8a80;
+    font-weight:500;
+  }
+
+  #viewport{
+    position:relative;
+    width:100%;
+    aspect-ratio: 1 / 1;
+    max-height:82vh;
+    overflow:hidden;
+    border-radius:18px;
+    background:var(--cream);
+    border:1px solid #e2e0d2;
+    cursor:grab;
+    touch-action:none;
+    box-shadow:0 1px 3px rgba(0,0,0,.06) inset;
+  }
+  #viewport.grabbing{cursor:grabbing;}
+  #viewport:fullscreen{ aspect-ratio:auto; max-height:none; border-radius:0;}
+
+  #stage{
+    position:absolute;
+    top:0;
+    left:0;
+    transform-origin:0 0;
+    will-change:transform;
+  }
+
+  #canvas{
+    position:relative;
+    width:1300px;
+    height:580px;
+    user-select:none;
+  }
+
+  /* ---- header ---- */
+  .title-pill{
+    position:absolute;
+    left:20px; top:14px;
+    width:280px; height:54px;
+    background:var(--cream-soft);
+    border-radius:16px;
+    box-shadow:0 3px 8px rgba(0,0,0,.10);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'DM Serif Display',serif;
+    font-size:22px;
+    color:var(--ink);
+  }
+
+  .legend{
+    position:absolute;
+    left:320px; top:24px;
+    display:flex;
+    gap:34px;
+    align-items:center;
+    height:34px;
+  }
+  .legend-item{
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; color:var(--ink);
+  }
+  .dot{width:15px; height:15px; border-radius:50%; flex:none;}
+
+  /* ---- nodes ---- */
+  .node{
+    position:absolute;
+    border-radius:10px;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6px 10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.16);
+    line-height:1.22;
+  }
+  .node .role{font-weight:700; font-size:12.5px;}
+  .node .name{font-weight:500; font-size:11.5px; opacity:.92; margin-top:2px;}
+  .node.big .role{font-size:15px;}
+  .node.big .name{font-size:12.5px;}
+  .node.small .role{font-size:10.5px;}
+  .node.small .name{font-size:9.5px; line-height:1.35;}
+
+  .c-purple{background:var(--purple);}
+  .c-navy{background:var(--navy);}
+  .c-gray{background:var(--gray); color:#1c1c1c;}
+  .c-gray .name{color:#1c1c1c;}
+  .c-olive{background:var(--olive);}
+
+  svg.links{position:absolute; top:0; left:0; overflow:visible;}
+  .link{fill:none; stroke:var(--line); stroke-width:1.6;}
+  .link.dashed{stroke-dasharray:7 5;}
+  .link.dotted{stroke-dasharray:1.5 4.5; stroke-linecap:round;}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button class="btn" id="zoomOut">− Zoom</button>
+      <button class="btn" id="zoomIn">+ Zoom</button>
+      <button class="btn" id="fit">Adjust</button>
+      <button class="btn accent" id="full">⤢ Full screen</button>
+    </div>
+    <div class="hint">Drag to move · Scroll to zoom</div>
+  </div>
+
+  <div id="viewport">
+    <div id="stage">
+      <div id="canvas">
+        <svg class="links" id="linksSvg" width="1300" height="580"></svg>
+
+        <div class="title-pill">2026 VERE team</div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="dot" style="background:var(--olive)"></span>Vere</div>
+          <div class="legend-item"><span class="dot" style="background:var(--gray)"></span>Transverse</div>
+        </div>
+
+        <!-- nodes injected by JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---------- data ----------
+const nodes = {
+  principals: {x:535, y:90,  w:200, h:56, cat:'olive', role:'Principals', name:'David & Mariel'},
+  ceo:        {x:60,  y:230, w:1150,h:52, cat:'olive', role:'CEO', name:'Raquel Fernandez', size:'big'},
+
+  /* direct reports to CEO */
+  cristina: {x:60,  y:340, w:200, h:64, cat:'gray',  role:'Directora de Operaciones y Talento', name:'Cristina', size:'small'},
+  oswaldo:  {x:280, y:340, w:170, h:64, cat:'gray',  role:'Finance Director', name:'Oswaldo'},
+  soraya:   {x:470, y:340, w:140, h:64, cat:'gray',  role:'Tech Lead', name:'Soraya'},
+  marcela:  {x:630, y:340, w:170, h:64, cat:'olive', role:'Property Manager', name:'Marcela'},
+  marcia:   {x:820, y:340, w:170, h:64, cat:'olive', role:'Asistente Familiar', name:'Marcia'},
+  eduardo:  {x:1010,y:340, w:200, h:64, cat:'olive', role:'Director de Inversiones', name:'Eduardo', size:'small'},
+
+  /* Finance team, under Oswaldo */
+  gabriela: {x:205, y:460, w:150, h:55, cat:'olive', role:'Contadora', name:'Gabriela'},
+  francine: {x:375, y:460, w:150, h:55, cat:'olive', role:'Tesorera', name:'Francine'},
+};
+
+const canvas = document.getElementById('canvas');
+for(const id in nodes){
+  const n = nodes[id];
+  const el = document.createElement('div');
+  el.className = `node c-${n.cat} ${n.size||''}`;
+  el.style.left = n.x+'px';
+  el.style.top = n.y+'px';
+  el.style.width = n.w+'px';
+  el.style.height = n.h+'px';
+  const nameHtml = n.raw ? n.name : `(${n.name})`;
+  el.innerHTML = `<div class="role">${n.role}</div><div class="name">${nameHtml}</div>`;
+  canvas.appendChild(el);
+}
+
+// ---------- connectors ----------
+function anchor(id, side, frac=0.5){
+  const n = nodes[id];
+  switch(side){
+    case 'top':    return {x:n.x+n.w*frac, y:n.y};
+    case 'bottom': return {x:n.x+n.w*frac, y:n.y+n.h};
+    case 'left':   return {x:n.x, y:n.y+n.h*frac};
+    case 'right':  return {x:n.x+n.w, y:n.y+n.h*frac};
+  }
+}
+function elbowV(p1,p2){ const midY=(p1.y+p2.y)/2; return `M ${p1.x} ${p1.y} V ${midY} H ${p2.x} V ${p2.y}`; }
+function elbowH(p1,p2){ const midX=(p1.x+p2.x)/2; return `M ${p1.x} ${p1.y} H ${midX} V ${p2.y} H ${p2.x}`; }
+
+const svgNS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('linksSvg');
+function line(d, cls){
+  const p = document.createElementNS(svgNS,'path');
+  p.setAttribute('d', d);
+  p.setAttribute('class', 'link '+(cls||''));
+  svg.appendChild(p);
+}
+
+// solid tree links
+line(elbowV(anchor('principals','bottom'), anchor('ceo','top')), 'solid');
+
+[['cristina',0.087],['oswaldo',0.265],['soraya',0.417],['marcela',0.570],['marcia',0.735],['eduardo',0.913]]
+  .forEach(([id,frac])=> line(elbowV(anchor('ceo','bottom',frac), anchor(id,'top')), 'solid'));
+
+line(elbowV(anchor('oswaldo','bottom',0.25), anchor('gabriela','top')), 'solid');
+line(elbowV(anchor('oswaldo','bottom',0.75), anchor('francine','top')), 'solid');
+
+// ---------- pan & zoom ----------
+const viewport = document.getElementById('viewport');
+const stage = document.getElementById('stage');
+const CANVAS_W = 1300, CANVAS_H = 580;
+let scale = 1, tx = 0, ty = 0;
+
+function apply(){ stage.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
+
+function fit(){
+  const vw = viewport.clientWidth, vh = viewport.clientHeight;
+  scale = Math.min(vw/CANVAS_W, vh/CANVAS_H) * 0.96;
+  scale = Math.max(0.12, Math.min(scale, 2.5));
+  tx = (vw - CANVAS_W*scale)/2;
+  ty = (vh - CANVAS_H*scale)/2;
+  apply();
+}
+
+function zoomAt(factor, cx, cy){
+  const newScale = Math.max(0.12, Math.min(scale*factor, 3));
+  const wx = (cx - tx)/scale, wy = (cy - ty)/scale;
+  scale = newScale;
+  tx = cx - wx*scale;
+  ty = cy - wy*scale;
+  apply();
+}
+
+window.addEventListener('load', fit);
+window.addEventListener('resize', fit);
+
+viewport.addEventListener('wheel', (e)=>{
+  e.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const factor = e.deltaY < 0 ? 1.12 : 0.89;
+  zoomAt(factor, e.clientX-rect.left, e.clientY-rect.top);
+}, {passive:false});
+
+let dragging=false, startX=0, startY=0, startTx=0, startTy=0;
+viewport.addEventListener('mousedown', (e)=>{
+  dragging=true; viewport.classList.add('grabbing');
+  startX=e.clientX; startY=e.clientY; startTx=tx; startTy=ty;
+});
+window.addEventListener('mousemove', (e)=>{
+  if(!dragging) return;
+  tx = startTx + (e.clientX-startX);
+  ty = startTy + (e.clientY-startY);
+  apply();
+});
+window.addEventListener('mouseup', ()=>{ dragging=false; viewport.classList.remove('grabbing'); });
+
+// touch: pan + pinch
+let touchMode=null, lastDist=0, lastMid=null;
+viewport.addEventListener('touchstart', (e)=>{
+  if(e.touches.length===1){
+    touchMode='pan';
+    startX=e.touches[0].clientX; startY=e.touches[0].clientY; startTx=tx; startTy=ty;
+  } else if(e.touches.length===2){
+    touchMode='pinch';
+    lastDist = dist(e.touches[0],e.touches[1]);
+    lastMid = mid(e.touches[0],e.touches[1]);
+  }
+}, {passive:false});
+viewport.addEventListener('touchmove', (e)=>{
+  e.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  if(touchMode==='pan' && e.touches.length===1){
+    tx = startTx + (e.touches[0].clientX-startX);
+    ty = startTy + (e.touches[0].clientY-startY);
+    apply();
+  } else if(touchMode==='pinch' && e.touches.length===2){
+    const d = dist(e.touches[0],e.touches[1]);
+    const m = mid(e.touches[0],e.touches[1]);
+    zoomAt(d/lastDist, m.x-rect.left, m.y-rect.top);
+    lastDist = d; lastMid = m;
+  }
+}, {passive:false});
+viewport.addEventListener('touchend', ()=>{ touchMode=null; });
+function dist(a,b){ return Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY); }
+function mid(a,b){ return {x:(a.clientX+b.clientX)/2, y:(a.clientY+b.clientY)/2}; }
+
+document.getElementById('zoomIn').onclick = ()=> zoomAt(1.25, viewport.clientWidth/2, viewport.clientHeight/2);
+document.getElementById('zoomOut').onclick = ()=> zoomAt(0.8, viewport.clientWidth/2, viewport.clientHeight/2);
+document.getElementById('fit').onclick = fit;
+document.getElementById('full').onclick = ()=>{
+  if(!document.fullscreenElement){ viewport.requestFullscreen().then(fit); }
+  else { document.exitFullscreen(); setTimeout(fit,100); }
+};
+</script>
+</body>
+</html>
