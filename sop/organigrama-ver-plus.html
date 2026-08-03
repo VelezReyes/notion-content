@@ -275,6 +275,18 @@ function anchor(id, side, frac=0.5){
 }
 function elbowV(p1,p2){ const midY=(p1.y+p2.y)/2; return `M ${p1.x} ${p1.y} V ${midY} H ${p2.x} V ${p2.y}`; }
 function elbowH(p1,p2){ const midX=(p1.x+p2.x)/2; return `M ${p1.x} ${p1.y} H ${midX} V ${p2.y} H ${p2.x}`; }
+// vertical-horizontal-vertical elbow with an explicit bend height, so a
+// long-distance connector can be routed through a specific clear channel
+// instead of an auto-computed midpoint that might cut through a box.
+function elbowVAt(p1,p2,bendY){ return `M ${p1.x} ${p1.y} V ${bendY} H ${p2.x} V ${p2.y}`; }
+// rise/drop straight to the target's own height, then go straight across —
+// two segments only, so two lines heading to the same box never share a
+// trailing vertical column (which is what made Cris's and Oswaldo's lines
+// look fused together).
+function riseThenGo(p1,p2){ return `M ${p1.x} ${p1.y} V ${p2.y} H ${p2.x}`; }
+// plain straight line — for short, direct relationships that don't need
+// any right-angle routing (e.g. Laura ↔ Raquel, who sit close together).
+function straight(p1,p2){ return `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`; }
 
 const svgNS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('linksSvg');
@@ -284,31 +296,41 @@ function line(d, cls){
   p.setAttribute('class', 'link '+(cls||''));
   svg.appendChild(p);
 }
+// straight-down connector: computes the exact fraction on the parent's
+// bottom edge that matches the child's center, so the vertical line has
+// zero horizontal offset (no stray kink) when parent and child are meant
+// to line up directly.
+function dropTo(parentId, childId, cls){
+  const c = anchor(childId,'top');
+  const p = nodes[parentId];
+  const frac = (c.x - p.x) / p.w;
+  line(elbowV(anchor(parentId,'bottom',frac), c), cls||'solid');
+}
 
 // solid tree links
-line(elbowV(anchor('dExecBoard','bottom'), anchor('dCeo','top')), 'solid');
-line(elbowV(anchor('dCeo','bottom'), anchor('dManager','top')), 'solid');
+dropTo('dExecBoard','dCeo');
+dropTo('dCeo','dManager');
 
 line(elbowV(anchor('advisor','bottom'), anchor('ceo','top',0.05)), 'solid');
 line(elbowV(anchor('board','bottom'), anchor('ceo','top',0.25)), 'solid');
 
-[['democracyVP',0.09],['educationVP',0.288],['ecdDirector',0.467],['melDirector',0.642],['techLead',0.802],['opsStaff',0.981]]
-  .forEach(([id,frac])=> line(elbowV(anchor('ceo','bottom',frac), anchor(id,'top')), 'solid'));
+['democracyVP','educationVP','ecdDirector','melDirector','techLead','opsStaff']
+  .forEach(id => dropTo('ceo', id));
 
-line(elbowV(anchor('democracyVP','bottom'), anchor('democracyManager','top')), 'solid');
-line(elbowV(anchor('educationVP','bottom'), anchor('educationManager','top')), 'solid');
-line(elbowV(anchor('educationManager','bottom'), anchor('educationCoordinator','top')), 'solid');
-line(elbowV(anchor('ecdDirector','bottom'), anchor('ecdManager','top')), 'solid');
-line(elbowV(anchor('melDirector','bottom'), anchor('melPortfolio','top')), 'solid');
-line(elbowV(anchor('techLead','bottom'), anchor('engineer','top')), 'solid');
+dropTo('democracyVP','democracyManager');
+dropTo('educationVP','educationManager');
+dropTo('educationManager','educationCoordinator');
+dropTo('ecdDirector','ecdManager');
+dropTo('melDirector','melPortfolio');
+dropTo('techLead','engineer');
 line(elbowV(anchor('opsStaff','bottom'), anchor('designer','top',0.3)), 'solid');
 line(elbowV(anchor('opsStaff','bottom',0.85), anchor('commsAssociate','top')), 'solid');
 
 // dashed cross-org (Vere / CFO)
 line(elbowH(anchor('board','right'), anchor('vereCeo','left',0.25)), 'dashed');
-line(elbowV(anchor('ceo','top',0.85), anchor('vereCeo','bottom')), 'dashed');
-line(elbowV(anchor('ceo','bottom',0.99), anchor('cfo','top')), 'dashed');
-line(elbowH(anchor('opsStaff','right'), anchor('cfo','left',0.2)), 'dashed');
+line(straight(anchor('ceo','top',0.5), anchor('vereCeo','bottom',0.75)), 'dashed');
+line(riseThenGo(anchor('cfo','top'), anchor('vereCeo','left',0.75)), 'dashed');
+line(riseThenGo(anchor('opsStaff','right',0.3), anchor('vereCeo','left',0.35)), 'dashed');
 
 // dotted governance (D+)
 line(elbowH(anchor('dExecBoard','right'), anchor('ceo','left',0.02)), 'dotted');
