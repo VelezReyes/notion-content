@@ -234,7 +234,7 @@ const nodes = {
   melDirector:  {x:890, y:450, w:160, h:50, cat:'purple', role:'MEL Director', name:'J. Guillermo'},
   techLead:     {x:1070,y:450, w:140, h:50, cat:'gray',   role:'Tech Lead', name:'Soraya'},
   opsStaff:     {x:1240,y:444, w:180, h:62, cat:'gray',   role:'Ops & Staff Director', name:'Cris'},
-  cfo:          {x:1450,y:450, w:140, h:50, cat:'gray',   role:'CFO', name:'Oswaldo'},
+  cfo:          {x:1450,y:450, w:140, h:50, cat:'gray',   role:'Finance Director', name:'Oswaldo'},
 
   /* Row 3 — Managers / Engineer */
   democracyManager:{x:305, y:570, w:170, h:55, cat:'purple', role:'Democracy Manager', name:'Juan Felipe'},
@@ -326,11 +326,22 @@ dropTo('techLead','engineer');
 line(elbowV(anchor('opsStaff','bottom'), anchor('designer','top',0.3)), 'solid');
 line(elbowV(anchor('opsStaff','bottom',0.85), anchor('commsAssociate','top')), 'solid');
 
+// Oswaldo (Finance Director) reports solidly to Laura. His box sits past
+// the CEO bar's own right edge, so the line starts from that real edge
+// (x fraction 1) instead of an extrapolated point floating in empty space.
+line(elbowV(anchor('ceo','bottom',1), anchor('cfo','top')), 'solid');
+
 // dashed cross-org (Vere / CFO)
 line(elbowH(anchor('board','right'), anchor('vereCeo','left',0.25)), 'dashed');
 line(straight(anchor('ceo','top',0.5), anchor('vereCeo','bottom',0.75)), 'dashed');
 line(riseThenGo(anchor('cfo','top'), anchor('vereCeo','left',0.75)), 'dashed');
 line(riseThenGo(anchor('opsStaff','right',0.3), anchor('vereCeo','left',0.35)), 'dashed');
+
+// dotted: Soraya (Tech Lead) also supports VERE. Her box sits directly
+// under the CEO bar, so the line detours right — clearing the bar's edge
+// in the gap band below it — before rising to Raquel, same idea as the
+// Cris/Oswaldo routes above but from a more central starting column.
+line(`M ${anchor('techLead','top').x} ${anchor('techLead','top').y} V 400 H 1360 V 110 H ${anchor('vereCeo','left').x}`, 'dotted');
 
 // dotted governance (D+)
 line(elbowH(anchor('dExecBoard','right'), anchor('ceo','left',0.02)), 'dotted');
