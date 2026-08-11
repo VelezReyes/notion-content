@@ -195,59 +195,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .footer a{color:var(--muted);text-decoration:none;}
 .footer a:hover{color:var(--text);}
 
-/* ── PERFORMANCE REVIEW ───────────────────────────── */
-.review-view{max-width:1100px;margin:0 auto;padding:0 1.5rem 3rem;}
-
-.review-intro{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
-  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
-  padding:1rem 1.25rem;margin-bottom:1.25rem;box-shadow:var(--shadow);}
-.review-intro-left{flex:1;}
-.review-intro-title{font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.2rem;}
-.review-intro-sub{font-size:.65rem;color:var(--muted);}
-.review-intro-stats{display:flex;gap:1.5rem;}
-.review-intro-stat{text-align:center;}
-.review-intro-stat-n{font-family:var(--serif);font-size:1.3rem;display:block;color:var(--text);}
-.review-intro-stat-l{font-size:.55rem;font-weight:800;letter-spacing:.08em;color:var(--muted2);text-transform:uppercase;}
-
-.review-team-card{background:var(--bg2);border:1px solid var(--border);border-left-width:3px;
-  border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1rem;overflow:hidden;}
-.review-team-hdr{display:flex;align-items:center;gap:.7rem;
-  padding:.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg);}
-.review-team-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.review-team-name{font-size:.8rem;font-weight:800;color:var(--text);}
-.review-team-lead{font-size:.63rem;color:var(--muted);font-weight:600;flex:1;}
-.review-team-date{font-size:.58rem;font-weight:700;color:var(--muted2);letter-spacing:.04em;}
-.review-pending-badge{font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  background:#B4530918;color:#B45309;border:1px solid #B4530930;border-radius:4px;padding:2px 8px;margin-left:auto;}
-.review-pending-body{padding:1.1rem 1.25rem;font-size:.7rem;color:#B45309;
-  font-weight:600;display:flex;align-items:center;gap:.5rem;}
-.review-pending-body::before{content:'⚠';font-size:.8rem;}
-
-.review-obj{padding:.8rem 1rem;border-bottom:1px solid rgba(0,0,0,.05);}
-.review-obj:last-child{border-bottom:none;}
-.review-obj-hdr{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;flex-wrap:wrap;}
-.review-obj-code{font-size:.58rem;font-weight:800;letter-spacing:.08em;
-  padding:2px 7px;border-radius:4px;flex-shrink:0;}
-.review-obj-name{font-size:.73rem;font-weight:700;color:var(--text);flex:1;min-width:160px;line-height:1.3;}
-.review-obj-pct{font-family:var(--serif);font-size:1.05rem;flex-shrink:0;}
-.status-pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.6rem;font-weight:700;flex-shrink:0;}
-.status-prev{color:var(--muted2);}
-.status-arrow{color:var(--muted2);font-size:.65rem;}
-.s-on-track{color:#1BAA60;}
-.s-at-risk{color:#C09000;}
-.s-not-started{color:#999;}
-.review-comment{font-size:.7rem;color:#444;line-height:1.7;
-  background:var(--bg);border-radius:6px;padding:.65rem .9rem;
-  border-left:2px solid var(--border2);margin-bottom:.4rem;}
-.review-footer{display:flex;align-items:center;gap:.75rem;}
-.review-date{font-size:.58rem;color:var(--muted2);font-weight:600;}
-.review-multi-note{font-size:.58rem;color:#B45309;font-weight:600;font-style:italic;}
-
 @media(max-width:700px){
   .simple-grid,.kr-grid,.kr-grid-3{grid-template-columns:1fr;}
   .obj-summary{grid-template-columns:1fr;}
   .detail-mini-grid{grid-template-columns:repeat(3,1fr);}
-  .review-intro{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
@@ -257,7 +208,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 <nav class="nav">
   <img class="nav-logo" src="https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true" alt="VélezReyes+">
   <span class="nav-title">What Success Looks Like · 2026</span>
-  <span class="nav-date">Data · June 2026</span>
+  <span class="nav-date">Data · July 2026</span>
   <a class="nav-back" href="index.html">
     <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Hub
@@ -268,7 +219,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 <section class="hero">
   <div class="hero-eyebrow">VélezReyes+ · 2026 Institutional Plan</div>
   <h1 class="hero-title">Close the first cycle.<br>Enter the 5-year plan.</h1>
-  <p class="hero-sub">Strategic progress tracker — mapping each success criterion to current execution data as of June 2026.</p>
+  <p class="hero-sub">Strategic progress tracker — mapping each success criterion to current execution data as of July 2026.</p>
 </section>
 
 <!-- OBJECTIVE SUMMARY PILLS -->
@@ -276,20 +227,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   <div class="obj-pill">
     <div class="obj-pill-label" style="color:var(--c-o1)">O1 · Refined Bets &amp; Toolkit</div>
     <div class="obj-pill-name">5-year plan approved at Board Q4</div>
-    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:50%;background:var(--c-o1)"></div></div>
-    <div class="obj-pill-pct" style="color:var(--c-o1)">50%</div>
+    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:52%;background:var(--c-o1)"></div></div>
+    <div class="obj-pill-pct" style="color:var(--c-o1)">52%</div>
   </div>
   <div class="obj-pill">
     <div class="obj-pill-label" style="color:var(--c-o2)">O2 · Disciplined Execution</div>
     <div class="obj-pill-name">Deliver and learn from the full portfolio</div>
-    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:51%;background:var(--c-o2)"></div></div>
-    <div class="obj-pill-pct" style="color:var(--c-o2)">51%</div>
+    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:53%;background:var(--c-o2)"></div></div>
+    <div class="obj-pill-pct" style="color:var(--c-o2)">53%</div>
   </div>
   <div class="obj-pill">
     <div class="obj-pill-label" style="color:var(--c-o3)">O3 · Conducive Structure</div>
     <div class="obj-pill-name">Team, systems, and processes ready</div>
-    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:43%;background:var(--c-o3)"></div></div>
-    <div class="obj-pill-pct" style="color:var(--c-o3)">43%</div>
+    <div class="obj-pill-track"><div class="obj-pill-fill" style="width:47%;background:var(--c-o3)"></div></div>
+    <div class="obj-pill-pct" style="color:var(--c-o3)">47%</div>
   </div>
 </div>
 
@@ -298,7 +249,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   <div class="toggle">
     <button class="toggle-btn active" onclick="setView('simple')">✦ What success looks like</button>
     <button class="toggle-btn" onclick="setView('detailed')">⊞ Full strategy map</button>
-    <button class="toggle-btn" onclick="setView('review')">◎ Performance Reviews</button>
   </div>
 </div>
 
@@ -311,7 +261,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="obj-card-hdr">
         <span class="obj-card-code" style="background:#8B1FDB18;color:var(--c-o1)">O1</span>
         <span class="obj-card-name">Refined Bets &amp; Toolkit</span>
-        <span class="obj-card-pct" style="color:var(--c-o1)">50%</span>
+        <span class="obj-card-pct" style="color:var(--c-o1)">52%</span>
       </div>
       <div class="obj-card-body">
         <div class="success-item">
@@ -358,7 +308,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="obj-card-hdr">
         <span class="obj-card-code" style="background:#1BAA6018;color:var(--c-o2)">O2</span>
         <span class="obj-card-name">Disciplined Execution</span>
-        <span class="obj-card-pct" style="color:var(--c-o2)">51%</span>
+        <span class="obj-card-pct" style="color:var(--c-o2)">53%</span>
       </div>
       <div class="obj-card-body">
         <div class="success-item">
@@ -405,15 +355,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="obj-card-hdr">
         <span class="obj-card-code" style="background:#D4620818;color:var(--c-o3)">O3</span>
         <span class="obj-card-name">Conducive Structure</span>
-        <span class="obj-card-pct" style="color:var(--c-o3)">43%</span>
+        <span class="obj-card-pct" style="color:var(--c-o3)">47%</span>
       </div>
       <div class="obj-card-body">
         <div class="success-item">
           <span class="success-item-text">Roles filled — OKR system running, ≥3 review cycles by Q4</span>
           <div class="success-meta">
             <span class="success-kr" style="background:#D4620815;color:var(--c-o3)">KR3.1</span>
-            <div class="progress-track"><div class="progress-fill" style="width:60%;background:var(--c-o3)"></div></div>
-            <span class="success-pct" style="color:var(--c-o3)">60%</span>
+            <div class="progress-track"><div class="progress-fill" style="width:65%;background:var(--c-o3)"></div></div>
+            <span class="success-pct" style="color:var(--c-o3)">65%</span>
             <span class="badge-small badge-on-track">On Track</span>
           </div>
         </div>
@@ -421,8 +371,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
           <span class="success-item-text">Ops infrastructure — investment, budget, performance, knowledge mgmt</span>
           <div class="success-meta">
             <span class="success-kr" style="background:#D4620815;color:var(--c-o3)">KR3.3</span>
-            <div class="progress-track"><div class="progress-fill" style="width:68%;background:var(--c-o3)"></div></div>
-            <span class="success-pct" style="color:var(--c-o3)">68%</span>
+            <div class="progress-track"><div class="progress-fill" style="width:70%;background:var(--c-o3)"></div></div>
+            <span class="success-pct" style="color:var(--c-o3)">70%</span>
             <span class="badge-small badge-on-track">Q4</span>
           </div>
         </div>
@@ -457,8 +407,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   <div class="section-hdr o1">
     <span class="section-obj-code" style="background:#8B1FDB18;color:var(--c-o1)">O1</span>
     <span class="section-obj-name">Refined Big Bets and Toolkit</span>
-    <div class="section-track"><div class="section-fill" style="width:50%;background:var(--c-o1)"></div></div>
-    <span class="section-obj-pct" style="color:var(--c-o1)">50%</span>
+    <div class="section-track"><div class="section-fill" style="width:52%;background:var(--c-o1)"></div></div>
+    <span class="section-obj-pct" style="color:var(--c-o1)">52%</span>
   </div>
 
   <div class="kr-grid-3">
@@ -616,8 +566,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   <div class="section-hdr o2">
     <span class="section-obj-code" style="background:#1BAA6018;color:var(--c-o2)">O2</span>
     <span class="section-obj-name">Disciplined Execution and Learning</span>
-    <div class="section-track"><div class="section-fill" style="width:51%;background:var(--c-o2)"></div></div>
-    <span class="section-obj-pct" style="color:var(--c-o2)">51%</span>
+    <div class="section-track"><div class="section-fill" style="width:53%;background:var(--c-o2)"></div></div>
+    <span class="section-obj-pct" style="color:var(--c-o2)">53%</span>
   </div>
 
   <div class="kr-grid">
@@ -633,8 +583,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       </div>
       <div class="kr-body">
         <div class="sub-label">Big bets &amp; ecosystem objectives</div>
-        <div class="aligned-row"><span class="aligned-team" style="color:#7C3AED">D+</span><span class="aligned-kcode">D1</span><span class="aligned-name">D+ Big Bet — 7 incubators</span><span class="aligned-pct" style="color:#C0A000">37%</span><span class="badge-small badge-at-risk">At Risk</span></div>
-        <div class="aligned-row"><span class="aligned-team" style="color:#8B1FDB">DEM</span><span class="aligned-kcode">D2</span><span class="aligned-name">Ecosystem bets (RIL+DAL)</span><span class="aligned-pct" style="color:#8B1FDB">43%</span><span class="badge-small badge-on-track">On Track</span></div>
+        <div class="aligned-row"><span class="aligned-team" style="color:#7C3AED">D+</span><span class="aligned-kcode">D1</span><span class="aligned-name">D+ Big Bet — 7 incubators</span><span class="aligned-pct" style="color:#1BAA60">45%</span><span class="badge-small badge-on-track">On Track</span></div>
+        <div class="aligned-row"><span class="aligned-team" style="color:#8B1FDB">DEM</span><span class="aligned-kcode">D2</span><span class="aligned-name">Ecosystem bets (RIL+DAL)</span><span class="aligned-pct" style="color:#8B1FDB">40%</span><span class="badge-small badge-on-track">On Track</span></div>
         <div class="aligned-row"><span class="aligned-team" style="color:#1BAA60">ECD</span><span class="aligned-kcode">EC1</span><span class="aligned-name">Aprendo+ / ECD scale</span><span class="aligned-pct" style="color:#C0A000">32%</span><span class="badge-small badge-at-risk">At Risk</span></div>
         <div class="aligned-row"><span class="aligned-team" style="color:#0E8F9A">FoT</span><span class="aligned-kcode">FT1</span><span class="aligned-name">Beca Tech at scale</span><span class="aligned-pct" style="color:#0E8F9A">51%</span><span class="badge-small badge-on-track">On Track</span></div>
         <div class="aligned-row"><span class="aligned-team" style="color:#2563EB">K-12</span><span class="aligned-kcode">K1</span><span class="aligned-name">K-12 ecosystem bets (CEPE)</span><span class="aligned-pct" style="color:#2563EB">10%</span><span class="badge-small badge-on-track">Early</span></div>
@@ -714,8 +664,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
   <div class="section-hdr o3">
     <span class="section-obj-code" style="background:#D4620818;color:var(--c-o3)">O3</span>
     <span class="section-obj-name">Conducive Structure for 5-Year Plan</span>
-    <div class="section-track"><div class="section-fill" style="width:43%;background:var(--c-o3)"></div></div>
-    <span class="section-obj-pct" style="color:var(--c-o3)">43%</span>
+    <div class="section-track"><div class="section-fill" style="width:47%;background:var(--c-o3)"></div></div>
+    <span class="section-obj-pct" style="color:var(--c-o3)">47%</span>
   </div>
 
   <div class="kr-grid">
@@ -724,8 +674,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="kr-card-hdr">
         <span class="kr-code" style="background:#D4620815;color:var(--c-o3)">KR3.1</span>
         <span class="kr-name">Organizational Enablement — roles filled, OKR system running</span>
-        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:60%;background:var(--c-o3)"></div></div>
-        <span class="kr-pct" style="color:var(--c-o3)">60%</span>
+        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:65%;background:var(--c-o3)"></div></div>
+        <span class="kr-pct" style="color:var(--c-o3)">65%</span>
         <span class="badge-small badge-on-track">On Track</span>
         <span class="kr-chevron">▼</span>
       </div>
@@ -733,11 +683,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
         <div class="sub-label">People &amp; Ops KRs</div>
         <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP3.3</span><span class="aligned-name">Team Health &amp; Wellness</span><span class="aligned-pct" style="color:#B45309">86%</span><span class="badge-small badge-on-track">Q2 ✓</span></div>
         <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP3.1</span><span class="aligned-name">OKR System Adoption</span><span class="aligned-pct" style="color:#B45309">80%</span><span class="badge-small badge-on-track">Q2 ✓</span></div>
-        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP3.2</span><span class="aligned-name">5-Year Org Design (Q4)</span><span class="aligned-pct" style="color:#B45309">24%</span><span class="badge-small badge-on-track">In Progress</span></div>
-        <div class="sub-label">Recent</div>
-        <div class="recent-item recent-completed">Performance &amp; feedback review cycle completed</div>
-        <div class="recent-item">Mid-year feedback sessions + OKR reviews in progress (Jul 15)</div>
+        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP3.2</span><span class="aligned-name">5-Year Org Design (Q4)</span><span class="aligned-pct" style="color:#B45309">35%</span><span class="badge-small badge-on-track">In Progress</span></div>
+        <div class="sub-label">Recent · Jul 2026</div>
+        <div class="recent-item recent-completed">Q2 performance review cycle completed — all teams checked in with Laura</div>
+        <div class="recent-item recent-completed">Mid-year OKR review sessions completed</div>
         <div class="recent-item">Variable compensation benchmark model in progress</div>
+        <div class="recent-item">OP1 at 75% · OP2 recovered to On Track (was At Risk) · OP3 at 67%</div>
       </div>
     </div>
 
@@ -745,16 +696,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="kr-card-hdr">
         <span class="kr-code" style="background:#D4620815;color:var(--c-o3)">KR3.2</span>
         <span class="kr-name">Operational Excellence — service levels ≥90%</span>
-        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:24%;background:var(--c-o3)"></div></div>
-        <span class="kr-pct" style="color:var(--c-o3)">24%</span>
+        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:30%;background:var(--c-o3)"></div></div>
+        <span class="kr-pct" style="color:var(--c-o3)">30%</span>
         <span class="badge-small badge-on-track">On Track</span>
         <span class="kr-chevron">▼</span>
       </div>
       <div class="kr-body">
         <div class="sub-label">Continuity &amp; process KRs</div>
         <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP1.1</span><span class="aligned-name">Core Process Standardization</span><span class="aligned-pct" style="color:#B45309">86%</span><span class="badge-small badge-on-track">Q3</span></div>
-        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP1.2</span><span class="aligned-name">Operational Visibility &amp; Collaboration</span><span class="aligned-pct" style="color:#C0A000">41%</span><span class="badge-small badge-at-risk">Watch</span></div>
-        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP2.1</span><span class="aligned-name">Operational Continuity (Q4)</span><span class="aligned-pct" style="color:#B45309">40%</span><span class="badge-small badge-on-track">In Progress</span></div>
+        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP1.2</span><span class="aligned-name">Operational Visibility &amp; Collaboration</span><span class="aligned-pct" style="color:#B45309">55%</span><span class="badge-small badge-on-track">On Track</span></div>
+        <div class="aligned-row"><span class="aligned-team" style="color:#B45309">OPS</span><span class="aligned-kcode">OP2.1</span><span class="aligned-name">Operational Continuity (Q4)</span><span class="aligned-pct" style="color:#B45309">43%</span><span class="badge-small badge-on-track">On Track</span></div>
         <div class="sub-label">Recent</div>
         <div class="recent-item recent-completed">Operational Request System completed</div>
         <div class="recent-item recent-completed">SOPs/templates published and team trained</div>
@@ -766,8 +717,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
       <div class="kr-card-hdr">
         <span class="kr-code" style="background:#D4620815;color:var(--c-o3)">KR3.3</span>
         <span class="kr-name">Execution Infrastructure — investment, budget, performance, knowledge mgmt</span>
-        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:68%;background:var(--c-o3)"></div></div>
-        <span class="kr-pct" style="color:var(--c-o3)">68%</span>
+        <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:70%;background:var(--c-o3)"></div></div>
+        <span class="kr-pct" style="color:var(--c-o3)">70%</span>
         <span class="badge-small badge-on-track">On Track</span>
         <span class="kr-chevron">▼</span>
       </div>
@@ -808,197 +759,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 
 </div><!-- /detailed-view -->
 
-<!-- ═══ PERFORMANCE REVIEW VIEW ══════════════════════ -->
-<div class="review-view" id="review-view" style="display:none;">
-
-  <!-- Intro -->
-  <div class="review-intro">
-    <div class="review-intro-left">
-      <div class="review-intro-title">Q2 Performance Review — Objective Check-ins</div>
-      <div class="review-intro-sub">Conducted with Laura · July 2026 · 6 teams · 2 pending check-ins</div>
-    </div>
-    <div class="review-intro-stats">
-      <div class="review-intro-stat"><span class="review-intro-stat-n">4</span><span class="review-intro-stat-l">Reviewed</span></div>
-      <div class="review-intro-stat"><span class="review-intro-stat-n" style="color:#B45309">2</span><span class="review-intro-stat-l">Pending</span></div>
-    </div>
-  </div>
-
-  <!-- ── DEMOCRACY ── -->
-  <div class="review-team-card" style="border-left-color:#8B1FDB;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#8B1FDB;"></span>
-      <span class="review-team-name">Democracy</span>
-      <span class="review-team-lead">Andrés Valenciano</span>
-      <span class="review-team-date">Latest check-in · Jul 8, 2026</span>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#8B1FDB15;color:#8B1FDB">D1</span>
-        <span class="review-obj-name">Turn Democracia+ into a robust Big Bet for 2027–2031</span>
-        <span class="status-pill"><span class="status-prev s-at-risk">At Risk</span><span class="status-arrow">→</span><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#8B1FDB">45%</span>
-      </div>
-      <div class="review-comment">On the first OKR we've made substantive progress on getting approval from the Board on several sections of the strategy. On the second OKR we have all KPI progress tracked for the orgs and we're currently working on the grant renewals for the orgs. On the third OKR, we supported the MEL team having initial meetings and getting all the information required from the orgs. We're now on the stage of processing data and starting to provide results. We're on track!</div>
-      <div class="review-footer"><span class="review-date">Jul 6, 2026</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#8B1FDB15;color:#8B1FDB">D2</span>
-        <span class="review-obj-name">Deepen and decide continuity of ecosystem bets</span>
-        <span class="status-pill"><span class="status-prev s-at-risk">At Risk</span><span class="status-arrow">→</span><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#8B1FDB">40%</span>
-      </div>
-      <div class="review-comment">Both the MEL agenda implementation and portfolio execution are on track to obtain insights to define whether to renew the grants. The decision on DAL will be made in the September board meeting, to inform them about the decision in October, a year after the initial disbursement. For RIL, we aim to have insights to make a decision by the end of Q3, but should there be a renewal, we plan to process it in Q4.</div>
-      <div class="review-footer"><span class="review-date">Jun 30, 2026</span><span class="review-multi-note">· Status confirmed in Jul 8 feedback session</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#8B1FDB15;color:#8B1FDB">D3</span>
-        <span class="review-obj-name">Test democratic innovations as potential levers to strengthen states and democracies</span>
-        <span class="status-pill"><span class="status-prev s-at-risk">At Risk</span><span class="status-arrow">→</span><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#8B1FDB">54%</span>
-      </div>
-      <div class="review-comment">We have defined our portfolio to test democratic innovations. On DPI, the democracy team will only work on Peru through the digital ID grant, and obtain insights from a consultancy with David Eaves on DPI governance. On new hypotheses tested, the focus will be solely on the elections portfolio (Costa Rica, Peru, and Colombia). We are also engaging with Bruno Ikeuti as a consultant to explore a business model for Code for LatAm. All KRs confirmed on track in July feedback session.</div>
-      <div class="review-footer"><span class="review-date">Jun 30 → Jul 8, 2026</span><span class="review-multi-note">· Multiple updates — final status: On Track</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#8B1FDB15;color:#8B1FDB">D4</span>
-        <span class="review-obj-name">Define the democracy strategy for 2026 and for 2027–2031</span>
-        <span class="status-pill"><span class="status-prev s-at-risk">At Risk</span><span class="status-arrow">→</span><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#8B1FDB">41%</span>
-      </div>
-      <div class="review-comment">The team is working on the two key elements to be produced for the September board meeting: the moonshot project with a political agenda for ver+ and the democracy strategy focused on people in government. On track to implement pending tasks following June board feedback.</div>
-      <div class="review-footer"><span class="review-date">Jun 30, 2026</span></div>
-    </div>
-  </div>
-
-  <!-- ── ECD — PENDING ── -->
-  <div class="review-team-card" style="border-left-color:#B45309;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#1BAA60;"></span>
-      <span class="review-team-name">ECD</span>
-      <span class="review-team-lead" style="flex:1"></span>
-      <span class="review-pending-badge">Pending</span>
-    </div>
-    <div class="review-pending-body">Objective check-in pending — Q2 performance review not yet recorded.</div>
-  </div>
-
-  <!-- ── FoT ── -->
-  <div class="review-team-card" style="border-left-color:#0E8F9A;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#0E8F9A;"></span>
-      <span class="review-team-name">Future of Talent</span>
-      <span class="review-team-lead">FoT Team</span>
-      <span class="review-team-date">Jul 10, 2026</span>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#0E8F9A15;color:#0E8F9A">FT3</span>
-        <span class="review-obj-name">Define the FoT Strategy for 2026 and 2027–2031</span>
-        <span class="status-pill"><span class="s-at-risk">At Risk</span></span>
-        <span class="review-obj-pct" style="color:#0E8F9A">13%</span>
-      </div>
-      <div class="review-comment">Let's check how we value what I contributed to — but moving forward, the VP takes responsibility for this objective.</div>
-      <div class="review-footer"><span class="review-date">Jul 10, 2026</span><span class="review-multi-note">· Ownership transitioning to incoming Education VP</span></div>
-    </div>
-  </div>
-
-  <!-- ── K-12 ── -->
-  <div class="review-team-card" style="border-left-color:#2563EB;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#2563EB;"></span>
-      <span class="review-team-name">K-12</span>
-      <span class="review-team-lead">K-12 Team</span>
-      <span class="review-team-date">Jul 10, 2026</span>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#2563EB15;color:#2563EB">K2</span>
-        <span class="review-obj-name">Test and learn K-12 levers (AI + impact investing) to inform 2027–2031 portfolio decisions</span>
-        <span class="status-pill"><span class="s-not-started">Not Started</span></span>
-        <span class="review-obj-pct" style="color:#999">0%</span>
-      </div>
-      <div class="review-comment">Merge into one general Test &amp; Learn Education KR and assign to new VP.</div>
-      <div class="review-footer"><span class="review-date">Jul 10, 2026</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#2563EB15;color:#2563EB">K3</span>
-        <span class="review-obj-name">Define the K-12 Strategy for 2025 and 2026–2031</span>
-        <span class="status-pill"><span class="s-not-started">Not Started</span></span>
-        <span class="review-obj-pct" style="color:#999">0%</span>
-      </div>
-      <div class="review-comment">Merge into one general Test &amp; Learn Education KR and assign to new VP.</div>
-      <div class="review-footer"><span class="review-date">Jul 10, 2026</span></div>
-    </div>
-  </div>
-
-  <!-- ── MEL — PENDING ── -->
-  <div class="review-team-card" style="border-left-color:#B45309;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#D46208;"></span>
-      <span class="review-team-name">MEL</span>
-      <span class="review-team-lead" style="flex:1"></span>
-      <span class="review-pending-badge">Pending</span>
-    </div>
-    <div class="review-pending-body">Objective check-in pending — Q2 performance review not yet recorded.</div>
-  </div>
-
-  <!-- ── PEOPLE & OPS ── -->
-  <div class="review-team-card" style="border-left-color:#B45309;">
-    <div class="review-team-hdr">
-      <span class="review-team-dot" style="background:#B45309;"></span>
-      <span class="review-team-name">People &amp; Ops</span>
-      <span class="review-team-lead">Cristina · with Laura</span>
-      <span class="review-team-date">Jul 23, 2026</span>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#B4530915;color:#B45309">OP1</span>
-        <span class="review-obj-name">Build operational rigor through clear and standardized processes</span>
-        <span class="status-pill"><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#B45309">75%</span>
-      </div>
-      <div class="review-comment">Laura and Cristina agree that we are on track with the KRs of this objective.</div>
-      <div class="review-footer"><span class="review-date">Jul 23, 2026</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#B4530915;color:#B45309">OP2</span>
-        <span class="review-obj-name">Reliable daily operations and continuity</span>
-        <span class="status-pill"><span class="status-prev s-at-risk">At Risk</span><span class="status-arrow">→</span><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#B45309">43%</span>
-      </div>
-      <div class="review-comment">We are on track. Feedback session with Laura. Improvements in Charity noted; comments left on tasks.</div>
-      <div class="review-footer"><span class="review-date">Jul 23, 2026</span></div>
-    </div>
-
-    <div class="review-obj">
-      <div class="review-obj-hdr">
-        <span class="review-obj-code" style="background:#B4530915;color:#B45309">OP3</span>
-        <span class="review-obj-name">Aligned team with right capabilities</span>
-        <span class="status-pill"><span class="s-on-track">On Track</span></span>
-        <span class="review-obj-pct" style="color:#B45309">67%</span>
-      </div>
-      <div class="review-comment">Cristina is concerned about this objective, but the heavy lifting has been done. Monitoring closely to ensure delivery by Q4.</div>
-      <div class="review-footer"><span class="review-date">Jul 23, 2026</span></div>
-    </div>
-  </div>
-
-</div><!-- /review-view -->
 
 <footer class="footer">
-  Data source: Profit.co · June 2026 (as of July 14, 2026) &nbsp;·&nbsp;
+  Data source: Q2 Performance Reviews + Profit.co · July 2026 &nbsp;·&nbsp;
   <a href="index.html">← Back to Hub</a>
 </footer>
 
@@ -1006,10 +769,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 function setView(v){
   document.getElementById('simple-view').style.display = v==='simple' ? '' : 'none';
   document.getElementById('detailed-view').style.display = v==='detailed' ? 'block' : 'none';
-  document.getElementById('review-view').style.display = v==='review' ? 'block' : 'none';
   document.querySelectorAll('.toggle-btn').forEach((b,i)=>{
-    b.classList.toggle('active',
-      (i===0&&v==='simple')||(i===1&&v==='detailed')||(i===2&&v==='review'));
+    b.classList.toggle('active',(i===0&&v==='simple')||(i===1&&v==='detailed'));
   });
 }
 function toggleKR(card){

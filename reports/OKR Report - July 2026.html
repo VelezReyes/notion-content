@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiPgogIDxkZWZzPjxzdHlsZT4uc3Qwe2ZpbGw6I2E2MmJmZjt9PC9zdHlsZT48L2RlZnM+CiAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTI0MSw3NXYtMTVoLTQxLjdsLTE5LjMtNTAuNGMtMi4yLTUuOC03LjgtOS42LTE0LTkuNkgxNUM2LjcsMCwwLDYuNywwLDE1djEwNWgxOTZjMjQuOCwwLDQ1LTIwLjIsNDUtNDVoMFoiLz4KICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTM1LjksMjg2LjVjLTguMywwLTE1LjEsNi44LTE1LjEsMTV2NTkuOWMwLDguMyw2LjgsMTUsMTUuMSwxNXMxNS4xLTYuOCwxNS4xLTE1di01OS45YzAtOC4zLTYuOC0xNS0xNS4xLTE1WiIvPgogIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zNzYsMjg2LjVoLTE1LjF2MzBoMTUuMWM4LjMsMCwxNS02LjcsMTUtMTVzLTYuNy0xNS0xNS0xNVoiLz4KICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDk3LDYwaC0yMjZ2MTVjMCw0MS40LTMzLjYsNzUtNzUsNzVIMHYzNDdjMCw4LjMsNi43LDE1LDE1LDE1aDQ4MmM4LjMsMCwxNS02LjcsMTUtMTVWNzVjMC04LjMtNi43LTE1LTE1LTE1Wk0xODEsMzYxLjVjMCwyNC44LTIwLjIsNDUtNDUuMSw0NXMtNDUuMS0yMC4yLTQ1LjEtNDV2LTU5LjljMC0yNC44LDIwLjItNDUsNDUuMS00NXM0NS4xLDIwLjIsNDUuMSw0NXY1OS45Wk0yODYuMSw0MDYuNWgwYy04LjMsMC0xNS02LjctMTUtMTV2LTIyLjVjMCwwLTI3LjQtMjAuNS0yNy40LTIwLjVsLTIuNywzLjR2MzkuNmMwLDguMy02LjcsMTUtMTUsMTVzLTE1LTYuNy0xNS0xNXYtMTIwYzAtOC4zLDYuNy0xNSwxNS0xNXMxNSw2LjcsMTUsMTV2MzIuM2wzMy4zLTQxLjdjNS4yLTYuNSwxNC42LTcuNSwyMS4xLTIuNCw2LjUsNS4yLDcuNSwxNC42LDIuNCwyMS4xbC0zNS4zLDQ0LjIsMzIuNiwyNC40YzMuOCwyLjgsNiw3LjIsNiwxMnYzMGMuMSw4LjMtNi42LDE1LTE0LjksMTVaTTQyMSwzNjEuNXYzMGMwLDguMy02LjcsMTUtMTUsMTVzLTE1LTYuNy0xNS0xNXYtMzBjMC04LjMtNi43LTE1LTE1LTE1aC0xNS4xdjQ1YzAsOC4zLTYuNywxNS0xNSwxNXMtMTUtNi43LTE1LTE1di0xMjBjMC04LjMsNi43LTE1LDE1LTE1aDMwLjFjMjQuOCwwLDQ1LDIwLjIsNDUsNDVzLTQuMywyMi0xMS41LDMwYzcuMSw4LDExLjUsMTguNSwxMS41LDMwWiIvPgo8L3N2Zz4=">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKR Progress Report · July 2026 · VélezReyes+</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0D0D0D;--card:#141414;--card2:#1A1A1A;--border:#222;--border2:#2A2A2A;
+  --text:#CCC;--muted:#555;--white:#FFF;
+  --yellow:#F3FF00;--green:#27CF77;--purple:#A62BFF;
+  --font:'Montserrat',-apple-system,sans-serif;--radius:10px;--radius-sm:6px;
+  --c-ontrack:#27CF77;--c-atrisk:#F3FF00;--c-trouble:#FF6B6B;--c-ns:#555;
+  --c-dem:#A62BFF;--c-dp:#C97AFF;--c-ecd:#27CF77;--c-fot:#22C4CF;
+  --c-k12:#3B82F6;--c-mel:#F97316;--c-ops:#F59E0B;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;padding:1.25rem 1rem 3rem;line-height:1.6;font-size:14px}
+.root{max-width:1100px;margin:0 auto}
+a{text-decoration:none}
+
+/* HEADER */
+.header{background:#0D0D0D;border:1px solid #222;border-radius:var(--radius);padding:1.5rem 1.75rem 1.25rem;margin-bottom:4px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow) 0%,var(--green) 50%,var(--purple) 100%)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.header-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#555;margin-bottom:.3rem;font-weight:600}
+.header h1{font-size:22px;font-weight:800;color:#FFF;line-height:1.1}
+.header-period{font-size:13px;color:var(--yellow);font-weight:700;margin-top:.25rem}
+.header-note{font-size:10px;color:#444;margin-top:.15rem}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.header-stats{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+.hstat{background:#1A1A1A;border:1px solid #2A2A2A;border-radius:8px;padding:.6rem .9rem;text-align:center;min-width:76px}
+.hstat-num{font-size:20px;font-weight:800;line-height:1}
+.hstat-label{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#555;margin-top:3px}
+.hstat-delta{font-size:9px;font-weight:700;margin-top:2px}
+.hstat.yellow .hstat-num{color:var(--yellow)}.hstat.green .hstat-num{color:var(--green)}.hstat.orange .hstat-num{color:#F97316}.hstat.purple .hstat-num{color:#A62BFF}
+.header-teams{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.75rem}
+.team-pill{font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:20px;border:1px solid}
+
+/* NAV */
+.main-nav{background:#1A1A1A;border:1px solid #2A2A2A;border-radius:var(--radius);padding:4px;display:flex;gap:3px;margin-bottom:.75rem;overflow-x:auto;flex-wrap:nowrap}
+.nav-btn{flex-shrink:0;text-align:center;padding:9px 14px;border-radius:7px;border:none;background:transparent;color:#555;font-size:12px;font-weight:700;cursor:pointer;transition:background .18s,color .18s;font-family:var(--font);letter-spacing:.02em;white-space:nowrap}
+.nav-btn:hover{background:#252525;color:#999}
+.nav-btn.active{background:var(--yellow);color:#000}
+
+/* SECTIONS */
+.section{display:none}.section.visible{display:block}
+.sec-title{font-size:17px;font-weight:700;color:#E8E8E0;margin-bottom:.15rem}
+.sec-sub{font-size:12px;color:#555;margin-bottom:.85rem}
+
+/* CARDS */
+.card{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:1.1rem 1.35rem;margin-bottom:.75rem}
+.card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:.75rem}
+
+/* STATUS BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.badge.on-track{background:#0D2B1A;color:var(--c-ontrack)}.badge.at-risk{background:#2B2B00;color:var(--c-atrisk)}
+.badge.not-started{background:#1A1A1A;color:#555}.badge.completed{background:#0D2B1A;color:var(--c-ontrack)}
+.badge.pending{background:#2B1A00;color:#F59E0B}
+
+/* TEAM OVERVIEW GRID */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:.75rem}
+.team-card{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:.9rem 1rem;cursor:pointer;transition:border-color .18s,background .18s;position:relative;overflow:hidden}
+.team-card:hover{background:#1A1A1A;border-color:#333}
+.tc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.tc-name{font-size:11px;font-weight:700;color:#DDD}
+.tc-donut-wrap{position:relative;width:54px;height:54px}
+.tc-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.tc-pct{font-size:13px;font-weight:800;line-height:1}
+.tc-bar-wrap{margin-top:.5rem}
+.tc-bar-row{display:flex;align-items:center;gap:.4rem;font-size:10px}
+.tc-bar-label{color:#444;width:54px;flex-shrink:0}
+.tc-bar-track{flex:1;height:5px;background:#252525;border-radius:3px;overflow:hidden}
+.tc-bar-fill{height:100%;border-radius:3px}
+.tc-bar-pct{color:#555;min-width:26px;text-align:right}
+.tc-status{font-size:9px;font-weight:700;margin-top:.4rem}
+.tc-delta{font-size:9px;color:#555}
+
+/* OBJECTIVE CARDS (Executive Summary) */
+.obj-exec-card{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:.65rem;border-left:3px solid}
+.obj-exec-hdr{display:flex;align-items:center;gap:.65rem;margin-bottom:.6rem;flex-wrap:wrap}
+.obj-exec-code{font-size:10px;font-weight:800;letter-spacing:.08em;padding:3px 9px;border-radius:5px;flex-shrink:0}
+.obj-exec-name{font-size:13px;font-weight:700;color:#E0E0DC;flex:1;min-width:200px;line-height:1.3}
+.obj-exec-pct{font-size:18px;font-weight:800;flex-shrink:0}
+.obj-exec-bar{height:4px;background:#222;border-radius:2px;overflow:hidden;margin-bottom:.65rem}
+.obj-exec-fill{height:100%;border-radius:2px}
+.obj-exec-comment{font-size:12px;color:#888;line-height:1.75;background:#1A1A1A;border-radius:6px;padding:.7rem 1rem;border-left:2px solid #2A2A2A;margin-bottom:.5rem;font-style:italic}
+.obj-exec-footer{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.obj-exec-date{font-size:10px;color:#444;font-weight:600}
+.obj-exec-change{font-size:10px;font-weight:700;letter-spacing:.04em}
+
+/* MILESTONES */
+.milestone-list{display:flex;flex-direction:column;gap:.5rem}
+.milestone-item{display:flex;gap:.65rem;align-items:flex-start;padding:.6rem .75rem;background:#1A1A1A;border-radius:6px;border:1px solid #222}
+.milestone-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:.3rem}
+.milestone-text{font-size:12px;color:#AAA;line-height:1.5;flex:1}
+.milestone-team{font-size:9px;font-weight:800;letter-spacing:.05em;padding:2px 7px;border-radius:4px;flex-shrink:0;margin-top:1px}
+
+/* OUTLOOK TABLE */
+.outlook-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.6rem}
+.outlook-card{background:#141414;border:1px solid #222;border-radius:var(--radius-sm);padding:.75rem 1rem}
+.outlook-label{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:.5rem}
+.outlook-item{font-size:11px;color:#888;padding:.25rem 0;border-bottom:1px solid #1E1E1E;display:flex;gap:.5rem;align-items:flex-start}
+.outlook-item:last-child{border-bottom:none}
+.outlook-item::before{content:'→';color:#333;flex-shrink:0}
+
+/* PENDING BANNER */
+.pending-banner{background:#1A0F00;border:1px solid #3B2200;border-radius:var(--radius);padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+.pending-banner-icon{font-size:1.1rem;flex-shrink:0}
+.pending-banner-text{font-size:12px;color:#F59E0B;font-weight:600;line-height:1.5}
+
+/* STATUS SUMMARY */
+.status-summary{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem}
+.status-chip{font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid}
+.status-chip.improved{background:#0D2B1A;color:#27CF77;border-color:#1BAA6030}
+.status-chip.stable{background:#141414;color:#666;border-color:#252525}
+.status-chip.watch{background:#2B2B00;color:#C0A000;border-color:#3B3B0030}
+
+/* EDUCATION MERGE NOTICE */
+.edu-merge{background:#0A1A2B;border:1px solid #153050;border-radius:8px;padding:.75rem 1rem;font-size:11px;color:#5B9DD8;margin-bottom:.65rem;display:flex;gap:.5rem;align-items:flex-start}
+.edu-merge::before{content:'ℹ';flex-shrink:0}
+
+/* GLASS CSS OVERRIDES (consistent with other reports) */
+.main-nav{background:rgba(18,18,18,.88)!important;backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06)!important}
+.team-card{background:linear-gradient(145deg,rgba(255,255,255,.045) 0%,rgba(255,255,255,.012) 100%)!important;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.06)!important;box-shadow:0 4px 24px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)!important}
+.obj-exec-card{backdrop-filter:blur(6px);box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hstat{background:linear-gradient(145deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%)!important;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.07)!important}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .team-grid{grid-template-columns:1fr 1fr}
+  .outlook-grid{grid-template-columns:1fr}
+  .header-top{flex-direction:column}
+  .header-stats{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="root">
+
+<!-- ─── HEADER ─────────────────────────── -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">VélezReyes+ · Institutional OKRs</div>
+      <h1>OKR Progress Report<br>July 2026</h1>
+      <div class="header-period">Q2 Close · Q3 Outlook</div>
+      <div class="header-note">Executive summary based on Q2 performance review check-ins · Data as of July 23, 2026</div>
+    </div>
+    <div class="header-right">
+      <div class="header-stats">
+        <div class="hstat yellow">
+          <div class="hstat-num">51%</div>
+          <div class="hstat-label">Overall</div>
+          <div class="hstat-delta" style="color:#27CF77">↑3pp</div>
+        </div>
+        <div class="hstat purple">
+          <div class="hstat-num">52%</div>
+          <div class="hstat-label">O1</div>
+          <div class="hstat-delta" style="color:#27CF77">↑2pp</div>
+        </div>
+        <div class="hstat green">
+          <div class="hstat-num">53%</div>
+          <div class="hstat-label">O2</div>
+          <div class="hstat-delta" style="color:#27CF77">↑2pp</div>
+        </div>
+        <div class="hstat orange">
+          <div class="hstat-num">47%</div>
+          <div class="hstat-label">O3</div>
+          <div class="hstat-delta" style="color:#27CF77">↑4pp</div>
+        </div>
+      </div>
+      <a href="../index.html" style="display:inline-flex;align-items:center;gap:.4rem;background:#222;border:1px solid #333;color:#999;border-radius:8px;padding:.4rem .85rem;font-size:10px;font-weight:700;letter-spacing:.04em;">
+        ← Hub
+      </a>
+    </div>
+  </div>
+  <div class="header-teams">
+    <span class="team-pill" style="color:var(--c-dem);border-color:#A62BFF30;background:#A62BFF10">Democracy</span>
+    <span class="team-pill" style="color:var(--c-dp);border-color:#C97AFF30;background:#C97AFF10">Democracia+</span>
+    <span class="team-pill" style="color:var(--c-ecd);border-color:#27CF7730;background:#27CF7710">ECD</span>
+    <span class="team-pill" style="color:var(--c-fot);border-color:#22C4CF30;background:#22C4CF10">FoT</span>
+    <span class="team-pill" style="color:var(--c-k12);border-color:#3B82F630;background:#3B82F610">K-12</span>
+    <span class="team-pill" style="color:var(--c-mel);border-color:#F9731630;background:#F9731610">MEL</span>
+    <span class="team-pill" style="color:var(--c-ops);border-color:#F59E0B30;background:#F59E0B10">People &amp; Ops</span>
+  </div>
+</div>
+
+<!-- ─── NAV ───────────────────────────── -->
+<nav class="main-nav">
+  <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
+  <button class="nav-btn" onclick="showSection('democracy')">Democracy</button>
+  <button class="nav-btn" onclick="showSection('ecd')">ECD</button>
+  <button class="nav-btn" onclick="showSection('education')">Education</button>
+  <button class="nav-btn" onclick="showSection('mel')">MEL</button>
+  <button class="nav-btn" onclick="showSection('ops')">People &amp; Ops</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     OVERVIEW
+════════════════════════════════════════════════ -->
+<div id="section-overview" class="section visible">
+
+  <div class="sec-title">July 2026 — Overview</div>
+  <div class="sec-sub">Q2 close snapshot. All data from Q2 performance review check-ins (Jul 6–23, 2026). ECD and MEL pending check-ins shown with June data.</div>
+
+  <!-- Status Summary -->
+  <div class="status-summary">
+    <span class="status-chip improved">↑ Democracy — All 4 obj. moved to On Track</span>
+    <span class="status-chip improved">↑ People &amp; Ops — OP2 recovered from At Risk</span>
+    <span class="status-chip watch">⚠ Education — FT3 at risk, VP onboarding pending</span>
+    <span class="status-chip stable">— ECD · MEL — pending check-in (June data shown)</span>
+  </div>
+
+  <!-- Team Overview Grid -->
+  <div class="team-grid">
+
+    <!-- DEMOCRACY -->
+    <div class="team-card" onclick="showSection('democracy')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-dem)">Democracy</div><div style="font-size:9px;color:#444;margin-top:2px">Andrés Valenciano</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-dem"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-dem)">45%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">D1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:45%;background:var(--c-dem)"></div></div><span class="tc-bar-pct">45%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">D2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:40%;background:var(--c-dem)"></div></div><span class="tc-bar-pct">40%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">D3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:54%;background:var(--c-dem)"></div></div><span class="tc-bar-pct">54%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">D4</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:41%;background:var(--c-dem)"></div></div><span class="tc-bar-pct">41%</span></div>
+      </div>
+      <div class="tc-status" style="color:var(--c-ontrack)">● All On Track <span class="tc-delta">Jul 8</span></div>
+    </div>
+
+    <!-- ECD -->
+    <div class="team-card" onclick="showSection('ecd')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-ecd)">ECD</div><div style="font-size:9px;color:#444;margin-top:2px">ECD Team</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-ecd"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-ecd)">35%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">EC1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:32%;background:var(--c-ecd)"></div></div><span class="tc-bar-pct">32%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">EC2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:49%;background:var(--c-ecd)"></div></div><span class="tc-bar-pct">49%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">EC3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:35%;background:var(--c-ecd)"></div></div><span class="tc-bar-pct">35%</span></div>
+      </div>
+      <div class="tc-status" style="color:#F59E0B">⚠ Check-in Pending <span class="tc-delta">June data</span></div>
+    </div>
+
+    <!-- FoT -->
+    <div class="team-card" onclick="showSection('education')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-fot)">Future of Talent</div><div style="font-size:9px;color:#444;margin-top:2px">FoT Team → Edu VP</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-fot"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-fot)">24%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">FT1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:53%;background:var(--c-fot)"></div></div><span class="tc-bar-pct">53%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">FT2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:30%;background:var(--c-fot)"></div></div><span class="tc-bar-pct">30%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">FT3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:13%;background:var(--c-atrisk)"></div></div><span class="tc-bar-pct" style="color:var(--c-atrisk)">13%</span></div>
+      </div>
+      <div class="tc-status" style="color:var(--c-atrisk)">⚠ FT3 At Risk <span class="tc-delta">Jul 10</span></div>
+    </div>
+
+    <!-- K-12 -->
+    <div class="team-card" onclick="showSection('education')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-k12)">K-12</div><div style="font-size:9px;color:#444;margin-top:2px">K-12 Team → Edu VP</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-k12"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-k12)">22%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">K1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:65%;background:var(--c-k12)"></div></div><span class="tc-bar-pct">65%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">K2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:0%;background:var(--c-k12)"></div></div><span class="tc-bar-pct">0%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">K3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:0%;background:var(--c-k12)"></div></div><span class="tc-bar-pct">0%</span></div>
+      </div>
+      <div class="tc-status" style="color:#555">● K2/K3 → Merging <span class="tc-delta">Jul 10</span></div>
+    </div>
+
+    <!-- MEL -->
+    <div class="team-card" onclick="showSection('mel')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-mel)">MEL</div><div style="font-size:9px;color:#444;margin-top:2px">MEL Team</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-mel"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-mel)">69%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">M1.1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:100%;background:var(--c-mel)"></div></div><span class="tc-bar-pct">100%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">M1.2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:56%;background:var(--c-mel)"></div></div><span class="tc-bar-pct">56%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">M1.3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:48%;background:var(--c-mel)"></div></div><span class="tc-bar-pct">48%</span></div>
+      </div>
+      <div class="tc-status" style="color:#F59E0B">⚠ Check-in Pending <span class="tc-delta">June data</span></div>
+    </div>
+
+    <!-- OPS -->
+    <div class="team-card" onclick="showSection('ops')">
+      <div class="tc-top">
+        <div><div class="tc-name" style="color:var(--c-ops)">People &amp; Ops</div><div style="font-size:9px;color:#444;margin-top:2px">Cristina · with Laura</div></div>
+        <div class="tc-donut-wrap"><canvas id="chart-ops"></canvas>
+          <div class="tc-donut-center"><div class="tc-pct" style="color:var(--c-ops)">62%</div></div>
+        </div>
+      </div>
+      <div class="tc-bar-wrap">
+        <div class="tc-bar-row"><span class="tc-bar-label">OP1</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:75%;background:var(--c-ops)"></div></div><span class="tc-bar-pct">75%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">OP2</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:43%;background:var(--c-ops)"></div></div><span class="tc-bar-pct">43%</span></div>
+        <div class="tc-bar-row"><span class="tc-bar-label">OP3</span><div class="tc-bar-track"><div class="tc-bar-fill" style="width:67%;background:var(--c-ops)"></div></div><span class="tc-bar-pct">67%</span></div>
+      </div>
+      <div class="tc-status" style="color:var(--c-ontrack)">● All On Track <span class="tc-delta">Jul 23</span></div>
+    </div>
+
+  </div>
+
+  <!-- Key Milestones -->
+  <div class="card">
+    <div class="card-title">Key Milestones · Q2 Close</div>
+    <div class="milestone-list">
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:var(--c-dem)"></div>
+        <div class="milestone-text">Democracy recovered all 4 objectives from At Risk → On Track. Board approved multiple strategy sections. D1 grant renewals in progress; D3 portfolio (Peru DPI + elections) defined; D4 moonshot + people-in-government strategy advancing for Sept Board.</div>
+        <span class="milestone-team" style="background:#A62BFF18;color:#A62BFF">DEM</span>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:var(--c-ops)"></div>
+        <div class="milestone-text">People &amp; Ops: OP1 reached 75% (operational rigor on track); OP2 recovered from At Risk (continuity improvements in Charity noted); OP3 at 67% — heavy lifting done, monitoring for Q4 delivery.</div>
+        <span class="milestone-team" style="background:#F59E0B18;color:#F59E0B">OPS</span>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:var(--c-ops)"></div>
+        <div class="milestone-text">Q2 Performance Review cycle completed — all teams completed check-ins with Laura. Mid-year OKR review sessions concluded. Variable compensation benchmark model in progress.</div>
+        <span class="milestone-team" style="background:#F59E0B18;color:#F59E0B">OPS</span>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:var(--c-fot)"></div>
+        <div class="milestone-text">Education VP onboarding is the critical Q3 milestone: FT3 and K3 strategy objectives transitioning to incoming VP. K2 and K3 will merge into a unified Education Test &amp; Learn KR under new VP ownership.</div>
+        <span class="milestone-team" style="background:#22C4CF18;color:#22C4CF">EDU</span>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:var(--c-dem)"></div>
+        <div class="milestone-text">DAL decision targeted for Sept Board (Oct decision window, 1 year post-disbursement). RIL insights expected end of Q3 to inform renewal decision in Q4.</div>
+        <span class="milestone-team" style="background:#A62BFF18;color:#A62BFF">DEM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 Outlook -->
+  <div class="card">
+    <div class="card-title">Q3 Critical Path → Board Sept 20</div>
+    <div class="outlook-grid">
+      <div class="outlook-card">
+        <div class="outlook-label" style="color:#8B1FDB">O1 · Refined Bets</div>
+        <div class="outlook-item">Thematic strategies (KR1.2) — final drafts for Sept Board</div>
+        <div class="outlook-item">Portfolio decisions (KR1.3) — keep / scale / pivot / phase-out</div>
+        <div class="outlook-item">D+ 5yr plan sections advancing toward Dec Board approval</div>
+        <div class="outlook-item">Democracy moonshot political agenda + people-in-government ready</div>
+      </div>
+      <div class="outlook-card">
+        <div class="outlook-label" style="color:#1BAA60">O2 · Execution</div>
+        <div class="outlook-item">MEL evidence batch delivery for portfolio governance decisions</div>
+        <div class="outlook-item">DAL decision memo for Sept Board</div>
+        <div class="outlook-item">Education VP onboarding — absorbs FT3 + K2/K3 strategy ownership</div>
+        <div class="outlook-item">DPI role documentation + digital ID grant progress (Peru)</div>
+      </div>
+      <div class="outlook-card">
+        <div class="outlook-label" style="color:#D46208">O3 · Structure</div>
+        <div class="outlook-item">Variable compensation model — targeted Q3 completion</div>
+        <div class="outlook-item">Knowledge management HUB (Drive + Notion index)</div>
+        <div class="outlook-item">OP3 team capabilities — continue monitoring for Q4 delivery</div>
+        <div class="outlook-item">Operational visibility (OP1.2) — ongoing improvement</div>
+      </div>
+      <div class="outlook-card">
+        <div class="outlook-label" style="color:#555">Pending Check-ins</div>
+        <div class="outlook-item">ECD Q2 performance review check-in — not yet recorded</div>
+        <div class="outlook-item">MEL Q2 performance review check-in — not yet recorded</div>
+        <div class="outlook-item">Portfolio review offsite — Aug 31, Brazil</div>
+        <div class="outlook-item">Board Q3 — Sept 20, 2026</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     DEMOCRACY
+════════════════════════════════════════════════ -->
+<div id="section-democracy" class="section">
+
+  <div class="sec-title">Democracy</div>
+  <div class="sec-sub">Andrés Valenciano · Q2 Performance Review check-in · Jul 6–8, 2026 · All 4 objectives recovered to On Track</div>
+
+  <div class="status-summary">
+    <span class="status-chip improved">D1 At Risk → On Track ↑45%</span>
+    <span class="status-chip improved">D2 At Risk → On Track ↑40%</span>
+    <span class="status-chip improved">D3 At Risk → On Track ↑54%</span>
+    <span class="status-chip improved">D4 At Risk → On Track ↑41%</span>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-dem)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#A62BFF18;color:#A62BFF">D1</span>
+      <span class="obj-exec-name">Turn Democracia+ into a robust Big Bet for 2027–2031</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#A62BFF">45%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:45%;background:#A62BFF"></div></div>
+    <div class="obj-exec-comment">"On the first OKR we've made substantive progress on getting approval from the Board on several sections of the strategy. On the second OKR we have all KPI progress tracked for the orgs and we're currently working on the grant renewals. On the third OKR, we supported the MEL team having initial meetings and getting all the information required from the orgs. We're now on the stage of processing data and starting to provide results. We're on track!"</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jul 6, 2026</span>
+      <span class="obj-exec-change" style="color:#27CF77">↑ At Risk → On Track</span>
+    </div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-dem)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#A62BFF18;color:#A62BFF">D2</span>
+      <span class="obj-exec-name">Deepen and decide continuity of ecosystem bets (RIL + DAL)</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#A62BFF">40%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:40%;background:#A62BFF"></div></div>
+    <div class="obj-exec-comment">"Both the MEL agenda implementation and portfolio execution are on track to obtain insights to define whether to renew the grants. The decision on DAL will be made in the September board meeting, to inform them about the decision in October, a year after the initial disbursement. For RIL, we aim to have insights to make a decision by the end of Q3, but should there be a renewal, we plan to process it in Q4."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jun 30, 2026</span>
+      <span class="obj-exec-change" style="color:#555">· Status confirmed Jul 8</span>
+      <span class="obj-exec-change" style="color:#27CF77">↑ At Risk → On Track</span>
+    </div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-dem)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#A62BFF18;color:#A62BFF">D3</span>
+      <span class="obj-exec-name">Test democratic innovations as potential levers to strengthen states and democracies</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#A62BFF">54%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:54%;background:#A62BFF"></div></div>
+    <div class="obj-exec-comment">"We have defined our portfolio to test democratic innovations. On DPI, the democracy team will only work on Peru through the digital ID grant, and obtain insights from a consultancy with David Eaves on DPI governance. On new hypotheses tested, the focus will be solely on the elections portfolio (Costa Rica, Peru, and Colombia). We are also engaging with Bruno Ikeuti as a consultant to explore a business model for Code for LatAm. All KRs confirmed on track in July feedback session."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jun 30 → Jul 8, 2026</span>
+      <span class="obj-exec-change" style="color:#27CF77">↑ At Risk → On Track</span>
+    </div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-dem)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#A62BFF18;color:#A62BFF">D4</span>
+      <span class="obj-exec-name">Define the democracy strategy for 2026 and for 2027–2031</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#A62BFF">41%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:41%;background:#A62BFF"></div></div>
+    <div class="obj-exec-comment">"The team is working on the two key elements to be produced for the September board meeting: the moonshot project with a political agenda for ver+ and the democracy strategy focused on people in government. On track to implement pending tasks following June board feedback."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jun 30, 2026</span>
+      <span class="obj-exec-change" style="color:#27CF77">↑ At Risk → On Track</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ECD
+════════════════════════════════════════════════ -->
+<div id="section-ecd" class="section">
+
+  <div class="sec-title">Early Childhood Development</div>
+  <div class="sec-sub">ECD Team · Data as of June 2026 · Q2 performance review check-in pending</div>
+
+  <div class="pending-banner">
+    <span class="pending-banner-icon">⚠</span>
+    <div class="pending-banner-text">Q2 performance review check-in not yet recorded. Progress below reflects last available data from June 2026. Check-in to be completed with Laura.</div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ecd)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#27CF7718;color:#27CF77">EC1</span>
+      <span class="obj-exec-name">Aprendo+ / ECD at scale</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-exec-pct" style="color:#27CF77">32%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:32%;background:#27CF77"></div></div>
+    <div class="obj-exec-comment">Aprendo+ CEO hired. Three agreements advancing. Continued momentum needed to close gap on scale targets. At Risk as of June 2026.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ecd)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#27CF7718;color:#27CF77">EC2</span>
+      <span class="obj-exec-name">New ECD hypotheses — test and learn</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#27CF77">49%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:49%;background:#27CF77"></div></div>
+    <div class="obj-exec-comment">aeioTU exit underway. Govinho launching. New hypotheses portfolio on track for Q3 learning milestones.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ecd)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#27CF7718;color:#27CF77">EC3</span>
+      <span class="obj-exec-name">Define ECD strategy and investment thesis for 2026 and 2027–2031</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#27CF77">35%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:35%;background:#27CF77"></div></div>
+    <div class="obj-exec-comment">Investment thesis (EC3.1) completed — 100%. Evidence and results dashboard (EC3.2) at 50%, targeting Q3 completion. Long-term thesis (EC3.3) not yet started — Q4 target.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     EDUCATION (FoT + K-12)
+════════════════════════════════════════════════ -->
+<div id="section-education" class="section">
+
+  <div class="sec-title">Education — FoT &amp; K-12</div>
+  <div class="sec-sub">FoT Team + K-12 Team · Q2 Performance Review check-in · Jul 10, 2026 · Critical: Education VP onboarding in Q3</div>
+
+  <div class="edu-merge">FT3 and K2/K3 strategy objectives are transitioning ownership to the incoming Education VP. K2 and K3 will merge into a unified Education Test &amp; Learn KR under new VP ownership in Q3.</div>
+
+  <!-- FoT -->
+  <div class="card" style="border-top:2px solid var(--c-fot);margin-bottom:1rem">
+    <div class="card-title" style="color:var(--c-fot)">Future of Talent</div>
+
+    <div class="obj-exec-card" style="border-left-color:var(--c-fot);margin-bottom:.5rem">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#22C4CF18;color:#22C4CF">FT1</span>
+        <span class="obj-exec-name">Beca Tech at scale — scholarships program</span>
+        <span class="badge on-track">On Track</span>
+        <span class="obj-exec-pct" style="color:#22C4CF">53%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:53%;background:#22C4CF"></div></div>
+      <div class="obj-exec-comment">Beca Tech cohorts launched in Colombia and Peru. Program execution on track for scale targets.</div>
+      <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+    </div>
+
+    <div class="obj-exec-card" style="border-left-color:var(--c-fot);margin-bottom:.5rem">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#22C4CF18;color:#22C4CF">FT2</span>
+        <span class="obj-exec-name">New FoT bets — Peru Tech ecosystem validation</span>
+        <span class="badge on-track">Started</span>
+        <span class="obj-exec-pct" style="color:#22C4CF">30%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:30%;background:#22C4CF"></div></div>
+      <div class="obj-exec-comment">Peru tech ecosystem validation in progress. Early-stage hypothesis testing underway.</div>
+      <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+    </div>
+
+    <div class="obj-exec-card" style="border-left-color:var(--c-atrisk)">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#F3FF0015;color:#C0A000">FT3</span>
+        <span class="obj-exec-name">Define the FoT Strategy for 2026 and 2027–2031</span>
+        <span class="badge at-risk">At Risk</span>
+        <span class="obj-exec-pct" style="color:#C0A000">13%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:13%;background:var(--c-atrisk)"></div></div>
+      <div class="obj-exec-comment">"Let's check how we value what I contributed to — but moving forward, the VP takes responsibility for this objective."</div>
+      <div class="obj-exec-footer">
+        <span class="obj-exec-date">Jul 10, 2026</span>
+        <span class="obj-exec-change" style="color:#F59E0B">→ Ownership transitioning to Education VP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- K-12 -->
+  <div class="card" style="border-top:2px solid var(--c-k12)">
+    <div class="card-title" style="color:var(--c-k12)">K-12</div>
+
+    <div class="obj-exec-card" style="border-left-color:var(--c-k12);margin-bottom:.5rem">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#3B82F618;color:#3B82F6">K1</span>
+        <span class="obj-exec-name">K-12 ecosystem bets (CEPE)</span>
+        <span class="badge on-track">On Track</span>
+        <span class="obj-exec-pct" style="color:#3B82F6">65%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:65%;background:#3B82F6"></div></div>
+      <div class="obj-exec-comment">CEPE execution progressing on track. Strongest performing K-12 objective — key Q3 milestone is maintaining pace through VP transition.</div>
+      <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+    </div>
+
+    <div class="obj-exec-card" style="border-left-color:#333;margin-bottom:.5rem">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#3B82F618;color:#3B82F6">K2</span>
+        <span class="obj-exec-name">Test and learn K-12 levers (AI + impact investing)</span>
+        <span class="badge not-started">Merging</span>
+        <span class="obj-exec-pct" style="color:#555">0%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:0%;background:#555"></div></div>
+      <div class="obj-exec-comment">"Merge into one general Test &amp; Learn Education KR and assign to new VP."</div>
+      <div class="obj-exec-footer">
+        <span class="obj-exec-date">Jul 10, 2026</span>
+        <span class="obj-exec-change" style="color:#555">→ Merging with FT2/FT3 under Education VP</span>
+      </div>
+    </div>
+
+    <div class="obj-exec-card" style="border-left-color:#333">
+      <div class="obj-exec-hdr">
+        <span class="obj-exec-code" style="background:#3B82F618;color:#3B82F6">K3</span>
+        <span class="obj-exec-name">Define the K-12 Strategy for 2026 and 2026–2031</span>
+        <span class="badge not-started">Merging</span>
+        <span class="obj-exec-pct" style="color:#555">0%</span>
+      </div>
+      <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:0%;background:#555"></div></div>
+      <div class="obj-exec-comment">"Merge into one general Test &amp; Learn Education KR and assign to new VP."</div>
+      <div class="obj-exec-footer">
+        <span class="obj-exec-date">Jul 10, 2026</span>
+        <span class="obj-exec-change" style="color:#555">→ Merging with FT3 under Education VP</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MEL
+════════════════════════════════════════════════ -->
+<div id="section-mel" class="section">
+
+  <div class="sec-title">Monitoring, Evaluation &amp; Learning</div>
+  <div class="sec-sub">MEL Team · Data as of June 2026 · Q2 performance review check-in pending</div>
+
+  <div class="pending-banner">
+    <span class="pending-banner-icon">⚠</span>
+    <div class="pending-banner-text">Q2 performance review check-in not yet recorded. Progress below reflects last available data from June 2026. Check-in to be completed with Laura.</div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-mel)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F9731618;color:#F97316">M1.1</span>
+      <span class="obj-exec-name">Portfolio SBL Map</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-exec-pct" style="color:#F97316">100%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:100%;background:#F97316"></div></div>
+    <div class="obj-exec-comment">Portfolio SBL mapping completed. All organizations mapped. Milestone delivered ahead of schedule.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-mel)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F9731618;color:#F97316">M1.2</span>
+      <span class="obj-exec-name">SSOT + Decision Package Standard</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F97316">56%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:56%;background:#F97316"></div></div>
+    <div class="obj-exec-comment">MEL evidence batch #3 delivered. Notion Control Center completed. Portfolio dashboard comparable metrics in progress.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-mel)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F9731618;color:#F97316">M1.3</span>
+      <span class="obj-exec-name">Stage-based MEL Support (Q3)</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F97316">48%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:48%;background:#F97316"></div></div>
+    <div class="obj-exec-comment">Stage-based MEL support rolling out across portfolio orgs. D+ orgs data processing underway. Key input for Q3 portfolio governance decisions.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-mel)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F9731618;color:#F97316">M1.4</span>
+      <span class="obj-exec-name">Evidence used in Portfolio Governance</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F97316">65%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:65%;background:#F97316"></div></div>
+    <div class="obj-exec-comment">Evidence in governance process at 65%. Decision log live in Profit.co. Portfolio review cadence set — Aug 31 offsite in Brazil.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-mel)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F9731618;color:#F97316">M1.5</span>
+      <span class="obj-exec-name">Equality of Opportunity Pilot (5-yr plan)</span>
+      <span class="badge on-track">Ahead</span>
+      <span class="obj-exec-pct" style="color:#F97316">77%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:77%;background:#F97316"></div></div>
+    <div class="obj-exec-comment">At 77% — ahead of schedule. This is the only team KR directly supporting the 5-year plan thesis (KR1.4 / Dec Board). Strong progress positions MEL as a strategic enabler for the 2027–2031 planning cycle.</div>
+    <div class="obj-exec-footer"><span class="obj-exec-date">June 2026 · Profit.co snapshot</span></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PEOPLE & OPS
+════════════════════════════════════════════════ -->
+<div id="section-ops" class="section">
+
+  <div class="sec-title">People &amp; Operations</div>
+  <div class="sec-sub">Cristina · in check-in with Laura · Jul 23, 2026 · All 3 objectives On Track · OP2 recovered from At Risk</div>
+
+  <div class="status-summary">
+    <span class="status-chip improved">OP1 On Track ↑75%</span>
+    <span class="status-chip improved">OP2 At Risk → On Track ↑43%</span>
+    <span class="status-chip stable">OP3 On Track ↑67%</span>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ops)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F59E0B18;color:#F59E0B">OP1</span>
+      <span class="obj-exec-name">Build operational rigor through clear and standardized processes</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F59E0B">75%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:75%;background:#F59E0B"></div></div>
+    <div class="obj-exec-comment">"Laura and Cristina agree that we are on track with the KRs of this objective."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jul 23, 2026</span>
+      <span class="obj-exec-change" style="color:#27CF77">Core Process Standardization at 92% · OP1.2 visibility improving</span>
+    </div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ops)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F59E0B18;color:#F59E0B">OP2</span>
+      <span class="obj-exec-name">Reliable daily operations and continuity</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F59E0B">43%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:43%;background:#F59E0B"></div></div>
+    <div class="obj-exec-comment">"We are on track. Feedback session with Laura. Improvements in Charity noted; comments left on tasks."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jul 23, 2026</span>
+      <span class="obj-exec-change" style="color:#27CF77">↑ At Risk → On Track · Continuity improvements noted</span>
+    </div>
+  </div>
+
+  <div class="obj-exec-card" style="border-left-color:var(--c-ops)">
+    <div class="obj-exec-hdr">
+      <span class="obj-exec-code" style="background:#F59E0B18;color:#F59E0B">OP3</span>
+      <span class="obj-exec-name">Aligned team with right capabilities</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-exec-pct" style="color:#F59E0B">67%</span>
+    </div>
+    <div class="obj-exec-bar"><div class="obj-exec-fill" style="width:67%;background:#F59E0B"></div></div>
+    <div class="obj-exec-comment">"Cristina is concerned about this objective, but the heavy lifting has been done. Monitoring closely to ensure delivery by Q4."</div>
+    <div class="obj-exec-footer">
+      <span class="obj-exec-date">Jul 23, 2026</span>
+      <span class="obj-exec-change" style="color:#555">OKR adoption 80% · 5-yr org design in progress (35%) · team health 86%</span>
+    </div>
+  </div>
+
+  <!-- OPS highlights -->
+  <div class="card">
+    <div class="card-title">People &amp; Ops · Q2 Highlights</div>
+    <div class="milestone-list">
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:#27CF77"></div>
+        <div class="milestone-text">Q2 performance review cycle completed — all teams completed check-ins with Laura (Democracy, FoT, K-12, People &amp; Ops confirmed; ECD and MEL pending).</div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:#27CF77"></div>
+        <div class="milestone-text">Mid-year OKR review sessions completed. Variable compensation benchmark model in progress for Q3 delivery.</div>
+      </div>
+      <div class="milestone-item">
+        <div class="milestone-dot" style="background:#27CF77"></div>
+        <div class="milestone-text">Operational rigor on track: Core Process Standardization at 92%, operational visibility improving (OP1.2 moving off watch status). Operational Continuity at 43% — on track for Q4.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ──────────────────────────── -->
+<div style="text-align:center;padding:2rem 0 0;font-size:10px;color:#333;margin-top:1rem;border-top:1px solid #1A1A1A;">
+  Data source: Q2 Performance Reviews (Jul 6–23, 2026) + Profit.co June 2026 snapshot &nbsp;·&nbsp;
+  <a href="../index.html" style="color:#555;text-decoration:none;">← Back to Hub</a> &nbsp;·&nbsp;
+  <a href="../strategy-2026.html" style="color:#555;text-decoration:none;">Strategy 2026 →</a>
+</div>
+
+</div><!-- /root -->
+
+<script>
+// Nav switching
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+  document.getElementById('section-'+id).classList.add('visible');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// Donut chart helper
+function makeDonut(id, pct, color){
+  const ctx = document.getElementById(id);
+  if(!ctx) return;
+  new Chart(ctx, {
+    type:'doughnut',
+    data:{datasets:[{data:[pct,100-pct],backgroundColor:[color,'#1E1E1E'],borderWidth:0,hoverOffset:0}]},
+    options:{cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false}},events:[],animation:{duration:600}}
+  });
+}
+
+// Init charts
+makeDonut('chart-dem', 45, '#A62BFF');
+makeDonut('chart-ecd', 35, '#27CF77');
+makeDonut('chart-fot', 24, '#22C4CF');
+makeDonut('chart-k12', 22, '#3B82F6');
+makeDonut('chart-mel', 69, '#F97316');
+makeDonut('chart-ops', 62, '#F59E0B');
+</script>
+</body>
+</html>
