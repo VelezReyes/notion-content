@@ -8,11 +8,17 @@
     },
     "responses": {
       ".read": "auth != null",
+      ".write": "auth != null",
       "$questionIndex": {
         "$voterId": {
-          ".write": "auth != null && auth.uid === $voterId",
           ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
         }
+      }
+    },
+    "presence": {
+      ".read": "auth != null",
+      "$voterId": {
+        ".write": "auth != null && auth.uid === $voterId"
       }
     }
   }
