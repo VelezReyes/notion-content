@@ -434,19 +434,19 @@ body {
     <div class="block-title">What this covers</div>
     <div class="exp-grid">
       <div class="exp-card">
-        <div class="exp-label">Category A</div>
+        <div class="exp-label">Category A · OpEx &amp; Direct Cost tab</div>
         <div class="exp-title">OpEx</div>
-        <div class="exp-desc">Salaries (non-Deel), software, travel, professional services, office expenses</div>
+        <div class="exp-desc">Salaries (non-Deel), software, travel, professional services, office expenses, not tied to one specific grantee or project. Commitment Status and Org/Pro are not required.</div>
       </div>
       <div class="exp-card">
-        <div class="exp-label">Category B</div>
+        <div class="exp-label">Category B · OpEx &amp; Direct Cost tab</div>
         <div class="exp-title">Direct Costs</div>
-        <div class="exp-desc">Costs made on behalf of a grantee or sponsored project (not direct transfers)</div>
+        <div class="exp-desc">Costs made on behalf of a grantee or sponsored project, not a direct transfer to them (e.g. legal review of a grant agreement, event costs for a scholarship program). Also fill in Commitment Status and Org/Pro.</div>
       </div>
       <div class="exp-card">
-        <div class="exp-label">Category C</div>
+        <div class="exp-label">Category C · Grants &amp; Investments tab</div>
         <div class="exp-title">Grants</div>
-        <div class="exp-desc">Direct capital transfers to grantee or partner organizations. Always require CEO sign-off.</div>
+        <div class="exp-desc">Direct capital transfer to a grantee or partner organization. Always requires a completed Due Diligence (DD) file plus written CEO authorization.</div>
       </div>
     </div>
     <div class="callout black" style="margin-bottom:.75rem;">
@@ -548,10 +548,10 @@ body {
           </div>
         </div>
 
-        <p><strong>Save the link immediately after uploading.</strong> You'll paste it into the database in Step 3. Google Drive links are based on file ID, not path — moving the file later does not break the link.</p>
+        <p><strong>Save the link immediately after uploading.</strong> You'll paste it into the database in Step 3. Google Drive links are based on file ID, not path, so moving the file later does not break the link.</p>
         <div class="callout black" style="margin-top:.5rem;">
           <div class="callout-title">Access rules</div>
-        Each&nbsp; team member works only within their own cost center folder. Do not upload to another team's folder. The Treasury Analyst may reorganize subfolders freely without invalidating your saved links — do not re-upload a file just because it was moved. </div>
+        Each&nbsp; team member works only within their own cost center folder. Do not upload to another team's folder. The Treasury Analyst may reorganize subfolders freely without invalidating your saved links. Do not re-upload a file just because it was moved. </div>
       </div>
     </div>
 
@@ -568,12 +568,35 @@ body {
       </div>
       <div class="step-body-expand">
         <p>Complete the database row for this payment. Every field is required. Incomplete entries may delay payment processing.</p>
+
+        <p style="margin-top:.5rem;"><strong>First, choose the right tab</strong>, based on who receives the money, not on how the expense "feels":</p>
         <ul>
-          <li>Select the correct expense category: OpEx, Direct Cost, or Grant. Do not use "Investments" as a category — it is a reporting label only.</li>
+          <li><strong>"OpEx &amp; Direct Cost" tab</strong>: anything paid to a consultant, vendor, or provider who helps deliver the work (invoices, services, travel, software, professional fees).</li>
+          <li><strong>"Grants &amp; Investments" tab</strong>: capital transferred directly to an organization (a grantee or partner), always backed by a completed Due Diligence (DD) file on that organization.</li>
+        </ul>
+
+        <p style="margin-top:.5rem;"><strong>Inside "OpEx &amp; Direct Cost," pick the right Type of Expense:</strong></p>
+        <ul>
+          <li><strong>OpEx</strong>: day-to-day operational spending not tied to one specific grantee or project. Commitment Status and Org/Pro are not required.</li>
+          <li><strong>Direct Cost</strong>: a cost incurred <em>on behalf of</em> a specific grantee or sponsored project, even if the line item looks like a normal OpEx expense (travel, a consultant, an event). If the spend exists because of a particular project, it's a Direct Cost, so also fill in <strong>Commitment Status</strong> and <strong>Org/Pro</strong>.</li>
+        </ul>
+
+        <div class="callout orange" style="margin-top:.5rem;">
+          <div class="callout-title">Most common mistake</div>
+          Logging project-related spend as general OpEx under the wrong cost center, e.g. tagging a project's travel or consulting fees as plain "Travel" or "Professional Services" instead of as a Direct Cost tied to that specific project. This understates the project's real cost and overstates OpEx for a team that didn't actually spend it. Ask yourself: <strong>is this cost happening because of one specific project or grantee?</strong> If yes, it's a Direct Cost. Identify the project in Org/Pro.
+        </div>
+
+        <ul style="margin-top:.5rem;">
           <li>Enter the USD amount. If original invoice is in local currency, also log the local amount and FX rate in the corresponding fields.</li>
           <li>Paste the Google Drive link from Step 2 into the document link field.</li>
-          <li>Cost center must match your own — entries for another cost center require explicit authorization.</li>
+          <li>Cost center must match your own. Entries for another cost center require explicit authorization.</li>
         </ul>
+
+        <div class="callout black" style="margin-top:.5rem;">
+          <div class="callout-title">"Investments" is not a category</div>
+          "Investments" is a reporting umbrella that groups Grants and Direct Costs together for financial reporting only. It is never a Type of Expense you select. Every Grant and every Direct Cost already counts as an Investment automatically.
+        </div>
+
         <div class="callout green" style="margin-top:.5rem;">
           <div class="callout-title">One payment = one complete row</div>
           The database row and the consolidated PDF together form the official record of the payment request. Both must be complete before sending the email.
@@ -749,8 +772,8 @@ body {
         <div class="check-item" onclick="toggleCheck(this,'drive')">
           <div class="check-box"></div>
           <span class="check-text">
-            Database row created with the correct expense category (OpEx, Direct Cost, or Grant)
-            <span class="check-note">"Investments" is a reporting label only — do not use it as a category</span>
+            Database row created with the correct expense category (OpEx, Direct Cost, or Grant) in the right tab
+            <span class="check-note">"Investments" is a reporting label only, never a category. Direct Cost also needs Commitment Status and Org/Pro. Grants always need a completed DD file.</span>
           </span>
         </div>
         <div class="check-item" onclick="toggleCheck(this,'drive')">
@@ -960,7 +983,7 @@ function toggleEmerg(id) {
   document.getElementById(id).classList.toggle('open');
 }
 
-/* ── Checklist — localStorage persistence ── */
+/* ── Checklist / localStorage persistence ── */
 const totals = { approval: 4, pdf: 6, drive: 6, email: 4 };
 const ALL_GROUPS = ['approval','pdf','drive','email'];
 const LS_KEY = 'vrplus_payment_checklist';
