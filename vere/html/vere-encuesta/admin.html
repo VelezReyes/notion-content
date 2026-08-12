@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERE 2026 — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="gate" class="gate-wrap">
+  <div class="gate-card">
+    <p class="eyebrow">VERE · Admin</p>
+    <h1 class="big-title" style="font-size:22px">Panel de control</h1>
+    <p class="sub">Ingresa el PIN para continuar</p>
+    <form id="pin-form">
+      <input id="pin-input" type="password" inputmode="text" autocomplete="off" placeholder="PIN">
+      <p class="pin-error" id="pin-error"></p>
+      <button class="btn btn-primary" type="submit" style="width:100%">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div id="panel" class="admin-wrap" style="display:none">
+  <div class="admin-header">
+    <h1>VERE 2026 · Panel de control</h1>
+    <p class="status-label" id="status-label">—</p>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="btn-lobby" type="button">Mostrar lobby</button>
+    <button class="btn" id="btn-prev" type="button">◀ Anterior</button>
+    <button class="btn btn-primary" id="btn-next" type="button">Siguiente ▶</button>
+    <button class="btn" id="btn-end" type="button">Finalizar encuesta</button>
+    <button class="btn btn-danger" id="btn-reset" type="button">Borrar todas las respuestas</button>
+  </div>
+
+  <div class="section-block">
+    <h2>Enlaces</h2>
+    <div class="links-row">
+      <button class="btn" id="copy-join" type="button">Copiar link de participantes</button>
+      <button class="btn" id="copy-display" type="button">Copiar link de proyección</button>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Pregunta activa — resultados en vivo</h2>
+    <div id="current-tally"><p class="sub">Cargando…</p></div>
+  </div>
+
+  <div class="section-block">
+    <h2>Resumen general (12 preguntas)</h2>
+    <div id="summary-list" class="summary-list"></div>
+  </div>
+
+  <p class="sub" style="font-size:11.5px">Atajos de teclado: ← anterior · → siguiente</p>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+(function () {
+  const gate = document.getElementById('gate');
+  const panel = document.getElementById('panel');
+  const pinForm = document.getElementById('pin-form');
+  const pinInput = document.getElementById('pin-input');
+  const pinError = document.getElementById('pin-error');
+
+  function unlock() {
+    gate.style.display = 'none';
+    panel.style.display = 'block';
+    sessionStorage.setItem('vere_admin_ok', '1');
+    initAdmin();
+  }
+
+  if (sessionStorage.getItem('vere_admin_ok') === '1') {
+    unlock();
+  } else {
+    pinForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (pinInput.value === window.ADMIN_PIN) {
+        unlock();
+      } else {
+        pinError.textContent = 'PIN incorrecto';
+        pinInput.value = '';
+      }
+    });
+  }
+
+  function initAdmin() {
+    const db = firebase.database();
+    const TOTAL_Q = window.VERE_QUESTIONS.length;
+    let session = { state: 'lobby', currentIndex: -1 };
+    let allResponses = {};
+
+    window.VereApp.ready.then(() => {
+      db.ref('session').on('value', snap => {
+        session = snap.val() || { state: 'lobby', currentIndex: -1 };
+        renderStatus();
+        renderCurrentTally();
+      });
+
+      db.ref('responses').on('value', snap => {
+        allResponses = snap.val() || {};
+        renderCurrentTally();
+        renderSummary();
+      });
+    }).catch(() => {
+      document.getElementById('status-label').textContent = 'Error de conexión — revisa firebase-config.js';
+    });
+
+    document.getElementById('btn-lobby').addEventListener('click', () => {
+      db.ref('session').set({ state: 'lobby', currentIndex: -1 });
+    });
+    document.getElementById('btn-prev').addEventListener('click', () => {
+      let idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      idx = Math.max(0, idx - 1);
+      db.ref('session').set({ state: 'active', currentIndex: idx });
+    });
+    document.getElementById('btn-next').addEventListener('click', () => {
+      let idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      idx = idx < 0 ? 0 : Math.min(TOTAL_Q - 1, idx + 1);
+      db.ref('session').set({ state: 'active', currentIndex: idx });
+    });
+    document.getElementById('btn-end').addEventListener('click', () => {
+      db.ref('session').set({ state: 'ended', currentIndex: -1 });
+    });
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if (confirm('¿Seguro que quieres borrar TODAS las respuestas? Esta acción no se puede deshacer.')) {
+        db.ref('responses').remove();
+        db.ref('session').set({ state: 'lobby', currentIndex: -1 });
+      }
+    });
+    document.getElementById('copy-join').addEventListener('click', () => {
+      navigator.clipboard.writeText(new URL('index.html', location.href).href);
+      flashCopied('copy-join', 'Copiar link de participantes');
+    });
+    document.getElementById('copy-display').addEventListener('click', () => {
+      navigator.clipboard.writeText(new URL('display.html', location.href).href);
+      flashCopied('copy-display', 'Copiar link de proyección');
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') document.getElementById('btn-next').click();
+      if (e.key === 'ArrowLeft') document.getElementById('btn-prev').click();
+    });
+
+    function flashCopied(btnId, original) {
+      const btn = document.getElementById(btnId);
+      btn.textContent = '¡Copiado!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    }
+
+    function renderStatus() {
+      const label = document.getElementById('status-label');
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      if (session.state === 'ended') {
+        label.textContent = 'Encuesta finalizada';
+      } else if (session.state !== 'active' || idx < 0) {
+        label.textContent = 'Lobby (esperando inicio)';
+      } else {
+        const q = window.VERE_QUESTIONS[idx];
+        label.textContent = q ? `Pregunta ${q.globalIndex + 1} de ${TOTAL_Q} — ${q.title}` : '—';
+      }
+      document.getElementById('btn-prev').disabled = !(session.state === 'active' && idx > 0);
+      document.getElementById('btn-next').disabled = session.state === 'ended';
+    }
+
+    function tally(idx) {
+      const responsesObj = allResponses[idx] || {};
+      const counts = {1:0,2:0,3:0,4:0,5:0};
+      Object.values(responsesObj).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+      const total = Object.values(counts).reduce((a,b)=>a+b,0);
+      const sum = Object.entries(counts).reduce((s,[k,c]) => s + Number(k)*c, 0);
+      const avg = total ? (sum/total) : 0;
+      return { counts, total, avg };
+    }
+
+    function renderCurrentTally() {
+      const wrap = document.getElementById('current-tally');
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      if (session.state !== 'active' || idx < 0) {
+        wrap.innerHTML = '<p class="sub">No hay una pregunta activa en este momento.</p>';
+        return;
+      }
+      const q = window.VERE_QUESTIONS[idx];
+      if (!q) { wrap.innerHTML = '<p class="sub">—</p>'; return; }
+      const { counts, total, avg } = tally(idx);
+      wrap.innerHTML = `
+        <p class="q-title-admin">${q.title}</p>
+        <div class="bars">
+          ${[1,2,3,4,5].map(n => {
+            const c = counts[n];
+            const pct = total ? Math.round((c/total)*100) : 0;
+            return `<div class="bar-row"><span class="bar-n">${n}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-count">${c}</span></div>`;
+          }).join('')}
+        </div>
+        <p class="total-votes">${total} respuestas · promedio ${avg.toFixed(2)}</p>`;
+    }
+
+    function renderSummary() {
+      const wrap = document.getElementById('summary-list');
+      wrap.innerHTML = window.VERE_QUESTIONS.map(q => {
+        const { total, avg } = tally(q.globalIndex);
+        const pct = Math.round((avg / 5) * 100);
+        return `
+          <div class="summary-row">
+            <span class="summary-title">${q.globalIndex + 1}. ${q.title}</span>
+            <div class="bar-track small"><div class="bar-fill" style="width:${pct}%"></div></div>
+            <span class="summary-avg">${total ? avg.toFixed(2) : '—'}</span>
+            <span class="summary-total">${total} resp.</span>
+          </div>`;
+      }).join('');
+    }
+  }
+})();
+</script>
+</body>
+</html>

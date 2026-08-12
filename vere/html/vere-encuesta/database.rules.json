@@ -1,0 +1,19 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "session": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "responses": {
+      ".read": "auth != null",
+      "$questionIndex": {
+        "$voterId": {
+          ".write": "auth != null && auth.uid === $voterId",
+          ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERE 2026 — Proyección en vivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<div class="proj-wrap">
+  <div id="stage">
+    <div class="proj-lobby fade">
+      <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+      <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">Conectando…</h1>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+(function () {
+  const db = firebase.database();
+  let currentIdx = null;
+  let responsesRef = null;
+  const stage = document.getElementById('stage');
+
+  function setResponsesListener(idx) {
+    if (responsesRef) { responsesRef.off(); responsesRef = null; }
+    if (idx === null || idx === undefined || idx < 0) return;
+    responsesRef = db.ref('responses/' + idx);
+    responsesRef.on('value', snap => renderBars(snap.val() || {}));
+  }
+
+  function tally(responsesObj) {
+    const counts = {1:0,2:0,3:0,4:0,5:0};
+    Object.values(responsesObj || {}).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+    const total = Object.values(counts).reduce((a,b)=>a+b,0);
+    return { counts, total };
+  }
+
+  function renderBars(responsesObj) {
+    const { counts, total } = tally(responsesObj);
+    const wrap = document.getElementById('bars');
+    if (!wrap) return;
+    wrap.innerHTML = [1,2,3,4,5].map(n => {
+      const c = counts[n];
+      const pct = total ? Math.round((c/total)*100) : 0;
+      return `<div class="bar-row"><span class="bar-n">${n}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-count">${c}</span></div>`;
+    }).join('');
+    const totalEl = document.getElementById('total-votes');
+    if (totalEl) totalEl.textContent = total + (total === 1 ? ' respuesta' : ' respuestas');
+  }
+
+  function renderLobby() {
+    const joinUrl = new URL('index.html', location.href).href;
+    stage.innerHTML = `
+      <div class="proj-lobby fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">Bienvenidos</h1>
+        <p class="sub">Escanea el código o entra desde tu celular para participar</p>
+        <div id="qr" class="qr-box"></div>
+        <p class="join-url">${joinUrl}</p>
+      </div>`;
+    // eslint-disable-next-line no-undef
+    new QRCode(document.getElementById('qr'), { text: joinUrl, width: 220, height: 220, colorDark: '#28251E', colorLight: '#EAE6DA' });
+  }
+
+  function renderEnded() {
+    setResponsesListener(null);
+    stage.innerHTML = `
+      <div class="proj-lobby fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">¡Gracias! 🎉</h1>
+        <p class="sub">Fin de la encuesta.</p>
+      </div>`;
+  }
+
+  function renderQuestion(q) {
+    const dots = window.VERE_QUESTIONS.map(qq =>
+      `<span class="dot${qq.globalIndex === q.globalIndex ? ' on' : ''}"></span>`
+    ).join('');
+    stage.innerHTML = `
+      <div class="proj-question fade">
+        <div class="proj-dots">${dots}</div>
+        <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle} — Pregunta ${q.globalIndex + 1} de ${window.VERE_QUESTIONS.length}</p>
+        <p class="prompt" style="font-size:15px">${q.sectionPrompt}</p>
+        <h1 class="proj-title">${q.title}</h1>
+        <p class="proj-desc">${q.desc}</p>
+        <div class="scale-hint proj-hint"><span>1 · ${window.VERE_SCALE_LABELS[0]}</span><span>5 · ${window.VERE_SCALE_LABELS[4]}</span></div>
+        <div id="bars" class="bars"></div>
+        <p class="total-votes" id="total-votes">0 respuestas</p>
+      </div>`;
+  }
+
+  function renderForSession(session) {
+    const state = session ? session.state : 'lobby';
+    const idx = (session && typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+
+    if (state === 'ended') { renderEnded(); currentIdx = null; return; }
+    if (state !== 'active' || idx < 0) {
+      setResponsesListener(null);
+      currentIdx = null;
+      renderLobby();
+      return;
+    }
+    const q = window.VERE_QUESTIONS[idx];
+    if (!q) return;
+    if (currentIdx !== idx) {
+      currentIdx = idx;
+      renderQuestion(q);
+      setResponsesListener(idx);
+    }
+  }
+
+  window.VereApp.ready.then(() => {
+    db.ref('session').on('value', snap => renderForSession(snap.val()));
+  }).catch(() => {
+    stage.innerHTML = `
+      <div class="proj-lobby fade">
+        <p class="eyebrow">Error</p>
+        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">No se pudo conectar</h1>
+        <p class="sub">Revisa la configuración de Firebase (firebase-config.js).</p>
+      </div>`;
+  });
+})();
+</script>
+</body>
+</html>

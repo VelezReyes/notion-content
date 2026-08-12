@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Encuesta VERE 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="responder-wrap">
+  <div id="stage">
+    <div class="card fade">
+      <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+      <h1 class="big-title">Conectando…</h1>
+      <p class="sub">Un momento por favor.</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+(function () {
+  const db = firebase.database();
+  let voterId = null;
+  const stage = document.getElementById('stage');
+
+  function renderLobby() {
+    stage.innerHTML = `
+      <div class="card fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title">Bienvenido(a)</h1>
+        <p class="sub">Esperando a que el facilitador inicie la encuesta…</p>
+        <div class="pulse-dot"></div>
+      </div>`;
+  }
+
+  function renderEnded() {
+    stage.innerHTML = `
+      <div class="card fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title">¡Gracias por participar! 🎉</h1>
+        <p class="sub">Tus respuestas ayudan a fortalecer nuestra cultura de equipo.</p>
+      </div>`;
+  }
+
+  function renderError() {
+    stage.innerHTML = `
+      <div class="card fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title">No se pudo conectar</h1>
+        <p class="sub">Revisa tu conexión a internet e intenta de nuevo. Si el problema sigue, avisa al facilitador.</p>
+      </div>`;
+  }
+
+  function renderQuestion(q, myVote) {
+    const labels = window.VERE_SCALE_LABELS;
+    stage.innerHTML = `
+      <div class="card fade">
+        <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle}</p>
+        <p class="qcount">Pregunta ${q.globalIndex + 1} de ${window.VERE_QUESTIONS.length}</p>
+        <p class="prompt">${q.sectionPrompt}</p>
+        <h1 class="q-title">${q.title}</h1>
+        <p class="q-desc">${q.desc}</p>
+        <div class="scale-row" id="scale-row">
+          ${[1,2,3,4,5].map(n => `<button class="scale-btn${myVote===n?' selected':''}" data-n="${n}" type="button">${n}</button>`).join('')}
+        </div>
+        <div class="scale-hint">
+          <span>1 · ${labels[0]}</span>
+          <span>5 · ${labels[4]}</span>
+        </div>
+        <p class="vote-status" id="vote-status">${myVote ? 'Respuesta guardada — puedes cambiarla' : 'Toca un número para responder'}</p>
+      </div>`;
+
+    document.querySelectorAll('.scale-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const n = parseInt(btn.dataset.n, 10);
+        document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('vote-status').textContent = 'Respuesta guardada — puedes cambiarla';
+        db.ref('responses/' + q.globalIndex + '/' + voterId).set(n);
+      });
+    });
+  }
+
+  function renderForSession(session) {
+    const state = session ? session.state : 'lobby';
+    const idx = (session && typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+
+    if (state === 'ended') { renderEnded(); return; }
+    if (state !== 'active' || idx < 0) { renderLobby(); return; }
+
+    const q = window.VERE_QUESTIONS[idx];
+    if (!q) { renderLobby(); return; }
+
+    db.ref('responses/' + idx + '/' + voterId).once('value').then(snap => {
+      renderQuestion(q, snap.val() || null);
+    });
+  }
+
+  window.VereApp.ready.then(user => {
+    voterId = user.uid;
+    db.ref('session').on('value', snap => renderForSession(snap.val()));
+  }).catch(renderError);
+})();
+</script>
+</body>
+</html>
