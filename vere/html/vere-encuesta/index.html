@@ -109,6 +109,12 @@
   window.VereApp.ready.then(user => {
     voterId = user.uid;
     db.ref('session').on('value', snap => renderForSession(snap.val()));
+
+    // Presencia: marca este celular como "conectado" mientras la pestaña esté abierta,
+    // y se borra sola si se cierra o se pierde la conexión (para el contador en vivo).
+    const presenceRef = db.ref('presence/' + voterId);
+    presenceRef.set(true);
+    presenceRef.onDisconnect().remove();
   }).catch(renderError);
 })();
 </script>
