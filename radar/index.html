@@ -689,7 +689,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
         <div class="tl-dot"></div>
         <div class="tl-when">Next two weeks</div>
         <div class="tl-title">Beta learning period</div>
-        <div class="tl-desc">Use the system, test the Drive Finder, and flag questions in #radar. No historical migration yet.</div>
+        <div class="tl-desc">Use the system, and flag questions in #radar. No historical migration yet.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -734,7 +734,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     </div>
     <div class="acc" data-acc>
       <button class="acc-head"><span class="acc-head-txt">What if I can't find a folder for my document?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
-      <div class="acc-panel"><div class="acc-panel-inner"><p>Start with the <a href="#tools" style="color:var(--purple-dark)">Drive Finder</a> and the main folders explained at the top of this page. For the full folder-by-folder logic, check the <a href="#ref-overview" data-goto="reference" style="color:var(--purple-dark)">routing dictionary</a>. If it's still unclear, ask in #radar before creating a new folder.</p></div></div>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Check the <a href="#ref-overview" data-goto="reference" style="color:var(--purple-dark)">routing dictionary</a> and the main folders explained at the top of this page for the full folder-by-folder logic. You can also start with the <a href="#tools" style="color:var(--purple-dark)">Drive Finder</a>. If it's still unclear, ask in #radar before creating a new folder.</p></div></div>
     </div>
     <div class="acc" data-acc>
       <button class="acc-head"><span class="acc-head-txt">Who do I ask about how the system works?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
@@ -1210,9 +1210,8 @@ document.querySelectorAll('[data-link]').forEach(el => {
   if (LINKS[key]) el.href = LINKS[key];
 });
 
-// Intro modal: "What is RADAR?", shown once per device on first visit
+// Intro modal: "What is RADAR?", shown on every page load
 (function(){
-  const INTRO_KEY = 'radarIntroSeen_v1';
   const overlay = document.getElementById('introOverlay');
   const gotIt = document.getElementById('introModalGotIt');
   const closeBtn = document.getElementById('introModalClose');
@@ -1223,22 +1222,17 @@ document.querySelectorAll('[data-link]').forEach(el => {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  function closeIntro(remember){
+  function closeIntro(){
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    if (remember) {
-      try { localStorage.setItem(INTRO_KEY, '1'); } catch (e) { /* ignore */ }
-    }
   }
 
-  let seen = false;
-  try { seen = localStorage.getItem(INTRO_KEY) === '1'; } catch (e) { /* ignore */ }
-  if (!seen) openIntro();
+  openIntro();
 
-  gotIt && gotIt.addEventListener('click', () => closeIntro(true));
-  closeBtn && closeBtn.addEventListener('click', () => closeIntro(true));
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeIntro(true); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeIntro(true); });
+  gotIt && gotIt.addEventListener('click', closeIntro);
+  closeBtn && closeBtn.addEventListener('click', closeIntro);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeIntro(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeIntro(); });
   reopen && reopen.addEventListener('click', e => { e.preventDefault(); openIntro(); });
 })();
 document.getElementById('openFolderHero').href = LINKS.drive;
