@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RADAR · VélezReyes+</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZyBmaWxsPSIjQTYyQkZGIj48cGF0aCBkPSJNMTE3LDEzNS43YzAtMTAuNCw4LjQtMTguOCwxOC44LTE4LjhzMTguOCw4LjQsMTguOCwxOC44LTguNCwxOC44LTE4LjgsMTguOGMtMTAuNCwwLTE4LjgtOC40LTE4LjgtMTguOFoiLz4KICAgIDxwYXRoIGQ9Ik03MS41LDI0MUgwQzcuNSwxMTEuNSwxMTEuNSw3LjUsMjQxLDB2NzEuNWMtMjcuNCwyLjItNTMuNywxMC40LTc3LjQsMjQuMS04LjEtNS43LTE3LjctOC43LTI3LjgtOC43LTI3LDAtNDguOCwyMS44LTQ4LjgsNDguOHMzLjEsMTkuNyw4LjcsMjcuOGMtMTMuNywyMy43LTIxLjksNTAuMS0yNC4xLDc3LjRaIi8+CiAgICA8cGF0aCBkPSJNMTAxLjcsMjQxYzItMjAuOCw4LjEtNDAuOCwxOC4xLTU5LjEsMzguNCwxMy4yLDc1LjMtMjMuNiw2Mi4xLTYyLjEsMTguMy0xMCwzOC4zLTE2LjEsNTkuMS0xOC4xdjg2LjdjLTI2LjIsNS44LTQ2LjgsMjYuNS01Mi42LDUyLjZoLTg2LjcsMFoiLz4KICAgIDxwYXRoIGQ9Ik0yNDEsMzIzLjZ2ODYuN2MtNzMuNS03LjEtMTMyLjItNjUuOC0xMzkuMy0xMzkuM2g4Ni43YzUuOCwyNi4yLDI2LjUsNDYuOCw1Mi42LDUyLjZaIi8+CiAgICA8cGF0aCBkPSJNMjQxLDQ0MC41djcxLjVDMTExLjUsNTA0LjUsNy41LDQwMC41LDAsMjcxaDcxLjVjNy4zLDkwLjEsNzkuNCwxNjIuMiwxNjkuNSwxNjkuNVoiLz4KICAgIDxwYXRoIGQ9Ik0yNTYsMjk1LjNjLTIxLjcsMC0zOS4zLTE3LjYtMzkuMy0zOS4zLDAtMzUsNDIuNC01Mi4zLDY3LTI3Ljh0MCwwczAsMCwwLDBjMjQuNSwyNC42LDcuMiw2Ny0yNy44LDY3aDBaIi8+CiAgICA8cGF0aCBkPSJNMjkzLjIsMTk3LjVjLTYuNy00LjMtMTQuMi03LjQtMjIuMi05LjJ2LTg2LjdjMzAuOCwyLjksNTkuNiwxNC45LDgzLjUsMzQuNmwtNjEuMyw2MS4zWiIvPgogICAgPHBhdGggZD0iTTMyMy42LDI3MWg4Ni43Yy03LjEsNzMuNS02NS44LDEzMi4yLTEzOS4zLDEzOS4zdi04Ni43YzI2LjItNS44LDQ2LjgtMjYuNSw1Mi42LTUyLjZaIi8+CiAgICA8cGF0aCBkPSJNNDEwLjMsMjQxaC04Ni43Yy0xLjgtOC00LjktMTUuNS05LjItMjIuMmw2MS4zLTYxLjNjMTkuNywyMy44LDMxLjYsNTIuNywzNC42LDgzLjVaIi8+CiAgICA8cGF0aCBkPSJNMzc1LjgsMTE0LjljLTI5LjYtMjUuMy02Ni00MC4zLTEwNC44LTQzLjRWMGM1Ny45LDMuMywxMTIuMSwyNS44LDE1NS40LDY0LjRsLTUwLjUsNTAuNloiLz4KICAgIDxwYXRoIGQ9Ik00NjYuNyw0NDhjMCwxMC4zLTguNCwxOC44LTE4LjgsMTguOHMtMTguOC04LjQtMTguOC0xOC44LDguNC0xOC44LDE4LjgtMTguOCwxOC44LDguNCwxOC44LDE4LjhaIi8+CiAgICA8cGF0aCBkPSJNMzk3LjEsMTM2LjJsNTAuNi01MC41YzM4LjYsNDMuMyw2MSw5Ny41LDY0LjQsMTU1LjRoLTcxLjVjLTMuMS0zOC44LTE4LjItNzUuMi00My40LTEwNC44aDBaIi8+CiAgICA8cGF0aCBkPSJNMzk5LjEsNDQ4YzAsNi41LDEuMywxMi43LDMuNiwxOC40LTM5LDI3LjMtODQuMSw0My0xMzEuNyw0NS43di03MS41YzkwLjEtNy4zLDE2Mi4yLTc5LjQsMTY5LjUtMTY5LjVoNzEuNWMtMi43LDQ3LjYtMTguMyw5Mi43LTQ1LjcsMTMxLjctNS43LTIuMy0xMS45LTMuNi0xOC40LTMuNi0yNi45LDAtNDguOCwyMS45LTQ4LjgsNDguOFoiLz48L2c+PC9zdmc+">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:107%}
+:root{
+  --cream:#EFEFE4;
+  --black:#000000;
+  --yellow:#F3FF00; --yellow-light:#F7FF66; --yellow-dark:#C9D400;
+  --green:#27CF77;  --green-light:#6FE0A7;  --green-dark:#1A9054;
+  --purple:#A62BFF; --purple-light:#C97AFF; --purple-dark:#6F15C4;
+  --grad: linear-gradient(90deg, var(--yellow) 0%, var(--green) 50%, var(--purple) 100%);
+  --bg:#F5F3EF; --bg2:#FFFFFF; --bg3:#EAE8E3;
+  --border:rgba(0,0,0,.08); --border2:rgba(0,0,0,.15);
+  --text:#111111; --muted:#555555; --muted2:#999990;
+  --radius:14px; --radius-sm:9px;
+  --shadow:0 2px 12px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --shadow-hover:0 10px 28px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.06);
+  --font:'Montserrat',-apple-system,sans-serif;
+  --serif:'DM Serif Display',Georgia,serif;
+  --nav-h:64px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.icon{display:inline-block;width:1em;height:1em;vertical-align:-.125em;fill:currentColor}
+
+/* ─── EYEBROW / TITLES ───────────────────────────────── */
+.eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:.6rem}
+.eyebrow.on-dark{color:var(--purple-light)}
+h2.h-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.45rem);line-height:1.15;margin-bottom:.65rem}
+.h-sub{color:var(--muted);max-width:700px;font-size:1.02rem;font-weight:500;line-height:1.65}
+.subhead{font-weight:800;font-size:1.15rem;color:var(--text);margin:0 0 .9rem}
+.section{padding:4.5rem 0}
+.section-hd{margin-bottom:2.25rem}
+.section-hd.center{text-align:center}
+.section-hd.center .h-sub{margin:0 auto}
+
+/* ─── NAV ────────────────────────────────────────────── */
+.site-nav{position:sticky;top:0;z-index:500;height:var(--nav-h);background:rgba(8,8,8,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.35)}
+.site-nav::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+.nav-inner{max-width:1220px;margin:0 auto;height:100%;padding:0 clamp(1.25rem,4vw,3rem);display:flex;align-items:center;gap:1.1rem}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo{height:16px;width:auto;color:var(--cream);opacity:.9}
+.nav-divider{width:1px;height:16px;background:rgba(255,255,255,.18)}
+.nav-radar-wordmark{font-family:var(--serif);font-size:1.05rem;color:#FFF;letter-spacing:.01em}
+.nav-beta-pill{font-size:.58rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#000;background:var(--yellow);border-radius:20px;padding:2px 8px;margin-left:2px}
+.page-tabs{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:3px;gap:2px;flex-shrink:0}
+.page-tab{border:none;background:none;color:#999;font-family:var(--font);font-size:.72rem;font-weight:800;letter-spacing:.02em;padding:7px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.page-tab:hover{color:#ddd}
+.page-tab.active{background:var(--cream);color:#000}
+.nav-menu-wrap{position:relative;flex:1;display:flex;justify-content:flex-start;min-width:0}
+.nav-menu-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font);font-size:.72rem;font-weight:800;letter-spacing:.01em;padding:9px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#EEE;cursor:pointer;white-space:nowrap;transition:background .15s}
+.nav-menu-btn:hover{background:rgba(255,255,255,.13)}
+.nav-menu-btn .chev{width:14px;height:14px;transition:transform .2s;color:#999}
+.nav-menu-btn.open .chev{transform:rotate(180deg)}
+.nav-dropdown{position:absolute;top:calc(100% + 10px);left:0;background:#141414;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.45);padding:.4rem;min-width:250px;display:none;flex-direction:column;gap:2px;z-index:600}
+.nav-dropdown.open{display:flex}
+.nav-links{display:flex;flex-direction:column;gap:2px}
+.nav-link{font-size:.84rem;font-weight:700;letter-spacing:.01em;color:#bbb;padding:10px 14px;border-radius:8px;white-space:nowrap;transition:background .15s,color .15s}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-link.active{color:#000;background:var(--cream)}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-icon{display:inline-flex;align-items:center;gap:6px;font-family:var(--font);font-size:.72rem;font-weight:800;letter-spacing:.01em;padding:9px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#EEE;cursor:pointer;white-space:nowrap;transition:background .15s,transform .1s}
+.btn-icon:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
+.btn-icon.primary{background:var(--purple);border-color:var(--purple);color:#fff}
+.btn-icon.primary:hover{background:var(--purple-dark)}
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-size:.85rem;font-weight:800;letter-spacing:.01em;padding:13px 22px;border-radius:11px;cursor:pointer;border:none;transition:transform .12s,box-shadow .15s,background .15s;white-space:nowrap}
+.btn-primary{background:var(--purple);color:#fff;box-shadow:0 6px 18px rgba(166,43,255,.28)}
+.btn-primary:hover{background:var(--purple-dark);transform:translateY(-1px)}
+.btn-light{background:#fff;color:var(--text);border:1px solid var(--border2)}
+.btn-light:hover{background:var(--bg3);transform:translateY(-1px)}
+.btn-dark-outline{background:transparent;color:var(--cream);border:1px solid rgba(239,239,228,.35)}
+.btn-dark-outline:hover{background:rgba(239,239,228,.08);border-color:rgba(239,239,228,.6)}
+.btn-sm{padding:8px 14px;font-size:.74rem;border-radius:8px}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero{position:relative;background:#0A0A0A;overflow:hidden;padding:5rem 0 4rem}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(239,239,228,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(239,239,228,.055) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 40%,transparent 100%)}
+.hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-light);margin-bottom:1.25rem}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(39,207,119,.25);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--serif);font-weight:400;color:#fff;font-size:clamp(2.8rem,7vw,5rem);line-height:1;margin-bottom:.5rem}
+.hero-acronym{font-size:1.02rem;font-weight:500;color:#AAA;letter-spacing:.02em;margin-bottom:1.5rem;max-width:560px}
+.hero-acronym b{color:var(--cream);font-weight:700}
+.hero-sub{color:#C8C8C8;font-weight:500;font-size:1.08rem;line-height:1.7;max-width:560px;margin-bottom:2.25rem}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem}
+.hero-hint{font-size:.8rem;font-weight:500;color:#777}
+.hero-hint a{color:var(--yellow-light);font-weight:700;border-bottom:1px solid rgba(247,255,102,.3)}
+
+/* ─── RADAR SCOPE (animated hero graphic) ────────────── */
+.radar-scope{position:absolute;right:-90px;top:50%;transform:translateY(-48%);width:460px;height:460px;pointer-events:none}
+.radar-scope .rs-icon{position:absolute;inset:0;color:var(--purple);opacity:.13}
+.radar-scope .rs-ring{position:absolute;border:1px solid rgba(166,43,255,.3);border-radius:50%}
+.radar-scope .rs-ring.r1{inset:6%}
+.radar-scope .rs-ring.r2{inset:23%}
+.radar-scope .rs-ring.r3{inset:40%}
+.radar-scope .rs-sweep-wrap{position:absolute;inset:6%;border-radius:50%;overflow:hidden}
+.radar-scope .rs-sweep{position:absolute;inset:-2%;background:conic-gradient(from 0deg,rgba(166,43,255,.75),rgba(166,43,255,.08) 22%,rgba(166,43,255,0) 34%,rgba(166,43,255,0) 100%);animation:rsSpin 4.2s linear infinite}
+@keyframes rsSpin{to{transform:rotate(360deg)}}
+.radar-scope .rs-blip{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--green-light);box-shadow:0 0 10px 3px rgba(39,207,119,.7);opacity:0;animation:rsBlip 4.2s ease-in-out infinite}
+@keyframes rsBlip{0%,88%,100%{opacity:0;transform:scale(.5)}4%{opacity:1;transform:scale(1.2)}14%{opacity:.7;transform:scale(.9)}26%{opacity:0;transform:scale(.5)}}
+.radar-scope .rs-center{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--purple-light);left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 14px 4px rgba(166,43,255,.55)}
+
+/* ─── CARDS (generic) ───────────────────────────────── */
+.grid{display:grid;gap:1.1rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.card-num{font-family:var(--serif);font-size:1.9rem;color:var(--purple);line-height:1;margin-bottom:.75rem}
+.card-title{font-weight:800;font-size:1rem;margin-bottom:.5rem;line-height:1.3}
+.card-body{color:var(--muted);font-weight:500;font-size:.92rem;line-height:1.6;margin-bottom:.85rem}
+.card-tag{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--green-dark);background:#EAFBF1;border:1px solid #CDF0DD;border-radius:6px;padding:3px 8px}
+
+/* ─── PRINCIPLE / NOTE BOXES ─────────────────────────── */
+.principle-box{margin-top:2rem;background:var(--black);border-radius:var(--radius);padding:1.5rem 1.75rem;color:var(--cream);display:flex;gap:1rem;align-items:flex-start}
+.principle-box .icon{color:var(--yellow);width:1.3em;height:1.3em;flex-shrink:0;margin-top:2px}
+.principle-box p{font-size:.92rem;font-weight:500;line-height:1.6;color:#E2E2E2}
+.principle-box b{color:#fff}
+.principle-box.purple{background:var(--purple)}
+.principle-box.purple .icon{color:#fff}
+.principle-box.purple p{color:#F3E4FF}
+.principle-box.purple b{color:#fff}
+.principle-box .cta-link{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.principle-box .btn{margin-top:.85rem}
+.privacy-note{margin-top:1.25rem;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius);padding:1.1rem 1.4rem;display:flex;gap:.9rem;align-items:flex-start}
+.privacy-note .icon{color:var(--purple);width:1.2em;height:1.2em;flex-shrink:0;margin-top:2px}
+.privacy-note p{font-size:.9rem;font-weight:500;line-height:1.6;color:var(--muted)}
+.privacy-note b{color:var(--text)}
+
+/* ─── STRUCTURE CARDS ────────────────────────────────── */
+.struct-card{position:relative;padding-top:1.75rem}
+.struct-card .card-title{padding-right:2.4rem}
+.struct-code{font-family:var(--serif);font-size:1.5rem;position:absolute;top:1.5rem;right:1.5rem;color:var(--bg3);line-height:1}
+.struct-card.archive .struct-code{color:#F3E3E3}
+
+/* ─── FOLDER TREE CARD ───────────────────────────────── */
+.tree-card{padding:0;overflow:hidden}
+.tree-row{display:flex;gap:1.1rem;align-items:flex-start;padding:1.15rem 1.5rem}
+.tree-row+.tree-row{border-top:1px solid var(--border)}
+.tree-num{font-family:var(--serif);font-size:1.35rem;color:var(--purple);line-height:1.3;flex-shrink:0;min-width:2rem}
+.tree-name{font-weight:800;font-size:.88rem;letter-spacing:.03em;margin-bottom:.3rem;color:var(--text)}
+.tree-sub{font-size:.85rem;color:var(--muted);font-weight:500;line-height:1.55}
+
+/* ─── NAMING CARD ────────────────────────────────────── */
+.naming-card{max-width:680px}
+.naming-format{font-family:var(--serif);font-size:1.1rem;background:var(--bg3);padding:.8rem 1.1rem;border-radius:8px;margin:.5rem 0 1rem}
+.naming-card p{font-size:.92rem;font-weight:500;margin-bottom:.5rem;color:var(--text)}
+.def-list{margin:1rem 0}
+.def-row{display:flex;gap:1rem;padding:.65rem 0;border-bottom:1px solid var(--border)}
+.def-row:last-child{border-bottom:none}
+.def-row b{flex:0 0 128px;color:var(--text);font-weight:800;font-size:.86rem}
+.def-row span{color:var(--muted);font-size:.86rem;font-weight:500;line-height:1.55}
+.tag-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.tag-avoid{font-size:.74rem;font-weight:600;color:#B33;background:#FDECEC;border:1px solid #F4CCCC;border-radius:6px;padding:3px 9px;text-decoration:line-through}
+
+/* ─── TOOLS ──────────────────────────────────────────── */
+.tool-card.finder{border:1.5px solid var(--purple);position:relative;overflow:hidden}
+.tool-card.finder::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad)}
+.tool-icon-wrap{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.tool-icon-wrap.policy{background:#FDF3D9;color:var(--yellow-dark)}
+.tool-icon-wrap.guidelines{background:#E4F9EE;color:var(--green-dark)}
+.tool-icon-wrap.finder{background:#F4E6FF;color:var(--purple)}
+.tool-icon-wrap svg{width:20px;height:20px}
+.read-note{margin-top:1.5rem;background:#F4E6FF;border:1px solid #E4C3FF;border-radius:var(--radius);padding:1.1rem 1.4rem;font-size:.92rem;font-weight:500;color:#4A1580;line-height:1.6}
+.read-note b{color:#3A1066}
+.read-note a{color:var(--purple-dark);font-weight:800;border-bottom:1px solid currentColor}
+
+/* ─── BETA RULES ─────────────────────────────────────── */
+.beta-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.75rem}
+.beta-row{display:flex;gap:1.1rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.25rem 1.5rem;align-items:flex-start}
+.beta-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--purple);color:#fff;font-family:var(--serif);font-size:1rem;display:flex;align-items:center;justify-content:center}
+.beta-row h4{font-size:.95rem;font-weight:800;margin-bottom:.35rem}
+.beta-row p{font-size:.92rem;font-weight:500;color:var(--muted);line-height:1.6}
+.beta-row p .opp{color:var(--green-dark);font-weight:700}
+.important-box{background:#FFF7E0;border:1px solid #F0DFA0;border-radius:var(--radius);padding:1.1rem 1.4rem;display:flex;gap:.9rem;align-items:flex-start;font-size:.92rem;font-weight:500;color:#5A4200;line-height:1.6;margin-bottom:1rem}
+.important-box b{color:#402F00}
+.important-box .icon{color:var(--yellow-dark);width:1.2em;height:1.2em;flex-shrink:0;margin-top:2px}
+
+/* ─── CHECKLIST ──────────────────────────────────────── */
+.checklist{display:flex;flex-direction:column}
+.check-row{display:flex;gap:.85rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.check-row:last-child{border-bottom:none}
+.check-row .icon{width:1.05em;height:1.05em;color:var(--purple);flex-shrink:0;margin-top:3px}
+.check-row p{font-size:.9rem;font-weight:500;color:var(--text);line-height:1.55}
+
+/* ─── ACCORDION (FAQ) ────────────────────────────────── */
+.acc{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2);box-shadow:var(--shadow);overflow:hidden;margin-bottom:.65rem}
+.acc-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:1.1rem 1.4rem;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font)}
+.acc-head-txt{font-size:.92rem;font-weight:700;color:var(--text)}
+.acc-head-sub{font-size:.76rem;color:var(--muted2);font-weight:500;margin-top:2px}
+.acc-chev{flex-shrink:0;width:20px;height:20px;color:var(--muted);transition:transform .25s}
+.acc.open .acc-chev{transform:rotate(180deg);color:var(--purple)}
+.acc-panel{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc-panel-inner{padding:0 1.4rem 1.3rem}
+.acc-panel-inner p{font-size:.92rem;font-weight:500;color:var(--muted);line-height:1.65}
+.acc-panel-inner p a{font-weight:800}
+
+/* ─── DARK / BANNER ACCORDION ────────────────────────── */
+.acc.dark{background:var(--black);border-color:rgba(255,255,255,.1)}
+.acc.dark .acc-head-txt{color:#fff;font-size:1.08rem;font-weight:800;letter-spacing:.005em}
+.acc.dark .acc-head-sub{color:#999}
+.acc.dark .acc-chev{color:#888}
+.acc.dark.open .acc-chev{color:var(--yellow)}
+.acc.dark .acc-panel-inner p{color:#bbb}
+.acc.dark .acc-panel-inner{border-top:1px solid rgba(255,255,255,.08);padding-top:1.1rem}
+
+/* ─── FUNCTIONAL CHECKLIST ───────────────────────────── */
+.check-row{cursor:pointer;border-radius:8px;padding:.75rem .5rem;margin:0 -.5rem;-webkit-tap-highlight-color:transparent}
+.acc.dark .check-row{border-bottom-color:rgba(255,255,255,.1)}
+.acc.dark .check-row:hover{background:rgba(255,255,255,.05)}
+.acc.dark .check-row .icon{color:#777}
+.acc.dark .check-row.done .icon{color:var(--yellow)}
+.acc.dark .check-row p{color:#ddd}
+.check-row.done p{opacity:.5;text-decoration:line-through}
+.checklist-reset{display:inline-block;margin-top:1.1rem;font-size:.78rem;font-weight:700;color:#888;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.checklist-reset:hover{color:#fff}
+
+/* ─── TABLES (used on Reference page + recaps) ───────── */
+.acc-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.acc-table th{text-align:left;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);padding:.5rem .6rem;border-bottom:1px solid var(--border)}
+.acc-table td{padding:.7rem .6rem;border-bottom:1px solid var(--border);color:var(--text);font-weight:500;line-height:1.55;vertical-align:top}
+.acc-table td:first-child{color:var(--muted);width:56%}
+.acc-table td b{color:var(--purple-dark);font-weight:800}
+.acc-table tr:last-child td{border-bottom:none}
+
+/* ─── TIMELINE ───────────────────────────────────────── */
+.tl{position:relative;padding-left:2rem}
+.tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border2)}
+.tl-item{position:relative;padding-bottom:1.9rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-2rem;top:2px;width:18px;height:18px;border-radius:50%;background:var(--bg2);border:3px solid var(--purple-light)}
+.tl-item.now .tl-dot{background:var(--purple);border-color:var(--purple);box-shadow:0 0 0 4px rgba(166,43,255,.18)}
+.tl-when{font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:.25rem}
+.tl-title{font-weight:800;font-size:.98rem;margin-bottom:.3rem}
+.tl-desc{font-size:.9rem;font-weight:500;color:var(--muted);line-height:1.6;max-width:600px}
+.principle-quote{margin-top:2.5rem;text-align:center;font-family:var(--serif);font-size:1.3rem;line-height:1.5;color:var(--text);max-width:640px;margin-left:auto;margin-right:auto}
+.principle-quote span{color:var(--purple)}
+
+/* ─── CONTACT PILLS (footer) ─────────────────────────── */
+.contact-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:.9rem 1.3rem;font-size:.85rem;text-align:left;min-width:210px}
+.contact-pill b{display:block;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:#F1E3FF;margin-bottom:.3rem;font-weight:800}
+.contact-pill span{color:#fff;font-weight:700}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer{background:var(--black);color:#888;padding:3rem 0 2rem}
+.footer-inner{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+.footer-logo{height:14px;color:var(--cream);opacity:.85;margin-bottom:.9rem}
+.footer-tag{font-size:.85rem;font-weight:500;color:#888;max-width:320px;line-height:1.6}
+.footer-tag b{color:var(--cream)}
+.footer-brand{max-width:340px}
+.footer-support-txt{font-size:.85rem;font-weight:500;color:#999;line-height:1.6;margin:1.1rem 0 1rem}
+.footer-contacts{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.footer-contacts .contact-pill{min-width:0}
+.footer-links{display:flex;gap:1.75rem;flex-wrap:wrap}
+.footer-col h5{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.75rem}
+.footer-col a{display:block;font-size:.82rem;font-weight:500;color:#AAA;margin-bottom:.55rem}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #1E1E1E;margin-top:2.25rem;padding-top:1.25rem;text-align:center;font-size:.7rem;color:#555}
+
+/* ─── PAGES ──────────────────────────────────────────── */
+.app-page{display:none}
+.app-page.active{display:block}
+
+/* ─── INTRO MODAL ("what is RADAR?") ─────────────────── */
+.intro-overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:900;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(3px)}
+.intro-overlay.open{display:flex}
+.intro-modal{background:var(--bg2);border-radius:18px;max-width:460px;width:100%;padding:2rem 2.1rem 2.1rem;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative}
+.intro-modal-icon{width:42px;height:42px;color:#fff;background:var(--purple);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem}
+.intro-modal-icon svg{width:22px;height:22px}
+.intro-modal .eyebrow{margin-bottom:.5rem}
+.intro-modal h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;margin-bottom:.75rem;line-height:1.2}
+.intro-modal p{font-size:.92rem;font-weight:500;color:var(--muted);line-height:1.65;margin-bottom:1.4rem}
+.intro-modal p b{color:var(--text)}
+.intro-modal-close{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:none;background:var(--bg3);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.intro-modal-close:hover{background:var(--border2)}
+.intro-modal-close svg{width:14px;height:14px}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width:860px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .grid-2{grid-template-columns:1fr}
+  .nav-radar-wordmark{display:none}
+  .nav-divider{display:none}
+  .btn-icon .lbl{display:none}
+  .nav-dropdown{position:fixed;top:var(--nav-h);left:auto;right:1rem;min-width:200px;max-width:calc(100vw - 2rem)}
+}
+@media (max-width:640px){
+  .grid-4,.grid-3{grid-template-columns:1fr}
+  .radar-scope{width:280px;height:280px;opacity:.55}
+  .footer-inner{flex-direction:column}
+  .section{padding:3rem 0}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOLS ──────────────────────────────────────── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="logo-ver" viewBox="0 0 577.96 91.69">
+    <g fill="currentColor">
+      <polygon points="27.41 57.15 11.99 21.55 0 21.55 22.17 71.19 32.04 71.19 54.21 21.55 42.62 21.55 27.41 57.15"/>
+      <polygon points="102.68 0 89.08 0 79.51 14.11 89.38 14.11 102.68 0"/>
+      <path d="M96.7,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM69.4,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
+      <path d="M130.36,56.46V0h-10.88v59.48c0,9.37,5.24,13,12.39,13,3.22,0,5.94-.5,8.06-1.61v-9.37c-1.21.71-2.62,1.01-4.13,1.01-3.63,0-5.44-2.01-5.44-6.05Z"/>
+      <path d="M185.16,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM157.86,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
+      <polygon points="246.93 29 246.93 21.55 205.52 21.55 205.52 31.12 231.21 31.12 203.7 63.76 203.7 71.02 248.54 71.02 248.54 61.44 219.42 61.44 246.93 29"/>
+      <path d="M270.8,30.28v-8.56h-10.88v49.47h10.88v-30.33c2.32-5.14,8.46-9.67,16.22-9.67,1.11,0,2.12.1,3.02.2v-10.88c-.3-.1-.6-.1-1.01-.1-7.66,0-14.91,4.13-18.24,9.87Z"/>
+      <path d="M334.78,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM307.47,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
+      <path d="M378.91,56.42l-14.91-34.86h-12.09l21.66,47.66c-3.73,8.87-7.15,12.9-12.8,12.9-2.52,0-4.94-.5-7.15-1.61v9.57c1.91,1.11,4.84,1.61,8.97,1.61,8.16,0,14.41-5.14,18.84-15.31l23.68-54.81h-11.79l-14.41,34.86Z"/>
+      <path d="M448.33,24.42c-3.63-2.72-7.96-4.03-13-4.03-7.56,0-13.6,2.52-18.34,7.46-4.74,4.94-7.05,11.18-7.05,18.54,0,7.76,2.62,14.01,7.86,18.84,5.34,4.84,11.79,7.25,19.45,7.25s13.7-1.61,18.24-4.84v-9.17c-4.94,2.92-10.18,4.43-15.92,4.43-10.07,0-17.33-4.94-18.64-13.3h37.88v-2.82c0-8.97-3.12-17.13-10.48-22.37ZM421.02,41.35c.71-6.45,5.84-11.79,13.8-11.79,4.03,0,7.15,1.21,9.47,3.63,2.32,2.42,3.43,5.14,3.53,8.16h-26.8Z"/>
+      <polygon points="558.07 41.45 558.07 21.56 548.28 21.56 548.28 41.45 528.49 41.45 528.49 51.15 548.28 51.15 548.28 71.03 558.07 71.03 558.07 51.15 577.96 51.15 577.96 41.45 558.07 41.45"/>
+      <polygon points="509.72 31.14 509.72 21.56 468.31 21.56 468.31 29.02 495.81 61.46 466.69 61.46 466.69 71.03 511.53 71.03 511.53 63.78 484.02 31.14 509.72 31.14"/>
+    </g>
+  </symbol>
+  <symbol id="icon-radar" viewBox="0 0 512 512">
+    <g fill="currentColor">
+      <path d="M117,135.7c0-10.4,8.4-18.8,18.8-18.8s18.8,8.4,18.8,18.8-8.4,18.8-18.8,18.8c-10.4,0-18.8-8.4-18.8-18.8Z"/>
+      <path d="M71.5,241H0C7.5,111.5,111.5,7.5,241,0v71.5c-27.4,2.2-53.7,10.4-77.4,24.1-8.1-5.7-17.7-8.7-27.8-8.7-27,0-48.8,21.8-48.8,48.8s3.1,19.7,8.7,27.8c-13.7,23.7-21.9,50.1-24.1,77.4Z"/>
+      <path d="M101.7,241c2-20.8,8.1-40.8,18.1-59.1,38.4,13.2,75.3-23.6,62.1-62.1,18.3-10,38.3-16.1,59.1-18.1v86.7c-26.2,5.8-46.8,26.5-52.6,52.6h-86.7,0Z"/>
+      <path d="M241,323.6v86.7c-73.5-7.1-132.2-65.8-139.3-139.3h86.7c5.8,26.2,26.5,46.8,52.6,52.6Z"/>
+      <path d="M241,440.5v71.5C111.5,504.5,7.5,400.5,0,271h71.5c7.3,90.1,79.4,162.2,169.5,169.5Z"/>
+      <path d="M256,295.3c-21.7,0-39.3-17.6-39.3-39.3,0-35,42.4-52.3,67-27.8t0,0s0,0,0,0c24.5,24.6,7.2,67-27.8,67h0Z"/>
+      <path d="M293.2,197.5c-6.7-4.3-14.2-7.4-22.2-9.2v-86.7c30.8,2.9,59.6,14.9,83.5,34.6l-61.3,61.3Z"/>
+      <path d="M323.6,271h86.7c-7.1,73.5-65.8,132.2-139.3,139.3v-86.7c26.2-5.8,46.8-26.5,52.6-52.6Z"/>
+      <path d="M410.3,241h-86.7c-1.8-8-4.9-15.5-9.2-22.2l61.3-61.3c19.7,23.8,31.6,52.7,34.6,83.5Z"/>
+      <path d="M375.8,114.9c-29.6-25.3-66-40.3-104.8-43.4V0c57.9,3.3,112.1,25.8,155.4,64.4l-50.5,50.6Z"/>
+      <path d="M466.7,448c0,10.3-8.4,18.8-18.8,18.8s-18.8-8.4-18.8-18.8,8.4-18.8,18.8-18.8,18.8,8.4,18.8,18.8Z"/>
+      <path d="M397.1,136.2l50.6-50.5c38.6,43.3,61,97.5,64.4,155.4h-71.5c-3.1-38.8-18.2-75.2-43.4-104.8h0Z"/>
+      <path d="M399.1,448c0,6.5,1.3,12.7,3.6,18.4-39,27.3-84.1,43-131.7,45.7v-71.5c90.1-7.3,162.2-79.4,169.5-169.5h71.5c-2.7,47.6-18.3,92.7-45.7,131.7-5.7-2.3-11.9-3.6-18.4-3.6-26.9,0-48.8,21.9-48.8,48.8Z"/>
+    </g>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="icon-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="icon-external" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="icon-folder" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></symbol>
+  <symbol id="icon-warn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.71 3.86a2 2 0 0 0-3.42 0Z"/></symbol>
+  <symbol id="icon-book2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 6.5c-1.5-1.2-3.6-1.7-6-1.7v14c2.4 0 4.5.5 6 1.7 1.5-1.2 3.6-1.7 6-1.7v-14c-2.4 0-4.5.5-6 1.7ZM12 6.5v14"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="icon-checkbox" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="icon-checkbox-on" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="currentColor"/><path d="M8 12.3l2.6 2.6L16.5 9" fill="none" stroke="#000" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+</defs>
+</svg>
+
+<!-- NAV ─────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-goto="guide">
+      <svg class="nav-logo" viewBox="0 0 577.96 91.69"><use href="#logo-ver"/></svg>
+      <span class="nav-divider"></span>
+      <span class="nav-radar-wordmark">RADAR</span>
+      <span class="nav-beta-pill">Beta</span>
+    </a>
+
+    <div class="page-tabs">
+      <button class="page-tab active" data-page="guide">Guide</button>
+      <button class="page-tab" data-page="reference">Routing Dictionary</button>
+    </div>
+
+    <div class="nav-menu-wrap">
+      <button class="btn-icon nav-menu-btn" id="navMenuBtn" aria-haspopup="true" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-menu"/></svg>
+        <span class="lbl">Sections</span>
+        <svg class="icon chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg>
+      </button>
+      <div class="nav-dropdown" id="navDropdown">
+        <div class="nav-links navset" data-for="guide">
+          <a href="#start" class="nav-link">Start</a>
+          <a href="#beta" class="nav-link">Beta rules</a>
+          <a href="#tools" class="nav-link">Tools</a>
+          <a href="#timeline" class="nav-link">Timeline</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+        <div class="nav-links navset" data-for="reference" style="display:none">
+          <a href="#ref-overview" class="nav-link">Overview</a>
+          <a href="#ref-strategy" class="nav-link">Strategy</a>
+          <a href="#ref-invest" class="nav-link">Investments &amp; Programs</a>
+          <a href="#ref-inst" class="nav-link">Institutional</a>
+          <a href="#ref-archive" class="nav-link">Archive</a>
+          <a href="#ref-lifecycle" class="nav-link">Lifecycle</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <a class="btn-icon" href="#" data-link="drive" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-folder"/></svg>
+        <span class="lbl">RADAR Folder</span>
+      </a>
+      <a class="btn-icon primary" href="#" data-link="finder" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+        <span class="lbl">Drive Finder</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- INTRO MODAL: what is RADAR? ───────────────────────── -->
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-modal" role="dialog" aria-modal="true" aria-labelledby="introModalTitle">
+    <button class="intro-modal-close" id="introModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><use href="#icon-close"/></svg>
+    </button>
+    <div class="intro-modal-icon"><svg viewBox="0 0 512 512"><use href="#icon-radar"/></svg></div>
+    <div class="eyebrow">Before we dive in</div>
+    <h2 id="introModalTitle">What is RADAR?</h2>
+    <p>RADAR, Repository for Assets, Decisions, Analysis and Research, is ver+'s new system for categorizing every file we create. One official home per document, easy to find, no duplicates. It works through a single new folder on Drive, called <b>RADAR</b>, where the entire new structure lives.</p>
+    <button class="btn btn-primary" id="introModalGotIt">Got it, let's go</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 1 — GUIDE
+     ══════════════════════════════════════════════════════ -->
+<div class="app-page active" data-page="guide">
+
+<!-- HERO ──────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="radar-scope" aria-hidden="true">
+    <svg class="rs-icon" viewBox="0 0 512 512"><use href="#icon-radar"/></svg>
+    <div class="rs-ring r1"></div>
+    <div class="rs-ring r2"></div>
+    <div class="rs-ring r3"></div>
+    <div class="rs-sweep-wrap"><div class="rs-sweep"></div></div>
+    <div class="rs-blip" style="top:22%;left:64%;animation-delay:0s"></div>
+    <div class="rs-blip" style="top:58%;left:28%;animation-delay:1.1s"></div>
+    <div class="rs-blip" style="top:70%;left:66%;animation-delay:2.3s"></div>
+    <div class="rs-blip" style="top:34%;left:38%;animation-delay:3.2s"></div>
+    <div class="rs-center"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="hero-dot"></span> VélezReyes+ · Knowledge Management · Beta launch</div>
+    <h1>RADAR</h1>
+    <p class="hero-acronym"><b>R</b>epository for <b>A</b>ssets, <b>D</b>ecisions, <b>A</b>nalysis and <b>R</b>esearch</p>
+    <p class="hero-sub">This is the new, official methodology for saving files at ver+. Starting today, every file gets one home: a single place, easy to find, with no duplicates.</p>
+    <div class="hero-actions">
+      <a class="btn btn-dark-outline" id="openFolderHero" href="#" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-folder"/></svg>
+        Go to the RADAR folder
+      </a>
+      <a class="btn btn-primary" href="#" data-link="finder" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+        Open the Drive Finder
+      </a>
+    </div>
+    <p class="hero-hint">New here? Start with <a href="#start">how this works</a>, or jump straight to the <a href="#beta">three things we're asking during the beta</a>. Not sure what RADAR even is yet? <a href="#" id="introReopen">Read the one-minute version</a>.</p>
+  </div>
+</section>
+
+<!-- START: the methodology, to the point ──────────────── -->
+<section class="section" id="start">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Start here, the new methodology</div>
+      <h2 class="h-title">This is how we save files now</h2>
+      <p class="h-sub">RADAR replaces ad hoc folders and personal habits with one official home for every file. We produce close to 20,000 files a year. Without a shared structure, that volume turns into noise instead of institutional memory: work ends up outside institutional folders, final versions get duplicated, and the old structure no longer matched how ver+ actually works.</p>
+    </div>
+
+    <h3 class="subhead">Main folders</h3>
+    <div class="grid grid-4">
+      <div class="card struct-card"><span class="struct-code">01</span>
+        <div class="card-title">Strategy</div>
+        <div class="card-body">Institutional direction, thematic strategies, and annual OKRs.</div>
+      </div>
+      <div class="card struct-card"><span class="struct-code">02</span>
+        <div class="card-title">Investments &amp; Programs</div>
+        <div class="card-body">Pipeline · Portfolio · Venture Building · In-house Programs.</div>
+      </div>
+      <div class="card struct-card"><span class="struct-code">03</span>
+        <div class="card-title">Institutional</div>
+        <div class="card-body">Governance · Policies · Transversal Areas · Research &amp; Learning · External Knowledge.</div>
+      </div>
+      <div class="card struct-card archive"><span class="struct-code">99</span>
+        <div class="card-title">Archive</div>
+        <div class="card-body">Closed, declined, superseded, and legacy information.</div>
+      </div>
+    </div>
+
+    <div class="principle-box">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+      <p><b>Key rule:</b> one organization or initiative equals one folder that keeps its full history through the lifecycle, from Pipeline all the way to Portfolio or Archive. Education and Democracy are the only mandatory thematic paths inside Investments &amp; Programs.</p>
+    </div>
+
+    <div class="privacy-note">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-shield"/></svg>
+      <p><b>A note on privacy:</b> some folders, participant and beneficiary data, People records, and sensitive Legal, Finance, or Charity materials, have restricted access on purpose. If you can see a folder, you already have the access you need. If you think you're missing access for a legitimate reason, ask in #radar.</p>
+    </div>
+
+    <h3 class="subhead" style="margin-top:3rem">A quick look at the folder tree</h3>
+    <p class="h-sub" style="margin-bottom:1.25rem">Each block breaks down into a small, fixed set of subfolders, so you always know what you're browsing when you open RADAR. This is one level in, the complete breakdown is in the <a href="#ref-overview" data-goto="reference" style="color:var(--purple-dark);font-weight:800">Routing Dictionary</a>.</p>
+    <div class="card tree-card">
+      <div class="tree-row">
+        <span class="tree-num">01</span>
+        <div>
+          <div class="tree-name">STRATEGY</div>
+          <div class="tree-sub">ver+ Strategy · Thematic Strategies (Education, Democracy) · OKRs</div>
+        </div>
+      </div>
+      <div class="tree-row">
+        <span class="tree-num">02</span>
+        <div>
+          <div class="tree-name">INVESTMENTS &amp; PROGRAMS</div>
+          <div class="tree-sub">Master Indexes · Pipeline · Portfolio · Venture Building · In-house Programs</div>
+        </div>
+      </div>
+      <div class="tree-row">
+        <span class="tree-num">03</span>
+        <div>
+          <div class="tree-name">INSTITUTIONAL</div>
+          <div class="tree-sub">Policies · Governance &amp; Decisions · Transversal Areas · Research &amp; Learning · Ecosystem &amp; Partnerships · External Knowledge · Templates</div>
+        </div>
+      </div>
+      <div class="tree-row">
+        <span class="tree-num">99</span>
+        <div>
+          <div class="tree-name">ARCHIVE</div>
+          <div class="tree-sub">Declined Pipeline · Closed Portfolio · Closed Ventures · Closed In-house Programs · Superseded Strategies and templates</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" style="margin-top:3rem">How to name a file</h3>
+    <p class="h-sub" style="margin-bottom:1.25rem">This works whether or not you use the <a href="#" data-link="finder" target="_blank" rel="noopener" style="color:var(--purple-dark);font-weight:800">Drive Finder</a>, so if you'd rather do it manually, you can. Use this format whenever date, status, or version matter:</p>
+    <div class="card naming-card">
+      <p class="naming-format">YYYY-MM-DD_[Object]_[DocumentType]_[Status]_v##</p>
+      <div class="def-list">
+        <div class="def-row"><b>Date</b><span>YYYY-MM-DD, the day the file was created or last approved.</span></div>
+        <div class="def-row"><b>Object</b><span>The specific organization, venture, program, or topic the file is about.</span></div>
+        <div class="def-row"><b>Document Type</b><span>What kind of document it is: Report, Memo, Agreement, Deck, Evaluation, and so on.</span></div>
+        <div class="def-row"><b>Status</b><span>When relevant: DRAFT, FOR_REVIEW, APPROVED, SIGNED, or SUPERSEDED.</span></div>
+        <div class="def-row"><b>Version</b><span>v01, v02, and so on, a running version number.</span></div>
+      </div>
+      <p>Avoid names that don't help anyone else identify the file:</p>
+      <div class="tag-list">
+        <span class="tag-avoid">final</span><span class="tag-avoid">final2</span><span class="tag-avoid">last</span><span class="tag-avoid">new</span><span class="tag-avoid">personal initials</span>
+      </div>
+    </div>
+
+    <div class="principle-box">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+      <div>
+        <p><b>In a hurry?</b> Open the Drive Finder's <b>Classify</b> tab: describe your file in a sentence and it suggests the folder and the file name. The other tab helps you find existing files quickly. The format above works just as well if you'd rather do it by hand, it's your call.</p>
+        <a class="btn btn-light btn-sm" href="#" data-link="finder" target="_blank" rel="noopener" style="margin-top:.9rem">Open the Drive Finder</a>
+      </div>
+    </div>
+
+    <div class="principle-box purple">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-book2"/></svg>
+      <p>Need the full folder-by-folder logic, not just the main folders? The <a class="cta-link" href="#ref-overview" data-goto="reference">Routing Dictionary</a> has every question and destination spelled out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BETA RULES ────────────────────────────────────────── -->
+<section class="section" id="beta" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">What we're asking during the beta</div>
+      <h2 class="h-title">Three things, nothing more</h2>
+      <p class="h-sub">Keeping the ask narrow lowers the cost of adoption and makes it easier to tell system problems from migration problems.</p>
+    </div>
+
+    <div class="beta-list">
+      <div class="beta-row">
+        <div class="beta-num">1</div>
+        <div>
+          <h4>New work goes to RADAR</h4>
+          <p>Any document, folder, analysis, or meeting record you start from today should be created directly in RADAR.</p>
+        </div>
+      </div>
+      <div class="beta-row">
+        <div class="beta-num">2</div>
+        <div>
+          <h4>Move what you're actively using, keep the original</h4>
+          <p>If you're working on something right now, move it into RADAR and keep working from there, without deleting the original file from its old location. <span class="opp">If you're in the middle of a project, this is also a good moment to start bringing everything related to it into RADAR</span>, since it sets you up for the migration that's coming later.</p>
+        </div>
+      </div>
+      <div class="beta-row">
+        <div class="beta-num">3</div>
+        <div>
+          <h4>Questions? Tell us</h4>
+          <p>If you're not sure where something goes, don't guess and don't sit on it. Ask in <a href="#" data-link="channel" target="_blank" rel="noopener" style="color:var(--purple-dark);font-weight:800">#radar</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="important-box">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-warn"/></svg>
+      <p><b>Important: this is not a full migration.</b> Moving historical files comes later, at a calmer pace. For now, let's focus on working well going forward.</p>
+    </div>
+
+    <div class="acc dark" data-acc style="margin-top:2rem">
+      <button class="acc-head">
+        <div style="display:flex;align-items:center;gap:.9rem">
+          <svg class="icon" viewBox="0 0 24 24" style="width:1.4em;height:1.4em;color:var(--yellow);flex-shrink:0"><use href="#icon-book2"/></svg>
+          <div>
+            <span class="acc-head-txt">Checklist before saving a document</span>
+            <div class="acc-head-sub">Three quick steps, run through them before you save anything</div>
+          </div>
+        </div>
+        <svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg>
+      </button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p style="margin-bottom:1rem">Three questions, in that order, and you're done. Check items off as you go, it's saved on this device so your progress is there next time.</p>
+        <div class="checklist">
+          <div class="check-row" data-check-id="name-it"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-checkbox"/></svg><p>Name the file using the RADAR format: date, object, document type, status, and version.</p></div>
+          <div class="check-row" data-check-id="route-it"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-checkbox"/></svg><p>Identify the correct folder path to save it in, using the main folders above or the Routing Dictionary.</p></div>
+          <div class="check-row" data-check-id="create-folder"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-checkbox"/></svg><p>If there's no folder for it yet, create one, but only if it will hold a recurring set of documents and doesn't duplicate a folder that already exists.</p></div>
+        </div>
+        <span class="checklist-reset" id="checklistReset">Reset checklist</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS ─────────────────────────────────────────────── -->
+<section class="section" id="tools" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">More than a folder tree</div>
+      <h2 class="h-title">Three tools to help RADAR become second nature</h2>
+      <p class="h-sub">The goal isn't to avoid learning the system, it's the opposite. The more you use these, the faster routing and naming become automatic, for you and for everyone you work with. Start with the Drive Finder, but don't stop there.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="tool-icon-wrap policy"><svg viewBox="0 0 24 24"><use href="#icon-shield"/></svg></div>
+        <div class="card-title">Policy</div>
+        <div class="card-body">Sets the mandatory organizational rules: what's expected of everyone using RADAR, and why. Approved by Laura, CEO.</div>
+        <a class="btn btn-light btn-sm" href="#" data-link="policy" target="_blank" rel="noopener">Read the Policy</a>
+      </div>
+      <div class="card">
+        <div class="tool-icon-wrap guidelines"><svg viewBox="0 0 24 24"><use href="#icon-book"/></svg></div>
+        <div class="card-title">Use Guidelines</div>
+        <div class="card-body">Explains what belongs in each folder and subfolder: routing, naming, lifecycle, and special cases.</div>
+        <a class="btn btn-light btn-sm" href="#" data-link="guidelines" target="_blank" rel="noopener">Read the Guidelines</a>
+      </div>
+      <div class="card tool-card finder">
+        <div class="tool-icon-wrap finder"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg></div>
+        <div class="card-title">Drive Finder</div>
+        <div class="card-body">Has two tabs. <b>Classify</b> answers "where should I save this?": describe your file in Spanish, English, or Portuguese and get a folder plus a suggested file name. The other tab helps you find existing files quickly.</div>
+        <a class="btn btn-primary btn-sm" href="#" data-link="finder" target="_blank" rel="noopener">Open the Drive Finder</a>
+      </div>
+    </div>
+    <div class="read-note">
+      <svg class="icon" viewBox="0 0 24 24" style="width:1.1em;height:1.1em;margin-right:6px;vertical-align:-2px"><use href="#icon-book"/></svg>
+      We strongly encourage everyone to read the full <a href="#" data-link="policy" target="_blank" rel="noopener">Policy</a> and the <a href="#" data-link="guidelines" target="_blank" rel="noopener">Use Guidelines</a>, especially the sections that touch your area, and to work through the <a href="#ref-overview" data-goto="reference">routing dictionary</a> at your own pace. <b>If you still have a question after that, we're right here to help.</b> Post it in <a href="#" data-link="channel" target="_blank" rel="noopener">#radar</a>.
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE ──────────────────────────────────────────── -->
+<section class="section" id="timeline">
+  <div class="wrap">
+    <div class="section-hd center">
+      <div class="eyebrow">Where we're headed</div>
+      <h2 class="h-title">Beta today, stable system by fall</h2>
+      <p class="h-sub">RADAR launches as a time-bound beta, not a one-time system change. Adoption of the new way of working is deliberately separated from migration of historical information.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item now">
+        <div class="tl-dot"></div>
+        <div class="tl-when">Today</div>
+        <div class="tl-title">Beta launch</div>
+        <div class="tl-desc">Start new work in RADAR, and move documents you're currently working on into RADAR.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">Next two weeks</div>
+        <div class="tl-title">Beta learning period</div>
+        <div class="tl-desc">Use the system, test the Drive Finder, and flag questions in #radar. No historical migration yet.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">August 28</div>
+        <div class="tl-title">Deep dive / All Hands</div>
+        <div class="tl-desc">We answer real questions, walk through real cases, and share what changed based on the first two weeks.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">After feedback</div>
+        <div class="tl-title">RADAR v1.0</div>
+        <div class="tl-desc">The structure, Policy, Guidelines, and Drive Finder are frozen as the stable, official system for all new and current work.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">September</div>
+        <div class="tl-title">Controlled migration</div>
+        <div class="tl-desc">Active projects migrate a defined Minimum Migration Set, not every historical file.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">October onward</div>
+        <div class="tl-title">Historical migration, in waves</div>
+        <div class="tl-desc">Selected historical content moves when it has future operational, legal, evidentiary, or learning value.</div>
+      </div>
+    </div>
+    <p class="principle-quote">"Work <span>forward</span>, not backward. Validate the system before asking people to reorganize the past."</p>
+  </div>
+</section>
+
+<!-- FAQ (accordion) ───────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Frequently asked</div>
+      <h2 class="h-title">Common questions</h2>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Do I need to migrate my old files right now?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>No. During the beta, focus on new work and whatever you're actively using today. Historical migration comes later, in a controlled and then a historical phase, once the structure has stabilized.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">What if I can't find a folder for my document?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Start with the <a href="#tools" style="color:var(--purple-dark)">Drive Finder</a> and the main folders explained at the top of this page. For the full folder-by-folder logic, check the <a href="#ref-overview" data-goto="reference" style="color:var(--purple-dark)">routing dictionary</a>. If it's still unclear, ask in #radar before creating a new folder.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Who do I ask about how the system works?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Juan Guillermo, for anything about methodology, routing, or how the system is meant to work. Post it in <a href="#" data-link="channel" target="_blank" rel="noopener" style="color:var(--purple-dark)">#radar</a>.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Who do I ask about technical issues?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Felipe, for anything technical: folder access, permissions, or Drive Finder bugs. Also in <a href="#" data-link="channel" target="_blank" rel="noopener" style="color:var(--purple-dark)">#radar</a>.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">What happens at the All Hands on August 28?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>We review the first two weeks of the beta: what we learned, real cases, and what's next. A few days before, we'll send out a short form to collect your questions and doubts in advance, so we can prepare answers and go through them quickly during the session instead of improvising live.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Where can I read the full rules?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>The <a href="#" data-link="policy" target="_blank" rel="noopener" style="color:var(--purple-dark)">Policy</a> covers the mandatory rules and consequences. The <a href="#" data-link="guidelines" target="_blank" rel="noopener" style="color:var(--purple-dark)">Use Guidelines</a> and the <a href="#ref-overview" data-goto="reference" style="color:var(--purple-dark)">routing dictionary</a> cover the detailed, folder-by-folder logic.</p></div></div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page: guide -->
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 2 — REFERENCE (the routing dictionary)
+     ══════════════════════════════════════════════════════ -->
+<div class="app-page" data-page="reference">
+
+<section class="section" id="ref-overview" style="padding-top:3.5rem">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Deep reference</div>
+      <h2 class="h-title">The routing dictionary</h2>
+      <p class="h-sub">This is the detailed logic behind RADAR: the why behind each block, and every routing question mapped to its official destination, straight from the full Folder Use Guidelines. Use it when the short version on the Guide page isn't specific enough, or when you want to understand the full reasoning. Naming lives on the <a href="#start" data-goto="guide" style="color:var(--purple-dark);font-weight:800">Guide page</a>, not here.</p>
+    </div>
+    <h3 class="subhead">The one-minute routing rule</h3>
+    <p class="h-sub" style="margin-bottom:1.25rem">Before creating a folder or saving a file, identify its main object. The first clear "yes" usually determines the primary destination.</p>
+    <div class="card" style="overflow-x:auto;margin-bottom:1.5rem">
+      <table class="acc-table">
+        <tr><th>Question</th><th>Primary destination</th></tr>
+        <tr><td>Does the document define institutional or thematic direction, the five-year strategy, North Star, Investment Thesis, or OKRs?</td><td><b>01 Strategy</b></td></tr>
+        <tr><td>Is the main object an external organization, an initiative being incubated, or a program operated directly by ver+?</td><td><b>02 Investments &amp; Programs</b></td></tr>
+        <tr><td>Is it an organization-wide policy, formal institutional governance record, transversal-area document, ecosystem or co-investor work, external knowledge, or reusable template?</td><td><b>03 Institutional</b></td></tr>
+        <tr><td>Is it declined, closed, superseded, or historical?</td><td><b>99 Archive</b></td></tr>
+      </table>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Cross-cutting rules, they apply in every folder</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Rule</th><th>How to apply it</th></tr>
+          <tr><td><b>One official home</b></td><td>Don't duplicate final files. Use shortcuts or links when another team needs visibility.</td></tr>
+          <tr><td><b>Organize by main object</b></td><td>A document about an organization, venture, or program stays with that object, even if Finance, Legal, MEL, or Comms produced it.</td></tr>
+          <tr><td><b>Keep lifecycle history</b></td><td>Pipeline organizations keep Sourcing, Screening, and Diligence together. After approval, move the whole folder once to Portfolio.</td></tr>
+          <tr><td><b>Preserve meeting history</b></td><td>Each organization, venture, and in-house program has a living yearly Meeting Log. Raw Granola/AI notes are kept separately by year.</td></tr>
+          <tr><td><b>Separate produced and external knowledge</b></td><td>Research &amp; Learning is knowledge ver+ produced. External Knowledge is third-party references.</td></tr>
+          <tr><td><b>Avoid personal folders</b></td><td>No permanent folders named after individuals. The system has to survive team changes.</td></tr>
+          <tr><td><b>Create folders only with a clear purpose</b></td><td>Before adding a subfolder, confirm it will hold a recurring set of documents and doesn't duplicate an existing one.</td></tr>
+          <tr><td><b>Apply permissions at the right level</b></td><td>Participant data, People records, sensitive Legal/Finance/Charity materials, and some governance records need restricted access.</td></tr>
+          <tr><td><b>Archive, don't delete</b></td><td>Closed, declined, or superseded work moves to Archive while its institutional history and master-index visibility stay intact.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ref-strategy" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Inside 01_STRATEGY</div>
+      <h2 class="h-title">Institutional direction, thematic strategy, OKRs</h2>
+      <p class="h-sub">If the document answers "where are we going, what are we prioritizing, or what do we want to achieve," Strategy is its home. Not for meeting minutes, execution files, investment-gate materials, or standalone research.</p>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Folder-by-folder guide</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>ver+ Strategy / 5 Year Plan</td><td>The institutional five-year plan and directly related working materials.</td></tr>
+          <tr><td>ver+ Strategy / North Star &amp; Investment Thesis</td><td>The long-term framework and Investment Thesis guiding investment and prioritization decisions.</td></tr>
+          <tr><td>ver+ Strategy / Approved Strategy</td><td>Formally approved versions of the current institutional strategy.</td></tr>
+          <tr><td>ver+ Strategy / Drafts</td><td>Drafts and working materials before strategy approval.</td></tr>
+          <tr><td>Thematic Strategies / Education &amp; Democracy / Approved</td><td>Formally approved Education or Democracy strategy.</td></tr>
+          <tr><td>Thematic Strategies / Education &amp; Democracy / Drafts</td><td>Drafts and working materials for each thematic strategy.</td></tr>
+          <tr><td>OKRs / [Year]</td><td>One folder per annual OKR cycle, never mixed across years.</td></tr>
+          <tr><td>OKRs / [Year] / Institutional</td><td>Approved institutional OKRs and formal revisions for that year.</td></tr>
+          <tr><td>OKRs / [Year] / Areas</td><td>Approved OKRs for each area/team for that year.</td></tr>
+          <tr><td>OKRs / [Year] / Drafts</td><td>Drafts and working versions for that year's OKR cycle.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Thematic structure:</b> Education and Democracy are the only required thematic folder levels. ECE, K12, Future of Talent, People in Government, and other focuses are managed as metadata, not as mandatory paths.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ref-invest">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Inside 02_INVESTMENTS_AND_PROGRAMS</div>
+      <h2 class="h-title">Pipeline, Portfolio, Venture Building, or In-house?</h2>
+      <p class="h-sub">Portfolio = an external organization ver+ supports. Venture Building = an initiative ver+ is incubating or building. In-house Program = a program ver+ operates directly on a stable basis.</p>
+    </div>
+    <div class="card" style="overflow-x:auto;margin-bottom:1.5rem">
+      <table class="acc-table">
+        <tr><th>Ask</th><th>Use</th></tr>
+        <tr><td>Is it an external organization that is not yet approved as an investment?</td><td><b>Pipeline</b></td></tr>
+        <tr><td>Is it an external organization with an approved active relationship?</td><td><b>Portfolio</b></td></tr>
+        <tr><td>Is ver+ intentionally incubating or building it, with a possible transition or spin-off?</td><td><b>Venture Building</b></td></tr>
+        <tr><td>Is ver+ the stable operator with no immediate expectation of externalization?</td><td><b>In-house Programs</b></td></tr>
+      </table>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">00_Master_Indexes, the canonical registry</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Master Registry</td><td>The canonical registry of organizations and initiatives: name, theme, focus, type, stage/status, geography, owner, official folder link, last updated.</td></tr>
+          <tr><td>Opportunity Map</td><td>Automatic view of known opportunities/organizations, active, paused, declined, or closed.</td></tr>
+          <tr><td>Active Portfolio</td><td>Automatic view of active Portfolio organizations.</td></tr>
+          <tr><td>Ventures &amp; In-house Programs</td><td>Automatic view of active Venture Building and In-house Program objects.</td></tr>
+          <tr><td>Archived &amp; Declined</td><td>Automatic view of declined, closed, or archived objects.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">01_PIPELINE, before an investment is approved</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>One organization = one Pipeline folder. Stage changes happen inside that folder; don't move it between Sourcing, Screening, and Diligence.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Overview &amp; Contacts</td><td>Organization summary, key contacts, geography, key links, context.</td></tr>
+          <tr><td>Meetings</td><td>Living yearly Meeting Log plus dated raw Granola/AI notes.</td></tr>
+          <tr><td>Sourcing</td><td>Referrals, introductions, pitch, public information, first conversations, preliminary fit analysis.</td></tr>
+          <tr><td>Screening</td><td>Concept note, materials, and the full Concept Review package (pre-reads/deck, notes/minutes, decision/next steps).</td></tr>
+          <tr><td>Diligence / Investment Due Diligence</td><td>Application, application review, Peer-Reviewed Investment Memo, and the full Investment Committee package (pre-reads/memo, notes/minutes, decision/next steps).</td></tr>
+          <tr><td>Diligence / Legal Due Diligence</td><td>Legal and compliance documentation required to assess the investment.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">02_PORTFOLIO, active investment relationships</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>When an investment is approved, move the existing Pipeline folder once to Portfolio and add the operating subfolders below. Never create a duplicate Portfolio folder.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Overview &amp; Contacts</td><td>Updated relationship summary, contacts, scope of support, geography, key links.</td></tr>
+          <tr><td>Meetings</td><td>Living annual Meeting Log plus dated raw notes.</td></tr>
+          <tr><td>Sourcing / Screening / Diligence</td><td>History inherited from Pipeline, kept for traceability.</td></tr>
+          <tr><td>Onboarding</td><td>Start-up plan, roles, contacts, timeline, working agreements, access, induction.</td></tr>
+          <tr><td>Investment Docs</td><td>Approved investment memo, grant/investment agreement, contracts, annexes, amendments, follow-on documents.</td></tr>
+          <tr><td>Execution</td><td>Work plans, operational minutes, timelines, deliverables, milestones, risks, implementation comms.</td></tr>
+          <tr><td>Disbursements</td><td>Requests, approvals, receipts, traceability of disbursements.</td></tr>
+          <tr><td>Reports</td><td>Formal narrative, financial, progress, and closeout reports submitted by the organization.</td></tr>
+          <tr><td>MEL Evidence</td><td>Theory of change/results framework, indicators, instruments, datasets, evaluation plans, analysis, results.</td></tr>
+          <tr><td>Photos &amp; Videos</td><td>Audiovisual assets specific to the organization/investment.</td></tr>
+          <tr><td>Decisions &amp; Transitions</td><td>Continuity, renewal, scale, reduction, redesign, follow-on, exit, or closure decisions.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">03_VENTURE_BUILDING, initiatives ver+ is incubating</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>The unit is the initiative. If its operating model changes, move the complete folder to its new home and preserve its history.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Overview &amp; Governance</td><td>Purpose, scope, governance, owners, operating model, key links.</td></tr>
+          <tr><td>Meetings</td><td>Living annual Meeting Log and raw notes for the initiative.</td></tr>
+          <tr><td>Design &amp; Structuring</td><td>Problem definition, value proposition, operating model, governance design, budget, prototypes, launch planning.</td></tr>
+          <tr><td>Validation</td><td>Pilots, tests, user feedback, feasibility work, assumptions, evidence used to validate the model.</td></tr>
+          <tr><td>Implementation</td><td>Plans, deliverables, timelines, milestones, risks, incidents.</td></tr>
+          <tr><td>MEL &amp; Learning</td><td>Metrics, experiments, data, evaluations, and learning used to improve the initiative.</td></tr>
+          <tr><td>Finance &amp; Legal</td><td>Budget, financial structure, legal matters specific to the initiative.</td></tr>
+          <tr><td>Partners &amp; Contracts</td><td>Partners, providers, agreements, and contracts linked to the initiative.</td></tr>
+          <tr><td>Comms &amp; Reports</td><td>Presentations, reports, communication materials, narrative products.</td></tr>
+          <tr><td>Photos &amp; Videos</td><td>Audiovisual assets specific to the initiative.</td></tr>
+          <tr><td>Spinoff or Transition</td><td>Externalization, spin-off, transfer, transition to Portfolio/In-house, or closure documentation.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Special case: Democracia+</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Democracia+ uses an expanded, portable Venture Building structure because it may manage a subportfolio of organizations and may eventually spin off. If its model changes, move the full folder rather than rebuilding it.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Overview &amp; Governance</td><td>Purpose, governance, owners, operating model, key links.</td></tr>
+          <tr><td>Meetings</td><td>Living yearly Meeting Log and raw notes for platform-level relationships.</td></tr>
+          <tr><td>Strategy &amp; Model</td><td>Strategy, model, positioning, design choices, evolution of the platform.</td></tr>
+          <tr><td>Operations</td><td>Platform-level operating plans, implementation, workflows, timelines.</td></tr>
+          <tr><td>Subportfolio &amp; Organizations / [Name]</td><td>Official home for organizations managed through Democracia+. A directly-funded organization follows the regular Pipeline/Portfolio path instead.</td></tr>
+          <tr><td>Finance &amp; Legal</td><td>Finance and legal documentation specific to Democracia+ as a platform.</td></tr>
+          <tr><td>MEL &amp; Learning</td><td>Platform-level indicators, data, evaluations, evidence, learning across activities/organizations.</td></tr>
+          <tr><td>Comms &amp; Reports</td><td>Communications, presentations, formal reports, narrative products.</td></tr>
+          <tr><td>Partners &amp; Co-Investors</td><td>Partners and co-investors connected to Democracia+ and its platform work.</td></tr>
+          <tr><td>Photos &amp; Videos</td><td>Audiovisual material owned by or documenting Democracia+.</td></tr>
+          <tr><td>Spinoff Preparation</td><td>Legal, governance, financial, operational, brand, asset-transfer materials for a possible spin-off.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Subportfolio rule:</b> an organization managed through Democracia+ lives under Subportfolio &amp; Organizations. An organization independently evaluated or funded directly by ver+ follows the normal Pipeline/Portfolio path. Never create two official homes.</p>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">04_IN_HOUSE_PROGRAMS, ver+ as stable operator</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Use In-house when ver+ is the stable operator with no immediate expectation that the program becomes an independent external organization.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Overview &amp; Governance</td><td>Purpose, scope, governance, owners, program model, key links.</td></tr>
+          <tr><td>Meetings</td><td>Living annual Meeting Log and raw notes for the program.</td></tr>
+          <tr><td>Strategy &amp; Design</td><td>Objectives, intervention model, program design, design decisions and evolution.</td></tr>
+          <tr><td>Operations</td><td>Day-to-day plans, timelines, processes, implementation, incidents, tracking, deliverables.</td></tr>
+          <tr><td>Partners &amp; Providers</td><td>Partners, providers, terms of work, coordination, related contractual documents.</td></tr>
+          <tr><td>Participants &amp; Beneficiary Data</td><td>Participant/beneficiary databases and personal information. Restricted access.</td></tr>
+          <tr><td>MEL Evidence</td><td>Indicators, instruments, analytical datasets, evaluations, results, evidence specific to the program.</td></tr>
+          <tr><td>Finance &amp; Legal</td><td>Budget, financial execution, contracts, legal documentation specific to the program.</td></tr>
+          <tr><td>Comms &amp; Reports</td><td>Reports, presentations, communication materials, narrative products.</td></tr>
+          <tr><td>Photos &amp; Videos</td><td>Audiovisual material specific to the program.</td></tr>
+          <tr><td>Decisions &amp; Transitions</td><td>Continuity, expansion, redesign, operating-model changes, externalization, or closure decisions.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Special case: Beca Tech</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Beca Tech = Education / In-house Program. Official path: Investments &amp; Programs / In-house Programs / Education / Beca Tech. It uses the In-house Program template with extra volume rules, so thousands of files don't pile up at the same level.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>Beca Tech rule</th></tr>
+          <tr><td>Meetings</td><td>One living yearly Meeting Log plus dated raw notes, not a separate folder per routine conversation.</td></tr>
+          <tr><td>Operations</td><td>Organize by year and/or cohort when volume requires it, rather than a new top-level structure.</td></tr>
+          <tr><td>Partners &amp; Providers</td><td>Documents that directly support Beca Tech. Institution-wide procurement stays in Transversal Areas with a link.</td></tr>
+          <tr><td>Participants &amp; Beneficiary Data</td><td>Restricted access. Organize by year/cohort when useful; avoid participant-level folders unless clearly needed.</td></tr>
+          <tr><td>MEL Evidence</td><td>Organize by evaluation/study or cohort when useful.</td></tr>
+          <tr><td>Photos &amp; Videos</td><td>Use year/event/cohort subfolders for large volumes. Institutional Comms uses shortcuts, not duplicate files.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Volume rule:</b> create second-level folders by year, cohort, study, or event only where volume makes them useful. Never build a parallel Beca Tech structure outside In-house Programs.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ref-inst" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Inside 03_INSTITUTIONAL</div>
+      <h2 class="h-title">Seven kinds of institutional work</h2>
+      <p class="h-sub">Ask whether the document manages an institution-wide function or a specific object. If it manages a specific object, keep it with that object instead.</p>
+    </div>
+    <div class="card" style="overflow-x:auto;margin-bottom:1.5rem">
+      <table class="acc-table">
+        <tr><th>Ask</th><th>Use</th></tr>
+        <tr><td>Is it an organization-wide policy?</td><td><b>Policies</b></td></tr>
+        <tr><td>Is it a Board, Leadership Team, All Team, Offsite package, or a central formal decision?</td><td><b>Governance &amp; Decisions</b></td></tr>
+        <tr><td>Is it an organization-wide Charity, Comms, Finance, Legal, MEL, Ops, People, or Tech record or process?</td><td><b>Transversal Areas</b></td></tr>
+        <tr><td>Is it standalone research produced by ver+ or a cross-object learning product?</td><td><b>Research &amp; Learning</b></td></tr>
+        <tr><td>Is it ecosystem mapping/architecture or an institutional co-investor relationship?</td><td><b>Ecosystem &amp; Partnerships</b></td></tr>
+        <tr><td>Is it reusable knowledge produced by a third party?</td><td><b>External Knowledge</b></td></tr>
+        <tr><td>Is it an empty reusable model or format?</td><td><b>Templates</b></td></tr>
+      </table>
+    </div>
+    <p class="h-sub" style="margin-bottom:1.5rem">When two destinations seem possible, save the document with its main object of work. An Aprendo+ evaluation stays in Aprendo+ / MEL Evidence; a reusable MEL methodology goes in Institutional / Transversal Areas / MEL; a synthesis across several investments goes in Research &amp; Learning.</p>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">00_POLICIES</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>[Policy Name] / Approved</td><td>Current, formally approved version of the policy.</td></tr>
+          <tr><td>[Policy Name] / Supporting Guidance</td><td>Guides, FAQs, procedures, examples that help people apply the policy.</td></tr>
+          <tr><td>[Policy Name] / Drafts</td><td>Drafts and versions under review before approval.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Example: the RADAR information-management policy lives here as one organizational policy. It doesn't need a separate RADAR system folder.</p>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">01_GOVERNANCE_AND_DECISIONS</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Decision Log</td><td>Consolidated index of institutional decisions: decision, date, forum, owner, scope, status, link to documentation.</td></tr>
+          <tr><td>Board / Leadership Team / All Team / Offsites</td><td>Formal meetings organized by year and meeting date, each with its own package.</td></tr>
+          <tr><td>Inside each meeting</td><td>Agenda, pre-reads, deck, notes &amp; minutes, decisions &amp; actions.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">02_TRANSVERSAL_AREAS</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Organization-wide records owned by functions that serve the whole organization. If a document is mainly about one specific organization/program, keep it with that object and use a shortcut here instead.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Area</th><th>What goes here</th></tr>
+          <tr><td>Charity</td><td>Institutional documents related to Charity as a transversal function or vehicle.</td></tr>
+          <tr><td>Comms</td><td>Brand, institutional communications, campaigns, press, corporate content not owned by one investment/program.</td></tr>
+          <tr><td>Finance</td><td>Institutional accounting, corporate budgets, closes, financial reports, transversal finance processes.</td></tr>
+          <tr><td>Legal</td><td>Institutional legal documentation and reusable frameworks: Entities &amp; Governance, Contract Templates, Regulatory Frameworks. Charity is not a Legal subfolder.</td></tr>
+          <tr><td>MEL</td><td>Reusable institutional MEL frameworks, methodologies, standard instruments, indicator dictionaries, protocols, guides.</td></tr>
+          <tr><td>Ops Admin</td><td>Administrative processes, institutional providers, operating procedures, general support documentation.</td></tr>
+          <tr><td>People</td><td>Organization structure, hiring, onboarding, culture, performance. Restrict sensitive records.</td></tr>
+          <tr><td>Tech</td><td>Systems, automations, technical documentation, protocols. No credentials/secrets in general Drive files.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">03_RESEARCH_AND_LEARNING</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Research/Learning = knowledge produced by ver+. Reusable MEL methods live in Transversal Areas / MEL. Object-specific evidence lives in that object's MEL Evidence.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Research Projects / Education, Democracy, Institutional</td><td>Research produced by ver+ with a defined question, methodology, analysis, and deliverables.</td></tr>
+          <tr><td>Learning Products / Education, Democracy</td><td>Syntheses, briefs, and learning products produced by ver+ about that theme.</td></tr>
+          <tr><td>Learning Products / Cross-Thematic</td><td>Products integrating evidence/learning across Education, Democracy, or multiple investments/programs.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">04_ECOSYSTEM_AND_PARTNERSHIPS</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Ecosystem Architecture / Education, Democracy</td><td>Actor maps, landscape scans, networks, capabilities, gaps, and ecosystem opportunities produced by ver+.</td></tr>
+          <tr><td>Co-Investors / Mapping</td><td>Profiles and exploration of potential co-investors with no active relationship yet.</td></tr>
+          <tr><td>Co-Investors / Active</td><td>Information, meetings, agreements, and joint opportunities with active co-investors.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">05_EXTERNAL_KNOWLEDGE</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>If ver+ produced it, it isn't External Knowledge. If a third party produced it and we keep it as reference, it belongs here.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Education / Democracy</td><td>Third-party papers, reports, benchmarks, datasets, tools, and references about that theme.</td></tr>
+          <tr><td>Cross-Thematic</td><td>Third-party references that apply to more than one theme or to the organization as a whole.</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">06_TEMPLATES</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Templates are empty models: current reusable presentations, documents, spreadsheets, briefs, minutes, TORs, forms, standard formats. Once a template is filled in for a real object or process, the resulting file goes to that object's folder, not here.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ref-archive">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Inside 99_ARCHIVE</div>
+      <h2 class="h-title">Closing the lifecycle, not deleting history</h2>
+      <p class="h-sub">Archiving means the object's active lifecycle is closed, its complete folder and master-index visibility are preserved. Not for active work, working drafts, or informal backup copies.</p>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Archive folders</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Declined Pipeline</td><td>Complete opportunity folders that didn't advance or were withdrawn, preserving stage reached and context.</td></tr>
+          <tr><td>Closed Portfolio</td><td>Organizations whose active Portfolio relationship has ended.</td></tr>
+          <tr><td>Closed Ventures</td><td>Closed or discontinued Venture Building initiatives.</td></tr>
+          <tr><td>Closed In-house Programs</td><td>In-house Programs that ended or stopped operating.</td></tr>
+          <tr><td>Superseded Strategies</td><td>Replaced strategies retained for historical traceability.</td></tr>
+          <tr><td>Deprecated Templates</td><td>Retired templates that should no longer be used.</td></tr>
+          <tr><td>Legacy Structure</td><td>Read-only backup of the previous Drive structure.</td></tr>
+          <tr><td>Old Admin Docs</td><td>Administrative documentation no longer operationally valid, retained for historical/retention reasons.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Moving an organization to Archive doesn't remove it from institutional memory. Its record stays in the Master Registry and can appear in the Archived and Declined automated view.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ref-lifecycle" style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Lifecycle, governance &amp; the final check</div>
+      <h2 class="h-title">Keeping the structure honest over time</h2>
+      <p class="h-sub">The structure only stays useful if folder location and master-index status reflect the real status of each object.</p>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Movement rules by object</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Object / lifecycle</th><th>Movement rule</th></tr>
+          <tr><td>External opportunity</td><td>One Pipeline folder; Sourcing → Screening → Diligence happens inside it. If approved, move it once to Portfolio; if declined, move it to Archive / Declined Pipeline.</td></tr>
+          <tr><td>Portfolio organization</td><td>Stays in Portfolio during the active relationship, preserving pre-approval history. Moves to Closed Portfolio when the relationship ends.</td></tr>
+          <tr><td>Venture Building initiative</td><td>Moves to Portfolio if it becomes an external investment, to In-house Programs if ver+ becomes the stable operator, or to Closed Ventures if it ends.</td></tr>
+          <tr><td>In-house Program</td><td>Stays in In-house Programs while ver+ is the stable operator. Archived if it closes; moved if its operating model changes.</td></tr>
+          <tr><td>Strategic document</td><td>Drafts stay in Drafts; approved versions move to the approved Strategy location, with approval evidence linkable from Governance.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Move the complete object folder whenever the status genuinely changes, never a parallel copy. Before moving, check shortcuts, forms, automations, and permissions tied to its current location, and update the Master Registry status/type and folder link. When archiving, reduce edit access while preserving authorized read access and traceability.</p>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Minimum system governance, who owns what</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Role</th><th>Minimum responsibility</th></tr>
+          <tr><td>Knowledge Management / RADAR owner</td><td>Maintains common architecture, naming standards, onboarding, audits, Drive Finder logic, and ambiguity resolution.</td></tr>
+          <tr><td>Object owner</td><td>Keeps organization/program/project documentation complete and correctly placed; maintains the Meeting Log.</td></tr>
+          <tr><td>IT / Tech</td><td>Manages access groups, automation, backups, and technical implementation.</td></tr>
+          <tr><td>Finance / Legal / People / other functional owners</td><td>Validate detailed internal substructures, permissions, retention rules, and confidentiality requirements for their areas.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Recommended routines:</b> monthly, review orphan drafts, unclear names, stale raw notes, and open access. Quarterly, review duplicate folders, Master Registry consistency, and objects that should transition. Semiannually, review owners, access groups, and templates. Annually, close cycles, archive historical work, create the new OKR year folder, and review the guidelines. When a document doesn't clearly fit, don't create a new folder right away, apply the routing rule and ask the RADAR owner first.</p>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">Checklist before saving a document</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Identified the main object · object is in the right operating model and lifecycle/status · applied Beca Tech / Democracia+ rules if relevant · checked whether an official folder already exists · saving the original, not a copy · placed the meeting record in the right spot (relationship meeting, investment gate, or institutional meeting) · the name makes date, object, document type, status, and version clear · flagged any personal, legal, financial, governance, or confidential content needing restricted access · considered a shortcut instead of a copy · logged any material decision in the Decision Log · considered whether this should be archived instead of active.</p>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Final criterion, the usability test:</b> the best location is the one a person other than the author would choose using the same rules. If finding a file depends on knowing who created it or remembering an informal conversation, the folder logic or file name needs to improve.</p>
+      </div></div>
+    </div>
+
+    <p class="h-sub" style="margin-top:1.75rem">Want the short version and the four top-level blocks first? Head back to the <a href="#start" data-goto="guide" style="color:var(--purple-dark);font-weight:800">Guide</a>.</p>
+  </div>
+</section>
+
+</div><!-- /page: reference -->
+
+<!-- FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg class="footer-logo" viewBox="0 0 577.96 91.69"><use href="#logo-ver"/></svg>
+      <p class="footer-tag"><b>RADAR</b>: Repository for Assets, Decisions, Analysis and Research. So nothing falls off our radar.</p>
+      <p class="footer-support-txt">Questions, edge cases, Drive Finder feedback, folder requests. Post it once, and it's there for the next person who has the same question.</p>
+      <a class="btn btn-light btn-sm" href="#" data-link="channel" target="_blank" rel="noopener">Go to #radar</a>
+      <div class="footer-contacts">
+        <div class="contact-pill"><b>Methodology &amp; how the system works</b><span>Juan Guillermo</span></div>
+        <div class="contact-pill"><b>Technical issues (folder, Drive Finder)</b><span>Felipe</span></div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#" data-link="policy" target="_blank" rel="noopener">Policy</a>
+        <a href="#" data-link="guidelines" target="_blank" rel="noopener">Use Guidelines</a>
+        <a href="#" data-link="drive" target="_blank" rel="noopener">RADAR folder</a>
+        <a href="#" data-link="finder" target="_blank" rel="noopener">Drive Finder</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#faq" data-goto="guide">FAQ</a>
+        <a href="#ref-overview" data-goto="reference">Routing dictionary</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 VélezReyes+ · RADAR beta launch</div>
+</footer>
+
+<!-- ─── SCRIPT ─────────────────────────────────────────── -->
+<script>
+// Single place to update once real links are ready.
+const LINKS = {
+  drive:     "https://drive.google.com/drive/folders/0ACcm5QIXazhcUk9PVA",
+  finder:    "https://velezreyes-drive-search.vercel.app/",
+  policy:    "https://drive.google.com/file/d/1fH-kl-___yjmuJb4en-0vAMj5ydnES3U/view?usp=sharing",
+  guidelines:"https://drive.google.com/file/d/1AbsRYeB0NKNpMneGGZ6DuKpDLaQDGrZZ/view?usp=sharing",
+  channel:   "https://velezreyesmasgrupo.slack.com/archives/C0BPWV00V8T",
+  questionsForm: "#" // TODO: All Hands questions form (still needed)
+};
+
+document.querySelectorAll('[data-link]').forEach(el => {
+  const key = el.getAttribute('data-link');
+  if (LINKS[key]) el.href = LINKS[key];
+});
+
+// Intro modal: "What is RADAR?", shown once per device on first visit
+(function(){
+  const INTRO_KEY = 'radarIntroSeen_v1';
+  const overlay = document.getElementById('introOverlay');
+  const gotIt = document.getElementById('introModalGotIt');
+  const closeBtn = document.getElementById('introModalClose');
+  const reopen = document.getElementById('introReopen');
+  if (!overlay) return;
+
+  function openIntro(){
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeIntro(remember){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (remember) {
+      try { localStorage.setItem(INTRO_KEY, '1'); } catch (e) { /* ignore */ }
+    }
+  }
+
+  let seen = false;
+  try { seen = localStorage.getItem(INTRO_KEY) === '1'; } catch (e) { /* ignore */ }
+  if (!seen) openIntro();
+
+  gotIt && gotIt.addEventListener('click', () => closeIntro(true));
+  closeBtn && closeBtn.addEventListener('click', () => closeIntro(true));
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeIntro(true); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeIntro(true); });
+  reopen && reopen.addEventListener('click', e => { e.preventDefault(); openIntro(); });
+})();
+document.getElementById('openFolderHero').href = LINKS.drive;
+
+// Sections dropdown menu (nav)
+const navMenuBtn = document.getElementById('navMenuBtn');
+const navDropdown = document.getElementById('navDropdown');
+function closeNavMenu(){
+  navMenuBtn.classList.remove('open');
+  navDropdown.classList.remove('open');
+  navMenuBtn.setAttribute('aria-expanded', 'false');
+}
+navMenuBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const isOpen = navDropdown.classList.toggle('open');
+  navMenuBtn.classList.toggle('open', isOpen);
+  navMenuBtn.setAttribute('aria-expanded', String(isOpen));
+});
+navDropdown.addEventListener('click', e => {
+  if (e.target.closest('.nav-link')) closeNavMenu();
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-menu-wrap')) closeNavMenu();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNavMenu(); });
+
+// Accordion
+document.querySelectorAll('[data-acc]').forEach(acc => {
+  const head = acc.querySelector('.acc-head');
+  const panel = acc.querySelector('.acc-panel');
+  head.addEventListener('click', () => {
+    const isOpen = acc.classList.contains('open');
+    acc.classList.toggle('open', !isOpen);
+    panel.style.maxHeight = isOpen ? '0px' : panel.scrollHeight + 'px';
+  });
+});
+
+// Save-checklist: functional checkboxes, persisted locally on this device
+(function(){
+  const STORAGE_KEY = 'radarSaveChecklist_v1';
+  const rows = Array.from(document.querySelectorAll('.check-row[data-check-id]'));
+  if (!rows.length) return;
+
+  function readState(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+    catch (e) { return {}; }
+  }
+  function writeState(state){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch (e) { /* storage unavailable, checklist still works for this session */ }
+  }
+  function applyChecked(row, checked){
+    row.classList.toggle('done', checked);
+    row.setAttribute('aria-checked', String(checked));
+    const use = row.querySelector('.icon use');
+    if (use) use.setAttribute('href', checked ? '#icon-checkbox-on' : '#icon-checkbox');
+  }
+
+  const state = readState();
+  rows.forEach(row => {
+    const id = row.dataset.checkId;
+    row.setAttribute('role', 'checkbox');
+    row.setAttribute('tabindex', '0');
+    applyChecked(row, !!state[id]);
+    row.addEventListener('click', () => {
+      const nowChecked = !row.classList.contains('done');
+      applyChecked(row, nowChecked);
+      const s = readState();
+      s[id] = nowChecked;
+      writeState(s);
+    });
+    row.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
+    });
+  });
+
+  const resetLink = document.getElementById('checklistReset');
+  if (resetLink) {
+    resetLink.addEventListener('click', e => {
+      e.stopPropagation();
+      rows.forEach(row => applyChecked(row, false));
+      writeState({});
+    });
+  }
+})();
+
+// Page switching (Guide <-> Reference)
+const pages = Array.from(document.querySelectorAll('.app-page'));
+const tabs = Array.from(document.querySelectorAll('.page-tab'));
+const navsets = Array.from(document.querySelectorAll('.navset'));
+function showPage(name, anchor){
+  pages.forEach(p => p.classList.toggle('active', p.dataset.page === name));
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.page === name));
+  navsets.forEach(ns => ns.style.display = ns.dataset.for === name ? 'flex' : 'none');
+  if (anchor) {
+    requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView());
+  } else {
+    window.scrollTo({ top: 0 });
+  }
+}
+tabs.forEach(t => t.addEventListener('click', () => showPage(t.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    const href = el.getAttribute('href') || '';
+    const anchor = href.startsWith('#') && href.length > 1 ? href.slice(1) : null;
+    showPage(el.dataset.goto, anchor);
+  });
+});
+
+// Active nav link on scroll
+const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = '#' + entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    }
+  });
+}, { rootMargin: '-45% 0px -45% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
