@@ -113,7 +113,9 @@
         renderSummary();
       });
     }).catch(() => {
-      document.getElementById('status-label').textContent = 'Error de conexión — revisa firebase-config.js';
+      const label = document.getElementById('status-label');
+      label.textContent = 'Error de conexión — revisa firebase-config.js';
+      label.classList.add('alt');
     });
 
     document.getElementById('btn-lobby').addEventListener('click', () => {

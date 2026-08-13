@@ -55,7 +55,7 @@
   function renderError() {
     stage.innerHTML = `
       <div class="card fade">
-        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <p class="eyebrow alt">VERE · Encuesta de Cultura 2026</p>
         <h1 class="big-title">No se pudo conectar</h1>
         <p class="sub">Revisa tu conexión a internet e intenta de nuevo. Si el problema sigue, avisa al facilitador.</p>
       </div>`;
@@ -65,7 +65,7 @@
     const labels = window.VERE_SCALE_LABELS;
     stage.innerHTML = `
       <div class="card fade">
-        <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle}</p>
+        <p class="eyebrow${q.sectionIndex === 1 ? ' alt' : ''}">Sección ${q.sectionIndex + 1} · ${q.sectionTitle}</p>
         <p class="qcount">Pregunta ${q.globalIndex + 1} de ${window.VERE_QUESTIONS.length}</p>
         <p class="prompt">${q.sectionPrompt}</p>
         <h1 class="q-title">${q.title}</h1>

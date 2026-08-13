@@ -143,7 +143,7 @@
     }).catch(() => {
       stage.innerHTML = `
         <div class="proj-lobby fade">
-          <p class="eyebrow">Error</p>
+          <p class="eyebrow alt">Error</p>
           <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">No se pudo conectar</h1>
           <p class="sub">Revisa la configuración de Firebase (firebase-config.js).</p>
         </div>`;
@@ -206,7 +206,7 @@
       stage.innerHTML = `
         <div class="proj-question fade">
           <div class="proj-dots">${dots}</div>
-          <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle} — Pregunta ${q.globalIndex + 1} de ${TOTAL_Q}</p>
+          <p class="eyebrow${q.sectionIndex === 1 ? ' alt' : ''}">Sección ${q.sectionIndex + 1} · ${q.sectionTitle} — Pregunta ${q.globalIndex + 1} de ${TOTAL_Q}</p>
           <p class="prompt">${q.sectionPrompt}</p>
           <h1 class="proj-title">${q.title}</h1>
           <p class="proj-desc">${q.desc}</p>
