@@ -974,6 +974,14 @@ section{
   font-size:12px;line-height:1.6;
   color:rgba(239,239,228,.45);
 }
+.dl-photo-list{display:flex;flex-direction:column;gap:2px}
+.dl-photo-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 16px;
+  background:rgba(239,239,228,.03);
+  border:1px solid rgba(239,239,228,.07);
+}
+.dl-photo-name{font-size:12px;color:rgba(239,239,228,.65)}
 .dl-variant{display:flex;align-items:center;justify-content:flex-start;gap:18px}
 .dl-variant-lbl{
   font-size:10px;letter-spacing:.1em;text-transform:uppercase;
@@ -2137,12 +2145,33 @@ section{
     </div>
 
     <!-- FOTOGRAFÍA -->
-    <div class="dl-card dl-card-external">
+    <div class="dl-card dl-card-external" style="grid-column:1/-1">
       <div class="dl-card-top">
         <div class="dl-card-title">Fotografía de becarios <span class="dl-ext-icon">↗</span></div>
-        <div class="dl-card-desc">Banco de fotografía en blanco y negro, alojado fuera de este manual.</div>
+        <div class="dl-card-desc">Banco de fotografía, alojado fuera de este manual. Antes de usar cualquier fotografía: recórtala (crop) si aún no lo está, y conviértela siempre a blanco y negro.</div>
       </div>
-      <button class="dl-link dl-link-soon" disabled>Próximamente</button>
+      <div class="dl-photo-list">
+        <div class="dl-photo-row">
+          <span class="dl-photo-name">Becarios · Primera cohorte</span>
+          <a class="dl-link" href="https://drive.google.com/drive/folders/1Xqbg_ha96sXd95TDSN-Zm-QSfIb5r7uo?usp=sharing" target="_blank" rel="noopener">Ver álbum ↗</a>
+        </div>
+        <div class="dl-photo-row">
+          <span class="dl-photo-name">Becarios · Segunda cohorte</span>
+          <a class="dl-link" href="https://drive.google.com/drive/folders/1h54ERRVOAQf3EHfvrz0AK8KH4lrhbUL6?usp=sharing" target="_blank" rel="noopener">Ver álbum ↗</a>
+        </div>
+        <div class="dl-photo-row">
+          <span class="dl-photo-name">Evento de bienvenida · Segunda cohorte</span>
+          <a class="dl-link" href="https://drive.google.com/drive/folders/1ItwZle7uPJKs6DL66ewWvigPRtcW7vNW?usp=sharing" target="_blank" rel="noopener">Ver álbum ↗</a>
+        </div>
+        <div class="dl-photo-row">
+          <span class="dl-photo-name">Becarios · Tercera cohorte</span>
+          <a class="dl-link" href="https://drive.google.com/drive/folders/14UrilN7xm6i1Xf7-4FDRONWY9vq5ynml?usp=sharing" target="_blank" rel="noopener">Ver álbum ↗</a>
+        </div>
+        <div class="dl-photo-row">
+          <span class="dl-photo-name">Evento · Tercera cohorte</span>
+          <a class="dl-link" href="https://drive.google.com/drive/folders/1N3UkanlT3j8YZ-L0MMGD7ocd5Jlyjv3l?usp=drive_link" target="_blank" rel="noopener">Ver álbum ↗</a>
+        </div>
+      </div>
     </div>
 
   </div><!-- /dl-grid -->
