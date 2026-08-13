@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VERE 2026 — Proyección en vivo</title>
+<title>VERE 2026 — Proyección y control</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
@@ -12,11 +12,68 @@
 </head>
 <body>
 
-<div class="proj-wrap">
-  <div id="stage">
-    <div class="proj-lobby fade">
-      <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
-      <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">Conectando…</h1>
+<!-- PIN gate: esta pantalla ahora también controla la encuesta, así que se protege igual que antes -->
+<div id="gate" class="gate-wrap">
+  <div class="gate-card">
+    <p class="eyebrow">VERE · Proyección</p>
+    <h1 class="big-title" style="font-size:clamp(26px,6vw,34px)">Proyección + control</h1>
+    <p class="sub">Ingresa el PIN para continuar</p>
+    <form id="pin-form">
+      <input id="pin-input" type="password" inputmode="text" autocomplete="off" placeholder="PIN">
+      <p class="pin-error" id="pin-error"></p>
+      <button class="btn btn-primary" type="submit" style="width:100%">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="proj-wrap has-bar">
+    <div id="stage">
+      <div class="proj-lobby fade">
+        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+        <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">Conectando…</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-bar">
+    <button class="btn-ctrl" id="btn-prev" type="button">◀ Anterior</button>
+    <span class="connected-badge" id="connected-badge"><span class="dot"></span>0 conectados</span>
+    <button class="btn-ctrl primary" id="btn-next" type="button">Siguiente ▶</button>
+    <button class="btn-ctrl" id="btn-panel" type="button">⚙ Panel</button>
+  </div>
+
+  <div class="panel-overlay" id="panel-overlay" style="display:none">
+    <div class="panel-box">
+      <h2>Panel de control</h2>
+
+      <div class="panel-section">
+        <h3>Ir directo a una pregunta</h3>
+        <div class="jump-grid" id="jump-grid"></div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Acciones</h3>
+        <div class="panel-actions">
+          <button class="btn" id="btn-lobby" type="button">Mostrar lobby</button>
+          <button class="btn" id="btn-end" type="button">Finalizar encuesta</button>
+          <button class="btn btn-danger" id="btn-reset" type="button">Borrar todas las respuestas</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Enlaces</h3>
+        <div class="panel-links">
+          <button class="btn" id="copy-join" type="button">Copiar link de participantes</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Resumen general (12 preguntas)</h3>
+        <div class="summary-list" id="panel-summary"></div>
+      </div>
+
+      <button class="btn" id="btn-close-panel" type="button" style="width:100%">Cerrar panel</button>
     </div>
   </div>
 </div>
@@ -29,109 +86,261 @@
 <script src="common.js"></script>
 <script>
 (function () {
-  const db = firebase.database();
-  let currentIdx = null;
-  let responsesRef = null;
-  const stage = document.getElementById('stage');
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  const pinForm = document.getElementById('pin-form');
+  const pinInput = document.getElementById('pin-input');
+  const pinError = document.getElementById('pin-error');
 
-  function setResponsesListener(idx) {
-    if (responsesRef) { responsesRef.off(); responsesRef = null; }
-    if (idx === null || idx === undefined || idx < 0) return;
-    responsesRef = db.ref('responses/' + idx);
-    responsesRef.on('value', snap => renderBars(snap.val() || {}));
+  function unlock() {
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    sessionStorage.setItem('vere_admin_ok', '1');
+    initApp();
   }
 
-  function tally(responsesObj) {
-    const counts = {1:0,2:0,3:0,4:0,5:0};
-    Object.values(responsesObj || {}).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
-    const total = Object.values(counts).reduce((a,b)=>a+b,0);
-    return { counts, total };
+  if (sessionStorage.getItem('vere_admin_ok') === '1') {
+    unlock();
+  } else {
+    pinForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (pinInput.value === window.ADMIN_PIN) {
+        unlock();
+      } else {
+        pinError.textContent = 'PIN incorrecto';
+        pinInput.value = '';
+      }
+    });
   }
 
-  function renderBars(responsesObj) {
-    const { counts, total } = tally(responsesObj);
-    const wrap = document.getElementById('bars');
-    if (!wrap) return;
-    wrap.innerHTML = [1,2,3,4,5].map(n => {
-      const c = counts[n];
-      const pct = total ? Math.round((c/total)*100) : 0;
-      return `<div class="bar-row"><span class="bar-n">${n}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-count">${c}</span></div>`;
-    }).join('');
-    const totalEl = document.getElementById('total-votes');
-    if (totalEl) totalEl.textContent = total + (total === 1 ? ' respuesta' : ' respuestas');
-  }
+  function initApp() {
+    const db = firebase.database();
+    const TOTAL_Q = window.VERE_QUESTIONS.length;
+    const stage = document.getElementById('stage');
 
-  function renderLobby() {
-    const joinUrl = new URL('index.html', location.href).href;
-    stage.innerHTML = `
-      <div class="proj-lobby fade">
-        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
-        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">Bienvenidos</h1>
-        <p class="sub">Escanea el código o entra desde tu celular para participar</p>
-        <div id="qr" class="qr-box"></div>
-        <p class="join-url">${joinUrl}</p>
-      </div>`;
-    // eslint-disable-next-line no-undef
-    new QRCode(document.getElementById('qr'), { text: joinUrl, width: 220, height: 220, colorDark: '#28251E', colorLight: '#EAE6DA' });
-  }
+    let session = { state: 'lobby', currentIndex: -1 };
+    let allResponses = {};
+    let connectedCount = 0;
+    let currentView = null; // 'lobby' | 'active:N' | 'ended' — evita re-render innecesario
 
-  function renderEnded() {
-    setResponsesListener(null);
-    stage.innerHTML = `
-      <div class="proj-lobby fade">
-        <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
-        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">¡Gracias! 🎉</h1>
-        <p class="sub">Fin de la encuesta.</p>
-      </div>`;
-  }
+    window.VereApp.ready.then(() => {
+      db.ref('session').on('value', snap => {
+        session = snap.val() || { state: 'lobby', currentIndex: -1 };
+        renderForSession();
+        updateControlBar();
+      });
 
-  function renderQuestion(q) {
-    const dots = window.VERE_QUESTIONS.map(qq =>
-      `<span class="dot${qq.globalIndex === q.globalIndex ? ' on' : ''}"></span>`
-    ).join('');
-    stage.innerHTML = `
-      <div class="proj-question fade">
-        <div class="proj-dots">${dots}</div>
-        <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle} — Pregunta ${q.globalIndex + 1} de ${window.VERE_QUESTIONS.length}</p>
-        <p class="prompt" style="font-size:15px">${q.sectionPrompt}</p>
-        <h1 class="proj-title">${q.title}</h1>
-        <p class="proj-desc">${q.desc}</p>
-        <div class="scale-hint proj-hint"><span>1 · ${window.VERE_SCALE_LABELS[0]}</span><span>5 · ${window.VERE_SCALE_LABELS[4]}</span></div>
-        <div id="bars" class="bars"></div>
-        <p class="total-votes" id="total-votes">0 respuestas</p>
-      </div>`;
-  }
+      db.ref('responses').on('value', snap => {
+        allResponses = snap.val() || {};
+        renderCurrentBars();
+        renderPanelSummary();
+      });
 
-  function renderForSession(session) {
-    const state = session ? session.state : 'lobby';
-    const idx = (session && typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      db.ref('presence').on('value', snap => {
+        connectedCount = snap.numChildren ? snap.numChildren() : 0;
+        updateConnectedUI();
+      });
+    }).catch(() => {
+      stage.innerHTML = `
+        <div class="proj-lobby fade">
+          <p class="eyebrow">Error</p>
+          <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">No se pudo conectar</h1>
+          <p class="sub">Revisa la configuración de Firebase (firebase-config.js).</p>
+        </div>`;
+    });
 
-    if (state === 'ended') { renderEnded(); currentIdx = null; return; }
-    if (state !== 'active' || idx < 0) {
-      setResponsesListener(null);
-      currentIdx = null;
-      renderLobby();
-      return;
+    // ---------- Render principal (lo que ve la sala) ----------
+    function renderForSession() {
+      const state = session.state || 'lobby';
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+
+      if (state === 'ended') {
+        if (currentView !== 'ended') { currentView = 'ended'; renderEnded(); }
+        return;
+      }
+      if (state !== 'active' || idx < 0) {
+        if (currentView !== 'lobby') { currentView = 'lobby'; renderLobby(); }
+        else { updateConnectedUI(); }
+        return;
+      }
+      const q = window.VERE_QUESTIONS[idx];
+      if (!q) return;
+      const key = 'active:' + idx;
+      if (currentView !== key) {
+        currentView = key;
+        renderQuestion(q);
+      }
+      renderCurrentBars();
     }
-    const q = window.VERE_QUESTIONS[idx];
-    if (!q) return;
-    if (currentIdx !== idx) {
-      currentIdx = idx;
-      renderQuestion(q);
-      setResponsesListener(idx);
+
+    function renderLobby() {
+      const joinUrl = new URL('index.html', location.href).href;
+      stage.innerHTML = `
+        <div class="proj-lobby fade">
+          <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+          <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">Bienvenidos</h1>
+          <p class="sub">Escanea el código o entra desde tu celular para participar</p>
+          <div id="qr" class="qr-box"></div>
+          <p class="join-url">${joinUrl}</p>
+          <p class="lobby-connected" id="lobby-connected"><span class="dot"></span>${connectedCount} conectados</p>
+          <button class="btn btn-primary btn-start" id="btn-start" type="button">Comenzar encuesta ▶</button>
+        </div>`;
+      // eslint-disable-next-line no-undef
+      new QRCode(document.getElementById('qr'), { text: joinUrl, width: 220, height: 220, colorDark: '#28251E', colorLight: '#FFFFFF' });
+      document.getElementById('btn-start').addEventListener('click', goNext);
+    }
+
+    function renderEnded() {
+      stage.innerHTML = `
+        <div class="proj-lobby fade">
+          <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
+          <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">¡Gracias! 🎉</h1>
+          <p class="sub">Fin de la encuesta.</p>
+        </div>`;
+    }
+
+    function renderQuestion(q) {
+      const dots = window.VERE_QUESTIONS.map(qq =>
+        `<span class="dot${qq.globalIndex === q.globalIndex ? ' on' : ''}"></span>`
+      ).join('');
+      stage.innerHTML = `
+        <div class="proj-question fade">
+          <div class="proj-dots">${dots}</div>
+          <p class="eyebrow">Sección ${q.sectionIndex + 1} · ${q.sectionTitle} — Pregunta ${q.globalIndex + 1} de ${TOTAL_Q}</p>
+          <p class="prompt">${q.sectionPrompt}</p>
+          <h1 class="proj-title">${q.title}</h1>
+          <p class="proj-desc">${q.desc}</p>
+          <div class="scale-hint proj-hint"><span>1 · ${window.VERE_SCALE_LABELS[0]}</span><span>5 · ${window.VERE_SCALE_LABELS[4]}</span></div>
+          <div id="bars" class="bars"></div>
+          <p class="total-votes" id="total-votes">0 respuestas</p>
+        </div>`;
+    }
+
+    // ---------- Cálculo de resultados ----------
+    function tally(idx) {
+      const responsesObj = allResponses[idx] || {};
+      const counts = {1:0,2:0,3:0,4:0,5:0};
+      Object.values(responsesObj).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+      const total = Object.values(counts).reduce((a,b)=>a+b,0);
+      const sum = Object.entries(counts).reduce((s,[k,c]) => s + Number(k)*c, 0);
+      const avg = total ? (sum/total) : 0;
+      return { counts, total, avg };
+    }
+
+    function renderCurrentBars() {
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      if (session.state !== 'active' || idx < 0) return;
+      const wrap = document.getElementById('bars');
+      if (!wrap) return;
+      const { counts, total } = tally(idx);
+      wrap.innerHTML = [1,2,3,4,5].map(n => {
+        const c = counts[n];
+        const pct = total ? Math.round((c/total)*100) : 0;
+        return `<div class="bar-row"><span class="bar-n">${n}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-count">${c}</span></div>`;
+      }).join('');
+      const totalEl = document.getElementById('total-votes');
+      if (totalEl) totalEl.textContent = total + (total === 1 ? ' respuesta' : ' respuestas');
+    }
+
+    // ---------- Barra de control inferior ----------
+    function updateControlBar() {
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      document.getElementById('btn-prev').disabled = !(session.state === 'active' && idx > 0);
+      document.getElementById('btn-next').disabled = session.state === 'ended';
+    }
+
+    function updateConnectedUI() {
+      const badge = document.getElementById('connected-badge');
+      if (badge) badge.innerHTML = `<span class="dot"></span>${connectedCount} conectado${connectedCount === 1 ? '' : 's'}`;
+      const lobbyEl = document.getElementById('lobby-connected');
+      if (lobbyEl) lobbyEl.innerHTML = `<span class="dot"></span>${connectedCount} conectado${connectedCount === 1 ? '' : 's'}`;
+    }
+
+    function goNext() {
+      let idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      idx = idx < 0 ? 0 : Math.min(TOTAL_Q - 1, idx + 1);
+      db.ref('session').set({ state: 'active', currentIndex: idx });
+    }
+    function goPrev() {
+      let idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      idx = Math.max(0, idx - 1);
+      db.ref('session').set({ state: 'active', currentIndex: idx });
+    }
+
+    document.getElementById('btn-next').addEventListener('click', goNext);
+    document.getElementById('btn-prev').addEventListener('click', goPrev);
+
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('panel-overlay').style.display !== 'none') return;
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
+    });
+
+    // ---------- Panel de control (drawer) ----------
+    const panelOverlay = document.getElementById('panel-overlay');
+
+    document.getElementById('btn-panel').addEventListener('click', () => {
+      renderJumpGrid();
+      renderPanelSummary();
+      panelOverlay.style.display = 'flex';
+    });
+    document.getElementById('btn-close-panel').addEventListener('click', () => {
+      panelOverlay.style.display = 'none';
+    });
+    panelOverlay.addEventListener('click', e => {
+      if (e.target === panelOverlay) panelOverlay.style.display = 'none';
+    });
+
+    document.getElementById('btn-lobby').addEventListener('click', () => {
+      db.ref('session').set({ state: 'lobby', currentIndex: -1 });
+    });
+    document.getElementById('btn-end').addEventListener('click', () => {
+      db.ref('session').set({ state: 'ended', currentIndex: -1 });
+    });
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if (confirm('¿Seguro que quieres borrar TODAS las respuestas? Esta acción no se puede deshacer.')) {
+        db.ref('responses').remove();
+        db.ref('session').set({ state: 'lobby', currentIndex: -1 });
+      }
+    });
+    document.getElementById('copy-join').addEventListener('click', () => {
+      const btn = document.getElementById('copy-join');
+      navigator.clipboard.writeText(new URL('index.html', location.href).href);
+      const original = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+
+    function renderJumpGrid() {
+      const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      const wrap = document.getElementById('jump-grid');
+      wrap.innerHTML = window.VERE_QUESTIONS.map(q =>
+        `<button type="button" class="${session.state === 'active' && idx === q.globalIndex ? 'current' : ''}" data-idx="${q.globalIndex}">${q.globalIndex + 1}</button>`
+      ).join('');
+      wrap.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          db.ref('session').set({ state: 'active', currentIndex: parseInt(btn.dataset.idx, 10) });
+          panelOverlay.style.display = 'none';
+        });
+      });
+    }
+
+    function renderPanelSummary() {
+      const wrap = document.getElementById('panel-summary');
+      if (!wrap) return;
+      wrap.innerHTML = window.VERE_QUESTIONS.map(q => {
+        const { total, avg } = tally(q.globalIndex);
+        const pct = Math.round((avg / 5) * 100);
+        return `
+          <div class="summary-row">
+            <span class="summary-title">${q.globalIndex + 1}. ${q.title}</span>
+            <div class="bar-track small"><div class="bar-fill" style="width:${pct}%"></div></div>
+            <span class="summary-avg">${total ? avg.toFixed(2) : '—'}</span>
+            <span class="summary-total">${total} resp.</span>
+          </div>`;
+      }).join('');
     }
   }
-
-  window.VereApp.ready.then(() => {
-    db.ref('session').on('value', snap => renderForSession(snap.val()));
-  }).catch(() => {
-    stage.innerHTML = `
-      <div class="proj-lobby fade">
-        <p class="eyebrow">Error</p>
-        <h1 class="big-title" style="font-size:clamp(28px,5vw,44px)">No se pudo conectar</h1>
-        <p class="sub">Revisa la configuración de Firebase (firebase-config.js).</p>
-      </div>`;
-  });
 })();
 </script>
 </body>
