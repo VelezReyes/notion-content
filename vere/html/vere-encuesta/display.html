@@ -191,11 +191,23 @@
     }
 
     function renderEnded() {
+      const rows = window.VERE_QUESTIONS.map(q => {
+        const { total, avg } = tally(q.globalIndex);
+        const pct = Math.round((avg / 5) * 100);
+        return `
+          <div class="summary-row">
+            <span class="summary-title">${q.globalIndex + 1}. ${q.title}</span>
+            <div class="bar-track small"><div class="bar-fill${q.sectionIndex === 1 ? ' alt' : ''}" style="width:${pct}%"></div></div>
+            <span class="summary-avg">${total ? avg.toFixed(2) : '—'}</span>
+            <span class="summary-total">${total} resp.</span>
+          </div>`;
+      }).join('');
       stage.innerHTML = `
-        <div class="proj-lobby fade">
+        <div class="proj-question fade" style="max-width:760px">
           <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
-          <h1 class="big-title" style="font-size:clamp(40px,7vw,64px)">¡Gracias! 🎉</h1>
-          <p class="sub">Fin de la encuesta.</p>
+          <h1 class="proj-title" style="font-size:clamp(36px,5vw,56px)">¡Gracias! 🎉</h1>
+          <p class="proj-desc" style="margin-bottom:26px">Así respondió todo el equipo:</p>
+          <div class="summary-list" style="text-align:left">${rows}</div>
         </div>`;
     }
 

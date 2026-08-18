@@ -187,6 +187,7 @@ body {
 .bar-track { flex: 1; height: 18px; background: var(--surface-2); border: 1px solid var(--border-light); border-radius: 9px; overflow: hidden; }
 .bar-track.small { height: 10px; }
 .bar-fill { height: 100%; background: var(--green-mid); border-radius: 9px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.bar-fill.alt { background: var(--pink); }
 .bar-count { width: 38px; text-align: right; font-size: 17px; color: var(--text-mid); font-weight: 600; }
 
 .total-votes { margin-top: 22px; font-size: 17px; color: var(--text-muted); }

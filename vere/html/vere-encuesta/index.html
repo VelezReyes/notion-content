@@ -43,12 +43,34 @@
       </div>`;
   }
 
-  function renderEnded() {
+  function tally(idx, allResponses) {
+    const responsesObj = allResponses[idx] || {};
+    const counts = {1:0,2:0,3:0,4:0,5:0};
+    Object.values(responsesObj).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+    const total = Object.values(counts).reduce((a,b)=>a+b,0);
+    const sum = Object.entries(counts).reduce((s,[k,c]) => s + Number(k)*c, 0);
+    const avg = total ? (sum/total) : 0;
+    return { total, avg };
+  }
+
+  function renderEnded(allResponses) {
+    const rows = window.VERE_QUESTIONS.map(q => {
+      const { total, avg } = tally(q.globalIndex, allResponses);
+      const pct = Math.round((avg / 5) * 100);
+      return `
+        <div class="summary-row">
+          <span class="summary-title">${q.globalIndex + 1}. ${q.title}</span>
+          <div class="bar-track small"><div class="bar-fill${q.sectionIndex === 1 ? ' alt' : ''}" style="width:${pct}%"></div></div>
+          <span class="summary-avg">${total ? avg.toFixed(2) : '—'}</span>
+          <span class="summary-total">${total} resp.</span>
+        </div>`;
+    }).join('');
     stage.innerHTML = `
-      <div class="card fade">
+      <div class="card fade" style="max-width:640px">
         <p class="eyebrow">VERE · Encuesta de Cultura 2026</p>
         <h1 class="big-title">¡Gracias por participar! 🎉</h1>
-        <p class="sub">Tus respuestas ayudan a fortalecer nuestra cultura de equipo.</p>
+        <p class="sub" style="margin-bottom:22px">Así respondió todo el equipo:</p>
+        <div class="summary-list" style="text-align:left">${rows}</div>
       </div>`;
   }
 
@@ -95,7 +117,12 @@
     const state = session ? session.state : 'lobby';
     const idx = (session && typeof session.currentIndex === 'number') ? session.currentIndex : -1;
 
-    if (state === 'ended') { renderEnded(); return; }
+    if (state === 'ended') {
+      db.ref('responses').once('value').then(snap => {
+        renderEnded(snap.val() || {});
+      });
+      return;
+    }
     if (state !== 'active' || idx < 0) { renderLobby(); return; }
 
     const q = window.VERE_QUESTIONS[idx];
