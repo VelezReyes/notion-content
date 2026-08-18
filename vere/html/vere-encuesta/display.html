@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VERE 2026 — Proyección y control</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abacaxi&display=swap" rel="stylesheet">
@@ -258,7 +261,9 @@
     function updateControlBar() {
       const idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
       document.getElementById('btn-prev').disabled = !(session.state === 'active' && idx > 0);
-      document.getElementById('btn-next').disabled = session.state === 'ended';
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.disabled = session.state === 'ended';
+      nextBtn.textContent = (session.state === 'active' && idx >= TOTAL_Q - 1) ? 'Finalizar ▶' : 'Siguiente ▶';
     }
 
     function updateConnectedUI() {
@@ -270,6 +275,10 @@
 
     function goNext() {
       let idx = (typeof session.currentIndex === 'number') ? session.currentIndex : -1;
+      if (session.state === 'active' && idx >= TOTAL_Q - 1) {
+        db.ref('session').set({ state: 'ended', currentIndex: -1 });
+        return;
+      }
       idx = idx < 0 ? 0 : Math.min(TOTAL_Q - 1, idx + 1);
       db.ref('session').set({ state: 'active', currentIndex: idx });
     }
