@@ -387,6 +387,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
       <div class="nav-dropdown" id="navDropdown">
         <div class="nav-links navset" data-for="guide">
           <a href="#start" class="nav-link">Start</a>
+          <a href="#naming" class="nav-link">Naming</a>
           <a href="#beta" class="nav-link">Beta rules</a>
           <a href="#tools" class="nav-link">Tools</a>
           <a href="#timeline" class="nav-link">Timeline</a>
@@ -486,7 +487,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
       </div>
       <div class="card struct-card"><span class="struct-code">02</span>
         <div class="card-title">Investments &amp; Programs</div>
-        <div class="card-body">Pipeline · Portfolio · Venture Building · In-house Programs.</div>
+        <div class="card-body">Pipeline (not yet approved) · Portfolio (active investment) · Venture Building (ver+ incubating) · In-house (ver+ operates it directly).</div>
       </div>
       <div class="card struct-card"><span class="struct-code">03</span>
         <div class="card-title">Institutional</div>
@@ -522,7 +523,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
         <span class="tree-num">02</span>
         <div>
           <div class="tree-name">INVESTMENTS &amp; PROGRAMS</div>
-          <div class="tree-sub">Master Indexes · Pipeline · Portfolio · Venture Building · In-house Programs</div>
+          <div class="tree-sub">Master Indexes · Exploration · Pipeline · Portfolio · Venture Building · In-house Programs</div>
         </div>
       </div>
       <div class="tree-row">
@@ -541,7 +542,8 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
       </div>
     </div>
 
-    <h3 class="subhead" style="margin-top:3rem">How to name a file</h3>
+    <div class="eyebrow" style="margin-top:3rem">One of the most-asked questions</div>
+    <h3 class="subhead" id="naming">How to name a file</h3>
     <p class="h-sub" style="margin-bottom:1.25rem">This works whether or not you use the <a href="#" data-link="finder" target="_blank" rel="noopener" style="color:var(--purple-dark);font-weight:800">Drive Finder</a>, so if you'd rather do it manually, you can. Use this format whenever date, status, or version matter:</p>
     <div class="card naming-card">
       <p class="naming-format">YYYY-MM-DD_[Object]_[DocumentType]_[Status]_v##</p>
@@ -841,6 +843,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     <div class="card" style="overflow-x:auto;margin-bottom:1.5rem">
       <table class="acc-table">
         <tr><th>Ask</th><th>Use</th></tr>
+        <tr><td>Is it an early contact, topic/issue exploration, or possible opportunity that hasn't yet reached formal Pipeline?</td><td><b>Exploration</b></td></tr>
         <tr><td>Is it an external organization that is not yet approved as an investment?</td><td><b>Pipeline</b></td></tr>
         <tr><td>Is it an external organization with an approved active relationship?</td><td><b>Portfolio</b></td></tr>
         <tr><td>Is ver+ intentionally incubating or building it, with a possible transition or spin-off?</td><td><b>Venture Building</b></td></tr>
@@ -859,6 +862,20 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><td>Ventures &amp; In-house Programs</td><td>Automatic view of active Venture Building and In-house Program objects.</td></tr>
           <tr><td>Archived &amp; Declined</td><td>Automatic view of declined, closed, or archived objects.</td></tr>
         </table></div>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">0A_EXPLORATION, before formal Pipeline</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>For substantive pre-Pipeline work worth preserving, not for every light contact. If it becomes a formal opportunity, create the Pipeline structure with the Drive Finder and move the material in, don't keep two official homes.</p>
+        <div style="overflow-x:auto"><table class="acc-table">
+          <tr><th>Folder</th><th>What goes here</th></tr>
+          <tr><td>Education</td><td>Explorations clearly related to Education.</td></tr>
+          <tr><td>Democracy</td><td>Explorations clearly related to Democracy.</td></tr>
+          <tr><td>Cross_Thematic</td><td>Explorations that can't reasonably be assigned to either Education or Democracy.</td></tr>
+        </table></div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Light-contact rule:</b> a very light contact can stay as a Master Registry / Opportunity Map record without its own folder. Only create an Exploration folder when there's substantive material worth preserving.</p>
       </div></div>
     </div>
 
@@ -945,7 +962,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     <div class="acc" data-acc>
       <button class="acc-head"><span class="acc-head-txt">04_IN_HOUSE_PROGRAMS, ver+ as stable operator</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
       <div class="acc-panel"><div class="acc-panel-inner">
-        <p>Use In-house when ver+ is the stable operator with no immediate expectation that the program becomes an independent external organization.</p>
+        <p>Use In-house when ver+ is the stable operator with no immediate expectation that the program becomes an independent external organization. Programs are grouped under Education, Democracy, or Cross_Thematic, reserved for programs that don't reasonably fit either theme, like Emergency Response below.</p>
         <div style="overflow-x:auto"><table class="acc-table">
           <tr><th>Folder</th><th>What goes here</th></tr>
           <tr><td>Overview &amp; Governance</td><td>Purpose, scope, governance, owners, program model, key links.</td></tr>
@@ -977,6 +994,14 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><td>Photos &amp; Videos</td><td>Use year/event/cohort subfolders for large volumes. Institutional Comms uses shortcuts, not duplicate files.</td></tr>
         </table></div>
         <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Volume rule:</b> create second-level folders by year, cohort, study, or event only where volume makes them useful. Never build a parallel Beca Tech structure outside In-house Programs.</p>
+      </div></div>
+    </div>
+
+    <div class="acc" data-acc id="ref-emergency">
+      <button class="acc-head"><span class="acc-head-txt">Special case: Emergency Response</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner">
+        <p>Emergency Response = Cross_Thematic / In-house Program. Official path: Investments &amp; Programs / In-house Programs / Cross_Thematic / Emergency Response. It uses the same standard In-house Program structure as Beca Tech, governance, meetings, strategy &amp; design, operations, partners &amp; providers, participant/beneficiary data, MEL evidence, finance &amp; legal, comms &amp; reports, photos &amp; videos, decisions &amp; transitions, so there's no separate folder table for it.</p>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem"><b>Why Cross_Thematic:</b> ver+ operates this work directly, but it doesn't sit naturally under Education or Democracy. Cross_Thematic is reserved for cases like this, it isn't a general "other" folder.</p>
       </div></div>
     </div>
   </div>
@@ -1023,6 +1048,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><th>Folder</th><th>What goes here</th></tr>
           <tr><td>Decision Log</td><td>Consolidated index of institutional decisions: decision, date, forum, owner, scope, status, link to documentation.</td></tr>
           <tr><td>Board / Leadership Team / All Team / Offsites</td><td>Formal meetings organized by year and meeting date, each with its own package.</td></tr>
+          <tr><td>Weekly email</td><td>Recurring weekly email package/file and materials made specifically for that communication. Keep source documents in their official RADAR homes and link/shortcut them here instead of duplicating them.</td></tr>
           <tr><td>Inside each meeting</td><td>Agenda, pre-reads, deck, notes &amp; minutes, decisions &amp; actions.</td></tr>
         </table></div>
       </div></div>
@@ -1107,7 +1133,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><td>Declined Pipeline</td><td>Complete opportunity folders that didn't advance or were withdrawn, preserving stage reached and context.</td></tr>
           <tr><td>Closed Portfolio</td><td>Organizations whose active Portfolio relationship has ended.</td></tr>
           <tr><td>Closed Ventures</td><td>Closed or discontinued Venture Building initiatives.</td></tr>
-          <tr><td>Closed In-house Programs</td><td>In-house Programs that ended or stopped operating.</td></tr>
+          <tr><td>Closed In-house Programs</td><td>In-house Programs that ended or stopped operating. Organized into Education, Democracy, and Cross_Thematic subfolders.</td></tr>
           <tr><td>Superseded Strategies</td><td>Replaced strategies retained for historical traceability.</td></tr>
           <tr><td>Deprecated Templates</td><td>Retired templates that should no longer be used.</td></tr>
           <tr><td>Legacy Structure</td><td>Read-only backup of the previous Drive structure.</td></tr>
