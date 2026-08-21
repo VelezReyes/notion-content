@@ -191,6 +191,20 @@ h2.h-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3.4vw
 .important-box{background:#FFF7E0;border:1px solid #F0DFA0;border-radius:var(--radius);padding:1.1rem 1.4rem;display:flex;gap:.9rem;align-items:flex-start;font-size:.92rem;font-weight:500;color:#5A4200;line-height:1.6;margin-bottom:1rem}
 .important-box b{color:#402F00}
 .important-box .icon{color:var(--yellow-dark);width:1.2em;height:1.2em;flex-shrink:0;margin-top:2px}
+.finder-mode{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.finder-mode::before{content:'';position:absolute;top:0;left:0;right:0;height:5px}
+.finder-mode.classify::before{background:var(--purple)}
+.finder-mode.create::before{background:var(--green)}
+.finder-mode-head{display:flex;align-items:flex-start;gap:1.1rem;margin-bottom:1.5rem}
+.finder-mode-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.finder-mode-icon svg{width:24px;height:24px}
+.finder-mode.classify .finder-mode-icon{background:#F4E6FF;color:var(--purple)}
+.finder-mode.create .finder-mode-icon{background:#E4F9EE;color:var(--green-dark)}
+.finder-mode-eyebrow{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.finder-mode.classify .finder-mode-eyebrow{color:var(--purple)}
+.finder-mode.create .finder-mode-eyebrow{color:var(--green-dark)}
+.finder-mode-head h3{font-weight:800;font-size:1.35rem;margin:0 0 .3rem;line-height:1.25}
+.finder-mode-tag{font-size:.88rem;font-weight:600;color:var(--muted)}
 
 /* ─── CHECKLIST ──────────────────────────────────────── */
 .checklist{display:flex;flex-direction:column}
@@ -300,6 +314,10 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
   .nav-divider{display:none}
   .btn-icon .lbl{display:none}
   .nav-dropdown{position:fixed;top:var(--nav-h);left:auto;right:1rem;min-width:200px;max-width:calc(100vw - 2rem)}
+  .nav-inner{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav-menu-wrap{flex:0 0 auto}
+  .page-tab{padding:7px 11px;font-size:.68rem}
 }
 @media (max-width:640px){
   .grid-4,.grid-3{grid-template-columns:1fr}
@@ -376,6 +394,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     <div class="page-tabs">
       <button class="page-tab active" data-page="guide">Guide</button>
       <button class="page-tab" data-page="reference">Routing Dictionary</button>
+      <button class="page-tab" data-page="finder">Finder Guide</button>
     </div>
 
     <div class="nav-menu-wrap">
@@ -400,6 +419,10 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <a href="#ref-inst" class="nav-link">Institutional</a>
           <a href="#ref-archive" class="nav-link">Archive</a>
           <a href="#ref-lifecycle" class="nav-link">Lifecycle</a>
+        </div>
+        <div class="nav-links navset" data-for="finder" style="display:none">
+          <a href="#finder-classify" class="nav-link">Classify</a>
+          <a href="#finder-create" class="nav-link">Create Structure</a>
         </div>
       </div>
     </div>
@@ -661,9 +684,13 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
       <div class="card tool-card finder">
         <div class="tool-icon-wrap finder"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg></div>
         <div class="card-title">Drive Finder</div>
-        <div class="card-body">Has two tabs. <b>Classify</b> answers "where should I save this?": describe your file in Spanish, English, or Portuguese and get a folder plus a suggested file name. The other tab helps you find existing files quickly.</div>
+        <div class="card-body">Has three tabs. <b>Search</b> finds existing files quickly. <b>Classify</b> answers "where should I save this?" and suggests a folder plus a file name. <b>Create structure</b> builds the real folders in Drive for a new organization, program, policy, or meeting, no manual copy-pasting of templates.</div>
         <a class="btn btn-primary btn-sm" href="#" data-link="finder" target="_blank" rel="noopener">Open the Drive Finder</a>
       </div>
+    </div>
+    <div class="principle-box purple" style="margin-top:1.5rem">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+      <p>Want the full walkthrough of Classify and Create Structure, step by step? See <a class="cta-link" href="#finder-overview" data-goto="finder">How the Drive Finder works</a>, its own page above.</p>
     </div>
     <div class="read-note">
       <svg class="icon" viewBox="0 0 24 24" style="width:1.1em;height:1.1em;margin-right:6px;vertical-align:-2px"><use href="#icon-book"/></svg>
@@ -800,6 +827,11 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><td><b>Archive, don't delete</b></td><td>Closed, declined, or superseded work moves to Archive while its institutional history and master-index visibility stay intact.</td></tr>
         </table></div>
       </div></div>
+    </div>
+
+    <div class="principle-box purple" style="margin-top:1.5rem">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-search"/></svg>
+      <p>Curious how the Drive Finder turns this exact logic into a suggested name, or into real folders in Drive? See <a class="cta-link" href="#finder-overview" data-goto="finder">How the Drive Finder works</a>, its own page above, for both Classify and Create Structure, step by step.</p>
     </div>
   </div>
 </section>
@@ -1187,6 +1219,142 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
 </section>
 
 </div><!-- /page: reference -->
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 3 — DRIVE FINDER GUIDE
+     ══════════════════════════════════════════════════════ -->
+<div class="app-page" data-page="finder">
+
+<section class="section" id="finder-overview" style="padding-top:3.5rem">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Inside the tool</div>
+      <h2 class="h-title">How the Drive Finder works</h2>
+      <p class="h-sub">The Drive Finder has two tools that matter most here. <b>Classify</b> answers "where should this go and what should I call it?" for a file you already have. <b>Create Structure</b> builds the real, official folders in Drive for something new, an organization, a program, a policy, a meeting, an OKR year, following this exact Routing Dictionary automatically.</p>
+    </div>
+
+    <div class="finder-mode classify" id="finder-classify">
+      <div class="finder-mode-head">
+        <div class="finder-mode-icon"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg></div>
+        <div>
+          <div class="finder-mode-eyebrow">Tool 1</div>
+          <h3>Classify: naming and routing</h3>
+          <p class="finder-mode-tag">For a file you already have, in hand right now.</p>
+        </div>
+      </div>
+      <p class="h-sub" style="margin-bottom:1.25rem">Describe what you're saving, in Spanish, English, or Portuguese, and Classify suggests the destination folder and a consistent file name. Three extra inputs help it narrow down the answer, all optional except the description itself.</p>
+      <div class="card" style="overflow-x:auto;margin-bottom:1.5rem">
+        <table class="acc-table">
+          <tr><th>Field</th><th>What it does</th></tr>
+          <tr><td>Description</td><td>Free text. "Board meeting minutes for August" or "Fotos del evento de Beca Tech" both work.</td></tr>
+          <tr><td>Object</td><td>Optional. The organization, program, or topic the file is about.</td></tr>
+          <tr><td>Context</td><td>Auto, or force it: Exploration, Pipeline, Portfolio, Venture, In-house, Institutional.</td></tr>
+          <tr><td>Theme</td><td>Auto, or force it: Education, Democracy, Cross-thematic.</td></tr>
+        </table>
+      </div>
+      <p class="h-sub" style="margin-bottom:1.25rem">The result shows a recommended location, a suggested file name, a short "why," and a confidence level. When confidence isn't high, it also tells you exactly what would improve it, usually adding the object name.</p>
+      <div class="card" style="margin-bottom:1.5rem">
+        <div class="def-list">
+          <div class="def-row"><b>Ubicación recomendada</b><span>03_INSTITUTIONAL/00_POLICIES/[Object]/99_Drafts</span></div>
+          <div class="def-row"><b>Nombre sugerido</b><span>2026-08-21_[Object]_Policy_DRAFT_v01</span></div>
+        </div>
+        <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Example above: description was just "a policy draft," with no object named, hence the medium confidence and the [Object] placeholder in both the path and the file name.</p>
+      </div>
+      <div class="important-box" style="margin-bottom:0">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-warn"/></svg>
+        <p>Classify only recommends, it never creates, moves, or renames anything in Drive. Nothing changes until you save the file yourself, at the suggested location.</p>
+      </div>
+    </div>
+
+    <div class="finder-mode create" id="finder-create">
+      <div class="finder-mode-head">
+        <div class="finder-mode-icon"><svg viewBox="0 0 24 24"><use href="#icon-folder"/></svg></div>
+        <div>
+          <div class="finder-mode-eyebrow">Tool 2</div>
+          <h3>Create Structure: building real folders</h3>
+          <p class="finder-mode-tag">For something new that doesn't exist in Drive yet.</p>
+        </div>
+      </div>
+      <p class="h-sub" style="margin-bottom:1.25rem">Google Drive doesn't let you duplicate a folder template into a new location the way RADAR needs, so the template folders you see in RADAR are references, not copies to reuse. When you need a genuinely new standard structure, Create Structure builds it correctly instead of you rebuilding it by hand.</p>
+      <div class="important-box">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#icon-warn"/></svg>
+        <p><b>Before you start:</b> the first time you use it, RADAR asks for permission to access your Drive and create the folders on your behalf. Accept it to continue, this only happens once.</p>
+      </div>
+
+      <div class="acc" data-acc>
+        <button class="acc-head"><span class="acc-head-txt">1. Structure type</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+        <div class="acc-panel"><div class="acc-panel-inner">
+          <p>Choose what you're creating. Each type maps to a fixed spot in the Routing Dictionary.</p>
+          <div style="overflow-x:auto"><table class="acc-table">
+            <tr><th>Type</th><th>What it's for</th></tr>
+            <tr><td>Pipeline organization</td><td>A new opportunity under evaluation. Sourcing, Screening, and Diligence are subfolders inside the object, advancing a stage never moves the folder.</td></tr>
+            <tr><td>Venture Building initiative</td><td>An initiative ver+ is building. If its operating model later changes, the complete folder is moved rather than rebuilt.</td></tr>
+            <tr><td>In-house program</td><td>A program ver+ operates directly. Includes a restricted participant/beneficiary data folder that needs access configured by hand after creation.</td></tr>
+            <tr><td>Policy</td><td>An organization-wide policy and its supporting guidance. Policies live only here, use a shortcut if a function needs visibility elsewhere.</td></tr>
+            <tr><td>Formal governance meeting</td><td>A Board, Leadership Team, All Team, or Offsite meeting package. Concept Review and Investment Committee are project gates and are never stored here.</td></tr>
+            <tr><td>Annual OKR cycle</td><td>One OKR folder per year. Years are never mixed in the same folder.</td></tr>
+          </table></div>
+          <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Portfolio is intentionally not on this list. When a Pipeline organization is approved, move its existing folder to Portfolio and add the operating subfolders, don't create a new one from scratch.</p>
+        </div></div>
+      </div>
+
+      <div class="acc" data-acc>
+        <button class="acc-head"><span class="acc-head-txt">2. Details</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+        <div class="acc-panel"><div class="acc-panel-inner">
+          <p>The fields change depending on the structure type chosen in step 1.</p>
+          <div style="overflow-x:auto"><table class="acc-table">
+            <tr><th>Structure type</th><th>Fields</th></tr>
+            <tr><td>Pipeline organization / Venture Building initiative</td><td><b>Name*</b> (used exactly as typed, accents/spaces/+/&amp;/hyphens/apostrophes are kept) · <b>Theme*</b> (Education or Democracy only) · Owner (optional, Master Registry) · Country/geography (optional, Master Registry) · Strategic focus (optional, metadata only, never becomes a folder) · <b>Meeting log year*</b> (names the yearly Meeting Log and its Raw_Notes folder).</td></tr>
+            <tr><td>In-house program</td><td>Same fields as above, but <b>Theme*</b> adds Cross_Thematic, use it only when the program can't reasonably be assigned to Education or Democracy.</td></tr>
+            <tr><td>Policy</td><td><b>Policy name*</b>, used exactly as typed.</td></tr>
+            <tr><td>Formal governance meeting</td><td><b>Forum*</b>: Board, Leadership Team, All Team, or Offsites, only formal institutional forums, Concept Review and Investment Committee stay with the project · <b>Meeting date*</b>, the year folder is derived from this date.</td></tr>
+            <tr><td>Annual OKR cycle</td><td><b>OKR year*</b>, four digits, 2000–2100, years are never mixed in one folder. Destination is shown directly, e.g. 01_STRATEGY/03_OKRs/2026.</td></tr>
+          </table></div>
+          <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">*Required. Owner, country/geography, and strategic focus are recorded as metadata in the Master Registry and never shape the folder path, unlike Theme and Meeting log year, which do.</p>
+        </div></div>
+      </div>
+
+      <div class="acc" data-acc>
+        <button class="acc-head"><span class="acc-head-txt">3. Preview</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+        <div class="acc-panel"><div class="acc-panel-inner">
+          <p>Before anything is created, Preview shows the exact destination path in RADAR and the complete planned folder tree, built directly from this Routing Dictionary. If something looks off, this is the moment to go back and adjust Details, nothing exists in Drive yet.</p>
+        </div></div>
+      </div>
+
+      <div class="acc" data-acc>
+        <button class="acc-head"><span class="acc-head-txt">4. Confirm</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+        <div class="acc-panel"><div class="acc-panel-inner">
+          <p>Confirm spells out exactly what's about to happen, for example: "You are about to create 4 new items in RADAR: 03_INSTITUTIONAL/00_POLICIES/Travel Policy." A few guarantees apply every time:</p>
+          <div style="overflow-x:auto"><table class="acc-table">
+            <tr><th>Guarantee</th><th>What it means</th></tr>
+            <tr><td>Nothing existing is touched</td><td>Nothing is deleted, moved, or renamed, and no permissions are changed.</td></tr>
+            <tr><td>No automatic rollback</td><td>If part of the operation fails, whatever was already created is left in place and reported.</td></tr>
+            <tr><td>Safe to retry</td><td>Running it twice creates nothing new.</td></tr>
+          </table></div>
+          <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">You have to actively check a confirmation box before "Create structure" becomes clickable.</p>
+        </div></div>
+      </div>
+
+      <div class="acc" data-acc>
+        <button class="acc-head"><span class="acc-head-txt">5. Result</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+        <div class="acc-panel"><div class="acc-panel-inner">
+          <p>Result lists every item actually created, with an "Open folder in Drive" link straight to the new structure. Some structure types, Policy, Formal governance meeting, and Annual OKR cycle among them, don't get a Master Registry record, that registry is only for Pipeline, Portfolio, Venture Building, and In-house objects.</p>
+          <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">If a real Drive item is listed here, it exists, no second pass needed.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="principle-box" style="margin-top:1rem">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+      <div>
+        <p><b>Which one do I need?</b> Use Classify when you already have a file and need to know where it goes. Use Create Structure when the folder doesn't exist yet and needs to be built the official way, instead of copying an old one by hand.</p>
+        <a class="btn btn-light btn-sm" href="#" data-link="finder" target="_blank" rel="noopener" style="margin-top:.9rem">Open the Drive Finder</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page: finder -->
 
 <!-- FOOTER ────────────────────────────────────────────── -->
 <footer>
