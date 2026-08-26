@@ -408,7 +408,7 @@ body {
         <div class="fw-label">🔒 Private Forms</div>
         <div class="fw-name">Open via Direct Message</div>
         <p>For personal or individual topics. Always opened from a DM, never from a public channel.</p>
-        <p style="margin-top:.35rem;font-size:11px;color:var(--text-mt);">Deel · General Questions · HR · Profit.co</p>
+        <p style="margin-top:.35rem;font-size:11px;color:var(--text-mt);">Deel · General Questions · HR · Profit.co · Solicitud Viajes · OPEX · Deel Card · Consultas Financieras</p>
       </div>
       <div class="fw-pillar channel">
         <div class="fw-label">📢 Channel Forms</div>
@@ -489,6 +489,71 @@ body {
       <div class="emerg-body">
         <p>For questions about <strong>OKRs, objectives, key results, or how to use Profit.co</strong>. Use this to report platform issues, request changes to your objectives, or get guidance on how the tool works.</p>
         <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. In the form selector, under <strong>"Who do you need help from?"</strong>, select <strong>General</strong>, then select the <em>Profit.co</em> form.</p>
+      </div>
+    </div>
+
+    <!-- Vere forms -->
+    <div class="block-title" style="margin-top:1.25rem;">💰 Vere Forms: Finance &amp; Travel — Open from a Direct Message</div>
+    <p style="font-size:14px;color:var(--text-mt);margin-bottom:.75rem;">These forms handle all finance-related requests and travel fund submissions. They are managed by <strong>Gabriela</strong>. Open them from a DM and select the <strong>Vere</strong> inbox in the form selector.</p>
+
+    <div class="callout yellow" style="margin-bottom:.75rem;">
+      <div class="callout-title">Travel requests: attach the Excel, not an email</div>
+      From now on, the Travel Request Excel file must be attached <strong>directly in the Suptask ticket</strong>. Do not send it by email — that workflow no longer applies. Use the <em>Solicitud de Fondos Viajes</em> form and attach the file there.
+    </div>
+
+    <div class="emerg-item" id="f-viajes">
+      <div class="emerg-header" onclick="toggleEmerg('f-viajes')">
+        <div class="emerg-dot purple"></div>
+        <span class="emerg-title">Solicitud de Fondos Viajes</span>
+        <span class="emerg-badge private">Private · DM · Vere</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        <p>Use this form to request funds for a work trip. You must <strong>attach the completed Travel Request Excel file</strong> to the ticket — do not send it separately or by email.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Under <strong>"Who do you need help from?"</strong>, select <strong>Vere</strong>, then select the <em>Solicitud de Fondos Viajes</em> form.</p>
+        <div class="callout green" style="margin-top:.5rem;">
+          <div class="callout-title">Attach the file in the ticket</div>
+          The form includes an attachment field for the Excel file. Upload the completed spreadsheet there — Gabriela will review it directly from the ticket.
+        </div>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="f-opex">
+      <div class="emerg-header" onclick="toggleEmerg('f-opex')">
+        <div class="emerg-dot purple"></div>
+        <span class="emerg-title">Solicitud OPEX / Direct Cost</span>
+        <span class="emerg-badge private">Private · DM · Vere</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        <p>For requests related to <strong>operational expenses (OPEX) or direct costs</strong>. Uses the same base fields as the travel form but with no attachment required. Includes a <strong>cost center field</strong> — fill it in accurately to ensure correct accounting.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Under <strong>"Who do you need help from?"</strong>, select <strong>Vere</strong>, then select the <em>Solicitud OPEX / Direct Cost</em> form.</p>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="f-deel-card">
+      <div class="emerg-header" onclick="toggleEmerg('f-deel-card')">
+        <div class="emerg-dot purple"></div>
+        <span class="emerg-title">Issues Deel Card</span>
+        <span class="emerg-badge private">Private · DM · Vere</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        <p>For any <strong>issues or incidents with your Deel Card</strong>: declined transactions, balance questions, card blocks, unexpected charges, or anything related to card usage. Opening this form creates a ticket that Gabriela will follow up on.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Under <strong>"Who do you need help from?"</strong>, select <strong>Vere</strong>, then select the <em>Issues Deel Card</em> form.</p>
+      </div>
+    </div>
+
+    <div class="emerg-item" id="f-finanzas">
+      <div class="emerg-header" onclick="toggleEmerg('f-finanzas')">
+        <div class="emerg-dot purple"></div>
+        <span class="emerg-title">Consultas Financieras</span>
+        <span class="emerg-badge private">Private · DM · Vere</span>
+        <span class="emerg-chevron">▾</span>
+      </div>
+      <div class="emerg-body">
+        <p>For <strong>financial questions</strong>: cost center clarifications, payment status, expense reclassifications, accounting doubts, or any finance-related inquiry that doesn't require a formal fund request. Managed by Gabriela.</p>
+        <p style="margin-top:.4rem;"><strong>How to open:</strong> Go to a DM and type <span class="method-pill">/suptask</span>, or react to any message with the <strong>🎫 ticket emoji</strong>. Under <strong>"Who do you need help from?"</strong>, select <strong>Vere</strong>, then select the <em>Consultas Financieras</em> form.</p>
       </div>
     </div>
 
@@ -659,6 +724,7 @@ body {
         <p>Under <strong>"Who do you need help from?"</strong>, select the inbox first, then choose the form. There are two inboxes for private tickets:</p>
         <p style="margin-top:.4rem;"><strong>General</strong> — for Deel, General Questions, and Profit.co. This is the default inbox for private requests.</p>
         <p style="margin-top:.25rem;"><strong>HR Private</strong> — for the HR form only. Routes exclusively to Cristina. Fully private, no one else has access.</p>
+        <p style="margin-top:.25rem;"><strong>Vere</strong> — for all finance and travel forms (Solicitud de Fondos Viajes, OPEX/Direct Cost, Issues Deel Card, Consultas Financieras). Managed by Gabriela.</p>
       </div>
       <div class="fw-pillar channel">
         <div class="fw-label">📢 Channel tickets</div>
