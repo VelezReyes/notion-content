@@ -426,63 +426,22 @@ const DATA = {
       name:     "TBD",   /* ← update with creative name */
       audience: "David & Mariel",
       ceoNote:  null
+    },
+    {
+      num:      "03",
+      month:    "August",
+      year:     2026,
+      name:     "TBD",   /* ← update with creative name */
+      audience: "David & Mariel",
+      ceoNote:  null
     }
   ],
 
   /* ── TEAMS ────────────────────────────────────────────────
-     Stories stack inside each team as editions grow.
-     Each story must include an `edition` field.              */
+     Ed.03 order: teams WITH new stories first (alphabetical),
+     then teams WITHOUT new stories (alphabetical).
+     Stories array is chronological; render reverses → newest first. */
   teams: [
-
-    /* ══ ECE (Early Childhood Education) ═══════════════════ */
-    {
-      id: "ece", name: "ECE", color: "#27CF77",
-      stories: [
-        {
-          edition:   "01",
-          title:     "Aprendo+: Turning WhatsApp into a Bridge Between Schools and Families",
-          pill:      "Aprendo+",
-          tag:       "Learning Agenda",
-          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/aprendo-RECAP.mp4",
-          mediaType: "video",
-          imgRatio:  "landscape",
-          summary: `<p>Aprendo+ is turning WhatsApp into a powerful bridge between schools and families: across 32 schools in Peru, around 80% of parents and 98% of teachers shared evidence of participation at least once, showing that a simple, familiar channel can mobilize families and educators around early childhood learning. With the support of VER+, the evidence also shows that principals, teachers, and parents perceive Aprendo+ as useful, practical, and aligned with everyday routines and classroom practice.</p><p>The most encouraging result is that Aprendo+ is changing how adults understand and practice play. Parents report a 26% increase in the importance they assign to spending time on play and a 31% increase in the frequency of play with their children; teachers report around 20% higher confidence in supporting communication, math, and socio-emotional development. The next step is to move from strong perceived changes to stronger evidence on child development outcomes, but the program is already showing a clear and promising path: small, joyful, everyday interactions can become meaningful learning moments.</p>`,
-          stats: [
-            { n: "32",   l: "Schools in Peru",                       ctx: "Program implementation sites",                                                          c: "#27CF77" },
-            { n: "~80%", l: "Parents participated",                   ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
-            { n: "98%",  l: "Teachers participated",                  ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
-            { n: "+26%", l: "Parents value play more",                ctx: "Increase in importance assigned to spending time on play",                              c: "#27CF77" },
-            { n: "+31%", l: "Parents play more with their children",  ctx: "Increase in frequency of play at home",                                                 c: "#27CF77" },
-            { n: "~20%", l: "Teachers more confident",                ctx: "Higher confidence in supporting communication, math, and socio-emotional development",  c: "#27CF77" }
-          ],
-          investment: "USD 1,104,250 committed through 2027",
-          onepager:   "https://docs.google.com/document/d/1qDrVrsdhNCcGc6im9WdIj8x8xUOs7tThK_M9Ms2hh2A/edit?usp=sharing"
-        },
-        {
-          edition:   "02",
-          title:     "aeioTU: Mapping the Quality of Informal Childcare Spaces",
-          pill:      "aeioTU",
-          tag:       "Learning Agenda",
-          mediaType: "gallery",
-          imgs: [
-            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/Portada.jpg",
-            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/1.jpg",
-            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/2.jpg",
-            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/4.jpg"
-          ],
-          imgRatio:  "landscape",
-          summary: `<p>The aeioTU diagnostic shows that informal childcare spaces are still far from consistently offering the kinds of interactions that best support early learning. Across 29 spaces and 95 interaction moments observed in Bogotá, Cartagena, and Medellín, the strongest dimensions were sensitivity and responsiveness and affective treatment, with average scores of 3.55 and 3.37 on a 1–5 scale. By contrast, the lowest scores were in learning strategies and interaction through play, with averages of 2.78 and 2.85. In practice, this means that many caregivers provide warmth and basic care, but do not yet consistently use language, questions, exploration, materials, or play as intentional learning opportunities.</p><p>The main concern is that the weakest dimensions are precisely the ones most connected to child learning. Large groups sharply reduce interaction quality: in spaces with four children or fewer, interaction through play reached 3.69, but in groups of more than 12 children it fell to 1.72. The presence of babies under age two is also associated with lower scores across all dimensions. The instrument provides a useful baseline, but the current evidence points to a substantial implementation challenge: aeioTU's strengthening pathway will need to move these spaces beyond affective care toward more intentional, structured, and developmentally rich interactions.</p>`,
-          stats: [
-            { n: "29",   l: "Spaces observed",                       ctx: "Bogotá, Cartagena, and Medellín",                                      c: "#27CF77" },
-            { n: "3.55", l: "Sensitivity & responsiveness",          ctx: "Strongest dimension · Average score on a 1–5 scale",                    c: "#27CF77" },
-            { n: "2.78", l: "Learning strategies",                   ctx: "Lowest-scoring dimension",                                              c: "#27CF77" },
-            { n: "1.72", l: "Interaction through play (large groups)", ctx: "Groups of more than 12 children vs. 3.69 in groups of 4 or fewer",    c: "#27CF77" }
-          ],
-          investment: "USD 310,000 · Total funding",
-          onepager:   "https://docs.google.com/document/d/1YVaUycG987Lk6BNYpXG6aQrP7Ckc2vQ5tSly82uSozE/edit?tab=t.0"
-        }
-      ]
-    },
 
     /* ══ DEMOCRACY ══════════════════════════════════════════ */
     {
@@ -544,49 +503,83 @@ const DATA = {
           ],
           investment: "USD 500,000 · Total grants",
           onepager:   "https://docs.google.com/document/d/1pEq_TiAVN-gOtsaWl39Z1AOgEW2ldU3osifTNGUa8No/edit?tab=t.0#heading=h.bkhxgtf8vjgo"
+        },
+        /* ── Edition 03 stories (appear first after render reversal) ── */
+        {
+          edition:   "03",
+          title:     "RIL: Ciudades de la Educación — Building Municipal Education-Management Capacity in Córdoba",
+          pill:      "RIL",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/august/RIL/ciudades.jpeg",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>Ciudades de la Educación is associated with stronger municipal education-management capacity in Córdoba, especially in the area most directly connected to the program's technical assistance. In an observational evaluation comparing 56 participating local governments with 56 matched non-participating governments, participation was associated with a 10.24-point improvement in policy design and implementation capacity, equivalent to 20.9% of the control-group mean. This was the strongest and most statistically precise result of the evaluation (p = 0.018) and captures practices such as diagnosis, evidence use, planning, budgeting, implementation, monitoring, and evaluation.</p><p>The broader pattern is positive but less conclusive. The total capacity score was 6.74 points higher among participating municipalities, equivalent to 13.2% of the control-group mean, but the estimate was not statistically precise at conventional levels. Results for political prioritization, articulation and governance, and strategic communication also point in a positive direction, though with greater uncertainty. The evidence therefore suggests that the program is generating its clearest gains in technical management routines, while broader institutional change will require continued implementation and stronger follow-up evidence over time.</p>`,
+          stats: [
+            { n: "56",     l: "Local governments evaluated",    ctx: "Compared with 56 matched non-participating municipalities", c: "#A62BFF" },
+            { n: "+10.24", l: "Points gain in policy design",   ctx: "20.9% of the control-group mean · p = 0.018",              c: "#A62BFF" },
+            { n: "+6.74",  l: "Points total capacity score",    ctx: "13.2% of the control-group mean",                          c: "#A62BFF" }
+          ],
+          investment: "USD 870,000 · Total",
+          onepager:   "https://docs.google.com/document/d/1OXMCZF4WS4FjBTmtEzbkMqYDLKfCoHnM2lUjOQUCjZo/edit?tab=t.0#heading=h.5k57826vwk6t"
+        },
+        {
+          edition:   "03",
+          title:     "RIL: Public Policy Accelerator",
+          pill:      "RIL",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/august/RIL/accelerator.jpeg",
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>The available data describe a positive municipal assessment of the Accelerator's accompaniment. Among 122 municipal responses, 79.5% rated the accompaniment as very useful, 81.1% rated facilitator proactivity as very high, 67.2% rated adaptation to the local context as very high, and 91.0% considered the intensity of accompaniment ideal. On reported outputs, 68.9% of municipal teams said that several or all expected products were generated, 69.7% said products are currently used quite a lot or a lot, and 82.0% reported important capacity strengthening.</p><p>The administrative self-diagnostic data show an initial average score of 54.43 across 156 records and a final average score of 66.74 across 153 records. Among the 125 cases with both measures, the average change was +13.51 points, with 41 cases — 32.8% — improving by at least 20 points; changes ranged from -41.6 to +39.8 points. The strongest convergence between municipal teams and facilitators appears in progress and product use. Taken together, the central message is that the Accelerator is consistently well-rated and associated with measurable progress in self-diagnostic scores, though the current evidence is strongest as a descriptive signal of implementation, products, and use.</p>`,
+          stats: [
+            { n: "79.5%",  l: "Rated accompaniment as very useful",       ctx: "122 municipal responses",                                c: "#A62BFF" },
+            { n: "91.0%",  l: "Considered intensity ideal",               ctx: "Among responding municipalities",                        c: "#A62BFF" },
+            { n: "+13.51", l: "Average points gained in self-diagnostic",  ctx: "From 54.43 to 66.74 · 125 cases with both measures",    c: "#A62BFF" },
+            { n: "82.0%",  l: "Reported important capacity strengthening", ctx: "Among municipal teams",                                  c: "#A62BFF" }
+          ],
+          investment: "USD 870,000 · Total",
+          onepager:   "https://docs.google.com/document/d/1uEL4aG2wtqJq8KIV4TGeqrAoA6lqLpWhT1BTKTTvd4w/edit?tab=t.0#heading=h.j305yfxb62ch"
+        },
+        {
+          edition:   "03",
+          title:     "+Uruguay: Building a Pipeline of Democratic Political Leadership",
+          pill:      "+Uruguay",
+          subpill:   "Democracia+",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/august/%2BURUGUAY/%2Buruguay.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Más Uruguay attracts and selects politically active profiles with strong public-service and party trajectories. Among selected participants, 76% had public-sector experience, 79% had participated in community or civil society organizations, 100% identified with a political party, and 90% reported party militancy. Electoral aspirations were also higher: 95% expressed interest in running for office, compared with 48% of non-selected applicants.</p><p>Electoral results vary by track. Selection was not associated with statistically significant differences in competitiveness among 2024 candidates, but selected participants belonged to more competitive lists in the 2025 elected-ediles and deputies tracks. Selected deputies also participated in more legislative projects (12.09 vs. 3.77) and showed greater cross-party collaboration (Bridge Score: 0.28 vs. 0.05). Overall, Más Uruguay appears to be building a pipeline of politically engaged leaders, with early signs of stronger legislative activity and collaboration.</p>`,
+          stats: [
+            { n: "95%",   l: "Interest in running for office",          ctx: "Selected participants vs. 48% of non-selected applicants", c: "#A62BFF" },
+            { n: "100%",  l: "Identified with a political party",       ctx: "Among selected participants",                              c: "#A62BFF" },
+            { n: "12.09", l: "Legislative projects per deputy",         ctx: "Selected deputies vs. 3.77 among non-selected",            c: "#A62BFF" },
+            { n: "0.28",  l: "Bridge Score (cross-party collaboration)", ctx: "Selected deputies vs. 0.05 among non-selected",           c: "#A62BFF" }
+          ],
+          investment: "USD 500,000 · Total",
+          onepager:   "https://docs.google.com/document/d/1QY-SibTfYz3K51SrdYSZPiP27nIrilpDpGqAbr05yQE/edit?tab=t.0#heading=h.p32x6fl6towz"
+        },
+        {
+          edition:   "03",
+          title:     "+Costa Rica: Building a Pipeline of Democratic Leadership",
+          pill:      "+Costa Rica",
+          subpill:   "Democracia+",
+          tag:       "Learning Agenda",
+          img:       null,          /* ← media pending */
+          mediaType: "image",
+          imgRatio:  "landscape",
+          summary: `<p>Más Costa Rica attracts and selects politically active profiles with public-service experience. Across cohorts, 62%–69% of selected participants had worked in the public sector. In 2025, 71% had participated in party politics, compared with 27% of non-selected applicants.</p><p>Across the 2023 and 2025 cohorts, 38 of 101 candidates were elected, including five deputies. Selected participants had a 13 percentage-point electoral competitiveness advantage, while selected deputies participated in more legislative projects (2.8 vs. 1.8), mainly in social and institutional agendas. Overall, Más Costa Rica appears to be building a pipeline of politically engaged leaders, with positive early signs on political execution and legislative collaboration.</p>`,
+          stats: [
+            { n: "38/101", l: "Candidates elected",                   ctx: "Including 5 deputies · 2023 and 2025 cohorts",          c: "#A62BFF" },
+            { n: "+13pp",  l: "Electoral competitiveness advantage",   ctx: "Selected vs. non-selected participants",                c: "#A62BFF" },
+            { n: "71%",    l: "Participated in party politics",        ctx: "2025 cohort vs. 27% of non-selected applicants",       c: "#A62BFF" },
+            { n: "2.8",    l: "Legislative projects per deputy",       ctx: "Selected deputies vs. 1.8 among non-selected",         c: "#A62BFF" }
+          ],
+          investment: "USD 1,350,000 · Total",
+          onepager:   "https://docs.google.com/document/d/1DdQ6OwkP01YI2BCiJIrrhgX7i2RXy6biFp1eF9JupaE/edit?tab=t.0#heading=h.ccadkkhbigra"
         }
       ]
     },
-
-    /* ══ CHARITY (Education Support) ═══════════════════════ */
-    {
-      id: "charity", name: "Charity", color: "#A7B2AA",
-      stories: [
-        {
-          edition:   "02",
-          title:     "María José Velásquez González · Industrial Engineering + Data Science, Universidad de los Andes",
-          pill:      "Education Support",
-          tag:       "Success Stories",
-          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/MariaJose-2026-01.mp4",
-          mediaType: "video",
-          imgRatio:  "portrait",
-          summary: `<p>VélezReyes+ covers 30% of María José's tuition plus a monthly stipend so she can pursue a dual degree at Universidad de los Andes. She took on her first teaching assistant role this semester, an experience she described, in her own video update, as one of the best she's had at university, watching her students grow in confidence. She is also meeting her volunteer commitment with distinction so far, supporting the Aprendo+ team in Peru on data and operations, from dashboard tracking by school district to teacher recognition reports, since the program's early stages and now through its rollout, with the team consistently praising her reliability and follow through.</p>`,
-          stats: [
-            { n: "4.45", l: "Semester average (2026-1)", ctx: "Out of 5.0",                                  c: "#A7B2AA" },
-            { n: "4.61", l: "Cumulative average",         ctx: "Out of 5.0",                                  c: "#A7B2AA" }
-          ],
-          investment: "USD 2,500 per semester · Support period: January 2025 – December 2026"
-        },
-        {
-          edition:   "02",
-          title:     "Samuel Andrés Lamilla Verján · Data Science, Pontificia Universidad Javeriana",
-          pill:      "Education Support",
-          tag:       "Success Stories",
-          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/Samuel-2026-01.mp4",
-          mediaType: "video",
-          imgRatio:  "portrait",
-          summary: `<p>VélezReyes+ has covered Samuel's living costs in Bogotá since April 2024, renewed for January to December 2026, so he can continue his degree away from his family's home in rural Neiva, Huila. In his video update, he shared that this year he overcame a long standing fear of public speaking, delivering an elevator pitch at Javeriana's Auditorio Luis Carlos Galán, a big milestone for him!</p>`,
-          stats: [
-            { n: "4.011", l: "Semester average (2026-1)", ctx: "Out of 5.0",                                 c: "#A7B2AA" },
-            { n: "4.06",  l: "Cumulative average",         ctx: "Out of 5.0",                                 c: "#A7B2AA" }
-          ],
-          investment: "USD 500 monthly stipend · Support period: April 2024 – December 2026 (renewed January – December 2026)"
-        }
-      ]
-    }
-
-
-    ,
 
     /* ══ EDUCATION (Future of Talent) ══════════════════════ */
     {
@@ -648,6 +641,105 @@ const DATA = {
           ],
           investment: "USD 62,000 · Grant",
           onepager:   "https://docs.google.com/document/d/15wtPz7AI9_0__chf2PUwsek0oxGcN1Nrr9aLWf7YSU4/edit?usp=sharing"
+        },
+        /* ── Edition 03 story (appears first after render reversal) ── */
+        {
+          edition:   "03",
+          title:     "Partner universities are adopting Beca Tech+ strategies for all students",
+          pill:      "Beca Tech+",
+          tag:       "Success Stories",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/august/EDUCATION/eia.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>EIA University is the first partner institution to take Beca Tech+'s proven accompaniment model beyond its scholarship recipients and apply it to all incoming students. Through the "Level Up" program, EIA is deploying the psychosocial support, tutoring, and community-building strategies developed within Beca Tech+ at a system-wide scale — a signal that the model is strong enough for universities to adopt it as institutional practice, not just as a scholarship supplement.</p><p>This shift marks a meaningful step in Beca Tech+'s theory of change: the goal was never only to support individual students, but to change how universities think about retention and belonging. EIA's adoption demonstrates that the evidence and approach are compelling enough to move institutions toward structural change.</p>`,
+          stats: []
+        }
+      ]
+    },
+
+    /* ══ CHARITY (Education Support) ═══════════════════════ */
+    {
+      id: "charity", name: "Charity", color: "#A7B2AA",
+      stories: [
+        {
+          edition:   "02",
+          title:     "María José Velásquez González · Industrial Engineering + Data Science, Universidad de los Andes",
+          pill:      "Education Support",
+          tag:       "Success Stories",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/MariaJose-2026-01.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>VélezReyes+ covers 30% of María José's tuition plus a monthly stipend so she can pursue a dual degree at Universidad de los Andes. She took on her first teaching assistant role this semester, an experience she described, in her own video update, as one of the best she's had at university, watching her students grow in confidence. She is also meeting her volunteer commitment with distinction so far, supporting the Aprendo+ team in Peru on data and operations, from dashboard tracking by school district to teacher recognition reports, since the program's early stages and now through its rollout, with the team consistently praising her reliability and follow through.</p>`,
+          stats: [
+            { n: "4.45", l: "Semester average (2026-1)", ctx: "Out of 5.0", c: "#A7B2AA" },
+            { n: "4.61", l: "Cumulative average",         ctx: "Out of 5.0", c: "#A7B2AA" }
+          ],
+          investment: "USD 2,500 per semester · Support period: January 2025 – December 2026"
+        },
+        {
+          edition:   "02",
+          title:     "Samuel Andrés Lamilla Verján · Data Science, Pontificia Universidad Javeriana",
+          pill:      "Education Support",
+          tag:       "Success Stories",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/Samuel-2026-01.mp4",
+          mediaType: "video",
+          imgRatio:  "portrait",
+          summary: `<p>VélezReyes+ has covered Samuel's living costs in Bogotá since April 2024, renewed for January to December 2026, so he can continue his degree away from his family's home in rural Neiva, Huila. In his video update, he shared that this year he overcame a long standing fear of public speaking, delivering an elevator pitch at Javeriana's Auditorio Luis Carlos Galán, a big milestone for him!</p>`,
+          stats: [
+            { n: "4.011", l: "Semester average (2026-1)", ctx: "Out of 5.0", c: "#A7B2AA" },
+            { n: "4.06",  l: "Cumulative average",         ctx: "Out of 5.0", c: "#A7B2AA" }
+          ],
+          investment: "USD 500 monthly stipend · Support period: April 2024 – December 2026 (renewed January – December 2026)"
+        }
+      ]
+    },
+
+    /* ══ ECE (Early Childhood Education) ═══════════════════ */
+    {
+      id: "ece", name: "ECE", color: "#27CF77",
+      stories: [
+        {
+          edition:   "01",
+          title:     "Aprendo+: Turning WhatsApp into a Bridge Between Schools and Families",
+          pill:      "Aprendo+",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/june/aprendo-RECAP.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>Aprendo+ is turning WhatsApp into a powerful bridge between schools and families: across 32 schools in Peru, around 80% of parents and 98% of teachers shared evidence of participation at least once, showing that a simple, familiar channel can mobilize families and educators around early childhood learning. With the support of VER+, the evidence also shows that principals, teachers, and parents perceive Aprendo+ as useful, practical, and aligned with everyday routines and classroom practice.</p><p>The most encouraging result is that Aprendo+ is changing how adults understand and practice play. Parents report a 26% increase in the importance they assign to spending time on play and a 31% increase in the frequency of play with their children; teachers report around 20% higher confidence in supporting communication, math, and socio-emotional development. The next step is to move from strong perceived changes to stronger evidence on child development outcomes, but the program is already showing a clear and promising path: small, joyful, everyday interactions can become meaningful learning moments.</p>`,
+          stats: [
+            { n: "32",   l: "Schools in Peru",                       ctx: "Program implementation sites",                                                          c: "#27CF77" },
+            { n: "~80%", l: "Parents participated",                   ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "98%",  l: "Teachers participated",                  ctx: "Shared evidence of participation at least once",                                        c: "#27CF77" },
+            { n: "+26%", l: "Parents value play more",                ctx: "Increase in importance assigned to spending time on play",                              c: "#27CF77" },
+            { n: "+31%", l: "Parents play more with their children",  ctx: "Increase in frequency of play at home",                                                 c: "#27CF77" },
+            { n: "~20%", l: "Teachers more confident",                ctx: "Higher confidence in supporting communication, math, and socio-emotional development",  c: "#27CF77" }
+          ],
+          investment: "USD 1,104,250 committed through 2027",
+          onepager:   "https://docs.google.com/document/d/1qDrVrsdhNCcGc6im9WdIj8x8xUOs7tThK_M9Ms2hh2A/edit?usp=sharing"
+        },
+        {
+          edition:   "02",
+          title:     "aeioTU: Mapping the Quality of Informal Childcare Spaces",
+          pill:      "aeioTU",
+          tag:       "Learning Agenda",
+          mediaType: "gallery",
+          imgs: [
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/Portada.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/1.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/2.jpg",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/aeioTU/4.jpg"
+          ],
+          imgRatio:  "landscape",
+          summary: `<p>The aeioTU diagnostic shows that informal childcare spaces are still far from consistently offering the kinds of interactions that best support early learning. Across 29 spaces and 95 interaction moments observed in Bogotá, Cartagena, and Medellín, the strongest dimensions were sensitivity and responsiveness and affective treatment, with average scores of 3.55 and 3.37 on a 1–5 scale. By contrast, the lowest scores were in learning strategies and interaction through play, with averages of 2.78 and 2.85. In practice, this means that many caregivers provide warmth and basic care, but do not yet consistently use language, questions, exploration, materials, or play as intentional learning opportunities.</p><p>The main concern is that the weakest dimensions are precisely the ones most connected to child learning. Large groups sharply reduce interaction quality: in spaces with four children or fewer, interaction through play reached 3.69, but in groups of more than 12 children it fell to 1.72. The presence of babies under age two is also associated with lower scores across all dimensions. The instrument provides a useful baseline, but the current evidence points to a substantial implementation challenge: aeioTU's strengthening pathway will need to move these spaces beyond affective care toward more intentional, structured, and developmentally rich interactions.</p>`,
+          stats: [
+            { n: "29",   l: "Spaces observed",                         ctx: "Bogotá, Cartagena, and Medellín",                                    c: "#27CF77" },
+            { n: "3.55", l: "Sensitivity & responsiveness",            ctx: "Strongest dimension · Average score on a 1–5 scale",                  c: "#27CF77" },
+            { n: "2.78", l: "Learning strategies",                     ctx: "Lowest-scoring dimension",                                            c: "#27CF77" },
+            { n: "1.72", l: "Interaction through play (large groups)", ctx: "Groups of more than 12 children vs. 3.69 in groups of 4 or fewer",    c: "#27CF77" }
+          ],
+          investment: "USD 310,000 · Total funding",
+          onepager:   "https://docs.google.com/document/d/1YVaUycG987Lk6BNYpXG6aQrP7Ckc2vQ5tSly82uSozE/edit?tab=t.0"
         }
       ]
     }
