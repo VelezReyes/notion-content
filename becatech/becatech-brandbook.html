@@ -686,6 +686,13 @@ section{
   position:absolute;border-radius:50%;
   pointer-events:none;
 }
+.pieza-photo{position:relative;overflow:hidden}
+.pieza-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.pieza-example-lbl{
+  display:inline-block;margin-top:2px;
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--yellow);opacity:.65;
+}
 
 
 /* ══════════════════════════════
@@ -1633,6 +1640,8 @@ section{
     <span class="gs-hex">#A62BFF</span>
   </div>
 
+  <p class="section-desc" style="margin-top:20px;max-width:640px">El gradiente es un recurso puntual y sutil: se aplica como un acento (una línea delgada, un pequeño detalle que acompaña un texto), nunca como elemento principal ni como componente estructural del diseño.</p>
+
 </section>
 <!-- ░░░ LOGO LIGHTBOX ░░░ -->
 <div id="logo-lightbox">
@@ -2072,6 +2081,136 @@ section{
 
   </div><!-- /piezas-row positivo -->
 
+  <!-- ════════════════════════════
+     APLICACIÓN DE FOTOGRAFÍA · Ejemplos ilustrativos
+════════════════════════════ -->
+  <div style="margin-top:56px;padding-top:36px;border-top:1px solid rgba(239,239,228,.06)">
+    <div class="block-title" style="margin-bottom:8px">Aplicación de fotografía</div>
+    <p class="section-desc" style="margin-bottom:28px">Las fotografías del banco de imágenes se muestran completas, respetando sus proporciones originales: la foto ocupa su propia zona dentro de la pieza y el logotipo nunca se superpone sobre el rostro del becario. El zócalo de color, el fundido y la línea base son tres maneras de resolver el cierre inferior de la composición. La fotografía siempre se usa en blanco y negro.</p>
+  </div>
+
+  <div class="piezas-row">
+
+    <!-- ── FOTO 1 · Zócalo de color · Negativo ── -->
+    <div class="pieza-wrap" style="width:280px;">
+      <div class="pieza-lbl">Fotografía · Zócalo de color</div>
+      <div class="pieza-example-lbl">Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:280px;aspect-ratio:4/5;background:#000;display:flex;flex-direction:column;margin-top:8px">
+        <div class="pieza-blob" style="width:200px;height:200px;background:radial-gradient(circle,rgba(166,43,255,.4) 0%,transparent 70%);top:-50px;right:-50px;filter:blur(45px)"></div>
+        <div class="pieza-inner" style="flex:0 0 auto;padding:18px 20px 4px;display:flex;flex-direction:column;gap:10px">
+          <svg viewBox="0 0 938.95 137.79" xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;fill:var(--cream)"><use href="#logo-svg-oficial"></use></svg>
+          <div>
+            <div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:4px">Convocatoria · 2026</div>
+            <div style="font-family:'BookmanJFPro',Georgia,serif;font-size:16px;line-height:1.2;color:var(--cream)">Lorem ipsum dolor sit amet.</div>
+          </div>
+        </div>
+        <div class="pieza-inner" style="flex:1 1 auto;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;padding:8px 16px 0">
+          <img src="https://raw.githubusercontent.com/VelezReyes/notion-content/main/becatech/material/img2.png" alt="Becario del programa BecaTech+" loading="lazy" style="width:100%;height:auto;max-height:100%;object-fit:contain;display:block;filter:grayscale(1) contrast(1.05)">
+        </div>
+        <div class="pieza-inner" style="flex:0 0 auto;background:var(--yellow);padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#000;font-weight:700">Postula ahora →</span>
+          <svg viewBox="0 0 577.96 91.69" xmlns="http://www.w3.org/2000/svg" style="height:9px;width:auto;fill:#000;opacity:.7"><use href="#logo-ver-oficial"></use></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOTO 2 · Fundido hacia el fondo · Negativo ── -->
+    <div class="pieza-wrap" style="width:280px;">
+      <div class="pieza-lbl">Fotografía · Fundido hacia el fondo</div>
+      <div class="pieza-example-lbl">Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:280px;aspect-ratio:4/5;background:#000;display:flex;flex-direction:column;margin-top:8px">
+        <div class="pieza-blob" style="width:220px;height:220px;background:radial-gradient(circle,rgba(39,207,119,.35) 0%,transparent 70%);top:-40px;left:-50px;filter:blur(50px)"></div>
+        <div class="pieza-inner" style="flex:1 1 auto;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;padding:20px 14px 0">
+          <img src="https://raw.githubusercontent.com/VelezReyes/notion-content/main/becatech/material/img3.png" alt="Becario del programa BecaTech+" loading="lazy" style="width:100%;height:auto;max-height:100%;object-fit:contain;display:block;filter:grayscale(1) contrast(1.05)">
+          <div style="position:absolute;left:0;right:0;bottom:0;height:44%;background:linear-gradient(to bottom,transparent,#000 88%);pointer-events:none"></div>
+        </div>
+        <div class="pieza-inner" style="flex:0 0 auto;padding:6px 18px 20px">
+          <svg viewBox="0 0 938.95 137.79" xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;fill:var(--cream);margin-bottom:10px"><use href="#logo-svg-oficial"></use></svg>
+          <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:6px">Resultados · 2026</div>
+          <div style="font-family:'BookmanJFPro',Georgia,serif;font-size:18px;line-height:1.15;color:var(--cream);margin-bottom:6px">Potencial en proyectos.</div>
+          <p style="font-size:10px;color:rgba(239,239,228,.5);line-height:1.55">Lorem ipsum dolor sit amet, consectetur.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOTO 3 · Línea base delgada · Positivo ── -->
+    <div class="pieza-wrap" style="width:280px;">
+      <div class="pieza-lbl">Fotografía · Línea base · Positivo</div>
+      <div class="pieza-example-lbl">Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:280px;aspect-ratio:4/5;background:var(--cream);display:flex;flex-direction:column;margin-top:8px">
+        <div class="pieza-blob" style="width:180px;height:180px;background:radial-gradient(circle,rgba(166,43,255,.25) 0%,transparent 70%);top:-40px;right:-40px;filter:blur(45px)"></div>
+        <div class="pieza-inner" style="flex:1 1 auto;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;padding:18px 16px 0">
+          <img src="https://raw.githubusercontent.com/VelezReyes/notion-content/main/becatech/material/img4.png" alt="Becario del programa BecaTech+" loading="lazy" style="width:100%;height:auto;max-height:100%;object-fit:contain;display:block;filter:grayscale(1) contrast(1.05)">
+        </div>
+        <div class="pieza-inner" style="flex:0 0 auto;border-top:2px solid var(--purple);padding:12px 18px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#000">Becario · Tercera cohorte</span>
+          <svg viewBox="0 0 577.96 91.69" xmlns="http://www.w3.org/2000/svg" style="height:10px;width:auto;fill:#000"><use href="#logo-ver-oficial"></use></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOTO 4 · Banner web · Negativo (formato horizontal, pieza adicional) ── -->
+    <div class="pieza-wrap" style="flex:1;min-width:340px;max-width:600px;">
+      <div class="pieza-lbl">Fotografía · Banner web · Negativo</div>
+      <div class="pieza-example-lbl">1200 × 500 · Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:100%;aspect-ratio:12/5;background:#000;display:flex;margin-top:8px">
+        <div class="pieza-blob" style="width:240px;height:240px;background:radial-gradient(circle,rgba(166,43,255,.35) 0%,transparent 70%);bottom:-70px;left:20px;filter:blur(55px)"></div>
+        <div class="pieza-inner" style="flex:0 0 44%;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;padding:16px 10px 0">
+          <img src="https://raw.githubusercontent.com/VelezReyes/notion-content/main/becatech/material/img1.png" alt="Becarios del programa BecaTech+" loading="lazy" style="width:100%;height:auto;max-height:100%;object-fit:contain;display:block;filter:grayscale(1) contrast(1.05)">
+        </div>
+        <div class="pieza-inner" style="flex:1 1 auto;background:var(--purple);display:flex;flex-direction:column;justify-content:center;padding:24px 28px">
+          <svg viewBox="0 0 938.95 137.79" xmlns="http://www.w3.org/2000/svg" style="height:13px;width:auto;fill:var(--cream);margin-bottom:14px"><use href="#logo-svg-oficial"></use></svg>
+          <div style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.7;margin-bottom:6px">Convocatoria · 2026</div>
+          <div style="font-family:'BookmanJFPro',Georgia,serif;font-size:19px;line-height:1.15;color:var(--cream);margin-bottom:14px">Lorem ipsum dolor sit amet.</div>
+          <div style="display:inline-flex;align-self:flex-start;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);border:1px solid rgba(239,239,228,.4);padding:9px 18px">Postula →</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /piezas-row fotografía -->
+
+  <!-- ════════════════════════════
+       APLICACIÓN DE GRADIENTE · Ejemplos ilustrativos, no descargables
+  ════════════════════════════ -->
+  <div style="margin-top:56px;padding-top:36px;border-top:1px solid rgba(239,239,228,.06)">
+    <div class="block-title" style="margin-bottom:8px">Aplicación de gradiente</div>
+    <p class="section-desc" style="margin-bottom:28px">El gradiente es un recurso puntual y sutil: una línea delgada que acompaña un título o un kicker, nunca el elemento principal ni un componente estructural de la pieza.</p>
+  </div>
+
+  <div class="piezas-row">
+
+    <!-- ── GRADIENTE 1 · Línea sobre título · Positivo ── -->
+    <div class="pieza-wrap" style="width:280px;">
+      <div class="pieza-lbl">Gradiente · Línea sobre título · Positivo</div>
+      <div class="pieza-example-lbl">Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:280px;aspect-ratio:4/5;background:var(--cream);margin-top:8px">
+        <div class="pieza-inner" style="height:100%;display:flex;flex-direction:column;justify-content:center;padding:32px 26px">
+          <div style="width:44px;height:3px;background:linear-gradient(90deg,var(--yellow),var(--green),var(--purple));margin-bottom:18px"></div>
+          <div style="font-family:'BookmanJFPro',Georgia,serif;font-size:25px;line-height:1.18;color:#000;margin-bottom:14px">Lorem ipsum dolor sit amet.</div>
+          <p style="font-size:11px;color:rgba(0,0,0,.5);line-height:1.65;margin-bottom:26px">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+          <svg viewBox="0 0 577.96 91.69" xmlns="http://www.w3.org/2000/svg" style="height:11px;width:auto;fill:#000;opacity:.7"><use href="#logo-ver-oficial"></use></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── GRADIENTE 2 · Línea bajo kicker · Negativo ── -->
+    <div class="pieza-wrap" style="width:280px;">
+      <div class="pieza-lbl">Gradiente · Línea bajo kicker · Negativo</div>
+      <div class="pieza-example-lbl">Ejemplo ilustrativo</div>
+      <div class="pieza" style="width:280px;aspect-ratio:4/5;background:#000;margin-top:8px">
+        <div class="pieza-inner" style="height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:26px 24px">
+          <svg viewBox="0 0 938.95 137.79" xmlns="http://www.w3.org/2000/svg" style="height:13px;width:auto;fill:var(--cream)"><use href="#logo-svg-oficial"></use></svg>
+          <div>
+            <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,239,228,.6);margin-bottom:10px">Resultados · 2026</div>
+            <div style="width:36px;height:2px;background:linear-gradient(90deg,var(--yellow),var(--green),var(--purple));margin-bottom:16px"></div>
+            <div style="font-family:'BookmanJFPro',Georgia,serif;font-size:16px;line-height:1.4;color:var(--cream)">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /piezas-row gradiente -->
+
   <div class="inline-dl-block">
     <a class="dl-link" href="https://raw.githubusercontent.com/VelezReyes/notion-content/main/becatech/material/ejemplos-piezas.ai" download="becatech-ejemplos-piezas.ai">↓ Descargar piezas de ejemplo (AI)</a>
   </div>
@@ -2172,6 +2311,7 @@ section{
           <a class="dl-link" href="https://drive.google.com/drive/folders/1N3UkanlT3j8YZ-L0MMGD7ocd5Jlyjv3l?usp=drive_link" target="_blank" rel="noopener">Ver álbum ↗</a>
         </div>
       </div>
+      <p style="font-size:10px;line-height:1.65;color:rgba(239,239,228,.35);margin-top:16px;padding-top:14px;border-top:1px solid rgba(239,239,228,.06)">El uso de este material fotográfico es exclusivo para piezas y comunicaciones del programa BecaTech+, bajo autorización de VélezReyes+. El uso indebido o fuera de este contexto puede derivar en sanciones.</p>
     </div>
 
   </div><!-- /dl-grid -->
