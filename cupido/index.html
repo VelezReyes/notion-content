@@ -408,6 +408,9 @@ tbody tr:hover{background:rgba(255,255,255,.035)}
 <body>
 <div id="app"></div>
 <div class="toast" id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 <script>
 /* ============================================================
@@ -424,29 +427,29 @@ const px = f => PH_BASE + f;
 /* ── Roster ──────────────────────────────────────────────── */
 const PEOPLE = [
   // ── VélezReyes+ ──
-  {id:'laura',    name:'Laura',            team:'ver',  email:'laura@velezreyesmas.com',        country:'🇧🇷', role:'CEO',                          photo:px('laura.png'),   top5:['Achiever','Ideation','Individualization','Arranger','Learner']},
-  {id:'tamara',   name:'Tamara',        team:'ver',  email:'tamara@velezreyesmas.com',       country:'🇦🇷', role:'VP Democracy',                 photo:px('tamara.png'),  top5:['Communication','Woo','Arranger','Consistency','Achiever']},
-  {id:'andy',     name:'Andy',        team:'ver',  email:'andy@democraciamas.com',         country:'🇨🇷', role:'CEO Democracia+',              photo:px('andy.png'),    top5:['Learner','Intellection','Belief','Connectedness','Input']},
-  {id:'cristina', name:'Cristina',       team:'ver',  email:'cristina@velezreyesmas.com',     country:'🇨🇴', role:'Admin & Comms Director',       photo:px('cris-ver.png'),top5:['Arranger','Responsibility','Restorative','Communication','Positivity']},
-  {id:'dharla',   name:'Dharla',          team:'ver',  email:'dharla@velezreyesmas.com',       country:'🇧🇷', role:'Comms Associate',              photo:px('dharla.png'),  top5:['Developer','Learner','Relator','Empathy','Strategic']},
-  {id:'felipe',   name:'Felipe',           team:'ver',  email:'felipe@velezreyesmas.com',       country:'🇧🇷', role:'Staff Engineer',               photo:px('fe.png'),      top5:['Learner','Restorative','Developer','Analytical','Positivity']},
-  {id:'isabella', name:'Isabella',        team:'ver',  email:'isabella@velezreyesmas.com',     country:'🇨🇴', role:'Manager Early Childhood',      photo:px('isa.png'),     top5:['Consistency','Relator','Responsibility','Harmony','Learner']},
-  {id:'juangui',  name:'Juangui',  team:'ver',  email:'juanguillermo@velezreyesmas.com',country:'🇨🇴', role:'Director of Impact Measurement',photo:AV.juangui,        top5:['Learner','Activator','Restorative','Strategic','Responsibility']},
-  {id:'malu',     name:'Malu',            team:'ver',  email:'marialuiza@democraciamas.com',   country:'🇧🇷', role:'Manager Democracia+',          photo:px('malu.png'),    top5:['Arranger','Connectedness','Competition','Individualization','Focus']},
-  {id:'maribel',  name:'Maribel',       team:'ver',  email:'maribel@velezreyesmas.com',      country:'🇨🇴', role:'Education Manager Hispanoamérica', photo:px('maribel.png'), top5:['Activator','Communication','Arranger','Woo','Connectedness']},
-  {id:'miguel',   name:'Miguel',  team:'ver',  email:'miguel@velezreyesmas.com',       country:'🇨🇴', role:'Creative Visual Lead',         photo:px('migue.png'),   top5:['Learner','Developer','Empathy','Connectedness','Intellection'], admin:true},
-  {id:'yineth',   name:'Yineth',  team:'ver',  email:'yineth@velezreyesmas.com',       country:'🇨🇴', role:'Project Coordinator Scholarships', photo:px('yine.png'), top5:['Restorative','Achiever','Relator','Belief','Learner']},
-  {id:'luisa',    name:'Luisa',          team:'ver',  email:'luisa@velezreyesmas.com',        country:'🇨🇴', role:'Team Member',                  photo:px('luisa.png'),   top5:[]},
-  {id:'leandro',  name:'Leandro',                team:'ver',  email:'leandro@velezreyesmas.com',      country:'🇺🇾', role:'Team Member',                  photo:AV.leandro,        top5:[]},
+  {id:'laura',    name:'Laura',            team:'ver',  country:'🇧🇷', role:'CEO',                          photo:px('laura.png'),   top5:['Achiever','Ideation','Individualization','Arranger','Learner']},
+  {id:'tamara',   name:'Tamara',        team:'ver',  country:'🇦🇷', role:'VP Democracy',                 photo:px('tamara.png'),  top5:['Communication','Woo','Arranger','Consistency','Achiever']},
+  {id:'andy',     name:'Andy',        team:'ver',  country:'🇨🇷', role:'CEO Democracia+',              photo:px('andy.png'),    top5:['Learner','Intellection','Belief','Connectedness','Input']},
+  {id:'cristina', name:'Cristina',       team:'ver',  country:'🇨🇴', role:'Admin & Comms Director',       photo:px('cris-ver.png'),top5:['Arranger','Responsibility','Restorative','Communication','Positivity']},
+  {id:'dharla',   name:'Dharla',          team:'ver',  country:'🇧🇷', role:'Comms Associate',              photo:px('dharla.png'),  top5:['Developer','Learner','Relator','Empathy','Strategic']},
+  {id:'felipe',   name:'Felipe',           team:'ver',  country:'🇧🇷', role:'Staff Engineer',               photo:px('fe.png'),      top5:['Learner','Restorative','Developer','Analytical','Positivity']},
+  {id:'isabella', name:'Isabella',        team:'ver',  country:'🇨🇴', role:'Manager Early Childhood',      photo:px('isa.png'),     top5:['Consistency','Relator','Responsibility','Harmony','Learner']},
+  {id:'juangui',  name:'Juangui',  team:'ver',  country:'🇨🇴', role:'Director of Impact Measurement',photo:AV.juangui,        top5:['Learner','Activator','Restorative','Strategic','Responsibility']},
+  {id:'malu',     name:'Malu',            team:'ver',  country:'🇧🇷', role:'Manager Democracia+',          photo:px('malu.png'),    top5:['Arranger','Connectedness','Competition','Individualization','Focus']},
+  {id:'maribel',  name:'Maribel',       team:'ver',  country:'🇨🇴', role:'Education Manager Hispanoamérica', photo:px('maribel.png'), top5:['Activator','Communication','Arranger','Woo','Connectedness']},
+  {id:'miguel',   name:'Miguel',  team:'ver',  country:'🇨🇴', role:'Creative Visual Lead',         photo:px('migue.png'),   top5:['Learner','Developer','Empathy','Connectedness','Intellection'], admin:true},
+  {id:'yineth',   name:'Yineth',  team:'ver',  country:'🇨🇴', role:'Project Coordinator Scholarships', photo:px('yine.png'), top5:['Restorative','Achiever','Relator','Belief','Learner']},
+  {id:'luisa',    name:'Luisa',          team:'ver',  country:'🇨🇴', role:'Team Member',                  photo:px('luisa.png'),   top5:[]},
+  {id:'leandro',  name:'Leandro',                team:'ver',  country:'🇺🇾', role:'Team Member',                  photo:AV.leandro,        top5:[]},
   // ── VERE ──
-  {id:'raquel',   name:'Raquel',       team:'vere', email:'raquel@verefo.com',              country:'🇨🇷', role:'CEO',                          photo:px('raquel.png'),  top5:['Learner','Discipline','Context','Intellection','Achiever']},
-  {id:'oswaldo',  name:'Oswaldo',          team:'vere', email:'oswaldo@verefo.com',             country:'🇨🇷', role:'Director de Finanzas',         photo:px('oswaldo.png'), top5:['Learner','Strategic','Relator','Analytical','Ideation']},
-  {id:'marce',    name:'Marcela',       team:'vere', email:'marcela@verefo.com',             country:'🇺🇾', role:'Directora de Propiedades',     photo:px('marcela.png'), top5:['Strategic','Individualization','Activator','Empathy','Restorative']},
-  {id:'francine', name:'Francine',        team:'vere', email:'francine@verefo.com',            country:'🇨🇷', role:'Tesorera',                     photo:px('francine.png'),top5:['Deliberative','Consistency','Context','Relator','Harmony']},
-  {id:'eduardo',  name:'Eduardo',          team:'vere', email:'eduardo@verefo.com',             country:'🇵🇦', role:'Director de Inversiones',      photo:px('eduardo.png'), top5:['Includer','Woo','Achiever','Learner','Futuristic']},
-  {id:'gabriela', name:'Gaby',         team:'vere', email:'gabriela@verefo.com',            country:'🇨🇷', role:'Contadora',                    photo:px('gabriela.png'),top5:['Deliberative','Achiever','Responsibility','Ideation','Arranger']},
-  {id:'marcia',   name:'Marcia',           team:'vere', email:'marcia@verefo.com',              country:'🇺🇾', role:'Asistente Familiar',           photo:px('marcia.png'),  top5:['Responsibility','Consistency','Strategic','Achiever','Context']},
-  {id:'soraya',   name:'Soraya',        team:'vere', email:'soraya@verefo.com',              country:'🇺🇸', role:'Tech Lead',                    photo:AV.soraya,         top5:['Arranger','Individualization','Learner','Futuristic','Input']},
+  {id:'raquel',   name:'Raquel',       team:'vere', country:'🇨🇷', role:'CEO',                          photo:px('raquel.png'),  top5:['Learner','Discipline','Context','Intellection','Achiever']},
+  {id:'oswaldo',  name:'Oswaldo',          team:'vere', country:'🇨🇷', role:'Director de Finanzas',         photo:px('oswaldo.png'), top5:['Learner','Strategic','Relator','Analytical','Ideation']},
+  {id:'marce',    name:'Marcela',       team:'vere', country:'🇺🇾', role:'Directora de Propiedades',     photo:px('marcela.png'), top5:['Strategic','Individualization','Activator','Empathy','Restorative']},
+  {id:'francine', name:'Francine',        team:'vere', country:'🇨🇷', role:'Tesorera',                     photo:px('francine.png'),top5:['Deliberative','Consistency','Context','Relator','Harmony']},
+  {id:'eduardo',  name:'Eduardo',          team:'vere', country:'🇵🇦', role:'Director de Inversiones',      photo:px('eduardo.png'), top5:['Includer','Woo','Achiever','Learner','Futuristic']},
+  {id:'gabriela', name:'Gaby',         team:'vere', country:'🇨🇷', role:'Contadora',                    photo:px('gabriela.png'),top5:['Deliberative','Achiever','Responsibility','Ideation','Arranger']},
+  {id:'marcia',   name:'Marcia',           team:'vere', country:'🇺🇾', role:'Asistente Familiar',           photo:px('marcia.png'),  top5:['Responsibility','Consistency','Strategic','Achiever','Context']},
+  {id:'soraya',   name:'Soraya',        team:'vere', country:'🇺🇸', role:'Tech Lead',                    photo:AV.soraya,         top5:['Arranger','Individualization','Learner','Futuristic','Input']},
 ];
 const byId = id => PEOPLE.find(p => p.id === id);
 
@@ -868,6 +871,28 @@ function tooObvious(text, p){
 }
 
 /* ── Almacenamiento (se cambia por Firestore en la fase 2) ─ */
+/* ── Firebase ─────────────────────────────────────────────
+   Auth (Google) + Firestore. Sin Cloud Functions: todo el
+   anonimato se resuelve con las reglas de seguridad ya
+   publicadas — el cliente solo tiene que calzar con ellas. */
+const firebaseConfig = {
+  apiKey: "AIzaSyCCe4IiM4sW_uVUODhqLMogXeklvLriphI",
+  authDomain: "cupido-plus.firebaseapp.com",
+  projectId: "cupido-plus",
+  storageBucket: "cupido-plus.firebasestorage.app",
+  messagingSenderId: "851440562642",
+  appId: "1:851440562642:web:412368ba7b1f97ac49d80b"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+/* ── Almacenamiento local (solo preferencias del navegador) ─
+   Lo compartido entre personas (config, asignación, regalos,
+   teorías) vive en Firestore y se recarga siempre al iniciar sesión
+   — STORE ya no es la fuente de verdad de nada de eso, solo recuerda
+   idioma, tutorial visto y el orden del show entre recargas de la
+   página. */
 const KEY = 'cupidoplus.v1';
 const mem = {};
 const STORE = {
@@ -882,60 +907,95 @@ const STORE = {
   }
 };
 const blank = () => ({
-  v:1, lang:'es', session:null, draw:null, gifts:{}, guesses:{},
-  cycleOverride:{}, revealOverride:null, testMode:true, opened:{}, viewCycle:null,
-  showOrder:null, showStep:0, audit:[], seenHelp:{}
+  v:2, lang:'es', session:null, uid:null, myAssignment:null, gifts:{}, guesses:{},
+  cycleOverride:{}, config:{ cycles:CYCLES, revealAt:REVEAL_DATE, testMode:true, revealOpen:false },
+  takenCount:0, opened:{}, viewCycle:null,
+  showOrder:null, showStep:0, seenHelp:{}, authBusy:true, allowlistError:null
 });
 let S = STORE.read() || blank();
+if (!S.config) S.config = { cycles:CYCLES, revealAt:REVEAL_DATE, testMode:true, revealOpen:false };
+/* La identidad no se cachea entre cargas: así un computador compartido
+   nunca alcanza a mostrar ni un instante los datos de la persona
+   anterior mientras Firebase confirma quién eres ahora. */
+S.session = null; S.uid = null; S.myAssignment = null; S.allowlistError = null; S.authBusy = true;
 const save = () => STORE.write(S);
 const t = k => (I18N[S.lang] && I18N[S.lang][k]) || I18N.es[k] || k;
 
 /* ── Sorteo individual ────────────────────────────────────
-   Cada persona saca su propia balota cuando entra. Al elegir
-   receptor se descarta el que dejaría al último participante
-   sin nadie más que él mismo, así que si todos giran, todos
-   quedan asignados y nadie se saca a sí mismo. Las parejas
-   mutuas se evitan salvo que no quede alternativa. */
-const drawMap = () => (S.draw ? S.draw.map : {});
-function claim(giverId){
-  if (!S.draw) S.draw = { at:new Date().toISOString(), map:{} };
-  const map = S.draw.map;
-  if (map[giverId]) return map[giverId];
-  const taken = new Set(Object.values(map));
-  const free = PEOPLE.map(p => p.id).filter(id => !taken.has(id));
-  const pendingAfter = PEOPLE.map(p => p.id).filter(id => id !== giverId && !map[id]);
-  let cands = free.filter(r => r !== giverId);
-  cands = cands.filter(r => {
-    const rest = free.filter(x => x !== r);
-    return !(pendingAfter.length === 1 && rest.length === 1 && rest[0] === pendingAfter[0]);
+   Cada quien saca su propia balota (transacción en Firestore):
+   taken/{personId} solo existe cuando alguien ya lo escogió como
+   receptor — vacío a propósito, para que ni ese documento delate la
+   pareja. Se descarta el candidato que dejaría al último participante
+   pendiente sin nadie más que él mismo.
+   NOTA (simplificación obligada por las reglas ya publicadas): la
+   versión local también evitaba las parejas mutuas (A elige a B y B
+   ya había elegido a A). Para eso hacía falta leer el mapa completo
+   de asignaciones. Con Firestore, assignments/{uid} solo lo puede
+   leer ese mismo uid (ni el admin puede leer el de otra persona) — es
+   justo lo que garantiza que el remitente no exista en ningún lugar
+   legible. Sin esa lectura no hay forma de saber si el candidato ya
+   te había elegido a ti, así que esa protección se quitó. Con 22
+   personas el efecto es pequeño, y es el precio de que nadie —ni el
+   propio Cupido+— pueda reconstruir el mapa. */
+async function claim(giverId){
+  const ref = db.collection('assignments').doc(S.uid);
+  const already = await ref.get();
+  if (already.exists) return already.data().receiverPersonId;
+
+  const allIds = PEOPLE.map(p => p.id);
+  let pick = null;
+  await db.runTransaction(async (tx) => {
+    const takenSnap = await tx.get(db.collection('taken'));
+    const takenIds = new Set(takenSnap.docs.map(d => d.id));
+    const free = allIds.filter(id => !takenIds.has(id));
+    const pendingAfter = allIds.filter(id => id !== giverId && !takenIds.has(id));
+    let cands = free.filter(r => r !== giverId);
+    cands = cands.filter(r => {
+      const rest = free.filter(x => x !== r);
+      return !(pendingAfter.length === 1 && rest.length === 1 && rest[0] === pendingAfter[0]);
+    });
+    if (!cands.length) cands = free.filter(r => r !== giverId);
+    if (!cands.length) cands = free.slice();
+    if (!cands.length) throw new Error('sin candidatos disponibles');
+    pick = cands[Math.floor(Math.random() * cands.length)];
+    tx.set(db.collection('taken').doc(pick), {});
+    tx.set(ref, { personId: giverId, receiverPersonId: pick, at: firebase.firestore.FieldValue.serverTimestamp() });
   });
-  if (!cands.length) cands = free.filter(r => r !== giverId);
-  if (!cands.length) cands = free.slice();
-  const noMutual = cands.filter(r => map[r] !== giverId);
-  const pool = noMutual.length ? noMutual : cands;
-  const pick = pool[Math.floor(Math.random() * pool.length)];
-  map[giverId] = pick;
-  S.draw.last = { who:giverId, at:new Date().toISOString() };
-  save();
+  S.myAssignment = { personId: giverId, receiverPersonId: pick };
+  refreshTakenCount();
   return pick;
 }
-const receiverOf = id => drawMap()[id] || null;
-const giverTo = id => Object.keys(drawMap()).find(k => drawMap()[k] === id) || null;
-const spunCount = () => Object.keys(drawMap()).length;
-const mutualPairs = () => { const m = drawMap();
-  return Object.keys(m).filter(a => m[m[a]] === a && a < m[a]).length; };
+/* receiverOf solo responde para "yo" — es lo único que las reglas
+   dejan saber desde el cliente. giverTo ya no existe: nadie puede
+   saber quién le escribe a quién salvo esa misma persona (y ni
+   siquiera ella, a menos que se lo digan en vivo). */
+const receiverOf = id => (id === S.session && S.myAssignment) ? S.myAssignment.receiverPersonId : null;
+const spunCount = () => S.takenCount || 0;
+function refreshTakenCount(){
+  return db.collection('taken').get().then(qs => { S.takenCount = qs.size; }).catch(e => console.error('taken', e));
+}
 
 /* ── Estado de ciclos ────────────────────────────────────── */
+/* Bogotá está en UTC-5 todo el año (no hay horario de verano), así
+   que un offset fijo basta para comparar fechas de ciclo igual sin
+   importar en qué huso horario esté el navegador de quien mira (el
+   equipo está repartido por Colombia, Brasil, Costa Rica, Uruguay,
+   Panamá y EE.UU.). */
+function bogotaDate(iso){
+  return new Date((iso.length === 10 ? iso + 'T00:00:00' : iso) + '-05:00');
+}
 const today = () => new Date();
-/* Un ciclo abre en su fecha y se queda abierto hasta la revelación:
-   quien se atrase todavía puede mandar lo suyo. */
+/* Un ciclo abre en su fecha y se queda abierto hasta la revelación
+   (config/game.revealOpen: un interruptor COMPARTIDO en Firestore,
+   ya no una fecha fija): quien se atrase todavía puede mandar lo
+   suyo. */
 function cycleState(c){
   const ov = S.cycleOverride[c.n];
-  if (ov === 'open' || S.testMode) return 'open';
+  if (ov === 'open' || S.config.testMode) return 'open';
   if (ov === 'closed') return 'closed';
   const now = today();
-  if (now < new Date(c.start + 'T00:00:00')) return 'soon';
-  if (now > new Date(REVEAL_DATE)) return 'closed';
+  if (now < bogotaDate(c.start)) return 'soon';
+  if (isRevealed()) return 'closed';
   return 'open';
 }
 function activeCycle(){
@@ -948,13 +1008,87 @@ function activeCycle(){
   const soon = CYCLES.find(c => cycleState(c) === 'soon');
   return soon || CYCLES[CYCLES.length - 1];
 }
+/* revealOpen es un interruptor manual del admin (Plan Spark: sin
+   Cloud Functions no hay forma de que se prenda solo a una hora
+   exacta) y es también lo único que las reglas de Firestore miran
+   para decidir si gifts/guesses se vuelven legibles para todo el
+   equipo — por eso el cliente sigue ese mismo booleano al pie de la
+   letra, sin una fecha de respaldo que podría desalinearse de lo que
+   el backend realmente deja leer. */
 function isRevealed(){
-  if (S.revealOverride !== null) return S.revealOverride;
-  return today() >= new Date(REVEAL_DATE);
+  return !!(S.config && S.config.revealOpen);
 }
-const giftKey = (n, giver) => n + ':' + giver;
-const getGift = (n, giver) => S.gifts[giftKey(n, giver)] || null;
+/* Ojo: el id de Firestore usa "_", no ":" — tiene que calzar exacto
+   con lo que validan las reglas (giftId == cycle + '_' + to). */
+const giftKey = (n, personId) => n + '_' + personId;
+const getGift = (n, personId) => S.gifts[giftKey(n, personId)] || null;
 const getGuess = (n, who) => S.guesses[giftKey(n, who)] || null;
+
+/* ── Sincronización con Firestore ─────────────────────────
+   Todo lo compartido (config, mi propia asignación, los regalos y
+   teorías que puedo leer según las reglas) se recarga aquí. S sigue
+   siendo la fuente para pintar la vista, pero Firestore manda. */
+function tsToIso(v){
+  if (!v) return new Date().toISOString();
+  if (typeof v === 'string') return v;
+  if (typeof v.toDate === 'function') return v.toDate().toISOString();
+  return new Date().toISOString();
+}
+async function loadSharedConfig(){
+  try{
+    const snap = await db.collection('config').doc('game').get();
+    if (snap.exists) S.config = Object.assign({}, S.config, snap.data());
+  }catch(e){ console.error('config/game', e); }
+}
+async function setSharedConfig(patch){
+  try{
+    await db.collection('config').doc('game').set(patch, { merge:true });
+    S.config = Object.assign({}, S.config, patch);
+  }catch(e){
+    console.error('config/game set', e);
+    toast(S.lang === 'en' ? 'Could not save — try again.' : S.lang === 'pt' ? 'Não deu para salvar — tente de novo.' : 'No se pudo guardar — intenta de nuevo.');
+  }
+}
+async function loadMine(me){
+  try{
+    const asnap = await db.collection('assignments').doc(S.uid).get();
+    S.myAssignment = asnap.exists ? asnap.data() : null;
+  }catch(e){ console.error('assignments', e); S.myAssignment = null; }
+  await Promise.all(CYCLES.map(async c => {
+    const key = giftKey(c.n, me.id);
+    try{
+      const g = await db.collection('gifts').doc(key).get();
+      if (g.exists){ const d = g.data(); d.at = tsToIso(d.at); S.gifts[key] = d; }
+    }catch(e){ /* nada recibido todavía para este ciclo */ }
+    try{
+      const gs = await db.collection('guesses').doc(key).get();
+      if (gs.exists){ const d = gs.data(); d.at = tsToIso(d.at); S.guesses[key] = d; }
+    }catch(e){ /* sin teoría enviada todavía */ }
+  }));
+}
+/* Solo para el admin: señales de participación agregadas por persona
+   (¿recibió su pieza esta semana? ¿mandó su teoría?). Nunca quién se
+   la escribió — eso sigue sin poder leerse, ni siquiera con
+   isAdmin(), porque las reglas de assignments/{uid} no tienen
+   excepción para admin. */
+async function loadAllGiftsAndGuesses(){
+  await Promise.all(PEOPLE.flatMap(p => CYCLES.map(async c => {
+    const key = giftKey(c.n, p.id);
+    try{
+      const g = await db.collection('gifts').doc(key).get();
+      if (g.exists){ const d = g.data(); d.at = tsToIso(d.at); S.gifts[key] = d; }
+    }catch(e){}
+    try{
+      const gs = await db.collection('guesses').doc(key).get();
+      if (gs.exists){ const d = gs.data(); d.at = tsToIso(d.at); S.guesses[key] = d; }
+    }catch(e){}
+  })));
+}
+async function refreshAdminData(){
+  await loadSharedConfig();
+  await refreshTakenCount();
+  await loadAllGiftsAndGuesses();
+}
 
 /* ── Utilidades de vista ─────────────────────────────────── */
 /* <template> parsea también <tr>/<td>, que un <div> descartaría. */
@@ -1008,35 +1142,51 @@ function render(){
 
 /* ── Login ───────────────────────────────────────────────── */
 function LoginView(){
+  const err = S.allowlistError;
   const node = el(`<div class="login-wrap"><div class="login-card">
     <div class="langs" style="justify-content:center;display:inline-flex;margin-bottom:2rem" id="lg"></div>
     <div class="eyebrow" style="margin-bottom:1rem">Cupido<span style="color:var(--magenta)">+</span> · VélezReyes+ × VERE</div>
     <h1 style="margin-bottom:1.1rem">${t('loginTitle')}</h1>
     <p class="lede" style="margin:0 auto 2rem">${t('loginLede')}</p>
-    <button class="gbtn" id="gbtn">
+    ${err ? `<p class="faint" style="max-width:40ch;margin:0 auto 1.3rem;color:var(--magenta-dk)">${loginErrorText(err)}</p>` : ''}
+    <button class="gbtn" id="gbtn" ${S.authBusy ? 'disabled' : ''}>
       <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45 24c0-1.6-.1-2.7-.4-4H24v7.5h12c-.2 2-1.6 5-4.5 7l6.9 5.4C42.5 36.3 45 30.7 45 24z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-6.9-5.4c-1.9 1.3-4.4 2.2-7.6 2.2-5.8 0-10.7-3.9-12.5-9.1l-7.1 5.5C8 41.2 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.5 28.4c-.5-1.4-.7-2.9-.7-4.4s.3-3 .7-4.4l-7.1-5.5A22 22 0 0 0 2 24c0 3.5.8 6.9 2.4 9.9l7.1-5.5z"/><path fill="#EA4335" d="M24 9.5c3.2 0 6 1.1 8.2 3.2l6.1-6.1C34.9 3.1 29.9 1 24 1 15.4 1 8 5.8 4.4 14.1l7.1 5.5C13.3 13.4 18.2 9.5 24 9.5z"/></svg>
       ${t('google')}
     </button>
-    <div class="divider"></div>
-    <p class="faint" style="margin:0 0 .2rem">${t('pickWho')}</p>
-    <p class="faint" style="margin:0">${t('pickNote')}</p>
-    <div class="picker" id="pick"></div>
   </div></div>`);
 
   node.querySelector('#lg').append(...langButtons());
-  const pick = node.querySelector('#pick');
-  PEOPLE.forEach(p => {
-    const b = el(`<button class="pick">${avatar(p, 32)}<span>${esc(first(p))}${p.admin ? ' ★' : ''}</span></button>`);
-    b.onclick = () => { S.session = p.id; view = 'mission'; save(); render(); };
-    pick.appendChild(b);
-  });
-  node.querySelector('#gbtn').onclick = () => {
-    toast(S.lang === 'en' ? 'Google sign-in arrives with Firebase — pick your name below.'
-      : S.lang === 'pt' ? 'O login com Google chega com o Firebase — escolha seu nome abaixo.'
-      : 'El login con Google llega con Firebase — elige tu nombre abajo.');
-    pick.scrollIntoView({ behavior:'smooth' });
+  node.querySelector('#gbtn').onclick = async () => {
+    if (S.authBusy) return;
+    S.allowlistError = null; S.authBusy = true; render();
+    try{
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+      /* onAuthStateChanged se encarga del resto (allowlist, carga de datos, render). */
+    }catch(e){
+      console.error(e);
+      S.authBusy = false;
+      if (e && e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request'){
+        S.allowlistError = 'error';
+      }
+      render();
+    }
   };
   return node;
+}
+function loginErrorText(kind){
+  const byLang = {
+    notfound:{ es:'Tu correo no está en la lista todavía. Avísale a Miguel.', pt:'Seu e-mail ainda não está na lista. Avise o Miguel.', en:"Your email isn't on the list yet. Ping Miguel." },
+    unverified:{ es:'Verifica tu correo de Google antes de entrar.', pt:'Verifique seu e-mail do Google antes de entrar.', en:'Verify your Google email before signing in.' },
+    error:{ es:'Algo falló iniciando sesión. Intenta de nuevo.', pt:'Algo deu errado ao entrar. Tente de novo.', en:'Something went wrong signing in. Try again.' }
+  };
+  const set = byLang[kind] || byLang.error;
+  return set[S.lang] || set.es;
+}
+function participationNote(){
+  return S.lang === 'en' ? 'Shows who has received their piece each week — not who wrote it (that stays hidden, even from admin).'
+    : S.lang === 'pt' ? 'Mostra quem já recebeu a peça de cada semana — não quem escreveu (isso continua oculto, até para o admin).'
+    : 'Muestra quién ya recibió su pieza de cada semana — no quién la escribió (eso sigue oculto, incluso para el admin).';
 }
 function langButtons(){
   return ['es','pt','en'].map(l => {
@@ -1060,7 +1210,10 @@ function TopBar(){
   <div class="wrap"><div class="tabs" id="tabs"></div></div></div>`);
   if (window.innerWidth > 760) node.querySelector('#tg').style.display = 'block';
   node.querySelector('#lg').append(...langButtons());
-  node.querySelector('#out').onclick = () => { S.session = null; save(); render(); };
+  node.querySelector('#out').onclick = async () => {
+    try{ await auth.signOut(); }catch(e){ console.error(e); }
+    S.session = null; S.uid = null; S.myAssignment = null; save(); render();
+  };
 
   const tabs = node.querySelector('#tabs');
   const items = [['mission','navMission'], ['inbox','navInbox'], ['sherlock','navSherlock'], ['help','navHelp']];
@@ -1100,9 +1253,17 @@ function WheelView(me){
   });
 
   const spin = node.querySelector('#spin');
-  spin.onclick = () => {
+  spin.onclick = async () => {
     spin.disabled = true;
-    const target = byId(claim(me.id));
+    let target;
+    try{
+      target = byId(await claim(me.id));
+    }catch(e){
+      console.error(e);
+      spin.disabled = false;
+      toast(S.lang === 'en' ? 'Could not draw — try again.' : S.lang === 'pt' ? 'Não deu para sortear — tente de novo.' : 'No se pudo girar — intenta de nuevo.');
+      return;
+    }
     const idx = others.findIndex(p => p.id === target.id);
     const deg = 360 * 5 + (360 - (idx / n) * 360);
     wheel.style.transform = `rotate(${deg}deg)`;
@@ -1131,7 +1292,10 @@ function MissionView(me){
   const target = byId(receiverOf(me.id));
   const c = activeCycle();
   const st = cycleState(c);
-  const gift = getGift(c.n, me.id);
+  /* Lo que YO mandé queda en gifts/{ciclo}_{target.id} (indexado por
+     receptor), no en gifts/{ciclo}_{me.id} (eso sería lo que yo
+     recibí, de mi propio admirador secreto). */
+  const gift = getGift(c.n, target.id);
 
   const node = el(`<div class="grid side">
     <div>
@@ -1217,14 +1381,30 @@ function Composer(me, c, gift){
     chips.appendChild(b);
   });
 
-  node.querySelector('#send').onclick = () => {
+  node.querySelector('#send').onclick = async () => {
     const message = msg.value.trim();
     const clueV = clue.value.trim();
     const recV = node.querySelector('#f_rec') ? node.querySelector('#f_rec').value.trim() : '';
     const linkV = node.querySelector('#f_link') ? node.querySelector('#f_link').value.trim() : '';
     if (!message){ toast(t('fMessage')); msg.focus(); return; }
-    S.gifts[giftKey(c.n, me.id)] = { message, rec:recV, link:linkV, clue:clueV, at:new Date().toISOString() };
-    save(); toast(t('sentOk')); render();
+    const receiverId = S.myAssignment && S.myAssignment.receiverPersonId;
+    if (!receiverId){ toast('—'); return; }
+    const btn = node.querySelector('#send'); btn.disabled = true;
+    try{
+      await db.collection('gifts').doc(giftKey(c.n, receiverId)).set({
+        cycle: c.n, to: receiverId, message, rec: recV, link: linkV, clue: clueV,
+        at: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      /* No puedo releer este documento (las reglas solo dejan leer
+         gifts donde to==yo, y aquí yo soy quien lo escribe, no el
+         receptor), así que el "ya lo mandé" se cachea local en este
+         navegador, no en Firestore. */
+      S.gifts[giftKey(c.n, receiverId)] = { cycle:c.n, to:receiverId, message, rec:recV, link:linkV, clue:clueV, at:new Date().toISOString() };
+      save(); toast(t('sentOk')); render();
+    }catch(e){
+      console.error(e); btn.disabled = false;
+      toast(S.lang === 'en' ? 'Could not send — try again.' : S.lang === 'pt' ? 'Não deu para enviar — tente de novo.' : 'No se pudo enviar — intenta de nuevo.');
+    }
   };
   return node;
 }
@@ -1236,9 +1416,12 @@ function CycleRail(me){
     <div class="faint">${t('revealTitle')} · ${fmtDate('2026-10-02')}</div></div>`);
   const l = node.querySelector('#l');
   const cur = activeCycle();
+  const myTargetId = S.myAssignment && S.myAssignment.receiverPersonId;
   CYCLES.forEach(c => {
     const st = cycleState(c);
-    const sent = !!getGift(c.n, me.id);
+    /* Lo que YO mandé está en gifts/{ciclo}_{miObjetivo}, no en
+       gifts/{ciclo}_{me.id} (eso sería lo que yo recibí). */
+    const sent = !!(myTargetId && getGift(c.n, myTargetId));
     const cls = sent ? 'done' : st === 'open' ? 'on' : '';
     const lbl = sent ? t('sent') : st === 'open' ? t('stOpen') : st === 'soon' ? t('closed') + ' ' + fmtDate(c.start) : t('late');
     const isCur = c.n === cur.n;
@@ -1294,8 +1477,10 @@ function HelpView(me, firstTime){
 
 /* ── Buzón ───────────────────────────────────────────────── */
 function InboxView(me){
-  const giver = giverTo(me.id);
-  const items = CYCLES.map(c => ({ c, g: getGift(c.n, giver) })).filter(x => x.g);
+  /* Los regalos se guardan con id = ciclo_receptor, así que lo que
+     "me" recibió está directo en getGift(cycle, me.id) — no hace
+     falta (ni se puede) saber quién los mandó. */
+  const items = CYCLES.map(c => ({ c, g: getGift(c.n, me.id) })).filter(x => x.g);
   const node = el(`<div>
     <div class="eyebrow">${t('from')}</div>
     <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin:.5rem 0 1.4rem">
@@ -1368,25 +1553,20 @@ function partLabel(key){
           : (n === '2' ? t('partSong') : t('partRec'));
   return `${l} ${t('ofCycle')} ${n}`;
 }
-/* Señales de participación — solo para el panel del admin. */
-function signals(id){
-  let sends = 0, clues = 0, words = 0;
-  CYCLES.forEach(c => { const g = getGift(c.n, id); if (!g) return;
-    sends++; if (g.clue) clues++;
-    words += (g.message || '').trim().split(/\s+/).filter(Boolean).length; });
-  const theories = CYCLES.filter(c => getGuess(c.n, id)).length;
-  const sc = guessOutcome(id);
-  return { sends, clues, theories, words: sends ? Math.round(words / sends) : 0,
-           hit: sc.hit, hitOn: sc.hitOn };
-}
+/* signals()/guessOutcome() vivían aquí: calculaban premios ("mejor
+   Sherlock", "más se lo trabajó") a partir de quién escribió qué.
+   Se quitaron porque le atribuirían el mérito a la persona
+   equivocada: bajo el modelo de anonimato, lo único rastreable por
+   id es lo que "id" RECIBIÓ, nunca lo que escribió (ver el resumen
+   de la migración). Premiar así habría sido activamente incorrecto,
+   no solo incompleto. */
 
 /* ── Sherlock ────────────────────────────────────────────
    Una teoría por PIEZA recibida, no una por semana del
    calendario: si te llegaron tres sobres, puedes arriesgar
    tres veces. Cada teoría se sella al enviarla. */
 function SherlockView(me){
-  const giver = giverTo(me.id);
-  const received = CYCLES.map(x => ({ c:x, g: giver ? getGift(x.n, giver) : null })).filter(x => x.g);
+  const received = CYCLES.map(x => ({ c:x, g: getGift(x.n, me.id) })).filter(x => x.g);
   const locked = isRevealed();
 
   const node = el(`<div style="max-width:740px">
@@ -1452,13 +1632,24 @@ function SherlockView(me){
     </div>`);
 
     const send = card.querySelector('[data-send]');
-    if (send) send.onclick = () => {
+    if (send) send.onclick = async () => {
       const w = card.querySelector('[data-who]').value;
       if (!w){ toast(t('chooseOne')); return; }
       if (!confirm(t('theoryFinalAsk'))) return;
-      S.guesses[giftKey(cy.n, me.id)] = { guess:w, basedOn: card.querySelector('[data-on]').value || null,
-        why: card.querySelector('[data-why]').value.trim(), at:new Date().toISOString() };
-      save(); toast(t('theorySealed')); render();
+      send.disabled = true;
+      const basedOn = card.querySelector('[data-on]').value || null;
+      const why = card.querySelector('[data-why]').value.trim();
+      try{
+        await db.collection('guesses').doc(giftKey(cy.n, me.id)).set({
+          cycle: cy.n, by: me.id, guess: w, basedOn, why,
+          at: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        S.guesses[giftKey(cy.n, me.id)] = { cycle:cy.n, by:me.id, guess:w, basedOn, why, at:new Date().toISOString() };
+        save(); toast(t('theorySealed')); render();
+      }catch(e){
+        console.error(e); send.disabled = false;
+        toast(S.lang === 'en' ? 'Could not send — try again.' : S.lang === 'pt' ? 'Não deu para enviar — tente de novo.' : 'No se pudo enviar — intenta de nuevo.');
+      }
     };
     const dl = card.querySelector('[data-dl]');
     if (dl) dl.onclick = () => {
@@ -1487,39 +1678,37 @@ function SherlockView(me){
 function RevealView(me){
   if (!isRevealed()) return el(`<div class="card" style="text-align:center;padding:3rem 1.5rem">
     <h2>${t('revealTitle')}</h2><p class="lede" style="margin:.7rem auto 0">${t('revealLocked')}</p></div>`);
-  const secret = byId(giverTo(me.id));
   const given = byId(receiverOf(me.id));
-  if (!secret || !given) return el(`<div class="card" style="text-align:center;padding:3rem 1.5rem">
+  if (!given) return el(`<div class="card" style="text-align:center;padding:3rem 1.5rem">
     <h2>${t('revealTitle')}</h2><p class="lede" style="margin:.7rem auto 0">${t('drawPendingBody')}</p></div>`);
+  /* Ya no hay una tabla de "quién le escribía a quién": ni siquiera
+     Cupido+ lo sabe (assignments/{uid} solo lo lee esa persona,
+     siempre, sin excepción de revelación ni de admin). Lo único que
+     "me" sabe con certeza es a quién LE escribió — eso sí es suyo. */
   const node = el(`<div>
     <div class="eyebrow">${fmtDate('2026-10-02')} · All Hands</div>
     <h2 style="margin:.5rem 0 1.4rem">${t('revealTitle')}</h2>
-    <div class="grid two" style="margin-bottom:2rem">
-      <div class="card accent"><div class="eyebrow">${t('revealWas')}</div>
-        <div class="person" style="margin-top:.9rem">${avatar(secret, 72)}
-        <div><div class="nm">${esc(secret.name)}</div><div class="rl">${esc(secret.role)} ${secret.country}</div></div></div></div>
-      <div class="card"><div class="eyebrow">${t('revealYouGave')}</div>
-        <div class="person" style="margin-top:.9rem">${avatar(given, 72)}
-        <div><div class="nm">${esc(given.name)}</div><div class="rl">${esc(given.role)} ${given.country}</div></div></div></div>
+    <div class="card accent" style="margin-bottom:2rem;max-width:420px">
+      <div class="eyebrow">${t('revealYouGave')}</div>
+      <div class="person" style="margin-top:.9rem">${avatar(given, 72)}
+      <div><div class="nm">${esc(given.name)}</div><div class="rl">${esc(given.role)} ${given.country}</div></div></div>
     </div>
-    <h3 style="font-family:var(--serif);margin-bottom:1rem">${t('allPairs')}</h3>
-    <div class="tablewrap"><table><thead><tr><th>${t('who')}</th><th>${t('gives')}</th><th>${t('guess')}</th></tr></thead><tbody id="tb"></tbody></table></div>
-    <div class="card accent" style="margin-top:1.6rem">
+    <p class="lede" style="margin:0 0 2rem;max-width:60ch">${revealSecretNote()}</p>
+    <div class="card accent">
       <div class="eyebrow" style="color:var(--magenta)">${t('novTag')}</div>
       <p style="font-family:var(--serif);font-size:1.35rem;margin:.6rem 0 0">${t('showEnd')}</p></div>
   </div>`);
-  const tb = node.querySelector('#tb');
-  PEOPLE.slice().sort((a, b) => a.name.localeCompare(b.name)).forEach(p => {
-    const r = byId(receiverOf(p.id));
-    const sc = guessOutcome(p.id);
-    tb.appendChild(el(`<tr>
-      <td><div class="person" style="gap:.55rem">${avatar(p, 30)}<span style="font-weight:600">${esc(p.name)}</span></div></td>
-      <td>${r ? esc(r.name) : '<span class="muted">—</span>'}</td>
-      <td>${sc.hit === null ? `<span class="muted">${t('noGuess')}</span>`
-        : sc.hit ? `<span style="color:var(--mint)">${t('correct')}</span>`
-        : `<span class="muted">${t('wrong')}</span>`}</td></tr>`));
-  });
   return node;
+}
+function revealSecretNote(){
+  return S.lang === 'en' ? "Who wrote to you is never stored anywhere — not even Cupido+ knows. That part gets revealed out loud, live, at the All Hands."
+    : S.lang === 'pt' ? 'Quem escreveu para você nunca fica guardado em lugar nenhum — nem o Cupido+ sabe. Essa parte é revelada em voz alta, ao vivo, no All Hands.'
+    : 'Quién te escribió a ti nunca queda guardado en ningún lado — ni Cupido+ lo sabe. Esa parte se revela en voz alta, en vivo, en el All Hands.';
+}
+function liveRevealPrompt(){
+  return S.lang === 'en' ? "Cupido+ doesn't know who wrote this either — whoever it was, stand up now!"
+    : S.lang === 'pt' ? 'O Cupido+ também não sabe quem escreveu isso — quem foi, se levanta agora!'
+    : 'Cupido+ tampoco sabe quién escribió esto — quien haya sido, ¡que se pare ahora!';
 }
 
 /* ── Admin ───────────────────────────────────────────────── */
@@ -1529,7 +1718,7 @@ function AdminView(me){
     <h2 style="margin:.5rem 0 .5rem">${t('adminTitle')}</h2>
     <p class="faint" style="margin-bottom:1.6rem">${t('localNote')}</p>
 
-    ${S.testMode ? `<div class="card" style="margin-bottom:1.1rem;border-color:rgba(243,255,0,.45)">
+    ${S.config.testMode ? `<div class="card" style="margin-bottom:1.1rem;border-color:rgba(243,255,0,.45)">
       <span class="postmark on">${t('testBanner')}</span></div>` : ''}
 
     <div class="card" style="margin-bottom:1.1rem">
@@ -1537,11 +1726,8 @@ function AdminView(me){
       <div class="btn-row" style="align-items:baseline;gap:1.6rem">
         <div><div class="stat">${spunCount()}<span class="muted" style="font-size:1rem">/${PEOPLE.length}</span></div>
           <div class="faint">${t('adminSpunCount')}</div></div>
-        <div><div class="stat">${mutualPairs()}</div><div class="faint">${t('adminMutual')}</div></div>
-        <button class="btn ghost" id="map">${t('adminShowMap')}</button>
       </div>
-      <p class="faint" style="margin:.9rem 0 0">${t('adminDrawNote')} ${t('adminMapWarn')}</p>
-      <div id="mapbox" class="hidden" style="margin-top:1rem"></div>
+      <p class="faint" style="margin:.9rem 0 0">${t('adminDrawNote')}</p>
     </div>
 
     <div class="card" style="margin-bottom:1.1rem">
@@ -1550,27 +1736,18 @@ function AdminView(me){
       <div class="divider"></div>
       <div class="btn-row">
         <label style="display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:600">
-          <input type="checkbox" id="test" ${S.testMode ? 'checked' : ''}> ${t('adminTest')}</label>
+          <input type="checkbox" id="test" ${S.config.testMode ? 'checked' : ''}> ${t('adminTest')}</label>
         <button class="btn sm" id="rev">${isRevealed() ? t('adminRevealUndo') : t('adminReveal')}</button>
       </div>
     </div>
 
     <div class="card" style="margin-bottom:1.1rem">
       <div class="eyebrow" style="margin-bottom:.8rem">${t('adminParticipation')}</div>
+      <p class="faint" style="margin:0 0 1rem;max-width:70ch">${participationNote()}</p>
       <div id="stats" class="btn-row" style="margin-bottom:1rem"></div>
       <div class="tablewrap"><table><thead><tr>
-        <th>${t('who')}</th><th>${t('team')}</th><th>${t('st1')}</th><th>${t('st2')}</th><th>${t('st3')}</th><th>${t('guess')}</th><th>Email</th>
+        <th>${t('who')}</th><th>${t('team')}</th><th>${t('st1')}</th><th>${t('st2')}</th><th>${t('st3')}</th><th>${t('guess')}</th>
       </tr></thead><tbody id="tb"></tbody></table></div>
-    </div>
-
-    <div class="card" style="margin-bottom:1.1rem">
-      <div class="eyebrow" style="margin-bottom:.6rem">${t('awardsTitle')}</div>
-      <p class="faint" style="margin:0 0 1.1rem;max-width:70ch">${t('awardsNote')}</p>
-      <div id="picks" class="btn-row" style="gap:.8rem;margin-bottom:1.2rem"></div>
-      <div class="tablewrap"><table><thead><tr>
-        <th>${t('who')}</th><th>${t('colSends')}</th><th>${t('colClues')}</th>
-        <th>${t('colTheories')}</th><th>${t('colHit')}</th><th>${t('colWords')}</th>
-      </tr></thead><tbody id="aw"></tbody></table></div>
     </div>
 
     <div class="card">
@@ -1587,64 +1764,9 @@ function AdminView(me){
     </div>
   </div>`);
 
-  /* Mapa ciego: por defecto no se ve ningún par. Se destapa uno a la
-     vez y cada consulta queda registrada. Quien le escribe al admin
-     no se puede destapar hasta la revelación. */
-  const mapbox = node.querySelector('#mapbox');
-  const drawMapbox = () => {
-    mapbox.innerHTML = '';
-    const open = isRevealed();
-    mapbox.appendChild(el(`<p class="faint" style="margin:0 0 .8rem">${t('mapBlind')}</p>`));
-    const wrap = el(`<div class="tablewrap"><table><thead><tr>
-      <th>${t('who')}</th><th>${t('adminSpun')}</th><th>${t('gives')}</th><th></th>
-    </tr></thead><tbody id="mb"></tbody></table></div>`);
-    const tb = wrap.querySelector('#mb');
-    PEOPLE.forEach(p => {
-      const r = byId(receiverOf(p.id));
-      const writesToMe = r && r.id === me.id;
-      const shown = open || (S.audit || []).some(a => a.id === p.id);
-      let cell;
-      if (!r) cell = '<span class="muted">—</span>';
-      else if (writesToMe && !open) cell = `<span class="postmark">${t('blockedSelf')}</span>`;
-      else if (shown) cell = esc(r.name);
-      else cell = `<button class="btn sm" data-peek="${p.id}">${t('reveal1')}</button>`;
-      const row = el(`<tr>
-        <td><div class="person" style="gap:.5rem">${avatar(p, 26)}<span style="font-weight:600">${esc(p.name)}</span></div></td>
-        <td><span class="dot ${r ? 'ok' : 'no'}"></span></td>
-        <td>${cell}</td>
-        <td>${r ? `<button class="btn sm danger" data-clear="${p.id}">${t('adminClear')}</button>` : ''}</td></tr>`);
-      const peek = row.querySelector('[data-peek]');
-      if (peek) peek.onclick = () => {
-        if (!confirm(t('reveal1Ask').replace('{n}', p.name))) return;
-        S.audit = (S.audit || []).concat([{ id:p.id, name:p.name, at:new Date().toISOString() }]);
-        save(); drawMapbox();
-      };
-      const clr = row.querySelector('[data-clear]');
-      if (clr) clr.onclick = () => {
-        if (!confirm(t('adminClearAsk'))) return;
-        delete S.draw.map[p.id];
-        S.audit = (S.audit || []).filter(a => a.id !== p.id);
-        save(); render();
-      };
-      tb.appendChild(row);
-    });
-    mapbox.appendChild(wrap);
-
-    const log = S.audit || [];
-    mapbox.appendChild(el(`<div style="margin-top:1rem">
-      <div class="eyebrow" style="margin-bottom:.5rem">${t('auditTitle')} · ${log.length}</div>
-      ${log.length ? `<ul class="list-reset faint">${log.map(a =>
-        `<li>${esc(a.name)} — ${new Date(a.at).toLocaleString()}</li>`).join('')}</ul>`
-        : `<p class="faint" style="margin:0">${t('auditEmpty')}</p>`}
-    </div>`));
-  };
-  node.querySelector('#map').onclick = (e) => {
-    const showing = !mapbox.classList.toggle('hidden');
-    e.target.textContent = showing ? t('adminHideMap') : t('adminShowMap');
-    if (showing) drawMapbox();
-  };
-
-  /* Ciclos */
+  /* Ciclos: forzar abierto/cerrado se queda como preferencia local de
+     este navegador (no está en el modelo de datos compartido — el
+     interruptor compartido de verdad es testMode/revealOpen abajo). */
   const cyc = node.querySelector('#cyc');
   CYCLES.forEach(c => {
     const cur = S.cycleOverride[c.n] || 'auto';
@@ -1664,10 +1786,25 @@ function AdminView(me){
     };
     cyc.appendChild(row);
   });
-  node.querySelector('#test').onchange = e => { S.testMode = e.target.checked; save(); render(); };
-  node.querySelector('#rev').onclick = () => { S.revealOverride = !isRevealed(); save(); render(); };
+  node.querySelector('#test').onchange = async e => {
+    const v = e.target.checked;
+    e.target.disabled = true;
+    await setSharedConfig({ testMode: v });
+    save(); render();
+  };
+  node.querySelector('#rev').onclick = async () => {
+    const next = !isRevealed();
+    if (next && !confirm(t('adminReveal') + '?')) return;
+    await setSharedConfig({ revealOpen: next });
+    save(); render();
+  };
 
-  /* Participación */
+  /* Participación: cada casilla dice si esa persona YA RECIBIÓ su
+     pieza esta semana (gifts/{ciclo}_{personId} existe) — nunca quién
+     se la mandó. Antes (modelo local) esto marcaba "ya envié"; con el
+     id de Firestore indexado por receptor, lo único que un tercero
+     (incluido el admin) puede confirmar de otra persona es que algo
+     le llegó, no que ella lo haya escrito. Ver participationNote(). */
   const stats = node.querySelector('#stats');
   CYCLES.forEach(c => {
     const sent = PEOPLE.filter(p => getGift(c.n, p.id)).length;
@@ -1684,51 +1821,16 @@ function AdminView(me){
       <td><span class="badge ${p.team}">${p.team === 'ver' ? 'VER+' : 'VERE'}</span></td>
       ${cells}
       <td style="font-family:var(--type)">${guesses}/3</td>
-      <td class="faint">${esc(p.email)}</td>
     </tr>`));
   });
 
-  /* Señales para las sorpresas — nunca se muestran a los participantes */
-  const rows = PEOPLE.map(p => Object.assign({ p }, signals(p.id)));
-  const best = fn => rows.slice().sort(fn)[0];
-  const picks = [
-    { label: t('awParticipation'),
-      r: best((a, b) => (b.sends + b.clues + b.theories) - (a.sends + a.clues + a.theories)),
-      ok: r => r.sends + r.clues + r.theories > 0 },
-    { label: t('awSherlock'),
-      r: best((a, b) => (b.hit === true ? 1 : 0) - (a.hit === true ? 1 : 0) || b.theories - a.theories),
-      ok: r => r.hit === true },
-    { label: t('awCreative'), r: best((a, b) => b.words - a.words), ok: r => r.words > 0 },
-  ];
-  const pk = node.querySelector('#picks');
-  picks.forEach(x => {
-    const good = x.r && x.ok(x.r);
-    pk.appendChild(el(`<div class="card" style="flex:1;min-width:190px;padding:.9rem 1.1rem;background:rgba(255,255,255,.04)">
-      <div class="eyebrow" style="margin-bottom:.5rem">${x.label}</div>
-      ${good ? `<div class="person" style="gap:.5rem">${avatar(x.r.p, 30)}
-        <span style="font-family:var(--serif);font-size:1.15rem">${esc(x.r.p.name)}</span></div>`
-      : `<span class="muted">${t('awNone')}</span>`}
-    </div>`));
-  });
-  const aw = node.querySelector('#aw');
-  rows.slice().sort((a, b) => (b.sends + b.theories) - (a.sends + a.theories)).forEach(r => {
-    aw.appendChild(el(`<tr>
-      <td><div class="person" style="gap:.5rem">${avatar(r.p, 26)}<span style="font-weight:600">${esc(r.p.name)}</span></div></td>
-      <td style="font-family:var(--type)">${r.sends}/3</td>
-      <td style="font-family:var(--type)">${r.clues}/3</td>
-      <td style="font-family:var(--type)">${r.theories}/3</td>
-      <td>${r.hit === null ? '<span class="muted">—</span>'
-        : r.hit ? `<span style="color:var(--mint)">${t('correct')}</span>` : `<span class="muted">${t('wrong')}</span>`}</td>
-      <td style="font-family:var(--type)">${r.words}</td></tr>`));
-  });
-
   /* Datos */
-  node.querySelector('#show').onclick = () => { view = 'show'; render(); };
+  node.querySelector('#show').onclick = async () => { await refreshAdminData(); view = 'show'; render(); };
   node.querySelector('#deck').onclick = () => download('cupido-deck.json', JSON.stringify(deckData(), null, 2), 'application/json');
   node.querySelector('#exp').onclick = () => download('cupido-estado-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(S, null, 2), 'application/json');
   node.querySelector('#csv').onclick = () => {
-    const rows = [['persona', 'email', 'equipo', 'c1', 'c2', 'c3', 'teorias']];
-    PEOPLE.forEach(p => rows.push([p.name, p.email, p.team,
+    const rows = [['persona', 'equipo', 'c1', 'c2', 'c3', 'teorias']];
+    PEOPLE.forEach(p => rows.push([p.name, p.team,
       ...CYCLES.map(c => getGift(c.n, p.id) ? 'ok' : 'PENDIENTE'),
       CYCLES.filter(c => getGuess(c.n, p.id)).length]));
     download('cupido-pendientes.csv', rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\n'), 'text/csv');
@@ -1743,15 +1845,17 @@ function AdminView(me){
   };
   node.querySelector('#rst').onclick = () => {
     if (!confirm(t('adminResetConfirm'))) return;
-    const lang = S.lang, session = S.session;
-    S = blank(); S.lang = lang; S.session = session; save(); render();
+    const lang = S.lang, session = S.session, uid = S.uid;
+    S = blank(); S.lang = lang; S.session = session; S.uid = uid; save(); render();
   };
   return node;
 }
 
 /* ── Modo presentación del 25 ─────────────────────────────
    Se proyecta en el All Hands. Uno a uno: las pistas que
-   recibió esa persona, su teoría, y la revelación. */
+   recibió esa persona y su teoría. Quién se las escribió de
+   verdad no lo sabe ni la app (ver nota en ShowView) — eso se
+   revela en voz alta, en el momento. */
 function showOrder(){
   if (!S.showOrder || S.showOrder.length !== PEOPLE.length){
     const ids = PEOPLE.map(p => p.id);
@@ -1763,10 +1867,13 @@ function showOrder(){
   }
   return S.showOrder;
 }
+/* Antes esto buscaba primero quién le escribía a "id" (giverTo) y
+   luego el regalo de esa persona. Ya no hace falta: los regalos se
+   guardan con id = ciclo_receptor, así que lo que "id" recibió está
+   directo en getGift(cycle, id) — de paso, tampoco hace falta (ni se
+   puede) saber quién es el remitente para nada de esto. */
 function cluesFor(id){
-  const g = giverTo(id);
-  if (!g) return [];
-  return CYCLES.map(c => ({ c, gift:getGift(c.n, g) }))
+  return CYCLES.map(c => ({ c, gift:getGift(c.n, id) }))
     .filter(x => x.gift && x.gift.clue)
     .map(x => ({ n:x.c.n, text:x.gift.clue }));
 }
@@ -1775,30 +1882,22 @@ function lastTheory(id){
   CYCLES.forEach(c => { const g = getGuess(c.n, id); if (g) out = { ...g, n:c.n }; });
   return out;
 }
-/* Resultado de las teorías de una persona: si acertó y sobre qué
-   pieza. Sin puntajes — la actividad no compite. */
-function guessOutcome(id){
-  const truth = giverTo(id);
-  let hit = null, hitOn = null;
-  CYCLES.forEach(c => {
-    const g = getGuess(c.n, id);
-    if (!g) return;
-    if (hit === null) hit = false;
-    if (g.guess === truth && hitOn === null){ hitOn = c.n; hit = true; }
-  });
-  return { hit, hitOn };
-}
+/* NOTA: aquí antes también vivía guessOutcome(id) (¿acertó su teoría?)
+   y deckData incluía writtenBy/correct/pairs. Los tres necesitaban
+   saber quién le escribía a quién para alguien que no fuera esa misma
+   persona, y las reglas de assignments/{uid} (solo uid==auth.uid, sin
+   excepción para isAdmin ni para revealOpen) lo impiden a propósito:
+   ni Cupido+ mismo puede reconstruir el mapa. Por eso se quitaron —
+   ver el resumen de la migración para más detalle. */
 function deckData(){
   return { generatedAt:new Date().toISOString(), order:showOrder(),
     people: showOrder().map(id => {
-      const p = byId(id), g = byId(giverTo(id)), th = lastTheory(id), sc = guessOutcome(id);
+      const p = byId(id), th = lastTheory(id);
       return { id, name:p.name, team:p.team, role:p.role,
         clues: cluesFor(id),
         theory: th ? { guess:(byId(th.guess)||{}).name, why:th.why, cycle:th.n,
-          basedOn: normBased(th.basedOn), basedOnLabel: th.basedOn ? partLabel(th.basedOn) : null } : null,
-        writtenBy: g ? g.name : null, correct: sc.hit, signals: signals(id) };
-    }),
-    pairs: PEOPLE.map(p => ({ from:p.name, to:(byId(receiverOf(p.id)) || {}).name || null })) };
+          basedOn: normBased(th.basedOn), basedOnLabel: th.basedOn ? partLabel(th.basedOn) : null } : null };
+    }) };
 }
 
 function ShowView(){
@@ -1832,12 +1931,13 @@ function ShowView(){
       return;
     }
     if (st.k === 'end'){
-      const hits = PEOPLE.filter(p => guessOutcome(p.id).hit).length;
+      const theories = PEOPLE.reduce((n, p) => n + CYCLES.filter(c => getGuess(c.n, p.id)).length, 0);
       const sent = PEOPLE.filter(p => CYCLES.every(c => getGift(c.n, p.id))).length;
+      const theoryLabel = S.lang === 'en' ? 'theories sent' : S.lang === 'pt' ? 'teorias enviadas' : 'teorías enviadas';
       body.appendChild(el(`<div style="width:100%">
         <div style="display:flex;gap:3rem;justify-content:center;margin-bottom:2.4rem;flex-wrap:wrap">
-          <div><div class="stat" style="font-size:3.4rem;color:var(--mint)">${hits}</div>
-            <div class="faint">${t('endGuessed')}</div></div>
+          <div><div class="stat" style="font-size:3.4rem;color:var(--mint)">${theories}</div>
+            <div class="faint">${theoryLabel}</div></div>
           <div><div class="stat" style="font-size:3.4rem;color:var(--purple-lt)">${sent}</div>
             <div class="faint">${t('endComplete')}</div></div>
         </div>
@@ -1867,17 +1967,18 @@ function ShowView(){
       </div>`));
       return;
     }
-    const g = byId(giverTo(st.id));
-    const sc = guessOutcome(st.id);
-    if (!g){ body.appendChild(el(`<div><div class="eyebrow">${esc(p.name)}</div>
-      <h2 style="margin-top:.8rem">—</h2><p class="lede" style="margin:.8rem auto 0">${t('drawPendingBody')}</p></div>`)); return; }
-    body.appendChild(el(`<div style="width:100%;display:grid;gap:1.5rem;justify-items:center">
-      <div class="eyebrow">${esc(p.name)} · ${t('showAnswer')}</div>
-      ${avatar(g, 150)}
-      <div class="big-name">${esc(g.name)}</div>
-      <div class="muted" style="font-size:1.05rem">${esc(g.role)} ${g.country}</div>
-      <span class="verdict ${sc.hit ? 'ok' : 'no'}">${sc.hit === null ? t('noGuess') : sc.hit ? t('correct') : t('wrong')}</span>
-    </div>`));
+    if (st.k === 'a'){
+      /* Nadie puede reconstruir quién le escribió a quién, ni siquiera
+         después de la revelación: assignments/{uid} solo lo lee ese
+         mismo uid (ni el admin tiene excepción). Por diseño, esta
+         parte se revela en vivo, no la calcula la app. */
+      body.appendChild(el(`<div style="width:100%;display:grid;gap:1.5rem;justify-items:center">
+        <div class="eyebrow">${esc(p.name)} · ${t('showAnswer')}</div>
+        <div class="big-name">🤫</div>
+        <p class="lede" style="max-width:46ch">${liveRevealPrompt()}</p>
+      </div>`));
+      return;
+    }
   }
   const go = d => { i = Math.max(0, Math.min(steps.length - 1, i + d)); draw(); };
   node.querySelector('#next').onclick = () => go(1);
@@ -2161,6 +2262,43 @@ function download(name, text, type){
 }
 
 render();
+auth.onAuthStateChanged(async (user) => {
+  S.allowlistError = null;
+  if (!user){
+    S.session = null; S.uid = null; S.myAssignment = null;
+    S.authBusy = false; save(); render();
+    return;
+  }
+  if (!user.emailVerified){
+    S.session = null; S.uid = null; S.myAssignment = null;
+    S.allowlistError = 'unverified'; S.authBusy = false; render();
+    return;
+  }
+  const email = (user.email || '').toLowerCase();
+  try{
+    const doc = await db.collection('allowlist').doc(email).get();
+    const data = doc.exists ? doc.data() : null;
+    const person = data ? byId(data.personId) : null;
+    if (!data || !person){
+      S.session = null; S.uid = null; S.myAssignment = null;
+      S.allowlistError = 'notfound'; S.authBusy = false; render();
+      return;
+    }
+    person.admin = !!data.admin;
+    S.uid = user.uid;
+    S.session = person.id;
+    view = 'mission';
+    await loadSharedConfig();
+    await refreshTakenCount();
+    await loadMine(person);
+    if (person.admin) await loadAllGiftsAndGuesses();
+  }catch(e){
+    console.error(e);
+    S.session = null; S.uid = null; S.myAssignment = null;
+    S.allowlistError = 'error';
+  }
+  S.authBusy = false; save(); render();
+});
 </script>
 </body>
 </html>
