@@ -230,14 +230,12 @@ const nodes = {
   educationVP:  {x:510, y:340, w:170, h:50, cat:'purple', role:'Education VP', name:'Leandro'},
 
   /* Row 2 — Directors / Leads */
-  ecdDirector:  {x:710, y:450, w:150, h:50, cat:'purple', role:'ECD Director', name:'Elisa'},
   melDirector:  {x:890, y:450, w:160, h:50, cat:'purple', role:'MEL Director', name:'J. Guillermo'},
   techLead:     {x:1070,y:450, w:140, h:50, cat:'gray',   role:'Tech Lead', name:'Soraya'},
   opsStaff:     {x:1240,y:444, w:180, h:62, cat:'gray',   role:'Ops & Staff Director', name:'Cris'},
   cfo:          {x:1450,y:450, w:140, h:50, cat:'gray',   role:'Finance Director', name:'Oswaldo'},
 
   /* Row 3 — Managers / Engineer */
-  democracyManager:{x:305, y:570, w:170, h:55, cat:'purple', role:'Democracy Manager', name:'Juan Felipe'},
   educationManager:{x:520, y:570, w:150, h:55, cat:'purple', role:'Education Manager', name:'Maribel'},
   ecdManager:      {x:715, y:570, w:140, h:55, cat:'purple', role:'ECD Manager', name:'Isabella'},
   melPortfolio:    {x:890, y:570, w:160, h:55, cat:'purple', role:'MEL Portfolio Manager', name:'Luisa Mazorra'},
@@ -314,13 +312,16 @@ dropTo('dCeo','dManager');
 line(elbowV(anchor('advisor','bottom'), anchor('ceo','top',0.05)), 'solid');
 line(elbowV(anchor('board','bottom'), anchor('ceo','top',0.25)), 'solid');
 
-['democracyVP','educationVP','ecdDirector','melDirector','techLead','opsStaff']
+['democracyVP','educationVP','melDirector','techLead','opsStaff']
   .forEach(id => dropTo('ceo', id));
 
-dropTo('democracyVP','democracyManager');
 dropTo('educationVP','educationManager');
 dropTo('educationManager','educationCoordinator');
-dropTo('ecdDirector','ecdManager');
+// Isabella (ECD Manager) now reports straight to Leandro (Education VP),
+// alongside Maribel — Elisa (ECD Director) was removed from the chart.
+// Isabella's box sits to the right of Leandro's, past his own width, so
+// this drops from his real bottom-right edge instead of an exact center.
+line(elbowV(anchor('educationVP','bottom',1), anchor('ecdManager','top')), 'solid');
 dropTo('melDirector','melPortfolio');
 dropTo('techLead','engineer');
 line(elbowV(anchor('opsStaff','bottom'), anchor('designer','top',0.3)), 'solid');
