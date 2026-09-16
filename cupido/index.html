@@ -554,6 +554,13 @@ es:{
   adminReveal:'Abrir la revelación ahora', adminRevealUndo:'Volver a cerrar la revelación',
   adminData:'Datos', adminExport:'Exportar estado (JSON)', adminImport:'Importar estado', adminCsv:'Descargar pendientes (CSV)',
   adminReset:'Borrar todo y empezar de cero', adminResetConfirm:'Esto borra sorteo, mensajes y teorías. ¿Seguro?',
+  adminMapTitle:'Mapa del sorteo (oculto)',
+  adminMapNote:'Rompe el anonimato — pensado solo como respaldo de seguridad, no para uso normal. Por defecto está apagado.',
+  adminMapShow:'Mostrar quién le tocó a quién',
+  adminMapLoading:'Cargando…', adminMapEmpty:'Todavía nadie ha girado.',
+  adminMapError:'No se pudo cargar (puede que falte actualizar las reglas de Firestore).',
+  adminMapGiver:'Quién escribe', adminMapReceiver:'A quién le tocó', adminMapReset:'Reiniciar',
+  resetWipeWarn:'Se borraron regalos, teorías y cupos, pero los sorteos no — falta actualizar las reglas de Firestore.',
   who:'Persona', team:'Equipo', gives:'Le regala a', st1:'C1', st2:'C2', st3:'C3', guess:'Teoría',
   missing:'faltan', allIn:'todos enviaron',
   emailWarn:'Correo por confirmar',
@@ -676,6 +683,13 @@ pt:{
   adminReveal:'Abrir a revelação agora', adminRevealUndo:'Fechar a revelação',
   adminData:'Dados', adminExport:'Exportar estado (JSON)', adminImport:'Importar estado', adminCsv:'Baixar pendências (CSV)',
   adminReset:'Apagar tudo e recomeçar', adminResetConfirm:'Isso apaga sorteio, mensagens e teorias. Tem certeza?',
+  adminMapTitle:'Mapa do sorteio (oculto)',
+  adminMapNote:'Quebra o anonimato — pensado só como respaldo de segurança, não para uso normal. Vem desligado por padrão.',
+  adminMapShow:'Mostrar quem tirou quem',
+  adminMapLoading:'Carregando…', adminMapEmpty:'Ainda ninguém girou.',
+  adminMapError:'Não foi possível carregar (pode faltar atualizar as regras do Firestore).',
+  adminMapGiver:'Quem escreve', adminMapReceiver:'Quem calhou', adminMapReset:'Reiniciar',
+  resetWipeWarn:'Foram apagados presentes, teorias e vagas, mas os sorteios não — falta atualizar as regras do Firestore.',
   who:'Pessoa', team:'Time', gives:'Presenteia', st1:'C1', st2:'C2', st3:'C3', guess:'Teoria',
   missing:'faltam', allIn:'todos enviaram',
   emailWarn:'E-mail a confirmar',
@@ -798,6 +812,13 @@ en:{
   adminReveal:'Open the reveal now', adminRevealUndo:'Close the reveal again',
   adminData:'Data', adminExport:'Export state (JSON)', adminImport:'Import state', adminCsv:'Download pending (CSV)',
   adminReset:'Erase everything and start over', adminResetConfirm:'This erases the draw, messages and theories. Sure?',
+  adminMapTitle:'Draw map (hidden)',
+  adminMapNote:'Breaks anonymity — meant only as a safety backup, not for normal use. Off by default.',
+  adminMapShow:'Show who got who',
+  adminMapLoading:'Loading…', adminMapEmpty:'Nobody has drawn yet.',
+  adminMapError:"Couldn't load (the Firestore rules may need updating).",
+  adminMapGiver:'Giver', adminMapReceiver:'Receiver', adminMapReset:'Reset',
+  resetWipeWarn:"Gifts, theories and taken slots were cleared, but assignments weren't — the Firestore rules need updating first.",
   who:'Person', team:'Team', gives:'Gives to', st1:'C1', st2:'C2', st3:'C3', guess:'Theory',
   missing:'missing', allIn:'everyone sent',
   emailWarn:'Email to confirm',
@@ -1005,6 +1026,53 @@ async function claim(giverId){
    siquiera ella, a menos que se lo digan en vivo). */
 const receiverOf = id => (id === S.session && S.myAssignment) ? S.myAssignment.receiverPersonId : null;
 const spunCount = () => S.takenCount || 0;
+
+/* ── Panel oculto de admin: mapa del sorteo ───────────────
+   Requiere que la regla de /assignments/{uid} tenga la excepción
+   "|| isAdmin()" en el read — sin eso, isMember()/isAdmin() puede
+   escribir y borrar (ya lo tenían), pero no LISTAR la colección
+   entera, así que esto falla con permission-denied hasta que se
+   actualice esa línea en Firestore. Se guarda en variables de
+   módulo (no en S) para que quede apagado por defecto en cada carga. */
+let showDrawMap = false;
+let drawMapCache = null; // null = no cargado, 'error' = bloqueado, [] = vacío, [...] = filas
+async function loadDrawMap(){
+  drawMapCache = null; render();
+  try{
+    const snap = await db.collection('assignments').get();
+    drawMapCache = snap.docs.map(d => ({ uid: d.id, personId: d.data().personId, receiverPersonId: d.data().receiverPersonId }));
+  }catch(e){
+    console.error('drawMap', e);
+    drawMapCache = 'error';
+  }
+  render();
+}
+async function resetOnePerson(personId){
+  if (!Array.isArray(drawMapCache)) return;
+  const row = drawMapCache.find(r => r.personId === personId);
+  if (!row) return;
+  try{
+    const batch = db.batch();
+    batch.delete(db.collection('assignments').doc(row.uid));
+    batch.delete(db.collection('taken').doc(row.receiverPersonId));
+    await batch.commit();
+    await refreshTakenCount();
+    await loadDrawMap();
+  }catch(e){ console.error('resetOnePerson', e); toast('No se pudo reiniciar — revisa las reglas.'); }
+}
+/* El botón grande "Borrar todo": los regalos, teorías y cupos ya
+   los puede listar/borrar isAdmin() con las reglas actuales, pero
+   assignments no (ver nota arriba) — por eso va en un try/catch
+   aparte y avisa si esa parte no se pudo. */
+async function wipeDraws(){
+  const [tsnaps, gsnaps, qsnaps] = await Promise.all([
+    db.collection('taken').get(), db.collection('gifts').get(), db.collection('guesses').get()
+  ]);
+  const rest = [...tsnaps.docs, ...gsnaps.docs, ...qsnaps.docs];
+  if (rest.length){ const b = db.batch(); rest.forEach(d => b.delete(d.ref)); await b.commit(); }
+  const asnaps = await db.collection('assignments').get(); // puede tronar por permisos
+  if (asnaps.docs.length){ const b2 = db.batch(); asnaps.docs.forEach(d => b2.delete(d.ref)); await b2.commit(); }
+}
 function refreshTakenCount(){
   return db.collection('taken').get().then(qs => { S.takenCount = qs.size; }).catch(e => console.error('taken', e));
 }
@@ -1814,6 +1882,21 @@ function AdminView(me){
       </tr></thead><tbody id="tb"></tbody></table></div>
     </div>
 
+    <div class="card" style="margin-bottom:1.1rem">
+      <div class="eyebrow" style="margin-bottom:.8rem">${t('adminMapTitle')}</div>
+      <p class="faint" style="margin:0 0 1rem;max-width:70ch">${t('adminMapNote')}</p>
+      <label style="display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:600;margin-bottom:${showDrawMap ? '1rem' : '0'}">
+        <input type="checkbox" id="showmap" ${showDrawMap ? 'checked' : ''}> ${t('adminMapShow')}</label>
+      ${showDrawMap ? `<div id="mapbox">${
+        drawMapCache === null ? `<p class="faint">${t('adminMapLoading')}</p>`
+        : drawMapCache === 'error' ? `<p class="faint" style="color:var(--magenta-dk)">${t('adminMapError')}</p>`
+        : drawMapCache.length === 0 ? `<p class="faint">${t('adminMapEmpty')}</p>`
+        : `<div class="tablewrap"><table><thead><tr><th>${t('adminMapGiver')}</th><th>${t('adminMapReceiver')}</th><th></th></tr></thead><tbody>${
+            drawMapCache.map(r => `<tr><td>${esc((byId(r.personId) || {}).name || r.personId)}</td><td>${esc((byId(r.receiverPersonId) || {}).name || r.receiverPersonId)}</td><td><button class="btn sm danger" data-reset="${esc(r.personId)}">${t('adminMapReset')}</button></td></tr>`).join('')
+          }</tbody></table></div>`
+      }</div>` : ''}
+    </div>
+
     <div class="card">
       <div class="eyebrow" style="margin-bottom:.8rem">${t('adminData')}</div>
       <div class="btn-row">
@@ -1907,11 +1990,27 @@ function AdminView(me){
     r.onload = () => { try { S = JSON.parse(r.result); save(); toast('OK'); render(); } catch (e) { toast('JSON?'); } };
     r.readAsText(f);
   };
-  node.querySelector('#rst').onclick = () => {
+  node.querySelector('#rst').onclick = async () => {
     if (!confirm(t('adminResetConfirm'))) return;
+    let assignmentsBlocked = false;
+    try{ await wipeDraws(); }
+    catch(e){ console.error('wipeDraws', e); assignmentsBlocked = true; }
     const lang = S.lang, session = S.session, uid = S.uid;
-    S = blank(); S.lang = lang; S.session = session; S.uid = uid; save(); render();
+    S = blank(); S.lang = lang; S.session = session; S.uid = uid; S.authBusy = true; save(); render();
+    drawMapCache = null; showDrawMap = false;
+    await loadSharedConfig(); await refreshTakenCount();
+    const me2 = byId(session);
+    await loadMine(me2);
+    if (me2.admin) await loadAllGiftsAndGuesses();
+    S.authBusy = false; save(); render();
+    if (assignmentsBlocked) toast(t('resetWipeWarn'));
   };
+  const showmap = node.querySelector('#showmap');
+  if (showmap) showmap.onchange = () => {
+    showDrawMap = showmap.checked;
+    if (showDrawMap && drawMapCache === null) loadDrawMap(); else render();
+  };
+  node.querySelectorAll('[data-reset]').forEach(b => { b.onclick = () => resetOnePerson(b.dataset.reset); });
   return node;
 }
 
