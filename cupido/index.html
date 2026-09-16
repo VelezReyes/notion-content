@@ -211,6 +211,15 @@ em.i{font-family:var(--serif); font-style:italic}
   background:linear-gradient(180deg, var(--night-2), rgba(34,16,60,.6));
   border:1px solid var(--line); border-radius:var(--r); padding:1.4rem 1.5rem;
 }
+.intro-backdrop{
+  position:fixed; inset:0; z-index:200; display:grid; place-items:center;
+  padding:1.2rem; background:rgba(10,4,20,.72); backdrop-filter:blur(3px);
+}
+.intro-card{
+  max-width:420px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+.intro-card h3{margin:.2rem 0 .7rem}
+.intro-card p{margin:0 0 1.3rem; color:var(--on-night-soft); line-height:1.55}
 .card.accent{border-color:rgba(166,43,255,.4); box-shadow:var(--glow)}
 .grid{display:grid; gap:1.1rem}
 @media(min-width:860px){ .grid.two{grid-template-columns:1fr 1fr} .grid.side{grid-template-columns:1.15fr .85fr} }
@@ -467,8 +476,11 @@ const I18N = {
 es:{
   tagline:'Amig@ secret@ · Amor y Amistad 2026',
   loginTitle:'Tres semanas escribiéndole a alguien.<br>Sin decir quién eres.',
-  loginLede:'Te va a tocar alguien del equipo. Durante septiembre le mandas mensajes, canciones y recomendaciones sin firmar, y una pista tuya cada semana. El 25 se revela quién era quién. Lo único que se regala aquí son palabras.',
+  loginLede:'Te va a tocar alguien del equipo. Durante septiembre le mandas mensajes, canciones y recomendaciones sin firmar, y una pista tuya cada semana. El 2 de octubre se revela quién era quién. Lo único que se regala aquí son palabras.',
   google:'Continuar con Google',
+  introTitle:'¿Qué es Cupido+?',
+  introBody:'Te tocó alguien del equipo. Durante 3 semanas le mandas mensajes, canciones y recomendaciones sin firmar. El 2 de octubre, en el All Hands, se revela quién era quién.',
+  introGo:'Entendido',
   pickWho:'Modo local: elige quién eres para probar la app.',
   pickNote:'En la versión con Firebase esto lo resuelve tu cuenta de Google del dominio.',
   navMission:'Mi misión', navInbox:'Mi buzón', navSherlock:'Sherlock', navReveal:'Revelación', navAdmin:'Admin',
@@ -550,7 +562,7 @@ es:{
   h2t:'Cada semana le mandas algo', h2b:'Tres ciclos: una carta, una canción, y un libro o una película. Siempre sin firmar, y siempre acompañado de una pista sobre ti.',
   h3t:'A ti te escribe otra persona', h3b:'No es la misma a la que tú le escribes. Lo que te llega aparece en Mi buzón, sellado. Lo abres cuando quieras y lo puedes compartir en Slack sin delatar a nadie.',
   h4t:'Armas tu teoría', h4b:'En Sherlock apuntas a quien creas, citando algo concreto que te llegó: el mensaje, la canción, la recomendación o la pista. Una teoría por cada pieza que te llegue. Una vez la mandas, queda sellada y no se puede cambiar.',
-  h5t:'El 25 se revela todo', h5b:'En el All Hands vamos uno por uno: se leen las pistas que te llegaron, dices tu teoría en voz alta, y ahí sí se sabe quién era.',
+  h5t:'El 2 de octubre se revela todo', h5b:'En el All Hands vamos uno por uno: se leen las pistas que te llegaron, dices tu teoría en voz alta, y ahí sí se sabe quién era.',
   helpGolden:'Tres reglas',
   g1:'No lo cuentes. Ni por privado, ni de broma.',
   g2:'Escribe en inglés si quieres despistar. O en tu idioma, si prefieres que eso sea parte de la pista.',
@@ -586,8 +598,11 @@ es:{
 pt:{
   tagline:'Amigo secreto · Amor e Amizade 2026',
   loginTitle:'Três semanas escrevendo para alguém.<br>Sem dizer quem você é.',
-  loginLede:'Você vai tirar alguém do time. Durante setembro você manda mensagens, músicas e recomendações sem assinar, e uma pista sua toda semana. No dia 25 a gente revela quem era quem. Aqui só se presenteia com palavras.',
+  loginLede:'Você vai tirar alguém do time. Durante setembro você manda mensagens, músicas e recomendações sem assinar, e uma pista sua toda semana. No dia 2 de outubro a gente revela quem era quem. Aqui só se presenteia com palavras.',
   google:'Continuar com o Google',
+  introTitle:'O que é o Cupido+?',
+  introBody:'Você tirou alguém do time. Durante 3 semanas manda mensagens, músicas e recomendações sem assinar. No dia 2 de outubro, no All Hands, revela quem era quem.',
+  introGo:'Entendi',
   pickWho:'Modo local: escolha quem é você para testar o app.',
   pickNote:'Na versão com Firebase isso é resolvido pela sua conta Google do domínio.',
   navMission:'Minha missão', navInbox:'Minha caixa', navSherlock:'Sherlock', navReveal:'Revelação', navAdmin:'Admin',
@@ -668,7 +683,7 @@ pt:{
   h2t:'Toda semana você manda algo', h2b:'Três ciclos: uma carta, uma música, e um livro ou filme. Sempre sem assinar, e sempre com uma pista sua junto.',
   h3t:'Outra pessoa escreve para você', h3b:'Não é a mesma para quem você escreve. O que chega aparece em Minha caixa, lacrado. Você abre quando quiser e pode compartilhar no Slack sem entregar ninguém.',
   h4t:'Você monta sua teoria', h4b:'No Sherlock você aponta quem achar, citando algo concreto que recebeu: a mensagem, a música, a recomendação ou a pista. Uma teoria para cada peça que receber. Depois de enviada, fica lacrada e não pode ser mudada.',
-  h5t:'No dia 25 se revela tudo', h5b:'No All Hands vamos um por um: leem-se as pistas que você recebeu, você diz sua teoria em voz alta, e aí sim se sabe quem era.',
+  h5t:'No dia 2 de outubro se revela tudo', h5b:'No All Hands vamos um por um: leem-se as pistas que você recebeu, você diz sua teoria em voz alta, e aí sim se sabe quem era.',
   helpGolden:'Três regras',
   g1:'Não conte para ninguém. Nem no privado, nem de brincadeira.',
   g2:'Escreva em inglês se quiser despistar. Ou no seu idioma, se preferir que isso seja parte da pista.',
@@ -704,8 +719,11 @@ pt:{
 en:{
   tagline:'Secret friend · Love & Friendship 2026',
   loginTitle:'Three weeks writing to someone.<br>Without saying who you are.',
-  loginLede:'You\'ll be matched with someone on the team. Through September you send them messages, songs and recommendations, unsigned, plus one clue about yourself each week. On the 25th we reveal who was who. The only currency here is words.',
+  loginLede:'You\'ll be matched with someone on the team. Through September you send them messages, songs and recommendations, unsigned, plus one clue about yourself each week. On October 2 we reveal who was who. The only currency here is words.',
   google:'Continue with Google',
+  introTitle:'What is Cupido+?',
+  introBody:'You were matched with someone on the team. For 3 weeks you send them messages, songs and recommendations, unsigned. On October 2, at the All Hands, we reveal who was who.',
+  introGo:'Got it',
   pickWho:'Local mode: pick who you are to try the app.',
   pickNote:'In the Firebase version this comes from your Google domain account.',
   navMission:'My mission', navInbox:'My inbox', navSherlock:'Sherlock', navReveal:'Reveal', navAdmin:'Admin',
@@ -786,7 +804,7 @@ en:{
   h2t:'Every week you send them something', h2b:'Three cycles: a letter, a song, and a book or a film. Always unsigned, and always with a clue about you.',
   h3t:'Someone else writes to you', h3b:'Not the person you write to. What arrives shows up in My inbox, sealed. Open it whenever you want and share it in Slack without giving anyone away.',
   h4t:'You build your theory', h4b:'In Sherlock you name who you think it is, citing something concrete that arrived: the message, the song, the recommendation or the clue. One theory per piece you receive. Once you send it, it is sealed and cannot be changed.',
-  h5t:'On the 25th everything comes out', h5b:'At the All Hands we go one by one: your clues get read out, you say your theory, and then we reveal who it was.',
+  h5t:'On October 2 everything comes out', h5b:'At the All Hands we go one by one: your clues get read out, you say your theory, and then we reveal who it was.',
   helpGolden:'Three rules',
   g1:'Tell no one. Not in a DM, not as a joke.',
   g2:'Write in English if you want to throw people off. Or in your own language, if you would rather that be part of the clue.',
@@ -945,8 +963,12 @@ async function claim(giverId){
   const allIds = PEOPLE.map(p => p.id);
   let pick = null;
   await db.runTransaction(async (tx) => {
-    const takenSnap = await tx.get(db.collection('taken'));
-    const takenIds = new Set(takenSnap.docs.map(d => d.id));
+    /* OJO: tx.get() con un CollectionReference completo revienta en el
+       SDK compat ("Expected type 'nc', but it was: a custom rc object")
+       — las transacciones solo soportan leer documentos por referencia,
+       así que se pide cada persona por su doc en vez de la colección entera. */
+    const takenSnaps = await Promise.all(allIds.map(id => tx.get(db.collection('taken').doc(id))));
+    const takenIds = new Set(takenSnaps.filter(s => s.exists).map(s => s.id));
     const free = allIds.filter(id => !takenIds.has(id));
     const pendingAfter = allIds.filter(id => id !== giverId && !takenIds.has(id));
     let cands = free.filter(r => r !== giverId);
@@ -1117,12 +1139,33 @@ const cycleSub = c => t('c' + c.n + 'sub');
    VISTAS
    ============================================================ */
 let view = 'mission';
+/* Variable de memoria (no se guarda ni en S ni en Firestore) para que
+   el popup de "qué es esto" salga siempre que se recarga la página,
+   sin importar si ya lo cerraste antes en esta misma sesión. */
+let showIntro = true;
+
+function IntroModal(){
+  const node = el(`<div class="intro-backdrop"><div class="card intro-card">
+    <h3>${t('introTitle')}</h3>
+    <p>${t('introBody')}</p>
+    <button class="btn primary" id="introGo">${t('introGo')}</button>
+  </div></div>`);
+  node.querySelector('#introGo').onclick = () => { showIntro = false; render(); };
+  node.onclick = (e) => { if (e.target === node) { showIntro = false; render(); } };
+  return node;
+}
 
 function render(){
   const app = document.getElementById('app');
   app.innerHTML = '';
-  if (!S.session) { app.appendChild(LoginView()); return; }
+  if (!S.session) {
+    app.appendChild(LoginView());
+    if (showIntro) app.appendChild(IntroModal());
+    return;
+  }
   const me = byId(S.session);
+  /* En modo presentación (pantalla compartida del All Hands) el popup
+     no debe interrumpir, así que se salta acá. */
   if (view === 'show' && me.admin){ app.appendChild(ShowView()); return; }
   /* La primera vez, después de girar, el tutorial se abre solo. */
   if (receiverOf(me.id) && !(S.seenHelp || {})[me.id] && view === 'mission') view = 'help';
@@ -1138,6 +1181,7 @@ function render(){
   else if (view === 'admin')      main.appendChild(AdminView(me));
   else                            main.appendChild(MissionView(me));
   app.appendChild(main);
+  if (showIntro) app.appendChild(IntroModal());
 }
 
 /* ── Login ───────────────────────────────────────────────── */
