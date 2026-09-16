@@ -220,6 +220,15 @@ em.i{font-family:var(--serif); font-style:italic}
 }
 .intro-card h3{margin:.2rem 0 .7rem}
 .intro-card p{margin:0 0 1.3rem; color:var(--on-night-soft); line-height:1.55}
+.loading-wrap{
+  min-height:100vh; display:grid; place-items:center; gap:1rem; text-align:center;
+}
+.spinner{
+  width:34px; height:34px; border-radius:50%;
+  border:3px solid var(--line-2); border-top-color:var(--purple);
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 .card.accent{border-color:rgba(166,43,255,.4); box-shadow:var(--glow)}
 .grid{display:grid; gap:1.1rem}
 @media(min-width:860px){ .grid.two{grid-template-columns:1fr 1fr} .grid.side{grid-template-columns:1.15fr .85fr} }
@@ -465,7 +474,7 @@ const byId = id => PEOPLE.find(p => p.id === id);
 
 /* ── Ciclos ──────────────────────────────────────────────── */
 const CYCLES = [
-  {n:1, key:'carta',   start:'2026-09-14', end:'2026-09-18'},
+  {n:1, key:'carta',   start:'2026-09-17', end:'2026-09-18'},
   {n:2, key:'sonora',  start:'2026-09-21', end:'2026-09-25'},
   {n:3, key:'estante', start:'2026-09-28', end:'2026-10-02'},
 ];
@@ -481,6 +490,7 @@ es:{
   introTitle:'¿Qué es Cupido+?',
   introBody:'Te tocó alguien del equipo. Durante 3 semanas le mandas mensajes, canciones y recomendaciones sin firmar. El 2 de octubre, en el All Hands, se revela quién era quién.',
   introGo:'Entendido',
+  loadingText:'Entrando…',
   pickWho:'Modo local: elige quién eres para probar la app.',
   pickNote:'En la versión con Firebase esto lo resuelve tu cuenta de Google del dominio.',
   navMission:'Mi misión', navInbox:'Mi buzón', navSherlock:'Sherlock', navReveal:'Revelación', navAdmin:'Admin',
@@ -580,7 +590,7 @@ es:{
   shareSlack:'Copiar para Slack', shareCard:'Descargar tarjeta', shareAll:'Copiar todo lo que me ha llegado',
   shareCopied:'Copiado. Pégalo en Slack.', shareIntro:'Me llegó esto de mi amig@ secret@',
   shareAsk:'¿Ideas de quién puede ser?', shareClue:'Su pista', shareCardMaking:'Armando la tarjeta…',
-  testBanner:'Modo prueba activo: todos los ciclos están abiertos. Apágalo antes del 14 de septiembre.',
+  testBanner:'Modo prueba activo: todos los ciclos están abiertos. Apágalo antes del 17 de septiembre.',
   adminSpun:'Giró', adminClear:'Reiniciar asignación',
   adminClearAsk:'Se le borra la asignación y vuelve a girar. ¿Seguro?',
   adminSpunCount:'ya giraron', adminMutual:'parejas mutuas',
@@ -603,6 +613,7 @@ pt:{
   introTitle:'O que é o Cupido+?',
   introBody:'Você tirou alguém do time. Durante 3 semanas manda mensagens, músicas e recomendações sem assinar. No dia 2 de outubro, no All Hands, revela quem era quem.',
   introGo:'Entendi',
+  loadingText:'Entrando…',
   pickWho:'Modo local: escolha quem é você para testar o app.',
   pickNote:'Na versão com Firebase isso é resolvido pela sua conta Google do domínio.',
   navMission:'Minha missão', navInbox:'Minha caixa', navSherlock:'Sherlock', navReveal:'Revelação', navAdmin:'Admin',
@@ -701,7 +712,7 @@ pt:{
   shareSlack:'Copiar para o Slack', shareCard:'Baixar cartão', shareAll:'Copiar tudo o que recebi',
   shareCopied:'Copiado. Cole no Slack.', shareIntro:'Recebi isto do meu amigo secreto',
   shareAsk:'Alguma ideia de quem seja?', shareClue:'A pista', shareCardMaking:'Montando o cartão…',
-  testBanner:'Modo teste ativo: todos os ciclos estão abertos. Desligue antes de 14 de setembro.',
+  testBanner:'Modo teste ativo: todos os ciclos estão abertos. Desligue antes de 17 de setembro.',
   adminSpun:'Girou', adminClear:'Reiniciar atribuição',
   adminClearAsk:'A atribuição será apagada e a pessoa gira de novo. Tem certeza?',
   adminSpunCount:'já giraram', adminMutual:'pares mútuos',
@@ -724,6 +735,7 @@ en:{
   introTitle:'What is Cupido+?',
   introBody:'You were matched with someone on the team. For 3 weeks you send them messages, songs and recommendations, unsigned. On October 2, at the All Hands, we reveal who was who.',
   introGo:'Got it',
+  loadingText:'Signing in…',
   pickWho:'Local mode: pick who you are to try the app.',
   pickNote:'In the Firebase version this comes from your Google domain account.',
   navMission:'My mission', navInbox:'My inbox', navSherlock:'Sherlock', navReveal:'Reveal', navAdmin:'Admin',
@@ -822,7 +834,7 @@ en:{
   shareSlack:'Copy for Slack', shareCard:'Download card', shareAll:'Copy everything I got',
   shareCopied:'Copied. Paste it in Slack.', shareIntro:'This came from my secret friend',
   shareAsk:'Any idea who it is?', shareClue:'Their clue', shareCardMaking:'Building the card…',
-  testBanner:'Test mode on: every cycle is open. Turn it off before September 14.',
+  testBanner:'Test mode on: every cycle is open. Turn it off before September 17.',
   adminSpun:'Spun', adminClear:'Reset assignment',
   adminClearAsk:'Their assignment is erased and they spin again. Sure?',
   adminSpunCount:'have spun', adminMutual:'mutual pairs',
@@ -1144,6 +1156,10 @@ let view = 'mission';
    sin importar si ya lo cerraste antes en esta misma sesión. */
 let showIntro = true;
 
+function LoadingView(){
+  return el(`<div class="loading-wrap"><div class="spinner"></div><p class="muted">${t('loadingText')}</p></div>`);
+}
+
 function IntroModal(){
   const node = el(`<div class="intro-backdrop"><div class="card intro-card">
     <h3>${t('introTitle')}</h3>
@@ -1158,6 +1174,10 @@ function IntroModal(){
 function render(){
   const app = document.getElementById('app');
   app.innerHTML = '';
+  /* Mientras se resuelve el login (o se cargan los datos justo
+     después de entrar), se muestra un loader en vez de dejar la
+     pantalla congelada con el botón deshabilitado. */
+  if (S.authBusy) { app.appendChild(LoadingView()); return; }
   if (!S.session) {
     app.appendChild(LoginView());
     if (showIntro) app.appendChild(IntroModal());
