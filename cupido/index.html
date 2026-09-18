@@ -552,7 +552,7 @@ es:{
   adminMapWarn:'Los pares no se muestran. Destapa solo el que necesites resolver.',
   mapBlind:'Cada consulta queda registrada abajo. Quien te escribe a ti está bloqueado hasta la revelación.',
   reveal1:'Destapar', reveal1Ask:'Vas a ver a quién le escribe {n}. Queda registrado en el panel. ¿Seguir?',
-  blockedSelf:'Bloqueado hasta el 2 de oct',
+  blockedSelf:'Bloqueado hasta la revelación',
   auditTitle:'Consultas hechas', auditEmpty:'Ninguna todavía.',
   adminCycles:'Control de ciclos', adminForceOpen:'Forzar abierto', adminForceClose:'Forzar cerrado', adminAuto:'Automático (por fecha)',
   adminTest:'Modo prueba: abrir todos los ciclos',
@@ -681,7 +681,7 @@ pt:{
   adminMapWarn:'Os pares não são exibidos. Revele só o que precisar resolver.',
   mapBlind:'Cada consulta fica registrada abaixo. Quem escreve para você está bloqueado até a revelação.',
   reveal1:'Revelar', reveal1Ask:'Você vai ver para quem {n} escreve. Fica registrado no painel. Seguir?',
-  blockedSelf:'Bloqueado até 2 de out',
+  blockedSelf:'Bloqueado até a revelação',
   auditTitle:'Consultas feitas', auditEmpty:'Nenhuma ainda.',
   adminCycles:'Controle de ciclos', adminForceOpen:'Forçar aberto', adminForceClose:'Forçar fechado', adminAuto:'Automático (por data)',
   adminTest:'Modo teste: abrir todos os ciclos',
@@ -810,7 +810,7 @@ en:{
   adminMapWarn:'Pairs are hidden. Reveal only the one you need to fix.',
   mapBlind:'Every lookup is logged below. Whoever writes to you stays locked until the reveal.',
   reveal1:'Reveal', reveal1Ask:'You are about to see who {n} writes to. This gets logged in the panel. Continue?',
-  blockedSelf:'Locked until Oct 2',
+  blockedSelf:'Locked until the reveal',
   auditTitle:'Lookups made', auditEmpty:'None yet.',
   adminCycles:'Cycle control', adminForceOpen:'Force open', adminForceClose:'Force closed', adminAuto:'Automatic (by date)',
   adminTest:'Test mode: open every cycle',
@@ -1551,7 +1551,7 @@ function Composer(me, c, gift){
 function CycleRail(me){
   const node = el(`<div class="card"><div class="eyebrow" style="margin-bottom:1rem">${t('cycleOf')}s</div><div id="l"></div>
     <div class="divider"></div>
-    <div class="faint">${t('revealTitle')} · ${fmtDate('2026-10-02')}</div></div>`);
+    <div class="faint">${t('revealTitle')} · All Hands</div></div>`);
   const l = node.querySelector('#l');
   const cur = activeCycle();
   const myTargetId = S.myAssignment && S.myAssignment.receiverPersonId;
@@ -1824,7 +1824,7 @@ function RevealView(me){
      siempre, sin excepción de revelación ni de admin). Lo único que
      "me" sabe con certeza es a quién LE escribió — eso sí es suyo. */
   const node = el(`<div>
-    <div class="eyebrow">${fmtDate('2026-10-02')} · All Hands</div>
+    <div class="eyebrow">All Hands</div>
     <h2 style="margin:.5rem 0 1.4rem">${t('revealTitle')}</h2>
     <div class="card accent" style="margin-bottom:2rem;max-width:420px">
       <div class="eyebrow">${t('revealYouGave')}</div>
@@ -2094,7 +2094,7 @@ function ShowView(){
     body.innerHTML = '';
     if (st.k === 'intro'){
       body.appendChild(el(`<div>
-        <div class="eyebrow" style="margin-bottom:1.2rem">Cupido+ · ${fmtDate('2026-10-02')}</div>
+        <div class="eyebrow" style="margin-bottom:1.2rem">Cupido+ · All Hands</div>
         <h2 style="margin-bottom:1.2rem">${t('showTitle')}</h2>
         <p class="lede" style="margin:0 auto;font-size:1.15rem">${t('showIntro')}</p></div>`));
       return;
