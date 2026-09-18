@@ -567,6 +567,7 @@ es:{
   adminMapGiver:'Quién escribe', adminMapReceiver:'A quién le tocó', adminMapReset:'Reiniciar',
   resetWipeWarn:'Se borraron regalos, teorías y cupos, pero los sorteos no — falta actualizar las reglas de Firestore.',
   who:'Persona', team:'Equipo', gives:'Le regala a', st1:'C1', st2:'C2', st3:'C3', guess:'Teoría',
+  spunCol:'¿Giró?', sentCol:'Envió',
   missing:'faltan', allIn:'todos enviaron',
   emailWarn:'Correo por confirmar',
   copy:'Copiar', copied:'Copiado',
@@ -696,6 +697,7 @@ pt:{
   adminMapGiver:'Quem escreve', adminMapReceiver:'Quem calhou', adminMapReset:'Reiniciar',
   resetWipeWarn:'Foram apagados presentes, teorias e vagas, mas os sorteios não — falta atualizar as regras do Firestore.',
   who:'Pessoa', team:'Time', gives:'Presenteia', st1:'C1', st2:'C2', st3:'C3', guess:'Teoria',
+  spunCol:'Já girou?', sentCol:'Enviou',
   missing:'faltam', allIn:'todos enviaram',
   emailWarn:'E-mail a confirmar',
   copy:'Copiar', copied:'Copiado',
@@ -825,6 +827,7 @@ en:{
   adminMapGiver:'Giver', adminMapReceiver:'Receiver', adminMapReset:'Reset',
   resetWipeWarn:"Gifts, theories and taken slots were cleared, but assignments weren't — the Firestore rules need updating first.",
   who:'Person', team:'Team', gives:'Gives to', st1:'C1', st2:'C2', st3:'C3', guess:'Theory',
+  spunCol:'Spun?', sentCol:'Sent',
   missing:'missing', allIn:'everyone sent',
   emailWarn:'Email to confirm',
   copy:'Copy', copied:'Copied',
@@ -1051,6 +1054,21 @@ async function loadDrawMap(){
     drawMapCache = 'error';
   }
   render();
+}
+/* "¿Ya giró?" y "¿Ya envió?" salen del mismo dato que ya usa el mapa
+   oculto (assignments), pero acá nunca se muestra CON QUIÉN — solo
+   un sí/no por persona. hasDrawn/hasSentCycle devuelven null
+   mientras drawMapCache todavía no cargó (la tabla lo pinta como
+   "…" en ese caso, no como "no"). */
+function hasDrawn(personId){
+  if (!Array.isArray(drawMapCache)) return null;
+  return drawMapCache.some(r => r.personId === personId);
+}
+function hasSentCycle(personId, cycleN){
+  if (!Array.isArray(drawMapCache)) return null;
+  const row = drawMapCache.find(r => r.personId === personId);
+  if (!row) return false;
+  return !!getGift(cycleN, row.receiverPersonId);
 }
 async function resetOnePerson(personId){
   if (!Array.isArray(drawMapCache)) return;
@@ -1322,9 +1340,9 @@ function loginErrorText(kind){
   return set[S.lang] || set.es;
 }
 function participationNote(){
-  return S.lang === 'en' ? 'Shows who has received their piece each week — not who wrote it (that stays hidden, even from admin).'
-    : S.lang === 'pt' ? 'Mostra quem já recebeu a peça de cada semana — não quem escreveu (isso continua oculto, até para o admin).'
-    : 'Muestra quién ya recibió su pieza de cada semana — no quién la escribió (eso sigue oculto, incluso para el admin).';
+  return S.lang === 'en' ? 'Shows who has spun, who has received their piece each week, and who has sent it — never the content of what anyone wrote.'
+    : S.lang === 'pt' ? 'Mostra quem já girou, quem já recebeu a peça de cada semana, e quem já enviou — nunca o conteúdo do que alguém escreveu.'
+    : 'Muestra quién ya giró, quién ya recibió su pieza de cada semana, y quién ya la envió — nunca el contenido de lo que alguien escribió.';
 }
 function langButtons(){
   return ['es','pt','en'].map(l => {
@@ -1359,7 +1377,16 @@ function TopBar(){
   if (me.admin) { items.push(['admin','navAdmin']); items.push(['show','navShow']); }
   items.forEach(([k, label]) => {
     const b = el(`<button class="tab ${k === 'admin' ? 'admin' : ''}" aria-selected="${view === k}">${t(label)}</button>`);
-    b.onclick = () => { view = k; render(); };
+    /* Entrar a Admin ya carga assignments de una vez (sin esperar a
+       que se marque "mostrar mapa"): así "¿Ya giró?"/"Envió" de la
+       tabla de participación tienen dato desde el primer vistazo.
+       loadDrawMap() hace su propio render(), por eso en ese caso no
+       se llama render() aparte — llamarlo de nuevo en el mismo tick
+       duplicaría el árbol (ver nota en loadDrawMap). */
+    b.onclick = () => {
+      view = k;
+      if (k === 'admin' && drawMapCache === null) loadDrawMap(); else render();
+    };
     tabs.appendChild(b);
   });
 
@@ -1644,8 +1671,15 @@ function InboxView(me){
     </div>`);
     if (g.clue) body.push(`<div class="postmark paper">${t('clueLabel')} · ${esc(g.clue)}</div>`);
 
+    /* Si ya se abrió antes, arranca abierto de una vez (sin la
+       animación de nuevo) en vez de volver a verse sellado en cada
+       render — antes esto solo cambiaba una clase CSS en memoria,
+       nunca se guardaba, así que TODO sobre ya recibido se veía
+       cerrado otra vez con solo cambiar de pantalla. */
+    const openKey = me.id + ':' + c.n;
+    const already = !!(S.opened || {})[openKey];
     const TILT = { 1:'-0.7deg', 2:'0.5deg', 3:'-0.4deg' };
-    const card = el(`<div class="envelope sealed c${c.n}" style="--tilt:${TILT[c.n]}">
+    const card = el(`<div class="envelope ${already ? 'open' : 'sealed'} c${c.n}" style="--tilt:${TILT[c.n]}">
       <div class="flap"></div>
       <div class="flap-seal seal" style="--sz:56px;pointer-events:none">+</div>
       <button class="env-shut">${cycleTitle(c)}<span style="display:block;margin-top:5.5rem">${t('tapOpen')}</span></button>
@@ -1665,6 +1699,7 @@ function InboxView(me){
     card.querySelector('.env-shut').onclick = () => {
       card.classList.add('open');
       setTimeout(() => card.classList.remove('sealed'), 220);
+      S.opened = Object.assign({}, S.opened, { [openKey]: true }); save();
     };
     l.appendChild(card);
   });
@@ -1884,7 +1919,10 @@ function AdminView(me){
       <p class="faint" style="margin:0 0 1rem;max-width:70ch">${participationNote()}</p>
       <div id="stats" class="btn-row" style="margin-bottom:1rem"></div>
       <div class="tablewrap"><table><thead><tr>
-        <th>${t('who')}</th><th>${t('team')}</th><th>${t('st1')}</th><th>${t('st2')}</th><th>${t('st3')}</th><th>${t('guess')}</th>
+        <th>${t('who')}</th><th>${t('team')}</th><th>${t('spunCol')}</th>
+        <th>${t('st1')}</th><th>${t('st2')}</th><th>${t('st3')}</th>
+        <th>${t('sentCol')} 1</th><th>${t('sentCol')} 2</th><th>${t('sentCol')} 3</th>
+        <th>${t('guess')}</th>
       </tr></thead><tbody id="tb"></tbody></table></div>
     </div>
 
@@ -1966,13 +2004,18 @@ function AdminView(me){
       <div class="faint">0${c.n} · ${sent === ACTIVE.length ? t('allIn') : (ACTIVE.length - sent) + ' ' + t('missing')}</div></div>`));
   });
   const tb = node.querySelector('#tb');
+  const dotOrPending = (v) => v === null ? '<span class="faint">…</span>' : `<span class="dot ${v ? 'ok' : 'no'}"></span>`;
   ACTIVE.forEach(p => {
-    const cells = CYCLES.map(c => `<td><span class="dot ${getGift(c.n, p.id) ? 'ok' : 'no'}"></span></td>`).join('');
+    const spun = hasDrawn(p.id);
+    const recCells = CYCLES.map(c => `<td><span class="dot ${getGift(c.n, p.id) ? 'ok' : 'no'}"></span></td>`).join('');
+    const sentCells = CYCLES.map(c => `<td>${dotOrPending(hasSentCycle(p.id, c.n))}</td>`).join('');
     const guesses = CYCLES.filter(c => getGuess(c.n, p.id)).length;
     tb.appendChild(el(`<tr>
       <td><div class="person" style="gap:.5rem">${avatar(p, 28)}<span style="font-weight:600">${esc(p.name)}</span></div></td>
       <td><span class="badge ${p.team}">${p.team === 'ver' ? 'VER+' : 'VERE'}</span></td>
-      ${cells}
+      <td>${dotOrPending(spun)}</td>
+      ${recCells}
+      ${sentCells}
       <td style="font-family:var(--type)">${guesses}/3</td>
     </tr>`));
   });
@@ -2008,7 +2051,11 @@ function AdminView(me){
     const me2 = byId(session);
     await loadMine(me2);
     if (me2.admin) await loadAllGiftsAndGuesses();
-    S.authBusy = false; save(); render();
+    S.authBusy = false; save();
+    /* loadDrawMap() ya hace su propio render() al terminar — llamar
+       render() aparte justo después duplicaría el árbol (ver nota
+       arriba, en el onclick de la pestaña Admin). */
+    if (me2.admin) loadDrawMap(); else render();
     if (assignmentsBlocked) toast(t('resetWipeWarn'));
   };
   const showmap = node.querySelector('#showmap');
