@@ -453,23 +453,28 @@ const PEOPLE = [
   {id:'felipe',   name:'Felipe',           team:'ver',  country:'🇧🇷', role:'Staff Engineer',               photo:px('fe.png'),      top5:['Learner','Restorative','Developer','Analytical','Positivity']},
   {id:'isabella', name:'Isabella',        team:'ver',  country:'🇨🇴', role:'Manager Early Childhood',      photo:px('isa.png'),     top5:['Consistency','Relator','Responsibility','Harmony','Learner']},
   {id:'juangui',  name:'Juangui',  team:'ver',  country:'🇨🇴', role:'Director of Impact Measurement',photo:AV.juangui,        top5:['Learner','Activator','Restorative','Strategic','Responsibility']},
-  {id:'malu',     name:'Malu',            team:'ver',  country:'🇧🇷', role:'Manager Democracia+',          photo:px('malu.png'),    top5:['Arranger','Connectedness','Competition','Individualization','Focus']},
+  {id:'malu',     name:'Malu',            team:'ver',  country:'🇧🇷', role:'Manager Democracia+',          photo:px('malu.png'),    top5:['Arranger','Connectedness','Competition','Individualization','Focus'], active:false},
   {id:'maribel',  name:'Maribel',       team:'ver',  country:'🇨🇴', role:'Education Manager Hispanoamérica', photo:px('maribel.png'), top5:['Activator','Communication','Arranger','Woo','Connectedness']},
   {id:'miguel',   name:'Miguel',  team:'ver',  country:'🇨🇴', role:'Creative Visual Lead',         photo:px('migue.png'),   top5:['Learner','Developer','Empathy','Connectedness','Intellection'], admin:true},
   {id:'yineth',   name:'Yineth',  team:'ver',  country:'🇨🇴', role:'Project Coordinator Scholarships', photo:px('yine.png'), top5:['Restorative','Achiever','Relator','Belief','Learner']},
   {id:'luisa',    name:'Luisa',          team:'ver',  country:'🇨🇴', role:'Team Member',                  photo:px('luisa.png'),   top5:[]},
-  {id:'leandro',  name:'Leandro',                team:'ver',  country:'🇺🇾', role:'Team Member',                  photo:AV.leandro,        top5:[]},
+  {id:'leandro',  name:'Leandro',                team:'ver',  country:'🇺🇾', role:'Team Member',                  photo:AV.leandro,        top5:[], active:false},
   // ── VERE ──
   {id:'raquel',   name:'Raquel',       team:'vere', country:'🇨🇷', role:'CEO',                          photo:px('raquel.png'),  top5:['Learner','Discipline','Context','Intellection','Achiever']},
-  {id:'oswaldo',  name:'Oswaldo',          team:'vere', country:'🇨🇷', role:'Director de Finanzas',         photo:px('oswaldo.png'), top5:['Learner','Strategic','Relator','Analytical','Ideation']},
-  {id:'marce',    name:'Marcela',       team:'vere', country:'🇺🇾', role:'Directora de Propiedades',     photo:px('marcela.png'), top5:['Strategic','Individualization','Activator','Empathy','Restorative']},
-  {id:'francine', name:'Francine',        team:'vere', country:'🇨🇷', role:'Tesorera',                     photo:px('francine.png'),top5:['Deliberative','Consistency','Context','Relator','Harmony']},
-  {id:'eduardo',  name:'Eduardo',          team:'vere', country:'🇵🇦', role:'Director de Inversiones',      photo:px('eduardo.png'), top5:['Includer','Woo','Achiever','Learner','Futuristic']},
-  {id:'gabriela', name:'Gaby',         team:'vere', country:'🇨🇷', role:'Contadora',                    photo:px('gabriela.png'),top5:['Deliberative','Achiever','Responsibility','Ideation','Arranger']},
-  {id:'marcia',   name:'Marcia',           team:'vere', country:'🇺🇾', role:'Asistente Familiar',           photo:px('marcia.png'),  top5:['Responsibility','Consistency','Strategic','Achiever','Context']},
-  {id:'soraya',   name:'Soraya',        team:'vere', country:'🇺🇸', role:'Tech Lead',                    photo:AV.soraya,         top5:['Arranger','Individualization','Learner','Futuristic','Input']},
+  {id:'oswaldo',  name:'Oswaldo',          team:'vere', country:'🇨🇷', role:'Director de Finanzas',         photo:px('oswaldo.png'), top5:['Learner','Strategic','Relator','Analytical','Ideation'], active:false},
+  {id:'marce',    name:'Marcela',       team:'vere', country:'🇺🇾', role:'Directora de Propiedades',     photo:px('marcela.png'), top5:['Strategic','Individualization','Activator','Empathy','Restorative'], active:false},
+  {id:'francine', name:'Francine',        team:'vere', country:'🇨🇷', role:'Tesorera',                     photo:px('francine.png'),top5:['Deliberative','Consistency','Context','Relator','Harmony'], active:false},
+  {id:'eduardo',  name:'Eduardo',          team:'vere', country:'🇵🇦', role:'Director de Inversiones',      photo:px('eduardo.png'), top5:['Includer','Woo','Achiever','Learner','Futuristic'], active:false},
+  {id:'gabriela', name:'Gaby',         team:'vere', country:'🇨🇷', role:'Contadora',                    photo:px('gabriela.png'),top5:['Deliberative','Achiever','Responsibility','Ideation','Arranger'], active:false},
+  {id:'marcia',   name:'Marcia',           team:'vere', country:'🇺🇾', role:'Asistente Familiar',           photo:px('marcia.png'),  top5:['Responsibility','Consistency','Strategic','Achiever','Context'], active:false},
+  {id:'soraya',   name:'Soraya',        team:'vere', country:'🇺🇸', role:'Tech Lead',                    photo:AV.soraya,         top5:['Arranger','Individualization','Learner','Futuristic','Input'], active:false},
 ];
 const byId = id => PEOPLE.find(p => p.id === id);
+/* Esta ronda no incluye a todo el roster: quien tenga active:false
+   queda en Firestore (no se borra nada) pero no entra al sorteo, no
+   aparece en la ruleta ni en las tablas de participación, y si
+   entra a la app ve un aviso en vez del juego. */
+const ACTIVE = PEOPLE.filter(p => p.active !== false);
 
 
 /* ── Ciclos ──────────────────────────────────────────────── */
@@ -485,10 +490,10 @@ const I18N = {
 es:{
   tagline:'Amig@ secret@ · Amor y Amistad 2026',
   loginTitle:'Tres semanas escribiéndole a alguien.<br>Sin decir quién eres.',
-  loginLede:'Te va a tocar alguien del equipo. Durante septiembre le mandas mensajes, canciones y recomendaciones sin firmar, y una pista tuya cada semana. El 2 de octubre se revela quién era quién. Lo único que se regala aquí son palabras.',
+  loginLede:'Te va a tocar alguien del equipo. Durante septiembre le mandas mensajes, canciones y recomendaciones sin firmar, y una pista tuya cada semana. Más adelante, en el All Hands, se revela quién era quién. Lo único que se regala aquí son palabras.',
   google:'Continuar con Google',
   introTitle:'¿Qué es Cupido+?',
-  introBody:'Te tocó alguien del equipo. Durante 3 semanas le mandas mensajes, canciones y recomendaciones sin firmar. El 2 de octubre, en el All Hands, se revela quién era quién.',
+  introBody:'Te tocó alguien del equipo. Durante 3 semanas le mandas mensajes, canciones y recomendaciones sin firmar. Más adelante, en el All Hands, se revela quién era quién.',
   introGo:'Entendido',
   loadingText:'Entrando…',
   pickWho:'Modo local: elige quién eres para probar la app.',
@@ -531,11 +536,11 @@ es:{
   sherlockTitle:'Modo Sherlock',
   sherlockLede:'Una teoría por cada pieza que te llegue. Apóyala en algo concreto de esa pieza: el mensaje, la canción, la recomendación o la pista.',
   guessWho:'¿Quién crees que te está escribiendo?',
-  guessWhy:'¿Por qué? (esto sí lo leemos en voz alta el 2 de octubre)',
+  guessWhy:'¿Por qué? (esto sí lo leemos en voz alta en el All Hands)',
   guessSend:'Enviar mi teoría', guessSaved:'Teoría guardada', noGuessYet:'Aún no has tirado tu teoría sobre esta pieza.',
   chooseOne:'Elige a alguien',
   revealTitle:'Revelación',
-  revealLocked:'Se abre el 2 de octubre, en el All Hands.',
+  revealLocked:'Se abre más adelante, en el All Hands.',
   revealWas:'Tu amig@ secret@ era',
   revealYouGave:'Tú le regalaste a',
  correct:'Acertó', wrong:'Se equivocó', noGuess:'No jugó',
@@ -579,7 +584,7 @@ es:{
   h2t:'Cada semana le mandas algo', h2b:'Tres ciclos: una carta, una canción, y un libro o una película. Siempre sin firmar, y siempre acompañado de una pista sobre ti.',
   h3t:'A ti te escribe otra persona', h3b:'No es la misma a la que tú le escribes. Lo que te llega aparece en Mi buzón, sellado. Lo abres cuando quieras y lo puedes compartir en Slack sin delatar a nadie.',
   h4t:'Armas tu teoría', h4b:'En Sherlock apuntas a quien creas, citando algo concreto que te llegó: el mensaje, la canción, la recomendación o la pista. Una teoría por cada pieza que te llegue. Una vez la mandas, queda sellada y no se puede cambiar.',
-  h5t:'El 2 de octubre se revela todo', h5b:'En el All Hands vamos uno por uno: se leen las pistas que te llegaron, dices tu teoría en voz alta, y ahí sí se sabe quién era.',
+  h5t:'En el All Hands se revela todo', h5b:'Vamos uno por uno: se leen las pistas que te llegaron, dices tu teoría en voz alta, y ahí sí se sabe quién era.',
   helpGolden:'Tres reglas',
   g1:'No lo cuentes. Ni por privado, ni de broma.',
   g2:'Escribe en inglés si quieres despistar. O en tu idioma, si prefieres que eso sea parte de la pista.',
@@ -615,10 +620,10 @@ es:{
 pt:{
   tagline:'Amigo secreto · Amor e Amizade 2026',
   loginTitle:'Três semanas escrevendo para alguém.<br>Sem dizer quem você é.',
-  loginLede:'Você vai tirar alguém do time. Durante setembro você manda mensagens, músicas e recomendações sem assinar, e uma pista sua toda semana. No dia 2 de outubro a gente revela quem era quem. Aqui só se presenteia com palavras.',
+  loginLede:'Você vai tirar alguém do time. Durante setembro você manda mensagens, músicas e recomendações sem assinar, e uma pista sua toda semana. Mais adiante, no All Hands, a gente revela quem era quem. Aqui só se presenteia com palavras.',
   google:'Continuar com o Google',
   introTitle:'O que é o Cupido+?',
-  introBody:'Você tirou alguém do time. Durante 3 semanas manda mensagens, músicas e recomendações sem assinar. No dia 2 de outubro, no All Hands, revela quem era quem.',
+  introBody:'Você tirou alguém do time. Durante 3 semanas manda mensagens, músicas e recomendações sem assinar. Mais adiante, no All Hands, revela quem era quem.',
   introGo:'Entendi',
   loadingText:'Entrando…',
   pickWho:'Modo local: escolha quem é você para testar o app.',
@@ -660,11 +665,11 @@ pt:{
   sherlockTitle:'Modo Sherlock',
   sherlockLede:'Uma teoria para cada peça que receber. Apoie em algo concreto dessa peça: a mensagem, a música, a recomendação ou a pista.',
   guessWho:'Quem você acha que está escrevendo?',
-  guessWhy:'Por quê? (isso a gente lê em voz alta no dia 2 de outubro)',
+  guessWhy:'Por quê? (isso a gente lê em voz alta no All Hands)',
   guessSend:'Enviar minha teoria', guessSaved:'Teoria salva', noGuessYet:'Você ainda não arriscou sua teoria sobre esta peça.',
   chooseOne:'Escolha alguém',
   revealTitle:'Revelação',
-  revealLocked:'Abre em 2 de outubro, no All Hands.',
+  revealLocked:'Abre mais adiante, no All Hands.',
   revealWas:'Seu amigo secreto era',
   revealYouGave:'Você presenteou',
  correct:'Acertou', wrong:'Errou', noGuess:'Não jogou',
@@ -708,7 +713,7 @@ pt:{
   h2t:'Toda semana você manda algo', h2b:'Três ciclos: uma carta, uma música, e um livro ou filme. Sempre sem assinar, e sempre com uma pista sua junto.',
   h3t:'Outra pessoa escreve para você', h3b:'Não é a mesma para quem você escreve. O que chega aparece em Minha caixa, lacrado. Você abre quando quiser e pode compartilhar no Slack sem entregar ninguém.',
   h4t:'Você monta sua teoria', h4b:'No Sherlock você aponta quem achar, citando algo concreto que recebeu: a mensagem, a música, a recomendação ou a pista. Uma teoria para cada peça que receber. Depois de enviada, fica lacrada e não pode ser mudada.',
-  h5t:'No dia 2 de outubro se revela tudo', h5b:'No All Hands vamos um por um: leem-se as pistas que você recebeu, você diz sua teoria em voz alta, e aí sim se sabe quem era.',
+  h5t:'No All Hands se revela tudo', h5b:'Vamos um por um: leem-se as pistas que você recebeu, você diz sua teoria em voz alta, e aí sim se sabe quem era.',
   helpGolden:'Três regras',
   g1:'Não conte para ninguém. Nem no privado, nem de brincadeira.',
   g2:'Escreva em inglês se quiser despistar. Ou no seu idioma, se preferir que isso seja parte da pista.',
@@ -744,10 +749,10 @@ pt:{
 en:{
   tagline:'Secret friend · Love & Friendship 2026',
   loginTitle:'Three weeks writing to someone.<br>Without saying who you are.',
-  loginLede:'You\'ll be matched with someone on the team. Through September you send them messages, songs and recommendations, unsigned, plus one clue about yourself each week. On October 2 we reveal who was who. The only currency here is words.',
+  loginLede:'You\'ll be matched with someone on the team. Through September you send them messages, songs and recommendations, unsigned, plus one clue about yourself each week. Later, at the All Hands, we reveal who was who. The only currency here is words.',
   google:'Continue with Google',
   introTitle:'What is Cupido+?',
-  introBody:'You were matched with someone on the team. For 3 weeks you send them messages, songs and recommendations, unsigned. On October 2, at the All Hands, we reveal who was who.',
+  introBody:'You were matched with someone on the team. For 3 weeks you send them messages, songs and recommendations, unsigned. Later, at the All Hands, we reveal who was who.',
   introGo:'Got it',
   loadingText:'Signing in…',
   pickWho:'Local mode: pick who you are to try the app.',
@@ -789,11 +794,11 @@ en:{
   sherlockTitle:'Sherlock mode',
   sherlockLede:'One theory per piece that arrives. Build it on something concrete from that piece: the message, the song, the recommendation or the clue.',
   guessWho:'Who do you think is writing to you?',
-  guessWhy:'Why? (we read these out loud on October 2)',
+  guessWhy:'Why? (we read these out loud at the All Hands)',
   guessSend:'Send my theory', guessSaved:'Theory saved', noGuessYet:'You haven\'t placed a theory on this piece yet.',
   chooseOne:'Pick someone',
   revealTitle:'The reveal',
-  revealLocked:'Opens October 2, at the All Hands.',
+  revealLocked:'Opens later, at the All Hands.',
   revealWas:'Your secret friend was',
   revealYouGave:'You gave to',
  correct:'Correct', wrong:'Wrong', noGuess:'Didn\'t play',
@@ -837,7 +842,7 @@ en:{
   h2t:'Every week you send them something', h2b:'Three cycles: a letter, a song, and a book or a film. Always unsigned, and always with a clue about you.',
   h3t:'Someone else writes to you', h3b:'Not the person you write to. What arrives shows up in My inbox, sealed. Open it whenever you want and share it in Slack without giving anyone away.',
   h4t:'You build your theory', h4b:'In Sherlock you name who you think it is, citing something concrete that arrived: the message, the song, the recommendation or the clue. One theory per piece you receive. Once you send it, it is sealed and cannot be changed.',
-  h5t:'On October 2 everything comes out', h5b:'At the All Hands we go one by one: your clues get read out, you say your theory, and then we reveal who it was.',
+  h5t:'At the All Hands everything comes out', h5b:'We go one by one: your clues get read out, you say your theory, and then we reveal who it was.',
   helpGolden:'Three rules',
   g1:'Tell no one. Not in a DM, not as a joke.',
   g2:'Write in English if you want to throw people off. Or in your own language, if you would rather that be part of the clue.',
@@ -993,7 +998,7 @@ async function claim(giverId){
   const already = await ref.get();
   if (already.exists) return already.data().receiverPersonId;
 
-  const allIds = PEOPLE.map(p => p.id);
+  const allIds = ACTIVE.map(p => p.id);
   let pick = null;
   await db.runTransaction(async (tx) => {
     /* OJO: tx.get() con un CollectionReference completo revienta en el
@@ -1174,7 +1179,7 @@ async function loadMine(me){
    isAdmin(), porque las reglas de assignments/{uid} no tienen
    excepción para admin. */
 async function loadAllGiftsAndGuesses(){
-  await Promise.all(PEOPLE.flatMap(p => CYCLES.map(async c => {
+  await Promise.all(ACTIVE.flatMap(p => CYCLES.map(async c => {
     const key = giftKey(c.n, p.id);
     try{
       const g = await db.collection('gifts').doc(key).get();
@@ -1309,6 +1314,7 @@ function LoginView(){
 function loginErrorText(kind){
   const byLang = {
     notfound:{ es:'Tu correo no está en la lista todavía. Avísale a Miguel.', pt:'Seu e-mail ainda não está na lista. Avise o Miguel.', en:"Your email isn't on the list yet. Ping Miguel." },
+    inactive:{ es:'Esta ronda de Cupido+ no te incluye a ti. Si creés que es un error, avísale a Miguel.', pt:'Esta rodada do Cupido+ não inclui você. Se achar que é um erro, avise o Miguel.', en:"This round of Cupido+ doesn't include you. If that seems wrong, ping Miguel." },
     unverified:{ es:'Verifica tu correo de Google antes de entrar.', pt:'Verifique seu e-mail do Google antes de entrar.', en:'Verify your Google email before signing in.' },
     error:{ es:'Algo falló iniciando sesión. Intenta de nuevo.', pt:'Algo deu errado ao entrar. Tente de novo.', en:'Something went wrong signing in. Try again.' }
   };
@@ -1362,7 +1368,7 @@ function TopBar(){
 
 /* ── Ruleta ──────────────────────────────────────────────── */
 function WheelView(me){
-  const others = PEOPLE.filter(p => p.id !== me.id);
+  const others = ACTIVE.filter(p => p.id !== me.id);
   const n = others.length;
 
   const node = el(`<div style="text-align:center;max-width:640px;margin:0 auto">
@@ -1856,7 +1862,7 @@ function AdminView(me){
     <div class="card" style="margin-bottom:1.1rem">
       <div class="eyebrow" style="margin-bottom:.8rem">${t('adminDraw')}</div>
       <div class="btn-row" style="align-items:baseline;gap:1.6rem">
-        <div><div class="stat">${spunCount()}<span class="muted" style="font-size:1rem">/${PEOPLE.length}</span></div>
+        <div><div class="stat">${spunCount()}<span class="muted" style="font-size:1rem">/${ACTIVE.length}</span></div>
           <div class="faint">${t('adminSpunCount')}</div></div>
       </div>
       <p class="faint" style="margin:.9rem 0 0">${t('adminDrawNote')}</p>
@@ -1954,13 +1960,13 @@ function AdminView(me){
      le llegó, no que ella lo haya escrito. Ver participationNote(). */
   const stats = node.querySelector('#stats');
   CYCLES.forEach(c => {
-    const sent = PEOPLE.filter(p => getGift(c.n, p.id)).length;
+    const sent = ACTIVE.filter(p => getGift(c.n, p.id)).length;
     stats.appendChild(el(`<div style="min-width:110px">
-      <div class="stat">${sent}<span class="muted" style="font-size:1rem">/${PEOPLE.length}</span></div>
-      <div class="faint">0${c.n} · ${sent === PEOPLE.length ? t('allIn') : (PEOPLE.length - sent) + ' ' + t('missing')}</div></div>`));
+      <div class="stat">${sent}<span class="muted" style="font-size:1rem">/${ACTIVE.length}</span></div>
+      <div class="faint">0${c.n} · ${sent === ACTIVE.length ? t('allIn') : (ACTIVE.length - sent) + ' ' + t('missing')}</div></div>`));
   });
   const tb = node.querySelector('#tb');
-  PEOPLE.forEach(p => {
+  ACTIVE.forEach(p => {
     const cells = CYCLES.map(c => `<td><span class="dot ${getGift(c.n, p.id) ? 'ok' : 'no'}"></span></td>`).join('');
     const guesses = CYCLES.filter(c => getGuess(c.n, p.id)).length;
     tb.appendChild(el(`<tr>
@@ -1977,7 +1983,7 @@ function AdminView(me){
   node.querySelector('#exp').onclick = () => download('cupido-estado-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(S, null, 2), 'application/json');
   node.querySelector('#csv').onclick = () => {
     const rows = [['persona', 'equipo', 'c1', 'c2', 'c3', 'teorias']];
-    PEOPLE.forEach(p => rows.push([p.name, p.team,
+    ACTIVE.forEach(p => rows.push([p.name, p.team,
       ...CYCLES.map(c => getGift(c.n, p.id) ? 'ok' : 'PENDIENTE'),
       CYCLES.filter(c => getGuess(c.n, p.id)).length]));
     download('cupido-pendientes.csv', rows.map(r => r.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\n'), 'text/csv');
@@ -2020,8 +2026,8 @@ function AdminView(me){
    verdad no lo sabe ni la app (ver nota en ShowView) — eso se
    revela en voz alta, en el momento. */
 function showOrder(){
-  if (!S.showOrder || S.showOrder.length !== PEOPLE.length){
-    const ids = PEOPLE.map(p => p.id);
+  if (!S.showOrder || S.showOrder.length !== ACTIVE.length){
+    const ids = ACTIVE.map(p => p.id);
     for (let i = ids.length - 1; i > 0; i--){
       const j = Math.floor(Math.random() * (i + 1));
       [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -2445,6 +2451,11 @@ auth.onAuthStateChanged(async (user) => {
     if (!data || !person){
       S.session = null; S.uid = null; S.myAssignment = null;
       S.allowlistError = 'notfound'; S.authBusy = false; render();
+      return;
+    }
+    if (person.active === false){
+      S.session = null; S.uid = null; S.myAssignment = null;
+      S.allowlistError = 'inactive'; S.authBusy = false; render();
       return;
     }
     person.admin = !!data.admin;
