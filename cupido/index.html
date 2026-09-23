@@ -1377,15 +1377,25 @@ function TopBar(){
   if (me.admin) { items.push(['admin','navAdmin']); items.push(['show','navShow']); }
   items.forEach(([k, label]) => {
     const b = el(`<button class="tab ${k === 'admin' ? 'admin' : ''}" aria-selected="${view === k}">${t(label)}</button>`);
-    /* Entrar a Admin ya carga assignments de una vez (sin esperar a
-       que se marque "mostrar mapa"): así "¿Ya giró?"/"Envió" de la
-       tabla de participación tienen dato desde el primer vistazo.
-       loadDrawMap() hace su propio render(), por eso en ese caso no
-       se llama render() aparte — llamarlo de nuevo en el mismo tick
-       duplicaría el árbol (ver nota en loadDrawMap). */
+    /* loadMine() antes solo corría una vez, al iniciar sesión — si
+       alguien dejaba la pestaña abierta, un regalo que le llegara
+       después nunca aparecía hasta que recargaba la página entera
+       (el caso de Juan Guillermo y Andy: ambos ya tenían su pieza en
+       Firestore, el navegador de cada uno simplemente nunca había
+       vuelto a preguntar). Ahora cada cambio de pestaña dispara un
+       refresco de fondo: se pinta de una vez con lo que ya había, y
+       en cuanto llega lo fresco se vuelve a pintar solo.
+       Admin además carga assignments de una vez (sin esperar a que
+       se marque "mostrar mapa"), para que "¿Ya giró?"/"Envió" tengan
+       dato desde el primer vistazo. loadDrawMap() ya hace su propio
+       render() al terminar, así que no hace falta uno aparte para
+       ese caso — iría después de este render() ya resuelto, nunca
+       metido adentro (eso sí duplicaría el árbol). */
     b.onclick = () => {
       view = k;
-      if (k === 'admin' && drawMapCache === null) loadDrawMap(); else render();
+      render();
+      loadMine(me).then(() => { save(); render(); });
+      if (k === 'admin' && drawMapCache === null) loadDrawMap();
     };
     tabs.appendChild(b);
   });
