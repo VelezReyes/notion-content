@@ -102,7 +102,7 @@
 
   #canvas{
     position:relative;
-    width:1660px;
+    width:1790px;
     height:780px;
     user-select:none;
   }
@@ -195,7 +195,7 @@
   <div id="viewport">
     <div id="stage">
       <div id="canvas">
-        <svg class="links" id="linksSvg" width="1660" height="780"></svg>
+        <svg class="links" id="linksSvg" width="1790" height="780"></svg>
 
         <div class="title-pill">2026 ver+ team</div>
 
@@ -234,6 +234,7 @@ const nodes = {
   techLead:     {x:1070,y:450, w:140, h:50, cat:'gray',   role:'Tech Lead', name:'Soraya'},
   opsStaff:     {x:1240,y:444, w:180, h:62, cat:'gray',   role:'Ops & Staff Director', name:'Cris'},
   cfo:          {x:1450,y:450, w:140, h:50, cat:'gray',   role:'Finance Director', name:'Oswaldo'},
+  attorney:     {x:1610,y:450, w:140, h:50, cat:'gray',   role:'Attorney', name:'Alejandro'},
 
   /* Row 3 — Managers / Engineer */
   educationManager:{x:520, y:570, w:150, h:55, cat:'purple', role:'Education Manager', name:'Maribel'},
@@ -327,22 +328,38 @@ dropTo('techLead','engineer');
 line(elbowV(anchor('opsStaff','bottom'), anchor('designer','top',0.3)), 'solid');
 line(elbowV(anchor('opsStaff','bottom',0.85), anchor('commsAssociate','top')), 'solid');
 
-// Oswaldo (Finance Director) reports solidly to Laura. His box sits past
-// the CEO bar's own right edge, so the line starts from that real edge
-// (x fraction 1) instead of an extrapolated point floating in empty space.
-line(elbowV(anchor('ceo','bottom',1), anchor('cfo','top')), 'solid');
+// Oswaldo (Finance Director) and Alejandro (Attorney) both report solidly
+// to Laura — right angles only. One short stub drops from the bar's real
+// right edge, then a single shared trunk runs right at that same height;
+// Oswaldo's and Alejandro's own drops branch off the trunk at their own
+// x, so nothing overlaps and neither line reaches far into the bar.
+{
+  const BEND_Y = 330;
+  const edge = anchor('ceo','bottom',1); // (1350, 282) — the bar's real corner
+  line(`M ${edge.x} ${edge.y} V ${BEND_Y}`, 'solid'); // stub down from the bar
+  line(`M ${edge.x} ${BEND_Y} H ${anchor('attorney','top').x}`, 'solid'); // shared trunk
+  line(`M ${anchor('cfo','top').x} ${BEND_Y} V ${anchor('cfo','top').y}`, 'solid'); // drop to Oswaldo
+  line(`M ${anchor('attorney','top').x} ${BEND_Y} V ${anchor('attorney','top').y}`, 'solid'); // drop to Alejandro
+}
 
-// dashed cross-org (Vere / CFO)
+// board/CEO ↔ VERE CEO — board-level relationship, stays dashed.
 line(elbowH(anchor('board','right'), anchor('vereCeo','left',0.25)), 'dashed');
 line(straight(anchor('ceo','top',0.5), anchor('vereCeo','bottom',0.75)), 'dashed');
-line(riseThenGo(anchor('cfo','top'), anchor('vereCeo','left',0.75)), 'dashed');
-line(riseThenGo(anchor('opsStaff','right',0.3), anchor('vereCeo','left',0.35)), 'dashed');
 
-// dotted: Soraya (Tech Lead) also supports VERE. Her box sits directly
-// under the CEO bar, so the line detours right — clearing the bar's edge
-// in the gap band below it — before rising to Raquel, same idea as the
-// Cris/Oswaldo routes above but from a more central starting column.
-line(`M ${anchor('techLead','top').x} ${anchor('techLead','top').y} V 400 H 1360 V 110 H ${anchor('vereCeo','left').x}`, 'dotted');
+// Transverse team (Cris, Oswaldo, Soraya, Alejandro) ↔ Raquel — each
+// person rises on their own column, then all four merge into one shared
+// dotted trunk at the same height that turns left into Raquel's box, bus
+// style, instead of four separate lines landing at four different spots.
+{
+  const TRUNK_Y = 130; // within Raquel's left edge (frac 0.5)
+  line(`M ${anchor('attorney','top').x} ${anchor('attorney','top').y} V ${TRUNK_Y}`, 'dotted');
+  line(`M ${anchor('cfo','top').x} ${anchor('cfo','top').y} V ${TRUNK_Y}`, 'dotted');
+  const cris = anchor('opsStaff','right',0.3);
+  line(`M ${cris.x} ${cris.y} V ${TRUNK_Y}`, 'dotted');
+  const soraya = anchor('techLead','top');
+  line(`M ${soraya.x} ${soraya.y} V 400 H 1360 V ${TRUNK_Y}`, 'dotted');
+  line(`M ${anchor('vereCeo','left',0.5).x} ${TRUNK_Y} H ${anchor('attorney','top').x}`, 'dotted');
+}
 
 // dotted governance (D+)
 line(elbowH(anchor('dExecBoard','right'), anchor('ceo','left',0.02)), 'dotted');
@@ -351,7 +368,7 @@ line(elbowH(anchor('dCeo','right'), anchor('ceo','left',0.06)), 'dotted');
 // ---------- pan & zoom ----------
 const viewport = document.getElementById('viewport');
 const stage = document.getElementById('stage');
-const CANVAS_W = 1660, CANVAS_H = 780;
+const CANVAS_W = 1790, CANVAS_H = 780;
 let scale = 1, tx = 0, ty = 0;
 
 function apply(){ stage.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
