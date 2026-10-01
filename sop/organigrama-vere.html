@@ -102,7 +102,7 @@
 
   #canvas{
     position:relative;
-    width:1300px;
+    width:1430px;
     height:580px;
     user-select:none;
   }
@@ -184,7 +184,7 @@
   <div id="viewport">
     <div id="stage">
       <div id="canvas">
-        <svg class="links" id="linksSvg" width="1300" height="580"></svg>
+        <svg class="links" id="linksSvg" width="1430" height="580"></svg>
 
         <div class="title-pill">2026 VERE team</div>
 
@@ -202,16 +202,17 @@
 <script>
 // ---------- data ----------
 const nodes = {
-  principals: {x:535, y:90,  w:200, h:56, cat:'olive', role:'Principals', name:'David & Mariel'},
-  ceo:        {x:60,  y:230, w:1150,h:52, cat:'olive', role:'CEO', name:'Raquel Fernandez', size:'big'},
+  principals: {x:615, y:90,  w:200, h:56, cat:'olive', role:'Principals', name:'David & Mariel'},
+  ceo:        {x:60,  y:230, w:1310,h:52, cat:'olive', role:'CEO', name:'Raquel Fernandez', size:'big'},
 
-  /* direct reports to CEO */
-  cristina: {x:60,  y:340, w:200, h:64, cat:'gray',  role:'Operations & Talent Director', name:'Cristina', size:'small'},
-  oswaldo:  {x:280, y:340, w:170, h:64, cat:'gray',  role:'Finance Director', name:'Oswaldo'},
-  soraya:   {x:470, y:340, w:140, h:64, cat:'gray',  role:'Tech Lead', name:'Soraya'},
-  marcela:  {x:630, y:340, w:170, h:64, cat:'olive', role:'Property Manager', name:'Marcela'},
-  marcia:   {x:820, y:340, w:170, h:64, cat:'olive', role:'Family Assistant', name:'Marcia'},
-  eduardo:  {x:1010,y:340, w:200, h:64, cat:'olive', role:'Investment Director', name:'Eduardo', size:'small'},
+  /* direct reports to CEO — gray/Transverse groups first, then olive/Vere-only */
+  cristina:  {x:60,  y:340, w:200, h:64, cat:'gray',  role:'Operations & Talent Director', name:'Cristina', size:'small'},
+  oswaldo:   {x:280, y:340, w:170, h:64, cat:'gray',  role:'Finance Director', name:'Oswaldo'},
+  soraya:    {x:470, y:340, w:140, h:64, cat:'gray',  role:'Tech Lead', name:'Soraya'},
+  alejandro: {x:630, y:340, w:140, h:64, cat:'gray',  role:'Attorney', name:'Alejandro'},
+  marcela:   {x:790, y:340, w:170, h:64, cat:'olive', role:'Property Manager', name:'Marcela'},
+  marcia:    {x:980, y:340, w:170, h:64, cat:'olive', role:'Family Assistant', name:'Marcia'},
+  eduardo:   {x:1170,y:340, w:200, h:64, cat:'olive', role:'Investment Director', name:'Eduardo', size:'small'},
 
   /* Finance team, under Oswaldo */
   gabriela: {x:205, y:460, w:150, h:55, cat:'olive', role:'Accountant', name:'Gabriela'},
@@ -257,7 +258,7 @@ function line(d, cls){
 // solid tree links
 line(elbowV(anchor('principals','bottom'), anchor('ceo','top')), 'solid');
 
-[['cristina',0.087],['oswaldo',0.265],['soraya',0.417],['marcela',0.570],['marcia',0.735],['eduardo',0.913]]
+[['cristina',0.0763],['oswaldo',0.2328],['soraya',0.3664],['alejandro',0.4885],['marcela',0.6221],['marcia',0.7672],['eduardo',0.9237]]
   .forEach(([id,frac])=> line(elbowV(anchor('ceo','bottom',frac), anchor(id,'top')), 'solid'));
 
 line(elbowV(anchor('oswaldo','bottom',0.25), anchor('gabriela','top')), 'solid');
@@ -266,7 +267,7 @@ line(elbowV(anchor('oswaldo','bottom',0.75), anchor('francine','top')), 'solid')
 // ---------- pan & zoom ----------
 const viewport = document.getElementById('viewport');
 const stage = document.getElementById('stage');
-const CANVAS_W = 1300, CANVAS_H = 580;
+const CANVAS_W = 1430, CANVAS_H = 580;
 let scale = 1, tx = 0, ty = 0;
 
 function apply(){ stage.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
