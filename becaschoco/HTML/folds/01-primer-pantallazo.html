@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 · Primer pantallazo · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* HERO — foto B/N a sangre, título de campaña centrado (patrón hero aprendo+) */
+  .f01-hero { position: relative; min-height: 640px; display: flex; align-items: center; justify-content: center; padding: 90px var(--bch-gutter); overflow: hidden; }
+  .f01-hero__bg { position: absolute; inset: 0; border-radius: 0; z-index: 0; }
+  .f01-hero__bg.is-placeholder { align-items: flex-end; padding-bottom: 24px; background-color: #8f8d84; }
+  .f01-hero__bg.is-placeholder::after { position: relative; z-index: 2; color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.6); }
+  .f01-hero__bg::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 100%); z-index: 1; }
+  .f01-hero__ast { position: absolute; z-index: 2; width: 120px; top: 48px; left: 6%; transform: rotate(-12deg); }
+  .f01-hero__inner { position: relative; z-index: 3; max-width: 980px; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; }
+  .f01-hero__intro { max-width: 640px; }
+  .f01-hero__title { font-size: 84px; line-height: 1; }
+  .f01-hero__date { opacity: .95; }
+
+  /* SPLIT — línea de campaña + tarjeta verde (patrón intro aprendo+) */
+  .f01-split .bch-row { align-items: center; }
+  .f01-split__left { flex: 0 0 38%; gap: 6px; }
+  .f01-split__claim { font-size: 96px; line-height: 1; }
+  .f01-split__trazo { width: 92%; margin-top: 4px; }
+  .f01-split__card { flex: 1; padding: 60px; gap: 32px; }
+  .f01-split__card .bch-h2 { font-size: 40px; line-height: 1.1; }
+
+  @media (max-width: 1024px) {
+    .f01-hero { min-height: 560px; }
+    .f01-hero__title { font-size: 66px; }
+    .f01-hero__ast { width: 90px; }
+    .f01-split .bch-row { flex-direction: column; align-items: stretch; }
+    .f01-split__left { flex: none; }
+    .f01-split__claim { font-size: 80px; }
+    .f01-split__trazo { width: 60%; }
+    .f01-split__card { padding: 40px; }
+    .f01-split__card .bch-h2 { font-size: 34px; }
+  }
+  @media (max-width: 767px) {
+    .f01-hero { min-height: 0; padding: 84px 20px 70px; }
+    .f01-hero__title { font-size: 46px; }
+    .f01-hero__ast { width: 46px; top: 18px; left: auto; right: 18px; }
+    .f01-hero__inner { gap: 20px; }
+    .f01-split__claim { font-size: 56px; }
+    .f01-split__trazo { width: 80%; }
+    .f01-split__card { padding: 28px; gap: 22px; }
+    .f01-split__card .bch-h2 { font-size: 28px; }
+  }
+</style>
+</head>
+<body data-fold="01-primer-pantallazo">
+
+<section class="f01-hero" aria-labelledby="f01-title">
+  <!-- FOTO 01 · Portada. Para usar la foto real: style="--img:url('URL')" y quitar la clase is-placeholder -->
+  <div class="f01-hero__bg bch-photo bch-photo--bn is-placeholder" data-label="Foto 01 · Portada · 2400×1400 px"></div>
+  <img class="f01-hero__ast" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-3.png" alt="" aria-hidden="true">
+
+  <div class="f01-hero__inner">
+    <p class="f01-hero__intro bch-lead t-blanco">Si naciste en Chocó y te graduaste allí en <strong>2025</strong> o te gradúas en <strong>2026</strong>, esta oportunidad puede ser para ti.</p>
+    <h1 id="f01-title" class="f01-hero__title bch-display t-blanco">Desde Chocó, hasta donde quieras llegar.</h1>
+    <a class="bch-btn bch-btn--verde" data-apply href="#">Quiero aplicar</a>
+    <p class="f01-hero__date bch-small t-blanco">Convocatoria abierta hasta el <strong>1 de noviembre de 2026</strong>.</p>
+  </div>
+</section>
+
+<section class="bch-fold f01-split">
+  <div class="bch-wrap">
+    <div class="bch-row">
+      <div class="bch-col f01-split__left">
+        <p class="f01-split__claim bch-display">Creemos en&nbsp;ti.</p>
+        <span class="bch-trazo bch-trazo--verde f01-split__trazo" aria-hidden="true"></span>
+      </div>
+
+      <div class="bch-card bch-card--verde f01-split__card">
+        <h2 class="bch-h2">Aplica a una beca que cubre el 100&nbsp;% de la matrícula durante toda tu carrera en una de las mejores universidades del país.</h2>
+        <p class="bch-lead">Además, tendrás <strong>computador, apoyo para el curso de inglés que requiera tu universidad y apoyo para tus gastos</strong>.</p>
+        <a class="bch-btn bch-btn--crema bch-btn--block" data-apply href="#">Quiero aplicar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

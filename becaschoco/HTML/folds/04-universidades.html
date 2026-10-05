@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Universidades y carreras · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Patrón "¿Qué es aprendo+?": título+texto | foto en tarjeta | contenido */
+  .f04 .bch-row { align-items: stretch; }
+  .f04__intro { flex: 0 0 30%; gap: 22px; padding-right: 10px; }
+  .f04__trazo { width: 85%; }
+  .f04__photo { flex: 0 0 26%; min-height: 520px; }
+  .f04__list { flex: 1; padding: 40px; gap: 0; }
+
+  .f04__uni { list-style: none; padding: 0; margin: 0; }
+  .f04__uni li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(243,241,231,.25); }
+  .f04__uni li:first-child { padding-top: 0; }
+  .f04__name { font-family: var(--bch-display); font-size: 27px; line-height: 1.15; }
+  .f04__city { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--bch-verde); white-space: nowrap; }
+
+  .f04__note { margin: 24px 0; padding: 14px 20px; border: 1.5px dashed rgba(243,241,231,.45); border-radius: 20px; font-size: 15px; color: rgba(243,241,231,.85); }
+
+  @media (max-width: 1024px) {
+    .f04 .bch-row { flex-wrap: wrap; }
+    .f04__intro { flex: 1 1 100%; padding-right: 0; }
+    .f04__trazo { width: 45%; }
+    .f04__photo { flex: 0 0 calc(40% - 15px); min-height: 0; }
+    .f04__list { flex: 1 1 0; }
+  }
+  @media (max-width: 767px) {
+    .f04 .bch-row { flex-direction: column; }
+    .f04__trazo { width: 70%; }
+    .f04__photo { flex: none; aspect-ratio: 4 / 3; width: 100%; }
+    .f04__list { padding: 26px; }
+    .f04__uni li { flex-direction: column; gap: 4px; padding: 14px 0; }
+    .f04__name { font-size: 23px; }
+  }
+</style>
+</head>
+<body data-fold="04-universidades">
+
+<section class="bch-fold f04" aria-labelledby="f04-title">
+  <div class="bch-wrap">
+    <div class="bch-row">
+      <div class="bch-col f04__intro">
+        <h2 id="f04-title" class="bch-h2 t-verde">Elige dónde y qué quieres estudiar.</h2>
+        <span class="bch-trazo bch-trazo--verde f04__trazo" aria-hidden="true"></span>
+        <p class="bch-lead"><strong>Cinco universidades reconocidas del país</strong> hacen parte de esta oportunidad.</p>
+        <p class="bch-p">Revisa las carreras disponibles y encuentra la opción que más te entusiasme.</p>
+      </div>
+
+      <!-- FOTO 02 · Universidad / estudiantes. Para la real: style="--img:url('URL')" y quitar is-placeholder -->
+      <div class="f04__photo bch-photo bch-photo--bn is-placeholder" data-label="Foto 02 · Vertical · 900×1300 px" aria-hidden="true"></div>
+
+      <div class="bch-card bch-card--negro f04__list">
+        <ul class="f04__uni">
+          <li><span class="f04__name">Universidad de los Andes</span><span class="f04__city">Bogotá</span></li>
+          <li><span class="f04__name">Universidad EAFIT</span><span class="f04__city">Medellín</span></li>
+          <li><span class="f04__name">Universidad EIA</span><span class="f04__city">Medellín</span></li>
+          <li><span class="f04__name">Universidad Icesi</span><span class="f04__city">Cali</span></li>
+          <li><span class="f04__name">Universidad del Norte</span><span class="f04__city">Barranquilla</span></li>
+        </ul>
+        <!-- PENDIENTE: reemplazar por el listado de carreras por universidad -->
+        <p class="f04__note">Carreras por universidad: pendiente de listado definitivo.</p>
+        <a class="bch-btn bch-btn--crema bch-btn--block" data-apply href="#">Quiero aplicar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

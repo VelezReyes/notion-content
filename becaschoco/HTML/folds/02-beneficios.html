@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Beneficios · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Patrón "Este es el impacto" de aprendo+: fila trazo + título, luego tarjetas verdes */
+  .f02-head { align-items: center; gap: 30px; margin-bottom: 50px; }
+  .f02-head__trazo { flex: 0 0 42%; }
+  .f02-head__title { flex: 1; font-size: 52px; line-height: 1.15; }
+
+  .f02-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .f02-card { padding: 30px; gap: 18px; min-height: 360px; }
+  .f02-card__icon { width: 46px; height: auto; margin-bottom: 18px; }
+  .f02-card__kicker { font-size: 64px; line-height: 1; color: var(--bch-crema); }
+  .f02-card__title { font-size: 30px; line-height: 1.15; }
+
+  .f02-cta { display: flex; justify-content: center; margin-top: 50px; }
+
+  @media (max-width: 1024px) {
+    .f02-head { flex-direction: column; align-items: flex-start; }
+    .f02-head__trazo { flex: none; width: 50%; }
+    .f02-head__title { font-size: 44px; }
+    .f02-grid { grid-template-columns: repeat(2, 1fr); }
+    .f02-card { min-height: 0; }
+  }
+  @media (max-width: 767px) {
+    .f02-head { margin-bottom: 30px; gap: 18px; }
+    .f02-head__trazo { width: 70%; }
+    .f02-head__title { font-size: 34px; }
+    .f02-grid { grid-template-columns: 1fr; gap: 20px; }
+    .f02-card__icon { width: 38px; margin-bottom: 8px; }
+    .f02-card__kicker { font-size: 52px; }
+    .f02-card__title { font-size: 26px; }
+    .f02-cta .bch-btn { width: 100%; }
+  }
+</style>
+</head>
+<body data-fold="02-beneficios">
+
+<section class="bch-fold" aria-labelledby="f02-title">
+  <div class="bch-wrap">
+    <div class="bch-row f02-head">
+      <span class="bch-trazo bch-trazo--verde f02-head__trazo" aria-hidden="true"></span>
+      <h2 id="f02-title" class="f02-head__title bch-display">Tendrás todo lo que necesitas para empezar la universidad con tranquilidad.</h2>
+    </div>
+
+    <div class="f02-grid">
+      <article class="bch-card bch-card--verde f02-card">
+        <h3 class="bch-display" style="display:flex;flex-direction:column;gap:18px;">
+          <span class="f02-card__kicker">100&nbsp;%</span>
+          <span class="f02-card__title">de la matrícula</span>
+        </h3>
+        <p class="bch-p">Tu matrícula estará cubierta al <strong>100&nbsp;% durante toda la carrera</strong> en una de las universidades aliadas.</p>
+      </article>
+
+      <article class="bch-card bch-card--verde f02-card">
+        <img class="f02-card__icon" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-5.png" alt="" aria-hidden="true">
+        <h3 class="f02-card__title bch-display">Computador</h3>
+        <p class="bch-p">Recibirás un computador personal para acompañar tu proceso académico.</p>
+      </article>
+
+      <article class="bch-card bch-card--verde f02-card">
+        <img class="f02-card__icon" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-5.png" alt="" aria-hidden="true">
+        <h3 class="f02-card__title bch-display">Inglés</h3>
+        <p class="bch-p">Tendrás apoyo para el curso de inglés que requiera tu universidad.</p>
+      </article>
+
+      <article class="bch-card bch-card--verde f02-card">
+        <img class="f02-card__icon" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-5.png" alt="" aria-hidden="true">
+        <h3 class="f02-card__title bch-display">Apoyo para tus gastos</h3>
+        <p class="bch-p">Recibirás apoyo económico durante <strong>cinco meses cada semestre</strong>, con un monto definido de acuerdo con tu necesidad.</p>
+      </article>
+    </div>
+
+    <div class="f02-cta">
+      <a class="bch-btn bch-btn--verde" data-apply href="#">Quiero aplicar</a>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

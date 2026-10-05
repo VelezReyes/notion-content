@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 · CTA final · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Patrón cierre aprendo+: título gigante + trazo, foto cuadrada con tarjeta negra montada */
+  .f08 { padding-bottom: 100px; }
+  .f08__title { max-width: 1100px; position: relative; z-index: 2; }
+  .f08__trazo { width: 58%; margin: 8px 0 0 auto; position: relative; z-index: 1; }
+  .f08__row { display: flex; align-items: flex-start; margin-top: -10px; }
+  .f08__photo { flex: 0 0 43%; aspect-ratio: 1 / 1; }
+  .f08__card { flex: 1; margin: 125px 0 0 -120px; padding: 50px; gap: 24px; z-index: 2; }
+  .f08__photo.is-placeholder { align-items: flex-start; padding-top: 40px; }
+  .f08__date { color: rgba(243,241,231,.85); }
+
+  @media (max-width: 1024px) {
+    .f08__trazo { width: 70%; }
+    .f08__photo { flex-basis: 48%; }
+    .f08__card { margin: 80px 0 0 -100px; padding: 40px; }
+  }
+  @media (max-width: 767px) {
+    .f08 { padding-bottom: 70px; }
+    .f08__trazo { width: 85%; }
+    .f08__row { flex-direction: column; margin-top: 10px; }
+    .f08__photo { flex: none; width: 100%; }
+    .f08__card { margin: -70px 0 0 0; width: 100%; padding: 28px; }
+  }
+</style>
+</head>
+<body data-fold="08-cta-final">
+
+<section class="bch-fold f08" aria-labelledby="f08-title">
+  <div class="bch-wrap">
+    <h2 id="f08-title" class="f08__title bch-giant">Desde Chocó, hasta donde quieras llegar.</h2>
+    <span class="bch-trazo bch-trazo--verde f08__trazo" aria-hidden="true"></span>
+
+    <div class="f08__row">
+      <!-- FOTO 04 · Cierre (cuadrada). Para la real: style="--img:url('URL')" y quitar is-placeholder -->
+      <div class="f08__photo bch-photo bch-photo--bn is-placeholder" data-label="Foto 04 · Cuadrada · 1200×1200 px" aria-hidden="true"></div>
+
+      <div class="bch-card bch-card--negro f08__card">
+        <p class="bch-sub t-verde" style="font-size:36px">Creemos en ti.</p>
+        <p class="bch-big">Si cumples las condiciones, empieza tu inscripción y abre una nueva posibilidad para tu etapa universitaria.</p>
+        <a class="bch-btn bch-btn--crema bch-btn--block" data-apply href="#">Quiero aplicar</a>
+        <p class="f08__date bch-small">Convocatoria abierta hasta el <strong>1 de noviembre de 2026</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

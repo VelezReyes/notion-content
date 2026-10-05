@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Becas Chocó · VélezReyes+  —  base compartida por todos los folds
+   Sistema tomado de /proyectos/aprendomas/ (Hello Elementor + Elementor 4.3)
+   Paleta Educación: verde + negro + crema (sin morado)
+   ========================================================================== */
+
+/* ---------- Fuentes ----------
+   Azo Sans: kit de Adobe Fonts (Typekit) kis4ayd → familia "azo-sans-web" (400/700 + itálicas).
+   Respaldo: "Azo Sans Web" auto-hospedada en el WP (solo carga dentro de velezreyesmas.com).
+   Bookman (Ver+): repo VelezReyes/notion-content, servido con CORS abierto. */
+@import url("https://use.typekit.net/kis4ayd.css");
+
+@font-face { font-family: "Ver+"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/VelezReyes/notion-content@main/BookmanJFPro-Regular.woff2") format("woff2"),
+       url("https://raw.githubusercontent.com/VelezReyes/notion-content/main/BookmanJFPro-Regular.woff2") format("woff2"),
+       url("https://velezreyesmas.com/wp-content/uploads/2022/05/BookmanJFPro-Regular.ttf") format("truetype"); }
+
+/* ---------- Tokens ---------- */
+:root {
+  --bch-crema: #F3F1E7;
+  --bch-crema-2: #E6E3D4;      /* solo para placeholders de foto */
+  --bch-verde: #27CF77;
+  --bch-negro: #000000;
+  --bch-blanco: #FFFFFF;
+
+  --bch-display: "Ver+", "Bookman Old Style", "Bookman", "URW Bookman", Georgia, serif;
+  --bch-texto: "azo-sans-web", "Azo Sans Web", "Helvetica Neue", Arial, sans-serif;
+
+  --bch-content: 1250px;     /* ancho de contenido de los folds */
+  --bch-gutter: 40px;        /* padding lateral del fold */
+  --bch-pad-y: 80px;         /* ritmo vertical entre folds */
+  --bch-radius: 30px;        /* tarjetas y botones */
+  --bch-gap: 50px;
+
+  /* Assets gráficos (Media Library WP) */
+  --bch-linea-verde: url("https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-6-scaled.png");
+  --bch-linea-crema: url("https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-4-scaled.png");
+}
+
+/* ---------- Reset mínimo (aislado del tema) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bch-crema);
+  color: var(--bch-negro);
+  font-family: var(--bch-texto);
+  font-size: 18.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4, p, ul, ol { margin: 0; }
+strong, b { font-weight: 700; }
+
+/* ---------- Fold (contenedor padre, boxed 1250) ---------- */
+.bch-fold { position: relative; padding: var(--bch-pad-y) var(--bch-gutter); overflow: hidden; }
+.bch-fold--verde { background: var(--bch-verde); }
+.bch-fold--negro { background: var(--bch-negro); color: var(--bch-crema); }
+.bch-wrap { width: 100%; max-width: var(--bch-content); margin: 0 auto; position: relative; }
+.bch-row { display: flex; gap: var(--bch-gap); }
+.bch-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+/* ---------- Tipografía (escala aprendo+) ---------- */
+.bch-display { font-family: var(--bch-display); font-weight: 400; letter-spacing: 0; }
+.bch-h1   { font-family: var(--bch-display); font-weight: 400; font-size: 75px;  line-height: 1;    }
+.bch-h2   { font-family: var(--bch-display); font-weight: 400; font-size: 45px;  line-height: 1.05; }
+.bch-h3xl { font-family: var(--bch-display); font-weight: 400; font-size: 60px;  line-height: 1.15; }
+.bch-giant{ font-family: var(--bch-display); font-weight: 400; font-size: 110px; line-height: 1.05; }
+.bch-sub  { font-family: var(--bch-display); font-weight: 400; font-size: 30px;  line-height: 1.25; }
+.bch-lead { font-size: 20px;  line-height: 1.5; }
+.bch-p    { font-size: 18.5px; line-height: 1.5; }
+.bch-big  { font-size: 25px;  line-height: 1.5; }
+.bch-small{ font-size: 15px;  line-height: 1.45; }
+.bch-eyebrow { font-family: var(--bch-texto); font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+
+.t-verde { color: var(--bch-verde); }
+.t-crema { color: var(--bch-crema); }
+.t-negro { color: var(--bch-negro); }
+.t-blanco{ color: var(--bch-blanco); }
+.t-center{ text-align: center; }
+
+/* ---------- Tarjetas ---------- */
+.bch-card { border-radius: var(--bch-radius); padding: 30px; display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 1; }
+.bch-card--verde { background: var(--bch-verde); color: var(--bch-negro); }
+.bch-card--negro { background: var(--bch-negro); color: var(--bch-crema); }
+.bch-card--crema { background: var(--bch-crema); color: var(--bch-negro); }
+
+/* ---------- Botones (pill aprendo+) ---------- */
+.bch-btn {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  font-family: var(--bch-texto); font-weight: 400; font-size: 18px; line-height: 1;
+  padding: 18px 35px; border-radius: var(--bch-radius); border: 0;
+  text-decoration: none; cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+.bch-btn:hover { transform: translateY(-2px); }
+.bch-btn:focus-visible { outline: 3px solid var(--bch-negro); outline-offset: 3px; }
+.bch-btn--verde { background: var(--bch-verde); color: var(--bch-negro); }
+.bch-btn--verde:hover { background: var(--bch-negro); color: var(--bch-verde); }
+.bch-btn--crema { background: var(--bch-crema); color: var(--bch-negro); }
+.bch-btn--crema:hover { background: var(--bch-negro); color: var(--bch-crema); }
+.bch-btn--block { display: flex; width: 100%; }
+.bch-fold--negro .bch-btn:focus-visible, .bch-card--negro .bch-btn:focus-visible { outline-color: var(--bch-verde); }
+
+/* Links de texto (anula el morado global del kit) */
+.bch-link { color: inherit; text-decoration: underline; text-decoration-color: var(--bch-verde); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.bch-link:hover { color: var(--bch-verde); }
+
+/* ---------- Trazos (líneas a mano) ---------- */
+.bch-trazo { display: block; width: 100%; background-repeat: no-repeat; background-size: 100% 100%; pointer-events: none; }
+.bch-trazo--verde { background-image: var(--bch-linea-verde); aspect-ratio: 2560 / 177; }
+.bch-trazo--crema { background-image: var(--bch-linea-crema); aspect-ratio: 2560 / 92; }
+
+/* ---------- Fotos (placeholder hasta tener material) ---------- */
+.bch-photo {
+  position: relative; border-radius: var(--bch-radius); overflow: hidden;
+  background: var(--bch-crema-2) var(--img, none) center / cover no-repeat;
+}
+.bch-photo--bn { filter: grayscale(1); }
+.bch-photo.is-placeholder {
+  background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 2px, transparent 2px 18px);
+  display: flex; align-items: center; justify-content: center;
+}
+.bch-photo.is-placeholder::after {
+  content: attr(data-label);
+  font-family: var(--bch-texto); font-size: 14px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+  color: rgba(0,0,0,.55); text-align: center; padding: 10px 18px; border: 1.5px dashed rgba(0,0,0,.35); border-radius: 30px;
+  max-width: 80%;
+}
+
+/* ---------- Responsive (breakpoints Elementor: 1024 / 767) ---------- */
+@media (max-width: 1024px) {
+  :root { --bch-gutter: 30px; --bch-pad-y: 70px; --bch-gap: 30px; }
+  .bch-h1 { font-size: 64px; }
+  .bch-h2 { font-size: 37px; }
+  .bch-h3xl { font-size: 50px; }
+  .bch-giant { font-size: 80px; }
+  .bch-sub { font-size: 26px; }
+  .bch-big { font-size: 22px; }
+}
+@media (max-width: 767px) {
+  :root { --bch-gutter: 20px; --bch-pad-y: 56px; --bch-gap: 20px; }
+  body { font-size: 17px; }
+  .bch-row { flex-direction: column; }
+  .bch-h1 { font-size: 46px; line-height: 1.02; }
+  .bch-h2 { font-size: 32px; }
+  .bch-h3xl { font-size: 38px; }
+  .bch-giant { font-size: 50px; }
+  .bch-sub { font-size: 24px; }
+  .bch-lead { font-size: 18px; }
+  .bch-p { font-size: 17px; }
+  .bch-big { font-size: 20px; }
+  .bch-card { padding: 25px; }
+  .bch-btn { font-size: 17px; padding: 17px 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

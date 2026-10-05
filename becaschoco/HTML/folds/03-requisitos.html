@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · ¿Esta oportunidad es para ti? · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Patrón "Cómo puedes ser parte" de aprendo+: banda verde, tarjeta negra + tarjeta crema montada */
+  .f03 .bch-row { align-items: center; }
+  .f03__left { flex: 0 0 38%; gap: 22px; }
+  .f03__right { flex: 1; position: relative; display: flex; flex-direction: column; align-items: flex-end; }
+
+  .f03__black { width: 88%; align-self: flex-start; padding: 40px; gap: 0; }
+  .f03__item { display: flex; gap: 24px; align-items: baseline; padding: 22px 0; }
+  .f03__item + .f03__item { border-top: 1px solid rgba(243,241,231,.25); }
+  .f03__num { font-family: var(--bch-display); font-size: 64px; line-height: 1; color: var(--bch-verde); flex: 0 0 auto; min-width: 84px; }
+  .f03__txt { font-size: 22px; line-height: 1.4; }
+
+  .f03__stack { width: 72%; margin-top: -50px; display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 2; }
+  .f03__cream { padding: 60px 30px 30px; }
+
+  .f03__ast { position: absolute; z-index: 3; width: 110px; left: 4%; bottom: 40px; transform: rotate(14deg); pointer-events: none; }
+
+  @media (max-width: 1024px) {
+    .f03 .bch-row { flex-direction: column; align-items: stretch; }
+    .f03__left { flex: none; }
+    .f03__black { width: 92%; }
+    .f03__stack { width: 80%; }
+    .f03__ast { width: 80px; }
+  }
+  @media (max-width: 767px) {
+    .f03__black { width: 100%; padding: 26px; }
+    .f03__item { gap: 16px; padding: 18px 0; }
+    .f03__num { font-size: 44px; min-width: 56px; }
+    .f03__txt { font-size: 18px; }
+    .f03__stack { width: 94%; margin-top: -30px; }
+    .f03__cream { padding: 50px 25px 25px; }
+    .f03__ast { width: 54px; left: auto; right: 6px; bottom: auto; top: -32px; }
+  }
+</style>
+</head>
+<body data-fold="03-requisitos">
+
+<section class="bch-fold bch-fold--verde f03" aria-labelledby="f03-title">
+  <div class="bch-wrap">
+    <div class="bch-row">
+      <div class="bch-col f03__left">
+        <p class="bch-sub">¿Esta oportunidad es para ti?</p>
+        <h2 id="f03-title" class="bch-h3xl bch-display">Revisa estas dos condiciones.</h2>
+      </div>
+
+      <div class="f03__right">
+        <div class="bch-card bch-card--negro f03__black">
+          <div class="f03__item">
+            <span class="f03__num" aria-hidden="true">01</span>
+            <p class="f03__txt"><strong>Naciste en Chocó.</strong></p>
+          </div>
+          <div class="f03__item">
+            <span class="f03__num" aria-hidden="true">02</span>
+            <p class="f03__txt"><strong>Te graduaste de bachillerato en 2025 o te gradúas en 2026</strong> en una institución educativa en Chocó.</p>
+          </div>
+        </div>
+
+        <div class="f03__stack">
+          <div class="bch-card bch-card--crema f03__cream">
+            <p class="bch-lead">Si cumples ambas, puedes empezar tu inscripción.</p>
+          </div>
+          <a class="bch-btn bch-btn--crema bch-btn--block" data-apply href="#">Empezar mi inscripción</a>
+        </div>
+
+        <img class="f03__ast" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-5.png" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 · Preguntas frecuentes · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .f07 .bch-row { align-items: flex-start; }
+  .f07__left { flex: 0 0 32%; gap: 24px; position: sticky; top: 40px; }
+  .f07__ast { width: 90px; transform: rotate(-10deg); }
+  .f07__contact { padding: 30px; gap: 12px; }
+  .f07__list { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Acordeón nativo (<details>): accesible y sin dependencias */
+  .f07__item { border: 2px solid var(--bch-negro); border-radius: var(--bch-radius); background: transparent; transition: background-color .2s ease; }
+  .f07__item[open] { background: var(--bch-negro); color: var(--bch-crema); }
+  .f07__item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 22px 26px; font-family: var(--bch-display); font-size: 24px; line-height: 1.25;
+  }
+  .f07__item summary::-webkit-details-marker { display: none; }
+  .f07__item summary:focus-visible { outline: 3px solid var(--bch-verde); outline-offset: 3px; border-radius: var(--bch-radius); }
+  .f07__icon { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 50%; background: var(--bch-verde); position: relative; }
+  .f07__icon::before, .f07__icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 2px; background: var(--bch-negro); transform: translate(-50%, -50%); transition: transform .2s ease; }
+  .f07__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .f07__item[open] .f07__icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+  .f07__answer { padding: 0 26px 26px; font-size: 18.5px; line-height: 1.5; max-width: 760px; }
+  .f07__answer ul { margin: 8px 0 0; padding-left: 20px; }
+  .f07__answer li { margin: 4px 0; }
+  .f07__item[open] .bch-link:hover { color: var(--bch-verde); }
+
+  @media (max-width: 1024px) {
+    .f07 .bch-row { flex-direction: column; align-items: stretch; }
+    .f07__left { flex: none; position: static; }
+    .f07__ast { width: 70px; }
+  }
+  @media (max-width: 767px) {
+    .f07__ast { display: none; }
+    .f07__contact { padding: 25px; }
+    .f07__item summary { font-size: 20px; padding: 18px 20px; }
+    .f07__icon { flex-basis: 34px; width: 34px; height: 34px; }
+    .f07__answer { padding: 0 20px 22px; font-size: 17px; }
+  }
+</style>
+</head>
+<body data-fold="07-preguntas">
+
+<section class="bch-fold f07" aria-labelledby="f07-title">
+  <div class="bch-wrap">
+    <div class="bch-row">
+      <div class="bch-col f07__left">
+        <img class="f07__ast" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-3.png" alt="" aria-hidden="true">
+        <h2 id="f07-title" class="bch-h3xl bch-display">Preguntas frecuentes</h2>
+        <div class="bch-card bch-card--verde f07__contact">
+          <p class="bch-sub" style="font-size:24px">¿Tienes dudas?</p>
+          <p class="bch-p">Escribe al correo: <a class="bch-link" href="mailto:becas@velezreyesmas.com" style="text-decoration-color:var(--bch-negro)"><strong>becas@velezreyesmas.com</strong></a></p>
+        </div>
+      </div>
+
+      <div class="f07__list">
+        <details class="f07__item" open>
+          <summary>¿Quién puede aplicar?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">Jóvenes nacidos en Chocó que se hayan graduado de bachillerato en 2025 o se gradúen en 2026 en una institución educativa en Chocó.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿La beca cubre toda la carrera?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">Sí. La beca cubre el <strong>100&nbsp;% de la matrícula durante toda la carrera</strong> en una de las universidades aliadas.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Qué otros apoyos incluye?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">Incluye <strong>computador, apoyo para el curso de inglés que requiera la universidad y apoyo económico durante cinco meses de cada semestre</strong>.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Qué universidades hacen parte de la convocatoria?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">
+            <ul>
+              <li>Universidad de los Andes</li>
+              <li>Universidad EAFIT</li>
+              <li>Universidad EIA</li>
+              <li>Universidad Icesi</li>
+              <li>Universidad del Norte</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Estar admitido en la universidad significa que ya tengo la beca?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">La admisión a la universidad y la selección de la beca son procesos diferentes. VélezReyes+ te informará el resultado de tu proceso de beca.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿El formulario de admisión tiene costo?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">La mayoría de las universidades no cobran inscripción para personas de estrato 1 y 2. Te invitamos a consultar con la universidad de tu interés.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Cómo empiezo mi inscripción?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">Haz clic en <a class="bch-link" data-apply href="#"><strong>Quiero aplicar</strong></a> y completa el formulario de inscripción. Luego, aplica a las universidades de tu interés.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Hasta cuándo puedo inscribirme a la convocatoria?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">La convocatoria está abierta hasta el <strong>1 de noviembre de 2026</strong>.</div>
+        </details>
+
+        <details class="f07__item">
+          <summary>¿Si tengo dudas, a dónde puedo escribir?<span class="f07__icon" aria-hidden="true"></span></summary>
+          <div class="f07__answer">Escribe al correo: <a class="bch-link" href="mailto:becas@velezreyesmas.com"><strong>becas@velezreyesmas.com</strong></a></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

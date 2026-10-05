@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · Cómo funciona · Becas Chocó</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* Foto + pasos en tarjetas negras con subtítulo verde (patrón "¿Por qué Perú? / Visión") */
+  .f05 .bch-row { align-items: stretch; }
+  .f05__photo { flex: 0 0 40%; min-height: 560px; }
+  .f05__right { flex: 1; gap: 30px; justify-content: center; }
+  .f05__head { display: flex; flex-direction: column; gap: 6px; }
+  .f05__trazo { width: 60%; }
+  .f05__steps { display: flex; flex-direction: column; gap: 20px; }
+  .f05__step { padding: 34px 40px; gap: 12px; }
+  .f05__step:nth-child(2) { margin-left: 60px; }
+  .f05__label { color: var(--bch-verde); }
+
+  @media (max-width: 1024px) {
+    .f05 .bch-row { flex-direction: column-reverse; }
+    .f05__photo { flex: none; min-height: 0; aspect-ratio: 16 / 9; }
+    .f05__step:nth-child(2) { margin-left: 40px; }
+  }
+  @media (max-width: 767px) {
+    .f05__photo { aspect-ratio: 4 / 3; }
+    .f05__trazo { width: 75%; }
+    .f05__step { padding: 26px; }
+    .f05__step:nth-child(2) { margin-left: 0; }
+  }
+</style>
+</head>
+<body data-fold="05-como-funciona">
+
+<section class="bch-fold f05" aria-labelledby="f05-title">
+  <div class="bch-wrap">
+    <div class="bch-row">
+      <!-- FOTO 03 · Joven aplicando / estudiando. Para la real: style="--img:url('URL')" y quitar is-placeholder -->
+      <div class="f05__photo bch-photo bch-photo--bn is-placeholder" data-label="Foto 03 · Vertical · 1000×1400 px" aria-hidden="true"></div>
+
+      <div class="bch-col f05__right">
+        <div class="f05__head">
+          <h2 id="f05-title" class="bch-h3xl bch-display">Aplicar es sencillo.</h2>
+          <span class="bch-trazo bch-trazo--verde f05__trazo" aria-hidden="true"></span>
+        </div>
+
+        <ol class="f05__steps" style="list-style:none;padding:0;margin:0;">
+          <li class="bch-card bch-card--negro f05__step">
+            <p class="bch-eyebrow f05__label">Paso 01</p>
+            <h3 class="bch-sub t-verde">Inscríbete a la convocatoria</h3>
+            <p class="bch-p">Haz clic en <strong>Quiero aplicar</strong> y completa tu formulario de inscripción.</p>
+          </li>
+          <li class="bch-card bch-card--negro f05__step">
+            <p class="bch-eyebrow f05__label">Paso 02</p>
+            <h3 class="bch-sub t-verde">Completa tu admisión en la universidad</h3>
+            <p class="bch-p">Sigue el proceso de admisión de la universidad que elijas. Para quienes participen en esta convocatoria, <strong>el costo del formulario de admisión será gratuito</strong>.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/fold.js"></script>
+</body>
+</html>

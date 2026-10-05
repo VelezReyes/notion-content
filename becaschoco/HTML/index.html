@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Becas Chocó · VélezReyes+ (preview)</title>
+<meta name="robots" content="noindex">
+<style>
+  html, body { margin: 0; padding: 0; background: #F3F1E7; }
+  .bch-frame { display: block; width: 100%; border: 0; height: 600px; overflow: hidden; }
+</style>
+</head>
+<body>
+<!-- Cada fold es un HTML independiente. En WordPress cada iframe va en su propio widget HTML. -->
+<iframe class="bch-frame" src="folds/01-primer-pantallazo.html" title="Becas Chocó · Primer pantallazo" scrolling="no"></iframe>
+<iframe class="bch-frame" src="folds/02-beneficios.html" title="Becas Chocó · Beneficios" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/03-requisitos.html" title="Becas Chocó · ¿Esta oportunidad es para ti?" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/04-universidades.html" title="Becas Chocó · Universidades y carreras" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/05-como-funciona.html" title="Becas Chocó · Cómo funciona" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/06-fecha-clave.html" title="Becas Chocó · Fecha clave" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/07-preguntas.html" title="Becas Chocó · Preguntas frecuentes" scrolling="no" loading="lazy"></iframe>
+<iframe class="bch-frame" src="folds/08-cta-final.html" title="Becas Chocó · Inscripción" scrolling="no" loading="lazy"></iframe>
+
+<script>
+  // Ajusta la altura de cada iframe a su contenido (los folds la reportan vía postMessage)
+  window.addEventListener("message", function (e) {
+    var d = e.data;
+    if (!d || d.type !== "bch-fold-height") return;
+    document.querySelectorAll("iframe.bch-frame").forEach(function (f) {
+      if (f.contentWindow === e.source) f.style.height = d.height + "px";
+    });
+  });
+</script>
+</body>
+</html>
