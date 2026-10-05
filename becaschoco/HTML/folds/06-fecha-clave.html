@@ -8,11 +8,14 @@
 <style>
   /* Banda verde centrada (patrón "Descubre Rocket Learning") */
   .f06 { padding-top: 100px; padding-bottom: 100px; }
-  .f06__inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; position: relative; z-index: 2; }
-  .f06__title { font-size: 66px; line-height: 1.08; }
-  .f06__date { position: relative; display: inline-block; white-space: nowrap; }
-  .f06__date::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: -0.12em; height: .16em; background: var(--bch-linea-crema) center / 100% 100% no-repeat; }
+  .f06__inner { max-width: 1150px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; position: relative; z-index: 2; }
+  .f06__title { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .f06__lead { font-size: 36px; line-height: 1.2; }
+  .f06__date { position: relative; display: inline-block; font-size: 84px; line-height: 1.02; padding-bottom: .14em; }
+  .f06__date::after { content: ""; position: absolute; left: 0; right: 0; bottom: -0.04em; height: .12em; background: var(--bch-linea-crema) center / 100% 100% no-repeat; }
+  .f06__nb { white-space: nowrap; }
   .f06__text { max-width: 620px; }
+  .f06 .bch-eyebrow { font-size: 14px; }
   .f06 .bch-btn { min-width: 320px; }
 
   .f06__ast { position: absolute; z-index: 1; pointer-events: none; }
@@ -21,15 +24,15 @@
 
   @media (max-width: 1024px) {
     .f06 { padding-top: 80px; padding-bottom: 80px; }
-    .f06__title { font-size: 52px; }
+    .f06__lead { font-size: 30px; }
+    .f06__date { font-size: 60px; }
     .f06__ast--a { width: 80px; left: 3%; top: 24px; }
     .f06__ast--b { width: 56px; right: 4%; }
   }
   @media (max-width: 767px) {
     .f06 { padding-top: 70px; padding-bottom: 70px; }
-    .f06__title { font-size: 36px; }
-    .f06__title { font-size: 34px; }
-    .f06__date { display: inline-block; white-space: normal; }
+    .f06__lead { font-size: 22px; }
+    .f06__date { font-size: 46px; }
     .f06 .bch-btn { min-width: 0; width: 100%; }
     .f06__ast--a { width: 54px; top: 16px; left: 14px; }
     .f06__ast--b { width: 40px; bottom: 16px; right: 14px; }
@@ -43,8 +46,11 @@
   <img class="f06__ast f06__ast--b" src="https://velezreyesmas.com/wp-content/uploads/2026/10/Asset-5.png" alt="" aria-hidden="true">
 
   <div class="f06__inner">
-    <p class="bch-sub">Empieza ahora.</p>
-    <h2 id="f06-title" class="f06__title bch-display">La convocatoria está abierta hasta el <span class="f06__date">1 de noviembre de 2026.</span></h2>
+    <p class="bch-eyebrow">Empieza ahora</p>
+    <h2 id="f06-title" class="f06__title bch-display">
+      <span class="f06__lead">La convocatoria está abierta hasta el</span>
+      <span class="f06__date"><span class="f06__nb">1 de noviembre</span> <span class="f06__nb">de 2026.</span></span>
+    </h2>
     <p class="f06__text bch-lead">Si cumples las condiciones, este es el momento de iniciar tu inscripción.</p>
     <a class="bch-btn bch-btn--crema" data-apply href="#">Quiero aplicar</a>
   </div>
