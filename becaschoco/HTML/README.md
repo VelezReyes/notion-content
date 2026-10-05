@@ -32,5 +32,9 @@ Cada fold abre solo (ej. folds/03-requisitos.html) y también dentro de index.ht
   El kit solo entrega fuentes en los dominios autorizados en Adobe Fonts → Web Projects. Agregar `velezreyesmas.com` y el dominio de GitHub Pages (`USUARIO.github.io`). Abriendo el HTML local (file://) no carga.
 - **Bookman JF Pro** (títulos, familia "Ver+"): desde el repo VelezReyes/notion-content (jsDelivr y, si falla, raw.githubusercontent, ambos con CORS abierto). Último respaldo: el .ttf del WP.
 
+## Versión (caché)
+Todas las referencias llevan `?v=20261005a` (index → folds, folds → base.css y fold.js).
+Al hacer cambios, reemplazar esa versión en todos los archivos (buscar y reemplazar `v=20261005a`) para que GitHub Pages y el navegador no muestren la versión vieja.
+
 ## GitHub Pages
 Subir la carpeta completa al repo → Settings → Pages → rama main / root. La URL de prueba es `https://USUARIO.github.io/REPO/`.
