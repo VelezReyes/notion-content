@@ -76,6 +76,16 @@ tr.sub-row td:first-child { padding-left:28px; font-weight:500; }
     </div>
   </div>
 
+  <div class="section">
+    <h2>2026 Spend tracker</h2>
+    <div class="panel">
+      <div class="card-stats" id="spend"></div>
+      <div class="note" id="spendNote"></div>
+      <table style="margin-top:1rem"><thead><tr><th>Beneficiary</th><th>Amount</th><th style="text-align:left">Notes</th></tr></thead><tbody id="spendRows" style="white-space:normal"></tbody></table>
+      <div class="card-open"><a id="spendLink" style="color:inherit;text-decoration:none">Download the Excel version &rarr;</a></div>
+    </div>
+  </div>
+
   <div class="footer"><strong>VelezReyes+</strong> &middot; VER+ Charity &middot; Index</div>
 </div>
 
@@ -94,6 +104,18 @@ const REPORTS = [
     total:{ received:14, presented:12, pipeline:1, noGo:1, approved:12, rejected:0, disbursed:3 },
     periods:[] }
 ];
+
+// Update when a new version of the spend tracker is published.
+const SPEND = { disbursedRows:[["Fundacion Sophia", 6600, "Education stipend, periodic grant, finalizes 2030. Uruguayan, 6 students, full tuition at a partner school in Montevideo."], ["Maria Jose Velasquez", 7258, "Education stipend, periodic grant, finalizes 2026. Colombian, Industrial Engineering + Data Science (Universidad de los Andes)."], ["Samuel Andres Lamilla", 3500, "Education stipend, periodic grant, finalizes 2026. Colombian, Data Science (Pontificia Universidad Javeriana)."], ["Laura Sofia Castillo", 3200, "Education stipend, periodic grant, finalizes 2031. Colombian, Dentistry (Universidad Cooperativa de Colombia)."], ["Apontar", 54315, "One-time grant. Brazilian NGO, education center opening (social impact)."], ["Maria Antonia Robles", 3900, "One-time grant, debt relief. Colombian, Psychology (Monash University)."], ["Estephania Rueda Ramirez", 11600, "One-time grant for her VISA. Colombian, PhD Economics/Econometrics (Monash University)."], ["Reprograma", 230000, "One-time grant. Brazilian nonprofit (Reprograma), \"Todas em Tech Futuro+\" program, trains women for careers in tech."], ["Operacion Todos con Venezuela (Alimenta la Solidaridad Inc)", 50000, "One-time grant, disaster relief. Venezuela earthquake response."], ["Peluffo", 16500, "One-time grant (2025). Uruguayan org, temporary housing/lodging support."], ["Corporación Antioquia Presente", 30000, "One-time grant, disaster relief. Colombian humanitarian relief, natural disaster response in Monteria/Sincelejo (floods; separate from the Choco earthquake grant)."]], pendingRows:[["Redalco", 5000, "One-time final grant. Uruguayan NGO, surplus produce recovery and distribution."], ["Fundacion Los Rosales", 9200, "Education stipend, periodic grant, finalizes 2028. Uruguayan, 4 students, High School Diploma."], ["Es Hoy Ruralia", 30000, "One-time grant. Peruvian NGO, youth/entrepreneurship programs."], ["Sebastian Holguin", 8900, "One-time grant, sports sponsorship. Colombian, elite downhill mountain biker."], ["Olimpiadas Matematicas / FonMat Uruguay", 10000, "One-time grant. Uruguayan NGO, math education pilot program."], ["Novica", 30000, "One-time grant. US-based artisan marketplace platform, supports global artisans."], ["Hogar Bambi", 25000, "One-time grant, disaster relief. Venezuelan NGO, children's homes, earthquake response."], ["Gustavo Do Carmo", 4217, "Law Student. Education stipend, periodic (monthly) grant, finalizes in 6 months, plus a one-time grant for a computer. Brazilian; no further case detail available."], ["Ana Catarina Seron", 9820, "One-time grant, education gap funding. Brazilian, closes a gap Trajetorias could not cover, co-financed with the Lemann Foundation."], ["Eduarda Pinheiro Vasconcelos dos Santos", 6650, "One-time grant, education gap funding. Brazilian, closes a gap Trajetorias could not cover, co-financed with the Lemann Foundation."], ["Laura Fernanda Martinez", 4100, "One-time grant (single semester, 50% tuition). Colombian, dual degree Biomedical + Systems Engineering (Universidad de los Andes)."], ["Choripues", 13500, "One-time grant ot an organization that reached out to David. They haven´t sent the Due Diligence documents. "], ["Corporación Antioquia Presente (Presentes, Choco earthquake)", 100000, "One-time grant, disaster relief. Colombian non-profit, Choco earthquake response (Aug 10, 2026), approved by D&M, in pre-disbursement compliance."]], file:"../INFO/Charity_Spend_2026_v6.xlsx", asOf:"July 28, 2026 (plus later commitments)", disbursed:416873, pending:256387,
+  note:"Pending includes the USD $100,000 Choco earthquake grant (Corporacion Antioquia Presente) and USD $13,500 for Choripues. The USD $30,000 flood-relief grant is a separate, already disbursed item. Earlier versions are kept in the INFO folder for traceability." };
+const usd = n => 'USD $' + n.toLocaleString('en-US');
+document.getElementById('spend').innerHTML =
+  [[usd(SPEND.disbursed),'Disbursed'],[usd(SPEND.pending),'Pending'],[usd(SPEND.disbursed+SPEND.pending),'Total committed']]
+  .map(x => `<div class="cs"><div class="cs-n">${x[0]}</div><div class="cs-l">${x[1]}</div></div>`).join('');
+const sr = (t,rs) => `<tr class="sub-row"><td colspan="3" style="font-weight:800;color:#111">${t}</td></tr>` + rs.map(x => `<tr class="sub-row"><td>${x[0]}</td><td>${usd(x[1])}</td><td style="text-align:left;white-space:normal;min-width:320px">${x[2]||''}</td></tr>`).join('');
+document.getElementById('spendRows').innerHTML = sr('Disbursed', SPEND.disbursedRows) + sr('Pending disbursement', SPEND.pendingRows);
+document.getElementById('spendNote').textContent = SPEND.note;
+document.getElementById('spendLink').href = SPEND.file;
 
 const pct = (n,d) => d ? (n/d*100).toFixed(1)+'%' : '0.0%';
 
