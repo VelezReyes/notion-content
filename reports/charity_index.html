@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VER+ Charity · Report Index</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:#EFEFE4; --black:#000; --charity:#A7B2AA; --charity-b:#7C8880; --ok:#27CF77; --purple:#A62BFF;
+  --text-dk:#111; --text-md:#555; --text-mt:#999990; --border:rgba(0,0,0,.08); --radius:12px;
+  --font:'Montserrat',-apple-system,sans-serif; --serif:'DM Serif Display',Georgia,serif;
+}
+body { font-family:var(--font); background:var(--cream); color:var(--text-dk); line-height:1.6; font-size:15px; }
+.hero { background:var(--black); position:relative; padding:0 clamp(1.25rem,5vw,4rem); }
+.hero::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--charity),var(--ok) 50%,var(--purple)); }
+.hero-inner { max-width:1200px; margin:0 auto; padding:3.5rem 0 3rem; }
+.eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#666; margin-bottom:.65rem; }
+.title { font-family:var(--serif); font-size:clamp(40px,6vw,64px); color:#fff; line-height:.95; margin-bottom:.9rem; }
+.title span { color:var(--charity); }
+.sub { font-size:15px; color:#888; max-width:560px; line-height:1.75; }
+.page { max-width:1200px; margin:0 auto; padding:2.5rem clamp(1.25rem,5vw,4rem) 4rem; }
+h2 { font-family:var(--serif); font-size:22px; font-weight:400; margin:0 0 1rem; }
+.section { margin-bottom:2.5rem; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1rem; }
+.card { display:block; text-decoration:none; color:inherit; background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem 1.6rem; transition:transform .15s, box-shadow .15s; }
+.card:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.08); }
+.badge { display:inline-block; font-size:9px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; padding:3px 10px; border-radius:20px; margin-bottom:.8rem; }
+.badge.live { background:rgba(39,207,119,.12); color:#1A8050; border:1px solid rgba(39,207,119,.4); }
+.badge.hist { background:#EAEAE0; color:#7C8880; border:1px solid rgba(0,0,0,.1); }
+.card-title { font-family:var(--serif); font-size:24px; line-height:1.1; margin-bottom:.4rem; }
+.card-meta { font-size:12px; color:var(--text-mt); margin-bottom:1rem; }
+.card-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; }
+.cs { background:var(--cream); border-radius:8px; padding:.7rem .5rem; text-align:center; }
+.cs-n { font-family:var(--serif); font-size:22px; line-height:1; }
+.cs-l { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--text-mt); margin-top:4px; }
+.card-open { margin-top:1rem; font-size:12px; font-weight:700; color:var(--charity-b); }
+.panel { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem 1.75rem; overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; white-space:nowrap; }
+th, td { padding:9px 12px; text-align:right; border-bottom:1px solid var(--border); }
+th:first-child, td:first-child { text-align:left; }
+th { font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--text-mt); }
+td:first-child { font-weight:700; }
+tr.sub-row td { color:var(--text-md); font-weight:500; }
+tr.sub-row td:first-child { padding-left:28px; font-weight:500; }
+.note { font-size:11.5px; color:var(--text-mt); line-height:1.7; margin-top:.9rem; }
+.footer { background:var(--black); border-radius:var(--radius); padding:1.25rem 1.75rem; margin-top:2.5rem; font-family:var(--serif); font-style:italic; font-size:14px; color:#777; }
+.footer strong { color:#fff; font-style:normal; }
+</style>
+</head>
+<body>
+<section class="hero"><div class="hero-inner">
+  <div class="eyebrow">VelezReyes+ &middot; Charity Reports</div>
+  <h1 class="title">VER+&nbsp;<span>Charity</span> Index</h1>
+  <p class="sub">All quarterly case reports in one place, with comparative metrics across periods. Each report opens in its own page.</p>
+</div></section>
+
+<div class="page">
+  <div class="section">
+    <h2>Reports</h2>
+    <div class="cards" id="cards"></div>
+  </div>
+
+  <div class="section">
+    <h2>Comparative metrics</h2>
+    <div class="panel">
+      <table>
+        <thead><tr>
+          <th>Report / period</th><th>Received</th><th>Presented</th><th>Pipeline</th><th>No-Go</th><th>Approved</th><th>Rejected by D&amp;M</th>
+          <th>% Presented</th><th>% Approved</th><th>% Rejected</th><th>% Pipeline</th><th>% No-Go</th><th>Disbursed</th>
+        </tr></thead>
+        <tbody id="cmp"></tbody>
+      </table>
+      <div class="note">Received is the 100% base. Presented, Pipeline and No-Go split the received cases. Approved and Rejected by D&amp;M are calculated only over Presented. Q2 2026 as frozen in July counted 14 cases, the Q3 report lists 15 for the same period because Apontar, previously "no data", now has full context. Figures are embedded from each report at publish time, update the REPORTS list in this file when a new report is added.</div>
+    </div>
+  </div>
+
+  <div class="footer"><strong>VelezReyes+</strong> &middot; VER+ Charity &middot; Index</div>
+</div>
+
+<script>
+// Add a new object here for each future report (e.g. Q4). Stats are copied from the report's Metrics tab.
+const REPORTS = [
+  { id:"q3", title:"Q3 2026", file:"charity_informe_q3.html", status:"live", asOf:"October 2, 2026",
+    desc:"Cumulative through Q3, Q2 cases updated with Q3 progress plus Q3 new cases.",
+    total:{ received:27, presented:21, pipeline:5, noGo:1, approved:18, rejected:3, disbursed:10 },
+    periods:[
+      { name:"Q2 2026 cases", received:15, presented:13, pipeline:1, noGo:1, approved:13, rejected:0 },
+      { name:"Q3 2026 cases", received:12, presented:8, pipeline:4, noGo:0, approved:5, rejected:3 }
+    ] },
+  { id:"q2", title:"Q2 2026", file:"charity_informe_q2.html", status:"hist", asOf:"July 21, 2026",
+    desc:"Historical snapshot, frozen as of July 21, 2026. Not updated.",
+    total:{ received:14, presented:12, pipeline:1, noGo:1, approved:12, rejected:0, disbursed:3 },
+    periods:[] }
+];
+
+const pct = (n,d) => d ? (n/d*100).toFixed(1)+'%' : '0.0%';
+
+document.getElementById('cards').innerHTML = REPORTS.map(r => `
+  <a class="card" href="${r.file}">
+    <span class="badge ${r.status}">${r.status === 'live' ? 'Current' : 'Historical'}</span>
+    <div class="card-title">${r.title}</div>
+    <div class="card-meta">As of ${r.asOf} &middot; ${r.desc}</div>
+    <div class="card-stats">
+      <div class="cs"><div class="cs-n">${r.total.received}</div><div class="cs-l">Received</div></div>
+      <div class="cs"><div class="cs-n">${pct(r.total.approved, r.total.presented)}</div><div class="cs-l">Approved</div></div>
+      <div class="cs"><div class="cs-n">${r.total.disbursed}</div><div class="cs-l">Disbursed</div></div>
+    </div>
+    <div class="card-open">Open report &rarr;</div>
+  </a>`).join('');
+
+const row = (label, t, extra, cls) => `<tr class="${cls||''}">
+  <td>${label}</td><td>${t.received}</td><td>${t.presented}</td><td>${t.pipeline}</td><td>${t.noGo}</td><td>${t.approved}</td><td>${t.rejected}</td>
+  <td>${pct(t.presented,t.received)}</td><td>${pct(t.approved,t.presented)}</td><td>${pct(t.rejected,t.presented)}</td><td>${pct(t.pipeline,t.received)}</td><td>${pct(t.noGo,t.received)}</td><td>${extra}</td></tr>`;
+
+document.getElementById('cmp').innerHTML = REPORTS.map(r =>
+  row(r.title + (r.status==='live' ? ' (cumulative)' : ' (snapshot)'), r.total, r.total.disbursed) +
+  r.periods.map(p => row(p.name, p, '-', 'sub-row')).join('')
+).join('');
+</script>
+</body>
+</html>
