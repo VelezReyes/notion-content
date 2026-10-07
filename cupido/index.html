@@ -615,6 +615,9 @@ es:{
   showAnswer:'Le escribía',
   showNoClues:'No recibió pistas — que el equipo adivine igual.',
   showEnd:'Nadie compró nada. Y aun así todo el mundo recibió algo.',
+  revealWroteYou:'Quien te escribió', revealNoWriter:'No pudimos cargar quién te escribió. Recarga la página.',
+  showWriter:'Quien le escribió a', showHit:'Su teoría acertó ✓', showMiss:'Su teoría no acertó',
+  adminRevealAll:'Revelar a todos', adminRevealAllUndo:'Volver a ocultar',
   novTag:'Cierre',
   exportDeck:'Exportar datos del deck (JSON)',
 },
@@ -745,6 +748,9 @@ pt:{
   showAnswer:'Quem escrevia',
   showNoClues:'Não recebeu pistas — o time adivinha assim mesmo.',
   showEnd:'Ninguém comprou nada. E mesmo assim todo mundo recebeu algo.',
+  revealWroteYou:'Quem escreveu para você', revealNoWriter:'Não conseguimos carregar quem escreveu para você. Recarregue a página.',
+  showWriter:'Quem escreveu para', showHit:'A teoria acertou ✓', showMiss:'A teoria não acertou',
+  adminRevealAll:'Revelar para todos', adminRevealAllUndo:'Voltar a ocultar',
   novTag:'Encerramento',
   exportDeck:'Exportar dados do deck (JSON)',
 },
@@ -875,6 +881,9 @@ en:{
   showAnswer:'It was',
   showNoClues:'No clues received — let the room guess anyway.',
   showEnd:'Nobody bought anything. And everyone still got something.',
+  revealWroteYou:'Who wrote to you', revealNoWriter:"We couldn't load who wrote to you. Reload the page.",
+  showWriter:'Who wrote to', showHit:'Their theory was right ✓', showMiss:'Their theory missed',
+  adminRevealAll:'Reveal to everyone', adminRevealAllUndo:'Hide again',
   novTag:'Closing',
   exportDeck:'Export deck data (JSON)',
 }};
@@ -1044,8 +1053,10 @@ const spunCount = () => S.takenCount || 0;
    módulo (no en S) para que quede apagado por defecto en cada carga. */
 let showDrawMap = false;
 let drawMapCache = null; // null = no cargado, 'error' = bloqueado, [] = vacío, [...] = filas
-async function loadDrawMap(){
-  drawMapCache = null; render();
+/* fetchDrawMap() lee sin tocar la pantalla (para usarlo desde un
+   handler antes de cambiar de vista); loadDrawMap() es lo mismo pero
+   repinta antes y después. */
+async function fetchDrawMap(){
   try{
     const snap = await db.collection('assignments').get();
     drawMapCache = snap.docs.map(d => ({ uid: d.id, personId: d.data().personId, receiverPersonId: d.data().receiverPersonId }));
@@ -1053,7 +1064,114 @@ async function loadDrawMap(){
     console.error('drawMap', e);
     drawMapCache = 'error';
   }
+}
+async function loadDrawMap(){
+  drawMapCache = null; render();
+  await fetchDrawMap();
   render();
+}
+/* Solo admin (assignments solo lo lista isAdmin()): ¿quién le escribía
+   a este receptor? null si el mapa no cargó o esa persona no tiene
+   a nadie todavía. Se usa únicamente en el modo presentación (que vive
+   en la pantalla del admin) y para armar la publicación de
+   "Revelar a todos". */
+function writerOf(receiverId){
+  if (!Array.isArray(drawMapCache)) return null;
+  const row = drawMapCache.find(r => r.receiverPersonId === receiverId);
+  return row ? row.personId : null;
+}
+
+/* ── Revelar a todos ──────────────────────────────────────
+   Un solo botón del admin hace TODO junto, en un único batch
+   atómico de Firestore:
+     · config/game.revealOpen = true   → ciclos cerrados, Sherlock
+       bloqueado, aparece la pestaña Revelación (y las reglas dejan
+       leer gifts/guesses, como siempre con revealOpen).
+     · config/game.pairingsOpen = true → habilita la lectura de
+       reveal/{receptor}.
+     · reveal/{receptor} = { giver, receiver } para cada pareja,
+       copiado de assignments.
+   Cada persona solo puede leer reveal/{SU propio id} (regla de
+   Firestore), nunca la tabla completa. Ocultar de nuevo borra los
+   documentos y apaga ambos interruptores. */
+let myWriterId = undefined; // undefined = no publicado/no cargado · null = sin dato · string = personId
+async function loadMyReveal(me){
+  if (!(S.config && S.config.pairingsOpen)){ myWriterId = undefined; return; }
+  try{
+    const d = await db.collection('reveal').doc(me.id).get();
+    myWriterId = (d.exists && d.data().giver) ? d.data().giver : null;
+  }catch(e){ console.error('reveal', e); myWriterId = null; }
+}
+function revealAllTexts(){
+  const L = S.lang;
+  const pick = (es, pt, en) => L === 'en' ? en : L === 'pt' ? pt : es;
+  return {
+    word: pick('REVELAR', 'REVELAR', 'REVEAL'),
+    hideConfirm: pick('¿Volver a ocultar la revelación? Se borra quién le escribió a quién del servidor y la pestaña Revelación desaparece para todos.',
+      'Voltar a ocultar a revelação? Apaga do servidor quem escreveu para quem e a aba Revelação some para todos.',
+      'Hide the reveal again? This deletes who-wrote-to-whom from the server and the Reveal tab disappears for everyone.'),
+    prompt: (spun, total) => pick(
+      `⚠️ REVELAR A TODOS\n\nEsto, para TODO el equipo y de inmediato:\n• cierra los ciclos y bloquea Sherlock\n• abre la pestaña Revelación\n• le muestra a cada persona quién le escribió a ella\n\nHan girado ${spun} de ${total}.\n\nSi estás seguro, escribe REVELAR:`,
+      `⚠️ REVELAR PARA TODOS\n\nIsto, para TODA a equipe e imediatamente:\n• fecha os ciclos e bloqueia o Sherlock\n• abre a aba Revelação\n• mostra a cada pessoa quem escreveu para ela\n\nJá giraram ${spun} de ${total}.\n\nSe tem certeza, digite REVELAR:`,
+      `⚠️ REVEAL TO EVERYONE\n\nThis, for the WHOLE team and immediately:\n• closes the cycles and locks Sherlock\n• opens the Reveal tab\n• shows each person who wrote to them\n\n${spun} of ${total} have spun.\n\nIf you are sure, type REVEAL:`),
+    cancelled: pick('Cancelado — no se reveló nada.', 'Cancelado — nada foi revelado.', 'Cancelled — nothing was revealed.'),
+    done: pick('Revelación abierta para todos.', 'Revelação aberta para todos.', 'Reveal opened for everyone.'),
+    hidden: pick('Revelación oculta de nuevo.', 'Revelação oculta de novo.', 'Reveal hidden again.'),
+    failed: pick('No se pudo — nada cambió. ¿Ya publicaste las reglas nuevas de Firebase?', 'Não deu — nada mudou. Você já publicou as novas regras do Firebase?', "Didn't work — nothing changed. Did you publish the new Firebase rules?"),
+    dupe: pick('Hay dos personas con la misma persona asignada — no se reveló nada. Revisa el mapa del sorteo.', 'Duas pessoas com a mesma pessoa atribuída — nada foi revelado. Veja o mapa do sorteio.', 'Two people share the same receiver — nothing was revealed. Check the draw map.'),
+    note: pick('«Revelar a todos» cierra los ciclos, bloquea Sherlock, abre la pestaña Revelación y le muestra a cada persona solo quién le escribió a ella — nadie ve el mapa completo. Se puede volver a ocultar.',
+      '«Revelar para todos» fecha os ciclos, bloqueia o Sherlock, abre a aba Revelação e mostra a cada pessoa só quem escreveu para ela — ninguém vê o mapa completo. Dá para ocultar de novo.',
+      '“Reveal to everyone” closes the cycles, locks Sherlock, opens the Reveal tab and shows each person only who wrote to them — nobody sees the full map. It can be hidden again.'),
+    stateOn: pick('Estado: revelación ABIERTA para todos.', 'Estado: revelação ABERTA para todos.', 'Status: reveal is OPEN for everyone.'),
+    stateOff: pick('Estado: revelación cerrada (nadie puede ver quién le escribió).', 'Estado: revelação fechada (ninguém pode ver quem escreveu).', 'Status: reveal is closed (nobody can see who wrote to them).')
+  };
+}
+async function revealToEveryone(){
+  const T = revealAllTexts();
+  /* Datos frescos justo ahora, no los que quedaron en caché. */
+  await fetchDrawMap();
+  if (!Array.isArray(drawMapCache)){ toast(T.failed); return; }
+  const rows = drawMapCache.filter(r => r.personId && r.receiverPersonId && byId(r.personId) && byId(r.receiverPersonId));
+  const seen = new Set();
+  for (const r of rows){
+    if (seen.has(r.receiverPersonId)){ toast(T.dupe); return; }
+    seen.add(r.receiverPersonId);
+  }
+  const typed = window.prompt(T.prompt(rows.length, ACTIVE.length));
+  if (typed === null || typed.trim().toUpperCase() !== T.word){ toast(T.cancelled); return; }
+  try{
+    const batch = db.batch();
+    rows.forEach(r => batch.set(db.collection('reveal').doc(r.receiverPersonId), { giver: r.personId, receiver: r.receiverPersonId }));
+    batch.set(db.collection('config').doc('game'), { revealOpen: true, pairingsOpen: true }, { merge: true });
+    await batch.commit();
+    S.config = Object.assign({}, S.config, { revealOpen: true, pairingsOpen: true });
+    toast(T.done);
+  }catch(e){
+    console.error('revealToEveryone', e);
+    toast(T.failed);
+  }
+  save(); render();
+}
+async function hideReveal(){
+  const T = revealAllTexts();
+  if (!confirm(T.hideConfirm)) return;
+  try{
+    /* Si la colección todavía no se puede listar (reglas sin publicar),
+       igual se apagan los interruptores: sin interruptor prendido nadie
+       puede leer nada de reveal/. */
+    let docs = [];
+    try{ docs = (await db.collection('reveal').get()).docs; }catch(e){ console.error('reveal list', e); }
+    const batch = db.batch();
+    docs.forEach(d => batch.delete(d.ref));
+    batch.set(db.collection('config').doc('game'), { revealOpen: false, pairingsOpen: false }, { merge: true });
+    await batch.commit();
+    S.config = Object.assign({}, S.config, { revealOpen: false, pairingsOpen: false });
+    toast(T.hidden);
+  }catch(e){
+    console.error('hideReveal', e);
+    toast(T.failed);
+  }
+  save(); render();
 }
 /* "¿Ya giró?" y "¿Ya envió?" salen del mismo dato que ya usa el mapa
    oculto (assignments), pero acá nunca se muestra CON QUIÉN — solo
@@ -1093,6 +1211,16 @@ async function wipeDraws(){
   ]);
   const rest = [...tsnaps.docs, ...gsnaps.docs, ...qsnaps.docs];
   if (rest.length){ const b = db.batch(); rest.forEach(d => b.delete(d.ref)); await b.commit(); }
+  /* Si había una revelación publicada, también se retira (aparte y sin
+     bloquear: si las reglas de reveal/ aún no están publicadas, esto
+     falla en silencio y el resto del borrado sigue). */
+  try{
+    const rsnaps = await db.collection('reveal').get();
+    const b3 = db.batch();
+    rsnaps.docs.forEach(d => b3.delete(d.ref));
+    b3.set(db.collection('config').doc('game'), { pairingsOpen: false }, { merge: true });
+    await b3.commit();
+  }catch(e){ console.error('wipe reveal', e); }
   const asnaps = await db.collection('assignments').get(); // puede tronar por permisos
   if (asnaps.docs.length){ const b2 = db.batch(); asnaps.docs.forEach(d => b2.delete(d.ref)); await b2.commit(); }
 }
@@ -1190,6 +1318,7 @@ async function loadMine(me){
       if (gs.exists){ const d = gs.data(); d.at = tsToIso(d.at); S.guesses[key] = d; }
     }catch(e){ /* sin teoría enviada todavía */ }
   }));
+  await loadMyReveal(me);
 }
 /* Solo para el admin: señales de participación agregadas por persona
    (¿recibió su pieza esta semana? ¿mandó su teoría?). Nunca quién se
@@ -1339,6 +1468,11 @@ function loginErrorText(kind){
   const set = byLang[kind] || byLang.error;
   return set[S.lang] || set.es;
 }
+function presentationNote(){
+  return S.lang === 'en' ? 'Presentation mode is only on your screen: it shows the clues, each theory and who wrote to each person. Nobody else sees it — use “Reveal to everyone” above to show each person who wrote to them.'
+    : S.lang === 'pt' ? 'O modo apresentação só aparece na sua tela: mostra as pistas, cada teoria e quem escreveu para cada pessoa. Ninguém mais vê — use “Revelar para todos” acima para mostrar a cada pessoa quem escreveu para ela.'
+    : 'El modo presentación solo se ve en tu pantalla: muestra las pistas, cada teoría y quién le escribió a cada persona. Nadie más lo ve — usa «Revelar a todos» arriba para que cada persona vea quién le escribió.';
+}
 function participationNote(){
   return S.lang === 'en' ? 'Shows who has spun, who has received their piece each week, and who has sent it — never the content of what anyone wrote.'
     : S.lang === 'pt' ? 'Mostra quem já girou, quem já recebeu a peça de cada semana, e quem já enviou — nunca o conteúdo do que alguém escreveu.'
@@ -1394,8 +1528,11 @@ function TopBar(){
     b.onclick = () => {
       view = k;
       render();
-      loadMine(me).then(() => { save(); render(); });
-      if (k === 'admin' && drawMapCache === null) loadDrawMap();
+      /* También se vuelve a leer config/game: así quien dejó la pestaña
+         abierta ve aparecer "Revelación" (o desaparecer) en cuanto
+         cambia de pestaña, sin recargar. */
+      loadSharedConfig().then(() => loadMine(me)).then(() => { save(); render(); });
+      if ((k === 'admin' || k === 'show') && drawMapCache === null) loadDrawMap();
     };
     tabs.appendChild(b);
   });
@@ -1864,19 +2001,31 @@ function RevealView(me){
   const given = byId(receiverOf(me.id));
   if (!given) return el(`<div class="card" style="text-align:center;padding:3rem 1.5rem">
     <h2>${t('revealTitle')}</h2><p class="lede" style="margin:.7rem auto 0">${t('drawPendingBody')}</p></div>`);
-  /* Ya no hay una tabla de "quién le escribía a quién": ni siquiera
-     Cupido+ lo sabe (assignments/{uid} solo lo lee esa persona,
-     siempre, sin excepción de revelación ni de admin). Lo único que
-     "me" sabe con certeza es a quién LE escribió — eso sí es suyo. */
+  /* Aquí cada persona ve SOLO dos cosas: a quién le escribió (su
+     propia assignment) y, si el admin ya pulsó "Revelar a todos",
+     quién le escribió a ella — leyendo únicamente reveal/{su id}, que
+     las reglas de Firestore solo dejan abrir a esa misma persona y
+     solo mientras config/game.pairingsOpen sea true. Nunca hay una
+     tabla con todas las parejas del lado del cliente. */
+  const published = !!(S.config && S.config.pairingsOpen);
+  const writer = (published && myWriterId) ? byId(myWriterId) : null;
+  const writerCard = !published ? '' : writer
+    ? `<div class="card accent" style="margin-bottom:1.2rem;max-width:420px">
+        <div class="eyebrow">${t('revealWroteYou')}</div>
+        <div class="person" style="margin-top:.9rem">${avatar(writer, 72)}
+        <div><div class="nm">${esc(writer.name)}</div><div class="rl">${esc(writer.role)} ${writer.country}</div></div></div>
+      </div>`
+    : `<p class="lede" style="margin:0 0 1.2rem;max-width:60ch">${t('revealNoWriter')}</p>`;
   const node = el(`<div>
     <div class="eyebrow">Cupido+</div>
     <h2 style="margin:.5rem 0 1.4rem">${t('revealTitle')}</h2>
+    ${writerCard}
     <div class="card accent" style="margin-bottom:2rem;max-width:420px">
       <div class="eyebrow">${t('revealYouGave')}</div>
       <div class="person" style="margin-top:.9rem">${avatar(given, 72)}
       <div><div class="nm">${esc(given.name)}</div><div class="rl">${esc(given.role)} ${given.country}</div></div></div>
     </div>
-    <p class="lede" style="margin:0 0 2rem;max-width:60ch">${revealSecretNote()}</p>
+    ${published ? '' : `<p class="lede" style="margin:0 0 2rem;max-width:60ch">${revealSecretNote()}</p>`}
     <div class="card accent">
       <div class="eyebrow" style="color:var(--magenta)">${t('novTag')}</div>
       <p style="font-family:var(--serif);font-size:1.35rem;margin:.6rem 0 0">${t('showEnd')}</p></div>
@@ -1884,18 +2033,20 @@ function RevealView(me){
   return node;
 }
 function revealSecretNote(){
-  return S.lang === 'en' ? "Who wrote to you is never stored anywhere — not even Cupido+ knows. That part gets revealed out loud, live, when the moment comes."
-    : S.lang === 'pt' ? 'Quem escreveu para você nunca fica guardado em lugar nenhum — nem o Cupido+ sabe. Essa parte é revelada em voz alta, ao vivo, na hora certa.'
-    : 'Quién te escribió a ti nunca queda guardado en ningún lado — ni Cupido+ lo sabe. Esa parte se revela en voz alta, en vivo, cuando llegue el momento.';
+  return S.lang === 'en' ? "Who wrote to you gets revealed out loud, live, when the moment comes."
+    : S.lang === 'pt' ? 'Quem escreveu para você é revelado em voz alta, ao vivo, na hora certa.'
+    : 'Quién te escribió a ti se revela en voz alta, en vivo, cuando llegue el momento.';
 }
 function liveRevealPrompt(){
-  return S.lang === 'en' ? "Cupido+ doesn't know who wrote this either — whoever it was, stand up now!"
-    : S.lang === 'pt' ? 'O Cupido+ também não sabe quem escreveu isso — quem foi, se levanta agora!'
-    : 'Cupido+ tampoco sabe quién escribió esto — quien haya sido, ¡que se pare ahora!';
+  return S.lang === 'en' ? "Who was it? Stand up now!"
+    : S.lang === 'pt' ? 'Quem foi? Levanta agora!'
+    : '¿Quién fue? ¡Que se pare ahora!';
 }
 
 /* ── Admin ───────────────────────────────────────────────── */
 function AdminView(me){
+  const RA = revealAllTexts();
+  const revealedAny = isRevealed() || !!(S.config && S.config.pairingsOpen);
   const node = el(`<div>
     <div class="eyebrow">Cupido+ · ${esc(first(me))}</div>
     <h2 style="margin:.5rem 0 .5rem">${t('adminTitle')}</h2>
@@ -1920,8 +2071,9 @@ function AdminView(me){
       <div class="btn-row">
         <label style="display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:600">
           <input type="checkbox" id="test" ${S.config.testMode ? 'checked' : ''}> ${t('adminTest')}</label>
-        <button class="btn sm" id="rev">${isRevealed() ? t('adminRevealUndo') : t('adminReveal')}</button>
+        <button class="btn sm ${revealedAny ? '' : 'danger'}" id="rev">${revealedAny ? t('adminRevealAllUndo') : t('adminRevealAll')}</button>
       </div>
+      <p class="faint" style="margin:.9rem 0 0;max-width:70ch"><strong>${revealedAny ? RA.stateOn : RA.stateOff}</strong><br>${RA.note}</p>
     </div>
 
     <div class="card" style="margin-bottom:1.1rem">
@@ -1953,6 +2105,7 @@ function AdminView(me){
 
     <div class="card">
       <div class="eyebrow" style="margin-bottom:.8rem">${t('adminData')}</div>
+      <p class="faint" style="margin:0 0 1rem;max-width:70ch">${presentationNote()}</p>
       <div class="btn-row">
         <button class="btn primary" id="show">${t('showOpen')}</button>
         <button class="btn" id="exp">${t('adminExport')}</button>
@@ -1993,11 +2146,13 @@ function AdminView(me){
     await setSharedConfig({ testMode: v });
     save(); render();
   };
-  node.querySelector('#rev').onclick = async () => {
-    const next = !isRevealed();
-    if (next && !confirm(t('adminReveal') + '?')) return;
-    await setSharedConfig({ revealOpen: next });
-    save(); render();
+  /* Un solo botón: "Revelar a todos" (con confirmación escrita) o
+     "Volver a ocultar". Se deshabilita mientras corre para que un
+     doble clic no lance dos veces el proceso. */
+  node.querySelector('#rev').onclick = async (e) => {
+    const btn = e.currentTarget; btn.disabled = true;
+    try{ if (revealedAny) await hideReveal(); else await revealToEveryone(); }
+    finally{ btn.disabled = false; }
   };
 
   /* Participación: cada casilla dice si esa persona YA RECIBIÓ su
@@ -2031,7 +2186,13 @@ function AdminView(me){
   });
 
   /* Datos */
-  node.querySelector('#show').onclick = async () => { await refreshAdminData(); view = 'show'; render(); };
+  node.querySelector('#show').onclick = async (e) => {
+    const btn = e.currentTarget; btn.disabled = true;
+    /* Trae datos frescos, incluido el mapa quién-le-escribió-a-quién
+       (solo el admin puede leer assignments), ANTES de cambiar de vista. */
+    try{ await refreshAdminData(); await fetchDrawMap(); }catch(err){ console.error(err); }
+    view = 'show'; render();
+  };
   node.querySelector('#deck').onclick = () => download('cupido-deck.json', JSON.stringify(deckData(), null, 2), 'application/json');
   node.querySelector('#exp').onclick = () => download('cupido-estado-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(S, null, 2), 'application/json');
   node.querySelector('#csv').onclick = () => {
@@ -2194,18 +2355,35 @@ function ShowView(){
       return;
     }
     if (st.k === 'a'){
-      /* Nadie puede reconstruir quién le escribió a quién, ni siquiera
-         después de la revelación: assignments/{uid} solo lo lee ese
-         mismo uid (ni el admin tiene excepción). Por diseño, esta
-         parte se revela en vivo, no la calcula la app. */
-      body.appendChild(el(`<div style="width:100%;display:grid;gap:1.5rem;justify-items:center">
-        <div class="eyebrow">${esc(p.name)} · ${t('showAnswer')}</div>
-        <div class="big-name">🤫</div>
-        <p class="lede" style="max-width:46ch">${liveRevealPrompt()}</p>
+      /* El mapa viene de assignments, que solo el admin puede listar,
+         así que esto únicamente existe en la pantalla de Miguel. Si el
+         mapa no cargó (error de permisos/red) se cae al "¿quién fue?"
+         de siempre en vez de mostrar algo equivocado. */
+      const w = byId(writerOf(st.id));
+      if (!w){
+        body.appendChild(el(`<div style="width:100%;display:grid;gap:1.5rem;justify-items:center">
+          <div class="eyebrow">${esc(p.name)} · ${t('showAnswer')}</div>
+          <div class="big-name">🤫</div>
+          <p class="lede" style="max-width:46ch">${liveRevealPrompt()}</p>
+        </div>`));
+        return;
+      }
+      const verdict = th
+        ? `<div style="font-family:var(--type);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:${th.guess === w.id ? 'var(--mint)' : 'var(--magenta)'}">${th.guess === w.id ? t('showHit') : t('showMiss')}</div>`
+        : '';
+      body.appendChild(el(`<div style="width:100%;display:grid;gap:1.4rem;justify-items:center">
+        ${avatar(w, 120)}
+        <div><div class="eyebrow">${t('showWriter')} ${esc(p.name)}</div>
+          <div class="big-name">${esc(w.name)}</div></div>
+        ${verdict}
       </div>`));
       return;
     }
   }
+  /* Un solo listener de teclado a la vez: si la vista se repinta (p. ej.
+     al terminar un refresco de fondo) el anterior se retira, para que
+     una flecha no avance dos veces. */
+  if (window.__showKey) document.removeEventListener('keydown', window.__showKey);
   const go = d => { i = Math.max(0, Math.min(steps.length - 1, i + d)); draw(); };
   node.querySelector('#next').onclick = () => go(1);
   node.querySelector('#prev').onclick = () => go(-1);
@@ -2215,6 +2393,7 @@ function ShowView(){
     if (e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); }
     if (e.key === 'Escape'){ document.removeEventListener('keydown', key); view = 'admin'; render(); }
   }
+  window.__showKey = key;
   document.addEventListener('keydown', key);
   draw();
   return node;
