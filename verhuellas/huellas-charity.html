@@ -408,6 +408,48 @@ body {
 </head>
 <body>
 
+<!-- ── PIN GATE ─────────────────────────────────────────── -->
+<div id="pin-gate" style="display:none;position:fixed;inset:0;z-index:9999;background:#0a0a0a;
+     flex-direction:column;align-items:center;justify-content:center;gap:0;">
+  <div style="text-align:center;max-width:320px;width:100%;padding:0 2rem;">
+    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:1.6rem;color:#fff;margin-bottom:4px;">
+      VER+ <span style="color:#F3FF00">Huellas</span>
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+         color:#555;margin-bottom:2.5rem;">Charity · Private Access</div>
+    <input id="pin-input" type="password" maxlength="4" inputmode="numeric" placeholder="Enter PIN"
+      style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:10px;
+             color:#fff;font-size:1.6rem;letter-spacing:0.4em;text-align:center;
+             padding:14px 0;outline:none;box-sizing:border-box;margin-bottom:12px;
+             -webkit-text-security:disc;"
+      onkeydown="if(event.key==='Enter')checkPin()">
+    <div id="pin-error" style="display:none;color:#ff4d4d;font-size:12px;margin-bottom:12px;
+         font-weight:600;letter-spacing:0.04em;">Incorrect PIN — try again</div>
+    <button onclick="checkPin()" style="width:100%;background:#F3FF00;color:#0a0a0a;
+      border:none;border-radius:10px;font-size:13px;font-weight:800;letter-spacing:0.06em;
+      text-transform:uppercase;padding:14px;cursor:pointer;">Enter</button>
+  </div>
+</div>
+<script>
+(function(){
+  /* Always show PIN gate on every page load — no session caching */
+  document.getElementById('pin-gate').style.display='flex';
+  document.body.style.overflow='hidden';
+})();
+function checkPin(){
+  const v=document.getElementById('pin-input').value;
+  const err=document.getElementById('pin-error');
+  if(v==='1111'){
+    document.getElementById('pin-gate').style.display='none';
+    document.body.style.overflow='';
+  } else {
+    err.style.display='block';
+    document.getElementById('pin-input').value='';
+    document.getElementById('pin-input').focus();
+  }
+}
+</script>
+
 <!-- ══════════════════════════════════════════════════════════
      DATA  ─  How to update each month:
        1. Add new edition object to DATA.editions
@@ -506,7 +548,7 @@ const DATA = {
           tag:       "Progress Report",
           img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/september/fundacionsohpia.mp4",
           mediaType: "video",
-          imgRatio:  "landscape",
+          imgRatio:  "portrait",
           summary: `<p>We are now in the third year of our partnership with Fundación Sophia, and the program continues to deliver on its core purpose: keeping vulnerable students in school and supporting their academic trajectories over time.</p><p>All six students remain enrolled. Five of the six improved their GPA in 2026, moving the group average from 5.1 to 5.6 on a 1–10 scale. Across all subjects, 53% of individual grades went up, and the number of grades at or above 7 grew from 9 to 26 between the first and most recent report cards.</p><p><strong>Highlights</strong><br>Two students are advancing with real strength — one reached a 7.4 average, improved in 11 of 13 subjects, and earned a 9 in Music Education; another improved across three consecutive grading periods (5.6 → 5.9 → 6.4). A third moved from "barely acceptable" to "satisfactory," with no failing subjects and an 8 in Spanish.</p><p><strong>Students under close follow-up</strong><br>The three students still working through challenges are under close, coordinated follow-up. Dana is in a critical situation: after three grading periods her average remains flat at 4.3, she has 8 of 13 subjects below the passing threshold, and the school has formally stated that her promotion is at risk — a contrast with what was communicated to us in July. Maximiliano and Lautaro remain on alert: both carry low averages and persistent conduct and focus issues in the classroom, and Lautaro's unjustified absences have more than tripled over the course of the year. We are watching year-end results closely, as promotion outcomes are a condition for the 2027 disbursement.</p><p><strong>Testimonials</strong><br>Four students recorded short video testimonials sharing what they enjoy most about going to school — from Antonella, Fiorella, Lautaro, and Maximiliano.</p>`,
           stats: [
             { n: "6/6",  l: "Students remain enrolled",    ctx: "Third year of partnership",                   c: "#A7B2AA" },
@@ -649,9 +691,12 @@ function renderHero() {
 /* ── EDITION FILTER ── */
 function renderEditionFilter() {
   const container = document.getElementById('edition-filter');
+  /* Only show editions that have at least one story in any team */
+  const usedNums = new Set(DATA.teams.flatMap(t => t.stories.map(s => s.edition)));
+  const filtered = DATA.editions.filter(e => usedNums.has(e.num));
   const buttons = [
     `<button class="ef-btn active" data-edition="all" onclick="filterByEdition('all')">All</button>`,
-    ...DATA.editions.slice().reverse().map(e =>
+    ...filtered.slice().reverse().map(e =>
       `<button class="ef-btn" data-edition="${e.num}" onclick="filterByEdition('${e.num}')">${editionShortLabel(e)}</button>`
     )
   ];
