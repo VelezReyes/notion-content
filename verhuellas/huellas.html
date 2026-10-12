@@ -61,6 +61,12 @@ body {
 .site-logo:hover { opacity: 1; }
 .nav-wordmark { font-family: var(--serif); font-size: 14px; font-style: italic; color: #555; }
 .nav-wordmark span { color: var(--yellow); }
+.nav-section-link {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: #A7B2AA; text-decoration: none; border: 1px solid #A7B2AA44;
+  padding: 5px 12px; border-radius: 20px; transition: all 0.15s;
+}
+.nav-section-link:hover { color: #fff; border-color: #A7B2AA; }
 
 /* ─── HERO ───────────────────────────────────────────── */
 .hero {
@@ -780,43 +786,6 @@ const DATA = {
           onepager:   "https://docs.google.com/document/d/1dF_hzL8sMggQcBJx5TvbxJAPLjO-wXQ_-UrqYmZP71Q/edit?tab=t.0"
         }
       ]
-    },
-
-    /* ══ CHARITY (Education Support) ═══════════════════════ */
-    {
-      id: "charity", name: "Charity", color: "#A7B2AA",
-      stories: [
-        {
-          edition:   "02",
-          title:     "María José Velásquez González · Industrial Engineering + Data Science, Universidad de los Andes",
-          pill:      "Education Support",
-          tag:       "Success Stories",
-          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/MariaJose-2026-01.mp4",
-          mediaType: "video",
-          imgRatio:  "portrait",
-          summary: `<p>VélezReyes+ covers 30% of María José's tuition plus a monthly stipend so she can pursue a dual degree at Universidad de los Andes. She took on her first teaching assistant role this semester, an experience she described, in her own video update, as one of the best she's had at university, watching her students grow in confidence. She is also meeting her volunteer commitment with distinction so far, supporting the Aprendo+ team in Peru on data and operations, from dashboard tracking by school district to teacher recognition reports, since the program's early stages and now through its rollout, with the team consistently praising her reliability and follow through.</p>`,
-          stats: [
-            { n: "4.45", l: "Semester average (2026-1)", ctx: "Out of 5.0", c: "#A7B2AA" },
-            { n: "4.61", l: "Cumulative average",         ctx: "Out of 5.0", c: "#A7B2AA" }
-          ],
-          investment: "USD 2,500 per semester · Support period: January 2025 – December 2026"
-        },
-        {
-          edition:   "02",
-          title:     "Samuel Andrés Lamilla Verján · Data Science, Pontificia Universidad Javeriana",
-          pill:      "Education Support",
-          tag:       "Success Stories",
-          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/july/charity/Samuel-2026-01.mp4",
-          mediaType: "video",
-          imgRatio:  "portrait",
-          summary: `<p>VélezReyes+ has covered Samuel's living costs in Bogotá since April 2024, renewed for January to December 2026, so he can continue his degree away from his family's home in rural Neiva, Huila. In his video update, he shared that this year he overcame a long standing fear of public speaking, delivering an elevator pitch at Javeriana's Auditorio Luis Carlos Galán, a big milestone for him!</p>`,
-          stats: [
-            { n: "4.011", l: "Semester average (2026-1)", ctx: "Out of 5.0", c: "#A7B2AA" },
-            { n: "4.06",  l: "Cumulative average",         ctx: "Out of 5.0", c: "#A7B2AA" }
-          ],
-          investment: "USD 500 monthly stipend · Support period: April 2024 – December 2026 (renewed January – December 2026)"
-        }
-      ]
     }
 
   ] /* end teams */
@@ -850,6 +819,7 @@ const DATA = {
       <img class="site-logo" id="site-logo" src="" alt="VélezReyes+">
     </a>
     <div class="nav-wordmark">VER+ <span>Huellas</span></div>
+    <a href="huellas-charity.html" class="nav-section-link">Charity →</a>
   </div>
 </nav>
 
