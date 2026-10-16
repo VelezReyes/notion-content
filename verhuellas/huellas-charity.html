@@ -408,46 +408,74 @@ body {
 </head>
 <body>
 
-<!-- ── PIN GATE ─────────────────────────────────────────── -->
-<div id="pin-gate" style="display:none;position:fixed;inset:0;z-index:9999;background:#0a0a0a;
+<!-- ── GOOGLE LOGIN GATE ───────────────────────────────── -->
+<div id="pin-gate" style="display:flex;position:fixed;inset:0;z-index:9999;background:#0a0a0a;
      flex-direction:column;align-items:center;justify-content:center;gap:0;">
-  <div style="text-align:center;max-width:320px;width:100%;padding:0 2rem;">
+  <div style="text-align:center;max-width:340px;width:100%;padding:0 2rem;">
     <div style="font-family:'DM Serif Display',Georgia,serif;font-size:1.6rem;color:#fff;margin-bottom:4px;">
       VER+ <span style="color:#F3FF00">Huellas</span>
     </div>
     <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
          color:#555;margin-bottom:2.5rem;">Charity · Private Access</div>
-    <input id="pin-input" type="password" maxlength="4" inputmode="numeric" placeholder="Enter PIN"
-      style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:10px;
-             color:#fff;font-size:1.6rem;letter-spacing:0.4em;text-align:center;
-             padding:14px 0;outline:none;box-sizing:border-box;margin-bottom:12px;
-             -webkit-text-security:disc;"
-      onkeydown="if(event.key==='Enter')checkPin()">
-    <div id="pin-error" style="display:none;color:#ff4d4d;font-size:12px;margin-bottom:12px;
-         font-weight:600;letter-spacing:0.04em;">Incorrect PIN — try again</div>
-    <button onclick="checkPin()" style="width:100%;background:#F3FF00;color:#0a0a0a;
+    <button id="gate-btn" onclick="gateSignIn()" style="width:100%;background:#F3FF00;color:#0a0a0a;
       border:none;border-radius:10px;font-size:13px;font-weight:800;letter-spacing:0.06em;
-      text-transform:uppercase;padding:14px;cursor:pointer;">Enter</button>
+      text-transform:uppercase;padding:14px;cursor:pointer;display:none;">Sign in with Google</button>
+    <div id="gate-status" style="color:#777;font-size:12px;font-weight:600;letter-spacing:0.04em;">Loading…</div>
+    <div id="pin-error" style="display:none;color:#ff4d4d;font-size:12px;margin-top:14px;
+         font-weight:600;letter-spacing:0.04em;line-height:1.5;"></div>
+    <button id="gate-out" onclick="gateSignOut()" style="display:none;margin:14px auto 0;background:none;
+      border:none;color:#777;font-size:11px;text-decoration:underline;cursor:pointer;">Use another account</button>
   </div>
 </div>
-<script>
-(function(){
-  /* Always show PIN gate on every page load — no session caching */
-  document.getElementById('pin-gate').style.display='flex';
-  document.body.style.overflow='hidden';
-})();
-function checkPin(){
-  const v=document.getElementById('pin-input').value;
-  const err=document.getElementById('pin-error');
-  if(v==='1111'){
-    document.getElementById('pin-gate').style.display='none';
-    document.body.style.overflow='';
-  } else {
-    err.style.display='block';
-    document.getElementById('pin-input').value='';
-    document.getElementById('pin-input').focus();
-  }
+<script>document.body.style.overflow='hidden';</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey: "AIzaSyD4UVlJCQ6wmrOy3AFI0ogwZbuxpQubaiw",
+  authDomain: "vere-a67ea.firebaseapp.com",
+  projectId: "vere-a67ea",
+  appId: "1:735817545410:web:c0f4b8acb67ce7ac732d5b"
+});
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+
+const ALLOW = [
+  "andy@democraciamas.com","cristina@velezreyesmas.com","dharla@velezreyesmas.com",
+  "eduardo@verefo.com","felipe@velezreyesmas.com","francine@verefo.com",
+  "gabriela@verefo.com","isabella@velezreyesmas.com","juanguillermo@velezreyesmas.com",
+  "laura@velezreyesmas.com","leandro@velezreyesmas.com","luisa@velezreyesmas.com",
+  "marcela@verefo.com","marcia@verefo.com","marialuiza@democraciamas.com",
+  "maribel@velezreyesmas.com","miguel@velezreyesmas.com","oswaldo@verefo.com",
+  "raquel@verefo.com","soraya@verefo.com","tamara@velezreyesmas.com",
+  "yineth@velezreyesmas.com","david@nubank.com.br","mariel@velezreyesmas.com"
+];
+
+const $ = id => document.getElementById(id);
+function showLogin(msg){
+  $('pin-gate').style.display='flex'; document.body.style.overflow='hidden';
+  $('gate-btn').style.display='block'; $('gate-status').style.display='none';
+  $('pin-error').style.display = msg ? 'block' : 'none'; $('pin-error').textContent = msg || '';
+  $('gate-out').style.display = msg ? 'block' : 'none';
 }
+window.gateSignIn = async () => {
+  $('pin-error').style.display='none';
+  try { await signInWithPopup(auth, provider); }
+  catch(e){ if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') showLogin('Sign-in failed — please try again.'); }
+};
+window.gateSignOut = () => signOut(auth);
+
+onAuthStateChanged(auth, user => {
+  if (!user) return showLogin();
+  const email = (user.email || '').toLowerCase();
+  if (user.emailVerified && ALLOW.includes(email)) {
+    $('pin-gate').style.display='none'; document.body.style.overflow='';
+  } else {
+    showLogin(email + ' does not have access to this report.');
+  }
+});
 </script>
 
 <!-- ══════════════════════════════════════════════════════════
