@@ -458,7 +458,7 @@ function showLogin(msg){
   $('pin-gate').style.display='flex'; document.body.style.overflow='hidden';
   $('gate-btn').style.display='block'; $('gate-status').style.display='none';
   $('pin-error').style.display = msg ? 'block' : 'none'; $('pin-error').textContent = msg || '';
-  $('gate-out').style.display = msg ? 'block' : 'none';
+  $('gate-out').style.display = (msg && !msg.startsWith('Your session')) ? 'block' : 'none';
 }
 window.gateSignIn = async () => {
   $('pin-error').style.display='none';
@@ -467,11 +467,26 @@ window.gateSignIn = async () => {
 };
 window.gateSignOut = () => signOut(auth);
 
+const SESSION_MS = 60 * 60 * 1000; // 1 hora desde el login
+let expiryTimer = null;
+let pendingMsg = '';
+const EXPIRED = 'Your session expired — please sign in again.';
+
 onAuthStateChanged(auth, user => {
-  if (!user) return showLogin();
+  clearTimeout(expiryTimer);
+  if (!user) { const m = pendingMsg; pendingMsg = ''; return showLogin(m); }
   const email = (user.email || '').toLowerCase();
+  const signedAt = Date.parse(user.metadata.lastSignInTime || 0);
+  const left = signedAt + SESSION_MS - Date.now();
+  if (!signedAt || left <= 0) {
+    pendingMsg = EXPIRED;
+    return signOut(auth);
+  }
   if (user.emailVerified && ALLOW.includes(email)) {
     $('pin-gate').style.display='none'; document.body.style.overflow='';
+    expiryTimer = setTimeout(() => {
+      pendingMsg = EXPIRED; signOut(auth);
+    }, left);
   } else {
     showLogin(email + ' does not have access to this report.');
   }
