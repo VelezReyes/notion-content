@@ -237,6 +237,7 @@ const nodes = {
   attorney:     {x:1610,y:450, w:140, h:50, cat:'gray',   role:'Attorney', name:'Alejandro'},
 
   /* Row 3 — Managers / Engineer */
+  chocoPM:         {x:320, y:570, w:170, h:55, cat:'purple', role:'Project Manager for Chocó', name:'Luisa Fernanda'},
   educationManager:{x:520, y:570, w:150, h:55, cat:'purple', role:'Education Manager', name:'Maribel'},
   ecdManager:      {x:715, y:570, w:140, h:55, cat:'purple', role:'ECD Manager', name:'Isabella'},
   melPortfolio:    {x:890, y:570, w:160, h:55, cat:'purple', role:'MEL Portfolio Manager', name:'Luisa Mazorra'},
@@ -317,6 +318,10 @@ line(elbowV(anchor('board','bottom'), anchor('ceo','top',0.25)), 'solid');
   .forEach(id => dropTo('ceo', id));
 
 dropTo('educationVP','educationManager');
+// Luisa Fernanda (Project Manager for Chocó) reports to Leandro, same row
+// as Maribel. Her box sits left of Leandro's own width, so this drops from
+// his real bottom-left edge — mirror of Isabella's line on the right.
+line(elbowV(anchor('educationVP','bottom',0), anchor('chocoPM','top')), 'solid');
 dropTo('educationManager','educationCoordinator');
 // Isabella (ECD Manager) now reports straight to Leandro (Education VP),
 // alongside Maribel — Elisa (ECD Director) was removed from the chart.
