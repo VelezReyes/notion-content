@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ver+ Investment Process Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap">
+<style>
+/* Layout: the same instrument panel as the 5-Year Plan guide, read one stop at a time. Learning path: Learn the map → Decide → Score → Simulate → Practice → Keep. */
+:root{
+  --bg:#EFEFE4; --surface:#F7F6EE; --panel:#000000; --panel-2:#1A1A1A;
+  --fg:#0B0B0A; --fg-2:#3A3A36; --muted:#6E6E66; --line:#D2D2C6; --line-strong:#9C9C90;
+  --on-panel:#EFEFE4; --on-panel-2:#A9A99F;
+  --yellow:#F3FF00; --green:#27CF77; --purple:#A62BFF; --red:#E5484D; --amber:#F5A524;
+  --green-ink:#0F8A4A; --purple-ink:#8A17E0; --red-ink:#C42B31; --amber-ink:#A86A00;
+  --green-tint:#DDF5E7; --purple-tint:#EEDFFF; --yellow-tint:#F8FFB0; --red-tint:#FBE3E3; --amber-tint:#FCEFD6;
+  --display:'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --sans:'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --r:10px;
+  --hdr-bg:#FFFFFF; --hdr-fg:#0B0B0A; --hdr-fg-2:#5E5E57; --hdr-line:#C9C9BE; --hdr-chip:#EFEFE4; --hdr-track:#E4E4DA; --hdr-seen:#E4E4DA; --hdr-cur-bg:#0B0B0A; --hdr-cur-fg:#F3FF00; --hdr-prog:#0B0B0A;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0D0D0B; --surface:#171715; --panel:#000000; --panel-2:#1F1F1C;
+  --fg:#EFEFE4; --fg-2:#CFCFC4; --muted:#93938A; --line:#2E2E2A; --line-strong:#55554E;
+  --green-ink:#3FE08C; --purple-ink:#C27BFF; --red-ink:#FF7A7E; --amber-ink:#FFC35C;
+  --green-tint:#10301F; --purple-tint:#2A1340; --yellow-tint:#2B2E00; --red-tint:#3A1517; --amber-tint:#33250A;
+  --hdr-bg:#000000; --hdr-fg:#EFEFE4; --hdr-fg-2:#A9A99F; --hdr-line:#4A4A44; --hdr-chip:#1A1A1A; --hdr-track:#2A2A26; --hdr-seen:#2E2E2A; --hdr-cur-bg:#F3FF00; --hdr-cur-fg:#000000; --hdr-prog:#F3FF00; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0D0D0B; --surface:#171715; --panel:#000000; --panel-2:#1F1F1C;
+  --fg:#EFEFE4; --fg-2:#CFCFC4; --muted:#93938A; --line:#2E2E2A; --line-strong:#55554E;
+  --green-ink:#3FE08C; --purple-ink:#C27BFF; --red-ink:#FF7A7E; --amber-ink:#FFC35C;
+  --green-tint:#10301F; --purple-tint:#2A1340; --yellow-tint:#2B2E00; --red-tint:#3A1517; --amber-tint:#33250A;
+  --hdr-bg:#000000; --hdr-fg:#EFEFE4; --hdr-fg-2:#A9A99F; --hdr-line:#4A4A44; --hdr-chip:#1A1A1A; --hdr-track:#2A2A26; --hdr-seen:#2E2E2A; --hdr-cur-bg:#F3FF00; --hdr-cur-fg:#000000; --hdr-prog:#F3FF00; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hdr-bg)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+p{margin:0}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:4px}
+b,strong{font-weight:700}
+.mark{background:var(--yellow);color:#000;padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--hdr-bg);color:var(--hdr-fg);border-bottom:1px solid var(--hdr-line)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:54px;padding-block:6px}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;flex:none}
+.brand img{height:20px;width:auto;display:block}
+.brand .logo-neg{display:none}
+.brand .brand-tag{font-family:var(--mono);font-size:11px;color:var(--hdr-fg-2);letter-spacing:.06em}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .brand .logo-pos{display:none} :root:not([data-theme="light"]) .brand .logo-neg{display:block} }
+:root[data-theme="dark"] .brand .logo-pos{display:none}
+:root[data-theme="dark"] .brand .logo-neg{display:block}
+@media (max-width:860px){ .brand .brand-tag{display:none} }
+.route{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.route::-webkit-scrollbar{display:none}
+.route button{background:none;border:0;color:var(--hdr-fg-2);font-size:12.5px;font-weight:600;padding:6px 10px;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.route button:hover{color:var(--hdr-fg)}
+.route button .d{font-family:var(--mono);font-size:10.5px;width:18px;height:18px;border-radius:50%;border:1px solid var(--hdr-line);display:grid;place-items:center;font-weight:500}
+.route button.seen .d{background:var(--hdr-seen);border-color:var(--hdr-seen);color:var(--hdr-fg)}
+.route button[aria-current="step"]{background:var(--hdr-cur-bg);color:var(--hdr-cur-fg)}
+.route button[aria-current="step"] .d{border-color:var(--hdr-cur-fg);background:var(--hdr-cur-fg);color:var(--hdr-cur-bg)}
+.theme{display:inline-flex;background:var(--hdr-chip);border:1px solid var(--hdr-line);border-radius:999px;padding:3px;flex:none}
+.theme button{background:none;border:0;color:var(--hdr-fg-2);font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+.theme button[aria-pressed="true"]{background:var(--hdr-fg);color:var(--hdr-bg)}
+.progress{height:3px;background:var(--hdr-track);display:flex}
+.progress i{flex:1;background:var(--hdr-prog);transform-origin:left;transform:scaleX(0);transition:transform .35s ease}
+.progress i.on{transform:scaleX(1)}
+
+main{padding-block:22px 18px}
+.stop{display:grid;gap:16px}
+.stop>*{min-width:0}
+@media (prefers-reduced-motion: no-preference){ .stop{animation:in .35s ease} }
+@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+.beat{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.beat .n{white-space:nowrap;flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--fg);color:var(--bg)}
+.beat .h{font-size:12px;color:var(--muted)}
+.idea{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px;align-items:end;border-bottom:1px dashed var(--line-strong);padding-bottom:16px}
+.idea h2{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);line-height:1.06}
+.idea p{color:var(--fg-2);max-width:70ch;grid-column:1}
+.idea .stopno{grid-column:2;grid-row:1 / span 2;font-family:var(--display);font-size:clamp(46px,7vw,72px);line-height:.8;color:var(--line-strong)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.think{border:1px dashed var(--line-strong);border-radius:var(--r);padding:16px;display:grid;gap:8px;align-content:start}
+.think q{font-family:var(--display);font-size:19px;line-height:1.25;quotes:none}
+.think small{font-size:12px;color:var(--muted)}
+.two{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:6px 30px}
+.pager button{border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:9px 16px;font-weight:700;font-size:13px}
+.pager button.next{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pager button:disabled{opacity:.35;cursor:default}
+.pager span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer{font-size:11.5px;color:var(--muted);padding-block:0 26px}
+.chip{border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2);white-space:nowrap}
+.tpl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:var(--purple-tint);color:var(--purple-ink);border-radius:6px;padding:3px 8px}
+
+/* stop 0 */
+.hero{background:var(--panel);color:var(--on-panel);border-radius:var(--r);padding:26px 26px 24px;display:grid;gap:10px}
+.status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--on-panel-2);border:1px dashed #4A4A44;border-radius:999px;padding:5px 12px;width:max-content;max-width:100%}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--yellow);flex:none}
+.hero h1{font-family:var(--display);font-size:clamp(32px,5vw,54px);line-height:1.02;margin-top:6px}
+.hero .road{font-family:var(--display);color:var(--yellow);font-size:clamp(20px,2.6vw,28px)}
+.hero .sub{color:var(--on-panel-2);max-width:68ch}
+.path{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;text-align:left;display:grid;gap:4px;align-content:start;transition:transform .15s,border-color .15s}
+.pc:hover{transform:translateY(-2px);border-color:var(--fg)}
+.pc .k{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pc b{font-family:var(--display);font-weight:400;font-size:19px;line-height:1.1}
+.pc span{font-size:12px;color:var(--fg-2)}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.principles .box b{display:block;margin-bottom:4px}
+
+/* stop 1: map */
+.stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.stg{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:10px 12px;text-align:left;display:grid;gap:2px;position:relative}
+.stg .k{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.stg b{font-size:13.5px;line-height:1.2}
+.stg .w{font-family:var(--mono);font-size:11px;color:var(--fg-2)}
+.stg.dp::after{content:"Decision";position:absolute;top:-9px;right:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--fg);color:var(--bg);padding:1px 6px;border-radius:999px}
+.stg[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.stg[aria-pressed="true"] .k,.stg[aria-pressed="true"] .w{color:var(--bg);opacity:.75}
+.phases{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.steps{display:grid;gap:6px;counter-reset:s}
+.step{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:opacity .2s,border-color .2s}
+.step::before{counter-increment:s;content:counter(s);font-family:var(--mono);font-size:11px;width:24px;height:24px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center}
+.step .t{font-weight:600}
+.step .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.step.dim{opacity:.32}
+.step.hit{border-color:var(--fg)}
+.step.hit::before{background:var(--yellow);border-color:var(--yellow);color:#000}
+.yourpart{font-size:13px;color:var(--fg-2)}
+
+/* stop 2: decisions */
+.lights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.light{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:12px;text-align:left;display:flex;gap:10px;align-items:center;font-weight:700}
+.light i{width:18px;height:18px;border-radius:50%;flex:none}
+.light[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg)}
+.outcome{border-radius:var(--r);padding:16px;display:grid;gap:8px}
+.outcome.g{background:var(--green-tint)} .outcome.y{background:var(--amber-tint)} .outcome.r{background:var(--red-tint)}
+.outcome h3{font-family:var(--display);font-size:22px}
+.outcome ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.amount{display:grid;gap:10px}
+.amount output{font-family:var(--display);font-size:36px;line-height:1;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--purple)}
+.verdict{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.verdict .pill{font-weight:700;padding:6px 12px;border-radius:999px}
+.pill.fyi{background:var(--green-tint);color:var(--green-ink)}
+.pill.appr{background:var(--purple-tint);color:var(--purple-ink)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.flow span{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.flow em{font-style:normal;color:var(--muted)}
+
+/* stop 3: criteria */
+.gate{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;background:var(--bg)}
+.seg button{border:0;background:none;padding:5px 14px;border-radius:999px;font-weight:700;font-size:12.5px}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.crit{display:grid;gap:10px}
+.cr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.cr:last-child{border-bottom:0}
+.cr .q{font-size:12.5px;color:var(--muted);grid-column:1}
+.cr .sc{grid-row:1 / span 2;grid-column:2}
+.dots{display:inline-flex;gap:4px}
+.dots button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line-strong);background:var(--bg);font-family:var(--mono);font-weight:500}
+.dots button[aria-pressed="true"]{background:var(--purple);border-color:var(--purple);color:#fff}
+.total{display:grid;gap:8px;align-content:start}
+.total .big{font-family:var(--display);font-size:64px;line-height:.9;font-variant-numeric:tabular-nums}
+.total .big small{font-size:24px;color:var(--muted)}
+.meter{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}
+.meter i{height:10px;border-radius:3px;background:var(--line)}
+.meter i.on{background:var(--purple)}
+.blocked{background:var(--red-tint);color:var(--red-ink);border-radius:8px;padding:10px 12px;font-weight:600;font-size:13px}
+
+/* stop 4: simulator */
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.preset{border:1px dashed var(--line-strong);background:var(--bg);border-radius:8px;padding:8px 10px;text-align:left;font-size:12.5px;max-width:260px}
+.preset b{display:block;font-size:12.5px}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+.checks{display:grid;gap:12px}
+.checks fieldset{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px 12px;margin:0;display:grid;gap:6px;background:var(--surface)}
+.checks legend{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 4px}
+.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;cursor:pointer}
+.ck input{margin-top:3px;accent-color:var(--fg);flex:none}
+.ck.na{opacity:.4}
+.row2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.row2 select{border:1px solid var(--line-strong);background:var(--bg);border-radius:8px;padding:5px 8px}
+.readout{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 104px);display:grid;gap:10px}
+.track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.track div{height:44px;border-radius:6px;background:var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;color:var(--fg-2);text-align:center;padding:2px;line-height:1.1}
+.track div.done{background:var(--green);color:#000}
+.track div.now{background:var(--yellow);color:#000;box-shadow:inset 0 0 0 2px #000}
+.track div.stopd{background:var(--red);color:#fff}
+.where{background:var(--panel);color:var(--on-panel);border-radius:var(--r);padding:16px;display:grid;gap:6px}
+.where .eyebrow{color:var(--on-panel-2)}
+.where h3{font-family:var(--display);font-size:26px;line-height:1.1}
+.next{display:grid;gap:6px}
+.next .who{display:flex;flex-wrap:wrap;gap:4px}
+.warn{background:var(--amber-tint);color:var(--amber-ink);border-radius:8px;padding:8px 10px;font-size:12.5px;font-weight:600}
+.err{background:var(--red-tint);color:var(--red-ink);border-radius:8px;padding:8px 10px;font-size:12.5px;font-weight:600}
+.okm{background:var(--green-tint);color:var(--green-ink);border-radius:8px;padding:8px 10px;font-size:12.5px;font-weight:600}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;border-top:1px dashed var(--line);padding-top:8px;flex-wrap:wrap}
+.kv b{font-variant-numeric:tabular-nums}
+.reset{border:0;background:none;text-decoration:underline;font-size:12px;color:var(--muted);padding:0}
+
+/* stop 5: practice */
+.quiz{display:grid;gap:12px}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.qdots{display:flex;gap:4px}
+.qdots i{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.qdots i.cur{background:var(--fg)} .qdots i.ok{background:var(--green)} .qdots i.no{background:var(--red)}
+.case{background:var(--panel);color:var(--on-panel);border-radius:var(--r);padding:18px;display:grid;gap:6px}
+.case .eyebrow{color:var(--on-panel-2)}
+.case p{font-family:var(--display);font-size:clamp(19px,2.2vw,24px);line-height:1.25}
+.opts{display:grid;gap:6px}
+.opt{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:11px 12px;text-align:left;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
+.opt .l{font-family:var(--mono);font-size:11px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;flex:none}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--green-ink);background:var(--green-tint)}
+.opt.wrong{border-color:var(--red-ink);background:var(--red-tint)}
+.fb{border-radius:8px;padding:12px;font-size:13.5px;display:grid;gap:4px}
+.fb.ok{background:var(--green-tint)} .fb.no{background:var(--red-tint)}
+.qnav{display:flex;justify-content:flex-end;gap:8px}
+.btn{border:1px solid var(--fg);background:var(--fg);color:var(--bg);border-radius:999px;padding:8px 16px;font-weight:700;font-size:13px}
+.btn.ghost{background:var(--surface);color:var(--fg);border-color:var(--line-strong)}
+.score{text-align:center;display:grid;gap:8px;justify-items:center;padding:20px}
+.score .big{font-family:var(--display);font-size:72px;line-height:.9}
+
+/* stop 6: keep */
+.sheet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sheet .box h3{font-family:var(--display);font-size:20px;margin-bottom:6px}
+.sheet ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13.5px}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--line-strong)}
+table.t td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tw{overflow-x:auto}
+
+
+/* simple map */
+.simple{display:grid;gap:14px}
+.simple-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.line{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));position:relative;gap:4px}
+.line::before{content:"";position:absolute;left:7%;right:7%;top:21px;height:2px;background:var(--line-strong)}
+.nd{background:none;border:0;display:grid;justify-items:center;gap:6px;position:relative;padding:0 2px;text-align:center;min-width:0}
+.nd .c{width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px solid var(--line-strong);display:grid;place-items:center;font-family:var(--mono);font-size:12px;transition:background .2s,border-color .2s,transform .2s}
+.nd.dec .c{width:32px;height:32px;margin:6px;border-radius:6px;transform:rotate(45deg)}
+.nd.dec .c span{transform:rotate(-45deg);font-size:11px}
+.nd .txt{display:grid;gap:1px;min-width:0}
+.nd .lb{font-size:12.5px;font-weight:700;line-height:1.2}
+.nd .wk{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.nd.past .c{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.nd[aria-pressed="true"] .c{background:var(--yellow);color:#000;border-color:#000}
+.nd:hover .c{border-color:var(--fg)}
+.cap{background:var(--panel);color:var(--on-panel);border-radius:var(--r);padding:14px 16px;display:grid;gap:6px;min-height:92px}
+.cap .eyebrow{color:var(--on-panel-2)}
+.cap b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.1}
+.cap .tags{display:flex;flex-wrap:wrap;gap:6px}
+.cap .tags span{font-family:var(--mono);font-size:10.5px;border:1px solid #4A4A44;border-radius:999px;padding:2px 8px;color:var(--on-panel-2)}
+@media (max-width:640px){
+  .line{grid-template-columns:minmax(0,1fr);gap:8px}
+  .line::before{left:21px;right:auto;top:12px;bottom:12px;width:2px;height:auto}
+  .nd{grid-template-columns:44px minmax(0,1fr);justify-items:start;align-items:center;text-align:left;gap:12px}
+}
+@media (max-width:520px){ .theme .tl{display:none} }
+
+/* ---------- process map (board layout, horizontal) ---------- */
+.pmap-box{display:grid;gap:14px}
+.pmap-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.pmap-head h3{font-family:var(--display);font-size:24px;line-height:1.1}
+.pmap{overflow-x:auto;padding:30px 4px 8px;scrollbar-width:thin}
+.pmap-row{position:relative;display:grid;grid-template-columns:repeat(7,minmax(122px,1fr));gap:8px;min-width:920px;align-items:stretch}
+.pmap-row::before{content:"";position:absolute;left:-4px;right:-4px;top:14%;bottom:14%;background:var(--green-tint);clip-path:polygon(0 0,97.5% 0,100% 50%,97.5% 100%,0 100%);z-index:0}
+.ph{position:relative;z-index:1;text-align:left;border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:12px 11px;display:grid;gap:5px;align-content:start;min-height:158px;transition:transform .15s,box-shadow .15s}
+.ph .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ph b{font-size:14px;line-height:1.15}
+.ph .s{font-size:11.5px;color:var(--fg-2);line-height:1.35}
+.ph .w{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:auto}
+.ph.dp{background:var(--panel);color:var(--on-panel);border-color:var(--panel)}
+.ph.dp .n,.ph.dp .s,.ph.dp .w{color:var(--on-panel-2)}
+.ph .dpt{position:absolute;top:-24px;left:0;font-family:var(--mono);font-size:10px;letter-spacing:.06em;background:var(--panel);color:var(--yellow);padding:3px 8px;border-radius:4px;white-space:nowrap}
+.ph:hover{transform:translateY(-2px)}
+.ph[aria-pressed="true"]{box-shadow:0 0 0 3px var(--yellow),0 10px 22px rgba(0,0,0,.18);transform:translateY(-4px)}
+.ph.past .n::after{content:" ✓";color:var(--green-ink)}
+.pstep{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pctr{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--fg-2)}
+.pctr b{font-family:var(--display);font-weight:400;font-size:22px;color:var(--fg)}
+.pbar{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:180px}
+.pbar i{height:6px;border-radius:3px;background:var(--line)}
+.pbar i.on{background:var(--fg)}
+.pbtns{display:flex;gap:6px}
+.pbtns button{border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:7px 13px;font-weight:700;font-size:12.5px}
+.pbtns button.play{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.pbtns button:disabled{opacity:.35;cursor:default}
+.pdet{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.pdet h4{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1;margin:2px 0 6px}
+.pdet .lead{color:var(--fg-2);font-size:14px;margin-bottom:10px}
+.pdet ol{margin:0;padding-left:20px;display:grid;gap:5px;font-size:13.5px}
+.pside{display:grid;gap:12px;align-content:start;border-left:1px dashed var(--line-strong);padding-left:14px}
+.pside .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.who{display:flex;flex-wrap:wrap;gap:5px}
+.who .team{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--fg);color:var(--bg)}
+.who .ext{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px dashed var(--line-strong);color:var(--fg-2)}
+.pdec{border-radius:8px;padding:10px 12px;font-size:13px;background:var(--yellow-tint);color:var(--fg)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend .sw{width:22px;height:12px;border-radius:999px;display:inline-block}
+@media (max-width:760px){ .pdet{grid-template-columns:minmax(0,1fr)} .pside{border-left:0;padding-left:0;border-top:1px dashed var(--line-strong);padding-top:12px} .pbar{width:120px} }
+
+/* two-row header: brand + actions on top, every stop visible below */
+.top .wrap{flex-wrap:wrap;row-gap:2px}
+.top .brand{order:1;margin-right:auto}
+.top .sharebtn{order:2}
+.top .theme{order:3}
+.top .route{order:4;flex:1 0 100%;padding-bottom:6px;flex-wrap:wrap;overflow:visible;row-gap:2px}
+
+/* learning scaffolding */
+.objectives{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:12px}
+.objectives ul{margin:6px 0 0;padding-left:18px;display:grid;gap:5px;font-size:13.5px}
+.howto{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:h}
+.howto div{border-top:3px solid var(--fg);padding-top:8px;font-size:12.5px;color:var(--fg-2)}
+.howto div b{display:block;color:var(--fg);font-size:13px;margin-bottom:2px}
+.deeper{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;border:1px solid var(--line-strong);border-radius:var(--r);padding:14px 16px;background:var(--bg)}
+.deeper .ic{width:40px;height:40px;border-radius:50%;background:var(--yellow);color:#000;display:grid;place-items:center;font-size:18px}
+.deeper p{font-size:13.5px;color:var(--fg-2)}
+.deeper a{color:var(--fg);font-weight:700;text-underline-offset:3px}
+.remember{background:var(--yellow-tint);border-radius:var(--r);padding:12px 14px;font-size:13.5px}
+.remember b{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+.optional{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border:1px dashed var(--line-strong);border-radius:999px;padding:2px 8px;color:var(--muted)}
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;font-size:13px}
+.gloss div{padding:6px 0;border-bottom:1px dashed var(--line);display:grid;grid-template-columns:100px minmax(0,1fr);gap:8px}
+.done-meter{display:flex;gap:4px;margin-top:6px}
+.done-meter i{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.done-meter i.on{background:var(--green)}
+.cta{background:var(--panel);color:var(--on-panel);border-radius:var(--r);padding:18px;display:grid;gap:8px}
+.cta h3{font-family:var(--display);font-size:24px}
+.cta p{color:var(--on-panel-2);font-size:13.5px}
+.cta .links{display:flex;gap:8px;flex-wrap:wrap}
+.cta a{color:#000;background:var(--on-panel);border-radius:999px;padding:8px 14px;font-weight:700;font-size:12.5px;text-decoration:none}
+.cta a.g{background:transparent;color:var(--on-panel);border:1px solid #55554E}
+.simhow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.simhow div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--fg-2)}
+.simhow b{color:var(--fg);display:block}
+.track{grid-template-columns:repeat(7,minmax(0,1fr))!important}
+.track div{font-size:9.5px!important;height:48px!important}
+@media (max-width:760px){ .objectives,.howto,.gloss,.simhow{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:860px){
+  .path{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stages{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two,.sim,.sheet,.principles{grid-template-columns:minmax(0,1fr)}
+  .readout{position:static}
+}
+@media (max-width:520px){
+  .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lights{grid-template-columns:minmax(0,1fr)}
+  .idea{grid-template-columns:minmax(0,1fr)}
+  .idea .stopno{display:none}
+  .hero{padding:20px}
+  .brand img{height:16px}
+  .theme button{padding:5px 8px}
+}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><img class="logo-pos" src="data:image/png;base64,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" alt="vélezreyes+" width="137" height="24"><img class="logo-neg" src="data:image/png;base64,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" alt="vélezreyes+" width="137" height="24"><span class="brand-tag">Investment process</span></div>
+    <nav class="route" id="route" aria-label="Guide stops"></nav>
+    <div class="theme" role="group" aria-label="Theme">
+      <button type="button" id="th-light" aria-pressed="false"><span aria-hidden="true">☀</span><span class="tl">Light</span></button>
+      <button type="button" id="th-dark" aria-pressed="false"><span aria-hidden="true">☾</span><span class="tl">Dark</span></button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main class="wrap" id="main"></main>
+
+<div class="wrap">
+  <div class="pager">
+    <button type="button" id="prev">← Previous</button>
+    <span id="count">1 / 7</span>
+    <button type="button" id="next" class="next">Next →</button>
+  </div>
+  <footer>Source: ver+ Investment process guide and flowchart (October 2026) and The 5 Year Plan 2027–2031 board pre-read. Practice cases are fictional.</footer>
+</div>
+
+<script>
+(function(){
+const $ = (s, el=document) => el.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = { get(k, d){ try{ const v = localStorage.getItem('verinv:'+k); return v===null?d:JSON.parse(v);}catch(e){ return d; } }, set(k, v){ try{ localStorage.setItem('verinv:'+k, JSON.stringify(v)); }catch(e){} } };
+
+/* ---------------- content ---------------- */
+const ROLES = {AL:'Area Lead', AT:'Area Team', ORG:'Organization', REV:'Reviewers', CEO:'CEO', KMD:'Knowledge Mgmt Director', AD:'Administrative Director', TRUST:'Trust', PR:'Principals'};
+const STAGES = [
+  {k:'01', name:'Screening', weeks:2, phases:['01 Sourcing','02 Screening'], dp:false,
+   idea:'Find organizations that fit the strategy and get the essentials on one page.',
+   steps:[
+    {t:'Review public and private materials', who:['AL','AT','ORG']},
+    {t:'Hold initial conversations', who:['AL','AT','ORG']},
+    {t:'Ask the organization for a concept note', who:['AL','ORG'], tpl:'Organization Concept Note'}
+   ]},
+  {k:'02', name:'Concept note', weeks:3, phases:['03 Concept Review'], dp:true,
+   idea:'ver+ forms its own view and takes the first decision at the Concept Review Meeting (CRM).',
+   steps:[
+    {t:'Prepare the Investment One-Pager', who:['AL','AT'], tpl:'Investment One-Pager'},
+    {t:'Assign two reviewers', who:['AL','REV']},
+    {t:'Share the One-Pager at least 24 hours before the CRM', who:['AL']},
+    {t:'Hold the Concept Review Meeting', who:['AL','CEO','REV','KMD'], note:'Decision point 1 · green, yellow or red'},
+    {t:'Share CRM minutes and notes with participants', who:['AL']}
+   ]},
+  {k:'03', name:'Memo', weeks:2, phases:['04 Investment Due Diligence','05 Investment Committee'], dp:true,
+   idea:'The full case, challenged by reviewers and approved by the CEO.',
+   steps:[
+    {t:'Complete the full investment memo, following up on CRM notes', who:['AL','AT','KMD'], tpl:'Full Investment Memo'},
+    {t:'Share with the two reviewers and address their feedback', who:['AL','REV']},
+    {t:'Share with the CEO, address feedback and obtain approval', who:['AL','CEO'], note:'Decision point 2'},
+    {t:'Share with the Principals in the weekly email', who:['AL','PR'], note:'Below US$200k: FYI · US$200k or above: approval'}
+   ]},
+  {k:'04', name:'Legal due diligence', weeks:3, phases:['06 Legal Due Diligence'], dp:false,
+   idea:'Documents, Trust approval, grant and agreement.',
+   steps:[
+    {t:'Request legal documents through the submission link', who:['AL','AD','ORG']},
+    {t:'Obtain Trust approval', who:['TRUST','AL','AD']},
+    {t:'Award the grant', who:['AL']},
+    {t:'Sign the grant receipt letter via the Trust', who:['ORG','TRUST']},
+    {t:'Prepare and sign the Partnership Agreement 5.0', who:['AL','AD','ORG'], tpl:'Partnership Agreement 5.0'}
+   ]},
+  {k:'05', name:'Implementation', weeks:null, phases:['07 Onboarding + support'], dp:false,
+   idea:'Kick off together, then the organization reports its own progress.',
+   steps:[
+    {t:'Hold the kickoff meeting: contacts, amount, expected results, communication', who:['ORG','AL','AT']},
+    {t:'Request and receive follow-up reports every 6 or 12 months', who:['AL','ORG','AT','KMD'], tpl:'Follow-up Report'}
+   ]}
+];
+const CRITERIA = [
+  {k:'add', n:'Additionality', q:'Would our absence change the outcome? Being 10% of a mature organization’s budget is not additionality.'},
+  {k:'sol', n:'Solution strength', q:'Does the thing work, and is there a named outcome it moves?'},
+  {k:'team', n:'Team strength', q:'The people, above all at early stage.'},
+  {k:'scale', n:'Non-linear scale potential', q:'Can impact grow faster than cost, riding markets or government systems?'},
+  {k:'imp', n:'Impact potential', q:'How much does this move R²=0 if it works, and can we tell? Reach is the floor, not the answer.'}
+];
+const CASES = [
+  {s:'An edtech founder emails you: “How do we apply to your open call?”', o:['Send them the Concept Note template right away','Explain that ver+ does not run open calls, and first check whether they fit a main bet or groundwork pillar in our countries','Schedule a CRM so the team can decide'], a:1, why:'We source proactively and do not run open calls. Strategic fit comes first; only then do we ask for a concept note.'},
+  {s:'The One-Pager is ready on Monday at 10:00. The CRM is booked for Monday at 15:00.', o:['Hold the CRM as planned and share the One-Pager in the meeting','Share it now and move the CRM so participants get at least 24 hours','Skip the One-Pager and present orally'], a:1, why:'The One-Pager must reach CRM participants at least 24 hours before the meeting.'},
+  {s:'The CRM gives a yellow light.', o:['The opportunity moves straight to the full memo','The Area Lead revises the One-Pager, and the reviewers and CEO validate it before it can advance','The process ends and the organization is informed'], a:1, why:'Yellow means adjust. The revised One-Pager is validated by the reviewers and the CEO, who confirm whether it advances.'},
+  {s:'The CEO approved a memo for a US$150,000 grant.', o:['The Principals must approve it before legal due diligence','It is shared with the Principals for information in the weekly email','It goes back to the reviewers'], a:1, why:'Below US$200,000 the Principals are informed. From US$200,000 they approve.'},
+  {s:'The CEO approved a memo for US$250,000.', o:['It is shared for information only','The Principals approve it','The Trust approves it instead of the Principals'], a:1, why:'Investments of US$200,000 or above require the Principals’ approval. Trust approval comes later, in legal due diligence.'},
+  {s:'A brilliant education organization works only in Mexico, outside our main bets and pillars.', o:['It scores well on team, so it passes','It does not pass the strategic fit gate; excellent work outside the strategy is still outside it','We score it out of 10 and decide at the CRM'], a:1, why:'Strategic fit is pass/fail, never scored. The only exception is the 20% for extraordinary opportunities and founders, and that is a deliberate call, not a score.'},
+  {s:'A partner’s report says: “Impact: 40,000 students reached.”', o:['Accept it: reach is impact','Ask them to report it as outreach, and to show measured improvement separately with its evidence','Remove the KPI'], a:1, why:'Outreach is people reached. Impact is a change in learning, earnings, access, quality or cost. Keep them distinct and show evidence limits.'},
+  {s:'Halfway through the grant, a target no longer makes sense.', o:['Replace the target and delete the old one','Agree the change, keep the original target in the report and explain the revision','Leave it and report below expectations'], a:1, why:'OKRs are written with pencil. Changes are fine when learning drives them; the original target stays visible with the reason.'}
+];
+
+/* ---------------- stops ---------------- */
+const STOPS = [
+  {id:'start', label:'Start'},
+  {id:'map', label:'The map'},
+  {id:'decide', label:'Decisions'},
+  {id:'score', label:'Criteria'},
+  {id:'simulate', label:'Simulator'},
+  {id:'practice', label:'Practice (optional)'},
+  {id:'keep', label:'Keep'}
+];
+let cur = 0;
+const seen = new Set(store.get('seen', [0]));
+
+function idea(n, beat, beatH, title, text){
+  return `<header class="idea"><div><div class="beat"><span class="n">${beat}</span><span class="h">${beatH}</span></div><h2>${title}</h2></div><p>${text}</p><div class="stopno">${String(n).padStart(2,'0')}</div></header>`;
+}
+
+/* stop 0 */
+function renderStart(){
+  const path = [
+    ['01','The map','Seven phases, who does what'],
+    ['02','Decisions','The CRM light and the approval line'],
+    ['03','Criteria','One gate, five scores'],
+    ['04','Simulator','Place a real opportunity'],
+    ['05','Practice','Optional: eight quick cases'],
+    ['06','Keep','Cheat sheet, glossary, full documents']
+  ];
+  return `
+  <section class="hero">
+    <span class="status"><i></i>Learning guide · about 15 minutes</span>
+    <h1>From an opportunity to an investment</h1>
+    <div class="road">Seven phases · two decision points · one gate</div>
+    <p class="sub">How ver+ decides what to back, and what happens at every step. Start with the map, try the decisions yourself, then place a real opportunity on the process.</p>
+  </section>
+  <div class="objectives">
+    <div class="box"><span class="eyebrow">By the end you will be able to</span><ul><li>Place any opportunity in one of the seven phases</li><li>Say who decides at each decision point</li><li>Use the right template at each step</li><li>Explain the process to a partner in two minutes</li></ul></div>
+    <div class="box"><span class="eyebrow">How to learn with this guide</span>
+      <div class="howto" style="margin-top:10px"><div><b>1 · See</b>The map shows the whole process at a glance.</div><div><b>2 · Try</b>Make the decisions and score an opportunity.</div><div><b>3 · Apply</b>Use the simulator with a real case.</div><div><b>4 · Read</b>Go deeper in the Notion summary and the full documents.</div></div></div>
+  </div>
+  <div class="path">${path.map((p,i)=>`<button type="button" class="pc" data-go="${i+1}"><span class="k">${p[0]}</span><b>${p[1]}</b><span>${p[2]}</span></button>`).join('')}</div>
+  <div class="principles">
+    <div class="box"><b>Consistent information</b><span class="muted">The same essentials for every organization, at comparable stages, so we can compare and keep a record of why we decided.</span></div>
+    <div class="box"><b>Flexible relationships</b><span class="muted">Ask for a deck, visit, keep talking. The templates set the minimum, not the limit.</span></div>
+    <div class="box"><b>We say no often, and we say why</b><span class="muted">Close and rigorous. A red light is always explained to the organization.</span></div>
+  </div>
+  <div class="think"><span class="eyebrow">Before you start</span><q>Think of one opportunity you are working on now. Keep it in mind: at stop 04 you will place it on the process.</q></div>`;
+}
+
+/* stop 1 */
+const PH = [
+  {name:'Sourcing', short:'We map and track organizations aligned to the strategy.', time:'ongoing',
+   lead:'We proactively map and track organizations aligned to the strategy, through the areas’ landscape maps, the portfolio and our networks. We do not run open calls.',
+   steps:['Keep the area’s landscape map up to date','Follow organizations from the portfolio and our networks','Check strategic fit before anything else'], team:['Area Lead','Area Team'], ext:[], tpl:null},
+  {name:'Screening', short:'Fit first, then materials, conversations and a concept note.', time:'~2 weeks',
+   lead:'Fit with the strategy first. Then the materials, initial conversations and a proposal from the organization itself.',
+   steps:['Review public and private materials','Hold initial conversations','Ask the organization for a concept note'], team:['Area Lead','Area Team'], ext:['Organization'], tpl:'Organization Concept Note'},
+  {name:'Concept Review', short:'ver+ writes its view; two reviewers; the CRM decides.', time:'~3 weeks', dp:1,
+   lead:'The area team writes ver+’s own view on one page. Two reviewers read it at least 24 hours before the Concept Review Meeting, where the leadership team refines the proposal and calls it.',
+   steps:['Prepare the Investment One-Pager','Assign two reviewers','Share the One-Pager at least 24 hours before the CRM','Hold the Concept Review Meeting and share the minutes'], team:['Area Lead','Area Team','Reviewers','CEO','KMD'], ext:[], tpl:'Investment One-Pager',
+   dec:'🟢 Green advances · 🟡 Yellow: revise, then reviewers + CEO validate · 🔴 Red: the process ends and we tell the organization why.'},
+  {name:'Investment Due Diligence', short:'Deeper on solution, team, evidence and additionality.', time:'~1–2 weeks',
+   lead:'We go deeper on the solution, the team, the evidence and additionality. Out of it comes the full memo.',
+   steps:['Complete the full investment memo, following up on the CRM notes','Share it with the two reviewers','Address the reviewers’ feedback'], team:['Area Lead','Area Team','Reviewers','KMD'], ext:[], tpl:'Full Investment Memo'},
+  {name:'Investment Committee', short:'The CEO approves; from US$200k the Principals too.', time:'~1 week', dp:2,
+   lead:'The CEO reviews the memo and approves it. It then goes to the Principals in the weekly email.',
+   steps:['Share the memo with the CEO and address feedback','CEO approves','Share with the Principals in the weekly email'], team:['Area Lead','CEO'], ext:['Principals'], tpl:null,
+   dec:'Below US$200,000 the Principals are informed. US$200,000 or above, the Principals approve.'},
+  {name:'Legal Due Diligence', short:'Documents, Trust approval, grant and agreement.', time:'~3 weeks',
+   lead:'Legal documents, Trust approval, the grant letter and the partnership agreement.',
+   steps:['Request the legal documents through the submission link','Obtain Trust approval','Award the grant and sign the grant receipt letter','Prepare and sign the Partnership Agreement 5.0'], team:['Area Lead','Admin Director'], ext:['Organization','Trust'], tpl:'Partnership Agreement 5.0'},
+  {name:'Onboarding + support', short:'Kickoff, hands-on support and regular reports.', time:'life of the investment',
+   lead:'Terms agreed, the hands-on work starts. The organization reports its own progress, and each investment is reviewed on a fixed cycle: go, conditional or no go.',
+   steps:['Hold the kickoff meeting: contacts, amount, results, communication','Support on strategy, MEL and product mindset','Receive follow-up reports every 6 or 12 months'], team:['Area Lead','Area Team','KMD'], ext:['Organization'], tpl:'Follow-up Report'}
+];
+let phI = 0, phTimer = null;
+function drawPhase(){
+  const p = PH[phI];
+  document.querySelectorAll('#pmap .ph').forEach((b,i)=>{ b.setAttribute('aria-pressed', String(i===phI)); b.classList.toggle('past', i<phI); });
+  document.querySelectorAll('#pbar i').forEach((b,i)=>b.classList.toggle('on', i<=phI));
+  const pn = document.getElementById('pnum'); if(pn) pn.textContent = phI+1;
+  document.getElementById('pprev').disabled = phI===0; document.getElementById('pnext').disabled = phI===PH.length-1;
+  document.getElementById('pdet').innerHTML = `<div><span class="eyebrow">Phase ${String(phI+1).padStart(2,'0')}${p.dp?' · decision point '+p.dp:''}</span><h4>${p.name}</h4><p class="lead">${p.lead}</p><ol>${p.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${p.dec?`<div class="pdec" style="margin-top:12px"><b>Decision:</b> ${p.dec}</div>`:''}</div>
+    <div class="pside"><div><div class="k">ver+ team</div><div class="who">${p.team.map(t=>`<span class="team">${t}</span>`).join('')}</div></div>
+    ${p.ext.length?`<div><div class="k">Outside the team</div><div class="who">${p.ext.map(t=>`<span class="ext">${t}</span>`).join('')}</div></div>`:''}
+    <div><div class="k">Template</div>${p.tpl?`<span class="tpl">▤ ${p.tpl}</span>`:'<span class="muted" style="font-size:13px">None at this phase</span>'}</div>
+    <div><div class="k">Typical time</div><span style="font-size:13px">${p.time}</span></div></div>`;
+  const btn = document.querySelector('#pmap .ph[aria-pressed="true"]'); if(btn && btn.scrollIntoView) btn.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+function stopPlay(){ if(phTimer){ clearInterval(phTimer); phTimer=null; } const b=document.getElementById('pplay'); if(b) b.textContent='▶ Play the process'; }
+function bindPhases(){
+  document.querySelectorAll('#pmap .ph').forEach(b=>b.addEventListener('click',()=>{ stopPlay(); phI=Number(b.dataset.p); drawPhase(); }));
+  document.getElementById('pprev').addEventListener('click',()=>{ stopPlay(); if(phI>0){ phI--; drawPhase(); } });
+  document.getElementById('pnext').addEventListener('click',()=>{ stopPlay(); if(phI<PH.length-1){ phI++; drawPhase(); } });
+  document.getElementById('pplay').addEventListener('click',()=>{
+    if(phTimer){ stopPlay(); return; }
+    if(phI>=PH.length-1) phI=0; else if(phI>0) phI++;
+    drawPhase(); document.getElementById('pplay').textContent='❚❚ Pause';
+    phTimer=setInterval(()=>{ if(!document.getElementById('pmap')){ stopPlay(); return; } if(phI>=PH.length-1){ stopPlay(); return; } phI++; drawPhase(); }, 4000);
+  });
+  drawPhase();
+}
+
+function renderMap(){
+  return `${idea(1,'See','The map','The whole process at a glance','Click any phase to see what happens, who takes part and which template to use, or press Play to walk through it phase by phase.')}
+  <div class="box pmap-box">
+    <div class="pmap-head"><div><span class="eyebrow">The investment process</span><h3>Seven phases, two decision points</h3></div>
+      <div class="legend"><span><i class="sw" style="background:var(--surface);border:1px solid var(--line-strong)"></i>Phase</span><span><i class="sw" style="background:var(--panel)"></i>Decision point</span><span><i class="sw" style="background:var(--fg)"></i>ver+ team</span><span><i class="sw" style="border:1px dashed var(--line-strong)"></i>Outside the team</span></div></div>
+    <div class="pmap" id="pmap"><div class="pmap-row" role="group" aria-label="The seven phases">${PH.map((p,i)=>`<button type="button" class="ph${p.dp?' dp':''}" data-p="${i}" aria-pressed="false">${p.dp?`<span class="dpt">▼ DECISION POINT ${p.dp}</span>`:''}<span class="n">${String(i+1).padStart(2,'0')}</span><b>${p.name}</b><span class="s">${p.short}</span><span class="w">${p.time}</span></button>`).join('')}</div></div>
+    <div class="pstep">
+      <div class="pctr">Phase <b id="pnum">1</b> of 7 <span class="pbar" id="pbar">${PH.map(()=>'<i></i>').join('')}</span></div>
+      <div class="pbtns"><button type="button" id="pprev">← Previous</button><button type="button" id="pplay" class="play">▶ Play the process</button><button type="button" id="pnext">Next →</button></div>
+    </div>
+    <div class="pdet" id="pdet" aria-live="polite"></div>
+  </div>
+
+  <div class="remember"><b>Remember</b>Two moments decide everything: the Concept Review Meeting (phase 03) and the Investment Committee (phase 05). Everything else prepares or follows them.</div>`;
+}
+function bindMap(){ bindPhases(); }
+
+/* stop 2 */
+let light = 'green', amount = 150000;
+const OUT = {
+  green:{c:'g', h:'Green · advance to the memo', s:['The Area Lead and team complete the full investment memo.','They follow up on the CRM minutes and notes.','The Knowledge Management Director supports evidence where relevant.']},
+  yellow:{c:'y', h:'Yellow · adjust, then validate', s:['The Area Lead revises the One-Pager with what the CRM asked for.','The two reviewers and the CEO validate the revised version.','They confirm whether it can advance to the memo.']},
+  red:{c:'r', h:'Red · the process ends', s:['The Area Lead communicates the decision to the organization.','We explain why. We say no often, and we say why.','The process is closed and the record keeps the reasoning.']}
+};
+function renderDecide(){
+  return `${idea(2,'Try','Decisions','Two moments decide everything','Decision point 1 is the CRM traffic light. Decision point 2 is the memo: the CEO approves, and above a line the Principals do too. Try both.')}
+  <div class="two">
+    <div class="box" style="display:grid;gap:12px">
+      <div class="beat"><span class="n">Decision 1</span><span class="h">Concept Review Meeting · AL + CEO + two reviewers</span></div>
+      <div class="lights" role="group" aria-label="CRM outcome">
+        <button type="button" class="light" data-l="green"><i style="background:var(--green)"></i>Green</button>
+        <button type="button" class="light" data-l="yellow"><i style="background:var(--amber)"></i>Yellow</button>
+        <button type="button" class="light" data-l="red"><i style="background:var(--red)"></i>Red</button>
+      </div>
+      <div id="outcome"></div>
+    </div>
+    <div class="think"><span class="eyebrow">Remember</span><q>A green light is not the investment decision. It only clears the way to the memo.</q><small>The memo is the basis for the decision to invest.</small></div>
+  </div>
+  <div class="box amount">
+    <div class="beat"><span class="n">Decision 2</span><span class="h">Who approves the memo? Move the amount.</span></div>
+    <output id="amt" for="amtr">US$150,000</output>
+    <input type="range" id="amtr" min="25000" max="1000000" step="25000" value="${amount}" aria-label="Investment amount in US dollars">
+    <div class="verdict" id="verdict"></div>
+    <div class="flow" id="flow"></div>
+  </div>`;
+}
+function drawDecide(){
+  const o = OUT[light];
+  $('#outcome').innerHTML = `<div class="outcome ${o.c}"><h3>${o.h}</h3><ol>${o.s.map(x=>`<li>${x}</li>`).join('')}</ol></div>`;
+  document.querySelectorAll('.light').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.l===light)));
+  const big = amount >= 200000;
+  $('#amt').textContent = 'US$' + amount.toLocaleString('en-US');
+  $('#verdict').innerHTML = big ? `<span class="pill appr">Principals approve</span><span class="muted">US$200,000 or above</span>` : `<span class="pill fyi">Principals informed (FYI)</span><span class="muted">Below US$200,000</span>`;
+  $('#flow').innerHTML = `<span>Reviewers’ feedback</span><em>→</em><span>CEO feedback</span><em>→</em><span><b>CEO approves</b></span><em>→</em><span>Weekly email to Principals</span><em>→</em><span><b>${big?'Principals approve':'For information'}</b></span><em>→</em><span>Legal due diligence</span>`;
+}
+function bindDecide(){
+  document.querySelectorAll('.light').forEach(b=>b.addEventListener('click',()=>{ light=b.dataset.l; drawDecide(); }));
+  $('#amtr').addEventListener('input',e=>{ amount = Number(e.target.value); drawDecide(); });
+  drawDecide();
+}
+
+/* stop 3 */
+let fit = null; const scores = {add:1, sol:1, team:1, scale:1, imp:1};
+function renderScore(){
+  return `${idea(3,'Try','Criteria','One gate, then five scores out of ten','Strategic fit is pass/fail and is never scored. Only an opportunity that passes is scored, 0 to 2 on each of five criteria. Score an opportunity you know.')}
+  <div class="two">
+    <div class="box crit">
+      <div class="gate"><div><b>Strategic fit · the gate</b><div class="muted" style="font-size:12.5px">Inside a main bet or a groundwork pillar, in our five countries?</div></div>
+        <div class="seg" role="group" aria-label="Strategic fit"><button type="button" data-f="yes">Pass</button><button type="button" data-f="no">Fail</button></div></div>
+      <div id="crits">${CRITERIA.map(c=>`<div class="cr"><b>${c.n}</b><span class="q">${c.q}</span><div class="sc dots" role="group" aria-label="${c.n} score">${[0,1,2].map(v=>`<button type="button" data-c="${c.k}" data-v="${v}">${v}</button>`).join('')}</div></div>`).join('')}</div>
+    </div>
+    <div class="think total" id="total"></div>
+  </div>`;
+}
+function drawScore(){
+  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.f===fit)));
+  document.querySelectorAll('#crits .dots button').forEach(b=>b.setAttribute('aria-pressed', String(scores[b.dataset.c]===Number(b.dataset.v))));
+  $('#crits').style.opacity = fit==='no' ? .35 : 1;
+  const t = Object.values(scores).reduce((a,b)=>a+b,0);
+  const T = $('#total');
+  if(fit==='no'){
+    T.innerHTML = `<span class="eyebrow">Result</span><div class="blocked">Stops at the gate. Excellent work outside the strategy is still outside the strategy, and that is the reason for most of our exits.</div><small>Exception: the 20% of the portfolio open to extraordinary opportunities and exceptional founders. That is a deliberate call, not a score.</small>`;
+    return;
+  }
+  const weak = CRITERIA.filter(c=>scores[c.k]===0).map(c=>c.n);
+  T.innerHTML = `<span class="eyebrow">${fit==='yes'?'Total score':'Set the gate first'}</span>
+    <div class="big">${t}<small> / 10</small></div>
+    <div class="meter">${Array.from({length:10},(_,i)=>`<i class="${i<t?'on':''}"></i>`).join('')}</div>
+    <small>${weak.length?`Scored 0: ${weak.join(', ')}. Name what would change that before the CRM.`:'No criterion at 0.'}</small>
+    <small>The score structures the conversation at the CRM and section 3 of the memo. It informs the decision; people make it.</small>`;
+}
+function bindScore(){
+  document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{ fit=b.dataset.f; drawScore(); }));
+  document.querySelectorAll('#crits .dots button').forEach(b=>b.addEventListener('click',()=>{ scores[b.dataset.c]=Number(b.dataset.v); drawScore(); }));
+  drawScore();
+}
+
+/* stop 4: simulator */
+const SIM_STEPS = [
+  {id:'talks', ph:1, st:0, t:'Materials reviewed and initial conversations held', who:['AL','AT','ORG']},
+  {id:'cn', ph:1, st:0, t:'Concept note received from the organization', who:['ORG'], tpl:'Organization Concept Note'},
+  {id:'op', ph:2, st:1, t:'Investment One-Pager prepared', who:['AL','AT'], tpl:'Investment One-Pager'},
+  {id:'rev', ph:2, st:1, t:'Two reviewers assigned', who:['AL']},
+  {id:'sh24', ph:2, st:1, t:'One-Pager shared at least 24 hours before the CRM', who:['AL']},
+  {id:'crm', ph:2, st:1, t:'Concept Review Meeting held', who:['AL','CEO','REV'], special:'crm'},
+  {id:'yv', ph:2, st:1, t:'Revised One-Pager validated by reviewers and CEO', who:['REV','CEO'], onlyIf:s=>s.crm==='yellow'},
+  {id:'memo', ph:3, st:2, t:'Full investment memo completed', who:['AL','AT'], tpl:'Full Investment Memo'},
+  {id:'mrev', ph:3, st:2, t:'Reviewers’ feedback addressed', who:['AL','REV']},
+  {id:'ceo', ph:4, st:2, t:'CEO feedback addressed and memo approved', who:['CEO']},
+  {id:'pr', ph:4, st:2, t:'Shared with the Principals in the weekly email', who:['AL','PR'], label:s=>s.amount>=200000?'Approved by the Principals (US$200k or above)':'Shared with the Principals for information (below US$200k)'},
+  {id:'docs', ph:5, st:3, t:'Legal documents submitted', who:['ORG','AL','AD']},
+  {id:'trust', ph:5, st:3, t:'Trust approval obtained', who:['TRUST']},
+  {id:'grant', ph:5, st:3, t:'Grant awarded', who:['AL']},
+  {id:'rcpt', ph:5, st:3, t:'Grant receipt letter signed via the Trust', who:['ORG','TRUST']},
+  {id:'pa', ph:5, st:3, t:'Partnership Agreement 5.0 signed', who:['AL','AD','ORG'], tpl:'Partnership Agreement 5.0'},
+  {id:'kick', ph:6, st:4, t:'Kickoff meeting held', who:['ORG','AL','AT']}
+];
+const NEXT_TXT = {
+  talks:'Review the organization’s materials and hold initial conversations. Check strategic fit first.',
+  cn:'Ask the organization to complete the Organization Concept Note.',
+  op:'Prepare the Investment One-Pager with ver+’s own assessment and proposal.',
+  rev:'Assign two reviewers to the opportunity.',
+  sh24:'Share the One-Pager with CRM participants at least 24 hours before the meeting.',
+  crm:'Hold the Concept Review Meeting with the CEO and the two reviewers, then share the minutes.',
+  yv:'Revise the One-Pager and get the reviewers and the CEO to validate it.',
+  memo:'Complete the full investment memo, following up on the CRM notes.',
+  mrev:'Share the memo with the two reviewers and address their feedback.',
+  ceo:'Share the memo with the CEO, address feedback and obtain approval.',
+  pr:'', docs:'Request the legal documents through the submission link.',
+  trust:'Obtain Trust approval.', grant:'Award the grant.', rcpt:'Get the grant receipt letter signed via the Trust.',
+  pa:'Prepare and sign the Partnership Agreement 5.0.', kick:'Hold the kickoff meeting: points of contact, amount, expected results and communication.'
+};
+const blank = () => ({talks:false,cn:false,op:false,rev:false,sh24:false,crm:'none',yv:false,memo:false,mrev:false,ceo:false,pr:false,docs:false,trust:false,grant:false,rcpt:false,pa:false,kick:false,amount:150000,months:0,cadence:6,reports:0});
+let S = Object.assign(blank(), store.get('sim', {}));
+const PRESETS = [
+  {n:'Just met them', d:'Two calls held with a promising edtech in Peru.', s:{talks:true}},
+  {n:'Ready for the CRM?', d:'One-Pager drafted, reviewers assigned, CRM tomorrow at 9:00.', s:{talks:true,cn:true,op:true,rev:true}},
+  {n:'Yellow light', d:'The CRM asked for a narrower scope.', s:{talks:true,cn:true,op:true,rev:true,sh24:true,crm:'yellow'}},
+  {n:'US$350k approved by the CEO', d:'Memo done and approved by the CEO.', s:{talks:true,cn:true,op:true,rev:true,sh24:true,crm:'green',memo:true,mrev:true,ceo:true,amount:350000}},
+  {n:'Signed 7 months ago', d:'Kickoff held, 6-month reporting, no report yet.', s:{talks:true,cn:true,op:true,rev:true,sh24:true,crm:'green',memo:true,mrev:true,ceo:true,pr:true,docs:true,trust:true,grant:true,rcpt:true,pa:true,kick:true,months:7,cadence:6,reports:0}},
+  {n:'Red light', d:'The CRM decided not to advance.', s:{talks:true,cn:true,op:true,rev:true,sh24:true,crm:'red'}}
+];
+function applicable(st){ return !st.onlyIf || st.onlyIf(S); }
+function isDone(st){ return st.special==='crm' ? S.crm!=='none' : !!S[st.id]; }
+function renderSim(){
+  const groups = PH.map((g,i)=>({g:{k:String(i+1).padStart(2,'0'),name:g.name},i,items:SIM_STEPS.filter(x=>x.ph===i)})).filter(x=>x.items.length);
+  return `${idea(4,'Apply','Simulator','Where is this opportunity right now?','Tick what has already happened, or load a situation. The simulator places the opportunity on the process, names the next step and its owner, and flags anything out of order.')}
+  <div class="simhow"><div><b>1 · Set the situation</b>Load a ready-made case, or tick what has already happened to your opportunity.</div><div><b>2 · Read the panel</b>It shows the phase you are in, the next step and who owns it.</div><div><b>3 · Fix what is flagged</b>Red notes mean a step was skipped or done out of order.</div></div>
+  <div class="presets" id="presets">${PRESETS.map((p,i)=>`<button type="button" class="preset" data-p="${i}"><b>${p.n}</b>${p.d}</button>`).join('')}</div>
+  <div class="sim">
+    <div class="checks" id="checks">
+      ${groups.map(({g,i,items})=>`<fieldset><legend>${g.k} · ${g.name}</legend>
+        ${items.map(x=> x.special==='crm' ? `<div class="row2"><label for="crm-sel"><b>CRM outcome</b></label><select id="crm-sel"><option value="none">Not held yet</option><option value="green">Green light</option><option value="yellow">Yellow light</option><option value="red">Red light</option></select></div>`
+          : `<label class="ck" id="row-${x.id}"><input type="checkbox" id="ck-${x.id}" data-k="${x.id}"><span id="lab-${x.id}">${x.t}</span></label>`).join('')}
+        ${i===4?`<div class="row2"><label for="sim-amt">Amount</label><select id="sim-amt"><option value="50000">US$50,000</option><option value="150000">US$150,000</option><option value="199000">US$199,000</option><option value="200000">US$200,000</option><option value="350000">US$350,000</option><option value="750000">US$750,000</option></select></div>`:''}
+        ${i===6?`<div class="row2"><label for="sim-cad">Reporting</label><select id="sim-cad"><option value="6">Every 6 months</option><option value="12">Every 12 months</option></select>
+          <label for="sim-mon">Months since kickoff</label><select id="sim-mon">${Array.from({length:37},(_,m)=>`<option value="${m}">${m}</option>`).join('')}</select>
+          <label for="sim-rep">Reports received</label><select id="sim-rep">${[0,1,2,3,4,5,6].map(m=>`<option value="${m}">${m}</option>`).join('')}</select></div>`:''}
+      </fieldset>`).join('')}
+      <button type="button" class="reset" id="sim-reset">Clear all</button>
+    </div>
+    <div class="readout" id="readout" aria-live="polite"></div>
+  </div>`;
+}
+function drawSim(){
+  // sync inputs
+  SIM_STEPS.forEach(x=>{
+    if(x.special) return;
+    const ck = $('#ck-'+x.id); if(!ck) return;
+    ck.checked = !!S[x.id];
+    const ok = applicable(x);
+    $('#row-'+x.id).classList.toggle('na', !ok); ck.disabled = !ok;
+    if(x.label) $('#lab-'+x.id).textContent = x.label(S);
+  });
+  $('#crm-sel').value = S.crm; $('#sim-amt').value = String(S.amount);
+  $('#sim-cad').value = String(S.cadence); $('#sim-mon').value = String(S.months); $('#sim-rep').value = String(S.reports);
+  store.set('sim', S);
+
+  const list = SIM_STEPS.filter(applicable);
+  const warnings = [];
+  // out-of-order check
+  let firstOpen = list.findIndex(x=>!isDone(x));
+  if(firstOpen>-1){
+    const later = list.slice(firstOpen+1).filter(isDone);
+    if(later.length) warnings.push(`Marked done before an earlier step: “${later[0].label?later[0].label(S):later[0].t}” — but “${list[firstOpen].label?list[firstOpen].label(S):list[firstOpen].t}” is still open. Check the order.`);
+  }
+  if(S.crm!=='none' && !S.sh24) warnings.push('The CRM was held without the One-Pager shared 24 hours ahead. Next time, share it at least 24 hours before.');
+
+  const ended = S.crm==='red';
+  const nextStep = ended ? null : list.find(x=>!isDone(x));
+  const stageNow = ended ? 1 : (nextStep ? nextStep.st : 4);
+  const phNow = ended ? 2 : (nextStep ? nextStep.ph : 6);
+  const track = PH.map((g,i)=>{
+    let c = '';
+    if(ended){ c = i<2?'done':(i===2?'stopd':''); }
+    else if(!nextStep){ c = i<6?'done':'now'; }
+    else c = i<phNow?'done':(i===phNow?'now':'');
+    return `<div class="${c}">${String(i+1).padStart(2,'0')}<br>${g.name.replace('Investment ','Inv. ').replace(' + support','')}</div>`;
+  }).join('');
+  let head='', body='';
+  if(ended){
+    head = `<span class="eyebrow">Process ended at phase 03</span><h3>Red light at the CRM</h3>`;
+    body = `<div class="next"><b>What to do now</b><span>The Area Lead communicates the decision to the organization and explains why. The process is closed.</span><div class="who"><span class="tag">AL</span><span class="tag">ORG</span></div></div>`;
+  } else if(nextStep){
+    const g = {k:String(nextStep.ph+1).padStart(2,'0'), name:PH[nextStep.ph].name};
+    let txt = NEXT_TXT[nextStep.id];
+    if(nextStep.id==='pr') txt = S.amount>=200000 ? 'Share the approved memo with the Principals in the weekly email. At US$200,000 or above they must approve it.' : 'Share the approved memo with the Principals in the weekly email, for information.';
+    head = `<span class="eyebrow">Now in phase ${g.k}</span><h3>${g.name}</h3>`;
+    body = `<div class="next"><b>Next step</b><span>${txt}</span><div class="who">${nextStep.who.map(w=>`<span class="tag" title="${ROLES[w]}">${ROLES[w]}</span>`).join('')}${nextStep.tpl?`<span class="tpl">▤ ${nextStep.tpl}</span>`:''}</div></div>`;
+    if(nextStep.id==='crm' && S.sh24) body += `<div class="okm">Ready for the CRM: One-Pager shared, two reviewers assigned.</div>`;
+    if(S.crm==='yellow' && nextStep.id==='yv') body += `<div class="warn">Yellow light: the opportunity cannot move to the memo until the reviewers and the CEO validate the revised One-Pager.</div>`;
+  } else {
+    // implementation tracking
+    const due = S.cadence * (S.reports + 1);
+    const late = S.months > due;
+    head = `<span class="eyebrow">Phase 07 · in partnership</span><h3>Onboarding + support</h3>`;
+    body = `<div class="next"><b>Reporting</b><span>The organization reports its own progress with the Follow-up Report, every ${S.cadence} months, plus a final report.</span><div class="who"><span class="tag">ORG</span><span class="tag">AL</span><span class="tpl">▤ Follow-up Report</span></div></div>
+      <div class="kv"><span>Next report due</span><b>Month ${due}</b></div>
+      ${late?`<div class="warn">Report ${S.reports+1} is ${S.months-due} month${S.months-due===1?'':'s'} overdue. The Area Lead requests it.</div>`:`<div class="okm">Reporting is up to date. ${due-S.months===0?'A report is due this month.':`Next one in ${due-S.months} month${due-S.months===1?'':'s'}.`}</div>`}`;
+  }
+  // time to signature
+  let wk = 0;
+  if(!ended && nextStep && nextStep.st<4){ for(let i=nextStep.st;i<4;i++) wk += STAGES[i].weeks; }
+  const doneN = list.filter(isDone).length;
+  $('#readout').innerHTML = `<div class="track">${track}</div>
+    <div class="where">${head}</div>
+    <div class="box" style="display:grid;gap:10px">${body}
+      ${!ended && nextStep && nextStep.st<4?`<div class="kv"><span>Typical time to signed agreement</span><b>up to ~${wk} weeks</b></div>`:''}
+      <div class="kv"><span>Steps completed</span><b>${doneN} / ${list.length}</b></div>
+      <div class="kv"><span>Approval route</span><b>${S.amount>=200000?'CEO + Principals approve':'CEO approves · Principals FYI'}</b></div>
+    </div>
+    ${warnings.map(w=>`<div class="err">${esc(w)}</div>`).join('')}`;
+}
+function bindSim(){
+  document.querySelectorAll('#checks input[type=checkbox]').forEach(c=>c.addEventListener('change',()=>{ S[c.dataset.k]=c.checked; drawSim(); }));
+  $('#crm-sel').addEventListener('change',e=>{ S.crm=e.target.value; if(S.crm!=='yellow') S.yv=false; drawSim(); });
+  $('#sim-amt').addEventListener('change',e=>{ S.amount=Number(e.target.value); drawSim(); });
+  $('#sim-cad').addEventListener('change',e=>{ S.cadence=Number(e.target.value); drawSim(); });
+  $('#sim-mon').addEventListener('change',e=>{ S.months=Number(e.target.value); drawSim(); });
+  $('#sim-rep').addEventListener('change',e=>{ S.reports=Number(e.target.value); drawSim(); });
+  document.querySelectorAll('#presets .preset').forEach(b=>b.addEventListener('click',()=>{ S=Object.assign(blank(), PRESETS[Number(b.dataset.p)].s); drawSim(); }));
+  $('#sim-reset').addEventListener('click',()=>{ S=blank(); drawSim(); });
+  drawSim();
+}
+
+/* stop 5: practice */
+let qi = 0, answers = [];
+function renderPractice(){
+  return `${idea(5,'Optional','Practice','Eight situations you will meet','Test yourself if you want to. Choose what you would do: each answer explains the rule behind it. You can skip straight to the cheat sheet.')}<div class="quiz" id="quiz"></div>`;
+}
+function drawQuiz(){
+  const Q = $('#quiz');
+  const dots = `<div class="qdots">${CASES.map((_,i)=>`<i class="${answers[i]===undefined?(i===qi?'cur':''):(answers[i]===CASES[i].a?'ok':'no')}"></i>`).join('')}</div>`;
+  if(qi>=CASES.length){
+    const right = answers.filter((a,i)=>a===CASES[i].a).length;
+    store.set('quiz', right);
+    Q.innerHTML = `<div class="qhead"><span class="eyebrow">Done</span>${dots}</div><div class="box score"><span class="eyebrow">Your score</span><div class="big">${right}/${CASES.length}</div><p class="muted">${right===CASES.length?'You know the process. Use the simulator with your real opportunities.':'Review the cases you missed, then try again.'}</p><button type="button" class="btn" id="qagain">Try again</button></div>`;
+    $('#qagain').addEventListener('click',()=>{ qi=0; answers=[]; drawQuiz(); });
+    return;
+  }
+  const c = CASES[qi], a = answers[qi];
+  Q.innerHTML = `<div class="qhead"><span class="eyebrow">Case ${qi+1} of ${CASES.length}</span>${dots}</div>
+    <div class="case"><span class="eyebrow">The situation</span><p>${c.s}</p></div>
+    <div class="opts">${c.o.map((o,i)=>{ let cls=''; if(a!==undefined){ if(i===c.a) cls='right'; else if(i===a) cls='wrong'; } return `<button type="button" class="opt ${cls}" data-i="${i}" ${a!==undefined?'disabled':''}><span class="l">${'ABC'[i]}</span><span>${o}</span></button>`; }).join('')}</div>
+    ${a!==undefined?`<div class="fb ${a===c.a?'ok':'no'}"><b>${a===c.a?'Right.':'Not quite.'}</b><span>${c.why}</span></div><div class="qnav"><button type="button" class="btn" id="qnext">${qi===CASES.length-1?'See my score':'Next case →'}</button></div>`:''}`;
+  Q.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{ answers[qi]=Number(b.dataset.i); drawQuiz(); }));
+  const n = $('#qnext'); if(n) n.addEventListener('click',()=>{ qi++; drawQuiz(); });
+}
+
+/* stop 6: keep */
+const GLOSS = [['AL','Area Lead: owns each opportunity from screening to partnership'],['AT','Area Team: prepares the documents with the Area Lead'],['Reviewers','Two people who challenge the proposal before the CRM and the memo'],['CRM','Concept Review Meeting: decision point 1'],['KMD','Knowledge Management Director: supports evidence and measurement'],['AD','Administrative Director: legal documents and agreements'],['Principals','The founders. Informed below US$200k, approve from US$200k'],['Trust','Approves the grant and signs the grant receipt letter'],['One-Pager','ver+’s own one-page view of the opportunity, for the CRM'],['Additionality','Whether our absence would change the outcome']];
+function renderKeep(){
+  const visited = STOPS.filter((_,i)=>seen.has(i)).length;
+  return `${idea(6,'Keep','Your cheat sheet','Everything on one screen','Come back here when you are in the middle of a real process.')}
+  <div class="box"><span class="eyebrow">Your progress</span><div style="font-size:13.5px;margin-top:4px">You have visited <b>${visited} of ${STOPS.length}</b> stops.</div><div class="done-meter">${STOPS.map((_,i)=>`<i class="${seen.has(i)?'on':''}"></i>`).join('')}</div></div>
+  <div class="sheet">
+    <div class="box"><h3>The seven phases</h3><ul>${PH.map((p,i)=>`<li><b>${String(i+1).padStart(2,'0')} ${p.name}</b>${p.dp?' · decision point '+p.dp:''} · ${p.time}</li>`).join('')}</ul></div>
+    <div class="box"><h3>The two decisions</h3><ul><li><b>CRM:</b> green advances, yellow adjusts and is validated by reviewers + CEO, red ends and is explained.</li><li><b>Investment Committee:</b> CEO approves. Principals informed below US$200k, approve from US$200k.</li><li>Share the One-Pager at least 24 hours before the CRM.</li></ul></div>
+    <div class="box"><h3>The criteria</h3><ul><li><b>Strategic fit:</b> gate, pass/fail, never scored.</li><li>Then 0–2 each, out of 10: additionality, solution strength, team strength, non-linear scale potential, impact potential.</li></ul></div>
+    <div class="box"><h3>The partnership</h3><ul><li>OKRs written with pencil.</li><li>We usually take board seats.</li><li>Active support on strategy, MEL and product mindset.</li><li>Keep outreach, measured improvement and attribution distinct.</li></ul></div>
+  </div>
+  <div class="box tw"><table class="t"><thead><tr><th>Template</th><th>Who fills it</th><th>When</th></tr></thead><tbody>
+    <tr><td><span class="tpl">▤ Organization Concept Note</span></td><td>Organization</td><td>Screening</td></tr>
+    <tr><td><span class="tpl">▤ Investment One-Pager</span></td><td>Area team</td><td>Concept Review</td></tr>
+    <tr><td><span class="tpl">▤ Full Investment Memo</span></td><td>Area team</td><td>Investment Due Diligence</td></tr>
+    <tr><td><span class="tpl">▤ Partnership Agreement 5.0</span></td><td>AL + AD + Organization</td><td>Legal Due Diligence</td></tr>
+    <tr><td><span class="tpl">▤ Follow-up Report</span></td><td>Organization</td><td>Every 6 or 12 months, and at close</td></tr>
+  </tbody></table></div>
+  <div class="box"><span class="eyebrow">Glossary</span><div class="gloss" style="margin-top:8px">${GLOSS.map(g=>`<div><b>${g[0]}</b>${g[1]}</div>`).join('')}</div></div>
+  <div class="cta"><span class="eyebrow" style="color:var(--yellow)">Now read the full process</span><h3>This guide is the introduction. The documents are the reference.</h3><p>The Notion page has every phase in detail, the FAQ answers the questions people ask most, and the Strategy Library holds the templates, the flowchart and the complete process guide.</p>
+    <div class="links"><a href="https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4" target="_blank" rel="noopener">Investment Process in Notion</a><a class="g" href="https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a" target="_blank" rel="noopener">FAQ</a><a class="g" href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">Strategy Library</a></div></div>
+  <div class="think"><span class="eyebrow">Reflect</span><q>Where is your opportunity today, and who owns the next step?</q></div>`;
+}
+
+const DEEPER = {
+  map:['Read every phase in full, step by step, on the Investment Process page in Notion.', 'https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4', 'Open the Notion summary'],
+  decide:['The FAQ answers the questions people ask most about the CRM and approvals.', 'https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a', 'Read the FAQ'],
+  score:['The full criteria table, with what each score means, is on the Investment Process page.', 'https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4', 'See the criteria in Notion'],
+  simulate:['All templates, the flowchart and the full process guide are in the Strategy Library.', 'https://app.notion.com/p/294c630dfead474ab2229082a0215138', 'Open the Strategy Library'],
+  practice:['Missed a case? The FAQ explains each rule in a sentence or two.', 'https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a', 'Read the FAQ']
+};
+function deeper(id){ const d = DEEPER[id]; if(!d) return ''; return `<div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> ${d[0]} <a href="${d[1]}" target="_blank" rel="noopener">${d[2]} →</a></p></div>`; }
+const RENDER = [renderStart, renderMap, renderDecide, renderScore, renderSim, renderPractice, renderKeep];
+const BIND = [()=>{ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go)))); }, bindMap, bindDecide, bindScore, bindSim, drawQuiz, ()=>{}];
+
+/* ---------------- shell ---------------- */
+const route = $('#route'), prog = $('#progress');
+route.innerHTML = STOPS.map((s,i)=>`<button type="button" data-i="${i}"><span class="d">${i}</span>${s.label}</button>`).join('');
+prog.innerHTML = STOPS.map(()=>'<i></i>').join('');
+route.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.i))));
+function go(i){
+  if(typeof stopPlay==='function') stopPlay();
+  cur = Math.max(0, Math.min(STOPS.length-1, i));
+  seen.add(cur); store.set('seen', [...seen]); store.set('cur', cur);
+  const main = $('#main');
+  main.innerHTML = `<section class="stop" id="${STOPS[cur].id}">${RENDER[cur]()}${deeper(STOPS[cur].id)}</section>`;
+  BIND[cur]();
+  route.querySelectorAll('button').forEach((b,j)=>{ b.classList.toggle('seen', seen.has(j)); if(j===cur) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current'); });
+  const active = route.querySelector('[aria-current]'); if(active && active.scrollIntoView) active.scrollIntoView({block:'nearest', inline:'center'});
+  prog.querySelectorAll('i').forEach((el,j)=>el.classList.toggle('on', j<=cur));
+  $('#prev').disabled = cur===0; $('#next').disabled = cur===STOPS.length-1;
+  $('#count').textContent = `${cur+1} / ${STOPS.length}`;
+  try{ history.replaceState(null,'','#'+STOPS[cur].id); }catch(e){}
+  window.scrollTo({top:0});
+}
+$('#prev').addEventListener('click',()=>go(cur-1));
+$('#next').addEventListener('click',()=>go(cur+1));
+
+/* theme */
+const root = document.documentElement, mq = window.matchMedia('(prefers-color-scheme: dark)');
+function paintTheme(){ const t = root.getAttribute('data-theme'); const dark = t ? t==='dark' : mq.matches; $('#th-light').setAttribute('aria-pressed', String(!dark)); $('#th-dark').setAttribute('aria-pressed', String(dark)); }
+function setTheme(t){ if(t) root.setAttribute('data-theme', t); paintTheme(); }
+$('#th-light').addEventListener('click',()=>{ store.set('theme','light'); setTheme('light'); });
+$('#th-dark').addEventListener('click',()=>{ store.set('theme','dark'); setTheme('dark'); });
+if(mq.addEventListener) mq.addEventListener('change', paintTheme);
+setTheme(store.get('theme', null));
+
+const fromHash = STOPS.findIndex(s=>'#'+s.id===location.hash);
+go(fromHash>-1 ? fromHash : 0);
+})();
+</script>
+
+</body>
+</html>
