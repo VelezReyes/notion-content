@@ -103,6 +103,7 @@ footer{font-size:11.5px;color:var(--muted);padding-block:0 26px}
 .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2);white-space:nowrap}
+a.tpl-dl{text-decoration:none;box-shadow:inset 0 0 0 1px currentColor}a.tpl-dl:hover{background:var(--purple);color:#fff}
 .tpl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:var(--purple-tint);color:var(--purple-ink);border-radius:6px;padding:3px 8px}
 
 /* stop 0 */
@@ -380,6 +381,9 @@ table.t td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
 const $ = (s, el=document) => el.querySelector(s);
 const store = { get(k, d){ try{ const v = localStorage.getItem('verinvmap:'+k); return v===null?d:JSON.parse(v);}catch(e){ return d; } }, set(k, v){ try{ localStorage.setItem('verinvmap:'+k, JSON.stringify(v)); }catch(e){} } };
 
+const TPL_BASE = 'https://velezreyes.github.io/notion-content/strategy/files/templates/';
+const TPLURL = {'Organization Concept Note':'ver-template-organization-concept-note.pdf','Investment One-Pager':'ver-template-investment-one-pager.pdf','Full Investment Memo':'ver-template-full-investment-memo.pdf','Follow-up Report':'ver-template-follow-up-report.pdf'};
+const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPL_BASE+TPLURL[n]}" target="_blank" rel="noopener" download title="Download the ${n} template (PDF)">▤ ${n} <span aria-hidden="true">↓</span></a>` : `<span class="tpl">▤ ${n}</span>`;
 const PH = [
   {name:'Screening', short:'Materials, first conversations and a concept note from the organization.', time:'~2 weeks',
    lead:'We review the organization’s public and private materials, hold initial conversations and ask the organization for a concept note: its own proposal, in our template.',
@@ -409,7 +413,7 @@ function drawPhase(){
   document.getElementById('pdet').innerHTML = `<div><span class="eyebrow">Stage ${String(phI+1).padStart(2,'0')}${p.dp?' · decision point '+p.dp:''}</span><h4>${p.name}</h4><p class="lead">${p.lead}</p><ol>${p.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${p.dec?`<div class="pdec" style="margin-top:12px"><b>Decision:</b> ${p.dec}</div>`:''}</div>
     <div class="pside"><div><div class="k">ver+ team</div><div class="who">${p.team.map(t=>`<span class="team">${t}</span>`).join('')}</div></div>
     ${p.ext.length?`<div><div class="k">Outside the team</div><div class="who">${p.ext.map(t=>`<span class="ext">${t}</span>`).join('')}</div></div>`:''}
-    <div><div class="k">Template</div>${p.tpl?`<span class="tpl">▤ ${p.tpl}</span>`:'<span class="muted" style="font-size:13px">None at this stage</span>'}</div>
+    <div><div class="k">Template</div>${p.tpl?tplChip(p.tpl):'<span class="muted" style="font-size:13px">None at this stage</span>'}</div>
     <div><div class="k">Typical time</div><span style="font-size:13px">${p.time}</span></div></div>`;
   const btn = document.querySelector('#pmap .ph[aria-pressed="true"]'); if(btn && btn.scrollIntoView) btn.scrollIntoView({block:'nearest',inline:'nearest'});
 }

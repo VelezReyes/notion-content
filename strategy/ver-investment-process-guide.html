@@ -104,6 +104,7 @@ footer{font-size:11.5px;color:var(--muted);padding-block:0 26px}
 .chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2);white-space:nowrap}
+a.tpl-dl{text-decoration:none;box-shadow:inset 0 0 0 1px currentColor}a.tpl-dl:hover{background:var(--purple);color:#fff}
 .tpl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;background:var(--purple-tint);color:var(--purple-ink);border-radius:6px;padding:3px 8px}
 
 /* stop 0 */
@@ -512,6 +513,9 @@ function renderStart(){
 }
 
 /* stop 1 */
+const TPL_BASE = 'https://velezreyes.github.io/notion-content/strategy/files/templates/';
+const TPLURL = {'Organization Concept Note':'ver-template-organization-concept-note.pdf','Investment One-Pager':'ver-template-investment-one-pager.pdf','Full Investment Memo':'ver-template-full-investment-memo.pdf','Follow-up Report':'ver-template-follow-up-report.pdf'};
+const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPL_BASE+TPLURL[n]}" target="_blank" rel="noopener" download title="Download the ${n} template (PDF)">▤ ${n} <span aria-hidden="true">↓</span></a>` : `<span class="tpl">▤ ${n}</span>`;
 const PH = [
   {name:'Screening', short:'Materials, first conversations and a concept note from the organization.', time:'~2 weeks',
    lead:'We review the organization’s public and private materials, hold initial conversations and ask the organization for a concept note: its own proposal, in our template.',
@@ -541,7 +545,7 @@ function drawPhase(){
   document.getElementById('pdet').innerHTML = `<div><span class="eyebrow">Stage ${String(phI+1).padStart(2,'0')}${p.dp?' · decision point '+p.dp:''}</span><h4>${p.name}</h4><p class="lead">${p.lead}</p><ol>${p.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${p.dec?`<div class="pdec" style="margin-top:12px"><b>Decision:</b> ${p.dec}</div>`:''}</div>
     <div class="pside"><div><div class="k">ver+ team</div><div class="who">${p.team.map(t=>`<span class="team">${t}</span>`).join('')}</div></div>
     ${p.ext.length?`<div><div class="k">Outside the team</div><div class="who">${p.ext.map(t=>`<span class="ext">${t}</span>`).join('')}</div></div>`:''}
-    <div><div class="k">Template</div>${p.tpl?`<span class="tpl">▤ ${p.tpl}</span>`:'<span class="muted" style="font-size:13px">None at this stage</span>'}</div>
+    <div><div class="k">Template</div>${p.tpl?tplChip(p.tpl):'<span class="muted" style="font-size:13px">None at this stage</span>'}</div>
     <div><div class="k">Typical time</div><span style="font-size:13px">${p.time}</span></div></div>`;
   const btn = document.querySelector('#pmap .ph[aria-pressed="true"]'); if(btn && btn.scrollIntoView) btn.scrollIntoView({block:'nearest',inline:'nearest'});
 }
@@ -767,7 +771,7 @@ function drawSim(){
     let txt = NEXT_TXT[nextStep.id];
     if(nextStep.id==='pr') txt = S.amount>=250000 ? 'Share the approved memo with the Principals in the weekly email. At US$250,000 or above they must approve it.' : 'Share the approved memo with the Principals in the weekly email, for information.';
     head = `<span class="eyebrow">Now in stage ${g.k}</span><h3>${g.name}</h3>`;
-    body = `<div class="next"><b>Next step</b><span>${txt}</span><div class="who">${nextStep.who.map(w=>`<span class="tag" title="${ROLES[w]}">${ROLES[w]}</span>`).join('')}${nextStep.tpl?`<span class="tpl">▤ ${nextStep.tpl}</span>`:''}</div></div>`;
+    body = `<div class="next"><b>Next step</b><span>${txt}</span><div class="who">${nextStep.who.map(w=>`<span class="tag" title="${ROLES[w]}">${ROLES[w]}</span>`).join('')}${nextStep.tpl?tplChip(nextStep.tpl):''}</div></div>`;
     if(nextStep.id==='crm' && S.sh24) body += `<div class="okm">Ready for the CRM: One-Pager shared, two reviewers assigned.</div>`;
     if(S.crm==='yellow' && nextStep.id==='yv') body += `<div class="warn">Yellow light: the opportunity cannot move to the memo until the reviewers and the CEO validate the revised One-Pager.</div>`;
   } else {
@@ -775,7 +779,7 @@ function drawSim(){
     const due = S.cadence * (S.reports + 1);
     const late = S.months > due;
     head = `<span class="eyebrow">Stage 05 · in partnership</span><h3>Implementation period</h3>`;
-    body = `<div class="next"><b>Reporting</b><span>The organization reports its own progress with the Follow-up Report, every ${S.cadence} months.</span><div class="who"><span class="tag">ORG</span><span class="tag">AL</span><span class="tpl">▤ Follow-up Report</span></div></div>
+    body = `<div class="next"><b>Reporting</b><span>The organization reports its own progress with the Follow-up Report, every ${S.cadence} months.</span><div class="who"><span class="tag">ORG</span><span class="tag">AL</span>${tplChip('Follow-up Report')}</div></div>
       <div class="kv"><span>Next report due</span><b>Month ${due}</b></div>
       ${late?`<div class="warn">Report ${S.reports+1} is ${S.months-due} month${S.months-due===1?'':'s'} overdue. The Area Lead requests it.</div>`:`<div class="okm">Reporting is up to date. ${due-S.months===0?'A report is due this month.':`Next one in ${due-S.months} month${due-S.months===1?'':'s'}.`}</div>`}`;
   }
@@ -840,13 +844,13 @@ function renderKeep(){
     <div class="box"><h3>The criteria</h3><ul><li><b>Strategic fit:</b> gate, pass/fail, never scored.</li><li>Then 0–2 each, out of 10: additionality, solution strength, team strength, non-linear scale potential, impact potential.</li></ul></div>
     <div class="box"><h3>The partnership</h3><ul><li>OKRs written with pencil.</li><li>We usually take board seats.</li><li>Active support on strategy, MEL and product mindset.</li><li>Keep outreach, measured improvement and attribution distinct.</li></ul></div>
   </div>
-  <div class="box tw"><table class="t"><thead><tr><th>Template</th><th>Who fills it</th><th>When</th></tr></thead><tbody>
-    <tr><td><span class="tpl">▤ Investment Flowchart</span></td><td>Read by everyone</td><td>The full map, every stage</td></tr>
-    <tr><td><span class="tpl">▤ Organization Concept Note</span></td><td>Organization (requested by AL)</td><td>01 Screening</td></tr>
-    <tr><td><span class="tpl">▤ Investment One-Pager</span></td><td>AL + Area Team</td><td>02 Concept note</td></tr>
-    <tr><td><span class="tpl">▤ Full Investment Memo</span></td><td>AL + Area Team</td><td>03 Memo</td></tr>
+  <div class="box tw"><table class="t"><thead><tr><th>Template · click to download the fillable PDF</th><th>Who fills it</th><th>When</th></tr></thead><tbody>
+    <tr><td><a class="tpl tpl-dl" href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">▤ Investment Flowchart <span aria-hidden="true">↗</span></a></td><td>Read by everyone</td><td>The full map, every stage</td></tr>
+    <tr><td>${tplChip('Organization Concept Note')}</td><td>Organization (requested by AL)</td><td>01 Screening</td></tr>
+    <tr><td>${tplChip('Investment One-Pager')}</td><td>AL + Area Team</td><td>02 Concept note</td></tr>
+    <tr><td>${tplChip('Full Investment Memo')}</td><td>AL + Area Team</td><td>03 Memo</td></tr>
     <tr><td><span class="tpl">▤ Partnership Agreement 5.0</span></td><td>AL + AD + Organization</td><td>04 Legal due diligence</td></tr>
-    <tr><td><span class="tpl">▤ Follow-up Report</span></td><td>Organization (requested by AL)</td><td>05 Implementation period · every 6 or 12 months</td></tr>
+    <tr><td>${tplChip('Follow-up Report')}</td><td>Organization (requested by AL)</td><td>05 Implementation period · every 6 or 12 months</td></tr>
   </tbody></table></div>
   <div class="box"><span class="eyebrow">Glossary</span><div class="gloss" style="margin-top:8px">${GLOSS.map(g=>`<div><b>${g[0]}</b>${g[1]}</div>`).join('')}</div></div>
   <div class="cta"><span class="eyebrow" style="color:var(--yellow)">Now read the full process</span><h3>This guide is the introduction. The documents are the reference.</h3><p>The Notion page has every stage in detail, the FAQ answers the questions people ask most, and the Strategy Library holds the Investment Flowchart and the templates, in the order you will use them.</p>
