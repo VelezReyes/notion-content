@@ -428,7 +428,7 @@ const STAGES = [
     {t:'Complete the full investment memo, following up on CRM notes', who:['AL','AT','KMD'], tpl:'Full Investment Memo'},
     {t:'Share with the two reviewers and address their feedback', who:['AL','REV']},
     {t:'Share with the CEO, address feedback and obtain approval', who:['AL','CEO'], note:'Decision point 2'},
-    {t:'Share with the Principals in the weekly email', who:['AL','PR'], note:'Below US$250k: FYI · US$250k or above: approval'}
+    {t:'Share with the Principals in the weekly email', who:['AL','PR'], note:'Up to US$250k: FYI · above US$250k: approval'}
    ]},
   {k:'04', name:'Legal due diligence', weeks:3, dp:false,
    idea:'Documents, Trust approval, grant and agreement.',
@@ -457,8 +457,8 @@ const CASES = [
   {s:'An edtech founder emails you: “How do we apply to your open call?”', o:['Send them the Concept Note template right away','Explain that ver+ does not run open calls, and first check whether they fit a main bet or groundwork pillar in our countries','Ask them to fill in the Investment One-Pager'], a:1, why:'We source proactively and do not run open calls. Strategic fit comes first; only then do we ask for a concept note.'},
   {s:'The One-Pager is ready on Monday at 10:00. The CRM is booked for Monday at 15:00.', o:['Hold the CRM as planned and share the One-Pager in the meeting','Share it now and move the CRM so participants get at least 24 hours','Skip the One-Pager and present orally'], a:1, why:'The One-Pager must reach CRM participants at least 24 hours before the meeting.'},
   {s:'The CRM gives a yellow light.', o:['The opportunity moves straight to the full memo','The Area Lead revises the One-Pager, and the reviewers and CEO validate it before it can advance','The process ends and the organization is informed'], a:1, why:'Yellow means adjust. The revised One-Pager is validated by the reviewers and the CEO, who confirm whether it advances.'},
-  {s:'The CEO approved a memo for a US$150,000 grant.', o:['The Principals must approve it before legal due diligence','It is shared with the Principals for information in the weekly email','It goes back to the reviewers'], a:1, why:'Below US$250,000 the Principals are informed. From US$250,000 they approve.'},
-  {s:'The CEO approved a memo for US$250,000.', o:['It is shared for information only','The Principals approve it','The Trust approves it instead of the Principals'], a:1, why:'Investments of US$250,000 or above require the Principals’ approval. Trust approval comes later, in legal due diligence.'},
+  {s:'The CEO approved a memo for a US$150,000 grant.', o:['The Principals must approve it before legal due diligence','It is shared with the Principals for information in the weekly email','It goes back to the reviewers'], a:1, why:'Up to US$250,000 the Principals are informed. Above US$250,000 they approve.'},
+  {s:'The CEO approved a memo for US$400,000.', o:['It is shared for information only','The Principals approve it','The Trust approves it instead of the Principals'], a:1, why:'Investments above US$250,000 require the Principals’ approval. Trust approval comes later, in legal due diligence.'},
   {s:'A brilliant education organization works only in Mexico, outside our main bets and pillars.', o:['It scores well on team, so it passes','It does not pass the strategic fit gate; excellent work outside the strategy is still outside it','We score it out of 10 and decide at the CRM'], a:1, why:'Strategic fit is pass/fail, never scored. The only exception is the 20% for extraordinary opportunities and founders, and that is a deliberate call, not a score.'},
   {s:'A partner’s report says: “Impact: 40,000 students reached.”', o:['Accept it: reach is impact','Ask them to report it as outreach, and to show measured improvement separately with its evidence','Remove the KPI'], a:1, why:'Outreach is people reached. Impact is a change in learning, earnings, access, quality or cost. Keep them distinct and show evidence limits.'},
   {s:'Halfway through the grant, a target no longer makes sense.', o:['Replace the target and delete the old one','Agree the change, keep the original target in the report and explain the revision','Leave it and report below expectations'], a:1, why:'OKRs are written with pencil. Changes are fine when learning drives them; the original target stays visible with the reason.'}
@@ -527,7 +527,7 @@ const PH = [
   {name:'Memo', short:'The full memo, challenged by reviewers and approved by the CEO.', time:'~2 weeks', dp:2,
    lead:'The area team completes the full investment memo, with the Knowledge Management Director supporting the evidence. The two reviewers and then the CEO give feedback; the CEO approves, and the memo goes to the Principals in the weekly email.',
    steps:['Complete the full investment memo','Share it with the two reviewers and address their feedback','Share it with the CEO and address the CEO’s feedback','CEO approves','Share it with the Principals in the weekly email'], team:['Area Lead','Area Team','Reviewers','KMD','CEO'], ext:['Principals'], tpl:'Full Investment Memo',
-   dec:'Below US$250,000 the Principals are informed. US$250,000 or above, the Principals approve.'},
+   dec:'Up to US$250,000 the Principals are informed. Above US$250,000, the Principals approve.'},
   {name:'Legal due diligence', short:'Documents, Trust approval, grant and agreement.', time:'~3 weeks',
    lead:'The organization submits its legal documents, the Trust approves, ver+ awards the grant, and both sides sign the partnership agreement.',
    steps:['Request the legal documents through the submission link','Obtain Trust approval','Award the grant','Sign the grant receipt letter via the Trust','Prepare and sign the Partnership Agreement 5.0'], team:['Area Lead','Administrative Director'], ext:['Organization','Trust'], tpl:'Partnership Agreement 5.0'},
@@ -613,9 +613,9 @@ function drawDecide(){
   const o = OUT[light];
   $('#outcome').innerHTML = `<div class="outcome ${o.c}"><h3>${o.h}</h3><ol>${o.s.map(x=>`<li>${x}</li>`).join('')}</ol></div>`;
   document.querySelectorAll('.light').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.l===light)));
-  const big = amount >= 250000;
+  const big = amount > 250000;
   $('#amt').textContent = 'US$' + amount.toLocaleString('en-US');
-  $('#verdict').innerHTML = big ? `<span class="pill appr">Principals approve</span><span class="muted">US$250,000 or above</span>` : `<span class="pill fyi">Principals informed (FYI)</span><span class="muted">Below US$250,000</span>`;
+  $('#verdict').innerHTML = big ? `<span class="pill appr">Principals approve</span><span class="muted">Above US$250,000</span>` : `<span class="pill fyi">Principals informed (FYI)</span><span class="muted">Up to US$250,000 (CEO approves)</span>`;
   $('#flow').innerHTML = `<span>Reviewers’ feedback</span><em>→</em><span>CEO feedback</span><em>→</em><span><b>CEO approves</b></span><em>→</em><span>Weekly email to Principals</span><em>→</em><span><b>${big?'Principals approve':'For information'}</b></span><em>→</em><span>Legal due diligence</span>`;
 }
 function bindDecide(){
@@ -672,7 +672,7 @@ const SIM_STEPS = [
   {id:'memo', ph:2, st:2, t:'Full investment memo completed', who:['AL','AT'], tpl:'Full Investment Memo'},
   {id:'mrev', ph:2, st:2, t:'Reviewers’ feedback addressed', who:['AL','REV']},
   {id:'ceo', ph:2, st:2, t:'CEO feedback addressed and memo approved', who:['CEO']},
-  {id:'pr', ph:2, st:2, t:'Shared with the Principals in the weekly email', who:['AL','PR'], label:s=>s.amount>=250000?'Approved by the Principals (US$250k or above)':'Shared with the Principals for information (below US$250k)'},
+  {id:'pr', ph:2, st:2, t:'Shared with the Principals in the weekly email', who:['AL','PR'], label:s=>s.amount>250000?'Approved by the Principals (above US$250k)':'Shared with the Principals for information (up to US$250k)'},
   {id:'docs', ph:3, st:3, t:'Legal documents submitted', who:['ORG','AL','AD']},
   {id:'trust', ph:3, st:3, t:'Trust approval obtained', who:['TRUST']},
   {id:'grant', ph:3, st:3, t:'Grant awarded', who:['AL']},
@@ -717,7 +717,7 @@ function renderSim(){
       ${groups.map(({g,i,items})=>`<fieldset><legend>${g.k} · ${g.name}</legend>
         ${items.map(x=> x.special==='crm' ? `<div class="row2"><label for="crm-sel"><b>CRM outcome</b></label><select id="crm-sel"><option value="none">Not held yet</option><option value="green">Green light</option><option value="yellow">Yellow light</option><option value="red">Red light</option></select></div>`
           : `<label class="ck" id="row-${x.id}"><input type="checkbox" id="ck-${x.id}" data-k="${x.id}"><span id="lab-${x.id}">${x.t}</span></label>`).join('')}
-        ${i===2?`<div class="row2"><label for="sim-amt">Amount</label><select id="sim-amt"><option value="50000">US$50,000</option><option value="150000">US$150,000</option><option value="249000">US$249,000</option><option value="250000">US$250,000</option><option value="350000">US$350,000</option><option value="750000">US$750,000</option></select></div>`:''}
+        ${i===2?`<div class="row2"><label for="sim-amt">Amount</label><select id="sim-amt"><option value="50000">US$50,000</option><option value="150000">US$150,000</option><option value="250000">US$250,000</option><option value="260000">US$260,000</option><option value="350000">US$350,000</option><option value="750000">US$750,000</option></select></div>`:''}
         ${i===4?`<div class="row2"><label for="sim-cad">Reporting</label><select id="sim-cad"><option value="6">Every 6 months</option><option value="12">Every 12 months</option></select>
           <label for="sim-mon">Months since kickoff</label><select id="sim-mon">${Array.from({length:37},(_,m)=>`<option value="${m}">${m}</option>`).join('')}</select>
           <label for="sim-rep">Reports received</label><select id="sim-rep">${[0,1,2,3,4,5,6].map(m=>`<option value="${m}">${m}</option>`).join('')}</select></div>`:''}
@@ -769,7 +769,7 @@ function drawSim(){
   } else if(nextStep){
     const g = {k:String(nextStep.ph+1).padStart(2,'0'), name:PH[nextStep.ph].name};
     let txt = NEXT_TXT[nextStep.id];
-    if(nextStep.id==='pr') txt = S.amount>=250000 ? 'Share the approved memo with the Principals in the weekly email. At US$250,000 or above they must approve it.' : 'Share the approved memo with the Principals in the weekly email, for information.';
+    if(nextStep.id==='pr') txt = S.amount>250000 ? 'Share the approved memo with the Principals in the weekly email. Above US$250,000 they must approve it.' : 'Share the approved memo with the Principals in the weekly email, for information.';
     head = `<span class="eyebrow">Now in stage ${g.k}</span><h3>${g.name}</h3>`;
     body = `<div class="next"><b>Next step</b><span>${txt}</span><div class="who">${nextStep.who.map(w=>`<span class="tag" title="${ROLES[w]}">${ROLES[w]}</span>`).join('')}${nextStep.tpl?tplChip(nextStep.tpl):''}</div></div>`;
     if(nextStep.id==='crm' && S.sh24) body += `<div class="okm">Ready for the CRM: One-Pager shared, two reviewers assigned.</div>`;
@@ -792,7 +792,7 @@ function drawSim(){
     <div class="box" style="display:grid;gap:10px">${body}
       ${!ended && nextStep && nextStep.st<4?`<div class="kv"><span>Typical time to signed agreement</span><b>up to ~${wk} weeks</b></div>`:''}
       <div class="kv"><span>Steps completed</span><b>${doneN} / ${list.length}</b></div>
-      <div class="kv"><span>Approval route</span><b>${S.amount>=250000?'CEO + Principals approve':'CEO approves · Principals FYI'}</b></div>
+      <div class="kv"><span>Approval route</span><b>${S.amount>250000?'CEO + Principals approve':'CEO approves · Principals FYI'}</b></div>
     </div>
     ${warnings.map(w=>`<div class="err">${esc(w)}</div>`).join('')}`;
 }
@@ -833,14 +833,14 @@ function drawQuiz(){
 }
 
 /* stop 6: keep */
-const GLOSS = [['AL','Area Lead: owns each opportunity from screening to partnership'],['AT','Area Team: prepares the documents with the Area Lead'],['Reviewers','Two people who challenge the proposal before the CRM and the memo'],['CRM','Concept Review Meeting: decision point 1'],['KMD','Knowledge Management Director: supports evidence and measurement'],['AD','Administrative Director: legal documents and agreements'],['Principals','The founders. Informed below US$250k, approve from US$250k'],['Trust','Gives its approval in legal due diligence; the grant receipt letter is signed via the Trust'],['Concept Note','What the organization sends: its own proposal, in our template'],['One-Pager','What ver+ prepares: our own one-page view of the opportunity, for the CRM'],['Additionality','Whether our absence would change the outcome']];
+const GLOSS = [['AL','Area Lead: owns each opportunity from screening to partnership'],['AT','Area Team: prepares the documents with the Area Lead'],['Reviewers','Two people who challenge the proposal before the CRM and the memo'],['CRM','Concept Review Meeting: decision point 1'],['KMD','Knowledge Management Director: supports evidence and measurement'],['AD','Administrative Director: legal documents and agreements'],['Principals','The founders. Informed up to US$250k, approve above US$250k'],['Trust','Gives its approval in legal due diligence; the grant receipt letter is signed via the Trust'],['Concept Note','What the organization sends: its own proposal, in our template'],['One-Pager','What ver+ prepares: our own one-page view of the opportunity, for the CRM'],['Additionality','Whether our absence would change the outcome']];
 function renderKeep(){
   const visited = STOPS.filter((_,i)=>seen.has(i)).length;
   return `${idea(6,'Keep','Your cheat sheet','Everything on one screen','Come back here when you are in the middle of a real process.')}
   <div class="box"><span class="eyebrow">Your progress</span><div style="font-size:13.5px;margin-top:4px">You have visited <b>${visited} of ${STOPS.length}</b> stops.</div><div class="done-meter">${STOPS.map((_,i)=>`<i class="${seen.has(i)?'on':''}"></i>`).join('')}</div></div>
   <div class="sheet">
     <div class="box"><h3>The five stages</h3><ul>${PH.map((p,i)=>`<li><b>${String(i+1).padStart(2,'0')} ${p.name}</b>${p.dp?' · decision point '+p.dp:''} · ${p.time}</li>`).join('')}</ul></div>
-    <div class="box"><h3>The two decisions</h3><ul><li><b>CRM:</b> green advances, yellow adjusts and is validated by reviewers + CEO, red ends and is explained.</li><li><b>Memo:</b> CEO approves. Principals informed below US$250k, approve from US$250k.</li><li>Share the One-Pager at least 24 hours before the CRM.</li></ul></div>
+    <div class="box"><h3>The two decisions</h3><ul><li><b>CRM:</b> green advances, yellow adjusts and is validated by reviewers + CEO, red ends and is explained.</li><li><b>Memo:</b> CEO approves. Principals informed up to US$250k (included), approve above US$250k.</li><li>Share the One-Pager at least 24 hours before the CRM.</li></ul></div>
     <div class="box"><h3>The criteria</h3><ul><li><b>Strategic fit:</b> gate, pass/fail, never scored.</li><li>Then 0–2 each, out of 10: additionality, solution strength, team strength, non-linear scale potential, impact potential.</li></ul></div>
     <div class="box"><h3>The partnership</h3><ul><li>OKRs written with pencil.</li><li>We usually take board seats.</li><li>Active support on strategy, MEL and product mindset.</li><li>Keep outreach, measured improvement and attribution distinct.</li></ul></div>
   </div>
