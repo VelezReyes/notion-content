@@ -374,7 +374,7 @@ dialog.share::backdrop{background:rgba(0,0,0,.6)}
 </header>
 
 <main class="wrap" id="stage"></main>
-<div class="wrap"><div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> This guide walks you through the plan. For the full picture, read the <a href="https://app.notion.com/p/405d3fa668bb81f9ab62d6aefa0d040f" target="_blank" rel="noopener">5-Year Plan summary in Notion</a>, the <a href="https://app.notion.com/p/405d3fa668bb81c6b5e3feb011dea39e" target="_blank" rel="noopener">FAQ</a>, and the complete board document in the <a href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">Strategy Library</a>.</p></div></div>
+<div class="wrap"><div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> This guide walks you through the plan. For the full picture, read the <a href="https://app.notion.com/p/482d3fa668bb8370a30c01a91fb54fb2" target="_blank" rel="noopener">5-Year Plan summary in Notion</a>, the <a href="https://app.notion.com/p/591d3fa668bb825d9e60814bfb2b4445" target="_blank" rel="noopener">FAQ</a>, and the complete board document in the <a href="https://app.notion.com/p/8b1d3fa668bb82ddaca401f7191e5a74" target="_blank" rel="noopener">Strategy Library</a>.</p></div></div>
 <div class="wrap pager">
   <button type="button" id="prev">← Previous</button>
   <span id="count">1 / 6</span>
@@ -525,7 +525,7 @@ const LANES=[
    {s:2027,e:2027,t:'2027 — Year 1',p:'Build the portfolio on the impact-investing thesis set with the Family Office. Write our point of view on AI and education and start arguing it. Find the champions. Coordinate the Chocó master plan. Implement the portfolio and pipeline decisions. Set the MEL baseline. If the investable pipeline proves thin, the mix shifts toward Create — earlier-stage investing, venture building, Futura-type vehicles — not a smaller bet.'},
    {s:2028,e:2029,t:'2028–2029 — Prove',p:'Get the point of view adopted — learning standards, procurement terms, the rules on data about children. Create what the ecosystem is missing. Deepen evidence to real attribution: measured learning improvement traceable to what we backed.'},
    {s:2030,e:2031,t:'2030–2031 — Hand over',p:'Regionalize what proved out. Several solutions at meaningful scale through public systems or markets, on track to stand without us; key bottlenecks measurably reduced.'}]},
- {n:'People in Government',c:'var(--purple)',ph:[
+ {n:'Public Leadership & Innovation',c:'var(--purple)',ph:[
    {s:2027,e:2027,t:'2027 — Year 1: find the maximum points of leverage',p:'The homework we cannot shortcut. Which government functions, leveraging AI, create mobility — and which seats control them? What is the AI-for-R²=0 agenda in each country, the political opportunity, and the sequencing to implement it? And which services actually moved the number. Not only research: we also learn from the existing portfolio and pipeline. Explore all five countries, start testing through pilots and portfolio, and decide where to double down from that assessment.'},
    {s:2028,e:2029,t:'2028–2029 — Put it to work',p:'Scale what proved to work. First results from advocacy. At least five clear cases of better government delivery for R²=0 through AI.'},
    {s:2030,e:2031,t:'2030–2031 — Make it sustainable',p:'What have we created that can become public policy and stand on its own?'}]},
@@ -680,7 +680,7 @@ function renderNeedles(){
 }
 
 function renderPlan(){
-  return ideaBlock('3','A venture philanthropy approach to move 3 needles','<b>Where and how.</b> Two areas. Education &amp; Tech, because what a child learns is the engine of opportunity. People in Government, because the state ensures opportunity reaches everyone. Five priority countries: Brazil · Colombia · Costa Rica · Peru · Uruguay.') +
+  return ideaBlock('3','A venture philanthropy approach to move 3 needles','<b>Where and how.</b> Two areas. Education &amp; Tech, because what a child learns is the engine of opportunity. Public Leadership &amp; Innovation, because the state ensures opportunity reaches everyone. Five priority countries: Brazil · Colombia · Costa Rica · Peru · Uruguay.') +
   `<div>${beat(2,'Explore','Filter by needle and tap a cell to see what it is and where it stands')}
    <div class="planx">
      <div>
@@ -827,7 +827,7 @@ function feedsOf(a,k){ if(a==='edu') return ['1','2']; if(k==='op') return ['3']
 function chip(st){return `<span class="chip ${st[0]}">${st[1]}</span>`;}
 function buildMap(){
   const grid=document.getElementById('mapgrid'); if(!grid) return;
-  let h='<span class="corner"></span><span class="h edu">Education</span><span class="h pig">People in Government</span>';
+  let h='<span class="corner"></span><span class="h edu">Education</span><span class="h pig">Public Leadership &amp; Innovation</span>';
   ROWS.forEach(([k,l],i)=>{
     if(i===1) h+='<span class="band">Groundwork — the four pillars that make the main bets possible</span>';
     h+=`<span class="row${k==='mb'?' mb':''}">${l}</span>`;
@@ -840,7 +840,7 @@ function buildMap(){
 function showDetail(){
   const detail=document.getElementById('detail'); if(!detail) return;
   const [a,k]=sel, c=M[a][k];
-  const area=a==='edu'?'Education & Tech':'People in Government';
+  const area=a==='edu'?'Education & Tech':'Public Leadership & Innovation';
   const feeds=c.needle||(a==='edu'?'→ Needle 1 in full<br>→ Needle 2 · “Education is a key sector contributing to this”':'→ Needles 2 and 3');
   detail.innerHTML=`<span class="eyebrow">${area} · ${ROWS.find(r=>r[0]===k)[1]}</span><h3>${c.t}</h3><p class="sub">${c.sub}</p><p>${c.p}</p>
    <div class="kvs">
@@ -853,8 +853,8 @@ function showDetail(){
 function showGate(){
   const el=document.getElementById('gatebox'); if(!el) return;
   el.innerHTML = gate==='create'
-   ? `<div class="gatebox create"><h4>Create</h4><p>Build what doesn't exist yet — incubate new ventures and organizations, develop talent pipelines, unlock the enablers others will not fund, and back reformers and founders early.</p><p class="ex"><b>Education:</b> Aprendo+ · Beca Tech · Trajetórias · Chocó build-forward<br><b>People in Government:</b> +CR · Potencia Argentina · Más para Chile · Más Uruguay · Code for Peru (first step towards Code for LatAm)</p></div>`
-   : `<div class="gatebox scale"><h4>LatAm Scale</h4><p>Take what proves out to new countries — non-linearly, toward full government and market adoption.</p><p><b>Entry test:</b> proven impact + non-linear regionalization potential + additionality.</p><p class="ex"><b>Education:</b> Aprendo+ regionalization<br><b>People in Government:</b> Democracia+ · RIL regionalization</p></div>`;
+   ? `<div class="gatebox create"><h4>Create</h4><p>Build what doesn't exist yet — incubate new ventures and organizations, develop talent pipelines, unlock the enablers others will not fund, and back reformers and founders early.</p><p class="ex"><b>Education:</b> Aprendo+ · Beca Tech · Trajetórias · Chocó build-forward<br><b>Public Leadership &amp; Innovation:</b> +CR · Potencia Argentina · Más para Chile · Más Uruguay · Code for Peru (first step towards Code for LatAm)</p></div>`
+   : `<div class="gatebox scale"><h4>LatAm Scale</h4><p>Take what proves out to new countries — non-linearly, toward full government and market adoption.</p><p><b>Entry test:</b> proven impact + non-linear regionalization potential + additionality.</p><p class="ex"><b>Education:</b> Aprendo+ regionalization<br><b>Public Leadership &amp; Innovation:</b> Democracia+ · RIL regionalization</p></div>`;
 }
 
 /* ================= TIMELINE ================= */
@@ -917,8 +917,8 @@ applyTheme(store.get('vng-theme'));
       <p>The executive summary is the version of the plan made to share outside ver+: with partners, allies, funders and people we are just meeting. Pick the length that fits the conversation.</p>
       <ul><li><b>One page:</b> the dream, R²=0, the three needles, the two areas and how we work</li><li><b>Two pages:</b> the same page, plus the two areas in depth: vision, role, thesis, main bet and groundwork</li></ul>
       <div class="share-acts">
-        <button type="button" data-share="pdf1">Download one page (PDF)</button>
-        <button type="button" class="ghost" data-share="pdf2">Download two pages (PDF)</button>
+        <button type="button" data-share="pdf1">Open one page (PDF)</button>
+        <button type="button" class="ghost" data-share="pdf2">Open two pages (PDF)</button>
       </div>
       <p class="share-note">The rest of this guide is for the team.</p>
     </div>
@@ -935,7 +935,8 @@ applyTheme(store.get('vng-theme'));
   function page(n){ img.src = F+'p'+n+'.jpg'; img.alt = 'Executive summary, page '+n; dlg.querySelectorAll('[data-pg]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.pg===String(n)))); }
   function open(){ if(!img.getAttribute('src')) page(1); if(typeof dlg.showModal==='function') dlg.showModal(); else dlg.setAttribute('open',''); }
   function close(){ if(typeof dlg.close==='function') dlg.close(); else dlg.removeAttribute('open'); }
-  function dl(name){ const a = document.createElement('a'); a.href = F+name+'.pdf'; a.download = 'ver+ 5-Year Plan - Executive summary ('+name.replace('-',' ')+').pdf'; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  const DRIVE = {'one-page':'https://drive.google.com/file/d/17LceRa_LCzk9K60gdd-jvltS5-l4fk6P/view?usp=sharing','two-pages':'https://drive.google.com/file/d/1WY-wSfTrqX04J3W7M9UOfCTRjbB8pbBa/view?usp=sharing'};
+  function dl(name){ const a = document.createElement('a'); a.href = DRIVE[name]; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
   document.addEventListener('click', e => {
     const p = e.target.closest('[data-pg]'); if(p){ page(Number(p.dataset.pg)); return; }
     const b = e.target.closest('[data-share]'); if(!b) return;

@@ -381,9 +381,13 @@ table.t td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
 const $ = (s, el=document) => el.querySelector(s);
 const store = { get(k, d){ try{ const v = localStorage.getItem('verinvmap:'+k); return v===null?d:JSON.parse(v);}catch(e){ return d; } }, set(k, v){ try{ localStorage.setItem('verinvmap:'+k, JSON.stringify(v)); }catch(e){} } };
 
-const TPL_BASE = 'https://velezreyes.github.io/notion-content/strategy/files/templates/';
-const TPLURL = {'Organization Concept Note':'ver-template-organization-concept-note.pdf','Investment One-Pager':'ver-template-investment-one-pager.pdf','Full Investment Memo':'ver-template-full-investment-memo.pdf','Follow-up Report':'ver-template-follow-up-report.pdf'};
-const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPL_BASE+TPLURL[n]}" target="_blank" rel="noopener" download title="Download the ${n} template (PDF)">▤ ${n} <span aria-hidden="true">↓</span></a>` : `<span class="tpl">▤ ${n}</span>`;
+const TPLURL = {
+  'Organization Concept Note':['https://drive.google.com/file/d/1aJ0S7OzQFIQBxU-cMs6tf0mfdFAm8225/view?usp=sharing','fillable PDF'],
+  'Investment One-Pager':['https://docs.google.com/document/d/1155NACVmlDwJoN6Qv4lhELlwB30RgtBf/edit?usp=sharing','Word · make a copy'],
+  'Full Investment Memo':['https://docs.google.com/document/d/1J48fLHf-afjBnonpU6aJ5GL5en6DXIb5/edit?usp=sharing','Word · make a copy'],
+  'Follow-up Report':['https://drive.google.com/file/d/1ZEgm9WAOw-wE7uxi4GhldxNuSHWsiIw4/view?usp=sharing','fillable PDF'],
+  'Investment Flowchart':['https://drive.google.com/file/d/1cRsaB5bjo1JsN-2JSh3Ef2aMZfzh0BEl/view?usp=sharing','PDF']};
+const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPLURL[n][0]}" target="_blank" rel="noopener" title="Open the ${n} (${TPLURL[n][1]}) in Google Drive">▤ ${n} <span aria-hidden="true">↗</span></a>` : `<span class="tpl">▤ ${n}</span>`;
 const PH = [
   {name:'Screening', short:'Materials, first conversations and a concept note from the organization.', time:'~2 weeks',
    lead:'We review the organization’s public and private materials, hold initial conversations and ask the organization for a concept note: its own proposal, in our template.',
@@ -443,7 +447,7 @@ $('#main').innerHTML = `<header class="idea"><div><div class="beat"><span class=
     </div>
     <div class="pdet" id="pdet" aria-live="polite"></div>
   </div>
-<div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> Every stage in detail is on the <a href="https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4" target="_blank" rel="noopener">Investment Process page in Notion</a>, and the Investment Flowchart and the templates are in the <a href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">Strategy Library</a>. To learn it step by step, open the Investment Process guide.</p></div>`;
+<div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> Every stage in detail is on the <a href="https://app.notion.com/p/a8cd3fa668bb821db07401574e349de3" target="_blank" rel="noopener">Investment Process page in Notion</a>, and the Investment Flowchart and the templates are in the <a href="https://app.notion.com/p/8b1d3fa668bb82ddaca401f7191e5a74" target="_blank" rel="noopener">Strategy Library</a>. To learn it step by step, open the Investment Process guide.</p></div>`;
 bindPhases();
 const root = document.documentElement, mq = window.matchMedia('(prefers-color-scheme: dark)');
 function paintTheme(){ const t = root.getAttribute('data-theme'); const dark = t ? t==='dark' : mq.matches; $('#th-light').setAttribute('aria-pressed', String(!dark)); $('#th-dark').setAttribute('aria-pressed', String(dark)); }

@@ -513,9 +513,13 @@ function renderStart(){
 }
 
 /* stop 1 */
-const TPL_BASE = 'https://velezreyes.github.io/notion-content/strategy/files/templates/';
-const TPLURL = {'Organization Concept Note':'ver-template-organization-concept-note.pdf','Investment One-Pager':'ver-template-investment-one-pager.pdf','Full Investment Memo':'ver-template-full-investment-memo.pdf','Follow-up Report':'ver-template-follow-up-report.pdf'};
-const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPL_BASE+TPLURL[n]}" target="_blank" rel="noopener" download title="Download the ${n} template (PDF)">▤ ${n} <span aria-hidden="true">↓</span></a>` : `<span class="tpl">▤ ${n}</span>`;
+const TPLURL = {
+  'Organization Concept Note':['https://drive.google.com/file/d/1aJ0S7OzQFIQBxU-cMs6tf0mfdFAm8225/view?usp=sharing','fillable PDF'],
+  'Investment One-Pager':['https://docs.google.com/document/d/1155NACVmlDwJoN6Qv4lhELlwB30RgtBf/edit?usp=sharing','Word · make a copy'],
+  'Full Investment Memo':['https://docs.google.com/document/d/1J48fLHf-afjBnonpU6aJ5GL5en6DXIb5/edit?usp=sharing','Word · make a copy'],
+  'Follow-up Report':['https://drive.google.com/file/d/1ZEgm9WAOw-wE7uxi4GhldxNuSHWsiIw4/view?usp=sharing','fillable PDF'],
+  'Investment Flowchart':['https://drive.google.com/file/d/1cRsaB5bjo1JsN-2JSh3Ef2aMZfzh0BEl/view?usp=sharing','PDF']};
+const tplChip = n => TPLURL[n] ? `<a class="tpl tpl-dl" href="${TPLURL[n][0]}" target="_blank" rel="noopener" title="Open the ${n} (${TPLURL[n][1]}) in Google Drive">▤ ${n} <span aria-hidden="true">↗</span></a>` : `<span class="tpl">▤ ${n}</span>`;
 const PH = [
   {name:'Screening', short:'Materials, first conversations and a concept note from the organization.', time:'~2 weeks',
    lead:'We review the organization’s public and private materials, hold initial conversations and ask the organization for a concept note: its own proposal, in our template.',
@@ -844,26 +848,26 @@ function renderKeep(){
     <div class="box"><h3>The criteria</h3><ul><li><b>Strategic fit:</b> gate, pass/fail, never scored.</li><li>Then 0–2 each, out of 10: additionality, solution strength, team strength, non-linear scale potential, impact potential.</li></ul></div>
     <div class="box"><h3>The partnership</h3><ul><li>OKRs written with pencil.</li><li>We usually take board seats.</li><li>Active support on strategy, MEL and product mindset.</li><li>Keep outreach, measured improvement and attribution distinct.</li></ul></div>
   </div>
-  <div class="box tw"><table class="t"><thead><tr><th>Template · click to download the fillable PDF</th><th>Who fills it</th><th>When</th></tr></thead><tbody>
-    <tr><td><a class="tpl tpl-dl" href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">▤ Investment Flowchart <span aria-hidden="true">↗</span></a></td><td>Read by everyone</td><td>The full map, every stage</td></tr>
-    <tr><td>${tplChip('Organization Concept Note')}</td><td>Organization (requested by AL)</td><td>01 Screening</td></tr>
-    <tr><td>${tplChip('Investment One-Pager')}</td><td>AL + Area Team</td><td>02 Concept note</td></tr>
-    <tr><td>${tplChip('Full Investment Memo')}</td><td>AL + Area Team</td><td>03 Memo</td></tr>
+  <div class="box tw"><table class="t"><thead><tr><th>Template · click to open it in Drive</th><th>Who fills it</th><th>When</th></tr></thead><tbody>
+    <tr><td>${tplChip('Investment Flowchart')}</td><td>Read by everyone</td><td>The full map, every stage</td></tr>
+    <tr><td>${tplChip('Organization Concept Note')}</td><td>Organization (requested by AL) · fillable PDF</td><td>01 Screening</td></tr>
+    <tr><td>${tplChip('Investment One-Pager')}</td><td>AL + Area Team · Word, make a copy</td><td>02 Concept note</td></tr>
+    <tr><td>${tplChip('Full Investment Memo')}</td><td>AL + Area Team · Word, make a copy</td><td>03 Memo</td></tr>
     <tr><td><span class="tpl">▤ Partnership Agreement 5.0</span></td><td>AL + AD + Organization</td><td>04 Legal due diligence</td></tr>
-    <tr><td>${tplChip('Follow-up Report')}</td><td>Organization (requested by AL)</td><td>05 Implementation period · every 6 or 12 months</td></tr>
+    <tr><td>${tplChip('Follow-up Report')}</td><td>Organization (requested by AL) · fillable PDF</td><td>05 Implementation period · every 6 or 12 months</td></tr>
   </tbody></table></div>
   <div class="box"><span class="eyebrow">Glossary</span><div class="gloss" style="margin-top:8px">${GLOSS.map(g=>`<div><b>${g[0]}</b>${g[1]}</div>`).join('')}</div></div>
   <div class="cta"><span class="eyebrow" style="color:var(--yellow)">Now read the full process</span><h3>This guide is the introduction. The documents are the reference.</h3><p>The Notion page has every stage in detail, the FAQ answers the questions people ask most, and the Strategy Library holds the Investment Flowchart and the templates, in the order you will use them.</p>
-    <div class="links"><a href="https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4" target="_blank" rel="noopener">Investment Process in Notion</a><a class="g" href="https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a" target="_blank" rel="noopener">FAQ</a><a class="g" href="https://app.notion.com/p/294c630dfead474ab2229082a0215138" target="_blank" rel="noopener">Strategy Library</a></div></div>
+    <div class="links"><a href="https://app.notion.com/p/a8cd3fa668bb821db07401574e349de3" target="_blank" rel="noopener">Investment Process in Notion</a><a class="g" href="https://app.notion.com/p/0b4d3fa668bb8262afc481e9d6ab15cf" target="_blank" rel="noopener">FAQ</a><a class="g" href="https://app.notion.com/p/8b1d3fa668bb82ddaca401f7191e5a74" target="_blank" rel="noopener">Strategy Library</a></div></div>
   <div class="think"><span class="eyebrow">Reflect</span><q>Where is your opportunity today, and who owns the next step?</q></div>`;
 }
 
 const DEEPER = {
-  map:['Read every stage in full on the Investment Process page in Notion, and the step-by-step Investment Flowchart in the Strategy Library.', 'https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4', 'Open the Notion summary'],
-  decide:['The FAQ answers the questions people ask most about the CRM and approvals.', 'https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a', 'Read the FAQ'],
-  score:['The full criteria table, with what each score means, is on the Investment Process page.', 'https://app.notion.com/p/405d3fa668bb812bad05f32dd86413e4', 'See the criteria in Notion'],
-  simulate:['The Investment Flowchart and all the templates are in the Strategy Library, in the order you will use them.', 'https://app.notion.com/p/294c630dfead474ab2229082a0215138', 'Open the Strategy Library'],
-  practice:['Missed a case? The FAQ explains each rule in a sentence or two.', 'https://app.notion.com/p/405d3fa668bb81be8e5fc32e77593e3a', 'Read the FAQ']
+  map:['Read every stage in full on the Investment Process page in Notion, and the step-by-step Investment Flowchart in the Strategy Library.', 'https://app.notion.com/p/a8cd3fa668bb821db07401574e349de3', 'Open the Notion summary'],
+  decide:['The FAQ answers the questions people ask most about the CRM and approvals.', 'https://app.notion.com/p/0b4d3fa668bb8262afc481e9d6ab15cf', 'Read the FAQ'],
+  score:['The full criteria table, with what each score means, is on the Investment Process page.', 'https://app.notion.com/p/a8cd3fa668bb821db07401574e349de3', 'See the criteria in Notion'],
+  simulate:['The Investment Flowchart and all the templates are in the Strategy Library, in the order you will use them.', 'https://app.notion.com/p/8b1d3fa668bb82ddaca401f7191e5a74', 'Open the Strategy Library'],
+  practice:['Missed a case? The FAQ explains each rule in a sentence or two.', 'https://app.notion.com/p/0b4d3fa668bb8262afc481e9d6ab15cf', 'Read the FAQ']
 };
 function deeper(id){ const d = DEEPER[id]; if(!d) return ''; return `<div class="deeper"><span class="ic" aria-hidden="true">📖</span><p><b>Go deeper.</b> ${d[0]} <a href="${d[1]}" target="_blank" rel="noopener">${d[2]} →</a></p></div>`; }
 const RENDER = [renderStart, renderMap, renderDecide, renderScore, renderSim, renderPractice, renderKeep];
