@@ -281,6 +281,9 @@ body {
 
 /* ─── VIDEO ROW (portrait + landscape side by side) ─────── */
 .mg-video-row { display: flex; gap: 6px; height: 420px; margin-bottom: 1.75rem; }
+/* ─── VERTICAL IMAGE STACK ───────────────────────────── */
+.mg-vstack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 1.75rem; border-radius: var(--radius); overflow: hidden; }
+.mg-vstack img { width: 100%; height: auto; display: block; }
 .mg-video-wrap { border-radius: var(--radius); overflow: hidden; background: #111; }
 .mg-video-wrap.portrait  { flex: 0 0 calc(420px * 9 / 16); }
 .mg-video-wrap.landscape { flex: 1; }
@@ -455,6 +458,14 @@ const DATA = {
       name:     "TBD",   /* ← update with creative name */
       audience: "David & Mariel",
       ceoNote:  null
+    },
+    {
+      num:      "05",
+      month:    "October",
+      year:     2026,
+      name:     "TBD",   /* ← update with creative name */
+      audience: "David & Mariel",
+      ceoNote:  null
     }
   ],
 
@@ -617,6 +628,64 @@ const DATA = {
             { n: "0.955", l: "Inter parte Cooperation Score",                     ctx: "vs. 0.904 among comparable non-applicant representatives",    c: "#A62BFF" }
           ],
           investment: "USD 500,000"
+        },
+        /* ── Edition 05 ── */
+        {
+          edition:   "05",
+          title:     "MOE Colombia: Electoral Risk, Observer Deployment, and Citizen Reporting in Colombia's 2026 Cycle",
+          pill:      "MOE",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/MOE.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>The assessment of MOE's work during Colombia's 2026 electoral cycle draws on four sources: electoral risk mapping, observer deployment records, citizen reports, and social media monitoring. The risk map identified 170 territories at electoral risk, compared with 131 in 2022, while extreme-risk territories increased from 49 to 81 (+65.3%). MOE recorded 1,946 observer assignments in the first presidential round and 1,956 in the runoff. However, only 45.0% of the 80 extreme-risk municipalities outside Bogotá had recorded observer assignments in the first round and 47.5% in the runoff, revealing gaps between identified risks and observation coverage.</p><p>Citizen reporting and social media monitoring document additional concerns about electoral guarantees. Through Pilas con el Voto, MOE recorded 939 reports of potential irregularities during congressional elections, while freedom-of-the-vote reports increased from 124 to 221 between presidential rounds. Social media analysis covered 595 MOE posts and 6,346 organic mentions, with 40.5% of mentions critical of the electoral process, compared with 17.6% of MOE's posts. Overall, the evidence documents MOE's capacity to identify electoral risks, deploy observers, and make potential irregularities visible, while its contribution to preventing violations or improving electoral integrity remains unmeasured.</p>`,
+          stats: [
+            { n: "170",    l: "Territories at electoral risk",             ctx: "Up from 131 in 2022",                                              c: "#A62BFF" },
+            { n: "+65.3%", l: "Increase in extreme-risk territories",      ctx: "From 49 to 81 territories",                                        c: "#A62BFF" },
+            { n: "1,946",  l: "Observer assignments in first round",       ctx: "1,956 in the runoff",                                              c: "#A62BFF" },
+            { n: "45.0%",  l: "Extreme-risk municipalities with coverage", ctx: "Of 80 outside Bogotá · 47.5% in the runoff",                       c: "#A62BFF" },
+            { n: "939",    l: "Irregularity reports via Pilas con el Voto",ctx: "During congressional elections",                                   c: "#A62BFF" },
+            { n: "40.5%",  l: "Organic mentions critical of the process",  ctx: "vs. 17.6% of MOE's own posts · 6,346 total organic mentions",      c: "#A62BFF" }
+          ],
+          onepager: "https://docs.google.com/document/d/1ZZNKWVtXpA6cOvuKFEi6ZY3I3GktBoZOdNcBkSJVARQ/edit?tab=t.0#heading=h.m0syzcvw99ym"
+        },
+        {
+          edition:   "05",
+          title:     "Transparencia Perú: Accuracy and Communication in a Statistical-Tie Election",
+          pill:      "Transparencia Perú",
+          tag:       "Learning Agenda",
+          mediaType: "vstack",
+          imgRatio:  "landscape",
+          imgs:      [
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/1era_vuelta.png",
+            "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/2da_vuelta.png"
+          ],
+          summary: `<p>The assessment of Transparencia Perú's work during the 2026 presidential elections draws on two sources: quick-count estimates compared with official JNE results, and social media monitoring. The quick count, based on a planned sample of 1,037 polling-station tally sheets per round, demonstrated high statistical accuracy: all nine candidate-level estimates across both rounds fell within their published confidence intervals, with absolute errors below 1 percentage point. In the runoff, the quick count estimated 50.3% for Sánchez and 49.7% for Fujimori, while the official results were 49.865% and 50.135%, respectively. Both results remained within the published ±1.9 percentage-point margins, confirming that the quick count correctly identified a statistical tie rather than a definitive winner.</p><p>Social media monitoring covered 166 posts by Transparencia and 1,370 organic mentions, revealing substantial public attention around the elections. While 88.6% of Transparencia's posts were neutral or informational, 39.6% of organic mentions were critical of the electoral process. Moreover, 86.4% of mentions were concentrated between the first round and the initial runoff count. Transparencia actively communicated the statistical uncertainty: its June 9 message explaining the tie and encouraging respect for the official process generated approximately 3,500 interactions. Overall, the evidence demonstrates statistical accuracy and documented communication of electoral uncertainty.</p>`,
+          stats: [
+            { n: "1,037",   l: "Polling-station tally sheets per round",   ctx: "Planned sample for quick count",                                   c: "#A62BFF" },
+            { n: "9/9",     l: "Estimates within confidence intervals",     ctx: "Across both presidential rounds",                                  c: "#A62BFF" },
+            { n: "±1.9pp",  l: "Published margin for runoff estimates",     ctx: "Quick count correctly identified a statistical tie",               c: "#A62BFF" },
+            { n: "~3,500",  l: "Interactions on June 9 tie message",        ctx: "Transparencia communicated statistical uncertainty",               c: "#A62BFF" },
+            { n: "39.6%",   l: "Organic mentions critical of the process",  ctx: "vs. 88.6% of Transparencia posts neutral/informational",           c: "#A62BFF" }
+          ],
+          onepager: "https://docs.google.com/document/d/1Q6DNfCCQFeCXMR1iAcJIhKSbPmoNjh_oIwcpHk8w5l0/edit?tab=t.0#heading=h.61cpvpwvqm75"
+        },
+        {
+          edition:   "05",
+          title:     "RECAMBIO Perú: Attracting Politically Engaged, Democratically Oriented Participants",
+          pill:      "RECAMBIO Perú",
+          tag:       "Learning Agenda",
+          img:       "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/RECAMBIO.mp4",
+          mediaType: "video",
+          imgRatio:  "landscape",
+          summary: `<p>The assessment of RECAMBIO Perú draws on application-form data from the programs Ciudadanía 2024, Ciudadanía 2025, and Aspirantes 2025, covering 1,194 applicants, including 376 graduates. Among graduates, 82%–91% had completed higher education or postgraduate studies. The strongest political profiles appear in Aspirantes 2025, where 67.5% had participated in party politics, compared with 43.4% of non-graduates, and 40.2% had previously run for elected office, compared with 21.1%. These differences indicate that graduates entered with more established political trajectories.</p><p>Democratic commitment is another relevant finding: 94.9%–100% of graduates considered democracy preferable to other forms of government and generally scored higher than non-graduates in democratic pluralism and dialogue. However, only 30%–42% believed Peru currently functions as a democracy. Overall, RECAMBIO attracts politically engaged, democratically oriented participants. Information on political performance and eligibility remains unverified, as Peruvian electoral authorities have not yet published the relevant election data.</p>`,
+          stats: [
+            { n: "1,194",    l: "Total applicants across three programs",    ctx: "Ciudadanía 2024, Ciudadanía 2025, Aspirantes 2025",                c: "#A62BFF" },
+            { n: "376",      l: "Graduates assessed",                        ctx: "82%–91% with higher education or postgraduate studies",           c: "#A62BFF" },
+            { n: "67.5%",    l: "Aspirantes 2025 graduates in party politics",ctx: "vs. 43.4% of non-graduates",                                    c: "#A62BFF" },
+            { n: "94.9–100%",l: "Graduates preferring democracy",            ctx: "Higher than non-graduates in democratic pluralism and dialogue",   c: "#A62BFF" }
+          ],
+          onepager: "https://docs.google.com/document/d/1qLze_ki_aFyt4cuvfwu81grj5v9XYYkvzrEgwNY5sPM/edit?tab=t.0"
         }
       ]
     },
@@ -961,6 +1030,7 @@ function buildStoryHTML(t, s, i) {
   const hasMedia = s.mediaType === 'gallery'      ? (s.imgs && s.imgs.length > 0)
                  : s.mediaType === 'mixedgallery'  ? (s.media && s.media.length > 0)
                  : s.mediaType === 'splitgallery'  ? (s.gallery && s.gallery.length > 0)
+                 : s.mediaType === 'vstack'        ? (s.imgs && s.imgs.length > 0)
                  : !!s.img;
   const ratio = s.imgRatio || 'landscape';
   let mediaHTML;
@@ -991,6 +1061,9 @@ function buildStoryHTML(t, s, i) {
     const vR = s.videoRight ? `<div class="mg-video-wrap landscape"><video controls playsinline preload="metadata"><source src="${s.videoRight}" type="video/mp4"></video></div>` : '';
     const videoRowEl = (vL || vR) ? `<div class="mg-video-row">${vL}${vR}</div>` : '';
     mediaHTML = galleryEl + videoRowEl;
+  } else if (s.mediaType === 'vstack' && s.imgs && s.imgs.length > 0) {
+    const imgTags = s.imgs.map(url => `<img src="${url}" alt="" loading="lazy">`).join('');
+    mediaHTML = `<div class="mg-vstack">${imgTags}</div>`;
   } else {
     const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
     let mediaInner;
