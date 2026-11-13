@@ -283,7 +283,9 @@ body {
 .mg-video-row { display: flex; gap: 6px; height: 420px; margin-bottom: 1.75rem; }
 /* ─── VERTICAL IMAGE STACK ───────────────────────────── */
 .mg-vstack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 1.75rem; border-radius: var(--radius); overflow: hidden; }
-.mg-vstack img { width: 100%; height: auto; display: block; }
+.mg-vstack-item { position: relative; }
+.mg-vstack-item img { width: 100%; height: auto; display: block; }
+.mg-vstack-label { position: absolute; top: 10px; left: 12px; background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(4px); pointer-events: none; }
 .mg-video-wrap { border-radius: var(--radius); overflow: hidden; background: #111; }
 .mg-video-wrap.portrait  { flex: 0 0 calc(420px * 9 / 16); }
 .mg-video-wrap.landscape { flex: 1; }
@@ -660,6 +662,7 @@ const DATA = {
             "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/1era_vuelta.png",
             "https://raw.githubusercontent.com/VelezReyes/notion-content/main/verhuellas/media/october/2da_vuelta.png"
           ],
+          imgLabels: ["Primera Vuelta", "Segunda Vuelta"],
           summary: `<p>The assessment of Transparencia Perú's work during the 2026 presidential elections draws on two sources: quick-count estimates compared with official JNE results, and social media monitoring. The quick count, based on a planned sample of 1,037 polling-station tally sheets per round, demonstrated high statistical accuracy: all nine candidate-level estimates across both rounds fell within their published confidence intervals, with absolute errors below 1 percentage point. In the runoff, the quick count estimated 50.3% for Sánchez and 49.7% for Fujimori, while the official results were 49.865% and 50.135%, respectively. Both results remained within the published ±1.9 percentage-point margins, confirming that the quick count correctly identified a statistical tie rather than a definitive winner.</p><p>Social media monitoring covered 166 posts by Transparencia and 1,370 organic mentions, revealing substantial public attention around the elections. While 88.6% of Transparencia's posts were neutral or informational, 39.6% of organic mentions were critical of the electoral process. Moreover, 86.4% of mentions were concentrated between the first round and the initial runoff count. Transparencia actively communicated the statistical uncertainty: its June 9 message explaining the tie and encouraging respect for the official process generated approximately 3,500 interactions. Overall, the evidence demonstrates statistical accuracy and documented communication of electoral uncertainty.</p>`,
           stats: [
             { n: "1,037",   l: "Polling-station tally sheets per round",   ctx: "Planned sample for quick count",                                   c: "#A62BFF" },
@@ -1062,7 +1065,10 @@ function buildStoryHTML(t, s, i) {
     const videoRowEl = (vL || vR) ? `<div class="mg-video-row">${vL}${vR}</div>` : '';
     mediaHTML = galleryEl + videoRowEl;
   } else if (s.mediaType === 'vstack' && s.imgs && s.imgs.length > 0) {
-    const imgTags = s.imgs.map(url => `<img src="${url}" alt="" loading="lazy">`).join('');
+    const imgTags = s.imgs.map((url, i) => {
+      const label = s.imgLabels && s.imgLabels[i] ? `<span class="mg-vstack-label">${s.imgLabels[i]}</span>` : '';
+      return `<div class="mg-vstack-item">${label}<img src="${url}" alt="" loading="lazy"></div>`;
+    }).join('');
     mediaHTML = `<div class="mg-vstack">${imgTags}</div>`;
   } else {
     const mediaClass = `story-media ${ratio}${hasMedia ? ' has-media' : ''}`;
