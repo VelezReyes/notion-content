@@ -101,6 +101,16 @@ h2.h-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,3.4vw
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem}
 .hero-hint{font-size:.8rem;font-weight:500;color:#777}
 .hero-hint a{color:var(--yellow-light);font-weight:700;border-bottom:1px solid rgba(247,255,102,.3)}
+/* ─── NOTICE BAR (top of page, all tabs) ─────────────── */
+.notice-bar{background:var(--yellow);color:#000;border-bottom:1px solid rgba(0,0,0,.15)}
+.notice-inner{max-width:1120px;margin:0 auto;padding:.95rem clamp(1.25rem,4vw,3rem);display:flex;align-items:center;gap:1.1rem 1.4rem;flex-wrap:wrap}
+.notice-pill{flex-shrink:0;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#000;color:var(--yellow);border-radius:20px;padding:5px 11px}
+.notice-text{flex:1 1 420px;font-size:.88rem;font-weight:600;line-height:1.55;color:#111}
+.notice-text b{font-weight:800}
+.notice-actions{display:flex;gap:.6rem;flex-wrap:wrap;flex-shrink:0}
+.notice-btn{display:inline-flex;align-items:center;font-family:var(--font);font-size:.74rem;font-weight:800;letter-spacing:.02em;border-radius:20px;padding:8px 15px;text-decoration:none;background:#000;color:#fff;border:1.5px solid #000;transition:transform .15s}
+.notice-btn:hover{transform:translateY(-1px)}
+.notice-btn.ghost{background:transparent;color:#000}
 
 /* ─── RADAR SCOPE (animated hero graphic) ────────────── */
 .radar-scope{position:absolute;right:-90px;top:50%;transform:translateY(-48%);width:460px;height:460px;pointer-events:none}
@@ -409,6 +419,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <a href="#start" class="nav-link">Start</a>
           <a href="#naming" class="nav-link">Naming</a>
           <a href="#beta" class="nav-link">Beta rules</a>
+          <a href="#final-phase" class="nav-link">Final phase</a>
           <a href="#tools" class="nav-link">Tools</a>
           <a href="#timeline" class="nav-link">Timeline</a>
           <a href="#faq" class="nav-link">FAQ</a>
@@ -440,6 +451,18 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     </div>
   </div>
 </nav>
+
+<!-- NOTICE: final phase (visible on every tab) ─────────── -->
+<div class="notice-bar" role="region" aria-label="Final phase notice">
+  <div class="notice-inner">
+    <span class="notice-pill">Final phase</span>
+    <p class="notice-text"><b>Thank you for making RADAR the new way of working.</b> New work already lives here and most active projects have moved in, so keep using it. This is not a mass migration: only closed projects move, and only three folders each, Investment Documents, Execution Documents, and MEL Evidence.</p>
+    <div class="notice-actions">
+      <a class="notice-btn" href="#final-phase" data-goto="guide">Read the final-phase guide</a>
+      <a class="notice-btn ghost" href="#" data-link="channel" target="_blank" rel="noopener">Ask in #radar</a>
+    </div>
+  </div>
+</div>
 
 <!-- INTRO MODAL: what is RADAR? ───────────────────────── -->
 <div class="intro-overlay" id="introOverlay">
@@ -634,7 +657,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
 
     <div class="important-box">
       <svg class="icon" viewBox="0 0 24 24"><use href="#icon-warn"/></svg>
-      <p><b>Important: this is not a full migration.</b> Moving historical files comes later, at a calmer pace. For now, let's focus on working well going forward.</p>
+      <p><b>Important: this is not a full migration.</b> The only historical content that moves is closed projects, and only a limited set of documents for each one. See the <a href="#final-phase" style="color:#402F00;font-weight:800;text-decoration:underline">final phase</a> below. Everything else stays where it is, and we keep focusing on working well going forward.</p>
     </div>
 
     <div class="acc dark" data-acc style="margin-top:2rem">
@@ -657,6 +680,70 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
         </div>
         <span class="checklist-reset" id="checklistReset">Reset checklist</span>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL PHASE ──────────────────────────────────────── -->
+<section class="section" id="final-phase">
+  <div class="wrap">
+    <div class="section-hd">
+      <div class="eyebrow">Final phase</div>
+      <h2 class="h-title">Closed historical projects, and only those</h2>
+      <p class="h-sub">New work lives in RADAR, and most active projects have already moved in. That's real progress, and it's what lets us open the next step: bringing in closed projects, grants, and investments that no longer have ongoing activity.</p>
+    </div>
+
+    <div class="important-box">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-warn"/></svg>
+      <p><b>This is not a mass migration.</b> We're not moving every historical file or every project. This phase is deliberately narrow: only closed projects, and only a specific, limited set of documents for each one.</p>
+    </div>
+
+    <h3 class="subhead">How to create the folders</h3>
+    <div class="beta-list">
+      <div class="beta-row">
+        <div class="beta-num">1</div>
+        <div>
+          <h4>Open Create Structure</h4>
+          <p>In the Drive Finder, go to <b>Tools → Create Structure</b>. New to it? <a href="#finder-create" data-goto="finder" style="color:var(--purple-dark);font-weight:800">See how Create Structure works</a>.</p>
+        </div>
+      </div>
+      <div class="beta-row">
+        <div class="beta-num">2</div>
+        <div>
+          <h4>Choose Historical Closed Project</h4>
+          <p>It's the new tool for this phase, and it works just like creating a new project: a few clicks and the structure is built for you.</p>
+        </div>
+      </div>
+      <div class="beta-row">
+        <div class="beta-num">3</div>
+        <div>
+          <h4>Find it inside 99 Archive</h4>
+          <p>The structure is created inside <b>99 Archive → Democracy or Education</b>, whichever applies to the project.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead" style="margin-top:2.5rem">What to migrate, and only this</h3>
+    <p class="h-sub" style="margin-bottom:1.25rem">Each closed project gets exactly three subfolders.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-title">Investment Documents</div>
+        <div class="card-body">Always included for each closed project.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Execution Documents</div>
+        <div class="card-body">Always included for each closed project.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">MEL Evidence</div>
+        <div class="card-body">Only if evidence was generated for the project.</div>
+      </div>
+    </div>
+    <p style="font-size:.92rem;font-weight:600;color:var(--muted);margin-top:1.25rem">Nothing else needs to move. The rest stays where it is.</p>
+
+    <div class="principle-box purple" style="margin-top:2rem">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+      <p><b>Questions? We're right here.</b> Post them in <a class="cta-link" href="#" data-link="channel" target="_blank" rel="noopener">#radar</a>, and keep using RADAR as you have been, that's how we see where the system stands.</p>
     </div>
   </div>
 </section>
@@ -685,7 +772,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
       <div class="card tool-card finder">
         <div class="tool-icon-wrap finder"><svg viewBox="0 0 24 24"><use href="#icon-search"/></svg></div>
         <div class="card-title">Drive Finder</div>
-        <div class="card-body">Has three tabs. <b>Search</b> finds existing files quickly. <b>Classify</b> answers "where should I save this?" and suggests a folder plus a file name. <b>Create structure</b> builds the real folders in Drive for a new organization, program, policy, or meeting, no manual copy-pasting of templates.</div>
+        <div class="card-body">Has three tabs. <b>Search</b> finds existing files quickly. <b>Classify</b> answers "where should I save this?" and suggests a folder plus a file name. <b>Create structure</b> builds the real folders in Drive for a new organization, program, policy, or meeting, or for a historical closed project, no manual copy-pasting of templates.</div>
         <a class="btn btn-primary btn-sm" href="#" data-link="finder" target="_blank" rel="noopener">Open the Drive Finder</a>
       </div>
     </div>
@@ -705,8 +792,8 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
   <div class="wrap">
     <div class="section-hd center">
       <div class="eyebrow">Where we're headed</div>
-      <h2 class="h-title">Beta today, stable system by fall</h2>
-      <p class="h-sub">RADAR launches as a time-bound beta, not a one-time system change. Adoption of the new way of working is deliberately separated from migration of historical information.</p>
+      <h2 class="h-title">From beta to a complete system</h2>
+      <p class="h-sub">RADAR launched as a time-bound beta, not a one-time system change. Adoption of the new way of working was deliberately separated from migration of historical information, and that last step is now open, in a narrow form.</p>
     </div>
     <div class="tl">
       <div class="tl-item">
@@ -733,17 +820,17 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
         <div class="tl-title">RADAR v1.0</div>
         <div class="tl-desc">The structure, Policy, Guidelines, and Drive Finder are frozen as the stable, official system for all new and current work.</div>
       </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-when">September</div>
+        <div class="tl-title">Controlled migration</div>
+        <div class="tl-desc">Active projects migrate a defined Minimum Migration Set, not every historical file. For each one: create its folder structure, then bring in what's needed to understand its origin, evolution, results, and supporting evidence. Nothing is deleted at this stage.</div>
+      </div>
       <div class="tl-item now">
         <div class="tl-dot"></div>
         <div class="tl-when">Now</div>
-        <div class="tl-title">September — Controlled migration</div>
-        <div class="tl-desc">Active projects migrate a defined Minimum Migration Set, not every historical file. For each one: create its folder structure, then bring in what's needed to understand its origin, evolution, results, and supporting evidence. Nothing is deleted at this stage.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-when">October onward</div>
-        <div class="tl-title">Historical migration, in waves</div>
-        <div class="tl-desc">Selected historical content moves when it has future operational, legal, evidentiary, or learning value.</div>
+        <div class="tl-title">Final phase: Historical closed projects</div>
+        <div class="tl-desc">Closed projects, grants, and investments with no ongoing activity move in, with only three subfolders each: Investment Documents, Execution Documents, and MEL Evidence (if evidence was generated). Create them with <a href="#final-phase" style="color:var(--purple-dark);font-weight:700">Create Structure → Historical Closed Project</a>.</div>
       </div>
     </div>
     <p class="principle-quote">"Work <span>forward</span>, not backward. Validate the system before asking people to reorganize the past."</p>
@@ -760,7 +847,11 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
 
     <div class="acc" data-acc>
       <button class="acc-head"><span class="acc-head-txt">Do I need to migrate my old files right now?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
-      <div class="acc-panel"><div class="acc-panel-inner"><p>No. During the beta, focus on new work and whatever you're actively using today. Historical migration comes later, in a controlled and then a historical phase, once the structure has stabilized.</p></div></div>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Only if they belong to a closed project. New work already lives in RADAR, and the final phase brings in closed projects, grants, and investments with no ongoing activity, with just three subfolders each: Investment Documents, Execution Documents, and MEL Evidence (only if evidence was generated). Everything else stays where it is. Details in the <a href="#final-phase" style="color:var(--purple-dark)">final phase</a> section.</p></div></div>
+    </div>
+    <div class="acc" data-acc>
+      <button class="acc-head"><span class="acc-head-txt">How do I create the folders for a closed project?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
+      <div class="acc-panel"><div class="acc-panel-inner"><p>Open the <a href="#" data-link="finder" target="_blank" rel="noopener" style="color:var(--purple-dark)">Drive Finder</a>, go to Tools → Create Structure, and choose Historical Closed Project. It works like creating a new project and builds the structure inside 99 Archive, under Democracy or Education, whichever applies. See <a href="#finder-create" data-goto="finder" style="color:var(--purple-dark)">how Create Structure works</a>.</p></div></div>
     </div>
     <div class="acc" data-acc>
       <button class="acc-head"><span class="acc-head-txt">What if I can't find a folder for my document?</span><svg class="acc-chev" viewBox="0 0 24 24"><use href="#icon-chevron"/></svg></button>
@@ -1167,6 +1258,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
           <tr><td>Closed Portfolio</td><td>Organizations whose active Portfolio relationship has ended.</td></tr>
           <tr><td>Closed Ventures</td><td>Closed or discontinued Venture Building initiatives.</td></tr>
           <tr><td>Closed In-house Programs</td><td>In-house Programs that ended or stopped operating. Organized into Education, Democracy, and Cross_Thematic subfolders.</td></tr>
+          <tr><td>Historical Closed Projects</td><td>Closed projects, grants, and investments with no ongoing activity, organized under Democracy or Education. Each holds only Investment Documents, Execution Documents, and MEL Evidence (if evidence was generated). Create them with Create Structure → Historical Closed Project.</td></tr>
           <tr><td>Superseded Strategies</td><td>Replaced strategies retained for historical traceability.</td></tr>
           <tr><td>Deprecated Templates</td><td>Retired templates that should no longer be used.</td></tr>
           <tr><td>Legacy Structure</td><td>Read-only backup of the previous Drive structure.</td></tr>
@@ -1231,7 +1323,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
     <div class="section-hd">
       <div class="eyebrow">Inside the tool</div>
       <h2 class="h-title">How the Drive Finder works</h2>
-      <p class="h-sub">The Drive Finder has two tools that matter most here. <b>Classify</b> answers "where should this go and what should I call it?" for a file you already have. <b>Create Structure</b> builds the real, official folders in Drive for something new, an organization, a program, a policy, a meeting, an OKR year, following this exact Routing Dictionary automatically.</p>
+      <p class="h-sub">The Drive Finder has two tools that matter most here. <b>Classify</b> answers "where should this go and what should I call it?" for a file you already have. <b>Create Structure</b> builds the real, official folders in Drive for something new, an organization, a program, a policy, a meeting, an OKR year, a historical closed project, following this exact Routing Dictionary automatically.</p>
     </div>
 
     <div class="finder-mode classify" id="finder-classify">
@@ -1294,6 +1386,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
             <tr><td>Policy</td><td>An organization-wide policy and its supporting guidance. Policies live only here, use a shortcut if a function needs visibility elsewhere.</td></tr>
             <tr><td>Formal governance meeting</td><td>A Board, Leadership Team, All Team, or Offsite meeting package. Concept Review and Investment Committee are project gates and are never stored here.</td></tr>
             <tr><td>Annual OKR cycle</td><td>One OKR folder per year. Years are never mixed in the same folder.</td></tr>
+            <tr><td>Historical closed project</td><td>A closed project, grant, or investment with no ongoing activity. Builds its structure inside 99 Archive, under Democracy or Education, with three subfolders: Investment Documents, Execution Documents, and MEL Evidence (only if evidence was generated).</td></tr>
           </table></div>
           <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">Portfolio is intentionally not on this list. When a Pipeline organization is approved, move its existing folder to Portfolio and add the operating subfolders, don't create a new one from scratch.</p>
         </div></div>
@@ -1309,6 +1402,7 @@ footer{background:var(--black);color:#888;padding:3rem 0 2rem}
             <tr><td>In-house program</td><td>Same fields as above, but <b>Theme*</b> adds Cross_Thematic, use it only when the program can't reasonably be assigned to Education or Democracy.</td></tr>
             <tr><td>Policy</td><td><b>Policy name*</b>, used exactly as typed.</td></tr>
             <tr><td>Formal governance meeting</td><td><b>Forum*</b>: Board, Leadership Team, All Team, or Offsites, only formal institutional forums, Concept Review and Investment Committee stay with the project · <b>Meeting date*</b>, the year folder is derived from this date.</td></tr>
+            <tr><td>Historical closed project</td><td>Works just like creating a new project: a few clicks, and the structure is placed in 99 Archive under Democracy or Education, whichever applies.</td></tr>
             <tr><td>Annual OKR cycle</td><td><b>OKR year*</b>, four digits, 2000–2100, years are never mixed in one folder. Destination is shown directly, e.g. 01_STRATEGY/03_OKRs/2026.</td></tr>
           </table></div>
           <p style="font-size:.88rem;color:var(--muted);font-weight:500;margin-top:1rem">*Required. Owner, country/geography, and strategic focus are recorded as metadata in the Master Registry and never shape the folder path, unlike Theme and Meeting log year, which do.</p>
