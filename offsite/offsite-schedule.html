@@ -148,6 +148,9 @@
 
     /* EVENTS */
     .events { padding: 4px 0 8px; }
+    .event-group { margin: 6px 0; border: 1px solid #e3e3dc; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,.012); }
+    .event-group .group-head { padding: 10px 16px; background: #f0f0ec; display: flex; flex-direction: column; gap: 3px; border-bottom: 1px solid #e3e3dc; }
+    .event-group .event:last-child { border-bottom: none; }
     .event {
       display: grid; grid-template-columns: 84px 1fr; gap: 0 16px;
       padding: 16px 22px 16px 19px;
@@ -322,7 +325,7 @@
   <div class="ev-time"><span class="t-start">8:00 AM</span><span class="t-end">to 8:30 AM</span></div>
   <div class="ev-body">
     <div class="ev-tag t-session">Session</div>
-    <div class="ev-title">Welcome from Laura</div>
+    <div class="ev-title">Welcome</div>
   </div>
 </div>
 <div class="event cat-activity">
@@ -448,11 +451,16 @@
     </div>
   </div>
 </div>
+<div class="event-group">
+  <div class="group-head">
+    <a class="venue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Parque+Ibirapuera+S%C3%A3o+Paulo+-+SP" target="_blank" rel="noopener"><svg class="venue-pin" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="venue-name">Ibirapuera Park</span></a>
+    <span class="venue-addr">Av. Pedro Álvares Cabral - Vila Mariana, São Paulo - SP</span>
+  </div>
 <div class="event cat-activity">
   <div class="ev-time"><span class="t-start">2:00 PM</span><span class="t-end">to 4:30 PM</span></div>
   <div class="ev-body">
     <div class="ev-tag t-activity">Activity</div>
-    <div class="ev-title">Music activity</div>
+    <div class="ev-title">Ibirapuera activity</div>
   </div>
 </div>
 <div class="event cat-session">
@@ -463,6 +471,7 @@
     <div class="ev-desc">Practice talking about ver+ with confidence.</div>
     <span class="ev-prep"><b>Preparation:</b> Your answers in the form help us prepare this session.</span>
   </div>
+</div>
 </div>
 <div class="event cat-break">
   <div class="ev-time"><span class="t-start">6:00 PM</span></div>
@@ -497,31 +506,32 @@
   </div>
 </div>
 <div class="event cat-session">
-  <div class="ev-time"><span class="t-start">8:00 AM</span><span class="t-end">to 11:00 AM</span></div>
+  <div class="ev-time"><span class="t-start">9:00 AM</span><span class="t-end">to 12:30 PM</span></div>
   <div class="ev-body">
     <div class="ev-tag t-session">Session</div>
     <div class="ev-title">OKRs for 2027</div>
   </div>
 </div>
-<div class="event cat-session">
-  <div class="ev-time"><span class="t-start">11:00 AM</span><span class="t-end">to 12:00 PM</span></div>
-  <div class="ev-body">
-    <div class="ev-tag t-session">Session</div>
-    <div class="ev-title">How the team will look in 2027 and next steps</div>
-  </div>
-</div>
 <div class="event cat-break">
-  <div class="ev-time"><span class="t-start">12:00 PM</span><span class="t-end">to 2:00 PM</span></div>
+  <div class="ev-time"><span class="t-start">12:30 PM</span><span class="t-end">to 2:00 PM</span></div>
   <div class="ev-body">
     <div class="ev-tag t-break">Meal</div>
     <div class="ev-title">Free lunch</div>
   </div>
 </div>
-<div class="event cat-break">
-  <div class="ev-time"><span class="t-start">2:00 PM</span></div>
+<div class="event cat-session">
+  <div class="ev-time"><span class="t-start">2:00 PM</span><span class="t-end">to 4:00 PM</span></div>
   <div class="ev-body">
-    <div class="ev-tag t-break">Free time</div>
-    <div class="ev-title">Free afternoon downtown</div>
+    <div class="ev-tag t-session">Session</div>
+    <div class="ev-title">How the team will look in 2027 and next steps</div>
+  </div>
+</div>
+<div class="event cat-activity">
+  <div class="ev-time"><span class="t-start">5:00 PM</span></div>
+  <div class="ev-body">
+    <div class="ev-tag t-activity">Activity</div>
+    <div class="ev-title">Afternoon in Downtown</div>
+    <div class="ev-desc">For everyone.</div>
   </div>
 </div>
 <div class="event cat-break">
