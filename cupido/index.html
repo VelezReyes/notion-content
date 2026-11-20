@@ -1094,6 +1094,82 @@ function writerOf(receiverId){
    Cada persona solo puede leer reveal/{SU propio id} (regla de
    Firestore), nunca la tabla completa. Ocultar de nuevo borra los
    documentos y apaga ambos interruptores. */
+/* ── Aviso en vivo de la revelación ───────────────────────
+   Escucha config/game en tiempo real (la regla de lectura de config
+   ya existe para cualquier miembro: no requiere cambios en Firebase).
+   Solo reacciona cuando cambia revealOpen/pairingsOpen; el resto de
+   cambios se ignoran, así nadie pierde lo que esté escribiendo por un
+   repintado innecesario. Al abrirse la revelación aparece un aviso
+   grande (y el título de la pestaña cambia) para quien tenga la app
+   abierta; para quien la tenga cerrada, el mensaje de Slack. */
+let cfgUnsub = null;
+let revealNotice = false;
+const BASE_TITLE = document.title;
+function stopConfigWatch(){
+  if (cfgUnsub){ try{ cfgUnsub(); }catch(e){} cfgUnsub = null; }
+  document.title = BASE_TITLE;
+}
+function noticeTexts(){
+  const L = S.lang;
+  const pick = (es, pt, en) => L === 'en' ? en : L === 'pt' ? pt : es;
+  return {
+    title: pick('¡Se abrió la revelación!', 'A revelação foi aberta!', 'The reveal is open!'),
+    body: pick('Ya puedes ver quién te escribió. Entra a la pestaña Revelación.', 'Já dá para ver quem escreveu para você. Entre na aba Revelação.', 'You can now see who wrote to you. Open the Reveal tab.'),
+    go: pick('Ver quién me escribió', 'Ver quem escreveu para mim', 'See who wrote to me'),
+    later: pick('Más tarde', 'Mais tarde', 'Later'),
+    tab: pick('💌 ¡Revelación abierta!', '💌 Revelação aberta!', '💌 Reveal is open!')
+  };
+}
+function showRevealNotice(){
+  if (revealNotice) return;
+  revealNotice = true;
+  const T = noticeTexts();
+  document.title = T.tab;
+  const node = el(`<div class="intro-backdrop" id="revealNotice"><div class="card intro-card" style="text-align:center">
+    <div style="font-size:2.6rem;margin-bottom:.4rem">💌</div>
+    <h3>${T.title}</h3>
+    <p>${T.body}</p>
+    <div class="btn-row" style="justify-content:center">
+      <button class="btn primary" id="rnGo">${T.go}</button>
+      <button class="btn ghost" id="rnLater">${T.later}</button>
+    </div>
+  </div></div>`);
+  const close = (goReveal) => {
+    revealNotice = false;
+    document.title = BASE_TITLE;
+    node.remove();
+    if (goReveal) view = 'reveal';
+    render();
+  };
+  node.querySelector('#rnGo').onclick = () => close(true);
+  node.querySelector('#rnLater').onclick = () => close(false);
+  document.body.appendChild(node);
+}
+function startConfigWatch(){
+  stopConfigWatch();
+  cfgUnsub = db.collection('config').doc('game').onSnapshot(snap => {
+    if (!snap.exists || !S.session) return;
+    const wasRev = isRevealed(), wasPair = !!(S.config && S.config.pairingsOpen);
+    const data = snap.data();
+    const nowRev = !!data.revealOpen, nowPair = !!data.pairingsOpen;
+    S.config = Object.assign({}, S.config, data);
+    if (wasRev === nowRev && wasPair === nowPair) return;
+    const me = byId(S.session);
+    if (!me || me.admin) return; // el admin ya repinta desde su propio botón
+    save();
+    if (nowRev && !wasRev){
+      /* Trae su dato (reveal/{su id}) antes de avisar, para que la
+         pantalla ya tenga lo que va a mostrar. */
+      loadMine(me).then(() => {
+        save();
+        if (receiverOf(me.id)) showRevealNotice(); else render();
+      }).catch(() => render());
+    } else {
+      if (!nowRev && view === 'reveal') view = 'mission';
+      render();
+    }
+  }, err => console.error('config watch', err));
+}
 let myWriterId = undefined; // undefined = no publicado/no cargado · null = sin dato · string = personId
 async function loadMyReveal(me){
   if (!(S.config && S.config.pairingsOpen)){ myWriterId = undefined; return; }
@@ -1501,6 +1577,7 @@ function TopBar(){
   if (window.innerWidth > 760) node.querySelector('#tg').style.display = 'block';
   node.querySelector('#lg').append(...langButtons());
   node.querySelector('#out').onclick = async () => {
+    stopConfigWatch();
     try{ await auth.signOut(); }catch(e){ console.error(e); }
     S.session = null; S.uid = null; S.myAssignment = null; save(); render();
   };
@@ -2669,6 +2746,7 @@ function download(name, text, type){
 render();
 auth.onAuthStateChanged(async (user) => {
   S.allowlistError = null;
+  stopConfigWatch();
   if (!user){
     S.session = null; S.uid = null; S.myAssignment = null;
     S.authBusy = false; save(); render();
@@ -2702,6 +2780,7 @@ auth.onAuthStateChanged(async (user) => {
     await refreshTakenCount();
     await loadMine(person);
     if (person.admin) await loadAllGiftsAndGuesses();
+    startConfigWatch();
   }catch(e){
     console.error(e);
     S.session = null; S.uid = null; S.myAssignment = null;
