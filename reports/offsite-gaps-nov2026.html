@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faltantes Offsite · São Paulo · Nov 2026</title>
+<title>Gaps Offsite · São Paulo · Nov 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -30,8 +30,7 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 32px; height: 52px;
 }
-.nav-brand { font-weight: 900; font-size: 15px; letter-spacing: .5px; }
-.nav-brand span { color: var(--yellow); }
+.nav-logo { height: 22px; width: auto; opacity: .9; }
 .nav-meta { color: var(--muted); font-size: 12px; font-weight: 500; letter-spacing: .5px; }
 .nav-deadline {
   background: var(--yellow); color: #000; font-size: 11px; font-weight: 800;
@@ -192,58 +191,95 @@ footer strong { color: var(--text); }
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">VélezReyes<span>+</span></div>
+  <img class="nav-logo" src="https://github.com/VelezReyes/notion-content/blob/main/verhuellas/media/pvr_logo_negative_main_version.png?raw=true" alt="VélezReyes+">
   <div class="nav-meta">Offsite · São Paulo · Nov 24–25, 2026</div>
-  <div class="nav-deadline">Board Dec 4 · 10 días</div>
+  <div class="nav-deadline">Board Dec 4 · 10 days</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">Gap Analysis · What's Needed to Close the Year</div>
-  <h1>Faltantes · 2026</h1>
-  <p class="hero-sub">Por KR, equipo a equipo — qué queda pendiente, qué vale cada cosa, y qué acciones específicas cierran la brecha antes del Board del 4 de diciembre.</p>
+  <h1>Gaps · 2026</h1>
+  <p class="hero-sub">KR by KR, team by team — what's still open, what each item is worth, and the specific actions needed before the Dec 4 Board.</p>
   <div class="overview">
     <div class="ov-card">
-      <div class="ov-label">Institucional</div>
+      <div class="ov-label">Institutional</div>
       <div class="ov-value yellow">70%</div>
-      <div class="ov-desc">Promedio O1 · O2 · O3</div>
+      <div class="ov-desc">O1 · O2 · O3 average</div>
     </div>
     <div class="ov-card">
       <div class="ov-label">O1 — Strategy</div>
       <div class="ov-value" style="color:var(--cyan)">77%</div>
-      <div class="ov-desc">Gap: 23 pts</div>
+      <div class="ov-desc">Gap: 23 pts to 100%</div>
     </div>
     <div class="ov-card">
       <div class="ov-label">O2 — Delivery</div>
       <div class="ov-value" style="color:var(--green)">79%</div>
-      <div class="ov-desc">Gap: 21 pts</div>
+      <div class="ov-desc">Gap: 21 pts to 100%</div>
     </div>
     <div class="ov-card">
       <div class="ov-label">O3 — Org</div>
       <div class="ov-value" style="color:var(--orange)">54%</div>
-      <div class="ov-desc">Gap: 46 pts — más rezagado</div>
+      <div class="ov-desc">Gap: 46 pts — most behind</div>
     </div>
     <div class="ov-card">
-      <div class="ov-label">KRs pendientes</div>
+      <div class="ov-label">KRs open</div>
       <div class="ov-value red">30</div>
-      <div class="ov-desc">de 48 KRs totales</div>
+      <div class="ov-desc">of 48 total KRs</div>
     </div>
     <div class="ov-card">
-      <div class="ov-label">KRs completados</div>
+      <div class="ov-label">KRs completed</div>
       <div class="ov-value green">18</div>
-      <div class="ov-desc">≥ 100%</div>
+      <div class="ov-desc">at 100%</div>
     </div>
   </div>
 </div>
 
-<!-- EXPLAIN -->
-<div class="explain-bar" style="margin-top:24px;">
-  <strong>Cómo leer este documento:</strong> Todos los KRs son <strong>equally weighted</strong> — cada KR vale lo mismo dentro de su equipo. El badge <strong>"+X pts"</strong> indica cuánto subiría el score del equipo si ese KR cerrara al 100%. Por ejemplo, en un equipo de 9 KRs, cada uno vale 11.1 pts. Los colores en la barra: <span style="color:var(--green)">■ verde = completado</span> · <span style="color:var(--yellow)">■ amarillo = en progreso</span> · <span style="color:var(--red)">■ rojo = At Risk / Not Started</span>.
+<!-- HOW TO READ -->
+<div style="margin:24px 32px 0;display:flex;gap:12px;flex-wrap:wrap;">
+
+  <!-- Math explanation -->
+  <div style="flex:2;min-width:280px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--yellow);padding:16px 18px;border-radius:2px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;">How to read this</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.7;">
+      All KRs are <strong style="color:var(--text)">equally weighted</strong> within each team — every KR counts the same toward the team score.<br>
+      The <strong style="color:var(--yellow)">+X pts</strong> badge shows how many points that team's score would gain if that KR reached 100%.<br>
+      <span style="color:var(--bg3);font-size:11px;">Example: a team with 9 KRs → each KR = 11.1 pts. A KR at 70% with a 30-point gap adds <strong style="color:var(--text)">3.3 pts</strong> if closed.</span>
+    </div>
+  </div>
+
+  <!-- Visual legend -->
+  <div style="flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--border);padding:16px 18px;border-radius:2px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Legend</div>
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:6px;border-radius:3px;background:var(--green);flex-shrink:0;"></div>
+        <div style="font-size:11px;color:var(--text);font-weight:600;">On Track · nearly done</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:6px;border-radius:3px;background:var(--yellow);flex-shrink:0;"></div>
+        <div style="font-size:11px;color:var(--text);font-weight:600;">In Progress · open gap</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:6px;border-radius:3px;background:var(--red);flex-shrink:0;"></div>
+        <div style="font-size:11px;color:var(--text);font-weight:600;">At Risk or Not Started</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="font-size:13px;flex-shrink:0;">⚠</div>
+        <div style="font-size:11px;color:var(--red);font-weight:600;">Blocked · needs decision</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:6px;border-radius:3px;background:var(--border);flex-shrink:0;opacity:.5;"></div>
+        <div style="font-size:11px;color:var(--muted);font-weight:600;">Completed ✓ (shown dimmed)</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- TEAM SECTIONS -->
 <div class="section-header" style="margin-top:32px;">
-  <div class="section-title">Por Equipo — KRs Incompletos</div>
+  <div class="section-title">By Team — Incomplete KRs</div>
 </div>
 
 <div class="team-grid">
@@ -258,7 +294,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--purple)">83%</div>
-          <div class="team-krs-count">9 KRs · cada uno vale 11.1 pts</div>
+          <div class="team-krs-count">9 KRs · each worth 11.1 pts</div>
         </div>
       </div>
     </div>
@@ -396,7 +432,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--green)">70%</div>
-          <div class="team-krs-count">10 KRs · cada uno vale 10 pts</div>
+          <div class="team-krs-count">10 KRs · each worth 10 pts</div>
         </div>
       </div>
     </div>
@@ -536,7 +572,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--yellow)">32%</div>
-          <div class="team-krs-count">9 KRs · cada uno vale 11.1 pts</div>
+          <div class="team-krs-count">9 KRs · each worth 11.1 pts</div>
         </div>
       </div>
     </div>
@@ -651,7 +687,7 @@ footer strong { color: var(--text); }
         </div>
         <div class="kr-right">
           <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+7.0 pts</div>
-          <span class="due-label" style="color:var(--red)">Rezagado</span>
+          <span class="due-label" style="color:var(--red)">Behind</span>
         </div>
       </div>
       <!-- FT3.2 -->
@@ -674,7 +710,7 @@ footer strong { color: var(--text); }
         </div>
         <div class="kr-right">
           <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+10.8 pts</div>
-          <span class="due-label" style="color:var(--red)">Crítico</span>
+          <span class="due-label" style="color:var(--red)">Critical</span>
         </div>
       </div>
       <!-- FT4.1 -->
@@ -719,7 +755,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--orange)">33%</div>
-          <div class="team-krs-count">6 KRs · cada uno vale 16.7 pts</div>
+          <div class="team-krs-count">6 KRs · each worth 16.7 pts</div>
         </div>
       </div>
     </div>
@@ -854,7 +890,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--cyan)">90%</div>
-          <div class="team-krs-count">5 KRs · cada uno vale 20 pts</div>
+          <div class="team-krs-count">5 KRs · each worth 20 pts</div>
         </div>
       </div>
     </div>
@@ -923,7 +959,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:#FF9B1A">72%</div>
-          <div class="team-krs-count">6 KRs · cada uno vale 16.7 pts</div>
+          <div class="team-krs-count">6 KRs · each worth 16.7 pts</div>
         </div>
       </div>
     </div>
@@ -992,7 +1028,7 @@ footer strong { color: var(--text); }
         </div>
         <div class="kr-right">
           <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+6.8 pts</div>
-          <span class="due-label" style="color:var(--yellow)">En curso ↑</span>
+          <span class="due-label" style="color:var(--yellow)">Live ↑</span>
         </div>
       </div>
       <!-- OP3.1 -->
@@ -1008,13 +1044,13 @@ footer strong { color: var(--text); }
             <div class="kr-gap-label">gap 18 pts</div>
           </div>
           <div class="kr-tasks">
-            <div class="kr-task-item">OKR Q4 review session completed ← <strong style="color:var(--yellow)">este offsite</strong></div>
+            <div class="kr-task-item">OKR Q4 review session completed ← <strong style="color:var(--yellow)">this offsite</strong></div>
             <div class="kr-task-item">Final scores entered in Profit.co</div>
           </div>
         </div>
         <div class="kr-right">
           <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+3.0 pts</div>
-          <span class="due-label" style="color:var(--yellow)">Este offsite</span>
+          <span class="due-label" style="color:var(--yellow)">This offsite</span>
         </div>
       </div>
       <!-- OP3.2 -->
@@ -1072,7 +1108,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--red)">3%</div>
-          <div class="team-krs-count">2 KRs · cada uno vale 50 pts</div>
+          <div class="team-krs-count">2 KRs · each worth 50 pts</div>
         </div>
       </div>
     </div>
@@ -1100,7 +1136,7 @@ footer strong { color: var(--text); }
         </div>
         <div class="kr-right">
           <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+45 pts</div>
-          <span class="due-label" style="color:var(--red)">Crítico · sin dueño</span>
+          <span class="due-label" style="color:var(--red)">Critical · no owner yet</span>
         </div>
       </div>
       <!-- T1.2 -->
@@ -1138,7 +1174,7 @@ footer strong { color: var(--text); }
       <div class="team-pct-wrap">
         <div>
           <div class="team-pct" style="color:var(--red)">0%</div>
-          <div class="team-krs-count">2 KRs · cada uno vale 50 pts</div>
+          <div class="team-krs-count">2 KRs · each worth 50 pts</div>
         </div>
       </div>
     </div>
@@ -1297,7 +1333,7 @@ footer strong { color: var(--text); }
 
 <!-- FOOTER -->
 <footer>
-  <div>Datos: <strong>Profit.co · Nov 13, 2026</strong> — Los números finales serán el resultado del offsite.</div>
+  <div>Data: <strong>Profit.co · Nov 13, 2026</strong> — Final numbers will be the outcome of this offsite session.</div>
   <div>VélezReyes+ · Offsite São Paulo · Nov 24–25, 2026</div>
 </footer>
 
