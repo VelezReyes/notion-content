@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faltantes Offsite · São Paulo · Nov 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D0D0D;
+  --bg2: #161616;
+  --bg3: #1E1E1E;
+  --border: #2A2A2A;
+  --yellow: #F3FF00;
+  --green: #27CF77;
+  --purple: #A62BFF;
+  --red: #FF4545;
+  --orange: #FF9B1A;
+  --cyan: #00E0FF;
+  --text: #F0EEE8;
+  --muted: #888880;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.5; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #000; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 52px;
+}
+.nav-brand { font-weight: 900; font-size: 15px; letter-spacing: .5px; }
+.nav-brand span { color: var(--yellow); }
+.nav-meta { color: var(--muted); font-size: 12px; font-weight: 500; letter-spacing: .5px; }
+.nav-deadline {
+  background: var(--yellow); color: #000; font-size: 11px; font-weight: 800;
+  padding: 3px 10px; border-radius: 20px; letter-spacing: .5px;
+}
+
+/* HERO */
+.hero {
+  background: #000; border-bottom: 1px solid var(--border);
+  padding: 48px 32px 40px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--yellow); margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.1;
+  color: var(--text); margin-bottom: 8px;
+}
+.hero-sub { color: var(--muted); font-size: 15px; max-width: 600px; margin-bottom: 32px; }
+
+/* OVERVIEW STRIP */
+.overview {
+  display: flex; gap: 2px; flex-wrap: wrap;
+}
+.ov-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 16px 24px; flex: 1; min-width: 140px; border-radius: 2px;
+}
+.ov-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.ov-value { font-size: 28px; font-weight: 900; }
+.ov-value.yellow { color: var(--yellow); }
+.ov-value.green { color: var(--green); }
+.ov-value.red { color: var(--red); }
+.ov-desc { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* SECTION HEADER */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 32px 32px 0;
+}
+.section-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+}
+
+/* EXPLANATION BAR */
+.explain-bar {
+  margin: 24px 32px 0;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-left: 3px solid var(--yellow);
+  padding: 12px 16px; border-radius: 2px;
+  font-size: 12px; color: var(--muted); line-height: 1.6;
+}
+.explain-bar strong { color: var(--text); }
+
+/* TEAM BLOCKS */
+.team-grid { padding: 24px 32px; display: flex; flex-direction: column; gap: 24px; }
+
+.team-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.team-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+}
+.team-name { font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+.team-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.team-pct-wrap { display: flex; align-items: center; gap: 12px; }
+.team-pct { font-size: 24px; font-weight: 900; }
+.team-krs-count { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+/* PROGRESS BAR */
+.pbar-wrap { height: 4px; background: var(--bg3); border-radius: 2px; margin: 6px 0; overflow: hidden; }
+.pbar-fill { height: 100%; border-radius: 2px; }
+
+/* KR LIST */
+.kr-list { padding: 0; }
+.kr-item {
+  padding: 14px 20px; border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 12px; align-items: start;
+}
+.kr-item:first-child { border-top: none; }
+.kr-item.done { opacity: .4; }
+.kr-left { flex: 1; }
+.kr-code { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: var(--muted); margin-bottom: 3px; text-transform: uppercase; }
+.kr-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.kr-bar-wrap {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.kr-bar-track {
+  flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; position: relative;
+}
+.kr-bar-done { height: 100%; border-radius: 3px; }
+.kr-pct-label { font-size: 11px; font-weight: 700; min-width: 32px; text-align: right; }
+.kr-gap-label { font-size: 10px; font-weight: 600; color: var(--muted); min-width: 60px; }
+.kr-tasks { margin-top: 6px; }
+.kr-task-item {
+  font-size: 11px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px;
+  margin-bottom: 3px; line-height: 1.4;
+}
+.kr-task-item::before { content: '→'; color: var(--border); flex-shrink: 0; margin-top: 1px; }
+.kr-task-item.at-risk::before { content: '⚠'; color: var(--red); }
+.kr-right { text-align: right; min-width: 90px; }
+.kr-value-box {
+  display: inline-block; padding: 4px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: .3px; white-space: nowrap;
+}
+.done-badge {
+  display: inline-block; padding: 4px 10px; border-radius: 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: .5px;
+  background: rgba(39,207,119,.12); color: var(--green); border: 1px solid rgba(39,207,119,.2);
+}
+.due-label { font-size: 10px; color: var(--muted); margin-top: 4px; display: block; }
+
+/* INSTITUTIONAL SECTION */
+.inst-grid {
+  padding: 0 32px 32px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.inst-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.inst-card-header {
+  padding: 16px 18px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.inst-obj-code { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.inst-pct { font-size: 20px; font-weight: 900; }
+.inst-name { font-size: 11px; color: var(--muted); padding: 10px 18px; border-bottom: 1px solid var(--border); line-height: 1.4; }
+.inst-krs { padding: 8px 0; }
+.inst-kr-row {
+  padding: 8px 18px; display: flex; align-items: center; gap: 8px;
+}
+.inst-kr-code { font-size: 10px; font-weight: 700; color: var(--muted); min-width: 40px; }
+.inst-kr-bar { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.inst-kr-fill { height: 100%; border-radius: 3px; }
+.inst-kr-pct { font-size: 11px; font-weight: 700; min-width: 32px; text-align: right; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border); padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  color: var(--muted); font-size: 11px;
+}
+footer strong { color: var(--text); }
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 32px; }
+  .inst-grid { grid-template-columns: 1fr; }
+  .kr-item { grid-template-columns: 1fr; }
+  .kr-right { text-align: left; }
+  nav { padding: 0 16px; }
+  .hero, .team-grid, .section-header, .explain-bar, .inst-grid { padding-left: 16px; padding-right: 16px; }
+  .overview { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">VélezReyes<span>+</span></div>
+  <div class="nav-meta">Offsite · São Paulo · Nov 24–25, 2026</div>
+  <div class="nav-deadline">Board Dec 4 · 10 días</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Gap Analysis · What's Needed to Close the Year</div>
+  <h1>Faltantes · 2026</h1>
+  <p class="hero-sub">Por KR, equipo a equipo — qué queda pendiente, qué vale cada cosa, y qué acciones específicas cierran la brecha antes del Board del 4 de diciembre.</p>
+  <div class="overview">
+    <div class="ov-card">
+      <div class="ov-label">Institucional</div>
+      <div class="ov-value yellow">70%</div>
+      <div class="ov-desc">Promedio O1 · O2 · O3</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">O1 — Strategy</div>
+      <div class="ov-value" style="color:var(--cyan)">77%</div>
+      <div class="ov-desc">Gap: 23 pts</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">O2 — Delivery</div>
+      <div class="ov-value" style="color:var(--green)">79%</div>
+      <div class="ov-desc">Gap: 21 pts</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">O3 — Org</div>
+      <div class="ov-value" style="color:var(--orange)">54%</div>
+      <div class="ov-desc">Gap: 46 pts — más rezagado</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">KRs pendientes</div>
+      <div class="ov-value red">30</div>
+      <div class="ov-desc">de 48 KRs totales</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-label">KRs completados</div>
+      <div class="ov-value green">18</div>
+      <div class="ov-desc">≥ 100%</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPLAIN -->
+<div class="explain-bar" style="margin-top:24px;">
+  <strong>Cómo leer este documento:</strong> Todos los KRs son <strong>equally weighted</strong> — cada KR vale lo mismo dentro de su equipo. El badge <strong>"+X pts"</strong> indica cuánto subiría el score del equipo si ese KR cerrara al 100%. Por ejemplo, en un equipo de 9 KRs, cada uno vale 11.1 pts. Los colores en la barra: <span style="color:var(--green)">■ verde = completado</span> · <span style="color:var(--yellow)">■ amarillo = en progreso</span> · <span style="color:var(--red)">■ rojo = At Risk / Not Started</span>.
+</div>
+
+<!-- TEAM SECTIONS -->
+<div class="section-header" style="margin-top:32px;">
+  <div class="section-title">Por Equipo — KRs Incompletos</div>
+</div>
+
+<div class="team-grid">
+
+  <!-- ===== DEMOCRACY ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--purple)"></div>
+        Democracy
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--purple)">83%</div>
+          <div class="team-krs-count">9 KRs · cada uno vale 11.1 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:83%;background:var(--purple)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- D1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR D1.1</div>
+          <div class="kr-name">D+ Operating Model Decision</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:80%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">80%</div>
+            <div class="kr-gap-label">gap 20 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Incorporate learnings in D+ 5-year governance model</div>
+            <div class="kr-task-item">Approval at Dec 4 Board presentation</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(163,43,255,.15);color:var(--purple);border:1px solid rgba(163,43,255,.3)">+2.2 pts</div>
+          <span class="due-label">Dec 4</span>
+        </div>
+      </div>
+      <!-- D1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR D1.2</div>
+          <div class="kr-name">Program Delivery Quality & KPIs</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:83%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">83%</div>
+            <div class="kr-gap-label">gap 17 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">KPI Tracker Q4 final update</div>
+            <div class="kr-task-item">+Costa Rica memo finalizado</div>
+            <div class="kr-task-item">Board presentation Dec 4</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(163,43,255,.15);color:var(--purple);border:1px solid rgba(163,43,255,.3)">+1.9 pts</div>
+          <span class="due-label">Dec 4</span>
+        </div>
+      </div>
+      <!-- D1.3 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR D1.3</div>
+          <div class="kr-name">Results Dashboard & Learning Summary</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:70%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">70%</div>
+            <div class="kr-gap-label">gap 30 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Analysis & Summary of D+ learnings (due Nov 30)</div>
+            <div class="kr-task-item">Incorporate in D+ strategy → Board Dec 4</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(163,43,255,.15);color:var(--purple);border:1px solid rgba(163,43,255,.3)">+3.3 pts</div>
+          <span class="due-label">Nov 30 → Dec 4</span>
+        </div>
+      </div>
+      <!-- D2.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR D2.1</div>
+          <div class="kr-name">Ecosystem Bets Execution (RIL + DAL)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:91%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">91%</div>
+            <div class="kr-gap-label">gap 9 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">RIL portfolio execution — final closure (Dec 18)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(163,43,255,.15);color:var(--purple);border:1px solid rgba(163,43,255,.3)">+1.0 pt</div>
+          <span class="due-label">Dec 18</span>
+        </div>
+      </div>
+      <!-- D3.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR D3.2</div>
+          <div class="kr-name">New Hypotheses — AI-Native Government</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:88%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">88%</div>
+            <div class="kr-gap-label">gap 12 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Draft AI-native government strategy for ver+/Colombia</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(163,43,255,.15);color:var(--purple);border:1px solid rgba(163,43,255,.3)">+1.3 pts</div>
+          <span class="due-label">Dec 18</span>
+        </div>
+      </div>
+      <!-- COMPLETED -->
+      <div class="kr-item done">
+        <div class="kr-left">
+          <div class="kr-code">KR D3.1 · D4.1 · D4.2 · D4.3</div>
+          <div class="kr-name">DPI Decision · 3 Thesis Decisions</div>
+        </div>
+        <div class="kr-right"><div class="done-badge">✓ Done</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ECD ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--green)"></div>
+        Early Childhood Development
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--green)">70%</div>
+          <div class="team-krs-count">10 KRs · cada uno vale 10 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:70%;background:var(--green)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- EC1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR EC1.1</div>
+          <div class="kr-name">aprendo+ Spin-off Ready to Operate</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:65%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">65%</div>
+            <div class="kr-gap-label">gap 35 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Incorporate new org structure</div>
+            <div class="kr-task-item">Disburse grant to aprendo+ (Nov 30)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(39,207,119,.12);color:var(--green);border:1px solid rgba(39,207,119,.2)">+3.5 pts</div>
+          <span class="due-label">Nov 30</span>
+        </div>
+      </div>
+      <!-- EC1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR EC1.2</div>
+          <div class="kr-name">Delivery Quality & Scale (3 UGELs)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:58%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">58%</div>
+            <div class="kr-gap-label">gap 42 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">3 UGELs formal partnership agreements signed (convenios)</div>
+            <div class="kr-task-item">MEL strategy finalizada</div>
+            <div class="kr-task-item">Delivery quality targets — progress documented</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(39,207,119,.12);color:var(--green);border:1px solid rgba(39,207,119,.2)">+4.2 pts</div>
+          <span class="due-label">Dec 18</span>
+        </div>
+      </div>
+      <!-- EC1.4 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR EC1.4</div>
+          <div class="kr-name">Brazil DPI Readiness</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:60%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">60%</div>
+            <div class="kr-gap-label">gap 40 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Legislation approval (In Progress)</div>
+            <div class="kr-task-item">Reach 300k caregivers milestone (Scheduled)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(39,207,119,.12);color:var(--green);border:1px solid rgba(39,207,119,.2)">+4.0 pts</div>
+          <span class="due-label">Dec 18</span>
+        </div>
+      </div>
+      <!-- EC3.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR EC3.2</div>
+          <div class="kr-name">Evidence & Results Dashboard</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:50%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">50%</div>
+            <div class="kr-gap-label">gap 50 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Fill dashboard with outputs/reflections from 2026</div>
+            <div class="kr-task-item">Dashboard used in strategy decisions</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(39,207,119,.12);color:var(--green);border:1px solid rgba(39,207,119,.2)">+5.0 pts</div>
+          <span class="due-label">Dec 18</span>
+        </div>
+      </div>
+      <!-- EC4.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR EC4.1</div>
+          <div class="kr-name">Ecosystem Bets Decision — aeioTU</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:27%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">27%</div>
+            <div class="kr-gap-label">gap 73 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Strategy misalignment — aeioTU final results pending</div>
+            <div class="kr-task-item at-risk">Decision on continuation may require re-scoping</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+7.3 pts</div>
+          <span class="due-label" style="color:var(--red)">At Risk</span>
+        </div>
+      </div>
+      <!-- COMPLETED -->
+      <div class="kr-item done">
+        <div class="kr-left">
+          <div class="kr-code">EC1.3 · EC2.1 · EC2.2 · EC3.1 · EC3.3</div>
+          <div class="kr-name">ECDI Baseline · Caregiver Support · New Hypotheses · Thesis · Decision</div>
+        </div>
+        <div class="kr-right"><div class="done-badge">✓ Done</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOT ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--yellow)"></div>
+        Future of Talent
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--yellow)">32%</div>
+          <div class="team-krs-count">9 KRs · cada uno vale 11.1 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:32%;background:var(--yellow)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- FT1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT1.1</div>
+          <div class="kr-name">Scholarships Delivered with Quality (Q4)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:62%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">62%</div>
+            <div class="kr-gap-label">gap 38 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Q4 satisfaction pulse (by cohort/country)</div>
+            <div class="kr-task-item">Improvement loop documented with actions + owners</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(243,255,0,.1);color:var(--yellow);border:1px solid rgba(243,255,0,.2)">+4.2 pts</div>
+        </div>
+      </div>
+      <!-- FT1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT1.2</div>
+          <div class="kr-name">Operational Efficiency Baseline + Improvements</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:75%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">75%</div>
+            <div class="kr-gap-label">gap 25 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">English standardization decision + operator selected</div>
+            <div class="kr-task-item">Community development improvements documented</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(243,255,0,.1);color:var(--yellow);border:1px solid rgba(243,255,0,.2)">+2.8 pts</div>
+          <span class="due-label">Dec 11</span>
+        </div>
+      </div>
+      <!-- FT1.3 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT1.3</div>
+          <div class="kr-name">Scholar Progress Dashboard Used in Decisions</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:65%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">65%</div>
+            <div class="kr-gap-label">gap 35 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Launch dashboard + decision log with ownership + refresh cadence</div>
+            <div class="kr-task-item">Data model validation with Felipe complete</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(243,255,0,.1);color:var(--yellow);border:1px solid rgba(243,255,0,.2)">+3.9 pts</div>
+          <span class="due-label">Nov 30</span>
+        </div>
+      </div>
+      <!-- FT1.4 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT1.4</div>
+          <div class="kr-name">Cohort 2027 Colombia — Launched & Delivered</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:72%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">72%</div>
+            <div class="kr-gap-label">gap 28 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">University agreements signed — Icesi + Uninorte pending</div>
+            <div class="kr-task-item">Trust review of Otrosí for Chocó program</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(243,255,0,.1);color:var(--yellow);border:1px solid rgba(243,255,0,.2)">+3.1 pts</div>
+          <span class="due-label">Nov 13+</span>
+        </div>
+      </div>
+      <!-- FT3.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT3.1</div>
+          <div class="kr-name">FoT Investment Thesis (Q2)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:37%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">37%</div>
+            <div class="kr-gap-label">gap 63 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Complete investment thesis template (Not Started)</div>
+            <div class="kr-task-item at-risk">Create V1 Education + Tech Entrepreneurship Thesis</div>
+            <div class="kr-task-item at-risk">TEST & LEARN concept notes (Peru + Colombia)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+7.0 pts</div>
+          <span class="due-label" style="color:var(--red)">Rezagado</span>
+        </div>
+      </div>
+      <!-- FT3.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT3.2</div>
+          <div class="kr-name">Evidence & Results Dashboard (Q3)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:3%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">3%</div>
+            <div class="kr-gap-label">gap 97 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Create dashboard structure (Scheduled)</div>
+            <div class="kr-task-item at-risk">Create Beca Tech ROI report + data</div>
+            <div class="kr-task-item at-risk">Collect + populate FoT Dashboard</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+10.8 pts</div>
+          <span class="due-label" style="color:var(--red)">Crítico</span>
+        </div>
+      </div>
+      <!-- FT4.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR FT4.1</div>
+          <div class="kr-name">Ecosystem Bets Decision</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Decision pending — in process with VP Education</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+11.1 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- COMPLETED -->
+      <div class="kr-item done">
+        <div class="kr-left">
+          <div class="kr-code">FT2.1 · FT3.3</div>
+          <div class="kr-name">Test & Learn Portfolio · Thesis Decision</div>
+        </div>
+        <div class="kr-right"><div class="done-badge">✓ Done</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== K12 ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--orange)"></div>
+        K-12
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--orange)">33%</div>
+          <div class="team-krs-count">6 KRs · cada uno vale 16.7 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:33%;background:var(--orange)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- K1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR K1.1</div>
+          <div class="kr-name">Ecosystem Bets Decision — CEPE</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:77%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">77%</div>
+            <div class="kr-gap-label">gap 23 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">CEPE accompaniment continuation (In Progress)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+3.8 pts</div>
+        </div>
+      </div>
+      <!-- K2.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR K2.1</div>
+          <div class="kr-name">Test & Learn Portfolio Closed Loop (AI)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Design experiments (hypotheses, metrics, baselines, gates)</div>
+            <div class="kr-task-item at-risk">Scope + select AI and impact investing partners/pilots</div>
+            <div class="kr-task-item at-risk">Set monthly evidence cadence (data + learning memo)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+16.7 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- K2.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR K2.2</div>
+          <div class="kr-name">Impact Investing Approach</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Impact investing approach defined for K-12</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+16.7 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- K3.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR K3.1</div>
+          <div class="kr-name">K-12 Investment Thesis</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Investment thesis document (Not Started)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+16.7 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- K3.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR K3.2</div>
+          <div class="kr-name">Evidence & Results Dashboard</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Dashboard structure + data collection (Not Started)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+16.7 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- COMPLETED -->
+      <div class="kr-item done">
+        <div class="kr-left">
+          <div class="kr-code">KR K3.3</div>
+          <div class="kr-name">Thesis Decision</div>
+        </div>
+        <div class="kr-right"><div class="done-badge">✓ Done</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MEL ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--cyan)"></div>
+        MEL
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--cyan)">90%</div>
+          <div class="team-krs-count">5 KRs · cada uno vale 20 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:90%;background:var(--cyan)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- M1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR M1.2</div>
+          <div class="kr-name">SSOT + Decision Package adopted by all teams</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:90%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">90%</div>
+            <div class="kr-gap-label">gap 10 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Final adoption confirmed across all teams</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(0,224,255,.08);color:var(--cyan);border:1px solid rgba(0,224,255,.2)">+2.0 pts</div>
+        </div>
+      </div>
+      <!-- M1.3 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR M1.3</div>
+          <div class="kr-name">Stage-Based MEL Support (11 & 12 delivered)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:90%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">90%</div>
+            <div class="kr-gap-label">gap 10 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">MEL batch final closure documentation</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(0,224,255,.08);color:var(--cyan);border:1px solid rgba(0,224,255,.2)">+2.0 pts</div>
+        </div>
+      </div>
+      <!-- COMPLETED -->
+      <div class="kr-item done">
+        <div class="kr-left">
+          <div class="kr-code">M1.1 · M1.4 · M1.5</div>
+          <div class="kr-name">AMEI · Evidence Governance · Equality of Opportunity</div>
+        </div>
+        <div class="kr-right"><div class="done-badge">✓ Done</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OPERATIONS ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:#FF9B1A"></div>
+        People & Operations
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:#FF9B1A">72%</div>
+          <div class="team-krs-count">6 KRs · cada uno vale 16.7 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:72%;background:#FF9B1A"></div>
+    </div>
+    <div class="kr-list">
+      <!-- OP1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP1.1</div>
+          <div class="kr-name">Core Process Standardization</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:88%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">88%</div>
+            <div class="kr-gap-label">gap 12 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Final process documentation + team sign-off</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+2.0 pts</div>
+        </div>
+      </div>
+      <!-- OP1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP1.2</div>
+          <div class="kr-name">Operational Visibility Dashboard</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:55%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">55%</div>
+            <div class="kr-gap-label">gap 45 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Communications plan approved</div>
+            <div class="kr-task-item">Operational dashboards built + in use</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+7.5 pts</div>
+        </div>
+      </div>
+      <!-- OP2.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP2.1</div>
+          <div class="kr-name">Operational Continuity Plan</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:59%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">59%</div>
+            <div class="kr-gap-label">gap 41 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">São Paulo offsite ← <strong style="color:var(--yellow)">happening now</strong></div>
+            <div class="kr-task-item">Q4 key events + activities completed</div>
+            <div class="kr-task-item">Post-offsite continuity plan documented</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+6.8 pts</div>
+          <span class="due-label" style="color:var(--yellow)">En curso ↑</span>
+        </div>
+      </div>
+      <!-- OP3.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP3.1</div>
+          <div class="kr-name">OKR System — Q4 Review Completed</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:82%;background:var(--yellow)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--yellow)">82%</div>
+            <div class="kr-gap-label">gap 18 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">OKR Q4 review session completed ← <strong style="color:var(--yellow)">este offsite</strong></div>
+            <div class="kr-task-item">Final scores entered in Profit.co</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+3.0 pts</div>
+          <span class="due-label" style="color:var(--yellow)">Este offsite</span>
+        </div>
+      </div>
+      <!-- OP3.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP3.2</div>
+          <div class="kr-name">5-Year Organizational Design</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:43%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">43%</div>
+            <div class="kr-gap-label">gap 57 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Talent structure for 2027–2031 decisions</div>
+            <div class="kr-task-item">Q4 role feedback processed + org decisions made</div>
+            <div class="kr-task-item at-risk">Tech Lead + VP Education roles defined</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+9.5 pts</div>
+        </div>
+      </div>
+      <!-- OP3.3 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR OP3.3</div>
+          <div class="kr-name">Team Health — Annual Survey + Actions</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:86%;background:var(--green)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--green)">86%</div>
+            <div class="kr-gap-label">gap 14 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item">Final team health survey actions closed</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,155,26,.1);color:var(--orange);border:1px solid rgba(255,155,26,.2)">+2.3 pts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TECHNOLOGY ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--red)"></div>
+        Technology
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--red)">3%</div>
+          <div class="team-krs-count">2 KRs · cada uno vale 50 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:3%;background:var(--red)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- T1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR T1.1</div>
+          <div class="kr-name">Tech Foundations + Governance</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:10%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">10%</div>
+            <div class="kr-gap-label">gap 90 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Access controls + security baseline (Not Started)</div>
+            <div class="kr-task-item at-risk">Documentation norms established</div>
+            <div class="kr-task-item at-risk">Tool stack ownership map defined</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+45 pts</div>
+          <span class="due-label" style="color:var(--red)">Crítico · sin dueño</span>
+        </div>
+      </div>
+      <!-- T1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR T1.2</div>
+          <div class="kr-name">Portfolio Support + SLA Model</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Support model defined (Not Started)</div>
+            <div class="kr-task-item at-risk">SLA targets + ticketing system (Not Started)</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+50 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FINANCE ===== -->
+  <div class="team-block">
+    <div class="team-header">
+      <div class="team-name">
+        <div class="team-dot" style="background:var(--muted)"></div>
+        Finance
+      </div>
+      <div class="team-pct-wrap">
+        <div>
+          <div class="team-pct" style="color:var(--red)">0%</div>
+          <div class="team-krs-count">2 KRs · cada uno vale 50 pts</div>
+        </div>
+      </div>
+    </div>
+    <div class="pbar-wrap" style="margin:0;border-radius:0;">
+      <div class="pbar-fill" style="width:0%;background:var(--muted)"></div>
+    </div>
+    <div class="kr-list">
+      <!-- F1.1 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR F1.1</div>
+          <div class="kr-name">Financial Visibility (Q1)</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Monthly close checklist defined (Not Started)</div>
+            <div class="kr-task-item at-risk">Financial tracker + data model built</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+50 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+      <!-- F1.2 -->
+      <div class="kr-item">
+        <div class="kr-left">
+          <div class="kr-code">KR F1.2</div>
+          <div class="kr-name">Predictable Disbursements + Compliance</div>
+          <div class="kr-bar-wrap">
+            <div class="kr-bar-track">
+              <div class="kr-bar-done" style="width:0%;background:var(--red)"></div>
+            </div>
+            <div class="kr-pct-label" style="color:var(--red)">0%</div>
+            <div class="kr-gap-label">gap 100 pts</div>
+          </div>
+          <div class="kr-tasks">
+            <div class="kr-task-item at-risk">Disbursement request standardization (Not Started)</div>
+            <div class="kr-task-item at-risk">SLAs + escalation path defined</div>
+          </div>
+        </div>
+        <div class="kr-right">
+          <div class="kr-value-box" style="background:rgba(255,69,69,.1);color:var(--red);border:1px solid rgba(255,69,69,.2)">+50 pts</div>
+          <span class="due-label" style="color:var(--red)">Not Started</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INSTITUTIONAL SECTION -->
+<div class="section-header" style="padding-top:8px;">
+  <div class="section-title">Objetivos Institucionales — Vista General</div>
+</div>
+<div class="inst-grid" style="margin-top:16px;">
+
+  <!-- O1 -->
+  <div class="inst-card">
+    <div class="inst-card-header">
+      <div>
+        <div class="inst-obj-code" style="color:var(--cyan)">O1</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">What Success Looks Like · Strategy</div>
+      </div>
+      <div class="inst-pct" style="color:var(--cyan)">77%</div>
+    </div>
+    <div class="inst-name">VR+ builds a coherent, evidence-based 5-year strategy aligned to a clear investment thesis and decision governance.</div>
+    <div class="inst-krs">
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--green)">KR1.1</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:100%;background:var(--green)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--green)">100% ✓</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--yellow)">KR1.2</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:88%;background:var(--yellow)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--yellow)">88%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--yellow)">KR1.3</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:70%;background:var(--yellow)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--yellow)">70%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--green)">KR1.4</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:100%;background:var(--green)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--green)">100% ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O2 -->
+  <div class="inst-card">
+    <div class="inst-card-header">
+      <div>
+        <div class="inst-obj-code" style="color:var(--green)">O2</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">What Success Looks Like · Delivery</div>
+      </div>
+      <div class="inst-pct" style="color:var(--green)">79%</div>
+    </div>
+    <div class="inst-name">VR+ achieves ambitious, measurable impact across all portfolio bets and validates new hypotheses for future investment.</div>
+    <div class="inst-krs">
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--yellow)">KR2.1</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:68%;background:var(--yellow)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--yellow)">68%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--green)">KR2.2</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:93%;background:var(--green)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--green)">93%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--yellow)">KR2.3</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:56%;background:var(--yellow)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--yellow)">56%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O3 -->
+  <div class="inst-card">
+    <div class="inst-card-header">
+      <div>
+        <div class="inst-obj-code" style="color:var(--orange)">O3</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">What Success Looks Like · Org</div>
+      </div>
+      <div class="inst-pct" style="color:var(--orange)">54%</div>
+    </div>
+    <div class="inst-name">VR+ builds the organizational capabilities, systems, and culture required to operate at the next level of ambition.</div>
+    <div class="inst-krs">
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--yellow)">KR3.1</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:75%;background:var(--yellow)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--yellow)">75%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--red)">KR3.2</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:59%;background:var(--red)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--red)">59%</div>
+      </div>
+      <div class="inst-kr-row">
+        <div class="inst-kr-code" style="color:var(--green)">KR3.3</div>
+        <div class="inst-kr-bar"><div class="inst-kr-fill" style="width:100%;background:var(--green)"></div></div>
+        <div class="inst-kr-pct" style="color:var(--green)">Done ✓</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>Datos: <strong>Profit.co · Nov 13, 2026</strong> — Los números finales serán el resultado del offsite.</div>
+  <div>VélezReyes+ · Offsite São Paulo · Nov 24–25, 2026</div>
+</footer>
+
+</body>
+</html>
