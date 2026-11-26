@@ -212,7 +212,7 @@
     <button class="tab-btn" onclick="switchTab('edu',this)">Education<span class="tpill" style="color:var(--green)">91%</span></button>
     <button class="tab-btn" onclick="switchTab('mel',this)">MEL<span class="tpill" style="color:var(--green)">96%</span></button>
     <button class="tab-btn" onclick="switchTab('ops',this)">People & Ops<span class="tpill">85%</span></button>
-    <button class="tab-btn" onclick="switchTab('tech',this)">Tech<span class="tpill" style="color:#ef4444">3%</span></button>
+    <button class="tab-btn" onclick="switchTab('tech',this)">Tech<span class="tpill" style="color:var(--indigo)">49%</span></button>
     <button class="tab-btn" onclick="switchTab('fin',this)">Finance<span class="tpill" style="color:var(--muted)">0%</span></button>
     <button class="tab-btn" onclick="switchTab('inst',this)">Institutional</button>
   </div>
@@ -261,10 +261,10 @@
     </div>
     <div class="team-card" onclick="goTab('tech',6)">
       <div class="tc-header"><span class="tc-name">Tech</span><span class="tdot" style="background:var(--indigo)"></span></div>
-      <div class="tc-pct" style="color:var(--indigo)">3%</div>
-      <div class="tc-bar"><div class="tc-bar-fill" style="width:3%;background:var(--indigo)"></div></div>
-      <div class="tc-meta">Planning phase</div>
-      <div class="tc-mom"><span class="mom-flat">→ Flat</span></div>
+      <div class="tc-pct" style="color:var(--indigo)">49%</div>
+      <div class="tc-bar"><div class="tc-bar-fill" style="width:49%;background:var(--indigo)"></div></div>
+      <div class="tc-meta">1 Objective · 3 KRs</div>
+      <div class="tc-mom"><span class="mom-up">↑ 46% vs Oct</span></div>
     </div>
     <div class="team-card" onclick="goTab('fin',7)">
       <div class="tc-header"><span class="tc-name">Finance</span><span class="tdot" style="background:var(--pink)"></span></div>
@@ -668,22 +668,46 @@
       <div class="team-overview-card">
         <h2>Technology</h2>
         <div class="donut-wrapper"><canvas id="chart-tech"></canvas>
-          <div class="donut-center"><div class="donut-pct" style="color:var(--indigo)">3%</div><div class="donut-label">Overall</div></div>
+          <div class="donut-center"><div class="donut-pct" style="color:var(--indigo)">49%</div><div class="donut-label">Overall</div></div>
         </div>
         <div class="team-snap">
-          <div class="snap-row"><span class="snap-label">Status</span><span class="snap-val" style="color:var(--muted)">Planning</span></div>
-          <div class="snap-row"><span class="snap-label">vs October</span><span class="snap-val" style="color:var(--muted)">→ Flat</span></div>
+          <div class="snap-row"><span class="snap-label">T1 — Reliable Systems & Adoption</span><span class="snap-val" style="color:var(--indigo)">49%</span></div>
+          <div class="snap-row"><span class="snap-label">T1.1 Foundations & Governance</span><span class="snap-val">62%</span></div>
+          <div class="snap-row"><span class="snap-label">T1.2 Portfolio Support + SLAs</span><span class="snap-val">49%</span></div>
+          <div class="snap-row"><span class="snap-label">T1.3 AI & Productivity</span><span class="snap-val">37%</span></div>
+          <div class="snap-row"><span class="snap-label">Lead</span><span class="snap-val">Felipe Costa</span></div>
         </div>
       </div>
     </div>
     <div class="objectives-col">
-      <div class="obj-block" style="border-color:#2a1a1a">
+      <div class="obj-block">
         <div class="obj-block-header">
-          <div class="ob-left"><div class="ob-code" style="color:var(--muted)">T1</div><div class="ob-title">Technology Infrastructure & Digital Tools</div><div class="ob-bar"><div class="ob-bar-fill" style="width:3%;background:var(--indigo)"></div></div></div>
-          <div class="ob-pct" style="color:var(--indigo);margin-left:16px">3%</div>
+          <div class="ob-left"><div class="ob-code" style="color:var(--indigo)">T1</div><div class="ob-title">Tech enables reliable, secure portfolio decisions and execution through adopted systems</div><div class="ob-bar"><div class="ob-bar-fill" style="width:49%;background:var(--indigo)"></div></div></div>
+          <div class="ob-pct" style="color:var(--indigo);margin-left:16px">49%</div>
         </div>
         <div class="krs-list">
-          <div class="kr-row" style="grid-template-columns:1fr"><span class="kr-name" style="color:var(--muted)">Technology team OKRs are in early planning phase. Data collection and reporting pipeline not yet established. Expected to ramp up in Q1 2027.</span></div>
+          <div class="kr-row">
+            <span class="kr-name">T1.1 — Foundations + Governance in place</span>
+            <span class="kr-pct-val" style="color:var(--indigo)">62%</span>
+            <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:62%;background:var(--indigo)"></div></div>
+            <span class="chip chip-up">↑ On Track</span>
+          </div>
+          <div style="font-size:11px;color:var(--muted);padding:4px 0 8px 0;line-height:1.5">
+            8 of 13 initiatives delivered: Auth to static pages, ver-sites, AI Anonymizer, Jira TAP, device governance, IT ops (operational) · RADAR, Drive incident recovery (completed).<br>
+            4 in progress: InfoSec, hosting, License &amp; Device Platform, managed IT evaluation · 1 planned: Offboarding Control Center.
+          </div>
+          <div class="kr-row">
+            <span class="kr-name">T1.2 — Portfolio Support Model + SLAs Delivered</span>
+            <span class="kr-pct-val" style="color:var(--indigo)">49%</span>
+            <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:49%;background:var(--indigo)"></div></div>
+            <span class="chip chip-up">↑ On Track</span>
+          </div>
+          <div class="kr-row">
+            <span class="kr-name">T1.3 — AI &amp; Productivity</span>
+            <span class="kr-pct-val" style="color:var(--amber)">37%</span>
+            <div class="kr-bar-wrap"><div class="kr-bar-fill" style="width:37%;background:var(--amber)"></div></div>
+            <span class="chip chip-risk">⚠ At Risk</span>
+          </div>
         </div>
       </div>
     </div>
@@ -779,7 +803,7 @@ const chartsInit = {};
 const teamData = {
   dem:{pct:95,color:'#A62BFF'}, dp:{pct:84,color:'#C97AFF'}, ecd:{pct:97,color:'#27CF77'},
   fot:{pct:92,color:'#22C4CF'}, k12:{pct:84,color:'#3B82F6'}, mel:{pct:96,color:'#F97316'},
-  ops:{pct:85,color:'#F59E0B'}, tech:{pct:3,color:'#6366F1'}, fin:{pct:0,color:'#EC4899'},
+  ops:{pct:85,color:'#F59E0B'}, tech:{pct:49,color:'#6366F1'}, fin:{pct:0,color:'#EC4899'},
 };
 function initChart(id) {
   const el = document.getElementById('chart-' + id);
