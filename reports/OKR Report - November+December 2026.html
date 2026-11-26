@@ -209,9 +209,7 @@
     <button class="tab-btn active" onclick="switchTab('overview',this)">Overview<span class="tpill">9</span></button>
     <button class="tab-btn" onclick="switchTab('dem',this)">Democracy<span class="tpill" style="color:var(--purple)">95%</span></button>
     <button class="tab-btn" onclick="switchTab('dp',this)">D+<span class="tpill">84%</span></button>
-    <button class="tab-btn" onclick="switchTab('ecd',this)">ECD<span class="tpill" style="color:var(--green)">97%</span></button>
-    <button class="tab-btn" onclick="switchTab('fot',this)">FoT<span class="tpill">92%</span></button>
-    <button class="tab-btn" onclick="switchTab('k12',this)">K-12<span class="tpill">84%</span></button>
+    <button class="tab-btn" onclick="switchTab('edu',this)">Education<span class="tpill" style="color:var(--green)">91%</span></button>
     <button class="tab-btn" onclick="switchTab('mel',this)">MEL<span class="tpill" style="color:var(--green)">96%</span></button>
     <button class="tab-btn" onclick="switchTab('ops',this)">People & Ops<span class="tpill">85%</span></button>
     <button class="tab-btn" onclick="switchTab('tech',this)">Tech<span class="tpill" style="color:#ef4444">3%</span></button>
@@ -240,49 +238,35 @@
       <div class="tc-meta">1 Objective · 3 KRs</div>
       <div class="tc-mom"><span class="mom-up">↑ 18% vs Oct</span></div>
     </div>
-    <div class="team-card" onclick="goTab('ecd',3)">
-      <div class="tc-header"><span class="tc-name">ECD</span><span class="tdot" style="background:var(--green)"></span></div>
-      <div class="tc-pct" style="color:var(--green)">97%</div>
-      <div class="tc-bar"><div class="tc-bar-fill" style="width:97%;background:var(--green)"></div></div>
-      <div class="tc-meta">4 Objectives · 10 KRs</div>
-      <div class="tc-mom"><span class="mom-up">↑ 27% vs Oct</span></div>
+    <div class="team-card" onclick="goTab('edu',3)" style="grid-column:span 1">
+      <div class="tc-header"><span class="tc-name">Education</span><span class="tdot" style="background:var(--green)"></span></div>
+      <div class="tc-pct" style="color:var(--green)">91%</div>
+      <div class="tc-bar"><div class="tc-bar-fill" style="width:91%;background:var(--green)"></div></div>
+      <div class="tc-meta">ECD 97% · FoT 92% · K-12 84%</div>
+      <div class="tc-mom"><span class="mom-up">↑ Avg +39% vs Oct</span></div>
     </div>
-    <div class="team-card" onclick="goTab('fot',4)">
-      <div class="tc-header"><span class="tc-name">FoT</span><span class="tdot" style="background:var(--cyan)"></span></div>
-      <div class="tc-pct" style="color:var(--cyan)">92%</div>
-      <div class="tc-bar"><div class="tc-bar-fill" style="width:92%;background:var(--cyan)"></div></div>
-      <div class="tc-meta">4 Objectives · 9 KRs</div>
-      <div class="tc-mom"><span class="mom-up">↑ 38% vs Oct</span></div>
-    </div>
-    <div class="team-card" onclick="goTab('k12',5)">
-      <div class="tc-header"><span class="tc-name">K-12</span><span class="tdot" style="background:var(--blue)"></span></div>
-      <div class="tc-pct" style="color:var(--blue)">84%</div>
-      <div class="tc-bar"><div class="tc-bar-fill" style="width:84%;background:var(--blue)"></div></div>
-      <div class="tc-meta">3 Objectives · 6 KRs</div>
-      <div class="tc-mom"><span class="mom-up">↑ 51% vs Oct</span></div>
-    </div>
-    <div class="team-card" onclick="goTab('mel',6)">
+    <div class="team-card" onclick="goTab('mel',4)">
       <div class="tc-header"><span class="tc-name">MEL</span><span class="tdot" style="background:var(--orange)"></span></div>
       <div class="tc-pct" style="color:var(--orange)">96%</div>
       <div class="tc-bar"><div class="tc-bar-fill" style="width:96%;background:var(--orange)"></div></div>
       <div class="tc-meta">1 Objective · 5 KRs</div>
       <div class="tc-mom"><span class="mom-up">↑ 6% vs Oct</span></div>
     </div>
-    <div class="team-card" onclick="goTab('ops',7)">
+    <div class="team-card" onclick="goTab('ops',5)">
       <div class="tc-header"><span class="tc-name">People & Ops</span><span class="tdot" style="background:var(--amber)"></span></div>
       <div class="tc-pct" style="color:var(--amber)">85%</div>
       <div class="tc-bar"><div class="tc-bar-fill" style="width:85%;background:var(--amber)"></div></div>
       <div class="tc-meta">3 Objectives · 7 KRs</div>
       <div class="tc-mom"><span class="mom-up">↑ 13% vs Oct</span></div>
     </div>
-    <div class="team-card" onclick="goTab('tech',8)">
+    <div class="team-card" onclick="goTab('tech',6)">
       <div class="tc-header"><span class="tc-name">Tech</span><span class="tdot" style="background:var(--indigo)"></span></div>
       <div class="tc-pct" style="color:var(--indigo)">3%</div>
       <div class="tc-bar"><div class="tc-bar-fill" style="width:3%;background:var(--indigo)"></div></div>
       <div class="tc-meta">Planning phase</div>
       <div class="tc-mom"><span class="mom-flat">→ Flat</span></div>
     </div>
-    <div class="team-card" onclick="goTab('fin',9)">
+    <div class="team-card" onclick="goTab('fin',7)">
       <div class="tc-header"><span class="tc-name">Finance</span><span class="tdot" style="background:var(--pink)"></span></div>
       <div class="tc-pct" style="color:var(--pink)">0%</div>
       <div class="tc-bar"><div class="tc-bar-fill" style="width:0%;background:var(--pink)"></div></div>
@@ -397,9 +381,20 @@
   </div>
 </div>
 
-<!-- ECD -->
-<div id="tab-ecd" class="tab-panel">
-  <div class="team-detail">
+<!-- EDUCATION -->
+<div id="tab-edu" class="tab-panel">
+  <div style="padding:0 0 12px 0">
+    <p class="section-title" style="margin-bottom:4px">Education Cluster — ECD · FoT · K-12</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px">
+      <span style="font-size:12px;font-weight:600;color:var(--green);background:rgba(39,207,119,.12);padding:4px 10px;border-radius:20px">ECD 97%</span>
+      <span style="font-size:12px;font-weight:600;color:var(--cyan);background:rgba(34,196,207,.12);padding:4px 10px;border-radius:20px">FoT 92%</span>
+      <span style="font-size:12px;font-weight:600;color:var(--blue);background:rgba(59,130,246,.12);padding:4px 10px;border-radius:20px">K-12 84%</span>
+      <span style="font-size:12px;font-weight:600;color:var(--muted)">Avg 91% · ↑ Avg +39% vs Oct</span>
+    </div>
+  </div>
+  <div style="border-left:3px solid var(--green);padding-left:16px;margin-bottom:32px">
+    <p class="section-title" style="color:var(--green);font-size:13px;margin-bottom:16px">ECD — Early Childhood Development</p>
+<div class="team-detail">
     <div>
       <div class="team-overview-card">
         <h2>ECD</h2>
@@ -461,10 +456,10 @@
     </div>
   </div>
 </div>
-
-<!-- FOT -->
-<div id="tab-fot" class="tab-panel">
-  <div class="team-detail">
+  </div>
+  <div style="border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:32px">
+    <p class="section-title" style="color:var(--cyan);font-size:13px;margin-bottom:16px">FoT — Formación de Talento</p>
+<div class="team-detail">
     <div>
       <div class="team-overview-card">
         <h2>Formación de Talento</h2>
@@ -525,10 +520,10 @@
     </div>
   </div>
 </div>
-
-<!-- K-12 -->
-<div id="tab-k12" class="tab-panel">
-  <div class="team-detail">
+  </div>
+  <div style="border-left:3px solid var(--blue);padding-left:16px;margin-bottom:32px">
+    <p class="section-title" style="color:var(--blue);font-size:13px;margin-bottom:16px">K-12</p>
+<div class="team-detail">
     <div>
       <div class="team-overview-card">
         <h2>K-12</h2>
@@ -575,6 +570,8 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
   </div>
 </div>
 
