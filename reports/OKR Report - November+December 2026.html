@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiPgogIDxkZWZzPjxzdHlsZT4uc3Qwe2ZpbGw6I2E2MmJmZjt9PC9zdHlsZT48L2RlZnM+CiAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTI0MSw3NXYtMTVoLTQxLjdsLTE5LjMtNTAuNGMtMi4yLTUuOC03LjgtOS42LTE0LTkuNkgxNUM2LjcsMCwwLDYuNywwLDE1djEwNWgxOTZjMjQuOCwwLDQ1LTIwLjIsNDUtNDVoMFoiLz4KICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTM1LjksMjg2LjVjLTguMywwLTE1LjEsNi44LTE1LjEsMTV2NTkuOWMwLDguMyw2LjgsMTUsMTUuMSwxNXMxNS4xLTYuOCwxNS4xLTE1di01OS45YzAtOC4zLTYuOC0xNS0xNS4xLTE1WiIvPgogIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zNzYsMjg2LjVoLTE1LjF2MzBoMTUuMWM4LjMsMCwxNS02LjcsMTUtMTVzLTYuNy0xNS0xNS0xNVoiLz4KICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDk3LDYwaC0yMjZ2MTVjMCw0MS40LTMzLjYsNzUtNzUsNzVIMHYzNDdjMCw4LjMsNi43LDE1LDE1LDE1aDQ4MmM4LjMsMCwxNS02LjcsMTUtMTVWNzVjMC04LjMtNi43LTE1LTE1LTE1Wk0xODEsMzYxLjVjMCwyNC44LTIwLjIsNDUtNDUuMSw0NXMtNDUuMS0yMC4yLTQ1LjEtNDV2LTU5LjljMC0yNC44LDIwLjItNDUsNDUuMS00NXM0NS4xLDIwLjIsNDUuMSw0NXY1OS45Wk0yODYuMSw0MDYuNWgwYy04LjMsMC0xNS02LjctMTUtMTV2LTIyLjVjMCwwLTI3LjQtMjAuNS0yNy40LTIwLjVsLTIuNywzLjR2MzkuNmMwLDguMy02LjcsMTUtMTUsMTVzLTE1LTYuNy0xNS0xNXYtMTIwYzAtOC4zLDYuNy0xNSwxNS0xNXMxNSw2LjcsMTUsMTV2MzIuM2wzMy4zLTQxLjdjNS4yLTYuNSwxNC42LTcuNSwyMS4xLTIuNCw2LjUsNS4yLDcuNSwxNC42LDIuNCwyMS4xbC0zNS4zLDQ0LjIsMzIuNiwyNC40YzMuOCwyLjgsNiw3LjIsNiwxMnYzMGMuMSw4LjMtNi42LDE1LTE0LjksMTVaTTQyMSwzNjEuNXYzMGMwLDguMy02LjcsMTUtMTUsMTVzLTE1LTYuNy0xNS0xNXYtMzBjMC04LjMtNi43LTE1LTE1LTE1aC0xNS4xdjQ1YzAsOC4zLTYuNywxNS0xNSwxNXMtMTUtNi43LTE1LTE1di0xMjBjMC04LjMsNi43LTE1LDE1LTE1aDMwLjFjMjQuOCwwLDQ1LDIwLjIsNDUsNDVzLTQuMywyMi0xMS41LDMwYzcuMSw4LDExLjUsMTguNSwxMS41LDMwWiIvPgo8L3N2Zz4=">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OKR Progress Report · November+December 2026 · VélezReyes+</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0D0D0D;--card:#141414;--card2:#1A1A1A;--border:#222;--border2:#2A2A2A;
+  --text:#CCC;--muted:#555;--white:#FFF;
+  --yellow:#F3FF00;--green:#27CF77;--purple:#A62BFF;
+  --font:'Montserrat',-apple-system,sans-serif;--radius:10px;--radius-sm:6px;
+  --c-ontrack:#27CF77;--c-atrisk:#F3FF00;--c-trouble:#FF6B6B;--c-ns:#555;
+  --c-dem:#A62BFF;--c-dp:#C97AFF;--c-ecd:#27CF77;--c-fot:#22C4CF;
+  --c-k12:#3B82F6;--c-mel:#F97316;--c-ops:#F59E0B;--c-tech:#6366F1;--c-fin:#EC4899;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;padding:1.25rem 1rem 3rem;line-height:1.6;font-size:14px}
+.root{max-width:1100px;margin:0 auto}
+a{text-decoration:none}
+.header{background:#0D0D0D;border:1px solid #222;border-radius:var(--radius);padding:1.5rem 1.75rem 1.25rem;margin-bottom:4px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow) 0%,var(--green) 50%,var(--purple) 100%)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.header-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#555;margin-bottom:.3rem;font-weight:600}
+.header h1{font-size:22px;font-weight:800;color:#FFF;line-height:1.1}
+.header-period{font-size:13px;color:var(--yellow);font-weight:700;margin-top:.25rem}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.header-stats{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+.hstat{background:#1A1A1A;border:1px solid #2A2A2A;border-radius:8px;padding:.6rem .9rem;text-align:center;min-width:80px}
+.hstat-num{font-size:20px;font-weight:800;line-height:1}
+.hstat-label{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#555;margin-top:3px}
+.hstat.yellow .hstat-num{color:var(--yellow)}.hstat.green .hstat-num{color:var(--green)}.hstat.orange .hstat-num{color:#F97316}
+.header-teams{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.75rem}
+.team-pill{font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:20px;border:1px solid}
+.pdf-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--yellow);color:#000;font-family:var(--font);font-size:10px;font-weight:800;padding:.5rem .9rem;border-radius:8px;border:none;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:opacity .18s,transform .1s;white-space:nowrap}
+.pdf-btn:hover{opacity:.85;transform:translateY(-1px)}
+.main-nav{background:#1A1A1A;border:1px solid #2A2A2A;border-radius:var(--radius);padding:4px;display:flex;gap:3px;margin-bottom:.75rem;overflow-x:auto;flex-wrap:nowrap}
+.nav-btn{flex-shrink:0;text-align:center;padding:9px 14px;border-radius:7px;border:none;background:transparent;color:#555;font-size:12px;font-weight:700;cursor:pointer;transition:background .18s,color .18s;font-family:var(--font);letter-spacing:.02em;white-space:nowrap}
+.nav-btn:hover{background:#252525;color:#999}
+.nav-btn.active{background:var(--yellow);color:#000}
+.section{display:none}.section.visible{display:block}
+.sec-title{font-size:17px;font-weight:700;color:#E8E8E0;margin-bottom:.15rem}
+.sec-sub{font-size:12px;color:#555;margin-bottom:.85rem}
+.card{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:1.1rem 1.35rem;margin-bottom:.75rem}
+.card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:.75rem}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.badge.on-track{background:#0D2B1A;color:var(--c-ontrack)}.badge.at-risk{background:#2B2B00;color:var(--c-atrisk)}
+.badge.in-trouble{background:#2B0D0D;color:var(--c-trouble)}.badge.not-started{background:#1A1A1A;color:#555}
+.badge.completed{background:#0D2B1A;color:var(--c-ontrack)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:.75rem}
+.team-card{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:.9rem 1rem;cursor:pointer;transition:border-color .18s,background .18s;position:relative;overflow:hidden}
+.team-card:hover{background:#1A1A1A;border-color:#333}
+.tc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.tc-name{font-size:11px;font-weight:700;color:#DDD}.tc-lead{font-size:10px;color:#444;margin-top:1px}
+.tc-donut-wrap{position:relative;width:54px;height:54px}
+.tc-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.tc-pct{font-size:13px;font-weight:800;line-height:1}
+.tc-bar-wrap{margin-top:.5rem}
+.tc-bar-row{display:flex;align-items:center;gap:.4rem;font-size:10px}
+.tc-bar-label{color:#444;width:54px;flex-shrink:0}
+.tc-bar-track{flex:1;height:5px;background:#252525;border-radius:3px;overflow:hidden}
+.tc-bar-fill{height:100%;border-radius:3px}
+.tc-bar-pct{color:#666;min-width:26px}
+.org-obj-list{display:flex;flex-direction:column;gap:.5rem}
+.org-obj-row{display:grid;grid-template-columns:1fr 160px 50px;align-items:center;gap:.75rem}
+.org-obj-name{font-size:13px;color:#CCC;font-weight:500}
+.org-bar-track{height:8px;background:#252525;border-radius:4px;overflow:hidden}
+.org-bar-fill{height:100%;border-radius:4px}
+.org-obj-pct{font-size:12px;font-weight:700;color:#999;text-align:right}
+.callout{border-radius:var(--radius-sm);padding:.75rem 1rem;margin:.6rem 0;font-size:13px;line-height:1.6;border-left:3px solid #333;background:#1A1A1A;color:#888}
+.callout.yellow{border-left-color:var(--yellow);background:#1C1600;color:#AAA}
+.callout.green{border-left-color:var(--green);background:#0A180D;color:#AAA}
+.callout.purple{border-left-color:var(--purple);background:#120820;color:#AAA}
+.callout.red{border-left-color:#FF4545;background:#1A0A0A;color:#AAA}
+.callout.dim{border-left-color:#333;background:#131313;color:#555;font-size:11px}
+.callout-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.25rem;color:#AAA}
+.team-hdr{background:#141414;border:1px solid #222;border-radius:var(--radius);padding:1.1rem 1.35rem;margin-bottom:.6rem;display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:1.25rem}
+.team-donut-wrap{position:relative;width:100px;height:100px}
+.team-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.team-donut-pct{font-size:24px;font-weight:800;line-height:1}
+.team-donut-label{font-size:9px;color:#555;font-weight:600;letter-spacing:.05em;margin-top:2px}
+.team-info-name{font-size:20px;font-weight:800;color:#FFF;line-height:1.1;margin-bottom:.3rem}
+.team-info-lead{font-size:11px;color:#555;margin-bottom:.6rem}
+.team-info-stats{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.team-stat{background:#1A1A1A;border:1px solid #282828;border-radius:6px;padding:.4rem .7rem;text-align:center}
+.team-stat-n{font-size:16px;font-weight:800;line-height:1}
+.team-stat-l{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#555;margin-top:2px}
+.team-counts{display:flex;flex-direction:column;gap:.35rem;align-items:flex-end}
+.obj-list{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.75rem}
+.obj-item{background:#141414;border:1px solid #222;border-radius:var(--radius);overflow:hidden}
+.obj-header{display:flex;align-items:center;gap:.75rem;padding:.75rem 1.1rem;cursor:pointer;transition:background .15s}
+.obj-header:hover{background:#1A1A1A}
+.obj-code{font-size:10px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:5px;background:#222;color:#666;flex-shrink:0}
+.obj-name{font-size:13.5px;font-weight:600;color:#CCC;flex:1}
+.obj-pct{font-size:13px;font-weight:800;min-width:36px;text-align:right;flex-shrink:0}
+.obj-bar-wrap{width:90px;flex-shrink:0}
+.obj-bar-track{height:6px;background:#252525;border-radius:3px;overflow:hidden}
+.obj-bar-fill{height:100%;border-radius:3px}
+.obj-chevron{font-size:11px;color:#333;transition:transform .2s;flex-shrink:0}
+.obj-item.open .obj-chevron{transform:rotate(180deg)}
+.obj-body{display:none;border-top:1px solid #1A1A1A;padding:.6rem 1.1rem .8rem}
+.obj-item.open .obj-body{display:block}
+.kr-list{display:flex;flex-direction:column;gap:.45rem}
+.kr-row{display:grid;grid-template-columns:1fr 80px 100px 36px;align-items:start;gap:.6rem;font-size:12.5px}
+.kr-name{color:#888;font-size:12px}
+.kr-bar-track{height:5px;background:#222;border-radius:3px;overflow:hidden;margin-top:5px}
+.kr-bar-fill{height:100%;border-radius:3px}
+.kr-pct{font-size:11px;font-weight:700;color:#666;text-align:right;margin-top:2px}
+.kr-detail{font-size:11px;color:#555;margin-top:3px;line-height:1.5;font-weight:400}
+.kr-code{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 6px;border-radius:4px;background:#222;color:#666;margin-right:4px;vertical-align:middle;flex-shrink:0}
+.kr-badge{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:10px;white-space:nowrap;margin-top:3px;letter-spacing:.03em}
+.kr-badge.on-track{background:#0D2B1A;color:#27CF77}
+.kr-badge.at-risk{background:#1C0800;color:#F97316}
+.kr-badge.completed{background:#0A2010;color:#27CF77}
+.kr-badge.not-started{background:#1A1A1A;color:#555}
+.kr-badge.dropped{background:#1A0A0A;color:#FF4545}
+.inst-align{margin-top:.85rem;padding:.8rem 1rem;background:#111;border:1px solid #222;border-radius:8px}
+.inst-align-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#555;margin-bottom:.55rem}
+.inst-kr-code{font-size:10px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:5px;background:#A62BFF22;color:#A62BFF;flex-shrink:0}
+.inst-aligned-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#333;margin-bottom:.35rem}
+.inst-a-row{display:flex;align-items:center;gap:.55rem;padding:.45rem .7rem;background:#0D0D0D;border-radius:6px;margin-bottom:.3rem}
+.inst-a-team{font-size:9px;font-weight:800;min-width:28px;letter-spacing:.04em}
+.inst-a-kcode{font-size:9px;font-weight:700;color:#444;background:#1A1A1A;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.inst-a-name{font-size:12px;color:#888;flex:1;line-height:1.4}
+.inst-a-pct{font-size:11px;font-weight:800;white-space:nowrap}
+.inst-a-link{cursor:pointer;transition:color .15s}
+.inst-a-link:hover .inst-a-name{color:var(--yellow)}
+.mom-chip{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.mom-up{background:#0A180D;color:#27CF77}
+.mom-down{background:#1A0A0A;color:#FF4545}
+.mom-flat{background:#1A1A1A;color:#555}
+.sp-wrap{margin-bottom:1.25rem;border-radius:var(--radius);overflow:hidden;border:1px solid #2A2A2A}
+.sp-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:var(--font)}
+.sp-table td{vertical-align:top;padding:0}
+.sp-banner{background:#1A1400;color:#F3FF00;font-size:13px;font-weight:700;text-align:center;padding:12px 16px;border-bottom:1px solid #2A2A2A;letter-spacing:.01em}
+.sp-obj-hdr{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.06)}
+.sp-obj-hdr strong{display:block;font-size:12.5px;font-weight:800;margin-bottom:3px}
+.sp-obj-sub{font-size:11px;font-weight:400;opacity:.8}
+.sp-o1-hdr{background:#1A1030;color:#D4B8FF;border-right:2px solid #A62BFF55}
+.sp-o2-hdr{background:#091A14;color:#8FF5C5;border-right:2px solid #27CF7755}
+.sp-o3-hdr{background:#1A1000;color:#FBD898;border-right:1px solid #F9731644}
+.sp-team-hdr{font-size:11.5px;font-weight:800;text-align:center;padding:8px 10px;cursor:pointer;letter-spacing:.03em;border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+.sp-team-hdr:hover{opacity:.8}
+.sp-t-dem{background:#2A1445;color:#D4B8FF}
+.sp-t-ecd{background:#0D2B20;color:#8FF5C5}
+.sp-t-edu{background:#0D1F2B;color:#8DDAE6}
+.sp-t-dp{background:#1E0E38;color:#C9A8FF}
+.sp-t-mel{background:#091A14;color:#8FF5C5;border-left:2px solid #27CF7766}
+.sp-t-ops{background:#1A1000;color:#FBD898;border-left:2px solid #F9731655}
+.sp-kr-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#666;background:#0C0C0C;padding:7px 14px;border-top:1px solid #2A2A2A;border-bottom:1px solid #222}
+.sp-board-gate{text-align:center;font-size:12px;font-weight:700;padding:10px 16px;letter-spacing:.02em}
+.sp-bq3{background:#0A1A0A;color:#27CF77;border-top:1px solid #27CF7733;border-bottom:1px solid #27CF7733}
+.sp-bq4{background:#130A20;color:#C4A8FF;border-top:1px solid #A62BFF44;border-bottom:1px solid #A62BFF44}
+.sp-cell{padding:12px 13px;border-right:1px solid #1E1E1E;border-bottom:1px solid #1E1E1E;cursor:pointer;transition:background .15s;vertical-align:top}
+.sp-cell:last-child{border-right:none}
+.sp-cell:hover{filter:brightness(1.12)}
+.sp-c-o1{background:#160E2A}
+.sp-c-o2{background:#09130F;border-left:2px solid #27CF7744}
+.sp-c-o3{background:#150C00;border-left:2px solid #F9731644}
+.sp-span-cell{cursor:default}
+.sp-cell-kr{font-size:10px;font-weight:700;color:#888;letter-spacing:.04em;margin-bottom:4px;text-transform:uppercase}
+.sp-cell-title{font-size:13.5px;font-weight:700;color:#F0F0E8;margin-bottom:5px;line-height:1.3}
+.sp-cell-body{font-size:12px;color:#AAA;line-height:1.5;margin-bottom:7px}
+.sp-gates-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:4px}
+.sp-gate-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#252525;color:#999;border:1px solid #383838}
+.sp-gate-done{color:#27CF77;border-color:#27CF7733;background:#091A14}
+.sp-gt-full{color:#27CF77;border-color:#27CF7733;background:#091A14}
+.sp-success-row .sp-cell{background:#0A0A0A}
+.sp-check-list{list-style:none;padding:0;margin:0}
+.sp-check-list li{font-size:12px;color:#AAA;display:flex;align-items:flex-start;gap:.4rem;line-height:1.5;margin-bottom:4px}
+.sp-check-list li::before{content:"✓";color:#27CF77;font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px}
+.sp-check-list li.pending::before{content:"◯";color:#555}
+.sp-nav-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.sp-nav-chip{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:5px 12px;border-radius:20px;border:1px solid #333;color:#888;cursor:pointer;background:#141414;transition:all .15s}
+.sp-nav-chip:hover{border-color:var(--yellow);color:var(--yellow);background:#1C1600}
+.obj-group-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:8px 0;margin:16px 0 8px;border-bottom:2px solid;display:flex;align-items:baseline;gap:8px}
+.obj-group-hdr.o1{color:var(--purple);border-bottom-color:#A62BFF33}
+.obj-group-hdr.o2{color:var(--green);border-bottom-color:#27CF7733}
+.obj-group-hdr.o3{color:#F97316;border-bottom-color:#F9731633}
+.obj-group-hdr span{font-weight:400;font-size:13px;color:#666}
+.board-gates-bar{display:flex;align-items:center;gap:0;margin:.75rem 0 .5rem;background:#111;border:1px solid #222;border-radius:8px;overflow:hidden}
+.bg-gate{display:flex;align-items:center;gap:.55rem;padding:.55rem 1.1rem;flex:1}
+.bg-q3{border-left:3px solid var(--green)}
+.bg-q4{border-left:3px solid var(--purple)}
+.bg-divider{width:1px;background:#222;align-self:stretch}
+.bg-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#555}
+.bg-date{font-size:11px;color:#444;margin-left:.1rem}
+.bg-days{font-size:22px;font-weight:900;line-height:1;margin-left:auto}
+.bg-q3 .bg-days{color:var(--green)}
+.bg-q4 .bg-days{color:var(--purple)}
+.bg-suffix{font-size:10px;color:#444;font-weight:600;margin-left:2px;align-self:flex-end;padding-bottom:2px}
+.bg-gate.past .bg-days{color:#27CF77}
+.bg-gate.past .bg-label{color:#27CF77}
+.bg-gate.urgent .bg-days{color:#FF6B6B}
+.risk-filter-btn{margin-left:auto;color:#888!important;border:1px solid #333!important;border-radius:7px}
+.risk-filter-btn.active{background:#1C0800!important;color:var(--yellow)!important;border-color:var(--yellow)!important}
+body.risk-mode .obj-item:not(.has-risk){opacity:.22;pointer-events:none}
+body.risk-mode .obj-item.has-risk{opacity:1;pointer-events:all}
+body.risk-mode .obj-item.has-risk .obj-header{background:#1A0A00}
+.back-crumb{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:999;animation:slideUp .25s ease}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;background:#1A1A1A;border:1px solid #383838;border-radius:24px;padding:.55rem 1.1rem;color:#CCC;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.6);transition:all .15s}
+.back-btn:hover{background:#252525;border-color:#555;color:#FFF}
+.back-arrow{font-size:14px;color:var(--yellow)}
+.task-list{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-direction:column;gap:3px}
+.task-list li{font-size:11.5px;color:#666;display:flex;align-items:flex-start;gap:.45rem;line-height:1.45;padding:.25rem 0}
+.task-list li::before{content:"✓";color:var(--c-ontrack);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px}
+.task-list li.pending::before{content:"◯";color:#555}
+.site-footer{margin-top:2.5rem;padding:1.25rem 0 .5rem;text-align:center;border-top:1px solid #1E1E1E}
+.footer-note{font-size:11px;color:#333;letter-spacing:.04em}
+.offsite-banner{background:linear-gradient(135deg,#0D0D0D 0%,#120820 100%);border:1px solid #A62BFF44;border-radius:8px;padding:.85rem 1.1rem;margin:.75rem 0;display:flex;align-items:center;gap:1rem}
+.offsite-icon{font-size:20px;flex-shrink:0}
+.offsite-title{font-size:13px;font-weight:800;color:#C4A8FF;margin-bottom:2px}
+.offsite-sub{font-size:11px;color:#666}
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .main-nav,.pdf-btn{display:none!important}
+  .section{display:block!important}
+  .obj-item.open .obj-body{display:block!important}
+  .section:not(:first-child){page-break-before:always}
+}
+.main-nav{background:rgba(18,18,18,.88)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06)!important;box-shadow:0 2px 12px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04)!important}
+.team-card{background:linear-gradient(145deg,rgba(255,255,255,.045) 0%,rgba(255,255,255,.012) 100%)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:0 1px 3px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)!important}
+.obj-item{background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.01) 100%)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)!important}
+.kr-row{background:rgba(255,255,255,.018)!important;border:1px solid rgba(255,255,255,.055)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;padding:.45rem .6rem;border-radius:6px}
+.kr-row:hover{background:rgba(255,255,255,.035)!important;border-color:rgba(255,255,255,.1)!important}
+.hstat{background:rgba(22,22,22,.7)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.team-hdr{background:rgba(255,255,255,.02)!important;border-bottom:1px solid rgba(255,255,255,.06)!important}
+</style>
+</head>
+<body>
+<div class="root">
+<div id="back-crumb" class="back-crumb" style="display:none">
+  <button onclick="dismissBack()" class="back-btn"><span class="back-arrow">←</span><span id="back-label">Institutional</span></button>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">VélezReyes+ · OKR Progress Report</div>
+      <h1>November+December 2026<br><span style="color:#555;font-weight:400;font-size:14px;">Organizational Overview · Board December Edition</span></h1>
+      <div class="header-period">Data as of November 25, 2026 · São Paulo Offsite · Source: Profit.co + Board Estimates</div>
+    </div>
+    <div class="header-right">
+      <button class="pdf-btn" onclick="window.print()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Print / PDF
+      </button>
+      <div class="header-stats">
+        <div class="hstat yellow"><div class="hstat-num">76%</div><div class="hstat-label">Org Progress</div></div>
+        <div class="hstat green"><div class="hstat-num">48</div><div class="hstat-label">On Track</div></div>
+        <div class="hstat orange"><div class="hstat-num">6</div><div class="hstat-label">At Risk</div></div>
+        <div class="hstat"><div class="hstat-num" style="color:#555">10</div><div class="hstat-label">Not Started</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="board-gates-bar">
+    <div class="bg-gate bg-q3 past"><span class="bg-label">✓ Board Q3</span><span class="bg-date">Sept 20, 2026</span><span class="bg-days">Done</span></div>
+    <div class="bg-divider"></div>
+    <div class="bg-gate bg-q4 urgent"><span class="bg-label">Board Gate Q4</span><span class="bg-date">Dec 4, 2026</span><span class="bg-days" id="days-q4">9</span><span class="bg-suffix">days</span></div>
+  </div>
+  <div class="header-teams">
+    <span class="team-pill" style="color:var(--c-dem);border-color:#A62BFF33">DEM — 93%<span class="mom-chip mom-up">↑10%</span></span>
+    <span class="team-pill" style="color:var(--c-dp);border-color:#C97AFF33">D+ — 84%<span class="mom-chip mom-up">↑18%</span></span>
+    <span class="team-pill" style="color:var(--c-ecd);border-color:#27CF7733">ECD — 91%<span class="mom-chip mom-up">↑21%</span></span>
+    <span class="team-pill" style="color:var(--c-fot);border-color:#22C4CF33">FoT — 62%<span class="mom-chip mom-up">↑8%</span></span>
+    <span class="team-pill" style="color:var(--c-k12);border-color:#3B82F633">K-12 — 41%<span class="mom-chip mom-up">↑8%</span></span>
+    <span class="team-pill" style="color:var(--c-mel);border-color:#F9731633">MEL — 90%<span class="mom-chip mom-flat">—</span></span>
+    <span class="team-pill" style="color:var(--c-ops);border-color:#F59E0B33">OPS — 79%<span class="mom-chip mom-up">↑7%</span></span>
+    <span class="team-pill" style="color:var(--c-tech);border-color:#6366F133">TECH — 3%<span class="mom-chip mom-flat">—</span></span>
+    <span class="team-pill" style="color:var(--c-fin);border-color:#EC489933">FIN — 0%<span class="mom-chip mom-flat">—</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="main-nav">
+  <button class="nav-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="nav-btn" onclick="showTab('institutional')">Institutional</button>
+  <button class="nav-btn" onclick="showTab('dem')">Democracy</button>
+  <button class="nav-btn" onclick="showTab('dp')">Democracia+</button>
+  <button class="nav-btn" onclick="showTab('ecd')">ECD</button>
+  <button class="nav-btn" onclick="showTab('edu')">Education</button>
+  <button class="nav-btn" onclick="showTab('mel')">MEL</button>
+  <button class="nav-btn" onclick="showTab('ops')">Ops</button>
+  <button class="nav-btn" onclick="showTab('tech')">Tech</button>
+  <button class="nav-btn" onclick="showTab('fin')">Finance</button>
+  <button class="nav-btn risk-filter-btn" id="risk-filter-btn" onclick="toggleRiskFilter()" title="Show only At Risk KRs">⚠ At Risk</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section visible" id="tab-overview">
+  <div class="sec-title">Company Overview</div>
+  <div class="sec-sub">VélezReyes+ overall at <strong style="color:#FFF">76%</strong> · Period: November 2026 · ↑6% vs October · São Paulo offsite data</div>
+
+  <div class="offsite-banner">
+    <div class="offsite-icon">🇧🇷</div>
+    <div>
+      <div class="offsite-title">São Paulo Offsite — Nov 24–25, 2026</div>
+      <div class="offsite-sub">Major sprint across all teams. 12 KRs completed at the offsite. 9 days to Board Q4 (Dec 4). Data includes board estimates.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">VélezReyes+ — Company Objectives</div>
+    <div class="org-obj-list">
+      <div class="org-obj-row">
+        <div class="org-obj-name">O1 · Refined Big Bets and Toolkit<span class="mom-chip mom-up">↑3%</span></div>
+        <div class="org-bar-track"><div class="org-bar-fill" style="width:80%;background:var(--purple)"></div></div>
+        <div class="org-obj-pct" style="color:var(--purple)">80%</div>
+      </div>
+      <div class="org-obj-row">
+        <div class="org-obj-name">O2 · Disciplined Execution and Learning<span class="mom-chip mom-up">↑6%</span></div>
+        <div class="org-bar-track"><div class="org-bar-fill" style="width:85%;background:var(--green)"></div></div>
+        <div class="org-obj-pct" style="color:var(--green)">85%</div>
+      </div>
+      <div class="org-obj-row">
+        <div class="org-obj-name">O3 · Conducive Structure for 5-Year Plan<span class="mom-chip mom-up">↑10%</span></div>
+        <div class="org-bar-track"><div class="org-bar-fill" style="width:64%;background:#F97316"></div></div>
+        <div class="org-obj-pct" style="color:#F97316">64%</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Team Progress at a Glance</div>
+    <div class="team-grid" id="team-grid"></div>
+  </div>
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;padding:.35rem 0 .1rem">
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555"><div style="width:8px;height:8px;border-radius:50%;background:#27CF77"></div>On Track / Completed</div>
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555"><div style="width:8px;height:8px;border-radius:50%;background:#F3FF00"></div>At Risk</div>
+    <div style="display:flex;align-items:center;gap:.4rem;font-size:10px;color:#555"><div style="width:8px;height:8px;border-radius:50%;background:#3A3A3A"></div>Not Started</div>
+  </div>
+  <div class="callout dim" style="margin-top:.85rem">Data as of November 25, 2026 — São Paulo offsite day 2. Source: Profit.co + Board Estimates V2. · <strong style="color:#F3FF00">Board Q4 on December 4 — 9 days away. 5-year plan approval.</strong></div>
+</div>
+
+<!-- INSTITUTIONAL -->
+<div class="section" id="tab-institutional">
+  <div class="sec-title">Institutional KR Alignment</div>
+  <div class="sec-sub">2026 Success Plan · Company-level objectives and how team KRs connect to each</div>
+  <div class="sp-wrap">
+<table class="sp-table">
+  <tr><td colspan="6" class="sp-banner">2026 &mdash; close the first cycle &middot; enter the 5-year plan with clarity and conviction. · <span style="color:#27CF77">Board Q3 ✓ Approved</span> &middot; <span style="color:#C4A8FF">Board Q4 · Dec 4 · 9 days</span></td></tr>
+  <tr>
+    <td colspan="4" class="sp-obj-hdr sp-o1-hdr"><strong>O1 &middot; Refined bets and toolkit — 80%</strong><div class="sp-obj-sub">Main goal of the year &mdash; 5-year plan approved at Board Q4</div></td>
+    <td colspan="1" class="sp-obj-hdr sp-o2-hdr"><strong>O2 &middot; Disciplined execution — 85%</strong><div class="sp-obj-sub">Deliver and learn from the full portfolio</div></td>
+    <td colspan="1" class="sp-obj-hdr sp-o3-hdr"><strong>O3 &middot; Conducive structure — 64%</strong><div class="sp-obj-sub">Team, systems, and processes ready</div></td>
+  </tr>
+  <tr>
+    <td class="sp-team-hdr sp-t-dem" onclick="showTab('dem')">Democracy</td>
+    <td class="sp-team-hdr sp-t-ecd" onclick="showTab('ecd')">ECD</td>
+    <td class="sp-team-hdr sp-t-edu" onclick="showTab('edu')">Education</td>
+    <td class="sp-team-hdr sp-t-dp" onclick="showTab('dp')">Democracia+</td>
+    <td class="sp-team-hdr sp-t-mel" onclick="showTab('mel')">Portfolio execution</td>
+    <td class="sp-team-hdr sp-t-ops" onclick="showTab('ops')">Team + systems</td>
+  </tr>
+  <tr><td colspan="6" class="sp-kr-label">KR1.2 &mdash; THEMATIC STRATEGIES</td></tr>
+  <tr>
+    <td class="sp-cell sp-c-o1" onclick="navTo('dem','dem-d4')"><div class="sp-cell-title">People in government</div><div class="sp-cell-body">Strategy + moonshot on political agenda</div><div class="sp-gates-row"><span class="sp-gate-tag sp-gate-done">Approved Q3 ✓</span></div></td>
+    <td class="sp-cell sp-c-o1" onclick="navTo('ecd','ecd-ec3')"><div class="sp-cell-title">Close learning gap 0–6</div><div class="sp-cell-body">Country strategies: Brazil, Colombia, Peru, Costa Rica</div><div class="sp-gates-row"><span class="sp-gate-tag sp-gate-done">Approved Q3 ✓</span></div></td>
+    <td class="sp-cell sp-c-o1" onclick="navTo('edu','edu-ft3')"><div class="sp-cell-title">Boost edtechs + ecosystems</div><div class="sp-cell-body">Impact investing thesis + innovation ecosystem plan</div><div class="sp-gates-row"><span class="sp-gate-tag">Approve Q4</span></div></td>
+    <td class="sp-cell sp-c-o1" onclick="navTo('dp','dp-d1')"><div class="sp-cell-title">D+ 5-year plan</div><div class="sp-cell-body">Network vision, governance, sustainability, ver+ role</div><div class="sp-gates-row"><span class="sp-gate-tag">Approve Q4</span></div></td>
+    <td class="sp-cell sp-c-o2"><div class="sp-cell-kr">KR2.1 &middot; Reliable Execution</div><div class="sp-cell-title">&ge;80% milestones met</div><div class="sp-cell-body">Big bets + ecosystem orgs · <strong style="color:#27CF77">100% ✓</strong></div><div class="sp-gates-row"><span class="sp-gate-tag sp-gt-full">Full year</span></div></td>
+    <td class="sp-cell sp-c-o3" onclick="navTo('ops','ops-op3')"><div class="sp-cell-kr">KR3.1 &middot; Organizational enablement</div><div class="sp-cell-title">Roles filled</div><div class="sp-cell-body">OKR system running, &ge;3 review cycles by Q4</div><div class="sp-gates-row"><span class="sp-gate-tag">Q2 / Q4</span></div></td>
+  </tr>
+  <tr><td colspan="6" class="sp-kr-label">KR1.3 &mdash; PORTFOLIO DECISIONS (ALL AREAS, ALL ORGS)</td></tr>
+  <tr>
+    <td colspan="4" class="sp-cell sp-c-o1 sp-span-cell"><div class="sp-cell-title">100% of orgs with a documented decision</div><div class="sp-cell-body">Keep / scale / pivot / phase-out &mdash; evidenced by SBL and comparable metrics. Board Q3 decisions approved Sept 30.</div><div class="sp-gates-row"><span class="sp-gate-tag sp-gate-done">Approved Q3 ✓</span></div></td>
+    <td class="sp-cell sp-c-o2"><div class="sp-cell-kr">KR2.2 &middot; Decision readiness</div><div class="sp-cell-title">SBL + evidence ready</div><div class="sp-cell-body">Comparable metrics for every org accessible on portfolio dashboard</div><div class="sp-gates-row"><span class="sp-gate-tag sp-gate-done">Done Q3 ✓</span></div></td>
+    <td class="sp-cell sp-c-o3" onclick="navTo('ops','ops-op1')"><div class="sp-cell-kr">KR3.3 &middot; Execution infrastructure</div><div class="sp-cell-title">Ops infrastructure implemented</div><div class="sp-cell-body">Investment system, budget monitoring, performance, admin &amp; legal, knowledge mgmt</div><div class="sp-gates-row"><span class="sp-gate-tag">By Q4</span></div></td>
+  </tr>
+  <tr><td colspan="6" class="sp-board-gate sp-bq3">Board Q3 · Sept 30 — ✓ Thematic strategies approved · ✓ Portfolio decisions approved · Mid-year check O2 + O3 completed</td></tr>
+  <tr><td colspan="6" class="sp-kr-label">KR2.3 + KR2.4 &mdash; TEST, LEARN AND DECIDE</td></tr>
+  <tr>
+    <td colspan="4" class="sp-cell sp-c-o1 sp-span-cell"><div class="sp-cell-title">Learning reports and recommendations</div><div class="sp-cell-body">Conclude thematic explorations with solid cases and recommendations. DPI, anti-corruption, elections, ECD in Brazil + Impulso, Peru Tech Ecosystem. Documented rationale for every portfolio recommendation and decision. All thesis decisions ✓ complete.</div></td>
+    <td class="sp-cell sp-c-o2"><div class="sp-cell-title">Learning agendas concluded</div><div class="sp-cell-body">20+ impact assessments on portfolio — MEL team on track · 90%</div></td>
+    <td class="sp-cell sp-c-o3" onclick="navTo('ops','ops-op2')"><div class="sp-cell-kr">KR3.2 &middot; Operational excellence</div><div class="sp-cell-title">Op. excellence</div><div class="sp-cell-body">Transversal service levels &ge;90% · currently at 63%</div></td>
+  </tr>
+  <tr><td colspan="6" class="sp-kr-label">KR1.4 &mdash; 5-YEAR PLAN</td></tr>
+  <tr>
+    <td colspan="5" class="sp-cell sp-c-o1 sp-span-cell"><div class="sp-cell-title">5-year plan approved</div><div class="sp-cell-body">North stars &middot; problems to solve &middot; big bets per area &middot; investment thesis &middot; theory of change &middot; value proposition &middot; toolkit &middot; <strong style="color:#C4A8FF">All thesis decisions completed ✓ — presenting to Board Q4 Dec 4</strong></div></td>
+    <td class="sp-cell sp-c-o3" onclick="navTo('ops','ops-op3')"><div class="sp-cell-kr">KR3.4 &middot; Clarity &amp; engagement</div><div class="sp-cell-title">Clarity + engagement</div><div class="sp-cell-body">&ge;80% staff clear on strategy and their role</div></td>
+  </tr>
+  <tr><td colspan="6" class="sp-board-gate sp-bq4">Board Q4 · Dec 4 &mdash; approve 5-year plan + D+ 5yr plan + org structure for 2027–2031 · <strong>9 days away</strong></td></tr>
+  <tr><td colspan="6" class="sp-kr-label">WHAT SUCCESS LOOKS LIKE &mdash; END OF 2026</td></tr>
+  <tr class="sp-success-row">
+    <td colspan="4" class="sp-cell sp-c-o1"><div class="sp-cell-kr" style="margin-bottom:.5rem">O1 · 80%</div><ul class="sp-check-list"><li>5-year plan ready for Board Q4 — all thesis decisions complete ✓</li><li>Thematic strategies with ToC and investment thesis ✓</li><li>100% portfolio decisions documented and evidenced ✓</li><li class="pending">D+ 5yr plan approved with clear vision and structure — Q4</li></ul></td>
+    <td class="sp-cell sp-c-o2"><div class="sp-cell-kr" style="margin-bottom:.5rem">O2 · 85%</div><ul class="sp-check-list"><li>80% programmatic milestones met — ✓ 100%</li><li>SBL applied to all orgs ✓</li><li>Live impact dashboard ✓</li></ul></td>
+    <td class="sp-cell sp-c-o3"><div class="sp-cell-kr" style="margin-bottom:.5rem">O3 · 64%</div><ul class="sp-check-list"><li>Processes and systems in place — advancing</li><li>2026 team onboarded ✓</li><li class="pending">&gt;80% staff clarity — Q4 measurement pending</li></ul></td>
+  </tr>
+</table>
+</div>
+
+  <div class="sp-nav-row">
+    <span class="sp-nav-chip" onclick="showTab('dem')">↗ Democracy</span>
+    <span class="sp-nav-chip" onclick="showTab('dp')">↗ Democracia+</span>
+    <span class="sp-nav-chip" onclick="showTab('ecd')">↗ ECD</span>
+    <span class="sp-nav-chip" onclick="showTab('edu')">↗ Education (FoT + K-12)</span>
+    <span class="sp-nav-chip" onclick="showTab('mel')">↗ MEL</span>
+    <span class="sp-nav-chip" onclick="showTab('ops')">↗ Ops</span>
+  </div>
+
+  <div class="obj-group-hdr o1">O1 · Refined Big Bets and Toolkit <span>80% ↑3%</span></div>
+
+  <div class="obj-item" id="inst-o1-kr1">
+    <div class="obj-header" onclick="toggleObj('inst-o1-kr1')">
+      <span class="inst-kr-code">KR1.1</span>
+      <span class="obj-name">Institutional Toolkit</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
+      <span class="obj-pct" style="color:var(--purple)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">White paper on Futures Lab completed. Decision packet template in use across portfolio reviews. Decision log active in Profit.co. Board Q3 materials delivered.</div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o1-kr2">
+    <div class="obj-header" onclick="toggleObj('inst-o1-kr2')">
+      <span class="inst-kr-code">KR1.2</span>
+      <span class="obj-name">Thematic Portfolio Strategies</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:88%;background:var(--purple)"></div></div></div>
+      <span class="obj-pct" style="color:var(--purple)">88%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="inst-aligned-label">Aligned team KRs</div>
+      <div class="inst-a-link" onclick="navTo('dem','dem-d4')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-dem)">DEM</span><span class="inst-a-kcode">D4.1</span><span class="inst-a-name">Investment Thesis — moonshot + democracy strategy ✓</span><span class="inst-a-pct" style="color:var(--c-dem)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('ecd','ecd-ec3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-ecd)">ECD</span><span class="inst-a-kcode">EC3.1</span><span class="inst-a-name">Investment Thesis ✓</span><span class="inst-a-pct" style="color:var(--c-ecd)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-ft3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-fot)">FoT</span><span class="inst-a-kcode">FT3.1</span><span class="inst-a-name">Investment Thesis</span><span class="inst-a-pct" style="color:var(--c-atrisk)">37%</span><span class="kr-badge at-risk">At Risk</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-k3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-k12)">K-12</span><span class="inst-a-kcode">K3.1</span><span class="inst-a-name">Investment Thesis</span><span class="inst-a-pct" style="color:#555">0%</span><span class="kr-badge not-started">Not Started</span></div></div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o1-kr3">
+    <div class="obj-header" onclick="toggleObj('inst-o1-kr3')">
+      <span class="inst-kr-code">KR1.3</span>
+      <span class="obj-name">Portfolio Decisions</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:80%;background:var(--purple)"></div></div></div>
+      <span class="obj-pct" style="color:var(--purple)">80%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="inst-aligned-label">Aligned team KRs</div>
+      <div class="inst-a-link" onclick="navTo('mel','mel-m1')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-mel)">MEL</span><span class="inst-a-kcode">M1.4</span><span class="inst-a-name">Evidence used in Portfolio Governance ✓</span><span class="inst-a-pct" style="color:var(--c-mel)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('dem','dem-d4')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-dem)">DEM</span><span class="inst-a-kcode">D4.2</span><span class="inst-a-name">Evidence &amp; Results Dashboard ✓</span><span class="inst-a-pct" style="color:var(--c-dem)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('ecd','ecd-ec3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-ecd)">ECD</span><span class="inst-a-kcode">EC3.2</span><span class="inst-a-name">Evidence &amp; Results Dashboard ✓</span><span class="inst-a-pct" style="color:var(--c-ecd)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-ft3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-fot)">FoT</span><span class="inst-a-kcode">FT3.2</span><span class="inst-a-name">Evidence &amp; Results Dashboard</span><span class="inst-a-pct" style="color:var(--c-fot)">3%</span><span class="kr-badge at-risk">At Risk</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-k3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-k12)">K-12</span><span class="inst-a-kcode">K3.2</span><span class="inst-a-name">Evidence &amp; Results Dashboard</span><span class="inst-a-pct" style="color:var(--c-k12)">33%</span><span class="kr-badge at-risk">At Risk</span></div></div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o1-kr4">
+    <div class="obj-header" onclick="toggleObj('inst-o1-kr4')">
+      <span class="inst-kr-code">KR1.4</span>
+      <span class="obj-name">5-Year Plan (Q4)</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--purple)"></div></div></div>
+      <span class="obj-pct" style="color:var(--purple)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout green"><div class="callout-title">All Thesis Decisions Completed ✓</div>All five areas have concluded their thesis decisions — Democracy, ECD, FoT, K-12, and MEL. 5-year plan ready for Board Q4 approval on December 4.</div>
+      <div class="inst-aligned-label">Aligned team KRs</div>
+      <div class="inst-a-link" onclick="navTo('mel','mel-m1')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-mel)">MEL</span><span class="inst-a-kcode">M1.5</span><span class="inst-a-name">Equality of Opportunity Measurement Pilot ✓</span><span class="inst-a-pct" style="color:var(--c-mel)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('dem','dem-d4')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-dem)">DEM</span><span class="inst-a-kcode">D4.3</span><span class="inst-a-name">Thesis Decision ✓ (offsite)</span><span class="inst-a-pct" style="color:var(--c-dem)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('ecd','ecd-ec3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-ecd)">ECD</span><span class="inst-a-kcode">EC3.3</span><span class="inst-a-name">Thesis Decision ✓ (offsite)</span><span class="inst-a-pct" style="color:var(--c-ecd)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-ft3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-fot)">FoT</span><span class="inst-a-kcode">FT3.3</span><span class="inst-a-name">Thesis Decision ✓ (offsite)</span><span class="inst-a-pct" style="color:var(--c-fot)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+      <div class="inst-a-link" onclick="navTo('edu','edu-k3')"><div class="inst-a-row"><span class="inst-a-team" style="color:var(--c-k12)">K-12</span><span class="inst-a-kcode">K3.3</span><span class="inst-a-name">Thesis Decision ✓ (offsite)</span><span class="inst-a-pct" style="color:var(--c-k12)">100%</span><span class="kr-badge completed">Completed</span></div></div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o2">O2 · Disciplined Execution and Learning <span>85% ↑6%</span></div>
+
+  <div class="obj-item" id="inst-o2-kr1">
+    <div class="obj-header" onclick="toggleObj('inst-o2-kr1')">
+      <span class="inst-kr-code" style="background:#27CF7722;color:#27CF77">KR2.1</span>
+      <span class="obj-name">Execution Reliability — ≥80% milestones met</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--green)"></div></div></div>
+      <span class="obj-pct" style="color:var(--green)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout green"><div class="callout-title">D2 Completed at Offsite ✓</div>Democracy ecosystem decisions finalized. All major programmatic milestones met for the year.</div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o2-kr2">
+    <div class="obj-header" onclick="toggleObj('inst-o2-kr2')">
+      <span class="inst-kr-code" style="background:#27CF7722;color:#27CF77">KR2.2</span>
+      <span class="obj-name">SBL + Evidence — Decision readiness</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--green)"></div></div></div>
+      <span class="obj-pct" style="color:var(--green)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">MEL framework applied across full portfolio. SBL evidence ready for Board Q4 presentation.</div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o2-kr3">
+    <div class="obj-header" onclick="toggleObj('inst-o2-kr3')">
+      <span class="inst-kr-code" style="background:#27CF7722;color:#27CF77">KR2.3</span>
+      <span class="obj-name">Learning Agendas Concluded</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:90%;background:var(--green)"></div></div></div>
+      <span class="obj-pct" style="color:var(--green)">90%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">MEL team completed 72 interviews in October–November across Ascope, Ugel 3 and 7. 6 evidence documents produced. Stage-Based MEL support delivered across portfolio.</div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o3">O3 · Conducive Structure for 5-Year Plan <span>64% ↑10%</span></div>
+
+  <div class="obj-item" id="inst-o3-kr1">
+    <div class="obj-header" onclick="toggleObj('inst-o3-kr1')">
+      <span class="inst-kr-code" style="background:#F9731622;color:#F97316">KR3.1</span>
+      <span class="obj-name">Organizational Enablement — Roles filled</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:82%;background:#F97316"></div></div></div>
+      <span class="obj-pct" style="color:#F97316">82%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">OKR system running with 3+ review cycles. Team onboarding complete. Roles filled per plan.</div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o3-kr2">
+    <div class="obj-header" onclick="toggleObj('inst-o3-kr2')">
+      <span class="inst-kr-code" style="background:#F9731622;color:#F97316">KR3.2</span>
+      <span class="obj-name">Operational Excellence — Transversal SLAs ≥90%</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:63%;background:#F97316"></div></div></div>
+      <span class="obj-pct" style="color:#F97316">63%</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout yellow"><div class="callout-title">Gap to target</div>Service levels improving: 34% → 63%. Needs continued focus to reach ≥90% goal by Dec 31.</div>
+    </div>
+  </div>
+
+  <div class="obj-item" id="inst-o3-kr3">
+    <div class="obj-header" onclick="toggleObj('inst-o3-kr3')">
+      <span class="inst-kr-code" style="background:#F9731622;color:#F97316">KR3.3</span>
+      <span class="obj-name">Execution Infrastructure Implemented</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:85%;background:#F97316"></div></div></div>
+      <span class="obj-pct" style="color:#F97316">85%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">OP1.2 at 85% (was 55%). Investment system, budget monitoring, and legal infrastructure in place.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMOCRACY -->
+<div class="section" id="tab-dem">
+  <div class="sec-title">Democracy</div>
+  <div class="sec-sub">Lead: Tamara Taraciuk · <strong style="color:#C4A8FF">93%</strong> <span class="mom-chip mom-up">↑10% vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-dem"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-dem)">93%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">Democracy</div>
+      <div class="team-info-lead">Lead: Tamara Taraciuk · Miguel Ángel Betancur</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">7</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">2</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">0</div><div class="team-stat-l">At Risk</div></div>
+      </div>
+    </div>
+    <div class="team-counts">
+      <span class="badge completed">9 KRs total</span>
+      <span style="font-size:11px;color:#555;margin-top:4px">D1 · D2 · D3 · D4</span>
+    </div>
+  </div>
+  <div class="callout green"><div class="callout-title">Offsite Sprint ✓</div>5 KRs completed at the São Paulo offsite. D3.1 (DPI Big Bet) and D2.1 (Ecosystem Decisions) now at 100%. D4.3 Thesis Decision finalized. Major milestones met for Board Q4.</div>
+
+  <div class="obj-group-hdr o2" id="dem-d2">D2 · Deepen and decide continuity of ecosystem bets <span>100%</span></div>
+  <div class="obj-item open">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:var(--c-dem)11;color:var(--c-dem)">D2.1</span>
+      <span class="obj-name">Democracy Ecosystem Decisions</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--c-dem)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-dem)">100%</span>
+      <span class="kr-badge completed">✓ Offsite</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">D2.1</span><span class="kr-name">Democracy Ecosystem Decisions</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-dem)"></div></div></div><div class="kr-pct" style="color:var(--c-dem)">100%</div><div><span class="kr-badge completed">Completed</span><div class="kr-detail">↑ from 61% · Completed at São Paulo offsite</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o1" id="dem-d3">D3 · Test democratic innovations as potential levers <span>94%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code">D3</span>
+      <span class="obj-name">D3 Objective — Democratic Innovation</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:94%;background:var(--c-dem)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-dem)">94%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">D3.1</span><span class="kr-name">DPI Big Bet Decision (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-dem)"></div></div></div><div class="kr-pct" style="color:var(--c-dem)">100%</div><div><span class="kr-badge completed">Completed</span><div class="kr-detail">↑ from 65% · Tamara Taraciuk</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">D3.2</span><span class="kr-name">Democracy 2027–2031 Strategy</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:88%;background:var(--c-dem)"></div></div></div><div class="kr-pct" style="color:var(--c-dem)">88%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 66%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o1" id="dem-d4">D4 · Thematic Strategy &amp; Toolkit <span>100%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code">D4</span>
+      <span class="obj-name">D4 Objective — Strategy &amp; Thesis</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--green)"></div></div></div>
+      <span class="obj-pct" style="color:var(--green)">100%</span>
+      <span class="badge completed">All Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">D4.1</span><span class="kr-name">Investment Thesis — moonshot + democracy strategy</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">Completed</span><div class="kr-detail">↑ from 86%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">D4.2</span><span class="kr-name">Evidence &amp; Results Dashboard</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">Completed</span></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">D4.3</span><span class="kr-name">Thesis Decision</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 0% · Completed at São Paulo offsite</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMOCRACIA+ -->
+<div class="section" id="tab-dp">
+  <div class="sec-title">Democracia+</div>
+  <div class="sec-sub">Lead: Andrés Valenciano · <strong style="color:var(--c-dp)">84%</strong> <span class="mom-chip mom-up">↑18% vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-dp"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-dp)">84%</div><div class="team-donut-label">D1 OBJ</div></div></div>
+    <div>
+      <div class="team-info-name">Democracia+</div>
+      <div class="team-info-lead">Lead: Andrés Valenciano</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">0</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">3</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">0</div><div class="team-stat-l">At Risk</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o2" id="dp-d1">D1 · Turn Democracia+ into a robust Big Bet for 2027–2031 <span>84%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code">D1</span>
+      <span class="obj-name">D+ Objective — Big Bet for 2027–2031</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:84%;background:var(--c-dp)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-dp)">84%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">D1.1</span><span class="kr-name">D+ Operating Model Decision (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:86%;background:var(--c-dp)"></div></div></div><div class="kr-pct" style="color:var(--c-dp)">86%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 60% · Andrés Valenciano</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">D1.2</span><span class="kr-name">D+ Network Members Onboarded</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:83%;background:var(--c-dp)"></div></div></div><div class="kr-pct" style="color:var(--c-dp)">83%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 48%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">D1.3</span><span class="kr-name">Democracia+ 2027–2031 Strategy</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:83%;background:var(--c-dp)"></div></div></div><div class="kr-pct" style="color:var(--c-dp)">83%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 55%</div></div><div></div></div>
+      </div>
+      <div class="callout yellow" style="margin-top:.75rem"><div class="callout-title">D+ Strategy pending Board Q4</div>D+ 5-year plan vision, governance model, and sustainability framework to be approved Dec 4. All KRs progressing well — 16% gap remaining to target.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ECD -->
+<div class="section" id="tab-ecd">
+  <div class="sec-title">ECD</div>
+  <div class="sec-sub">Lead: Leandro Folgar · <strong style="color:var(--c-ecd)">91%</strong> <span class="mom-chip mom-up">↑21% vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-ecd"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-ecd)">91%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">ECD</div>
+      <div class="team-info-lead">Lead: Leandro Folgar · Isabella Torres</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">7</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">2</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--yellow)">1</div><div class="team-stat-l">At Risk</div></div>
+      </div>
+    </div>
+    <div class="team-counts">
+      <span class="badge completed">10 KRs total</span>
+      <span style="font-size:11px;color:#27CF77;margin-top:4px">7 completed at offsite</span>
+    </div>
+  </div>
+  <div class="callout green"><div class="callout-title">Offsite Sprint — 7 KRs Completed ✓</div>Massive jump: EC2.1, EC2.2, EC3.2, EC3.3, EC4.1 all hit 100% at the São Paulo offsite. EC1.3 also completed. Only EC1.2 (National Scale Readiness) remains at risk.</div>
+
+  <div class="obj-group-hdr o1" id="ecd-ec1">EC1 · Deepen / double down on current big bets <span>75%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#27CF7711;color:#27CF77">EC1</span>
+      <span class="obj-name">Deepen / double down on current big bets</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:75%;background:var(--c-ecd)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ecd)">75%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">EC1.1</span><span class="kr-name">aprendo+ Spin-off Ready (Q2)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:83%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">83%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 65% · Isabella Torres</div></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">EC1.2</span><span class="kr-name">ECD National Scale Readiness (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:58%;background:var(--yellow)"></div></div></div><div class="kr-pct" style="color:var(--yellow)">58%</div><div><span class="kr-badge at-risk">At Risk</span><div class="kr-detail">↑ from 42% · Main remaining gap</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">EC1.3</span><span class="kr-name">ECDI Baseline Created (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 83% · Juan Guillermo Bedoya</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">EC1.4</span><span class="kr-name">Brazil ECD DPI National Scale Readiness (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:70%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">70%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 25% · Major progress at offsite</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o2" id="ecd-ec2">EC2 · Test and learn new hypotheses <span>100%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#27CF7711;color:#27CF77">EC2</span>
+      <span class="obj-name">Test and learn new hypotheses</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ecd)">100%</span>
+      <span class="badge completed">All Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">EC2.1</span><span class="kr-name">Caregiver Support Decision (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 60%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">EC2.2</span><span class="kr-name">Learning Agenda Concluded</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 43%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o1" id="ecd-ec3">EC3 · Define ECD strategy for 2026 and 2027–2031 <span>100%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#27CF7711;color:#27CF77">EC3</span>
+      <span class="obj-name">Define ECD strategy — all completed</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ecd)">100%</span>
+      <span class="badge completed">All Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">EC3.1</span><span class="kr-name">ECD Investment Thesis</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">Completed</span></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">EC3.2</span><span class="kr-name">Evidence &amp; Results Dashboard</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 50%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">EC3.3</span><span class="kr-name">Thesis Decision</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 0%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o1" id="ecd-ec4">EC4 · Ecosystem Bets <span>100%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#27CF7711;color:#27CF77">EC4</span>
+      <span class="obj-name">Ecosystem Bets Decision</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ecd)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">EC4.1</span><span class="kr-name">Ecosystem Bets Decision (Q3)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-ecd)"></div></div></div><div class="kr-pct" style="color:var(--c-ecd)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 38% · Strategy conflict resolved</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION (FoT + K-12) -->
+<div class="section" id="tab-edu">
+  <div class="sec-title">Education — FoT + K-12</div>
+  <div class="sec-sub">Lead: Leandro Folgar / Maribel Corrales · FoT <strong style="color:var(--c-fot)">62%</strong> · K-12 <strong style="color:var(--c-k12)">41%</strong></div>
+
+  <div class="callout yellow"><div class="callout-title">FT1.4 Alert — Chocó Program Added</div>FT1.4 Cohort 2027 Col dropped from 72% → 36%. New Chocó scholarship tasks added as Not Started. This reflects expanded scope, not regression. Agreements are being renegotiated with Chocó universities.</div>
+  <div class="callout green" style="margin-top:.5rem"><div class="callout-title">K-12 &amp; FoT Thesis Decisions ✓</div>K3.3 (K-12 Thesis Decision) and FT3.3 (FoT Thesis Decision) both completed at the offsite. 5-year plan complete for Education area.</div>
+
+  <!-- FoT -->
+  <div class="card" style="margin-top:1rem">
+    <div class="card-title" style="color:var(--c-fot)">Future of Talent (FoT) — 62%</div>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.75rem">
+      <div style="position:relative;width:70px;height:70px;flex-shrink:0"><canvas id="donut-fot"></canvas>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><span style="font-size:16px;font-weight:800;color:var(--c-fot)">62%</span></div></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">2</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">4</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--yellow)">2</div><div class="team-stat-l">At Risk</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">1</div><div class="team-stat-l">Not Started</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-fot);border-bottom-color:#22C4CF33" id="edu-ft1">FT1 · Deliver and improve the tech scholarship platform at scale <span>62%</span></div>
+  <div class="obj-item has-risk">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#22C4CF11;color:var(--c-fot)">FT1</span>
+      <span class="obj-name">Tech Scholarship Platform at Scale</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:62%;background:var(--c-fot)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-fot)">62%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">FT1.1</span><span class="kr-name">Tech Scholarship Platform Q3 Delivery</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:68%;background:var(--c-fot)"></div></div></div><div class="kr-pct" style="color:var(--c-fot)">68%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 62%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">FT1.2</span><span class="kr-name">Scholarship Quality Score</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:77%;background:var(--c-fot)"></div></div></div><div class="kr-pct" style="color:var(--c-fot)">77%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 75%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">FT1.3</span><span class="kr-name">Scholar Employment / Placement Rate</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:65%;background:var(--c-fot)"></div></div></div><div class="kr-pct" style="color:var(--c-fot)">65%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">Unchanged</div></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">FT1.4</span><span class="kr-name">Cohort 2027 Colombia launched and delivered</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:36%;background:#FF4545"></div></div></div><div class="kr-pct" style="color:#FF4545">36%</div><div><span class="kr-badge dropped">↓ from 72%</span><div class="kr-detail">Chocó program added — new tasks as Not Started. University agreements being renegotiated.</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-fot);border-bottom-color:#22C4CF33" id="edu-ft2">FT2 · Test and Learn new hypotheses <span>100%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#22C4CF11;color:var(--c-fot)">FT2.1</span>
+      <span class="obj-name">Test &amp; Learn Portfolio Closed-loop (Q4)</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:100%;background:var(--green)"></div></div></div>
+      <span class="obj-pct" style="color:var(--green)">100%</span>
+      <span class="badge completed">Completed</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">Nubo Assessment and Trayectorias Assessment completed. Closed-loop portfolio achieved.</div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-fot);border-bottom-color:#22C4CF33" id="edu-ft3">FT3 · Define FoT Strategy for 2026 and 2027–2031 <span>47%</span></div>
+  <div class="obj-item has-risk">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#22C4CF11;color:var(--c-fot)">FT3</span>
+      <span class="obj-name">FoT Strategy Definition</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:47%;background:var(--yellow)"></div></div></div>
+      <span class="obj-pct" style="color:var(--yellow)">47%</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row has-risk"><div><span class="kr-code">FT3.1</span><span class="kr-name">Investment Thesis</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:37%;background:var(--yellow)"></div></div></div><div class="kr-pct" style="color:var(--yellow)">37%</div><div><span class="kr-badge at-risk">At Risk</span><div class="kr-detail">Unchanged from Oct · Needs focus</div></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">FT3.2</span><span class="kr-name">Evidence &amp; Results Dashboard</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:3%;background:var(--yellow)"></div></div></div><div class="kr-pct" style="color:var(--yellow)">3%</div><div><span class="kr-badge at-risk">At Risk</span><div class="kr-detail">Unchanged · Critical gap before Board</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">FT3.3</span><span class="kr-name">Thesis Decision</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 0%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-fot);border-bottom-color:#22C4CF33" id="edu-ft4">FT4 · Ecosystem Bets <span>75%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#22C4CF11;color:var(--c-fot)">FT4.1</span>
+      <span class="obj-name">Ecosystem Bets Decision (Q3)</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:75%;background:var(--c-fot)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-fot)">75%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">↑ from 0%. Nubo and Trayectorias assessments completed at offsite. Final decision pending.</div>
+    </div>
+  </div>
+
+  <!-- K-12 -->
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-title" style="color:var(--c-k12)">K-12 — 41%</div>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.75rem">
+      <div style="position:relative;width:70px;height:70px;flex-shrink:0"><canvas id="donut-k12"></canvas>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><span style="font-size:16px;font-weight:800;color:var(--c-k12)">41%</span></div></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">1</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">2</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--yellow)">1</div><div class="team-stat-l">At Risk</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">2</div><div class="team-stat-l">Not Started</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-k12);border-bottom-color:#3B82F633" id="edu-k1">K1 · Deepen / double down on current ecosystem bets <span>83%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#3B82F611;color:var(--c-k12)">K1.1</span>
+      <span class="obj-name">Ecosystem Bets Decision (Q3)</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:83%;background:var(--c-k12)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-k12)">83%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">↑ from 77%. Leandro Folgar.</div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-k12);border-bottom-color:#3B82F633" id="edu-k2">K2 · Test and learn K-12 levers <span>33%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#3B82F611;color:var(--c-k12)">K2</span>
+      <span class="obj-name">Test and learn K-12 levers (AI + impact investing)</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:33%;background:var(--c-k12)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-k12)">33%</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">K2.1</span><span class="kr-name">AI + Impact Investing Test (Chocó Response)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:65%;background:var(--c-k12)"></div></div></div><div class="kr-pct" style="color:var(--c-k12)">65%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 0% · Chocó earthquake response work. Major progress.</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">K2.2</span><span class="kr-name">Learning Agenda Hypothesis Test</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:0%;background:#555"></div></div></div><div class="kr-pct" style="color:#555">0%</div><div><span class="kr-badge not-started">Deprioritized</span><div class="kr-detail">Deprioritized due to Chocó earthquake response</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr" style="color:var(--c-k12);border-bottom-color:#3B82F633" id="edu-k3">K3 · Define K-12 Strategy for 2027–2031 <span>44%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#3B82F611;color:var(--c-k12)">K3</span>
+      <span class="obj-name">K-12 Strategy Definition</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:44%;background:var(--c-k12)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-k12)">44%</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row has-risk"><div><span class="kr-code">K3.1</span><span class="kr-name">Investment Thesis</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:0%;background:#555"></div></div></div><div class="kr-pct" style="color:#555">0%</div><div><span class="kr-badge not-started">Not Started</span><div class="kr-detail">Deprioritized — Chocó response redirected team</div></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">K3.2</span><span class="kr-name">Evidence &amp; Results Dashboard</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:33%;background:var(--yellow)"></div></div></div><div class="kr-pct" style="color:var(--yellow)">33%</div><div><span class="kr-badge at-risk">At Risk</span><div class="kr-detail">↑ from 0% · Felipe advancing final adjustments</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">K3.3</span><span class="kr-name">Thesis Decision</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">✓ Offsite</span><div class="kr-detail">↑ from 0%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEL -->
+<div class="section" id="tab-mel">
+  <div class="sec-title">MEL</div>
+  <div class="sec-sub">Lead: Juan Guillermo Bedoya · <strong style="color:var(--c-mel)">90%</strong> <span class="mom-chip mom-flat">— vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-mel"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-mel)">90%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">MEL</div>
+      <div class="team-info-lead">Lead: Juan Guillermo Bedoya</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">3</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">2</div><div class="team-stat-l">On Track</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout green"><div class="callout-title">MEL — Consistently Strong ✓</div>5/5 KRs on track or completed. 72 interviews completed Oct–Nov across 3 Ugels. 6 evidence documents produced. Stage-Based MEL support delivered across full portfolio.</div>
+
+  <div class="obj-group-hdr o2" id="mel-m1">M1 · Make portfolio decisions evidence-based <span>96%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#F9731611;color:var(--c-mel)">M1</span>
+      <span class="obj-name">Stage-Based Learning &amp; MEL Services</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:96%;background:var(--c-mel)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-mel)">96%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">M1.1</span><span class="kr-name">Stage-Based Learning System Operational</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-mel)"></div></div></div><div class="kr-pct" style="color:var(--c-mel)">100%</div><div><span class="kr-badge completed">Completed</span></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">M1.2</span><span class="kr-name">SSOT + Decision Package Standard Adopted (Q2)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:90%;background:var(--c-mel)"></div></div></div><div class="kr-pct" style="color:var(--c-mel)">90%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 70%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">M1.3</span><span class="kr-name">Stage-Based MEL Support Delivered (Q3)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:90%;background:var(--c-mel)"></div></div></div><div class="kr-pct" style="color:var(--c-mel)">90%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 81% · 72 interviews completed</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">M1.4</span><span class="kr-name">Evidence used in Portfolio Governance</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-mel)"></div></div></div><div class="kr-pct" style="color:var(--c-mel)">100%</div><div><span class="kr-badge completed">Completed</span></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">M1.5</span><span class="kr-name">Equality of Opportunity Measurement Pilot</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--c-mel)"></div></div></div><div class="kr-pct" style="color:var(--c-mel)">100%</div><div><span class="kr-badge completed">Completed</span></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OPS -->
+<div class="section" id="tab-ops">
+  <div class="sec-title">People &amp; Ops</div>
+  <div class="sec-sub">Lead: Cristina Londoño · <strong style="color:var(--c-ops)">79%</strong> <span class="mom-chip mom-up">↑7% vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-ops"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-ops)">79%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">People &amp; Ops</div>
+      <div class="team-info-lead">Lead: Cristina Londoño</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--green)">1</div><div class="team-stat-l">Completed</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#27CF77">5</div><div class="team-stat-l">On Track</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--yellow)">1</div><div class="team-stat-l">At Risk</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o3" id="ops-op1">OP1 · Build operational rigor through clear and standardized processes <span>87%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#F59E0B11;color:var(--c-ops)">OP1</span>
+      <span class="obj-name">Operational Rigor</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:87%;background:var(--c-ops)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ops)">87%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">OP1.1</span><span class="kr-name">Service Catalog + SLAs Defined</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:88%;background:var(--c-ops)"></div></div></div><div class="kr-pct" style="color:var(--c-ops)">88%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">Unchanged</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">OP1.2</span><span class="kr-name">Operational Infrastructure Implemented</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:85%;background:var(--c-ops)"></div></div></div><div class="kr-pct" style="color:var(--c-ops)">85%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 55% · Major sprint</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o3" id="ops-op2">OP2 · Reliable daily operations and continuity <span>87%</span></div>
+  <div class="obj-item">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#F59E0B11;color:var(--c-ops)">OP2</span>
+      <span class="obj-name">Reliable Daily Operations</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:87%;background:var(--c-ops)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ops)">87%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">OP2.1</span><span class="kr-name">Operational Continuity (Q4)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:87%;background:var(--c-ops)"></div></div></div><div class="kr-pct" style="color:var(--c-ops)">87%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 43%</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">OP2.2</span><span class="kr-name">Charity Requests Resolution ≥90%</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:86%;background:var(--c-ops)"></div></div></div><div class="kr-pct" style="color:var(--c-ops)">86%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">↑ from 46% · 96.6% cases resolved Q3</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="obj-group-hdr o3" id="ops-op3">OP3 · Aligned team with right capabilities <span>82%</span></div>
+  <div class="obj-item has-risk">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#F59E0B11;color:var(--c-ops)">OP3</span>
+      <span class="obj-name">Team Alignment &amp; Capabilities</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:82%;background:var(--c-ops)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-ops)">82%</span>
+      <span class="badge on-track">On Track</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row"><div><span class="kr-code">OP3.1</span><span class="kr-name">OKR System Adoption (Q2)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:82%;background:var(--c-ops)"></div></div></div><div class="kr-pct" style="color:var(--c-ops)">82%</div><div><span class="kr-badge on-track">On Track</span><div class="kr-detail">Unchanged · Cristina Londoño</div></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">OP3.2</span><span class="kr-name">Operational Excellence — SLA ≥90%</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:63%;background:var(--yellow)"></div></div></div><div class="kr-pct" style="color:var(--yellow)">63%</div><div><span class="kr-badge at-risk">At Risk</span><div class="kr-detail">↑ from 34% · Still 27pts below target</div></div><div></div></div>
+        <div class="kr-row"><div><span class="kr-code">OP3.3</span><span class="kr-name">Team Health &amp; Wellness (Q2)</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:100%;background:var(--green)"></div></div></div><div class="kr-pct" style="color:var(--green)">100%</div><div><span class="kr-badge completed">Completed</span><div class="kr-detail">↑ from 86%</div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH -->
+<div class="section" id="tab-tech">
+  <div class="sec-title">Tech</div>
+  <div class="sec-sub">Tech OKRs · <strong style="color:var(--c-tech)">3%</strong> <span class="mom-chip mom-flat">— vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-tech"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-tech)">3%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">Tech</div>
+      <div class="team-info-lead">Technology — infra and systems</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:var(--yellow)">1</div><div class="team-stat-l">At Risk</div></div>
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">1</div><div class="team-stat-l">Not Started</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout yellow"><div class="callout-title">Tech — Low Progress</div>Tech OKRs remain at 3%. T1.1 at 10%, T1.2 at 0%. No updates at the offsite. Needs urgent attention before year-end.</div>
+
+  <div class="obj-group-hdr" style="color:var(--c-tech);border-bottom-color:#6366F133">T1 · Tech Objectives</div>
+  <div class="obj-item has-risk">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#6366F111;color:var(--c-tech)">T1</span>
+      <span class="obj-name">Technology Systems &amp; Infrastructure</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:3%;background:var(--c-tech)"></div></div></div>
+      <span class="obj-pct" style="color:var(--c-tech)">3%</span>
+      <span class="badge at-risk">At Risk</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="kr-list">
+        <div class="kr-row has-risk"><div><span class="kr-code">T1.1</span><span class="kr-name">Tech Platform Delivery</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:10%;background:var(--c-tech)"></div></div></div><div class="kr-pct" style="color:var(--c-tech)">10%</div><div><span class="kr-badge at-risk">At Risk</span></div><div></div></div>
+        <div class="kr-row has-risk"><div><span class="kr-code">T1.2</span><span class="kr-name">Tech Systems Integration</span><div class="kr-bar-track"><div class="kr-bar-fill" style="width:0%;background:#555"></div></div></div><div class="kr-pct" style="color:#555">0%</div><div><span class="kr-badge not-started">Not Started</span></div><div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCE -->
+<div class="section" id="tab-fin">
+  <div class="sec-title">Finance</div>
+  <div class="sec-sub">Finance OKRs · <strong style="color:var(--c-fin)">0%</strong> <span class="mom-chip mom-flat">— vs Oct</span></div>
+  <div class="team-hdr">
+    <div class="team-donut-wrap"><canvas id="donut-fin"></canvas>
+      <div class="team-donut-center"><div class="team-donut-pct" style="color:var(--c-fin)">0%</div><div class="team-donut-label">OVERALL</div></div></div>
+    <div>
+      <div class="team-info-name">Finance</div>
+      <div class="team-info-lead">Finance &amp; Budget</div>
+      <div class="team-info-stats">
+        <div class="team-stat"><div class="team-stat-n" style="color:#555">1</div><div class="team-stat-l">Not Started</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout dim">Finance OKR tracking not updated in Profit.co.</div>
+
+  <div class="obj-group-hdr" style="color:var(--c-fin);border-bottom-color:#EC489933">F1 · Finance Objectives</div>
+  <div class="obj-item has-risk">
+    <div class="obj-header" onclick="toggleObj(this.closest('.obj-item'))">
+      <span class="obj-code" style="background:#EC489911;color:var(--c-fin)">F1</span>
+      <span class="obj-name">Finance OKRs</span>
+      <div class="obj-bar-wrap"><div class="obj-bar-track"><div class="obj-bar-fill" style="width:0%;background:var(--c-fin)"></div></div></div>
+      <span class="obj-pct" style="color:#555">0%</span>
+      <span class="badge not-started">Not Started</span>
+      <span class="obj-chevron">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="callout dim">Finance KRs not yet tracked in Profit.co. Budget monitoring handled via OP KRs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="footer-note">VélezReyes+ · OKR Report November 2026 · Data: Profit.co + Board Estimates V2 · Nov 25, 2026 — São Paulo Offsite</div>
+</div>
+</div>
+
+<script>
+// Tab navigation
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.nav-btn:not(.risk-filter-btn)').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('tab-' + id);
+  if (sec) sec.classList.add('visible');
+  const btn = [...document.querySelectorAll('.nav-btn')].find(b => b.getAttribute('onclick') === `showTab('${id}')`);
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Collapsible objectives
+function toggleObj(el) {
+  const item = typeof el === 'string' ? document.getElementById(el) : el;
+  if (item) item.classList.toggle('open');
+}
+
+// Nav to team tab and scroll to element
+function navTo(tab, anchorId) {
+  showTab(tab);
+  setTimeout(() => {
+    const el = document.getElementById(anchorId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('back-crumb').style.display = 'flex';
+  }, 100);
+}
+
+function dismissBack() {
+  document.getElementById('back-crumb').style.display = 'none';
+}
+
+// Risk filter
+function toggleRiskFilter() {
+  const btn = document.getElementById('risk-filter-btn');
+  document.body.classList.toggle('risk-mode');
+  btn.classList.toggle('active');
+}
+
+// Days counter
+(function() {
+  const board = new Date('2026-12-04');
+  const now = new Date();
+  const diff = Math.ceil((board - now) / (1000 * 60 * 60 * 24));
+  const el = document.getElementById('days-q4');
+  if (el) el.textContent = diff > 0 ? diff : 'Today!';
+})();
+
+// Team grid data
+const teams = [
+  { id:'dem', name:'Democracy', lead:'Tamara Taraciuk', pct:93, color:'#A62BFF', ontrack:9, atrisk:0, ns:0 },
+  { id:'dp',  name:'Democracia+', lead:'Andrés Valenciano', pct:84, color:'#C97AFF', ontrack:3, atrisk:0, ns:0 },
+  { id:'ecd', name:'ECD', lead:'Leandro Folgar', pct:91, color:'#27CF77', ontrack:9, atrisk:1, ns:0 },
+  { id:'edu', name:'Education', lead:'FoT+K12', pct:52, color:'#22C4CF', ontrack:8, atrisk:4, ns:3 },
+  { id:'mel', name:'MEL', lead:'JG Bedoya', pct:90, color:'#F97316', ontrack:5, atrisk:0, ns:0 },
+  { id:'ops', name:'Ops', lead:'Cristina Londoño', pct:79, color:'#F59E0B', ontrack:6, atrisk:1, ns:0 },
+  { id:'tech',name:'Tech', lead:'Technology', pct:3,  color:'#6366F1', ontrack:0, atrisk:1, ns:1 },
+  { id:'fin', name:'Finance', lead:'Finance', pct:0,  color:'#EC4899', ontrack:0, atrisk:0, ns:1 },
+];
+
+const grid = document.getElementById('team-grid');
+teams.forEach(t => {
+  const card = document.createElement('div');
+  card.className = 'team-card';
+  card.onclick = () => showTab(t.id);
+  card.innerHTML = `
+    <div class="tc-top">
+      <div><div class="tc-name">${t.name}</div><div class="tc-lead">${t.lead}</div></div>
+      <div class="tc-donut-wrap"><canvas id="tc-${t.id}" width="54" height="54"></canvas>
+        <div class="tc-donut-center"><span class="tc-pct" style="color:${t.color}">${t.pct}%</span></div></div>
+    </div>
+    <div class="tc-bar-wrap">
+      ${t.ontrack > 0 ? `<div class="tc-bar-row"><div class="tc-bar-label">On track</div><div class="tc-bar-track"><div class="tc-bar-fill" style="width:${Math.round(t.ontrack/(t.ontrack+t.atrisk+t.ns)*100)}%;background:#27CF77"></div></div><div class="tc-bar-pct">${t.ontrack}</div></div>` : ''}
+      ${t.atrisk > 0 ? `<div class="tc-bar-row"><div class="tc-bar-label">At risk</div><div class="tc-bar-track"><div class="tc-bar-fill" style="width:${Math.round(t.atrisk/(t.ontrack+t.atrisk+t.ns)*100)}%;background:#F3FF00"></div></div><div class="tc-bar-pct">${t.atrisk}</div></div>` : ''}
+      ${t.ns > 0 ? `<div class="tc-bar-row"><div class="tc-bar-label">Not started</div><div class="tc-bar-track"><div class="tc-bar-fill" style="width:${Math.round(t.ns/(t.ontrack+t.atrisk+t.ns)*100)}%;background:#3A3A3A"></div></div><div class="tc-bar-pct">${t.ns}</div></div>` : ''}
+    </div>`;
+  grid.appendChild(card);
+});
+
+// Draw all donuts
+function drawDonut(canvasId, pct, color, size) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const rem = 100 - pct;
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: { datasets: [{ data: [pct, rem], backgroundColor: [color, '#252525'], borderWidth: 0, hoverOffset: 0 }] },
+    options: {
+      cutout: size === 'lg' ? '72%' : '65%',
+      responsive: false,
+      animation: { duration: 600 },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
+    }
+  });
+}
+
+// Team header donuts
+drawDonut('donut-dem', 93, '#A62BFF', 'lg');
+drawDonut('donut-dp',  84, '#C97AFF', 'lg');
+drawDonut('donut-ecd', 91, '#27CF77', 'lg');
+drawDonut('donut-fot', 62, '#22C4CF', 'md');
+drawDonut('donut-k12', 41, '#3B82F6', 'md');
+drawDonut('donut-mel', 90, '#F97316', 'lg');
+drawDonut('donut-ops', 79, '#F59E0B', 'lg');
+drawDonut('donut-tech', 3, '#6366F1', 'lg');
+drawDonut('donut-fin',  0, '#EC4899', 'lg');
+
+// Grid donuts
+teams.forEach(t => drawDonut('tc-' + t.id, t.pct, t.color, 'sm'));
+</script>
+</body>
+</html>

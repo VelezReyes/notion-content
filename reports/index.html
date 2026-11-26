@@ -475,8 +475,8 @@ a{text-decoration:none;color:inherit}
     </div>
     <div class="hero-stat-group">
       <div class="hero-stat-chip">
-        <div class="hero-stat-n" style="color:var(--purple)">70%</div>
-        <div class="hero-stat-l">October Overall</div>
+        <div class="hero-stat-n" style="color:var(--purple)">76%</div>
+        <div class="hero-stat-l">November Overall</div>
       </div>
       <div class="hero-stat-chip">
         <div class="hero-stat-n" style="color:var(--green)">↑3%</div>
@@ -502,9 +502,9 @@ a{text-decoration:none;color:inherit}
     </div>
     <div class="strategy-banner-right">
       <div class="strategy-banner-pcts">
-        <div><span style="color:#A62BFF;font-weight:800">77%</span><span>O1</span></div>
-        <div><span style="color:#27CF77;font-weight:800">79%</span><span>O2</span></div>
-        <div><span style="color:#F97316;font-weight:800">54%</span><span>O3</span></div>
+        <div><span style="color:#A62BFF;font-weight:800">80%</span><span>O1</span></div>
+        <div><span style="color:#27CF77;font-weight:800">85%</span><span>O2</span></div>
+        <div><span style="color:#F97316;font-weight:800">64%</span><span>O3</span></div>
       </div>
       <div class="strategy-banner-btn">View report →</div>
     </div>
@@ -533,13 +533,13 @@ a{text-decoration:none;color:inherit}
   <div class="empty-state" id="emptyState">No reports match your search.</div>
 
   <!-- ══ 2. MOM COMPARISON ══ -->
-  <div class="section-label">Month-over-month · September → October 2026</div>
+  <div class="section-label">Month-over-month · October → November+December 2026</div>
 
   <!-- ORG DELTA PANEL -->
   <div class="delta-panel">
     <div class="delta-panel-head">
       <span class="delta-panel-title">Organization Progress</span>
-      <span class="delta-period-pill">September 2026 → October 2026</span>
+      <span class="delta-period-pill">October 2026 → November+December 2026</span>
     </div>
     <div class="delta-grid">
       <div class="delta-cell">
@@ -784,7 +784,15 @@ a{text-decoration:none;color:inherit}
 // ── DATA ──────────────────────────────────────────
 const REPORTS = [
   {
-    id:'october-2026', month:'October', year:2026, latest:true,
+    id:'november-2026', month:'November+December', year:2026, latest:true,
+    dataDate:'Nov 25, 2026',
+    url:'NOVEMBER/OKR Report - November+December 2026.html',
+    overall:76, o1:80, o2:85, o3:64,
+    teams:{dem:93,dp:84,ecd:91,edu:52,mel:90,ops:79,tech:3,fin:0},
+    krs:{onTrack:48,atRisk:6,notStarted:10,completed:12}
+  },
+  {
+    id:'october-2026', month:'October', year:2026, latest:false,
     dataDate:'Nov 13, 2026',
     url:'https://velezreyes.github.io/notion-content/reports/OKR%20Report%20-%20October%202026.html',
     overall:70, o1:77, o2:79, o3:54,
